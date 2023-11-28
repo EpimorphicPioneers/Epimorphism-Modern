@@ -1,8 +1,8 @@
 # Epimorphism-Modern
 ## Epimorphism
 
-A huge addon for GregTech CE Unofficial.  
-Support for 1.12.2.  
+A huge addon for GregTechCEu Modern.  
+Support for 1.20.1.  
 
 ## Desc
 
