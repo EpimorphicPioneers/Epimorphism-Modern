@@ -1,5 +1,8 @@
 package cn.gtcommunity.epimorphism;
 
+import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs;
+import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.data.EPMaterials;
 import com.google.common.base.Suppliers;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -28,19 +31,24 @@ public class Epimorphism {
     public static final Supplier<RegistrarManager> REGISTRIES = Suppliers.memoize(() -> RegistrarManager.get(MOD_ID));
 
     // Registering a new creative tab
-    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(MOD_ID, Registries.CREATIVE_MODE_TAB);
-    public static final RegistrySupplier<CreativeModeTab> EXAMPLE_TAB = TABS.register("example_tab", () ->
-            CreativeTabRegistry.create(Component.translatable("itemGroup." + MOD_ID + ".example_tab"),
-                    () -> new ItemStack(Epimorphism.EXAMPLE_ITEM.get())));
+//    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(MOD_ID, Registries.CREATIVE_MODE_TAB);
+//    public static final RegistrySupplier<CreativeModeTab> EXAMPLE_TAB = TABS.register("example_tab", () ->
+//            CreativeTabRegistry.create(Component.translatable("itemGroup." + MOD_ID + ".example_tab"),
+//                    () -> new ItemStack(Epimorphism.EXAMPLE_ITEM.get())));
     
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
-    public static final RegistrySupplier<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () ->
-            new Item(new Item.Properties().arch$tab(Epimorphism.EXAMPLE_TAB)));
+//    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
+//    public static final RegistrySupplier<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () ->
+//            new Item(new Item.Properties().arch$tab(Epimorphism.EXAMPLE_TAB)));
     
     public static void init() {
         ConfigHolder.init();
-        TABS.register();
-        ITEMS.register();
+//        TABS.register();
+//        ITEMS.register();
+        EPCreativeModeTabs.init();
+        EPItems.init();
+
+
+        EPRegistries.REGISTRATE.registerRegistrate();
         
         System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
     }

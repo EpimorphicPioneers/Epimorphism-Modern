@@ -46,6 +46,18 @@ loom {
     }
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir("src/generated/resources")
+            exclude("**/.cache")
+//            srcDirs += [
+//                    forge_project.file("src/generated/resources").absolutePath
+//            ]
+        }
+    }
+}
+
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
