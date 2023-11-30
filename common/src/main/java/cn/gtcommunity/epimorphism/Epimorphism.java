@@ -1,18 +1,21 @@
 package cn.gtcommunity.epimorphism;
 
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.common.data.EPBlocks;
 import cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.data.EPMaterials;
 import com.google.common.base.Suppliers;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -45,11 +48,15 @@ public class Epimorphism {
 //        TABS.register();
 //        ITEMS.register();
         EPCreativeModeTabs.init();
+        EPBlocks.init();
         EPItems.init();
-
 
         EPRegistries.REGISTRATE.registerRegistrate();
         
         System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+    }
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation("epimorphism", FormattingUtil.toLowerCaseUnder(path));
     }
 }
