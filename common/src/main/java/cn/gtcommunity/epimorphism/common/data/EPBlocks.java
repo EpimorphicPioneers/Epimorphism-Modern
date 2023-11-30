@@ -77,40 +77,40 @@ public class EPBlocks {
         REGISTRATE.creativeModeTab(() -> EP_BLOCK);
 
         // Multiblock Machine Casing Blocks
-        ISA_MILL_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        FLOTATION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        VACUUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        HYPER_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        TALONITE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        IRIDIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        BREEDING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        TRITANIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        QUANTUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        REFLECTIVE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        GENERAL_PROCESSING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        MARAGING_STEEL_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        BABBITT_ALLOY_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        ZIRCONIUM_CARBIDE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        SUPERCRITICAL_FLUID_TURBINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        CORROSION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        HASTELLOYX78_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        HASTELLOYK243_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        BASIC_PHOTOLITHOGRAPHIC_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        MOLD_PRINTING_ASSEMBLY_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        RADIATION_PROOF_SCAN_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
+        ISA_MILL_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        FLOTATION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        VACUUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        HYPER_CASING = createCasingBlock("hyper_casing", Epimorphism.id("block/casings/solid/hyper_casing"));
+        TALONITE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        IRIDIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        BREEDING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        TRITANIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        QUANTUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        REFLECTIVE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        GENERAL_PROCESSING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        MARAGING_STEEL_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        BABBITT_ALLOY_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        ZIRCONIUM_CARBIDE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        SUPERCRITICAL_FLUID_TURBINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        CORROSION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        HASTELLOYX78_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        HASTELLOYK243_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        BASIC_PHOTOLITHOGRAPHIC_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        MOLD_PRINTING_ASSEMBLY_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        RADIATION_PROOF_SCAN_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
 
         // Multiblock Machine Pipe Casing Blocks
-        CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("polybenzimidazole_pipe", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        CASING_ISA_MILL_PIPE = createCasingBlock("isa_mill_casing_pipe", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        CASING_FLOTATION_PIPE = createCasingBlock("flotation_casing_pipe", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
-        CASING_ALLOY_SMELTING_PIPE = createCasingBlock("alloy_smelting_pipe_casing", Epimorphism.id("block/casings/gcym/nonconducting_casing"));
+        CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("polybenzimidazole_pipe", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        CASING_ISA_MILL_PIPE = createCasingBlock("isa_mill_casing_pipe", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        CASING_FLOTATION_PIPE = createCasingBlock("flotation_casing_pipe", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+        CASING_ALLOY_SMELTING_PIPE = createCasingBlock("alloy_smelting_pipe_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     }
 
     protected static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {

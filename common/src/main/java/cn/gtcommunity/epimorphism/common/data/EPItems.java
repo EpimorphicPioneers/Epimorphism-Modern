@@ -281,7 +281,7 @@ public class EPItems {
 
         //  Circuits
         GOOWARE_PROCESSOR = REGISTRATE.item("circuit.gooware_processor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Gooware Processor")
                 .tag(CustomTags.ZPM_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.gooware_processor.tooltip"));
@@ -289,7 +289,7 @@ public class EPItems {
                 })))
                 .register();
         GOOWARE_ASSEMBLY = REGISTRATE.item("circuit.gooware_assembly", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Gooware Assembly")
                 .tag(CustomTags.UV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.gooware_assembly.tooltip"));
@@ -297,7 +297,7 @@ public class EPItems {
                 })))
                 .register();
         GOOWARE_COMPUTER = REGISTRATE.item("circuit.gooware_computer", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Gooware Supercomputer")
                 .tag(CustomTags.UHV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.gooware_computer.tooltip"));
@@ -305,7 +305,7 @@ public class EPItems {
                 })))
                 .register();
         GOOWARE_MAINFRAME = REGISTRATE.item("circuit.gooware_mainframe", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Gooware Mainframe")
                 .tag(CustomTags.UEV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.gooware_mainframe.tooltip"));
@@ -313,7 +313,7 @@ public class EPItems {
                 })))
                 .register();
         OPTICAL_PROCESSOR = REGISTRATE.item("circuit.optical_processor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical IMC Processor")
                 .tag(CustomTags.UV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.optical_processor.tooltip"));
@@ -321,7 +321,7 @@ public class EPItems {
                 })))
                 .register();
         OPTICAL_ASSEMBLY = REGISTRATE.item("circuit.optical_assembly", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical IMC Assembly")
                 .tag(CustomTags.UHV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.optical_assembly.tooltip"));
@@ -329,7 +329,7 @@ public class EPItems {
                 })))
                 .register();
         OPTICAL_COMPUTER = REGISTRATE.item("circuit.optical_computer", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical IMC Supercomputer")
                 .tag(CustomTags.UEV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.optical_computer.tooltip"));
@@ -337,7 +337,7 @@ public class EPItems {
                 })))
                 .register();
         OPTICAL_MAINFRAME = REGISTRATE.item("circuit.optical_mainframe", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical IMC Mainframe")
                 .tag(CustomTags.UIV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.optical_mainframe.tooltip"));
@@ -345,7 +345,7 @@ public class EPItems {
                 })))
                 .register();
         SPINTRONIC_PROCESSOR = REGISTRATE.item("circuit.spintronic_processor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spintronic IMC Processor")
                 .tag(CustomTags.UHV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.spintronic_processor.tooltip"));
@@ -353,7 +353,7 @@ public class EPItems {
                 })))
                 .register();
         SPINTRONIC_ASSEMBLY = REGISTRATE.item("circuit.spintronic_assembly", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spintronic IMC Assembly")
                 .tag(CustomTags.UEV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.spintronic_assembly.tooltip"));
@@ -361,7 +361,7 @@ public class EPItems {
                 })))
                 .register();
         SPINTRONIC_COMPUTER = REGISTRATE.item("circuit.spintronic_computer", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spintronic IMC Supercomputer")
                 .tag(CustomTags.UIV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.spintronic_computer.tooltip"));
@@ -369,7 +369,7 @@ public class EPItems {
                 })))
                 .register();
         SPINTRONIC_MAINFRAME = REGISTRATE.item("circuit.spintronic_mainframe", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spintronic IMC Mainframe")
                 .tag(CustomTags.UXV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.spintronic_mainframe.tooltip"));
@@ -377,7 +377,7 @@ public class EPItems {
                 })))
                 .register();
         COSMIC_PROCESSOR = REGISTRATE.item("circuit.cosmic_processor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Planetary Processor")
                 .tag(CustomTags.UEV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.cosmic_processor.tooltip"));
@@ -385,7 +385,7 @@ public class EPItems {
                 })))
                 .register();
         COSMIC_ASSEMBLY = REGISTRATE.item("circuit.cosmic_assembly", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Planetary Assembly")
                 .tag(CustomTags.UIV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.cosmic_assembly.tooltip"));
@@ -393,7 +393,7 @@ public class EPItems {
                 })))
                 .register();
         COSMIC_COMPUTER = REGISTRATE.item("circuit.cosmic_computer", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Planetary Supercomputer")
                 .tag(CustomTags.UXV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.cosmic_computer.tooltip"));
@@ -401,7 +401,7 @@ public class EPItems {
                 })))
                 .register();
         COSMIC_MAINFRAME = REGISTRATE.item("circuit.cosmic_mainframe", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Planetary Mainframe")
                 .tag(CustomTags.OpV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.cosmic_mainframe.tooltip"));
@@ -409,7 +409,7 @@ public class EPItems {
                 })))
                 .register();
         SUPRACAUSAL_PROCESSOR = REGISTRATE.item("circuit.supracausal_processor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supracausal Galactic Processor")
                 .tag(CustomTags.UIV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.supracausal_processor.tooltip"));
@@ -417,7 +417,7 @@ public class EPItems {
                 })))
                 .register();
         SUPRACAUSAL_ASSEMBLY = REGISTRATE.item("circuit.supracausal_assembly", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supracausal Galactic Assembly")
                 .tag(CustomTags.UXV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.supracausal_assembly.tooltip"));
@@ -425,7 +425,7 @@ public class EPItems {
                 })))
                 .register();
         SUPRACAUSAL_COMPUTER = REGISTRATE.item("circuit.supracausal_computer", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supracausal Galactic Supercomputer")
                 .tag(CustomTags.OpV_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.supracausal_computer.tooltip"));
@@ -433,7 +433,7 @@ public class EPItems {
                 })))
                 .register();
         SUPRACAUSAL_MAINFRAME = REGISTRATE.item("circuit.supracausal_mainframe", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supracausal Galactic Mainframe")
                 .tag(CustomTags.MAX_CIRCUITS)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.circuit.supracausal_mainframe.tooltip"));
@@ -443,121 +443,121 @@ public class EPItems {
 
         //  Components
         OPTICAL_TRANSISTOR = REGISTRATE.item("component.optical_smd.transistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Phototransistor")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical_smd.transistor.tooltip"));
                 })))
                 .register();
         OPTICAL_RESISTOR = REGISTRATE.item("component.optical_smd.resistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Photoresistor")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical_smd.resistor.tooltip"));
                 })))
                 .register();
         OPTICAL_CAPACITOR = REGISTRATE.item("component.optical_smd.capacitor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical Integrator")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical_smd.capacitor.tooltip"));
                 })))
                 .register();
         OPTICAL_DIODE = REGISTRATE.item("component.optical_smd.diode", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical Isolator")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical_smd.diode.tooltip"));
                 })))
                 .register();
         OPTICAL_INDUCTOR = REGISTRATE.item("component.optical_smd.inductor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical Polarizer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical_smd.inductor.tooltip"));
                 })))
                 .register();
         SPINTRONIC_TRANSISTOR = REGISTRATE.item("component.spintronic_smd.transistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("MOSFET")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.transistor.tooltip"));
                 })))
                 .register();
         SPINTRONIC_RESISTOR = REGISTRATE.item("component.spintronic_smd.resistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Magnetoresistor")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.resistor.tooltip"));
                 })))
                 .register();
         SPINTRONIC_CAPACITOR = REGISTRATE.item("component.spintronic_smd.capacitor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Ultracapacitor")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.capacitor.tooltip"));
                 })))
                 .register();
         SPINTRONIC_DIODE = REGISTRATE.item("component.spintronic_smd.diode", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Schottky Diode")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.diode.tooltip"));
                 })))
                 .register();
         SPINTRONIC_INDUCTOR = REGISTRATE.item("component.spintronic_smd.inductor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spin Polarizer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.inductor.tooltip"));
                 })))
                 .register();
         COSMIC_TRANSISTOR = REGISTRATE.item("component.cosmic_smd.transistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Crystal Information Payload")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic_smd.transistor.tooltip"));
                 })))
                 .register();
         COSMIC_RESISTOR = REGISTRATE.item("component.cosmic_smd.resistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Micro Interstellar material Information Wall")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic_smd.resistor.tooltip"));
                 })))
                 .register();
         COSMIC_CAPACITOR = REGISTRATE.item("component.cosmic_smd.capacitor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Holographic Energy Charge")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic_smd.capacitor.tooltip"));
                 })))
                 .register();
         COSMIC_DIODE = REGISTRATE.item("component.cosmic_smd.diode", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Ion Diode")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic_smd.diode.tooltip"));
                 })))
                 .register();
         COSMIC_INDUCTOR = REGISTRATE.item("component.cosmic_smd.inductor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Zenith Polarizer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic_smd.inductor.tooltip"));
                 })))
                 .register();
         SUPRACAUSAL_TRANSISTOR = REGISTRATE.item("component.supracausal_smd.transistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Kaluza-Klein Extradimensional Dilator Field Effect Transistor")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.transistor.tooltip"));
                 })))
                 .register();
         SUPRACAUSAL_RESISTOR = REGISTRATE.item("component.supracausal_smd.resistor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Non anomalous Quantum Main Constraint Generator")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.resistor.tooltip"));
                 })))
                 .register();
         SUPRACAUSAL_CAPACITOR = REGISTRATE.item("component.supracausal_smd.capacitor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Energy-Momentum-Stress Tensor Memory")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.capacitor.tooltip"));
                 })))
                 .register();
         SUPRACAUSAL_DIODE = REGISTRATE.item("component.supracausal_smd.diode", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spin network Carrier Diode")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.diode.tooltip"));
                 })))
                 .register();
         SUPRACAUSAL_INDUCTOR = REGISTRATE.item("component.supracausal_smd.inductor", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supersymmetric Conformal Polarizer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.inductor.tooltip"));
                 })))
@@ -565,10 +565,10 @@ public class EPItems {
 
         //  Gooware Components
         BZ_REACTION_CHAMBER = REGISTRATE.item("component.gooware.reaction_chamber", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Belousov-Zhabotinsky Reaction Chamber")
                 .register();
         NONLINEAR_CHEMICAL_OSCILLATOR = REGISTRATE.item("component.gooware.nonlinear_chemical_oscillator", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Nonlinear Chemical Oscillator")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.gooware.nonlinear_chemical_oscillator.tooltip"));
                 })))
@@ -576,7 +576,7 @@ public class EPItems {
 
         //  Optical Components
         OPTICAL_LASER_CONTROL_UNIT = REGISTRATE.item("component.optical.optical_laser_control_unit", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical Laser Control Unit")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.optical.optical_laser_control_unit.tooltip"));
                 })))
@@ -584,7 +584,7 @@ public class EPItems {
 
         //  Spintronic Components
         ESR_COMPUTATION_UNIT = REGISTRATE.item("component.spintronic.esr_computation_unit", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("ESR Computation Unit")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.spintronic.esr_computation_unit.tooltip"));
                 })))
@@ -592,13 +592,13 @@ public class EPItems {
 
         //  Cosmic Components
         COSMIC_INFORMATION_MODULE = REGISTRATE.item("component.cosmic.information_module", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Cosmic Information Module")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic.information_module.tooltip"));
                 })))
                 .register();
         HOLOGRAPHIC_INFORMATION_IMC = REGISTRATE.item("component.cosmic.holographic_imc", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Holographic IMC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.cosmic.holographic_imc.tooltip"));
                 })))
@@ -606,13 +606,13 @@ public class EPItems {
 
         //  Supracausal Components
         SPACETIME_CONDENSER = REGISTRATE.item("component.supracausal.spacetime_condenser", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Supracausal SpaceTime Condenser")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal.spacetime_condenser.tooltip"));
                 })))
                 .register();
         LIGHT_CONE_MODULE = REGISTRATE.item("component.supracausal.light_cone_module", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Spacetime Light cone Stabilization Module")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.component.supracausal.light_cone_module.tooltip"));
                 })))
@@ -620,46 +620,46 @@ public class EPItems {
 
         //  Lasers
         OPTICAL_FIBER = REGISTRATE.item("laser.optical_fiber", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Optical Fiber")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.laser.optical_fiber.tooltip"));
                 })))
                 .register();
         DIELECTRIC_MIRROR = REGISTRATE.item("laser.dielectric_mirror", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Dielectric Mirror")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.laser.dielectric_mirror.tooltip"));
                 })))
                 .register();
         EMPTY_LASER_ASSEMBLY = REGISTRATE.item("laser.emitter.empty", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Empty Laser Assembly")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.laser.emitter.empty.tooltip"));
                 })))
                 .register();
         HELIUM_LASER = REGISTRATE.item("laser.emitter.helium", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Helium Laser Emitter")
                 .register();
         NEON_LASER = REGISTRATE.item("laser.emitter.neon", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Neon Laser Emitter")
                 .register();
         ARGON_LASER = REGISTRATE.item("laser.emitter.argon", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Argon Laser Emitter")
                 .register();
         KRYPTON_LASER = REGISTRATE.item("laser.emitter.krypton", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Krypton Laser Emitter")
                 .register();
         XENON_LASER = REGISTRATE.item("laser.emitter.xenon", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Xenon Laser Emitter")
                 .register();
         HELIUM_NEON_LASER = REGISTRATE.item("laser.emitter.helium_neon", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Helium-Neon Laser")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.laser.emitter.helium_neon.tooltip"));
                 })))
                 .register();
         ND_YAG_LASER = REGISTRATE.item("laser.emitter.nd_yag", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Nd:YAG Laser Emitter")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.laser.emitter.nd_yag.tooltip"));
                 })))
@@ -667,19 +667,19 @@ public class EPItems {
 
         //  Condenser Components
         TOPOLOGICAL_INSULATOR_TUBE = REGISTRATE.item("tube.topological_insulator", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Topological Insulator Tube")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.tube.topological_insulator.tooltip"));
                 })))
                 .register();
         BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT = REGISTRATE.item("containment_unit.bose_einstein_condensate", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Bose-Einstein Condensate Containment Unit")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.containment_unit.bose_einstein_condensate.tooltip"));
                 })))
                 .register();
         BOSE_EINSTEIN_CONDENSATE = REGISTRATE.item("bose_einstein_condensate", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Bose-Einstein Condensate")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.bose_einstein_condensate.tooltip"));
                 })))
@@ -687,115 +687,115 @@ public class EPItems {
 
         //  Wafers
         PHASE_CHANGE_MEMORY = REGISTRATE.item("wafer.chip.phase_change_memory", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("PRAM")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.phase_change_memory.tooltip"));
                 })))
                 .register();
         OPTICAL_NOR_MEMORY_CHIP = REGISTRATE.item("wafer.chip.optical_nor_memory_chip", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("ACNOR")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.optical_nor_memory_chip.tooltip"));
                 })))
                 .register();
         SPIN_TRANSFER_TORQUE_MEMORY = REGISTRATE.item("wafer.chip.spin_transfer_torque_memory", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("STTRAM")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.spin_transfer_torque_memory.tooltip"));
                 })))
                 .register();
         SPINTRONIC_NAND_MEMORY_CHIP = REGISTRATE.item("wafer.chip.spintronic_nand_memory_chip", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("MDNAND")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.spintronic_nand_memory_chip.tooltip"));
                 })))
                 .register();
         NANO_PIC_WAFER = REGISTRATE.item("wafer.nano_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("NPIC Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.nano_pic.tooltip"));
                 })))
                 .register();
         NANO_PIC_CHIP = REGISTRATE.item("wafer.chip.nano_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("NPIC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.nano_pic.tooltip"));
                 })))
                 .register();
         PICO_PIC_WAFER = REGISTRATE.item("wafer.pico_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("PPIC Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.pico_pic.tooltip"));
                 })))
                 .register();
         PICO_PIC_CHIP = REGISTRATE.item("wafer.chip.pico_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("PPIC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.pico_pic.tooltip"));
                 })))
                 .register();
         FEMTO_PIC_WAFER = REGISTRATE.item("wafer.femto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("FPIC Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.femto_pic.tooltip"));
                 })))
                 .register();
         FEMTO_PIC_CHIP = REGISTRATE.item("wafer.chip.femto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("FPIC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.femto_pic.tooltip"));
                 })))
                 .register();
         ATTO_PIC_WAFER = REGISTRATE.item("wafer.atto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("APIC Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.atto_pic.tooltip"));
                 })))
                 .register();
         ATTO_PIC_CHIP = REGISTRATE.item("wafer.chip.atto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("APIC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.atto_pic.tooltip"));
                 })))
                 .register();
         ZEPTO_PIC_WAFER = REGISTRATE.item("wafer.zepto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("ZPIC Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.zepto_pic.tooltip"));
                 })))
                 .register();
         ZEPTO_PIC_CHIP = REGISTRATE.item("wafer.chip.zepto_pic", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("ZPIC")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.chip.zepto_pic.tooltip"));
                 })))
                 .register();
         DUBNIUM_BOULE = REGISTRATE.item("boule.dubnium", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Dubnium-doped Monocrystalline Silicon Boule")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.boule.dubnium.tooltip"));
                 })))
                 .register();
         DUBNIUM_WAFER = REGISTRATE.item("wafer.dubnium", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Dubnium-doped Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.dubnium.tooltip"));
                 })))
                 .register();
         CUBIC_ZIRCONIA_EUROPIUM_BOULE = REGISTRATE.item("boule.cubic_zirconia.europium", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Europium-doped Monocrystalline Cubic Zirconia Boule")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.boule.cubic_zirconia.europium.tooltip"));
                 })))
                 .register();
         CUBIC_ZIRCONIA_EUROPIUM_WAFER = REGISTRATE.item("wafer.cubic_zirconia.europium", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Europium-doped Cubic Zirconia Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.cubic_zirconia.europium.tooltip"));
                 })))
                 .register();
         CRYSTAL_INTERFACE_WAFER = REGISTRATE.item("wafer.crystal_interface", ComponentItem::create)
-                .lang("Infinite Circuit Board")
+                .lang("Crystal Interface Wafer")
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     lines.add(Component.translatable("item.epimorphism.wafer.crystal_interface.tooltip"));
                 })))
