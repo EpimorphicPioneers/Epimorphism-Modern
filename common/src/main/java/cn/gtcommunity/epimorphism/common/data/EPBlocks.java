@@ -23,13 +23,13 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
-import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.REGISTRATE;
+import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs.*;
 
 public class EPBlocks {
 
     static {
-        REGISTRATE.creativeModeTab(() -> EP_BLOCK);
+        EP_REGISTRATE.creativeModeTab(() -> EP_BLOCK);
     }
     //////////////////////////////////////
     //******     Casing Blocks     *****//
@@ -84,7 +84,7 @@ public class EPBlocks {
     }
 
     protected static BlockEntry<Block> createCasingBlock(String name, BiFunction<BlockBehaviour.Properties, IRenderer, ? extends RendererBlock> blockSupplier, ResourceLocation texture, NonNullSupplier<? extends Block> properties, Supplier<Supplier<RenderType>> type) {
-        return EPRegistries.REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
+        return EPRegistries.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
                         Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
                                 Map.of("all", texture)) : null))
                 .initialProperties(properties)

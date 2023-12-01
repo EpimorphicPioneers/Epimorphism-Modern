@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism;
 
+import cn.gtcommunity.epimorphism.common.data.EPCovers;
 import cn.gtcommunity.epimorphism.common.data.EPElements;
 import cn.gtcommunity.epimorphism.common.data.EPMaterials;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
@@ -26,6 +27,11 @@ public class EPGTAddon implements IGTAddon {
     @Override
     public void registerMaterials() {
         EPMaterials.init();
+    }
+
+    @Override
+    public void registerCovers() {
+        EPCovers.init();
     }
 
     @Override
