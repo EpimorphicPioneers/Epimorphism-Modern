@@ -37,13 +37,9 @@ public class Epimorphism {
         ConfigHolder.init();
 //        TABS.register();
 //        ITEMS.register();
-        EPCreativeModeTabs.init();
-        EPBlocks.init();
-        EPItems.init();
-
-        EPRegistries.EP_REGISTRATE.registerRegistrate();
         
         System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+        Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
     }
 
     public static ResourceLocation id(String path) {
