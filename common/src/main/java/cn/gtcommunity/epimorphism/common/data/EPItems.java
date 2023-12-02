@@ -324,9 +324,9 @@ public class EPItems {
             .register();
     public final static ItemEntry<ComponentItem> SUPRACAUSAL_CAPACITOR = EP_REGISTRATE.item("component.supracausal_smd.capacitor", ComponentItem::create)
             .lang("Energy-Momentum-Stress Tensor Memory")
-                .onRegister(attach(new TooltipBehavior(lines -> {
-        lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.capacitor.tooltip"));
-    })))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.capacitor.tooltip"));
+            })))
             .register();
     public final static ItemEntry<ComponentItem> SUPRACAUSAL_DIODE = EP_REGISTRATE.item("component.supracausal_smd.diode", ComponentItem::create)
             .lang("Spin network Carrier Diode")
@@ -626,21 +626,47 @@ public class EPItems {
                 lines.add(Component.translatable("item.epimorphism.component.optical.optical_imc_board.tooltip"));
             })))
             .register();
-    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC  = EP_REGISTRATE.item("component.optical.photoelectron_soc", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = EP_REGISTRATE.item("component.optical.photoelectron_soc", ComponentItem::create)
             .lang("Infinite Circuit Board")
             .onRegister(attach(new TooltipBehavior(lines -> {
                 lines.add(Component.translatable("item.epimorphism.component.optical.photoelectron_soc.tooltip"));
             })))
-            .register();;
+            .register();
 
 //    //  Others
 //    public final static ItemEntry<Item> MAGNETRON;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_UHV;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_UEV;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_UIV;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_UXV;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_OPV;
-//    public final static ItemEntry<Item> VOLTAGE_COIL_MAX;
+//        VOLTAGE_COIL_MAX = REGISTRATE.item(106, "voltage_coil.max");
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = EP_REGISTRATE.item("uhv_voltage_coil", ComponentItem::create)
+        .lang("Infinite Circuit Board")
+        .onRegister(attach(new TooltipBehavior(lines -> {
+            lines.add(Component.translatable("item.epimorphism.uhv_voltage_coil.tooltip"));
+        })))
+        .register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UEV = EP_REGISTRATE.item("uev_voltage_coil", ComponentItem::create)
+            .lang("Infinite Circuit Board")
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.uev_voltage_coil.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UIV = EP_REGISTRATE.item("uiv_voltage_coil", ComponentItem::create)
+            .lang("Infinite Circuit Board")
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.uiv_voltage_coil.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UXV = EP_REGISTRATE.item("uxv_voltage_coil", ComponentItem::create)
+            .lang("Infinite Circuit Board")
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.uxv_voltage_coil.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_OPV = EP_REGISTRATE.item("opv_voltage_coil", ComponentItem::create)
+            .lang("Infinite Circuit Board")
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.opv_voltage_coil.tooltip"));
+            })))
+            .register();
+//    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_MAX;
 //    public final static ItemEntry<Item> CARBON_ALLOTROPE;
 //    public final static ItemEntry<Item> GRAPHENE_ALIGNED;
 //    public final static ItemEntry<Item> BORON_NITRIDE_GRINDER;
@@ -698,58 +724,98 @@ public class EPItems {
 //    public final static ItemEntry<Item> BROWN_ALGA;
 
     //  Covers
-    public final static ItemEntry<Item> ELECTRIC_MOTOR_ULV = EP_REGISTRATE.item("cover.electric_motor.ulv", Item::new)
+    public final static ItemEntry<Item> ELECTRIC_MOTOR_ULV = EP_REGISTRATE.item("ulv_electric_motor", Item::new)
             .lang("ULV Electric Motor")
             .register();
-    public final static ItemEntry<Item> ELECTRIC_PISTON_ULV = EP_REGISTRATE.item("cover.electric_piston.ulv", Item::new)
+    public final static ItemEntry<Item> ELECTRIC_PISTON_ULV = EP_REGISTRATE.item("ulv_electric_piston", Item::new)
             .lang("ULV Electric Motor")
             .register();
-    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_ULV = EP_REGISTRATE.item("cover.electric_pump.ulv", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_ULV = EP_REGISTRATE.item("ulv_electric_pump", ComponentItem::create)
             .lang("ULV Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ELECTRIC_PUMP_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.electric.pump.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 / 20));
+            })))
             .register();
-    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_ULV = EP_REGISTRATE.item("cover.conveyor_module.ulv", ComponentItem::create)
+    public static ItemEntry<ComponentItem> FLUID_REGULATOR_ULV = EP_REGISTRATE.item("ulv_fluid_regulator", ComponentItem::create)
+            .lang("ULV Fluid Regulator")
+            .onRegister(attach(new CoverPlaceBehavior(EPCovers.FLUID_REGULATORS_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.fluid.regulator.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 / 20));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_ULV = EP_REGISTRATE.item("ulv_conveyor_module", ComponentItem::create)
             .lang("ULV Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.CONVEYOR_MODULE_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.conveyor.module.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8));
+            })))
             .register();
-    public final static ItemEntry<ComponentItem> ROBOT_ARM_ULV = EP_REGISTRATE.item("cover.robot_arm.ulv", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ROBOT_ARM_ULV = EP_REGISTRATE.item("ulv_robot_arm", ComponentItem::create)
             .lang("ULV Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ROBOT_ARM_ULV)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.robot.arm.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate", 8));
+            })))
             .register();
-    public final static ItemEntry<Item> EMITTER_ULV = EP_REGISTRATE.item("cover.emitter.ulv", Item::new)
+    public final static ItemEntry<Item> EMITTER_ULV = EP_REGISTRATE.item("ulv_emitter", Item::new)
             .lang("ULV Electric Motor")
             .register();
-    public final static ItemEntry<Item> SENSOR_ULV = EP_REGISTRATE.item("cover.sensor.ulv", Item::new)
+    public final static ItemEntry<Item> SENSOR_ULV = EP_REGISTRATE.item("ulv_sensor", Item::new)
             .lang("ULV Electric Motor")
             .register();
-    public final static ItemEntry<Item> FIELD_GENERATOR_ULV = EP_REGISTRATE.item("cover.field_generator.ulv", Item::new)
+    public final static ItemEntry<Item> FIELD_GENERATOR_ULV = EP_REGISTRATE.item("ulv_field_generator", Item::new)
             .lang("ULV Electric Motor")
             .register();
-    public final static ItemEntry<Item> ELECTRIC_MOTOR_MAX = EP_REGISTRATE.item("cover.electric_motor.max", Item::new)
+    public final static ItemEntry<Item> ELECTRIC_MOTOR_MAX = EP_REGISTRATE.item("max_electric_motor", Item::new)
             .lang("MAX Electric Motor")
             .register();
-    public final static ItemEntry<Item> ELECTRIC_PISTON_MAX = EP_REGISTRATE.item("cover.electric_piston.max", Item::new)
+    public final static ItemEntry<Item> ELECTRIC_PISTON_MAX = EP_REGISTRATE.item("max_electric_piston", Item::new)
             .lang("MAX Electric Motor")
             .register();
-    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("cover.electric_pump.max", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
             .lang("MAX Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ELECTRIC_PUMP_MAX)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.electric.pump.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20));
+            })))
             .register();
-    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_MAX = EP_REGISTRATE.item("cover.conveyor_module.max", ComponentItem::create)
+    public static ItemEntry<ComponentItem> FLUID_REGULATOR_MAX = EP_REGISTRATE.item("max_fluid_regulator", ComponentItem::create)
+            .lang("LV Fluid Regulator")
+            .onRegister(attach(new CoverPlaceBehavior(EPCovers.FLUID_REGULATORS_MAX)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.fluid.regulator.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_MAX = EP_REGISTRATE.item("max_conveyor_module", ComponentItem::create)
             .lang("MAX Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.CONVEYOR_MODULE_MAX)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.conveyor.module.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate_stacks", 16));
+            })))
             .register();
-    public final static ItemEntry<ComponentItem> ROBOT_ARM_MAX = EP_REGISTRATE.item("cover.robot_arm.max", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ROBOT_ARM_MAX = EP_REGISTRATE.item("max_robot_arm", ComponentItem::create)
             .lang("MAX Electric Motor")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ROBOT_ARM_MAX)))
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.gtceu.robot.arm.tooltip"));
+                lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate_stacks", 16));
+            })))
             .register();
-    public final static ItemEntry<Item> EMITTER_MAX = EP_REGISTRATE.item("cover.emitter.max", Item::new)
+    public final static ItemEntry<Item> EMITTER_MAX = EP_REGISTRATE.item("max_emitter", Item::new)
             .lang("MAX Electric Motor")
             .register();
-    public final static ItemEntry<Item> SENSOR_MAX = EP_REGISTRATE.item("cover.sensor.max", Item::new)
+    public final static ItemEntry<Item> SENSOR_MAX = EP_REGISTRATE.item("max_sensor", Item::new)
             .lang("MAX Electric Motor")
             .register();
-    public final static ItemEntry<Item> FIELD_GENERATOR_MAX = EP_REGISTRATE.item("cover.field_generator.max", Item::new)
+    public final static ItemEntry<Item> FIELD_GENERATOR_MAX = EP_REGISTRATE.item("max_field_generator", Item::new)
             .lang("MAX Electric Motor")
             .register();
 
@@ -811,12 +877,8 @@ public class EPItems {
 //
 //        //  Others
 //        MAGNETRON = REGISTRATE.item(100, "magnetron");
-//        VOLTAGE_COIL_UHV = REGISTRATE.item(101, "voltage_coil.uhv");
-//        VOLTAGE_COIL_UEV = REGISTRATE.item(102, "voltage_coil.uev");
-//        VOLTAGE_COIL_UIV = REGISTRATE.item(103, "voltage_coil.uiv");
-//        VOLTAGE_COIL_UXV = REGISTRATE.item(104, "voltage_coil.uxv");
-//        VOLTAGE_COIL_OPV = REGISTRATE.item(105, "voltage_coil.opv");
-//        VOLTAGE_COIL_MAX = REGISTRATE.item(106, "voltage_coil.max");
+
+
 //        CARBON_ALLOTROPE = REGISTRATE.item(107, "carbon_allotrope");
 //        GRAPHENE_ALIGNED = REGISTRATE.item(108, "graphene_aligned");
 //        BORON_NITRIDE_GRINDER = REGISTRATE.item(109, "grinder.boron_nitride");

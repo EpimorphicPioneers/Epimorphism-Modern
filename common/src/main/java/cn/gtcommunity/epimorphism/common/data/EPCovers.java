@@ -18,6 +18,11 @@ public class EPCovers {
             PumpCoverRenderer.INSTANCE
     );
 
+    public final static CoverDefinition FLUID_REGULATORS_ULV = register(
+            "fluid_regulators.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
+            FluidRegulatorCoverRenderer.INSTANCE
+    );
+
     public final static CoverDefinition CONVEYOR_MODULE_ULV = register(
             "conveyor.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
             ConveyorCoverRenderer.INSTANCE
@@ -31,6 +36,11 @@ public class EPCovers {
     public final static CoverDefinition ELECTRIC_PUMP_MAX = register(
             "pump.max", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.MAX),
             PumpCoverRenderer.INSTANCE
+    );
+
+    public final static CoverDefinition FLUID_REGULATORS_MAX = register(
+            "fluid_regulators.max", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.MAX),
+            FluidRegulatorCoverRenderer.INSTANCE
     );
 
     public final static CoverDefinition CONVEYOR_MODULE_MAX = register(

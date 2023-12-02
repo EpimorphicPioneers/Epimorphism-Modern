@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.StainedGlassBlock;
 
 public class BlockTypeAdditions {
     public static void init() {
+        //  Stained Glass
         stainedGlassTierTypeAdd(Blocks.WHITE_STAINED_GLASS);
         stainedGlassTierTypeAdd(Blocks.ORANGE_STAINED_GLASS);
         stainedGlassTierTypeAdd(Blocks.MAGENTA_STAINED_GLASS);
@@ -27,6 +28,7 @@ public class BlockTypeAdditions {
         stainedGlassTierTypeAdd(Blocks.GREEN_STAINED_GLASS);
         stainedGlassTierTypeAdd(Blocks.RED_STAINED_GLASS);
         stainedGlassTierTypeAdd(Blocks.BLACK_STAINED_GLASS);
+
         glassTierTypeAdd(Blocks.TINTED_GLASS, TierGlassBlock.GlassType.TINTED_GLASS);
         glassTierTypeAdd(Blocks.GLASS, TierGlassBlock.GlassType.BLOCK_GLASS);
         glassTierTypeAdd(GTBlocks.CLEANROOM_GLASS.get(), TierGlassBlock.GlassType.CLEANROOM_GLASS);

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/uhv_voltage_coil"
+  }
+}
