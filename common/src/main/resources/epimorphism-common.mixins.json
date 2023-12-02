@@ -1,12 +1,14 @@
 {
   "required": true,
-  "package": "cn.gtcommunity.epimorphism.mixin",
+  "package": "cn.gtcommunity.epimorphism.core.mixins",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
     "MixinTitleScreen"
   ],
   "mixins": [
+    "gtm.MixinRendererGlassBlock",
+    "mc.MixinBlockGlass"
   ],
   "injectors": {
     "defaultRequire": 1

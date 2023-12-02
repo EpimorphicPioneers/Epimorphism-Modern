@@ -2,40 +2,29 @@ package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
+import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
-public class TierGlassBlock extends RendererGlassBlock {
-
-    public ITierGlassType glassType;
+public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType {
 
     public TierGlassBlock(Properties properties, IRenderer renderer, ITierGlassType glassType) {
         super(properties, renderer);
-        this.glassType = glassType;
-    }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("epimorphism.glass_tier.tooltip", glassType.getTireNameColored()));
-        if (glassType.isOpticalGlass()) {
-            tooltip.add(glassType.getOpticalTierName());
-        }
+        setType(glassType);
     }
 
     public enum GlassType implements StringRepresentable, ITierGlassType {
+        BLOCK_GLASS("glass", GTValues.LV, false, null),
+        TINTED_GLASS("tinted", GTValues.LV, false, null),
+        CLEANROOM_GLASS("cleanroom", GTValues.HV, false, null),
+        FUSION_GLASS("fusion", GTValues.UV, false, null),
+        CASING_LAMINATED_GLASS("laminated", GTValues.IV, false, null),
+        CASING_TEMPERED_GLASS("tempered", GTValues.HV, false, null),
         SILICATE_GLASS("boron_silicate", GTValues.HV, true, Epimorphism.id("block/casings/glass/boron_silicate_glass")),
         TI_BORON_SILICATE_GLASS("ti_boron_silicate", GTValues.EV, true, Epimorphism.id("block/casings/glass/ti_boron_silicate_glass")),
         W_BORON_SILICATE_GLASS("w_boron_silicate", GTValues.IV, true, Epimorphism.id("block/casings/glass/w_boron_silicate_glass")),

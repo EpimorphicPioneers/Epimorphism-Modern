@@ -1,9 +1,5 @@
 package cn.gtcommunity.epimorphism;
 
-import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
-import cn.gtcommunity.epimorphism.common.data.EPBlocks;
-import cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs;
-import cn.gtcommunity.epimorphism.common.data.EPItems;
 import com.google.common.base.Suppliers;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -37,7 +33,6 @@ public class Epimorphism {
         ConfigHolder.init();
 //        TABS.register();
 //        ITEMS.register();
-        
         System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
         Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
     }

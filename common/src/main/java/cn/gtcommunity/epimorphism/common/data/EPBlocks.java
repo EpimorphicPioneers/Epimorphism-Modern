@@ -101,7 +101,7 @@ public class EPBlocks {
     }
 
     private static BlockEntry<TierGlassBlock> createGlassBlock(ITierGlassType glassType, SoundType soundType, Supplier<Supplier<RenderType>> type) {
-        BlockEntry<TierGlassBlock> glassBlock = EPRegistries.EP_REGISTRATE.block("%s_glass_block".formatted(glassType.getName()),
+        BlockEntry<TierGlassBlock> glassBlock = EP_REGISTRATE.block("%s_glass_block".formatted(glassType.getName()),
                         p -> new TierGlassBlock(p, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
                         Map.of("all", glassType.getTexture())) : null, glassType))
                 .initialProperties(() -> Blocks.GLASS)
@@ -113,7 +113,7 @@ public class EPBlocks {
                 .model(NonNullBiConsumer.noop())
                 .build()
                 .register();
-        ALL_GLASSES.put(glassType, glassBlock);
+        ALL_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 

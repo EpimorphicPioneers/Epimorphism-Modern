@@ -1,4 +1,4 @@
-package cn.gtcommunity.epimorphism.mixin;
+package cn.gtcommunity.epimorphism.core.mixins;
 
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
