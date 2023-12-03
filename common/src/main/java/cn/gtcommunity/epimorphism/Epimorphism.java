@@ -1,8 +1,15 @@
 package cn.gtcommunity.epimorphism;
 
+import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.common.data.EPBlocks;
+import cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs;
+import cn.gtcommunity.epimorphism.common.data.EPDimensionTypes;
+import cn.gtcommunity.epimorphism.common.data.EPItems;
+import cn.gtcommunity.epimorphism.data.EPDatagen;
 import com.google.common.base.Suppliers;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.tterrag.registrate.Registrate;
 import dev.architectury.registry.registries.RegistrarManager;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
@@ -33,6 +40,12 @@ public class Epimorphism {
         ConfigHolder.init();
 //        TABS.register();
 //        ITEMS.register();
+        EPCreativeModeTabs.init();
+        EPBlocks.init();
+        EPItems.init();
+        EPDatagen.init();
+        EPRegistries.EP_REGISTRATE.registerRegistrate();
+        EPDimensionTypes.init();
         System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
         Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
     }

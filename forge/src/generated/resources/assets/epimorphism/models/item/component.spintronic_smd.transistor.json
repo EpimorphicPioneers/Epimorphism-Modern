@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures" : {
+  "parent": "minecraft:item/generated",
+  "textures": {
     "layer0": "epimorphism:item/component.spintronic_smd.transistor"
   }
 }

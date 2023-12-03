@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.client.renderer.cover.*;
+import com.gregtechceu.gtceu.common.cover.ConveyorCover;
 import com.gregtechceu.gtceu.common.cover.PumpCover;
+import com.gregtechceu.gtceu.common.cover.RobotArmCover;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 
 import java.util.Arrays;
@@ -24,12 +26,12 @@ public class EPCovers {
     );
 
     public final static CoverDefinition CONVEYOR_MODULE_ULV = register(
-            "conveyor.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
+            "conveyor.ulv", (def, coverable, side) -> new ConveyorCover(def, coverable, side, GTValues.LV),
             ConveyorCoverRenderer.INSTANCE
     );
 
     public final static CoverDefinition ROBOT_ARM_ULV = register(
-            "robot_arm.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
+            "robot_arm.ulv", (def, coverable, side) -> new RobotArmCover(def, coverable, side, GTValues.LV),
             RobotArmCoverRenderer.INSTANCE
     );
 
@@ -44,12 +46,12 @@ public class EPCovers {
     );
 
     public final static CoverDefinition CONVEYOR_MODULE_MAX = register(
-            "conveyor.max", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.MAX),
+            "conveyor.max", (def, coverable, side) -> new ConveyorCover(def, coverable, side, GTValues.MAX),
             ConveyorCoverRenderer.INSTANCE
     );
 
     public final static CoverDefinition ROBOT_ARM_MAX = register(
-            "robot_arm.max", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.MAX),
+            "robot_arm.max", (def, coverable, side) -> new RobotArmCover(def, coverable, side, GTValues.MAX),
             RobotArmCoverRenderer.INSTANCE
     );
 

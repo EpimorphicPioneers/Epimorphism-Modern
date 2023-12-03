@@ -1,0 +1,10 @@
+{
+  "type": "epimorphism:super_space",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "structure_overrides": "minecraft:ancient_cities"
+    }
+  }
+}

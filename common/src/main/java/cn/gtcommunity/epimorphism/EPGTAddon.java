@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.common.block.BlockTypeAdditions;
 import cn.gtcommunity.epimorphism.common.data.*;
+import cn.gtcommunity.epimorphism.data.EPDatagen;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 
@@ -12,10 +13,6 @@ public class EPGTAddon implements IGTAddon {
     @Override
     public void initializeAddon() {
         Epimorphism.LOGGER.info("Epimorphism's GT Addon Loaded!");
-        EPCreativeModeTabs.init();
-        EPBlocks.init();
-        EPItems.init();
-        EPRegistries.EP_REGISTRATE.registerRegistrate();
     }
 
     public static void postInitializeAddon() {

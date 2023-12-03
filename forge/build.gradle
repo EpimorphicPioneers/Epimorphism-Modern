@@ -7,7 +7,7 @@ String getConfig(String key) {
 }
 
 def mod_id = getConfig("mod_id")
-def common_project = project(":common")
+def common_project = project(":${mod_id}-common")
 def version = getConfig("version")
 def mod_license = getConfig("mod_license")
 def mod_name = getConfig("mod_name")
@@ -24,7 +24,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
+    accessWidenerPath = project(":${mod_id}-common").loom.accessWidenerPath
 
     forge {
         mixinConfig(
@@ -111,8 +111,8 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    common(project(path: ":${mod_id}-common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":${mod_id}-common", configuration: "transformProductionForge")) { transitive = false }
 
     // LDLib
     modImplementation(forge.ldlib.forge) { transitive = false }
@@ -208,7 +208,7 @@ remapJar {
 }
 
 sourcesJar {
-    def commonSources = project(":common").sourcesJar
+    def commonSources = project(":${mod_id}-common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
 }

@@ -1,0 +1,17 @@
+{
+  "values": [
+    "epimorphism:hyper_casing",
+    "epimorphism:nonconducting_casing",
+    "epimorphism:boron_silicate_glass_block",
+    "epimorphism:ti_boron_silicate_glass_block",
+    "epimorphism:w_boron_silicate_glass_block",
+    "epimorphism:osmir_boron_silicate_glass_block",
+    "epimorphism:naq_boron_silicate_glass_block",
+    "epimorphism:thy_boron_silicate_glass_block",
+    "epimorphism:infinity_glass_block",
+    "epimorphism:pmma_glass_block",
+    "epimorphism:neu_pmma_glass_block",
+    "epimorphism:bpa_polycarbonate_glass_block",
+    "epimorphism:cbdo_polycarbonate_glass_block"
+  ]
+}

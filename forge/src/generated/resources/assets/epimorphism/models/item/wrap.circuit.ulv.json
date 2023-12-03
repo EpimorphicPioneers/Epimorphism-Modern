@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "gtceu:item/nand_chip",
-    "layer1": "epimorphism:item/wrap_overlay"
-  }
-}

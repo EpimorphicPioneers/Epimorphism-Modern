@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "gtceu:item/quantum_processor",
-    "layer1": "epimorphism:item/wrap_overlay"
-  }
-}
