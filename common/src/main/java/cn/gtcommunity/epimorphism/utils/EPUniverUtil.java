@@ -24,23 +24,6 @@ public class EPUniverUtil {
         return canGet.getAsBoolean() ? getter.get() : defaultValue;
     }
 
-    //  List Utils
-    public static <T> int maxLength(List<List<T>> lists) {
-        return lists.stream().mapToInt(List::size).max().orElse(0);
-    }
-
-    public static <T> List<T> consistentList(List<T> list, int length) {
-        if (list.size() >= length) {
-            return list;
-        }
-        List<T> finalList = new ArrayList<>(list);
-        T last = list.get(list.size() - 1);
-        for (int i = 0; i < length - list.size(); i++) {
-            finalList.add(last);
-        }
-        return finalList;
-    }
-
     //  Set Utils
     public static int intValueOfBitSet(BitSet set){
         int result = 0;

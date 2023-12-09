@@ -482,7 +482,37 @@
   "epimorphism.optical_glass_tier.tooltip.5": "精奇光学玻璃",
 
   "epimorphism.multiblock.epimorphismpattern.error.glasses": "必须使用同一种玻璃方块。",
+  "structure.multiblock.pattern.error.casing": "必须使用同一种方块。",
 
+  "epimorphism.block_tier.tooltip": "§7等级：%s",
+
+  "epimorphism.power_cost.tooltip": "§7能耗：%s EU/t",
+
+  "epimorphism.tooltip_extended_info": "§7按住Shift显示更多信息",
+
+  "block.epimorphism.fluid_tank_cell_1": "流体单元方块T1",
+  "block.epimorphism.fluid_tank_cell_2": "流体单元方块T2",
+  "block.epimorphism.fluid_tank_cell_3": "流体单元方块T3",
+  "block.epimorphism.fluid_tank_cell_4": "流体单元方块T4",
+  "block.epimorphism.fluid_tank_cell_5": "流体单元方块T5",
+  "block.epimorphism.fluid_tank_cell_6": "流体单元方块T6",
+  "block.epimorphism.fluid_tank_cell_7": "流体单元方块T7",
+  "block.epimorphism.fluid_tank_cell_8": "流体单元方块T8",
+  "block.epimorphism.fluid_tank_cell_9": "流体单元方块T9",
+  "block.epimorphism.fluid_tank_cell_10": "流体单元方块T10",
+
+  "block.epimorphism.storage_field_block_1": "存储立场方块T1",
+  "block.epimorphism.storage_field_block_2": "存储立场方块T2",
+  "block.epimorphism.storage_field_block_3": "存储立场方块T3",
+  "block.epimorphism.storage_field_block_4": "存储立场方块T4",
+  "block.epimorphism.storage_field_block_5": "存储立场方块T5",
+  "block.epimorphism.storage_field_block_6": "存储立场方块T6",
+  "block.epimorphism.storage_field_block_7": "存储立场方块T7",
+  "block.epimorphism.storage_field_block_8": "存储立场方块T8",
+  "block.epimorphism.storage_field_block_9": "存储立场方块T9",
+  "block.epimorphism.storage_field_block_10": "存储立场方块T10",
+
+  "epimorphism.fluid_capacity.tooltip": "§7容量：%s L",
 
   "tile.ep_crucible_casing.boron_nitride": "氮化硼坩埚",
   "tile.ep_crucible_casing.graphite": "石墨坩埚",

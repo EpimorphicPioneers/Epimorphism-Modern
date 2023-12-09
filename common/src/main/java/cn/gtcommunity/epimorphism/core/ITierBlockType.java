@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.core;
 
-import cn.gtcommunity.epimorphism.api.block.ITierType;
+import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 
 public interface ITierBlockType {
     default ITierType getTierType() {

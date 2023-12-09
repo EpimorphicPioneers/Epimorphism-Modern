@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.core.mixins.mc;
 
 import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.block.ITierType;
+import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

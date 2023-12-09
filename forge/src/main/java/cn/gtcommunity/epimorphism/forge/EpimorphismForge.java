@@ -5,6 +5,7 @@ import dev.architectury.platform.forge.EventBuses;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -19,7 +20,7 @@ public class EpimorphismForge {
     }
 
     @SubscribeEvent
-    public void onPostInit(FMLLoadCompleteEvent event) {
+    public void onPostInit(FMLCommonSetupEvent event) {
         EPGTAddon.postInitializeAddon();
     }
 }

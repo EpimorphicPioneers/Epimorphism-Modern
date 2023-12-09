@@ -1,41 +1,29 @@
 package cn.gtcommunity.epimorphism.api.block;
 
+import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.client.TooltipHelper;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 
 public interface ITierGlassType extends ITierType {
-    @Override
-    default Integer getTier() {
-        return this.getGlassTier();
-    }
-    @Override
-    default String getName() {
-        return this.getGlassName();
-    }
 
     boolean isOpticalGlass();
-    int getGlassTier();
-    String getGlassName();
-
-    ResourceLocation getTexture();
 
     default long getTireVoltage(){
-        return GTValues.V[getGlassTier()];
+        return GTValues.V[tier()];
     }
 
     default String getTireName(){
-        return GTValues.VN[getGlassTier()];
+        return GTValues.VN[tier()];
     }
 
     default String getTireNameColored(){
-        return GTValues.VNF[getGlassTier()];
+        return GTValues.VNF[tier()];
     }
 
     default Component getOpticalTierName() {
-        return Component.translatable("epimorphism.optical_glass_tier.tooltip." + EPUniverUtil.getOpticalGlassTier(getGlassTier()))
+        return Component.translatable("epimorphism.optical_glass_tier.tooltip." + EPUniverUtil.getOpticalGlassTier(tier()))
                 .withStyle(TooltipHelper.BLINKING_CYAN.getCurrent());
     }
 }
