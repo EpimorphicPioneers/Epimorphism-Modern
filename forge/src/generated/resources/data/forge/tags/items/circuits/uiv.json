@@ -1,5 +1,6 @@
 {
   "values": [
-    "epimorphism:circuit.optical_mainframe"
+    "epimorphism:circuit.optical_mainframe",
+    "epimorphism:circuit.spintronic_computer"
   ]
 }

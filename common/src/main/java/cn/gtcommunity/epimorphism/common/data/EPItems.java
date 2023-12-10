@@ -1,5 +1,7 @@
 package cn.gtcommunity.epimorphism.common.data;
 
+//import cn.gtcommunity.epimorphism.client.renderer.handler.HaloItemRenderer;
+//import cn.gtcommunity.epimorphism.common.item.HaloRenderItemBehavior;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
@@ -122,38 +124,38 @@ public class EPItems {
                 lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
             })))
             .register();
-//    public final static ItemEntry<ComponentItem> SPINTRONIC_PROCESSOR = EP_REGISTRATE.item("circuit.spintronic_processor", ComponentItem::create)
-//            .lang("Spintronic IMC Processor")
-//            .tag(CustomTags.UHV_CIRCUITS)
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_processor.tooltip"));
-//                lines.add(Component.translatable("item.epimorphism.circuit.uhv.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SPINTRONIC_ASSEMBLY = EP_REGISTRATE.item("circuit.spintronic_assembly", ComponentItem::create)
-//            .lang("Spintronic IMC Assembly")
-//            .tag(CustomTags.UEV_CIRCUITS)
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_assembly.tooltip"));
-//                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SPINTRONIC_COMPUTER = EP_REGISTRATE.item("circuit.spintronic_computer", ComponentItem::create)
-//            .lang("Spintronic IMC Supercomputer")
-//            .tag(CustomTags.UIV_CIRCUITS)
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_computer.tooltip"));
-//                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SPINTRONIC_MAINFRAME = EP_REGISTRATE.item("circuit.spintronic_mainframe", ComponentItem::create)
-//            .lang("Spintronic IMC Mainframe")
-//            .tag(CustomTags.UXV_CIRCUITS)
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_mainframe.tooltip"));
-//                lines.add(Component.translatable("item.epimorphism.circuit.uxv.tooltip"));
-//            })))
-//            .register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_PROCESSOR = EP_REGISTRATE.item("circuit.spintronic_processor", ComponentItem::create)
+            .lang("Spintronic IMC Processor")
+            .tag(CustomTags.UHV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_processor.tooltip"));
+                lines.add(Component.translatable("item.epimorphism.circuit.uhv.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_ASSEMBLY = EP_REGISTRATE.item("circuit.spintronic_assembly", ComponentItem::create)
+            .lang("Spintronic IMC Assembly")
+            .tag(CustomTags.UEV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_assembly.tooltip"));
+                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_COMPUTER = EP_REGISTRATE.item("circuit.spintronic_computer", ComponentItem::create)
+            .lang("Spintronic IMC Supercomputer")
+            .tag(CustomTags.UIV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_computer.tooltip"));
+                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
+            })))
+            .register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_MAINFRAME = EP_REGISTRATE.item("circuit.spintronic_mainframe", ComponentItem::create)
+            .lang("Spintronic IMC Mainframe")
+            .tag(CustomTags.UXV_CIRCUITS)
+            .onRegister(attach(new TooltipBehavior(lines -> {
+                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_mainframe.tooltip"));
+                lines.add(Component.translatable("item.epimorphism.circuit.uxv.tooltip"));
+            })))
+            .register();
 //    public final static ItemEntry<ComponentItem> COSMIC_PROCESSOR = EP_REGISTRATE.item("circuit.cosmic_processor", ComponentItem::create)
 //            .lang("Cosmic Planetary Processor")
 //            .tag(CustomTags.UEV_CIRCUITS)
@@ -279,6 +281,7 @@ public class EPItems {
             .onRegister(attach(new TooltipBehavior(lines -> {
                 lines.add(Component.translatable("item.epimorphism.component.spintronic_smd.inductor.tooltip"));
             })))
+//            .onRegister(attach(new HaloRenderItemBehavior(HaloItemRenderer.ISTANCE)))
             .register();
 //    public final static ItemEntry<ComponentItem> COSMIC_TRANSISTOR = EP_REGISTRATE.item("component.cosmic_smd.transistor", ComponentItem::create)
 //            .lang("Crystal Information Payload")
@@ -947,7 +950,7 @@ public class EPItems {
 //        DEBUG_STRUCTURE_BUILDER = REGISTRATE.item(10000, "debug.structure_builder");
     }
 
-    public static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
+    private static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
         return (item) -> {
             item.attachComponents(components);
         };
