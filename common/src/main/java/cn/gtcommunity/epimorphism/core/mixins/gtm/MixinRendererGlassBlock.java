@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -39,9 +40,13 @@ public abstract class MixinRendererGlassBlock extends RendererBlock implements I
     public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         if (glassType == null) return;
-        tooltip.add(Component.translatable("epimorphism.glass_tier.tooltip", glassType.getTireNameColored()));
-        if (glassType.isOpticalGlass()) {
-            tooltip.add(glassType.getOpticalTierName());
+        if (GTUtil.isShiftDown()) {
+            tooltip.add(Component.translatable("epimorphism.glass_tier.tooltip", glassType.getTireNameColored()));
+            if (glassType.isOpticalGlass()) {
+                tooltip.add(glassType.getOpticalTierName());
+            }
+        } else {
+            tooltip.add(Component.translatable("epimorphism.tooltip_extended_info"));
         }
     }
 }

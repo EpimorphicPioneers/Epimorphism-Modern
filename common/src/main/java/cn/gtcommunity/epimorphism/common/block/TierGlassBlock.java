@@ -5,15 +5,29 @@ import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType {
 
     public TierGlassBlock(Properties properties, IRenderer renderer, ITierGlassType glassType) {
         super(properties, renderer);
         setType(glassType);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        String id = stack.getDescriptionId();
+        tooltip.add(Component.translatable(id + ".tooltip"));
+        super.appendHoverText(stack, level, tooltip, flag);
     }
 
     public enum GlassType implements StringRepresentable, ITierGlassType {
