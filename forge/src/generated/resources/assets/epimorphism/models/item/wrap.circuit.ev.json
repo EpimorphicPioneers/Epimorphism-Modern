@@ -1,0 +1,7 @@
+{
+  "parent": "epimorphism:item/wrap_circuit",
+  "textures": {
+    "layer0": "gtceu:item/quantum_processor",
+    "layer4": "epimorphism:item/wrap_overlay"
+  }
+}

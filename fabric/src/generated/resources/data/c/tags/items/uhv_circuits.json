@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "epimorphism:circuit.gooware_computer",
+    "epimorphism:circuit.optical_assembly",
+    "epimorphism:circuit.spintronic_processor"
+  ]
+}

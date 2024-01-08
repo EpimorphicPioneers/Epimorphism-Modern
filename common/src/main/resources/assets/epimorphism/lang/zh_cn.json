@@ -315,12 +315,17 @@
   "item.epimorphism.debug.structure_writer": "多方块导出工具",
   "item.epimorphism.debug.structure_writer.tooltip": "§7因为我需要一个...",
   "item.epimorphism.debug.structure_writer.export_to_log": "导出为日志",
-  "item.epimorphism.debug.structure_writer.export_to_json": "导出为Json",
+  "item.epimorphism.debug.structure_writer.export_to_file": "导出为文件",
+  "item.epimorphism.debug.structure_writer.rotate_along_x_axis": "沿X轴旋转",
   "item.epimorphism.debug.structure_writer.rotate_along_y_axis": "沿Y轴旋转",
-  "item.epimorphism.debug.structure_writer.ex": "无",
   "item.epimorphism.debug.structure_writer.structural_scale": "结构规模： X:%s  Y:%s  Z:%s",
+  "item.epimorphism.debug.structure_writer.export_order": "导出顺序： C:%s  S:%s  A:%s",
   "item.epimorphism.debug.structure_builder": "多方块构建工具",
 
+  "item.epimorphism.organism_capture_tool": "生物捕捉工具",
+  "item.epimorphism.organism_capture_tool.tooltip": "§7真的不是精灵球！",
+  "item.epimorphism.organism_capture_tool.tooltip.info": "§7生物：§r%s",
+  "epimorphism.universal.tooltip.none": "无",
 
   "block.epimorphism.substrate_casing": "基板机械方块",
   "block.epimorphism.advanced_substrate_casing": "高级基板机械方块",
@@ -519,6 +524,8 @@
   "tile.ep_crucible_casing.quartz": "石英坩埚",
   "tile.ep_crucible_casing.tungsten": "钨坩埚",
 
+  "block.epimorphism.infinity_crate": "无尽板条箱",
+  "block.epimorphism.infinity_crate.tooltip": "§7每格能容纳§r2^31-1§7个物品，不能存储带有NBT的物品",
 
   "item.epimorphism.magnetron": "磁控管",
   "item.epimorphism.uhv_voltage_coil": "极高压线圈",
@@ -773,6 +780,12 @@
   "epimorphism.machine.ultraviolet_lamp_chamber.uxv.tooltip": "§7强光辐照",
   "epimorphism.machine.ultraviolet_lamp_chamber.opv": "传奇紫外灯箱",
   "epimorphism.machine.ultraviolet_lamp_chamber.opv.tooltip": "§7强光辐照",
+
+  "block.epimorphism.yotta_fluid_tank": "YOT储罐",
+  "epimorphism.multiblock.yotta_fluid_tank.fluid": "液体：%s",
+  "epimorphism.multiblock.yotta_fluid_tank.stored": "存储：%s L",
+  "epimorphism.multiblock.yotta_fluid_tank.capacity": "容量：%s L",
+  "epimorphism.multiblock.fluid.empty": "无",
 
   "recipemap.naquadah_reactor_recipes": "硅岩反应堆",
   "epimorphism.machine.naquadah_reactor.iv": "精英硅岩反应堆",

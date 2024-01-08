@@ -1,7 +1,10 @@
 {
   "values": [
     "epimorphism:hyper_casing",
+    "epimorphism:tfft_casing",
+    "epimorphism:yotta_fluid_tank_casing",
     "epimorphism:nonconducting_casing",
+    "epimorphism:speeding_pipe",
     "epimorphism:boron_silicate_glass_block",
     "epimorphism:ti_boron_silicate_glass_block",
     "epimorphism:w_boron_silicate_glass_block",
