@@ -20,7 +20,7 @@ public class TraceabilityPredicateFactory {
     private Component errorKey;
     private Comparator<ITierType> comparator;
     private Predicate<ITierType> predicate;
-    private IValueContainer container;
+    private Supplier<IValueContainer<?>> containerSupplier;
 
     protected TraceabilityPredicateFactory(TraceabilityPredicateType type, String name) {
         this.type = type;
@@ -38,14 +38,14 @@ public class TraceabilityPredicateFactory {
                     UniverUtil.getOrDefault(comparator, () -> Comparator.comparingInt(ITierType::tier)),
                     UniverUtil.getOrDefault(predicate, () -> BlockState -> true),
                     UniverUtil.getOrDefault(errorKey, () -> Component.translatable("structure.multiblock.pattern.error.casing")),
-                    UniverUtil.getOrDefault(container, IValueContainer::noop)
+                    UniverUtil.getOrDefault(containerSupplier, () -> IValueContainer::noop)
             );
             case LOOSE -> new LooselyTraceabilityPredicate(name,
                     UniverUtil.getOrDefault(map, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
                     UniverUtil.getOrDefault(comparator, () -> Comparator.comparingInt(ITierType::tier)),
                     UniverUtil.getOrDefault(predicate, () -> BlockState -> true),
                     UniverUtil.getOrDefault(errorKey, () -> Component.translatable("structure.multiblock.pattern.error.casing")),
-                    UniverUtil.getOrDefault(container, IValueContainer::noop)
+                    UniverUtil.getOrDefault(containerSupplier, () -> IValueContainer::noop)
             );
         };
     }
@@ -69,8 +69,8 @@ public class TraceabilityPredicateFactory {
         this.predicate = predicate;
         return this;
     }
-    public TraceabilityPredicateFactory container(IValueContainer container) {
-        this.container = container;
+    public TraceabilityPredicateFactory container(Supplier<IValueContainer<?>> container) {
+        this.containerSupplier = container;
         return this;
     }
 }

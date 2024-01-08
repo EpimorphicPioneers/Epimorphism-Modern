@@ -24,13 +24,13 @@ public class LooselyTraceabilityPredicate extends TraceabilityPredicate {
 
     private final Comparator<ITierType> comparator;
     private final Predicate<ITierType> predicate;
-    private final IValueContainer valueContainer;
+    private final Supplier<IValueContainer<?>> containerSupplier;
 
-    public LooselyTraceabilityPredicate(String name, Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map, Comparator<ITierType> comparator, Predicate<ITierType> predicate, @Nullable Component tooltip, IValueContainer container){
+    public LooselyTraceabilityPredicate(String name, Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map, Comparator<ITierType> comparator, Predicate<ITierType> predicate, @Nullable Component tooltip, Supplier<IValueContainer<?>> containerSupplier){
         super();
         this.map = map;
         this.name = name;
-        this.valueContainer = container;
+        this.containerSupplier = containerSupplier;
         this.common.add(new SimplePredicate(predicate(), candidates()));
         this.comparator = comparator;
         this.predicate = predicate;
@@ -44,7 +44,7 @@ public class LooselyTraceabilityPredicate extends TraceabilityPredicate {
             while (objectIterator.hasNext()) {
                 Object2ObjectMap.Entry<ITierType, Supplier<Block>> entry = objectIterator.next();
                 if (blockState.is(entry.getValue().get())) {
-                    IValueContainer currentContainer = blockWorldState.getMatchContext().getOrPut(name + "Value", valueContainer);
+                    IValueContainer<?> currentContainer = blockWorldState.getMatchContext().getOrPut(name + "Value", containerSupplier.get());
                     currentContainer.operate(blockState.getBlock(), entry.getKey());
                     return true;
                 }

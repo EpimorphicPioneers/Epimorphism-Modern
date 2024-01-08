@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet.CUSTOM_MHCSM;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;

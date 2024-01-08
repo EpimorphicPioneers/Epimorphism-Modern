@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.machine.multiblock.IFluidTankCell;
+import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.AppearanceBlock;
 import com.gregtechceu.gtceu.utils.FormattingUtil;

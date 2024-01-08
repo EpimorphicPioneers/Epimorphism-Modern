@@ -1,12 +1,15 @@
 package cn.gtcommunity.epimorphism.api.chemical.material.info;
 
-
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
+import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
+import net.minecraft.resources.ResourceLocation;
 
 public class EPMaterialIconSet {
-    public static final MaterialIconSet CUSTOM_MHCSM = new MaterialIconSet("mhcsm", null, true);
-    public static final MaterialIconSet CUSTOM_DEGENERATE_RHENIUM = new MaterialIconSet("degenerate_rhenium", null, true);
-    public static final MaterialIconSet CUSTOM_HYPOGEN = new MaterialIconSet("hypogen", null, true);
-    public static final MaterialIconSet CUSTOM_LEGENDARIUM = new MaterialIconSet("legendarium", null, true);
-//    public static final MaterialIconSetWithRenderer CUSTOM_INFINITY = new MaterialIconSetWithRenderer("infinity", null, true, new HaloRenderItemBehavior(10, 0xFF000000, () -> EPTextures.HALO, true));
+    public static final RenderMaterialIconSet CUSTOM_INFINITY = new RenderMaterialIconSet("infinity", null, true,
+            new HaloRenderItemBehavior(10, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, true));
+
+    public static final RenderMaterialIconSet CUSTOM_NEUTRONIUM = new RenderMaterialIconSet("neutronium", null, true,
+            new HaloRenderItemBehavior(8, 0x99FFFFFF, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo_noise"), true, false));
+
+    public static void init() {/**/}
 }

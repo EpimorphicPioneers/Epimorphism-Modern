@@ -40,6 +40,7 @@ public class BlockTypeAdditions {
     private static void glassTierTypeAdd(Block block, ITierGlassType type) {
         ((ITierBlockType) block).setType(type);
         BlockMaps.ALL_GLASSES.put(type, () -> block);
+        BlockMaps.SHAPE_GLASSES.put(type, () -> block);
     }
     
     private static void stainedGlassTierTypeAdd(Block block) {

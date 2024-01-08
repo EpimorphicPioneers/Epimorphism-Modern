@@ -2,32 +2,38 @@ package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.IFluidTankCell;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.IStorageFieldBlock;
+import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
+import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
-import cn.gtcommunity.epimorphism.common.block.FluidTankCellBlock;
-import cn.gtcommunity.epimorphism.common.block.StorageFieldBlock;
-import cn.gtcommunity.epimorphism.common.block.TierGlassBlock;
+import cn.gtcommunity.epimorphism.common.block.*;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
-import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.RendererBlockItem;
-import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
+import com.gregtechceu.gtceu.common.block.RubberLogBlock;
+import com.gregtechceu.gtceu.common.data.GTItems;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -36,6 +42,7 @@ import java.util.function.Supplier;
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs.*;
+import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 
 public class EPBlocks {
 
@@ -74,15 +81,18 @@ public class EPBlocks {
     public static BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> RADIATION_PROOF_SCAN_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static BlockEntry<Block>  BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static BlockEntry<Block>  WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static BlockEntry<Block>  INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> TFFT_CASING = createCasingBlock("tfft_casing", Epimorphism.id("block/casings/solid/tfft_casing"));
+    public static BlockEntry<Block> YOTTA_FLUID_TANK_CASING = createComplexTextureCasingBlock("yotta_fluid_tank_casing");
 
     // Multiblock Machine Pipe Casing Blocks
     public static BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> CASING_ISA_MILL_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> CASING_FLOTATION_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> CASING_ALLOY_SMELTING_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> SPEEDING_PIPE = createComplexTextureCasingBlock("speeding_pipe");
 
     // Transparent Casing Blocks
     public static BlockEntry<TierGlassBlock> SILICATE_GLASS = createGlassBlock(TierGlassBlock.GlassType.SILICATE_GLASS, SoundType.GLASS, () -> RenderType::translucent);
@@ -121,10 +131,40 @@ public class EPBlocks {
     public static BlockEntry<StorageFieldBlock> STORAGE_FIELD_BLOCK_9 = createStorageFieldBlock(StorageFieldBlock.FieldBlockType.BLOCK_9);
     public static BlockEntry<StorageFieldBlock> STORAGE_FIELD_BLOCK_10 = createStorageFieldBlock(StorageFieldBlock.FieldBlockType.BLOCK_10);
 
+    //  Misc
+    public static BlockEntry<Block> FERTILIZED_DIRT = EP_REGISTRATE
+            .block("fertilized_dirt", FertilizedDirtBlock::create)
+            .initialProperties(() -> Blocks.DIRT)
+            .lang("Fertilized Dirt")
+            .tag(BlockTags.DIRT)
+            .properties(BlockBehaviour.Properties::randomTicks)
+            .item()
+            .tag(ItemTags.DIRT)
+            .build()
+            .register();
+
+    public static BlockEntry<Block> FERTILIZED_FARMLAND = EP_REGISTRATE
+            .block("fertilized_farmland", FertilizedFarmlandBlock::create)
+            .initialProperties(() -> Blocks.FARMLAND)
+            .lang("Fertilized Farmland")
+            .blockstate((ctx, prov) -> createModelBlockState(ctx, prov, Epimorphism.id("block/fertilized_farmland")))
+            .loot((table, block) -> table.add(block, LootTable.lootTable()
+                    .withPool(table.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)))
+                            .add(LootItem.lootTableItem(EPBlocks.FERTILIZED_DIRT.asItem())))))
+            .tag(BlockTags.BIG_DRIPLEAF_PLACEABLE)
+            .addLayer(() -> RenderType::cutout)
+            .item()
+            .build()
+            .register();
+
     public static void init() {/**/}
 
     protected static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, RendererBlock::new, texture, () -> Blocks.IRON_BLOCK, () -> RenderType::cutoutMipped);
+    }
+
+    private static BlockEntry<Block> createComplexTextureCasingBlock(String name) {
+        return createComplexTextureCasingBlock(name, RendererBlock::new, () -> Blocks.IRON_BLOCK, () -> RenderType::cutoutMipped);
     }
 
     private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
@@ -145,6 +185,7 @@ public class EPBlocks {
                 .build()
                 .register();
         ALL_GLASSES.put(glassType, glassBlock::get);
+        SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 
@@ -184,6 +225,23 @@ public class EPBlocks {
         return EPRegistries.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
                         Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
                                 Map.of("all", texture)) : null))
+                .initialProperties(properties)
+                .addLayer(type)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTag, BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+    }
+
+    private static BlockEntry<Block> createComplexTextureCasingBlock(String name, BiFunction<BlockBehaviour.Properties, IRenderer, ? extends RendererBlock> blockSupplier, NonNullSupplier<? extends Block> properties, Supplier<Supplier<RenderType>> type) {
+        return EPRegistries.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
+                        Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_bottom_top"),
+                                Map.of("bottom", GTCEu.id("block/casings/" + name + "/bottom"),
+                                        "top", GTCEu.id("block/casings/" + name + "/top"),
+                                        "side", GTCEu.id("block/casings/" + name + "/side"))) :
+                                null))
                 .initialProperties(properties)
                 .addLayer(type)
                 .blockstate(NonNullBiConsumer.noop())

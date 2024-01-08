@@ -18,11 +18,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.List;
 
 @Mixin(value = RendererGlassBlock.class, remap = false)
-public abstract class MixinRendererGlassBlock extends RendererBlock implements ITierBlockType {
+public abstract class RendererGlassBlockMixin extends RendererBlock implements ITierBlockType {
 
     public ITierGlassType glassType;
 
-    public MixinRendererGlassBlock(Properties properties, IRenderer renderer) {
+    public RendererGlassBlockMixin(Properties properties, IRenderer renderer) {
         super(properties, renderer);
     }
 

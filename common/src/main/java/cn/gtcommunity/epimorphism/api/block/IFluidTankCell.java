@@ -1,4 +1,4 @@
-package cn.gtcommunity.epimorphism.api.machine.multiblock;
+package cn.gtcommunity.epimorphism.api.block;
 
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 

@@ -27,9 +27,9 @@ public class TierTraceabilityPredicate extends TraceabilityPredicate {
 
     private final Comparator<ITierType> comparator;
     private final Predicate<ITierType> predicate;
-    private final IValueContainer container;
+    private final Supplier<IValueContainer<?>> containerSupplier;
 
-    public TierTraceabilityPredicate(String name, Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map, Comparator<ITierType> comparator, Predicate<ITierType> predicate, @Nullable Component errorKey, IValueContainer container){
+    public TierTraceabilityPredicate(String name, Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map, Comparator<ITierType> comparator, Predicate<ITierType> predicate, @Nullable Component errorKey, Supplier<IValueContainer<?>> containerSupplier){
         super();
         this.map = map;
         this.name = name;
@@ -37,7 +37,7 @@ public class TierTraceabilityPredicate extends TraceabilityPredicate {
         this.common.add(new SimplePredicate(predicate(), candidates()));
         this.comparator = comparator;
         this.predicate = predicate;
-        this.container = container;
+        this.containerSupplier = containerSupplier;
         this.addTooltips(errorKey);
     }
 
@@ -54,7 +54,7 @@ public class TierTraceabilityPredicate extends TraceabilityPredicate {
                         blockWorldState.setError(new PatternStringError(errorKey.getString()));
                         return false;
                     }
-                    IValueContainer currentContainer = blockWorldState.getMatchContext().getOrPut(name + "Value", container);
+                    IValueContainer<?> currentContainer = blockWorldState.getMatchContext().getOrPut(name + "Value", containerSupplier.get());
                     currentContainer.operate(blockState.getBlock(), stats);
                     return true;
                 }

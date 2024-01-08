@@ -15,26 +15,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public class EPCovers {
-    public final static CoverDefinition ELECTRIC_PUMP_ULV = register(
-            "pump.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
-            PumpCoverRenderer.INSTANCE
-    );
-
-    public final static CoverDefinition FLUID_REGULATORS_ULV = register(
-            "fluid_regulators.ulv", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.LV),
-            FluidRegulatorCoverRenderer.INSTANCE
-    );
-
-    public final static CoverDefinition CONVEYOR_MODULE_ULV = register(
-            "conveyor.ulv", (def, coverable, side) -> new ConveyorCover(def, coverable, side, GTValues.LV),
-            ConveyorCoverRenderer.INSTANCE
-    );
-
-    public final static CoverDefinition ROBOT_ARM_ULV = register(
-            "robot_arm.ulv", (def, coverable, side) -> new RobotArmCover(def, coverable, side, GTValues.LV),
-            RobotArmCoverRenderer.INSTANCE
-    );
-
     public final static CoverDefinition ELECTRIC_PUMP_MAX = register(
             "pump.max", (def, coverable, side) -> new PumpCover(def, coverable, side, GTValues.MAX),
             PumpCoverRenderer.INSTANCE
