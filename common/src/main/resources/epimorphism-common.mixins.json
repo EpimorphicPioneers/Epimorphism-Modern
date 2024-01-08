@@ -4,11 +4,21 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "mc.MixinTitleScreen"
+    "accessors.client.FontResourceManagerAccess",
+    "accessors.client.ItemModelGeneratorAccessor",
+    "accessors.client.LevelRendererAccessor",
+    "accessors.client.MinecraftAccessor",
+    "accessors.client.MultiPlayerGameModeAccessor"
   ],
   "mixins": [
-    "gtm.MixinRendererGlassBlock",
-    "mc.MixinBlockGlass"
+    "gtm.ComponentItemMixin",
+    "gtm.RendererGlassBlockMixin",
+    "gtm.TagPrefixItemMixin",
+    "mc.BlockGlassMixin",
+    "mc.CactusBlockMixin",
+    "mc.FeatureMixin",
+    "mc.SugarCaneBlockMixin",
+    "mc.TrunkPlacerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

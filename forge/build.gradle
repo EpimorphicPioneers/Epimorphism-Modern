@@ -107,9 +107,8 @@ repositories {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+//    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    forge forge.minecraftForge
 
     common(project(path: ":${mod_id}-common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":${mod_id}-common", configuration: "transformProductionForge")) { transitive = false }
@@ -121,23 +120,10 @@ dependencies {
     // Registrate
     modImplementation(include("com.tterrag.registrate:Registrate:${forge.versions.registrate.get()}"))
 
-    // Create and its dependencies
-    modImplementation("com.simibubi.create:create-${libs.versions.minecraft.get()}:${forge.versions.createForge.get()}:all") { transitive = false }
-    modImplementation forge.flywheel
-
-    // JEI
-    modCompileOnly(forge.jei.common.api) { transitive = false }
-    modCompileOnly(forge.jei.forge.api) { transitive = false }
-    modCompileOnly(forge.jei.forge.impl) { transitive = false }
-
     // REI
-    modCompileOnly forge.rei.plugin
-    modCompileOnly forge.rei.api
+    modCompileOnly (forge.rei.plugin) { transitive = false }
+    modCompileOnly (forge.rei.api) { transitive = false }
     modImplementation forge.rei.forge
-
-    // EMI
-    modCompileOnly("dev.emi:emi-forge:${fabric.versions.emi.get()}:api")
-    modCompileOnly forge.emi
 
     // TOP
     modCompileOnly(forge.theoneprobe) { transitive = false }
@@ -150,9 +136,6 @@ dependencies {
 
     //AlmostUnified
     modImplementation(forge.almostUnified.forge)
-
-    // KJS
-    modImplementation forge.kubejs
 
     // Mixin Extras
     implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:${this.forge.versions.mixinextras.get()}"))
@@ -167,8 +150,9 @@ dependencies {
     modImplementation("maven.modrinth:embeddium:0.2.10+mc1.20.1")
     modImplementation("maven.modrinth:oculus:1.20.1-1.6.9")
 
+
     // GTM
-    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.16-forge")
+    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.18.a-forge") { transitive = false }
 
     // Runtime only testing mods
     //modRuntimeOnly(forge.worldStripper)

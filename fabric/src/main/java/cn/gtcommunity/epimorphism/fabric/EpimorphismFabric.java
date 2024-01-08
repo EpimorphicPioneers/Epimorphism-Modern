@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.fabric;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.fabric.CommonProxyImpl;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.lowdragmc.lowdraglib.Platform;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 
 public class EpimorphismFabric implements ModInitializer {
     @Override
@@ -13,6 +13,6 @@ public class EpimorphismFabric implements ModInitializer {
             ConfigHolder.init(); // force init GTCEu ConfigHolder
         }
         Epimorphism.init();
-
+        CommonProxyImpl.init();
     }
 }

@@ -28,15 +28,8 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.epimorphism]]
-modId = "architectury"
-mandatory = true
-versionRange = "[9.1.12,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.epimorphism]]
 modId = "gtceu"
 mandatory = true
 versionRange = "[1.0.0,)"
-ordering = "AFTER"
+ordering = "BEFORE"
 side = "BOTH"

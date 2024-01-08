@@ -48,28 +48,15 @@ configurations {
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury:${rootProject.architectury_version}"
-
-    modCompileOnly fabric.createFabric
+    modImplementation fabric.fabricLoader
 
     modCompileOnly fabric.ldlib.common
     modCompileOnly fabric.registrate
-
-    // JEI
-    modCompileOnly fabric.jei.common.api
-    modCompileOnly fabric.jei.fabric.api
-    modCompileOnly fabric.jei.fabric.impl
 
     // REI
     modCompileOnly fabric.rei.plugin
     modCompileOnly fabric.rei.api
     modCompileOnly fabric.rei.fabric
-
-    // EMI
-    modCompileOnly("dev.emi:emi-fabric:${fabric.versions.emi.get()}:api")
-    modCompileOnly fabric.emi
 
     // TOP
     modCompileOnly(forge.theoneprobe) { transitive = false }
@@ -83,9 +70,6 @@ dependencies {
     //AlmostUnified
     modCompileOnly(fabric.almostUnified.common)
 
-    // KJS
-    modCompileOnly fabric.kubejs
-
     // Mixin Extras
     implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:${fabric.versions.mixinextras.get()}"))
 
@@ -96,7 +80,8 @@ dependencies {
     modCompileOnly fabric.shimmer.common
 
     // GTM
-    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.16-fabric")
+    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.18.a-fabric") { transitive = false }
+
 }
 
 publishing {

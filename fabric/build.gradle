@@ -87,10 +87,10 @@ repositories {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
-    // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+//    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+//    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    modImplementation fabric.fabricLoader
+    modApi fabric.fabricApi
 
     common(project(path: ":${mod_id}-common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":${mod_id}-common", configuration: "transformProductionFabric")) { transitive false }
@@ -108,26 +108,15 @@ dependencies {
     modImplementation fabric.nightConfigCore
     modImplementation fabric.nightConfigToml
 
-    // Create
-    modImplementation fabric.createFabric
-
     // Development QOL
     modCompileOnly fabric.lazydfu
     modCompileOnly fabric.modmenu
 
-    // JEI
-    modCompileOnlyApi(fabric.jei.common.api) { transitive = false }
-    modCompileOnlyApi(fabric.jei.fabric.api) { transitive = false }
-    modCompileOnly(fabric.jei.fabric.impl) { transitive = false }
 
     // REI
-    modCompileOnly(fabric.rei.plugin) { transitive = false }
-    modCompileOnly(fabric.rei.api) { transitive = false }
-    modCompileOnly(fabric.rei.fabric) { transitive = false }
-
-    // EMI
-    modCompileOnly("dev.emi:emi-fabric:${fabric.versions.emi.get()}:api")
-    modImplementation fabric.emi
+    modCompileOnly (fabric.rei.plugin) { transitive = false }
+    modCompileOnly (fabric.rei.api) { transitive = false }
+    modImplementation fabric.rei.fabric
 
     // TOP
 //    modCompileOnly fabric.theoneprobe
@@ -140,9 +129,6 @@ dependencies {
 
     //AlmostUnified
     modImplementation(fabric.almostUnified.fabric)
-
-    // KJS
-    modImplementation fabric.kubejs
 
     // Mixin Extras
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${fabric.versions.mixinextras.get()}")))
@@ -164,7 +150,7 @@ dependencies {
     modRuntimeOnly(fabric.worldStripper)
 
     // GTM
-    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.16-fabric")
+    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.18.a-fabric") { transitive = false }
 }
 
 processResources {

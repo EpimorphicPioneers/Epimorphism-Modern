@@ -19,10 +19,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.List;
 
 @Mixin({GlassBlock.class, StainedGlassBlock.class, TintedGlassBlock.class})
-public abstract class MixinBlockGlass extends AbstractGlassBlock implements ITierBlockType {
+public abstract class BlockGlassMixin extends AbstractGlassBlock implements ITierBlockType {
     public ITierGlassType glassType;
 
-    protected MixinBlockGlass(Properties properties) {
+    protected BlockGlassMixin(Properties properties) {
         super(properties);
     }
 

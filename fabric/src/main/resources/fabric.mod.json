@@ -18,6 +18,12 @@
     "main": [
       "cn.gtcommunity.epimorphism.fabric.EpimorphismFabric"
     ],
+    "client": [
+      "cn.gtcommunity.epimorphism.client.fabric.ClientProxyImpl"
+    ],
+    "fabric-datagen": [
+      "cn.gtcommunity.epimorphism.data.fabric.EPDatagen"
+    ],
     "gtceu_addon": [
       "cn.gtcommunity.epimorphism.EPGTAddon"
     ]
@@ -29,7 +35,6 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.20.1",
-    "architectury": ">=9.1.12",
     "gtceu": "*"
   }
 }
