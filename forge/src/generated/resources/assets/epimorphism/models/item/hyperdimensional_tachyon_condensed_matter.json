@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/hyperdimensional_tachyon_condensed_matter"
+  }
+}
