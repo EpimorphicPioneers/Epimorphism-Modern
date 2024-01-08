@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "epimorphism:item/uxv_voltage_coil"
+    "layer0": "epimorphism:item/wafer.dubnium"
   }
 }
