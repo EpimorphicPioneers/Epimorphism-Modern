@@ -16,6 +16,15 @@ public class EPModelsImpl {
                 .texture("layer4", Epimorphism.id("item/wrap_overlay"));
     }
 
+    public static <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateItemModelProvider> simpleCustomModel(ResourceLocation modelLocation, ResourceLocation... textureLocations) {
+        return (ctx, prov) -> {
+            var builder = prov.getBuilder("item/" + prov.name(ctx::getEntry)).parent(new ModelFile.UncheckedModelFile(modelLocation));
+            for (int i = 0; i < textureLocations.length; ++i) {
+                builder.texture("layer%s".formatted(i), textureLocations[i]);
+            }
+        };
+    }
+
     public static void captureToolModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov) {
         // empty model
         prov.getBuilder("item/" + prov.name(ctx::getEntry) + "_empty").parent(new ModelFile.UncheckedModelFile("item/generated"))

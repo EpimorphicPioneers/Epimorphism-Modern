@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
+import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -17,6 +18,7 @@ import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,6 +29,7 @@ import java.util.List;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
 import static cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs.*;
+import static com.gregtechceu.gtceu.api.registry.GTRegistries.REGISTRATE;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 
 public class EPItems {
@@ -849,67 +852,6 @@ public class EPItems {
             .register();
 
 
-    //  Wrap Circuits
-    public final static ItemEntry<Item> WRAP_CIRCUIT_ULV = EP_REGISTRATE.item("wrap.circuit.ulv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/nand_chip")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_LV = EP_REGISTRATE.item("wrap.circuit.lv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/microchip_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_MV = EP_REGISTRATE.item("wrap.circuit.mv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/micro_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_HV = EP_REGISTRATE.item("wrap.circuit.hv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/nano_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_EV = EP_REGISTRATE.item("wrap.circuit.ev", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/quantum_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_IV = EP_REGISTRATE.item("wrap.circuit.iv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/crystal_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_LuV = EP_REGISTRATE.item("wrap.circuit.luv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(GTCEu.id("item/wetware_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_ZPM = EP_REGISTRATE.item("wrap.circuit.zpm", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.gooware_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UV = EP_REGISTRATE.item("wrap.circuit.uv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.optical_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UHV = EP_REGISTRATE.item("wrap.circuit.uhv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.spintronic_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UEV = EP_REGISTRATE.item("wrap.circuit.uev", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.cosmic_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UIV = EP_REGISTRATE.item("wrap.circuit.uiv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.supracausal_processor")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UXV = EP_REGISTRATE.item("wrap.circuit.uxv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.supracausal_assembly")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_OpV = EP_REGISTRATE.item("wrap.circuit.opv", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.supracausal_computer")))
-            .register();
-    public final static ItemEntry<Item> WRAP_CIRCUIT_MAX = EP_REGISTRATE.item("wrap.circuit.max", Item::new)
-            .lang("Infinite Circuit Board")
-            .model(EPModels.wrapCircuitModel(Epimorphism.id("item/circuit.supracausal_mainframe")))
-            .register();
     //  Debug
     public final static ItemEntry<ComponentItem> DEBUG_STRUCTURE_WRITER = EP_REGISTRATE.item("debug.structure_writer", ComponentItem::create)
             .lang("Debug Structure Writer")
@@ -943,12 +885,15 @@ public class EPItems {
 
     public final static ItemEntry<ComponentItem> VAJRA = EP_REGISTRATE.item("tool.vajra", VajraItem::create)
             .lang("Vajra")
+            .model(EPModels.simpleCustomModel(Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
             .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
             .register();
 
     private EPItems() {/**/}
 
-    public static void init() {/**/}
+    public static void init() {
+        EPWrapItem.init();
+    }
 
     private static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
         return (item) -> {

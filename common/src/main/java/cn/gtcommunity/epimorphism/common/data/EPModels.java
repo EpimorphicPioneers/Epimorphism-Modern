@@ -14,6 +14,11 @@ public class EPModels {
     }
 
     @ExpectPlatform
+    public static <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateItemModelProvider> simpleCustomModel(ResourceLocation modelLocation, ResourceLocation... textureLocations) {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
     public static void captureToolModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov) {
         throw new AssertionError();
     }
