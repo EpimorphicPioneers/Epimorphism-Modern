@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
 import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
@@ -15,6 +16,9 @@ import static com.gregtechceu.gtceu.data.recipe.CustomTags.*;
 public class EPWrapItem {
     public final static Object2ObjectOpenHashMap<Object, ItemEntry<?>> WRAP_ITEM_MAP = new Object2ObjectOpenHashMap<>();
 
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EP_CIRCUIT_REFORM);
+    }
     //  Wrap Circuits
     public final static ItemEntry<Item> WRAP_CIRCUIT_ULV = registerWrapItem("wrap.circuit.ulv", "Infinite Circuit Board", GTCEu.id("item/nand_chip"), ULV_CIRCUITS);
     public final static ItemEntry<Item> WRAP_CIRCUIT_LV = registerWrapItem("wrap.circuit.lv", "Infinite Circuit Board", GTCEu.id("item/microchip_processor"), LV_CIRCUITS);
@@ -64,17 +68,21 @@ public class EPWrapItem {
     public static ItemEntry<Item> WRAP_SMD_CAPACITOR_ADVANCED = registerWrapItem("wrap.component.advanced_smd_capacitor", "Infinite Circuit Board", GTCEu.id("item/advanced_smd_capacitor"), ADVANCED_SMD_CAPACITOR);
     public static ItemEntry<Item> WRAP_SMD_DIODE_ADVANCED = registerWrapItem("wrap.component.advanced_smd_diode", "Infinite Circuit Board", GTCEu.id("item/advanced_smd_diode"), ADVANCED_SMD_DIODE);
     public static ItemEntry<Item> WRAP_SMD_INDUCTOR_ADVANCED = registerWrapItem("wrap.component.advanced_smd_inductor", "Infinite Circuit Board", GTCEu.id("item/advanced_smd_inductor"), ADVANCED_SMD_INDUCTOR);
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
-//    public static ItemEntry<Item> WRAP_COMPONENT_BOARD_SPINTRONIC = registerWrapItem("wrap.component.spintronic", "Infinite Circuit Board", Epimorphism.id("item/circuit_board.spintronic"));
+    public static ItemEntry<Item> WRAP_SMD_TRANSISTOR_OPTICAL = registerWrapItem("wrap.component.optical_smd.transistor", "Infinite Circuit Board", Epimorphism.id("item/component.optical_smd.transistor"), OPTICAL_TRANSISTOR);
+    public static ItemEntry<Item> WRAP_SMD_RESISTOR_OPTICAL = registerWrapItem("wrap.component.optical_smd.resistor", "Infinite Circuit Board", Epimorphism.id("item/component.optical_smd.resistor"), OPTICAL_RESISTOR);
+    public static ItemEntry<Item> WRAP_SMD_CAPACITOR_OPTICAL = registerWrapItem("wrap.component.optical_smd.capacitor", "Infinite Circuit Board", Epimorphism.id("item/component.optical_smd.capacitor"), OPTICAL_CAPACITOR);
+    public static ItemEntry<Item> WRAP_SMD_DIODE_OPTICAL = registerWrapItem("wrap.component.optical_smd.diode", "Infinite Circuit Board", Epimorphism.id("item/component.optical_smd.diode"), OPTICAL_DIODE);
+    public static ItemEntry<Item> WRAP_SMD_INDUCTOR_OPTICAL = registerWrapItem("wrap.component.optical_smd.inductor", "Infinite Circuit Board", Epimorphism.id("item/component.optical_smd.inductor"), OPTICAL_INDUCTOR);
+    public static ItemEntry<Item> WRAP_SMD_TRANSISTOR_SPINTRONIC = registerWrapItem("wrap.component.spintronic_smd.transistor", "Infinite Circuit Board", Epimorphism.id("item/component.spintronic_smd.transistor"), SPINTRONIC_TRANSISTOR);
+    public static ItemEntry<Item> WRAP_SMD_RESISTOR_SPINTRONIC = registerWrapItem("wrap.component.spintronic_smd.resistor", "Infinite Circuit Board", Epimorphism.id("item/component.spintronic_smd.resistor"), SPINTRONIC_RESISTOR);
+    public static ItemEntry<Item> WRAP_SMD_CAPACITOR_SPINTRONIC = registerWrapItem("wrap.component.spintronic_smd.capacitor", "Infinite Circuit Board", Epimorphism.id("item/component.spintronic_smd.capacitor"), SPINTRONIC_CAPACITOR);
+    public static ItemEntry<Item> WRAP_SMD_DIODE_SPINTRONIC = registerWrapItem("wrap.component.spintronic_smd.diode", "Infinite Circuit Board", Epimorphism.id("item/component.spintronic_smd.diode"), SPINTRONIC_DIODE);
+    public static ItemEntry<Item> WRAP_SMD_INDUCTOR_SPINTRONIC = registerWrapItem("wrap.component.spintronic_smd.inductor", "Infinite Circuit Board", Epimorphism.id("item/component.spintronic_smd.inductor"), SPINTRONIC_INDUCTOR);
+    public static ItemEntry<Item> WRAP_SMD_TRANSISTOR_COSMIC = registerWrapItem("wrap.component.cosmic_smd.transistor", "Infinite Circuit Board", Epimorphism.id("item/component.cosmic_smd.transistor"), COSMIC_TRANSISTOR);
+    public static ItemEntry<Item> WRAP_SMD_RESISTOR_COSMIC = registerWrapItem("wrap.component.cosmic_smd.resistor", "Infinite Circuit Board", Epimorphism.id("item/component.cosmic_smd.resistor"), COSMIC_RESISTOR);
+    public static ItemEntry<Item> WRAP_SMD_CAPACITOR_COSMIC = registerWrapItem("wrap.component.cosmic_smd.capacitor", "Infinite Circuit Board", Epimorphism.id("item/component.cosmic_smd.capacitor"), COSMIC_CAPACITOR);
+    public static ItemEntry<Item> WRAP_SMD_DIODE_COSMIC = registerWrapItem("wrap.component.cosmic_smd.diode", "Infinite Circuit Board", Epimorphism.id("item/component.cosmic_smd.diode"), COSMIC_DIODE);
+    public static ItemEntry<Item> WRAP_SMD_INDUCTOR_COSMIC = registerWrapItem("wrap.component.cosmic_smd.inductor", "Infinite Circuit Board", Epimorphism.id("item/component.cosmic_smd.inductor"), COSMIC_INDUCTOR);
 
     public static void init() {/**/}
 

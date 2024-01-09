@@ -1,6 +1,7 @@
 {
   "itemGroup.epimorphism.item": "Epimorphism | 物品",
   "itemGroup.epimorphism.block": "Epimorphism | 方块",
+  "itemGroup.epimorphism.circuit_reform": "Epimorphism | 电路板改革",
 
   "item.material.oreprefix.coil": "%s线圈",
   "item.material.oreprefix.plateCurved": "弯曲%s板",

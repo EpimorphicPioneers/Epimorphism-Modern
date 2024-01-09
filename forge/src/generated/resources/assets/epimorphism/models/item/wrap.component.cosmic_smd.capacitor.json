@@ -1,0 +1,7 @@
+{
+  "parent": "epimorphism:item/wrap_circuit",
+  "textures": {
+    "layer0": "epimorphism:item/component.cosmic_smd.capacitor",
+    "layer4": "epimorphism:item/wrap_overlay"
+  }
+}

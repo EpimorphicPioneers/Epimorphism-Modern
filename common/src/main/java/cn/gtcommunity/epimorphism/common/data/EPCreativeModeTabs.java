@@ -17,6 +17,11 @@ public class EPCreativeModeTabs {
                             .icon(EPItems.GOOWARE_BOARD::asStack)
                             .build())
                     .register();
+    public final static RegistryEntry<CreativeModeTab> EP_CIRCUIT_REFORM = EP_REGISTRATE.defaultCreativeTab("circuit_reform",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("circuit_reform", EP_REGISTRATE))
+                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .build())
+                    .register();
 
     public static void init() {/**/}
 }
