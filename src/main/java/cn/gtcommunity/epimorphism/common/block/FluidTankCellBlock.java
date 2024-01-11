@@ -47,10 +47,10 @@ public class FluidTankCellBlock extends AppearanceBlock implements IBlockRendere
         if (GTUtil.isShiftDown()) {
             String tier = GTValues.VNF[data.tier()];
             String capacity = FormattingUtil.formatNumbers(data.getCapacity());
-            tooltip.add(Component.translatable("cn.gtcommunity.epimorphism.block_tier.tooltip", tier));
-            tooltip.add(Component.translatable("cn.gtcommunity.epimorphism.fluid_capacity.tooltip", capacity));
+            tooltip.add(Component.translatable("epimorphism.block_tier.tooltip", tier));
+            tooltip.add(Component.translatable("epimorphism.fluid_capacity.tooltip", capacity));
         } else {
-            tooltip.add(Component.translatable("cn.gtcommunity.epimorphism.tooltip_extended_info"));
+            tooltip.add(Component.translatable("epimorphism.tooltip_extended_info"));
         }
     }
 

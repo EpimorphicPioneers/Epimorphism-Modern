@@ -41,12 +41,12 @@ public abstract class RendererGlassBlockMixin extends RendererBlock implements I
         super.appendHoverText(stack, level, tooltip, flag);
         if (glassType == null) return;
         if (GTUtil.isShiftDown()) {
-            tooltip.add(Component.translatable("cn.gtcommunity.epimorphism.glass_tier.tooltip", glassType.getTireNameColored()));
+            tooltip.add(Component.translatable("epimorphism.glass_tier.tooltip", glassType.getTireNameColored()));
             if (glassType.isOpticalGlass()) {
                 tooltip.add(glassType.getOpticalTierName());
             }
         } else {
-            tooltip.add(Component.translatable("cn.gtcommunity.epimorphism.tooltip_extended_info"));
+            tooltip.add(Component.translatable("epimorphism.tooltip_extended_info"));
         }
     }
 }

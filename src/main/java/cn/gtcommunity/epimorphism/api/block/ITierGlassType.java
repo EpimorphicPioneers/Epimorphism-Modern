@@ -23,7 +23,7 @@ public interface ITierGlassType extends ITierType {
     }
 
     default Component getOpticalTierName() {
-        return Component.translatable("cn.gtcommunity.epimorphism.optical_glass_tier.tooltip." + EPUniverUtil.getOpticalGlassTier(tier()))
+        return Component.translatable("epimorphism.optical_glass_tier.tooltip." + EPUniverUtil.getOpticalGlassTier(tier()))
                 .withStyle(TooltipHelper.BLINKING_CYAN.getCurrent());
     }
 }

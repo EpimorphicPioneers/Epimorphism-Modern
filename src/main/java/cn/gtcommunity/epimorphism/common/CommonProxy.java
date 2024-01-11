@@ -39,8 +39,7 @@ public class CommonProxy {
             if (!isGTCEuSetup) {
                 try {
                     LOCK.wait();
-                } catch (InterruptedException ignored) {
-                }
+                } catch (InterruptedException ignored) {/**/}
             }
         }
         init();
@@ -54,6 +53,7 @@ public class CommonProxy {
         EPItems.init();
         EPDatagen.init();
         EPRegistries.EP_REGISTRATE.registerRegistrate();
+        EPDimensionTypes.init();
     }
 
     @SubscribeEvent

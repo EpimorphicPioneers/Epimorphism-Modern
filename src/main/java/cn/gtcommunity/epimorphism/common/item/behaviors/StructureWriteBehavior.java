@@ -52,21 +52,21 @@ public class StructureWriteBehavior implements IItemUIFactory {
                             z = 1 + blockPos[1].getZ() - blockPos[0].getZ();
                         }
                     }
-                    return LocalizationUtils.format("item.cn.gtcommunity.epimorphism.debug.structure_writer.structural_scale", x, y, z);
+                    return LocalizationUtils.format("item.epimorphism.debug.structure_writer.structural_scale", x, y, z);
                 }).setTextColor(0xFAF9F6))
                 .addWidget(new LabelWidget(7, 20, () -> {
                     var direction = getDir(playerInventoryHolder.getHeld());
                     var dirs = DebugBlockPattern.getDir(direction);
-                    return LocalizationUtils.format("item.cn.gtcommunity.epimorphism.debug.structure_writer.export_order", dirs[0].name(), dirs[1].name(), dirs[2].name());
+                    return LocalizationUtils.format("item.epimorphism.debug.structure_writer.export_order", dirs[0].name(), dirs[1].name(), dirs[2].name());
                 }).setTextColor(0xFAF9F6));
         container.setBackground(GuiTextures.BACKGROUND_INVERSE);
         return new ModularUI(176, 120, playerInventoryHolder, entityPlayer)
                 .background(GuiTextures.BACKGROUND)
                 .widget(container)
-                .widget(new ButtonWidget(9, 68, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.cn.gtcommunity.epimorphism.debug.structure_writer.export_to_log")), clickData -> exportLog(playerInventoryHolder)))
-                .widget(new ButtonWidget(90, 68, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.cn.gtcommunity.epimorphism.debug.structure_writer.export_to_file")), clickData -> exportLog(playerInventoryHolder)))
-                .widget(new ButtonWidget(9, 91, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.cn.gtcommunity.epimorphism.debug.structure_writer.rotate_along_x_axis")), clickData -> changeDirX(playerInventoryHolder)))
-                .widget(new ButtonWidget(90, 91, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.cn.gtcommunity.epimorphism.debug.structure_writer.rotate_along_y_axis")), clickData -> changeDirY(playerInventoryHolder)));
+                .widget(new ButtonWidget(9, 68, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.epimorphism.debug.structure_writer.export_to_log")), clickData -> exportLog(playerInventoryHolder)))
+                .widget(new ButtonWidget(90, 68, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.epimorphism.debug.structure_writer.export_to_file")), clickData -> exportLog(playerInventoryHolder)))
+                .widget(new ButtonWidget(9, 91, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.epimorphism.debug.structure_writer.rotate_along_x_axis")), clickData -> changeDirX(playerInventoryHolder)))
+                .widget(new ButtonWidget(90, 91, 77, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("item.epimorphism.debug.structure_writer.rotate_along_y_axis")), clickData -> changeDirY(playerInventoryHolder)));
     }
 
     private void exportLog(HeldItemUIFactory.HeldItemHolder playerInventoryHolder) {

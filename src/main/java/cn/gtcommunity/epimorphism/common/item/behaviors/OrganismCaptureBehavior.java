@@ -90,6 +90,6 @@ public class OrganismCaptureBehavior implements IInteractionItem {
         if (hasEntity(itemStack)) {
             return LocalizationUtils.format(new ResourceLocation("entity." + itemStack.getOrCreateTag().getString(OrganismCaptureBehavior.OC_ENTITY)).toLanguageKey());
         }
-        return LocalizationUtils.format("cn.gtcommunity.epimorphism.universal.tooltip.none");
+        return LocalizationUtils.format("epimorphism.universal.tooltip.none");
     }
 }
