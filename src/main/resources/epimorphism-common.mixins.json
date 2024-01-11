@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "package": "cn.gtcommunity.epimorphism.core.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "accessors.client.FontResourceManagerAccess",
+    "accessors.client.ItemModelGeneratorAccessor",
+    "accessors.client.LevelRendererAccessor",
+    "accessors.client.MinecraftAccessor",
+    "accessors.client.MultiPlayerGameModeAccessor",
+    "mc.DimensionSpecialEffectsMixin"
+  ],
+  "mixins": [
+    "gtm.ComponentItemMixin",
+    "gtm.RendererGlassBlockMixin",
+    "gtm.TagPrefixItemMixin",
+    "mc.BlockGlassMixin",
+    "mc.CactusBlockMixin",
+    "mc.FeatureMixin",
+    "mc.SugarCaneBlockMixin",
+    "mc.TrunkPlacerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

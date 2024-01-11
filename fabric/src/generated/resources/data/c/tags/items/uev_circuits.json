@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "epimorphism:circuit.gooware_mainframe",
-    "epimorphism:circuit.optical_computer",
-    "epimorphism:circuit.spintronic_assembly",
-    "epimorphism:circuit.cosmic_processor"
-  ]
-}

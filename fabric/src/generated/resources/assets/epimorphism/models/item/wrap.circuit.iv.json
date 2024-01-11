@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "gtceu:item/crystal_processor",
-    "layer1": "epimorphism:item/wrap_overlay"
-  }
-}
