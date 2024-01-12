@@ -28,4 +28,10 @@ public class EPPredicates {
                 .container(StorageFieldBlockContainer::new)
                 .build();
     }
+
+    public static TraceabilityPredicate componentAssemblyBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CACasing")
+                .map(BlockMaps.ALL_CA_TIRED_CASINGS)
+                .build();
+    }
 }

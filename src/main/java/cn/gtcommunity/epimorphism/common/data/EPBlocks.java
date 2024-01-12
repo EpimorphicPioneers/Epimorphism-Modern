@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
 import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
 import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.common.block.*;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
@@ -19,6 +20,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -56,7 +58,7 @@ public class EPBlocks {
     public static BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> HYPER_CASING = createCasingBlock("hyper_casing", Epimorphism.id("block/casings/solid/hyper_casing"));
     public static BlockEntry<Block> TALONITE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static BlockEntry<Block> IRIDIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> IRIDIUM_CASING = createCasingBlock("iridium_casing", Epimorphism.id("block/casings/solid/iridium_casing"));
     public static BlockEntry<Block> BREEDING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> TRITANIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> QUANTUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
@@ -78,11 +80,12 @@ public class EPBlocks {
     public static BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock("advanced_filter_casing", Epimorphism.id("block/casings/solid/advanced_filter_casing"));
     public static BlockEntry<Block> TFFT_CASING = createCasingBlock("tfft_casing", Epimorphism.id("block/casings/solid/tfft_casing"));
     public static BlockEntry<Block> YOTTA_FLUID_TANK_CASING = createComplexTextureCasingBlock("yotta_fluid_tank_casing");
 
     // Multiblock Machine Pipe Casing Blocks
-    public static BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("polybenzimidazole_pipe", Epimorphism.id("block/casings/solid/polybenzimidazole_pipe"));
     public static BlockEntry<Block> CASING_ISA_MILL_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> CASING_FLOTATION_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> CASING_ALLOY_SMELTING_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
@@ -124,6 +127,23 @@ public class EPBlocks {
     public static BlockEntry<StorageFieldBlock> STORAGE_FIELD_BLOCK_8 = createStorageFieldBlock(StorageFieldBlock.FieldBlockType.BLOCK_8);
     public static BlockEntry<StorageFieldBlock> STORAGE_FIELD_BLOCK_9 = createStorageFieldBlock(StorageFieldBlock.FieldBlockType.BLOCK_9);
     public static BlockEntry<StorageFieldBlock> STORAGE_FIELD_BLOCK_10 = createStorageFieldBlock(StorageFieldBlock.FieldBlockType.BLOCK_10);
+
+    //  Component Assembly Line Casings
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_LV = createComponentAssemblyBlock(ITierType.TierBlockType.LV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_MV = createComponentAssemblyBlock(ITierType.TierBlockType.MV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_HV = createComponentAssemblyBlock(ITierType.TierBlockType.HV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_EV = createComponentAssemblyBlock(ITierType.TierBlockType.EV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_IV = createComponentAssemblyBlock(ITierType.TierBlockType.IV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_LuV = createComponentAssemblyBlock(ITierType.TierBlockType.LuV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_ZPM = createComponentAssemblyBlock(ITierType.TierBlockType.ZPM);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_UV = createComponentAssemblyBlock(ITierType.TierBlockType.UV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_UHV = createComponentAssemblyBlock(ITierType.TierBlockType.UHV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_UEV = createComponentAssemblyBlock(ITierType.TierBlockType.UEV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_UIV = createComponentAssemblyBlock(ITierType.TierBlockType.UIV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_UXV = createComponentAssemblyBlock(ITierType.TierBlockType.UXV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_OpV = createComponentAssemblyBlock(ITierType.TierBlockType.OpV);
+    public static BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_MAX = createComponentAssemblyBlock(ITierType.TierBlockType.MAX);
+
 
     //  Misc
     public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
@@ -213,6 +233,24 @@ public class EPBlocks {
                 .register();
         ALL_FIELD_BLOCKS.put(blockData, fieldBlock::get);
         return fieldBlock;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createComponentAssemblyBlock(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> componentAssemblyBlock = EP_REGISTRATE.block("component_assembly_line_casing_%s".formatted(blockData.typeName()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(GTCEu.id("block/cube_2_layer_all"),
+                                Map.of("top_all", Epimorphism.id("block/casings/component_assembly_line_casing/%s".formatted(blockData.typeName().toLowerCase())),
+                                        "bot_all", Epimorphism.id("block/casings/solid/iridium_casing"))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".tooltip")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_CA_TIRED_CASINGS.put(blockData, componentAssemblyBlock::get);
+        return componentAssemblyBlock;
     }
 
     protected static BlockEntry<Block> createCasingBlock(String name, BiFunction<BlockBehaviour.Properties, IRenderer, ? extends RendererBlock> blockSupplier, ResourceLocation texture, NonNullSupplier<? extends Block> properties, Supplier<Supplier<RenderType>> type) {

@@ -13,4 +13,5 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FLUID_CELLS = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FIELD_BLOCKS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_CA_TIRED_CASINGS = new Object2ObjectOpenHashMap<>();
 }
