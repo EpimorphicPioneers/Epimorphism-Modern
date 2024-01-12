@@ -200,11 +200,11 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             if (fluidTank != null) {
                 BigInteger fluidStored = fluidTank.getCurrentStorage();
                 BigInteger fluidCapacity = fluidTank.getMaxStorage();
-                textList.add(Component.translatable("cn.gtcommunity.epimorphism.multiblock.yotta_fluid_tank.fluid", getFluid()));
-                textList.add(Component.translatable("cn.gtcommunity.epimorphism.multiblock.yotta_fluid_tank.stored", EPLangUtil.abbreviate(fluidStored))
+                textList.add(Component.translatable("epimorphism.multiblock.yotta_fluid_tank.fluid", getFluid()));
+                textList.add(Component.translatable("epimorphism.multiblock.yotta_fluid_tank.stored", EPLangUtil.abbreviate(fluidStored))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(fluidStored + " L")))));
-                textList.add(Component.translatable("cn.gtcommunity.epimorphism.multiblock.yotta_fluid_tank.capacity", EPLangUtil.abbreviate(fluidCapacity))
+                textList.add(Component.translatable("epimorphism.multiblock.yotta_fluid_tank.capacity", EPLangUtil.abbreviate(fluidCapacity))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(fluidCapacity + " L")))));
             }
@@ -232,7 +232,7 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
 
     public String getFluid() {
         if (fluidTank == null || fluidTank.getCurrentFluid().isSame(EPTransformUtil.getDefaultFluid())) {
-            return LocalizationUtils.format("cn.gtcommunity.epimorphism.multiblock.fluid.empty");
+            return LocalizationUtils.format("epimorphism.multiblock.fluid.empty");
         }
 
         return EPTransformUtil.fluidToName(fluidTank.getCurrentFluid());

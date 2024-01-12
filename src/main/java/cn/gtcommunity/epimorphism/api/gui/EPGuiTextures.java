@@ -12,6 +12,6 @@ public class EPGuiTextures {
     public static final ResourceTexture TOGGLE_BUTTON_VOID = createTexture("textures/gui/widget/button_void.png");
 
     private static ResourceTexture createTexture(String imageLocation) {
-        return new ResourceTexture("cn.gtcommunity.epimorphism:%s".formatted(imageLocation));
+        return new ResourceTexture("epimorphism:%s".formatted(imageLocation));
     }
 }

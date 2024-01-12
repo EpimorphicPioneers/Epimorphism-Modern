@@ -29,6 +29,8 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
 
     @Persisted
     public final NotifiableFluidTank tank;
+    @Persisted
+    private boolean isFilled;
 
     public InfiniteWaterHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.UHV, IO.IN);
@@ -70,16 +72,16 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     //////////////////////////////////////
 
     protected void updateTankSubscription() {
-        if (isWorkingEnabled() && tank.fillInternal(FluidStack.create(Fluids.WATER, 1L), true) != 0L) {
+        if (isWorkingEnabled() && !isFilled) {
             productSubs = subscribeServerTick(productSubs, this::productWater);
-        } else if (productSubs != null && !tank.isEmpty()) {
+        } else if (productSubs != null) {
             productSubs.unsubscribe();
             productSubs = null;
         }
     }
 
     protected void productWater() {
-        tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false);
+        isFilled = tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false) == 0;
     }
 
     @Override
