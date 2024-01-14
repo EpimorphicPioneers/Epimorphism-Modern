@@ -16,6 +16,7 @@ public interface ITierType extends StringRepresentable{
     }
 
     enum TierBlockType implements ITierType {
+        DUMMY(-1),
         ULV(GTValues.ULV),
         LV(GTValues.LV),
         MV(GTValues.MV),

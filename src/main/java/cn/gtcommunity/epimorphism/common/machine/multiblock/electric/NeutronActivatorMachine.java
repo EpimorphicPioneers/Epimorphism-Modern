@@ -1,17 +1,26 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
 import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
-import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
-import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
-import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
+import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
-import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
+import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import lombok.Getter;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class NeutronActivatorMachine extends NoEnergyMultiblockMachine {
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class, NoEnergyMultiblockMachine.MANAGED_FIELD_HOLDER);
+    @Getter @Persisted @DescSynced
+    private int height = 0;
+
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
     }
@@ -23,6 +32,16 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine {
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        IValueContainer<?> container = getMultiblockState().getMatchContext().getOrCreate("SpeedPipeValue", IValueContainer::noop);
+        if (container.getValue() instanceof Integer integer) {
+            height = integer;
+        }
+    }
+
+    @Override
+    public void onStructureInvalid() {
+        super.onStructureInvalid();
+        height = 0;
     }
 
     //////////////////////////////////////
@@ -30,30 +49,18 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine {
     //////////////////////////////////////
 
     @Override
-    public List<IFancyUIProvider> getSubTabs() {
-        var list = new ArrayList<>(super.getSubTabs());
+    public void addDisplayText(List<Component> textList) {
+        super.addDisplayText(textList);
+        textList.add(Component.translatable(String.valueOf(height)));
+    }
 
-        list.add(new IFancyUIProvider() {
-            @Override
-            public Widget createMainPage() {
-                return NeutronActivatorMachine.this.createMainPage();
-            }
 
-            @Override
-            public IGuiTexture getTabIcon() {
-                return NeutronActivatorMachine.this.getTabIcon();
-            }
+    //////////////////////////////////////
+    //***       Multiblock Data      ***//
+    //////////////////////////////////////
 
-            @Override
-            public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-
-            }
-
-            @Override
-            public void attachTooltips(TooltipsPanel tooltipsPanel) {
-
-            }
-        });
-        return list;
+    @Override
+    public @NotNull ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
     }
 }

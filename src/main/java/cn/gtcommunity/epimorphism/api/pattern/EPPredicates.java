@@ -2,10 +2,13 @@ package cn.gtcommunity.epimorphism.api.pattern;
 
 import cn.gtcommunity.epimorphism.api.pattern.utils.containers.FluidTankCellContainer;
 import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlockContainer;
+import cn.gtcommunity.epimorphism.api.structure.UniverTraceabilityPredicate;
 import cn.gtcommunity.epimorphism.api.structure.predicates.TierTraceabilityPredicateFactory;
+import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.Block;
 
 public class EPPredicates {
     // Glasses
@@ -56,5 +59,11 @@ public class EPPredicates {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CPMachineCasing")
                 .map(BlockMaps.ALL_MACHINE_CASINGS)
                 .build();
+    }
+
+    // Univer
+    public static TraceabilityPredicate countBlock(String name, Block... blocks) {
+        return UniverTraceabilityPredicate.enhanceBlocks(name,
+                () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), blocks);
     }
 }
