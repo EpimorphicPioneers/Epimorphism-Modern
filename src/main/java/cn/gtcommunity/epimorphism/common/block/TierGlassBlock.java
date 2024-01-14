@@ -30,7 +30,7 @@ public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType
         super.appendHoverText(stack, level, tooltip, flag);
     }
 
-    public enum GlassType implements StringRepresentable, ITierGlassType {
+    public enum GlassType implements ITierGlassType {
         BLOCK_GLASS("glass", GTValues.LV, false),
         TINTED_GLASS("tinted_glass", GTValues.LV, false),
         CLEANROOM_GLASS("cleanroom_glass", GTValues.HV, false),
@@ -77,12 +77,6 @@ public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType
         @Nonnull
         @Override
         public String toString() {
-            return typeName();
-        }
-
-        @Nonnull
-        @Override
-        public String getSerializedName() {
             return typeName();
         }
     }

@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.common;
 
 import cn.gtcommunity.epimorphism.EPGTAddon;
+import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.common.data.*;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;

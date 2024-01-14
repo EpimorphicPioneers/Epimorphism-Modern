@@ -6,6 +6,8 @@
   "client": [
   ],
   "mixins": [
+    "gtm.GTBlocksMixin",
+    "gtm.GTRecipeTypesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

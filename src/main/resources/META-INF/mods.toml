@@ -1,15 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "AGPL-3.0 license"
 
 [[mods]]
 modId = "epimorphism"
 version = "${version}"
 displayName = "Epimorphism"
-authors = "Me!"
+credits = "All members of the GregTech CN Community"
+authors = ""
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A huge addon for GregTechCEu Modern.
 '''
 #logoFile = ""
 

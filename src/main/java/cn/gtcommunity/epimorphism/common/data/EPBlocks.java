@@ -40,6 +40,7 @@ import java.util.function.Supplier;
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 
+@SuppressWarnings("all")
 public class EPBlocks {
 
     static {

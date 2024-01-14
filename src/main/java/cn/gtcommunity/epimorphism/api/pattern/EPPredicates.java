@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
 
 public class EPPredicates {
+    // Glasses
     public static TraceabilityPredicate glass() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "Glass")
                 .map(BlockMaps.ALL_GLASSES)
@@ -15,6 +16,7 @@ public class EPPredicates {
                 .build();
     }
 
+    // Yotta Fluid Tank
     public static TraceabilityPredicate fluidTankCell() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.LOOSE, "FluidTankCell")
                 .map(BlockMaps.ALL_FLUID_CELLS)
@@ -22,6 +24,7 @@ public class EPPredicates {
                 .build();
     }
 
+    // TFFT
     public static TraceabilityPredicate storageFieldBlock() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.LOOSE, "StorageFieldBlock")
                 .map(BlockMaps.ALL_FIELD_BLOCKS)
@@ -29,9 +32,29 @@ public class EPPredicates {
                 .build();
     }
 
+    // Component Assembly Line
     public static TraceabilityPredicate componentAssemblyBlock() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CACasing")
                 .map(BlockMaps.ALL_CA_TIRED_CASINGS)
+                .build();
+    }
+
+    // Chemical Plant
+    public static TraceabilityPredicate CPCasingBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CPCasing")
+                .map(BlockMaps.ALL_CP_CASINGS)
+                .build();
+    }
+
+    public static TraceabilityPredicate CPPipeBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CPPipe")
+                .map(BlockMaps.ALL_CP_TUBES)
+                .build();
+    }
+
+    public static TraceabilityPredicate CPMachineCasingBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CPMachineCasing")
+                .map(BlockMaps.ALL_MACHINE_CASINGS)
                 .build();
     }
 }

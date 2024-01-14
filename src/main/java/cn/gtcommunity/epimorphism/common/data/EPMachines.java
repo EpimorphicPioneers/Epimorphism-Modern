@@ -4,15 +4,19 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingWorkableElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
+import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
+import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ChemicalPlantRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.BacterialCultureTankMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.ChemicalPlantMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.IndustrialGreenhouseMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.NeutronActivatorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.InfiniteWaterHatchPartMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
+import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -37,6 +41,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -253,6 +258,93 @@ public class EPMachines {
 
 //    public final static MultiblockMachineDefinition BACTERIAL_CULTURE_TANK = EPRegistries.EP_REGISTRATE.multiblock("bacterial_culture_tank", BacterialCultureTankMachine::new)
 //            .register();
+
+    public final static MultiblockMachineDefinition CHEMICAL_PLANT = EP_REGISTRATE.multiblock("chemical_plant", ChemicalPlantMachine::new)
+            .langValue("Chemical Plant")
+            .rotationState(RotationState.ALL)
+            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                    .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXAXM#", "##TAT##", "##XAX##", "##TAT##", "#MXAXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                    .aisle("EEESEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('E', EPPredicates.CPCasingBlock()
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1))
+//                            .or(abilities(PartAbility.CATALYST_MULTIBLOCK_ABILITY).setMaxGlobalLimited(2))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
+                    .where('C', EPPredicates.CPCasingBlock())
+                    .where('X', heatingCoils())
+                    .where('M', EPPredicates.CPMachineCasingBlock())
+                    .where('T', EPPredicates.CPPipeBlock())
+                    .where('#', any())
+                    .where('A',air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("CCCHJCC", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MX#XM#", "##T#T##", "##X#X##", "##T#T##", "#MX#XM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                        .aisle("CVNSKLZ", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('V', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                        .where('N', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                        .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('L', GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
+                        .where('Z', /*GTMachines.MULTIPART_CATALYST_HATCH*/GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
+                        .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('#', Blocks.AIR)
+                        .where('J', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ?*/ GTMachines.MAINTENANCE_HATCH /*: MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF)*/, Direction.NORTH);
+                List<Block> listCoil = GTBlocks.ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(entry -> entry.getValue().get())
+                        .collect(Collectors.toList());
+                List<Block> listCasing = BlockMaps.ALL_CP_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<Block> listTube = BlockMaps.ALL_CP_TUBES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<Block> listMachineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                int maxLeng = StructureUtil.maxLength(new ArrayList<List<Block>>() {{
+                    add(listCoil);
+                    add(listCasing);
+                    add(listTube);
+                    add(listMachineCasing);
+                }});
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('X', EPUniverUtil.getOrLast(listCoil, i));
+                    builder.where('C', EPUniverUtil.getOrLast(listCasing, i));
+                    builder.where('T', EPUniverUtil.getOrLast(listTube, i));
+                    builder.where('M', EPUniverUtil.getOrLast(listMachineCasing, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .renderer(() -> new ChemicalPlantRenderer(Epimorphism.id("block/multiblock/chemical_plant")))
+            .register();
+
 
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingWorkableElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")

@@ -4,12 +4,18 @@ import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
-public interface ITierType {
+public interface ITierType extends StringRepresentable{
     String typeName();
 
     int tier();
 
-    enum TierBlockType implements StringRepresentable, ITierType {
+    @Override
+    @NotNull
+    default String getSerializedName() {
+        return typeName();
+    }
+
+    enum TierBlockType implements ITierType {
         ULV(GTValues.ULV),
         LV(GTValues.LV),
         MV(GTValues.MV),
@@ -40,11 +46,6 @@ public interface ITierType {
         @Override
         public String typeName() {
             return name().toLowerCase();
-        }
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return typeName();
         }
     }
 }

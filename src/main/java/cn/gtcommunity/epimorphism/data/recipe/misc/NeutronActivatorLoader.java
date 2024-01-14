@@ -26,15 +26,15 @@ public class NeutronActivatorLoader {
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
                 .duration(800).save(provider);
 
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder("test2")
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
-                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
-                .inputItems(TagPrefix.plateDouble, GTMaterials.Plutonium241)
-                .inputItems(TagPrefix.plateDouble, GTMaterials.Osmiridium)
-                .inputItems(GTItems.FIELD_GENERATOR_IV, 2)
-                .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
-                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
-                .duration(800).EUt(30).save(provider);
+//        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder("test2")
+//                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
+//                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+//                .inputItems(TagPrefix.plateDouble, GTMaterials.Plutonium241)
+//                .inputItems(TagPrefix.plateDouble, GTMaterials.Osmiridium)
+//                .inputItems(GTItems.FIELD_GENERATOR_IV, 2)
+//                .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+//                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
+//                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
+//                .duration(800).EUt(30).save(provider);
     }
 }

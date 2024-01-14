@@ -54,7 +54,7 @@ public class FluidTankCellBlock extends AppearanceBlock implements IBlockRendere
         }
     }
 
-    public enum FluidCellType implements StringRepresentable, IFluidTankCell {
+    public enum FluidCellType implements IFluidTankCell {
         CELL_1(GTValues.HV, BigInteger.TEN.pow(6)),
         CELL_2(GTValues.EV, BigInteger.TEN.pow(8)),
         CELL_3(GTValues.IV, BigInteger.TEN.pow(10)),
@@ -87,11 +87,6 @@ public class FluidTankCellBlock extends AppearanceBlock implements IBlockRendere
         @Override
         public String typeName() {
             return name().toLowerCase();
-        }
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return typeName();
         }
     }
 }

@@ -17,6 +17,15 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine {
     }
 
     //////////////////////////////////////
+    //***    Multiblock LifeCycle    ***//
+    //////////////////////////////////////
+
+    @Override
+    public void onStructureFormed() {
+        super.onStructureFormed();
+    }
+
+    //////////////////////////////////////
     //***        Multiblock UI       ***//
     //////////////////////////////////////
 

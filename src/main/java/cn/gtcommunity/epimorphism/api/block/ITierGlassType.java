@@ -6,6 +6,8 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.client.TooltipHelper;
 import net.minecraft.network.chat.Component;
 
+import javax.annotation.Nonnull;
+
 public interface ITierGlassType extends ITierType {
 
     boolean isOpticalGlass();
@@ -25,5 +27,14 @@ public interface ITierGlassType extends ITierType {
     default Component getOpticalTierName() {
         return Component.translatable("epimorphism.optical_glass_tier.tooltip." + EPUniverUtil.getOpticalGlassTier(tier()))
                 .withStyle(TooltipHelper.BLINKING_CYAN.getCurrent());
+    }
+
+    record SimpleTierGlassType(String typeName, int tier, boolean isOpticalGlass) implements ITierGlassType {
+
+        @Nonnull
+        @Override
+        public String toString() {
+            return typeName();
+        }
     }
 }

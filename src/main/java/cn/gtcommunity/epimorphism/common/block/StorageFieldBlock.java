@@ -52,7 +52,7 @@ public class StorageFieldBlock extends AppearanceBlock implements IBlockRenderer
         }
     }
 
-    public enum FieldBlockType implements StringRepresentable, IStorageFieldBlock {
+    public enum FieldBlockType implements IStorageFieldBlock {
         BLOCK_1(GTValues.HV, Math.pow(2, 0), 1),
         BLOCK_2(GTValues.EV, Math.pow(2, 2), 2),
         BLOCK_3(GTValues.IV, Math.pow(2, 4), 5),
@@ -92,11 +92,6 @@ public class StorageFieldBlock extends AppearanceBlock implements IBlockRenderer
         @Override
         public String typeName() {
             return name().toLowerCase();
-        }
-
-        @Override
-        public @NotNull String getSerializedName() {
-            return typeName();
         }
     }
 }

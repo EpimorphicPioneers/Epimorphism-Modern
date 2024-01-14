@@ -4,7 +4,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
@@ -20,6 +22,14 @@ public class EPUniverUtil {
 
     public static <T> T getOrDefault(BooleanSupplier canGet, Supplier<T> getter, T defaultValue){
         return canGet.getAsBoolean() ? getter.get() : defaultValue;
+    }
+
+    public static <T> T getOrDefault(List<T> canGet, int index, T defaultValue){
+        return index < canGet.size() ? canGet.get(index) : defaultValue;
+    }
+
+    public static <T> T getOrLast(List<T> canGet, int index){
+        return getOrDefault(canGet, index, canGet.get(canGet.size() - 1));
     }
 
     //  Set Utils
