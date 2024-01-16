@@ -41,7 +41,8 @@ public class EPLangHelper {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.addBlockWithTooltip(block, cnName, cnTooltip);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
-            enLangProvider.addBlockWithTooltip(block, enName, enTooltip);
+            LangHandler.replace(enLangProvider, block.get().getDescriptionId(), enName);
+            enLangProvider.addTooltip(block, enTooltip);
         }
     }
 
@@ -49,7 +50,7 @@ public class EPLangHelper {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.addBlock(block, cnName);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
-            enLangProvider.addBlock(block, enName);
+            LangHandler.replace(enLangProvider, block.get().getDescriptionId(), enName);
         }
     }
 }

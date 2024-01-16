@@ -88,13 +88,13 @@ public class ItemLang {
 
         //  Lasers
         addItemWithTooltip(provider, OPTICAL_FIBER, "光纤",
-                "§7Optical Fiber",
+                "§7Light-transmitting Glass",
                 "§7透光玻璃");
         addItemWithTooltip(provider, DIELECTRIC_MIRROR, "介电镜",
-                "§7Dielectric Mirror",
+                "§7Bragg Mirror",
                 "§7布氏镜");
         addItemWithTooltip(provider, EMPTY_LASER_ASSEMBLY, "空激光组件",
-                "§7Empty Laser Assembly",
+                "§7Fill this with some Laser Medium",
                 "§7需要导光介质填充");
         addItemCNName(provider, HELIUM_LASER, "氦激光镭射器");
         addItemCNName(provider, NEON_LASER, "氖激光镭射器");

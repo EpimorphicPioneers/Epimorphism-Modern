@@ -45,10 +45,10 @@ public class StorageFieldBlock extends AppearanceBlock implements IBlockRenderer
         if (GTUtil.isShiftDown()) {
             String capacity = FormattingUtil.formatNumbers(data.getCapacity());
             String powerDraw = FormattingUtil.formatNumbers(data.getCost());
-            tooltip.add(Component.translatable("epimorphism.fluid_capacity.tooltip", capacity));
-            tooltip.add(Component.translatable("epimorphism.power_cost.tooltip", powerDraw));
+            tooltip.add(Component.translatable("epimorphism.fluid_capacity.desc", capacity));
+            tooltip.add(Component.translatable("epimorphism.power_cost.desc", powerDraw));
         } else {
-            tooltip.add(Component.translatable("epimorphism.tooltip_extended_info"));
+            tooltip.add(Component.translatable("epimorphism.desc_extended_info"));
         }
     }
 

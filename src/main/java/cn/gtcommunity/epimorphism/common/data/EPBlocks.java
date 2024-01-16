@@ -247,7 +247,7 @@ public class EPBlocks {
                 .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate(NonNullBiConsumer.noop())
                 .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
-                .onRegister(simpleTierBlock -> simpleTierBlock.addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".tooltip")))
+                .onRegister(simpleTierBlock -> simpleTierBlock.addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
                 .item(RendererBlockItem::new)
                 .model(NonNullBiConsumer.noop())
                 .build()
