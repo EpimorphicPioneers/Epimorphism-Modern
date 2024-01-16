@@ -47,7 +47,7 @@ public class ChemicalPlantRenderer extends WorkableCasingMachineRenderer {
     @OnlyIn(Dist.CLIENT)
     private BakedModel getRotatedModel(Direction frontFacing, ResourceLocation location) {
         return tierBlockModels.computeIfAbsent(location, location1 -> {
-            var map = new HashMap<Direction, BakedModel>();
+            var map = new ConcurrentHashMap<Direction, BakedModel>();
             map.put(frontFacing, renderModel(frontFacing, location1));
             return map;
         }).computeIfAbsent(frontFacing, direction -> renderModel(direction, location));

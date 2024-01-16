@@ -13,6 +13,9 @@
   
   "behavior.ep_data_item.require_decoding": "存有需要解码的未知信息",
 
+  "epimorphism.gui.machine_parallel.title": "当前机器并行",
+  "epimorphism.gui.change_parallel.tooltip": "调整机器并行数",
+
   
   "gt.tool.class.bending_cylinder": "弯曲绕筒",
   "gt.tool.class.small_bending_cylinder": "小型弯曲绕筒",
@@ -1001,17 +1004,17 @@
   "epimorphism.recipe.casing_tier.5": "5 (钛)",
   "epimorphism.recipe.casing_tier.6": "6 (钨钢)",
 
-  "epimorphism.machine.general_processing_plant": "通用加工厂",
-  "recipemap.general_recipes_a": "加工模式A",
-  "recipemap.general_recipes_b": "加工模式B",
-  "recipemap.general_recipes_c": "加工模式C",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.tooltip.1": "比相同电压的单方块机器快2.5倍",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.tooltip.2": "只需要使用配方要求功率的80%%",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.tooltip.3": "每提升一个电压等级，最大并行数加2",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.shift_tooltip.1": "使用编程电路控制当前模式下的配方",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.shift_tooltip.2": "模式A：20-压缩机 21-车床 22-两极磁化机",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.shift_tooltip.3": "模式B：20-发酵槽 21-提取机 22-装罐机",
-  "epimorphism.multiblock.epimorphismgeneral_processing_plant.shift_tooltip.4": "模式C：20-精密激光蚀刻机 21-高压釜 22-流体固化机",
+  "block.epimorphism.general_processing_plant": "通用加工厂",
+  "gtceu.general_recipes_a": "加工模式A",
+  "gtceu.general_recipes_b": "加工模式B",
+  "gtceu.general_recipes_c": "加工模式C",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.1": "§6比相同电压的单方块机器快§e2.5§6倍",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.2": "§5只需要使用配方要求功率的§e80%%",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.3": "§b每提升一个电压等级，最大并行数加§e8",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.1": "§7使用编程电路控制当前模式下的配方",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.2": "§4模式A§r：§e20§r-压缩机 §e21§r-车床 §e22§r-两极磁化机",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.3": "§3模式B§r：§e20§r-发酵槽 §e21§r-提取机 §e22§r-装罐机",
+  "epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.4": "§2模式C§r：§e20§r-精密激光蚀刻机 §e21§r-高压釜 §e22§r-流体固化机",
 
   "epimorphism.machine.integrated_ore_factory": "集成矿石处理厂",
   "epimorphism.machine.integrated_ore_factory.tooltip.1": "一步完成矿物处理",

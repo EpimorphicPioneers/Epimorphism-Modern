@@ -8,10 +8,7 @@ import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ChemicalPlantRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.BacterialCultureTankMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.ChemicalPlantMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.IndustrialGreenhouseMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.NeutronActivatorMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.InfiniteWaterHatchPartMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
@@ -28,12 +25,11 @@ import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
+import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTMachines;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -396,37 +392,29 @@ public class EPMachines {
                     .where('B', EPPredicates.componentAssemblyBlock())
                     .where('J', blocks(EPBlocks.IRIDIUM_CASING.get())
                             .or(abilities(PartAbility.IMPORT_ITEMS)
-                                    .setMaxGlobalLimited(6)
-                                    .setPreviewCount(3))
+                                    .setMaxGlobalLimited(6))
                             .or(abilities(PartAbility.IMPORT_FLUIDS)
-                                    .setMaxGlobalLimited(6)
-                                    .setPreviewCount(3)))
+                                    .setMaxGlobalLimited(6)))
                     .where('N', frames(GTMaterials.TungstenSteel)
                             .or(abilities(PartAbility.IMPORT_ITEMS)
-                                    .setMaxGlobalLimited(2)
-                                    .setPreviewCount(0))
+                                    .setMaxGlobalLimited(2))
                             .or(abilities(PartAbility.IMPORT_FLUIDS)
-                                    .setMaxGlobalLimited(2)
-                                    .setPreviewCount(0)))
+                                    .setMaxGlobalLimited(2)))
                     .where('K', blocks(EPBlocks.IRIDIUM_CASING.get())
                             .or(abilities(PartAbility.EXPORT_ITEMS)
                                     .setMaxGlobalLimited(3)
                                     .setPreviewCount(1)))
                     .where('L', blocks(EPBlocks.IRIDIUM_CASING.get())
                             .or(abilities(PartAbility.INPUT_ENERGY)
-                                    .setMaxGlobalLimited(2)
-                                    .setPreviewCount(1)))
+                                    .setMaxGlobalLimited(2)))
                     .where('I', blocks(EPBlocks.IRIDIUM_CASING.get())
                             .or(abilities(PartAbility.MAINTENANCE)
-                                    .setExactLimit(1)
-                                    .setPreviewCount(1)))
+                                    .setExactLimit(1)))
                     .where('M', blocks(EPBlocks.IRIDIUM_CASING.get())
                             .or(abilities(PartAbility.IMPORT_ITEMS)
-                                    .setMaxGlobalLimited(6)
-                                    .setPreviewCount(0))
+                                    .setMaxGlobalLimited(6))
                             .or(abilities(PartAbility.IMPORT_FLUIDS)
-                                    .setMaxGlobalLimited(6)
-                                    .setPreviewCount(0)))
+                                    .setMaxGlobalLimited(6)))
                     .where('n', frames(GTMaterials.TungstenSteel))
                     .build()
             )
@@ -490,6 +478,77 @@ public class EPMachines {
                     .workableCasingRenderer(Epimorphism.id("block/casings/solid/iridium_casing"),
                             Epimorphism.id("block/multiblock/component_assembly_line"), false)
                     .register();
+
+    public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = EP_REGISTRATE.multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .tooltipBuilder((itemStack, components) -> {
+                if (GTUtil.isShiftDown()) {
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.1"));
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.2"));
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.3"));
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.4"));
+                } else {
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.1"));
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.2"));
+                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.3"));
+                    components.add(Component.translatable("epimorphism.tooltip_extended_info"));
+                }
+            })
+            .recipeTypes(GeneralProcessingPlantMachine.RECIPE_MAP)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(EPBlocks.MARAGING_STEEL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGEGGG")
+                    .aisle("GGGGGGG", " PTTTP ", " PTTTP ", " PTTTP ", " PTTTP ", "GGGGGGG")
+                    .aisle("GGGGGGG", " TB BT ", " T   T ", " T   T ", " T   T ", "GGGGGGG")
+                    .aisle("GGGGGGG", " T L T ", " T   T ", " T B T ", " T B T ", "EGGGGGE")
+                    .aisle("GGGGGGG", " TB BT ", " T   T ", " T   T ", " T   T ", "GGGGGGG")
+                    .aisle("GGGGGGG", " PTTTP ", " PTTTP ", " PTTTP ", " PTTTP ", "GGGGGGG")
+                    .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGEGGG")
+                    .aisle("CCCSCCC", "       ", "       ", "       ", "       ", "       ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('C', blocks(EPBlocks.MARAGING_STEEL_CASING.get())
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.EXPORT_ITEMS))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('G', blocks(EPBlocks.MARAGING_STEEL_CASING.get()))
+                    .where('E', blocks(EPBlocks.MARAGING_STEEL_CASING.get()).or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1)))
+                    .where('B', blocks(GTBlocks.CASING_STEEL_GEARBOX.get()))
+                    .where('P', blocks(EPBlocks.GENERAL_PROCESSING_CASING.get()))
+                    .where('L', blocks(EPBlocks.ADVANCED_SUBSTRATE_CASING.get()))
+                    .where('T', blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
+                    .where('F', frames(EPMaterials.MaragingSteel250))
+                    .build()
+            )
+            .shapeInfo(definition -> MultiblockShapeInfo.builder()
+                    .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGGGGG")
+                    .aisle("GGGGGGG", " PTTTP ", " PTTTP ", " PTTTP ", " PTTTP ", "GGGGGGG")
+                    .aisle("GGGGGGG", " TB BT ", " T   T ", " T   T ", " T   T ", "GGGGGGG")
+                    .aisle("GGGGGGG", " T L T ", " T   T ", " T B T ", " T B T ", "GGGGGGG")
+                    .aisle("GGGGGGG", " TB BT ", " T   T ", " T   T ", " T   T ", "GGGGGGG")
+                    .aisle("GGGGGGG", " PTTTP ", " PTTTP ", " PTTTP ", " PTTTP ", "GGGGGGG")
+                    .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGEGGG")
+                    .aisle("AAHSCDM", "       ", "       ", "       ", "       ", "       ")
+                    .where('S', definition, Direction.SOUTH)
+                    .where('A', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                    .where('H', GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
+                    .where('C', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                    .where('D', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                    .where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
+                    .where('G', EPBlocks.MARAGING_STEEL_CASING.get())
+                    .where('E', GTMachines.ENERGY_INPUT_HATCH[4], Direction.SOUTH)
+                    .where('B', GTBlocks.CASING_STEEL_GEARBOX.get())
+                    .where('P', EPBlocks.GENERAL_PROCESSING_CASING.get())
+                    .where('L', EPBlocks.ADVANCED_SUBSTRATE_CASING.get())
+                    .where('T', GTBlocks.CASING_LAMINATED_GLASS.get())
+                    .where('F', ChemicalHelper.getBlock(TagPrefix.frameGt, EPMaterials.MaragingSteel250)).build())
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/maraging_steel_250_casing"),
+                    Epimorphism.id("block/multiblock/general_processing_plant"), false)
+            .register();
+
 
 
     // Multiblock Parts

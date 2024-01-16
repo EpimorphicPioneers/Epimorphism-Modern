@@ -9,6 +9,8 @@ import com.gregtechceu.gtceu.api.pattern.error.PatternStringError;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 
@@ -22,11 +24,16 @@ public class TierTraceabilityPredicateFactory {
 
     private final TraceabilityPredicateType type;
     private final String tName;
-    private Object2ObjectOpenHashMap<ITierType, Supplier<Block>> tMap;
-    private Component tErrorKey;
-    private Comparator<ITierType> tComparator;
-    private Predicate<ITierType> tPredicate;
-    private Supplier<IValueContainer<?>> tContainerSupplier;
+    @Setter @Accessors(fluent = true, chain = true)
+    private Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map;
+    @Setter @Accessors(fluent = true, chain = true)
+    private Component errorKey;
+    @Setter @Accessors(fluent = true, chain = true)
+    private Comparator<ITierType> comparator;
+    @Setter @Accessors(fluent = true, chain = true)
+    private Predicate<ITierType> predicate;
+    @Setter @Accessors(fluent = true, chain = true)
+    private Supplier<IValueContainer<?>> container;
     private static final Map<String, BlockInfo[]> CACHE = new HashMap<>();
 
     protected TierTraceabilityPredicateFactory(TraceabilityPredicateType type, String name) {
@@ -42,50 +49,26 @@ public class TierTraceabilityPredicateFactory {
         return switch (type) {
             case TIER -> new TraceabilityPredicate(
                     getTierPredicate(tName,
-                            UniverUtil.getOrDefault(tMap, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
-                            UniverUtil.getOrDefault(tContainerSupplier, () -> IValueContainer::noop),
-                            UniverUtil.getOrDefault(tErrorKey, () -> Component.translatable("structure.multiblock.pattern.error.casing"))
+                            UniverUtil.getOrDefault(map, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
+                            UniverUtil.getOrDefault(container, () -> IValueContainer::noop),
+                            UniverUtil.getOrDefault(errorKey, () -> Component.translatable("structure.multiblock.pattern.error.casing"))
                     ),
                     getCandidates(tName,
-                            UniverUtil.getOrDefault(tMap, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
-                            UniverUtil.getOrDefault(tComparator, () -> Comparator.comparingInt(ITierType::tier)),
-                            UniverUtil.getOrDefault(tPredicate, () -> BlockState -> true)
+                            UniverUtil.getOrDefault(map, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
+                            UniverUtil.getOrDefault(comparator, () -> Comparator.comparingInt(ITierType::tier)),
+                            UniverUtil.getOrDefault(predicate, () -> BlockState -> true)
                     ));
             case LOOSE -> new TraceabilityPredicate(
                     getLoosePredicate(tName,
-                            UniverUtil.getOrDefault(tMap, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
-                            UniverUtil.getOrDefault(tContainerSupplier, () -> IValueContainer::noop)
+                            UniverUtil.getOrDefault(map, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
+                            UniverUtil.getOrDefault(container, () -> IValueContainer::noop)
                     ),
                     getCandidates(tName,
-                            UniverUtil.getOrDefault(tMap, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
-                            UniverUtil.getOrDefault(tComparator, () -> Comparator.comparingInt(ITierType::tier)),
-                            UniverUtil.getOrDefault(tPredicate, () -> BlockState -> true)
+                            UniverUtil.getOrDefault(map, Object2ObjectOpenHashMap<ITierType, Supplier<Block>>::new),
+                            UniverUtil.getOrDefault(comparator, () -> Comparator.comparingInt(ITierType::tier)),
+                            UniverUtil.getOrDefault(predicate, () -> BlockState -> true)
                     ));
         };
-    }
-
-    public TierTraceabilityPredicateFactory map(Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map) {
-        this.tMap = map;
-        return this;
-    }
-
-    public TierTraceabilityPredicateFactory errorKey(Component errorKey) {
-        this.tErrorKey = errorKey;
-        return this;
-    }
-
-    public TierTraceabilityPredicateFactory comparator(Comparator<ITierType> comparator) {
-        this.tComparator = comparator;
-        return this;
-    }
-
-    public TierTraceabilityPredicateFactory predicate(Predicate<ITierType> predicate) {
-        this.tPredicate = predicate;
-        return this;
-    }
-    public TierTraceabilityPredicateFactory container(Supplier<IValueContainer<?>> container) {
-        this.tContainerSupplier = container;
-        return this;
     }
 
     private Predicate<MultiblockState> getLoosePredicate(String name, Object2ObjectOpenHashMap<ITierType, Supplier<Block>> map, Supplier<IValueContainer<?>> containerSupplier) {
