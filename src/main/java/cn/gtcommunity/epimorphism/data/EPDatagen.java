@@ -7,5 +7,6 @@ import com.tterrag.registrate.providers.ProviderType;
 public class EPDatagen {
     public static void init() {
         EPRegistries.EP_REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
+        EPRegistries.EP_REGISTRATE.addDataGenerator(EPProviderTypes.CN_LANG, LangHandler::init);
     }
 }

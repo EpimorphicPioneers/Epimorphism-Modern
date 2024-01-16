@@ -1,10 +1,17 @@
 {
   "values": [
     "epimorphism:hyper_casing",
+    "epimorphism:iridium_casing",
+    "epimorphism:general_processing_casing",
+    "epimorphism:maraging_steel_250_casing",
+    "epimorphism:advanced_filter_casing",
     "epimorphism:tfft_casing",
     "epimorphism:yotta_fluid_tank_casing",
+    "epimorphism:polybenzimidazole_pipe",
     "epimorphism:nonconducting_casing",
     "epimorphism:speeding_pipe",
+    "epimorphism:substrate_casing",
+    "epimorphism:advanced_substrate_casing",
     "epimorphism:boron_silicate_glass_block",
     "epimorphism:ti_boron_silicate_glass_block",
     "epimorphism:w_boron_silicate_glass_block",
@@ -35,6 +42,20 @@
     "epimorphism:storage_field_block_7",
     "epimorphism:storage_field_block_8",
     "epimorphism:storage_field_block_9",
-    "epimorphism:storage_field_block_10"
+    "epimorphism:storage_field_block_10",
+    "epimorphism:component_assembly_line_casing_lv",
+    "epimorphism:component_assembly_line_casing_mv",
+    "epimorphism:component_assembly_line_casing_hv",
+    "epimorphism:component_assembly_line_casing_ev",
+    "epimorphism:component_assembly_line_casing_iv",
+    "epimorphism:component_assembly_line_casing_luv",
+    "epimorphism:component_assembly_line_casing_zpm",
+    "epimorphism:component_assembly_line_casing_uv",
+    "epimorphism:component_assembly_line_casing_uhv",
+    "epimorphism:component_assembly_line_casing_uev",
+    "epimorphism:component_assembly_line_casing_uiv",
+    "epimorphism:component_assembly_line_casing_uxv",
+    "epimorphism:component_assembly_line_casing_opv",
+    "epimorphism:component_assembly_line_casing_max"
   ]
 }

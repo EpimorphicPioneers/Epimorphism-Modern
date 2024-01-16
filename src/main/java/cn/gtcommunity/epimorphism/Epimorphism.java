@@ -2,6 +2,7 @@ package cn.gtcommunity.epimorphism;
 
 import cn.gtcommunity.epimorphism.client.ClientProxy;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
+import cn.gtcommunity.epimorphism.data.EPProviderTypes;
 import cn.gtcommunity.epimorphism.network.EPNetworking;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -22,6 +23,7 @@ public class Epimorphism {
     public Epimorphism () {
         proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         ConfigHolder.init();
+        EPProviderTypes.init();
         EPNetworking.init();
         Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
     }
