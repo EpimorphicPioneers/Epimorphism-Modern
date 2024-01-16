@@ -21,11 +21,12 @@ public class Epimorphism {
     public static CommonProxy proxy;
 
     public Epimorphism () {
-        proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
         ConfigHolder.init();
         EPProviderTypes.init();
         EPNetworking.init();
         Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
+
+        proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 
     public static ResourceLocation id(String path) {

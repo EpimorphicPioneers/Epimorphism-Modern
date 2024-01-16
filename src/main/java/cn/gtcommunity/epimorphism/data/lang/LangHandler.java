@@ -19,12 +19,14 @@ public class LangHandler {
     public static void init(RegistrateLangProvider provider) {
         ItemLang.init(provider);
         BlockLang.init(provider);
+        MachineLang.init(provider);
         MiscLang.init(provider);
     }
 
     public static void init(RegistrateCNLangProvider provider) {
         ItemLang.init(provider);
         BlockLang.init(provider);
+        MachineLang.init(provider);
         MiscLang.init(provider);
     }
 

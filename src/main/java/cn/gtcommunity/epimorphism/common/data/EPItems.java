@@ -598,10 +598,12 @@ public class EPItems {
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     if (num <= 0) return;
 
-                    if (num == 1) lines.add(Component.translatable("item.%s.%s.desc".formatted(EP_REGISTRATE.getModid(), name)));
-
-                    for (int i = 0; i < num; i++) {
-                        lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
+                    if (num == 1) {
+                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EP_REGISTRATE.getModid(), name)));
+                    } else {
+                        for (int i = 0; i < num; i++) {
+                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
+                        }
                     }
                 })));
     }
