@@ -17,7 +17,15 @@ import java.util.stream.Collectors;
 
 public class LangHandler {
     public static void init(RegistrateLangProvider provider) {
-        provider.add("board.gooware", "Kapton™ Board");
+        ItemLang.init(provider);
+        BlockLang.init(provider);
+        MiscLang.init(provider);
+    }
+
+    public static void init(RegistrateCNLangProvider provider) {
+        ItemLang.init(provider);
+        BlockLang.init(provider);
+        MiscLang.init(provider);
     }
 
     /**
