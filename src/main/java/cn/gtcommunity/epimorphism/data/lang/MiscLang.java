@@ -15,5 +15,11 @@ public class MiscLang {
         add(provider, "epimorphism.desc_extended_info",
                 "§7Hold down Shift to show more information",
                 "§7按住Shift显示更多信息");
+        add(provider, "epimorphism.universal.desc.max_eu_in",
+                "Max EU input: %d",
+                "§6最大EU输入：§r%d");
+        add(provider, "epimorphism.universal.desc.max_eu_consume",
+                "Max EU consumption: %d",
+                "§6最大EU消耗：§r%d");
     }
 }
