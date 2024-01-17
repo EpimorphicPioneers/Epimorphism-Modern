@@ -35,12 +35,13 @@ public class VisualInventoryRenderer {
     public VisualInventoryRenderer(final String name, List<ItemStack> input) {
         // Minecraft & Localization.
         String tmp = LocalizationUtils.format(name);
-        if (!tmp.equals(name)) this.name = tmp;
-        else {
+        if (!tmp.equals(name)) {
+            this.name = tmp;
+        } else {
             String name2 = name + ".name";
             tmp = LocalizationUtils.format(name2);
-            if (!tmp.equals(name2)) this.name = tmp;
-            else this.name = name;
+
+            this.name = tmp.equals(name2) ? name : tmp;
         }
 
         this.stacks = new ArrayList<>(input.size());
@@ -56,7 +57,6 @@ public class VisualInventoryRenderer {
             }
     }
 
-//    @Override
     public void render(/*WorldClient world, RayTraceResult hit,*/ Vec3 pos, PoseStack poseStack, Camera camera) {
         var mc = Minecraft.getInstance();
         var rm = mc.gameRenderer;
@@ -64,7 +64,7 @@ public class VisualInventoryRenderer {
         var pPos = camera.getPosition();
         ItemRenderer ri = mc.getItemRenderer();
 
-
+        poseStack.pushPose();
         poseStack.translate(pos.x() - pPos.x(), pos.y() - pPos.y(), pos.z() - pPos.z());
 
         Quaternionf rotation = rm.getMainCamera().rotation();
@@ -123,13 +123,8 @@ public class VisualInventoryRenderer {
             }
         }
         RenderSystem.enableDepthTest();
+        poseStack.popPose();
     }
-
-//    @Override
-//    public boolean shouldRender()
-//    {
-//        return stacks.size() != 0;
-//    }
 
     public static void renderName(ItemStack stack, PoseStack poseStack, MultiBufferSource multiBufferSource, int cols, int col, int rows, int row, int color) {
         Font fr = ClientUtil.font();
@@ -154,7 +149,7 @@ public class VisualInventoryRenderer {
         ItemRenderer ri = ClientUtil.itemRenderer();
         poseStack.pushPose();
         poseStack.translate(0.4f * (cols / 2.0 - col) - 0.2f, 0.4f * (rows / 2.0 - row), 0);
-        float millis = System.currentTimeMillis();
+        long millis = System.currentTimeMillis();
         float angle = ((millis / 45) % 360);
         poseStack.mulPose(Axis.YP.rotation(angle));
         poseStack.scale(0.45F, 0.45F, 0.45F);

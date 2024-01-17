@@ -7,6 +7,8 @@ package cn.gtcommunity.epimorphism.client.utils;
  * */
 
 import cn.gtcommunity.epimorphism.client.ClientUtil;
+import cn.gtcommunity.epimorphism.client.model.geometry.Model3D;
+import cn.gtcommunity.epimorphism.client.renderer.CubeRenderer;
 import cn.gtcommunity.epimorphism.utils.EPDirectionUtil;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.lowdragmc.lowdraglib.client.renderer.IItemRendererProvider;
@@ -15,6 +17,7 @@ import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.Util;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
@@ -29,6 +32,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
@@ -190,7 +195,25 @@ public class RenderHelper {
         IItemRendererProvider.disabled.set(false);
     }
 
+    public static void renderStillFluidInWorld(Fluid fluid, PoseStack poseStack, Camera camera, BlockPos min, BlockPos max) {
+        CubeRenderer.renderCube(
+                new Model3D().bounds(min.getX(), min.getY(), min.getZ(), max.getX() + 1, max.getY() + 1, max.getZ() + 1)
+                        .prepStill(FluidStack.create(Fluids.WATER, 1)), poseStack,
+                ClientUtil.mc().renderBuffers().bufferSource().getBuffer(Sheets.translucentCullBlockSheet()),
+                FluidHelper.getColor(FluidStack.create(fluid, 1)) | 0xff000000,
+                LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
+                CubeRenderer.FaceDisplay.BOTH, camera, null);
+    }
 
+    public static void renderFlowingFluidInWorld(Fluid fluid, PoseStack poseStack, Camera camera, BlockPos min, BlockPos max) {
+        CubeRenderer.renderCube(
+                new Model3D().bounds(min.getX(), min.getY(), min.getZ(), max.getX() + 1, max.getY() + 1, max.getZ() + 1)
+                        .prepFlowing(FluidStack.create(Fluids.WATER, 1)), poseStack,
+                ClientUtil.mc().renderBuffers().bufferSource().getBuffer(Sheets.translucentCullBlockSheet()),
+                FluidHelper.getColor(FluidStack.create(fluid, 1)) | 0xff000000,
+                LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
+                CubeRenderer.FaceDisplay.BOTH, camera, null);
+    }
 
     private static int getLightValue(int[] neighbourBrightness, float[] normalizationFactors, int localBrightness, Vector3f normal) {
         //calculate the dot product between the required light vector and the normal of the quad
