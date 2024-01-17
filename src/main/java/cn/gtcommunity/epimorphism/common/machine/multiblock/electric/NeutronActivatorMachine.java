@@ -18,7 +18,7 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class NeutronActivatorMachine extends NoEnergyMultiblockMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class, NoEnergyMultiblockMachine.MANAGED_FIELD_HOLDER);
-    @Getter @Persisted @DescSynced
+    @Getter @Persisted
     private int height = 0;
 
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {

@@ -1,10 +1,15 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
+import cn.gtcommunity.epimorphism.Epimorphism;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
+
+import java.util.List;
+import java.util.Locale;
 
 public class EPLangHelper {
     public static void addItemWithTooltip(LanguageProvider provider, NonNullSupplier<? extends Item> item, String cnName, String enTooltip, String cnTooltip) {
@@ -37,6 +42,14 @@ public class EPLangHelper {
         }
     }
 
+    public static void addBlockWithTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, String cnName, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.addBlockWithTooltip(block, cnName, cnTooltip);
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            enLangProvider.addTooltip(block, enTooltip);
+        }
+    }
+
     public static void addBlockWithTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, String enName, String cnName, String enTooltip, String cnTooltip) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.addBlockWithTooltip(block, cnName, cnTooltip);
@@ -51,6 +64,15 @@ public class EPLangHelper {
             cnLangProvider.addBlock(block, cnName);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
             LangHandler.replace(enLangProvider, block.get().getDescriptionId(), enName);
+        }
+    }
+
+    public static void addTieredMachineName(LanguageProvider provider, String key, String cnName, int... tiers) {
+        for (int tier : tiers) {
+            var name = "block.%s.%s".formatted(Epimorphism.MOD_ID, GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + key);
+            if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+                cnLangProvider.add(name, "%s§r%s".formatted(GTValues.VNF[tier], cnName));
+            }
         }
     }
 }

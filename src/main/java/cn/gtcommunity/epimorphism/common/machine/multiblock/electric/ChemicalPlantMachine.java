@@ -70,6 +70,10 @@ public class ChemicalPlantMachine extends WorkableElectricMultiblockMachine {
         tier = 0;
     }
 
+    //////////////////////////////////////
+    //***       Multiblock Data      ***//
+    //////////////////////////////////////
+
     @Override
     public @NotNull ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;

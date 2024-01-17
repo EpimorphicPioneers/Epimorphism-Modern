@@ -60,7 +60,7 @@ public class EPBlocks {
     public static BlockEntry<Block> HYPER_CASING = createCasingBlock("hyper_casing", Epimorphism.id("block/casings/solid/hyper_casing"));
     public static BlockEntry<Block> TALONITE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> IRIDIUM_CASING = createCasingBlock("iridium_casing", Epimorphism.id("block/casings/solid/iridium_casing"));
-    public static BlockEntry<Block> BREEDING_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static BlockEntry<Block> BREEDING_CASING = createCasingBlock("breeding_casing", Epimorphism.id("block/casings/solid/breeding_casing"));
     public static BlockEntry<Block> TRITANIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> QUANTUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static BlockEntry<Block> REFLECTIVE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
