@@ -6,7 +6,7 @@ package cn.gtcommunity.epimorphism.client.renderer;
  * https://github.com/mekanism/Mekanism/
  * */
 
-import cn.gtcommunity.epimorphism.client.model.geometry.BoxModel;
+import cn.gtcommunity.epimorphism.client.model.geometry.Model3D;
 import cn.gtcommunity.epimorphism.utils.EPDirectionUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -37,7 +37,7 @@ public class CubeRenderer {
     private static final int Y_AXIS_MASK = 1 << Direction.Axis.Y.ordinal();
     private static final int Z_AXIS_MASK = 1 << Direction.Axis.Z.ordinal();
 
-    public static void renderCube(BoxModel.Model3D cube, PoseStack matrix, VertexConsumer buffer, int argb, int light, int overlay, FaceDisplay faceDisplay, Camera camera,
+    public static void renderCube(Model3D cube, PoseStack matrix, VertexConsumer buffer, int argb, int light, int overlay, FaceDisplay faceDisplay, Camera camera,
                                   @Nullable Vec3 renderPos) {
         Arrays.fill(combinedARGB, argb);
         renderCube(cube, matrix, buffer, combinedARGB, light, overlay, faceDisplay, camera, renderPos);
@@ -46,9 +46,9 @@ public class CubeRenderer {
     /**
      * @implNote Based off of Tinker's
      */
-    public static void renderCube(BoxModel.Model3D cube, PoseStack matrix, VertexConsumer buffer, int[] colors, int light, int overlay, FaceDisplay faceDisplay, Camera camera,
+    public static void renderCube(Model3D cube, PoseStack matrix, VertexConsumer buffer, int[] colors, int light, int overlay, FaceDisplay faceDisplay, Camera camera,
                                   @Nullable Vec3 renderPos) {
-        BoxModel.Model3D.SpriteInfo[] sprites = new BoxModel.Model3D.SpriteInfo[6];
+        Model3D.SpriteInfo[] sprites = new Model3D.SpriteInfo[6];
         int axisToRender = 0;
         //TODO: Eventually try not rendering faces that are covered by things? At the very least for things like multiblocks
         // when one face is entirely casing and not glass
@@ -59,7 +59,7 @@ public class CubeRenderer {
             Vec3 minPos = renderPos.add(cube.minX, cube.minY, cube.minZ);
             Vec3 maxPos = renderPos.add(cube.maxX, cube.maxY, cube.maxZ);
             for (Direction direction : EPDirectionUtil.VALUES) {
-                BoxModel.Model3D.SpriteInfo sprite = cube.getSpriteToRender(direction);
+                Model3D.SpriteInfo sprite = cube.getSpriteToRender(direction);
                 if (sprite != null) {
                     Direction.Axis axis = direction.getAxis();
                     Direction.AxisDirection axisDirection = direction.getAxisDirection();
@@ -83,7 +83,7 @@ public class CubeRenderer {
             }
         } else {
             for (Direction direction : EPDirectionUtil.VALUES) {
-                BoxModel.Model3D.SpriteInfo sprite = cube.getSpriteToRender(direction);
+                Model3D.SpriteInfo sprite = cube.getSpriteToRender(direction);
                 if (sprite != null) {
                     sprites[direction.ordinal()] = sprite;
                     axisToRender |= 1 << direction.getAxis().ordinal();
@@ -139,18 +139,18 @@ public class CubeRenderer {
 
         // render each side
         for (int y = 0; y <= yDelta; y += yIncrement) {
-            BoxModel.Model3D.SpriteInfo upSprite = y == yDelta ? sprites[Direction.UP.ordinal()] : null;
-            BoxModel.Model3D.SpriteInfo downSprite = y == 0 ? sprites[Direction.DOWN.ordinal()] : null;
+            Model3D.SpriteInfo upSprite = y == yDelta ? sprites[Direction.UP.ordinal()] : null;
+            Model3D.SpriteInfo downSprite = y == 0 ? sprites[Direction.DOWN.ordinal()] : null;
             from.y = yBounds[y];
             to.y = yBounds[y + 1];
             for (int z = 0; z <= zDelta; z += zIncrement) {
-                BoxModel.Model3D.SpriteInfo northSprite = z == 0 ? sprites[Direction.NORTH.ordinal()] : null;
-                BoxModel.Model3D.SpriteInfo southSprite = z == zDelta ? sprites[Direction.SOUTH.ordinal()] : null;
+                Model3D.SpriteInfo northSprite = z == 0 ? sprites[Direction.NORTH.ordinal()] : null;
+                Model3D.SpriteInfo southSprite = z == zDelta ? sprites[Direction.SOUTH.ordinal()] : null;
                 from.z = zBounds[z];
                 to.z = zBounds[z + 1];
                 for (int x = 0; x <= xDelta; x += xIncrement) {
-                    BoxModel.Model3D.SpriteInfo westSprite = x == 0 ? sprites[Direction.WEST.ordinal()] : null;
-                    BoxModel.Model3D.SpriteInfo eastSprite = x == xDelta ? sprites[Direction.EAST.ordinal()] : null;
+                    Model3D.SpriteInfo westSprite = x == 0 ? sprites[Direction.WEST.ordinal()] : null;
+                    Model3D.SpriteInfo eastSprite = x == xDelta ? sprites[Direction.EAST.ordinal()] : null;
                     //Set bounds
                     from.x = xBounds[x];
                     to.x = xBounds[x + 1];
@@ -199,7 +199,7 @@ public class CubeRenderer {
     /**
      * @implNote From Mantle with some adjustments
      */
-    private static void putTexturedQuad(VertexConsumer buffer, Matrix4f matrix, @Nullable BoxModel.Model3D.SpriteInfo spriteInfo, Vector3f from, Vector3f to, Direction face, int[] colors,
+    private static void putTexturedQuad(VertexConsumer buffer, Matrix4f matrix, @Nullable Model3D.SpriteInfo spriteInfo, Vector3f from, Vector3f to, Direction face, int[] colors,
                                         int light, int overlay, FaceDisplay faceDisplay, NormalData normal) {
         if (spriteInfo == null) {
             return;

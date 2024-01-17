@@ -638,6 +638,7 @@ public class EPMaterials {
     public static Material ActiniumRadiumNitrateSolution;
     public static Material HeavyFluorinatedDraconiumSolution;
     public static Material QuasifissioningPlasma;
+    public static Material TranscendentMental;
 
     //  Machine Casing Materials
     public static Material Inconel625;

@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
+import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
@@ -444,5 +445,12 @@ public class EPUnknownCompositionMaterials {
                 .color(0xB0A2C3)
                 .buildAndRegister()
                 .setFormula(ChatFormatting.OBFUSCATED + "aaa", false);
+        //  Transcendent Mental
+        EPMaterials.TranscendentMental = new Material.Builder("transcendent_mental")
+                .fluid()
+                .ingot()
+                .color(0x000000)
+                .iconSet(EPMaterialIconSet.CUSTOM_TRANSCENDENT_MENTAL)
+                .buildAndRegister();
     }
 }
