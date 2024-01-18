@@ -28,19 +28,30 @@ public class ItemLang {
                 "§7自旋转移矩效应的最好实现");
 
         //  Circuits
-
+        addItemWithTooltip(provider,GOOWARE_PROCESSOR, "生物活性处理器",
+                "Viscous organic slurry adheres the board",
+                "§7粘稠的有机浆液附着于表面");
+        addItemWithTooltip(provider,GOOWARE_ASSEMBLY, "生物活性处理器集群",
+                "Seems to be able to hear whispers",
+                "§7似乎能听到窃窃私语");
+        addItemWithTooltip(provider,GOOWARE_COMPUTER, "生物活性超级处理器",
+                "Slime mold covered in metal",
+                "§7金属之间布满了黏菌");
+        addItemWithTooltip(provider,GOOWARE_MAINFRAME, "生物活性主机",
+                "Microbial Awareness Network",
+                "§7菌群意识网络");
         //  Components
         addItemWithTooltip(provider, OPTICAL_TRANSISTOR, "光学晶体管",
                 "§Optical Transistor",
                 "§7光电子晶体管");
         addItemWithTooltip(provider, OPTICAL_RESISTOR, "光敏电阻",
-                "§Optical Resistor",
+                "§7Optical Resistor",
                 "§7光电子电阻");
         addItemWithTooltip(provider, OPTICAL_CAPACITOR, "光学整合器",
-                "§Optical Capacitor",
+                "§7Optical Capacitor",
                 "§7光电子电容");
         addItemWithTooltip(provider, OPTICAL_DIODE, "光频隔离器",
-                "§Optical Diode",
+                "§7Optical Diode",
                 "§7光电子二极管");
         addItemWithTooltip(provider, OPTICAL_INDUCTOR, "光学偏振器",
                 "§7Optical Inductor",
