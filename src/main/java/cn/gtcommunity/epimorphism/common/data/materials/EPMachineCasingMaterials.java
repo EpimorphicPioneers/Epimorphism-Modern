@@ -17,7 +17,7 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 public class EPMachineCasingMaterials {
     public static void register() {
         //  24501 Inconel-625
-        Inconel625 = new Material.Builder("inconel_625")
+        Inconel625 = Builder("inconel_625")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(3700))
                 .fluidPipeProperties(5500, 340, true, true, true, false)
@@ -28,7 +28,7 @@ public class EPMachineCasingMaterials {
                 .components(GTMaterials.Nickel, 8, /*Chrome, 6, */GTMaterials.Molybdenum, 4, GTMaterials.Niobium, 4, GTMaterials.Titanium, 3, GTMaterials.Iron, 2, GTMaterials.Aluminium, 2)
                 .buildAndRegister();
         //  24502 Hastelloy-N
-        HastelloyN = new Material.Builder("hastelloy_n")
+        HastelloyN = Builder("hastelloy_n")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(3980))
                 .color(0x939554)
@@ -38,7 +38,7 @@ public class EPMachineCasingMaterials {
                 .components(GTMaterials.Nickel, 15, GTMaterials.Molybdenum, 4, /*Chrome, 2, */GTMaterials.Titanium, 2, GTMaterials.Yttrium, 2)
                 .buildAndRegister();
         //  24503 Stellite
-        Stellite = new Material.Builder("stellite")
+        Stellite = Builder("stellite")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(4110))
                 .color(0x9991A5)
@@ -48,7 +48,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24504 Quantum Alloy
-        QuantumAlloy = new Material.Builder("quantum_alloy")
+        QuantumAlloy = Builder("quantum_alloy")
                 .ingot()
                 .fluid()
                 .color(0x0F0F0F)
@@ -59,7 +59,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  24505 Grisium
-        Grisium = new Material.Builder("grisium")
+        Grisium = Builder("grisium")
                 .ingot()
                 .fluid()
                 .color(0x355D6A)
@@ -70,7 +70,7 @@ public class EPMachineCasingMaterials {
                 .cableProperties(GTValues.V[GTValues.UEV], 48, 0, true)
                 .buildAndRegister();
         //  24506 HDCS (High Durability Compound Steel)
-        Hdcs = new Material.Builder("hdcs")
+        Hdcs = Builder("hdcs")
                 .ingot()
                 .fluid()
                 .color(0x334433)
@@ -81,7 +81,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24507 Abyssalloy
-        Abyssalloy = new Material.Builder("abyssalloy")
+        Abyssalloy = Builder("abyssalloy")
                 .ingot()
                 .fluid()
                 .color(0x9E706A)
@@ -92,7 +92,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24508 Lafium
-        Lafium = new Material.Builder("lafium")
+        Lafium = Builder("lafium")
                 .ingot()
                 .fluid()
                 .color(0x0D0D60)
@@ -102,7 +102,7 @@ public class EPMachineCasingMaterials {
                 .fluidPipeProperties(23000, 8000, true, true, true, true)
                 .buildAndRegister();
         //  24509 Black Titanium
-        BlackTitanium = new Material.Builder("black_titanium")
+        BlackTitanium = Builder("black_titanium")
                 .ingot()
                 .fluid()
                 .color(0x6C003B)
@@ -113,7 +113,7 @@ public class EPMachineCasingMaterials {
                 .toolStats(new ToolProperty(9.0F, 30.0F, 32000, 20, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .buildAndRegister();
         //  24510 Talonite
-        Talonite = new Material.Builder("talonite")
+        Talonite = Builder("talonite")
                 .ingot()
                 .fluid()
                 .color(0x9991A5)
@@ -123,7 +123,7 @@ public class EPMachineCasingMaterials {
                 .components(GTMaterials.Cobalt, 4,/* Chrome, 3, */GTMaterials.Phosphorus, 2, GTMaterials.Molybdenum, 1)
                 .buildAndRegister();
         //  24511 Black Plutonium
-        BlackPlutonium = new Material.Builder("black_plutonium")
+        BlackPlutonium = Builder("black_plutonium")
                 .ingot()
                 .fluid()
                 .color(0x060606)
@@ -133,7 +133,7 @@ public class EPMachineCasingMaterials {
                 .components(Plutonium244, 18, GTMaterials.Cerium, 9, GTMaterials.Gadolinium, 3, GTMaterials.Dysprosium, 3, GTMaterials.Thulium, 2, GTMaterials.TungstenCarbide, 6, GTMaterials.RedSteel, 6, GTMaterials.Duranium, 2, GTMaterials.Radon, 2)
                 .buildAndRegister();
         //  24512 Maraging Steel-250
-        MaragingSteel250 = new Material.Builder("maraging_steel_250")
+        MaragingSteel250 = Builder("maraging_steel_250")
                 .ingot()
                 .fluid()
                 .color(0xA5ADB2)
@@ -143,7 +143,7 @@ public class EPMachineCasingMaterials {
                 .components(GTMaterials.Steel, 16, GTMaterials.Molybdenum, 1, GTMaterials.Titanium, 1, GTMaterials.Nickel, 4, GTMaterials.Cobalt, 2)
                 .buildAndRegister();
         //  24513 Staballoy
-        Staballoy = new Material.Builder("staballoy")
+        Staballoy = Builder("staballoy")
                 .ingot()
                 .fluid()
                 .color(0x444B42)
@@ -153,7 +153,7 @@ public class EPMachineCasingMaterials {
                 .components(GTMaterials.Uranium238, 9, GTMaterials.Titanium, 1)
                 .buildAndRegister();
         //  24514 Babbitt Alloy
-        BabbittAlloy = new Material.Builder("babbitt_alloy")
+        BabbittAlloy = Builder("babbitt_alloy")
                 .ingot()
                 .fluid()
                 .color(0xA19CA4)
@@ -163,7 +163,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24515 Zirconium Carbide
-        ZirconiumCarbide = new Material.Builder("zirconium_carbide")
+        ZirconiumCarbide = Builder("zirconium_carbide")
                 .ingot()
                 .fluid()
                 .color(0xFFDACD)
@@ -173,7 +173,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24516 Inconel-792
-        Inconel792 = new Material.Builder("inconel_792")
+        Inconel792 = Builder("inconel_792")
                 .ingot()
                 .fluid()
                 .color(0x6CF076)
@@ -184,7 +184,7 @@ public class EPMachineCasingMaterials {
                 .fluidPipeProperties(4900, 220, true, true, true, false)
                 .buildAndRegister();
         //  24517 Incoloy-MA813
-        IncoloyMA813 = new Material.Builder("incoloy_ma_813")
+        IncoloyMA813 = Builder("incoloy_ma_813")
                 .ingot()
                 .fluid()
                 .color(0x6CF076)
@@ -194,7 +194,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24518 Hastelloy-X78
-        HastelloyX78 = new Material.Builder("hastelloy_x_78")
+        HastelloyX78 = Builder("hastelloy_x_78")
                 .ingot()
                 .fluid()
                 .color(0x6BA3E3)
@@ -204,7 +204,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24519 Hastelloy-K243
-        HastelloyK243 = new Material.Builder("hastelloy_k_243")
+        HastelloyK243 = Builder("hastelloy_k_243")
                 .ingot()
                 .fluid()
                 .color(0xa4ff70)
@@ -213,7 +213,7 @@ public class EPMachineCasingMaterials {
                 .components(HastelloyX78, 5, GTMaterials.NiobiumNitride, 2, GTMaterials.Tritanium, 4, GTMaterials.TungstenCarbide, 4, GTMaterials.Promethium, 4, GTMaterials.Mendelevium, 1)
                 .buildAndRegister();
         //  24520 Mar-M200 Steel
-        MARM200Steel = new Material.Builder("mar_m_200_steel")
+        MARM200Steel = Builder("mar_m_200_steel")
                 .ingot()
                 .fluid()
                 .color(0x515151)
@@ -223,7 +223,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24521 Mar-M200-Ce Steel
-        MARM200CeSteel = new Material.Builder("mar_m_200_ce_steel")
+        MARM200CeSteel = Builder("mar_m_200_ce_steel")
                 .ingot()
                 .fluid()
                 .color(0x383030)
@@ -233,7 +233,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24522 Tanmolyium Beta-C
-        TanmolyiumBetaC = new Material.Builder("tanmolyium_beta_c")
+        TanmolyiumBetaC = Builder("tanmolyium_beta_c")
                 .ingot()
                 .fluid()
                 .color(0xc72fcc)
@@ -243,7 +243,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24523 Hastelloy-C59
-        HastelloyC59 = new Material.Builder("hastelloy_c_59")
+        HastelloyC59 = Builder("hastelloy_c_59")
                 .ingot()
                 .fluid()
                 .color(0xD6D0F0)
@@ -253,7 +253,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24524 HMS-1J79 Alloy
-        HMS1J79Alloy = new Material.Builder("hms_1_j_79_alloy")
+        HMS1J79Alloy = Builder("hms_1_j_79_alloy")
                 .ingot()
                 .fluid()
                 .color(0xD1CB0B)
@@ -263,7 +263,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24525 High Strength Structural Steel-HY130-1
-        HY1301 = new Material.Builder("hy_1301")
+        HY1301 = Builder("hy_1301")
                 .ingot()
                 .fluid()
                 .color(0x6F3E57)
@@ -273,7 +273,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24526 Super Austenitic Stainless Steel-904L
-        AusteniticStainlessSteel904L = new Material.Builder("super_austenitic_stainless_steel_904_l")
+        AusteniticStainlessSteel904L = Builder("super_austenitic_stainless_steel_904_l")
                 .ingot()
                 .fluid()
                 .color(0x881357)
@@ -283,14 +283,14 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
         //  24527 Eglin Steel Base
-        EglinSteelBase = new Material.Builder("eglin_steel_base")
+        EglinSteelBase = Builder("eglin_steel_base")
                 .dust()
                 .color(0x8B4513)
                 .iconSet(MaterialIconSet.SAND)
                 .components(GTMaterials.Iron, 4, GTMaterials.Kanthal, 1, GTMaterials.Invar, 5)
                 .buildAndRegister();
         //  24528 Eglin Steel
-        EglinSteel = new Material.Builder("eglin_steel")
+        EglinSteel = Builder("eglin_steel")
                 .ingot()
                 .fluid()
                 .color(0x8B4513)
@@ -300,7 +300,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24529 Pikyonium-64B
-        Pikyonium64B = new Material.Builder("pikyonium_64_b")
+        Pikyonium64B = Builder("pikyonium_64_b")
                 .ingot()
                 .fluid()
                 .color(0x3467BA)
@@ -310,7 +310,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_SPRING, MaterialFlags.GENERATE_SPRING_SMALL)
                 .buildAndRegister();
         //  24530 Cinobite
-        Cinobite = new Material.Builder("cinobite")
+        Cinobite = Builder("cinobite")
                 .ingot()
                 .fluid()
                 .color(0x010101)
@@ -320,7 +320,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24531 Titan Steel
-        TitanSteel = new Material.Builder("titan_steel")
+        TitanSteel = Builder("titan_steel")
                 .ingot()
                 .fluid()
                 .color(0xAA0D0D)
@@ -330,7 +330,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24532 Incoloy-DS
-        IncoloyDS = new Material.Builder("incoloy_ds")
+        IncoloyDS = Builder("incoloy_ds")
                 .ingot()
                 .fluid()
                 .color(0x6746B7)
@@ -340,7 +340,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24533 Inconel-690
-        Inconel690 = new Material.Builder("inconel_690")
+        Inconel690 = Builder("inconel_690")
                 .ingot()
                 .fluid()
                 .color(0x4FC050)
@@ -350,7 +350,7 @@ public class EPMachineCasingMaterials {
                 .blastTemp(3440, BlastProperty.GasTier.MID, GTValues.VA[GTValues.HV], 45)
                 .buildAndRegister();
         //  24534 Tantalloy61
-        Tantalloy61 = new Material.Builder("tantalloy_61")
+        Tantalloy61 = Builder("tantalloy_61")
                 .ingot()
                 .fluid()
                 .color(0x717171)
@@ -360,7 +360,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24535 Inconel-020
-        Incoloy020 = new Material.Builder("incoloy_020")
+        Incoloy020 = Builder("incoloy_020")
                 .ingot()
                 .fluid()
                 .color(0xF8BFFC)
@@ -370,7 +370,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
         //  24536 HG-1223
-        HG1223 = new Material.Builder("hg_1223")
+        HG1223 = Builder("hg_1223")
                 .ingot()
                 .fluid()
                 .color(0x235497)
@@ -380,7 +380,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24537 HMS-1J22 Alloy
-        HMS1J22Alloy = new Material.Builder("hms_1_j_22_alloy")
+        HMS1J22Alloy = Builder("hms_1_j_22_alloy")
                 .ingot()
                 .fluid()
                 .color(0x9E927D)
@@ -390,7 +390,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24538 Fullerene Superconductor
-        FullereneSuperconductor = new Material.Builder("fullerene_superconductor")
+        FullereneSuperconductor = Builder("fullerene_superconductor")
                 .ingot()
                 .fluid()
                 .color(0x8BF743)
@@ -401,7 +401,7 @@ public class EPMachineCasingMaterials {
                 .cableProperties(GTValues.V[GTValues.UIV], 256, 0, true)
                 .buildAndRegister();
         //  24539 Legendarium
-        Legendarium = new Material.Builder("legendarium")
+        Legendarium = Builder("legendarium")
                 .ingot()
                 .fluid()
                 .color(0xF58FDA)
@@ -412,7 +412,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24540 Superheavy-H Alloy
-        SuperheavyHAlloy = new Material.Builder("superheavy_h_alloy")
+        SuperheavyHAlloy = Builder("superheavy_h_alloy")
                 .ingot()
                 .fluid()
                 .color(0xE84B36)
@@ -424,7 +424,7 @@ public class EPMachineCasingMaterials {
                 .cableProperties(GTValues.V[GTValues.UIV], 256, 64, false)
                 .buildAndRegister();
         //  24541 Superheavy-L Alloy
-        SuperheavyLAlloy = new Material.Builder("superheavy_l_alloy")
+        SuperheavyLAlloy = Builder("superheavy_l_alloy")
                 .ingot()
                 .fluid()
                 .color(0x4D8BE9)
@@ -434,7 +434,7 @@ public class EPMachineCasingMaterials {
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  24542 Platinum-group Alloy
-        PlatinumGroupAlloy = new Material.Builder("platinum_group_alloy")
+        PlatinumGroupAlloy = Builder("platinum_group_alloy")
                 .ingot()
                 .fluid()
                 .color(GTMaterials.Gold.getMaterialRGB() + GTMaterials.Silver.getMaterialRGB() + GTMaterials.Platinum.getMaterialRGB() + GTMaterials.Palladium.getMaterialRGB() + GTMaterials.Ruthenium.getMaterialRGB() + GTMaterials.Rhodium.getMaterialRGB() + GTMaterials.Iridium.getMaterialRGB() + GTMaterials.Osmium.getMaterialRGB())

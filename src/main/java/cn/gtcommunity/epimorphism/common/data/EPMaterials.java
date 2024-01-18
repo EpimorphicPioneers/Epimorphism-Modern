@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.common.data.materials.*;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 public class EPMaterials {
@@ -717,6 +718,10 @@ public class EPMaterials {
         EPBiologicalMaterials.register();
         EPMachineCasingMaterials.register();
         EPModCompatibilityMaterials.init();
+    }
+
+    public static Material.Builder Builder(String name) {
+        return new Material.Builder(GTCEu.id(name));
     }
 
 }

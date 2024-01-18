@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism;
 import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
 import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
+import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
 import cn.gtcommunity.epimorphism.common.block.BlockTypeAdditions;
 import cn.gtcommunity.epimorphism.common.recipe.RecipeTypeAdditions;
@@ -12,6 +13,9 @@ import cn.gtcommunity.epimorphism.common.data.EPCovers;
 import cn.gtcommunity.epimorphism.common.data.EPElements;
 import cn.gtcommunity.epimorphism.common.data.EPMaterials;
 import cn.gtcommunity.epimorphism.common.data.EPRecipes;
+import com.gregtechceu.gtceu.api.addon.events.KJSRecipeKeyEvent;
+import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 
@@ -26,6 +30,11 @@ public class EPGTAddon implements IGTAddon {
         EPMaterialIconType.init();
         CommonProxy.onGTCEuSetup();
         Epimorphism.LOGGER.info("Epimorphism's GT Addon Loaded!");
+    }
+
+    @Override
+    public GTRegistrate getRegistrate() {
+        return EPRegistries.EP_REGISTRATE;
     }
 
     public static void postInitializeAddon() {
@@ -52,8 +61,8 @@ public class EPGTAddon implements IGTAddon {
     }
 
     @Override
-    public void registerMaterials() {
-        EPMaterials.init();
+    public void collectMaterialCasings(MaterialCasingCollectionEvent event) {
+        IGTAddon.super.collectMaterialCasings(event);
     }
 
     @Override
@@ -69,6 +78,21 @@ public class EPGTAddon implements IGTAddon {
     @Override
     public void removeRecipes(Consumer<ResourceLocation> consumer) {
 
+    }
+
+    @Override
+    public void registerRecipeKeys(KJSRecipeKeyEvent event) {
+        IGTAddon.super.registerRecipeKeys(event);
+    }
+
+    @Override
+    public void registerRecipeCapabilities() {
+        IGTAddon.super.registerRecipeCapabilities();
+    }
+
+    @Override
+    public void registerRecipeConditions() {
+        IGTAddon.super.registerRecipeConditions();
     }
 
     @Override

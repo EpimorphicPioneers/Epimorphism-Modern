@@ -16,12 +16,13 @@ import net.minecraft.world.item.enchantment.Enchantments;
 
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet.*;
+import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 
 public class EPElementMaterials {
     public static void register() {
 
         //  26001 Draconium
-        EPMaterials.Draconium = new Material.Builder("draconium")
+        EPMaterials.Draconium = Builder("draconium")
                 .ingot()
                 .fluid()
                 .color(0xbe49ed)
@@ -36,7 +37,7 @@ public class EPElementMaterials {
                 .blastTemp(10800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV])
                 .buildAndRegister();
         //  26002 Awakened Draconium
-        EPMaterials.AwakenedDraconium = new Material.Builder("awakened_draconium")
+        EPMaterials.AwakenedDraconium = Builder("awakened_draconium")
                 .ingot()
                 .fluid()
                 .color(0xf58742)
@@ -47,7 +48,7 @@ public class EPElementMaterials {
                 .cableProperties(GTValues.V[GTValues.UHV], 16, 4)
                 .buildAndRegister();
         //  26003 Chaotic Draconium
-        EPMaterials.ChaoticDraconium = new Material.Builder("chaotic_draconium")
+        EPMaterials.ChaoticDraconium = Builder("chaotic_draconium")
                 .ingot()
                 .fluid()
                 .color(0x2C195A)
@@ -58,7 +59,7 @@ public class EPElementMaterials {
                 .buildAndRegister();
         //  Pay attention to these materials, they are just foil (not foil in gregtech)!
         //  26004 Orichalcum
-        EPMaterials.Orichalcum = new Material.Builder("orichalcum")
+        EPMaterials.Orichalcum = Builder("orichalcum")
                 .ingot()
                 .fluid()
                 .color(0x72A0C1)
@@ -68,7 +69,7 @@ public class EPElementMaterials {
                 .blastTemp(9000, BlastProperty.GasTier.HIGH)
                 .buildAndRegister();
         //  26005 Vibranium
-        EPMaterials.Vibranium = new Material.Builder("vibranium")
+        EPMaterials.Vibranium = Builder("vibranium")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -79,7 +80,7 @@ public class EPElementMaterials {
                 .blastTemp(4852, BlastProperty.GasTier.HIGH)
                 .buildAndRegister();
         //  26006 Adamantium
-        EPMaterials.Adamantium = new Material.Builder("adamantium")
+        EPMaterials.Adamantium = Builder("adamantium")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -91,7 +92,7 @@ public class EPElementMaterials {
                 .cableProperties(GTValues.VA[GTValues.UHV], 18, 9, false)
                 .buildAndRegister();
         //  26007 Taranium
-        EPMaterials.Taranium = new Material.Builder("taranium")
+        EPMaterials.Taranium = Builder("taranium")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -101,7 +102,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  26008 Plutonium-244
-        EPMaterials.Plutonium244 = new Material.Builder("plutonium_244")
+        EPMaterials.Plutonium244 = Builder("plutonium_244")
                 .ingot()
                 .fluid()
                 .color(0xF03232)
@@ -109,7 +110,7 @@ public class EPElementMaterials {
                 .element(EPElements.Plutonium244)
                 .buildAndRegister();
         //  26009 Metastable Oganesson
-        EPMaterials.MetastableOganesson = new Material.Builder("metastable_oganesson")
+        EPMaterials.MetastableOganesson = Builder("metastable_oganesson")
                 .ingot()
                 .gas()
                 .color(0xE61C24)
@@ -120,7 +121,7 @@ public class EPElementMaterials {
                 .buildAndRegister();
         //  TODO Radium-Radon Mixture + Scandium-Titanium-50 Mixture -> Metastable Hassium
         //  26010 Metastable Hassium
-        EPMaterials.MetastableHassium = new Material.Builder("metastable_hassium")
+        EPMaterials.MetastableHassium = Builder("metastable_hassium")
                 .ingot()
                 .fluid()
                 .color(0x2D3A9D)
@@ -130,7 +131,7 @@ public class EPElementMaterials {
                 .blastTemp(11240, BlastProperty.GasTier.HIGHEST)
                 .buildAndRegister();
         //  26011 Metastable Flerovium
-        EPMaterials.MetastableFlerovium = new Material.Builder("metastable_flerovium")
+        EPMaterials.MetastableFlerovium = Builder("metastable_flerovium")
                 .ingot()
                 .fluid()
                 .color(0x521973)
@@ -139,7 +140,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_ROD)
                 .buildAndRegister();
         //  26012 Cosmic Neutronium
-        EPMaterials.CosmicNeutronium = new Material.Builder("cosmic_neutronium")
+        EPMaterials.CosmicNeutronium = Builder("cosmic_neutronium")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2000000000))
                 .iconSet(CUSTOM_NEUTRONIUM)
@@ -148,7 +149,7 @@ public class EPElementMaterials {
                 .cableProperties(GTValues.V[GTValues.UIV], 256, 128, false)
                 .buildAndRegister();
         //  26013 Degenerate Rhenium
-//        DegenerateRhenium = new Material.Builder("degenerate_rhenium")
+//        DegenerateRhenium = Builder("degenerate_rhenium")
 //                .dust()
 //                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((int) V[UV]))
 //                .plasma()
@@ -159,7 +160,7 @@ public class EPElementMaterials {
 //                .buildAndRegister()
 //                .setFormula("§cR§de", false);
         //  26014 Infinity
-        EPMaterials.Infinity = new Material.Builder("infinity")
+        EPMaterials.Infinity = Builder("infinity")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((int) GTValues.V[GTValues.UIV]))
                 .iconSet(CUSTOM_INFINITY)
@@ -168,7 +169,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  26015 Rhugnor
-        EPMaterials.Rhugnor = new Material.Builder("rhugnor")
+        EPMaterials.Rhugnor = Builder("rhugnor")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((int) (GTValues.V[GTValues.UIV] - GTValues.V[GTValues.UV])))
                 .color(0xBE00FF)
@@ -178,7 +179,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  26016 Hypogen
-//        Hypogen = new Material.Builder("hypogen")
+//        Hypogen = Builder("hypogen")
 //                .ingot()
 //                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((int) (V[UXV] - V[LuV])))
 //                .plasma()
@@ -195,7 +196,7 @@ public class EPElementMaterials {
 //                .flags(GENERATE_PLATE)
 //                .buildAndRegister();
         //  26017 Californium-252
-        EPMaterials.Californium252 = new Material.Builder("californium_252")
+        EPMaterials.Californium252 = Builder("californium_252")
                 .ingot()
                 .fluid()
                 .iconSet(MaterialIconSet.SHINY)
@@ -203,7 +204,7 @@ public class EPElementMaterials {
                 .color(GTMaterials.Californium.getMaterialRGB())
                 .buildAndRegister();
         //  26018 Astral Titanium
-        EPMaterials.AstralTitanium = new Material.Builder("astral_titanium")
+        EPMaterials.AstralTitanium = Builder("astral_titanium")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -215,7 +216,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
                 .buildAndRegister();
         //  26019 Celestial Tungsten
-        EPMaterials.CelestialTungsten = new Material.Builder("celestial_tungsten")
+        EPMaterials.CelestialTungsten = Builder("celestial_tungsten")
                 .ingot()
                 .fluid()
                 .plasma()
@@ -227,7 +228,7 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
         //  26020 Ytterbium-178
-        EPMaterials.Ytterbium178 = new Material.Builder("ytterbium_178")
+        EPMaterials.Ytterbium178 = Builder("ytterbium_178")
                 .dust()
                 .fluid()
                 .color(GTMaterials.Ytterbium.getMaterialRGB())
@@ -235,7 +236,7 @@ public class EPElementMaterials {
                 .element(EPElements.Ytterbium178)
                 .buildAndRegister();
         //  26021 Ichorium
-        EPMaterials.Ichorium = new Material.Builder("ichorium")
+        EPMaterials.Ichorium = Builder("ichorium")
                 .ingot()
                 .fluid()
                 .color(0xE5A559)
@@ -245,14 +246,14 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  26022 Ichor Liquid
-        EPMaterials.IchorLiquid = new Material.Builder("ichor_liquid")
+        EPMaterials.IchorLiquid = Builder("ichor_liquid")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(214748))
                 .plasma()
                 .color(0xE5A559)
                 .element(EPElements.IchorLiquid)
                 .buildAndRegister();
         //  26023 Crystal Matrix
-        EPMaterials.CrystalMatrix = new Material.Builder("crystal_matrix")
+        EPMaterials.CrystalMatrix = Builder("crystal_matrix")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(660450))
                 .color(0x70ecff)
@@ -260,7 +261,7 @@ public class EPElementMaterials {
                 .element(EPElements.CrystalMatrix)
                 .buildAndRegister();
         //  26024 Void Metal
-        EPMaterials.VoidMetal = new Material.Builder("void_metal")
+        EPMaterials.VoidMetal = Builder("void_metal")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(/*0*/1))
                 .color(0x20142C)
@@ -268,7 +269,7 @@ public class EPElementMaterials {
                 .element(EPElements.VoidMetal)
                 .buildAndRegister();
         //  26025 Mithril
-        EPMaterials.Mithril = new Material.Builder("mithril")
+        EPMaterials.Mithril = Builder("mithril")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(4550))
                 .plasma()
@@ -279,13 +280,13 @@ public class EPElementMaterials {
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  26026 Bismuth-209
-        EPMaterials.Bismuth209 = new Material.Builder("bismuth_209")
+        EPMaterials.Bismuth209 = Builder("bismuth_209")
                 .fluid()
                 .color(GTMaterials.Bismuth.getMaterialRGB())
                 .element(EPElements.Bismuth209)
                 .buildAndRegister();
         //  26027 Lead-209
-        EPMaterials.Lead209 = new Material.Builder("lead_209")
+        EPMaterials.Lead209 = Builder("lead_209")
                 .fluid()
                 .color(GTMaterials.Lead.getMaterialRGB())
                 .element(EPElements.Lead209)
