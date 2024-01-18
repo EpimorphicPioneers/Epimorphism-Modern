@@ -309,7 +309,7 @@
   "item.epimorphism.wrap.component.spintronic_smd.inductor": "Infinite Circuit Board",
   "item.epimorphism.wrap.component.spintronic_smd.resistor": "Infinite Circuit Board",
   "item.epimorphism.wrap.component.spintronic_smd.transistor": "Infinite Circuit Board",
-  "itemGroup.epimorphism.block": "Block",
-  "itemGroup.epimorphism.circuit_reform": "Circuit Reform",
-  "itemGroup.epimorphism.item": "Item"
+  "itemGroup.epimorphism.block": "Epimorphism | Block",
+  "itemGroup.epimorphism.circuit_reform": "Epimorphism | Circuit Reform",
+  "itemGroup.epimorphism.item": "Epimorphism | Item"
 }
