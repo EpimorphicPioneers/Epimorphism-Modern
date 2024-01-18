@@ -10,10 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 public class EPTagPrefix {
     public static final TagPrefix singularity = new RenderTagPrefix("singularity",
             new HaloRenderItemBehavior(4, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, false))
-            .defaultTagPath(TagPrefix.LoaderType.FORGE, "singularity/%s")
-            .defaultTagPath(TagPrefix.LoaderType.FABRIC, "%s_singularity")
-            .unformattedTagPath(TagPrefix.LoaderType.FORGE, "singularity")
-            .unformattedTagPath(TagPrefix.LoaderType.FABRIC, "singularity")
+            .defaultTagPath("singularity/%s")
+            .unformattedTagPath("singularity")
             .langValue("%s Singularity")
             .materialAmount(-1)
             .materialIconType(EPMaterialIconType.singularity)

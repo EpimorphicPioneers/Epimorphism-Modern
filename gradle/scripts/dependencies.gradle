@@ -41,11 +41,11 @@ dependencies {
     // REI
     modCompileOnly forge.rei.plugin
     modCompileOnly forge.rei.api
-    modImplementation forge.rei.forge
+    modCompileOnly forge.rei.forge
 
     // EMI
     modCompileOnly("dev.emi:emi-forge:${forge.versions.emi.get()}:api")
-    modCompileOnly forge.emi
+    modImplementation forge.emi
 
     // TOP
     modCompileOnly(forge.theoneprobe) { transitive = false }
@@ -76,7 +76,7 @@ dependencies {
     modImplementation("maven.modrinth:oculus:1.20.1-1.6.9")
 
     // GTM
-    modImplementation("maven.modrinth:gregtechceu-modern:mc1.20.1-1.0.20.b-forge")
+    modImplementation("maven.modrinth:gregtechceu-modern:mc")
 
     // Runtime only testing mods
     //modRuntimeOnly(forge.worldStripper)
