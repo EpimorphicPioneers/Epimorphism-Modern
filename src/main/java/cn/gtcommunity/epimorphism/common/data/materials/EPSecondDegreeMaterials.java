@@ -11,26 +11,26 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 public class EPSecondDegreeMaterials {
     public static void init() {
         //  25401 Dragon Breath
-        DragonBreath = new Material.Builder("dragon_breath")
+        DragonBreath = Builder("dragon_breath")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0x9400D3)
                 .buildAndRegister()
                 .setFormula("Dc?", false);
         //  25402 Concentrate Dragon Breath
-        ConcentrateDragonBreath = new Material.Builder("concentrate_dragon_breath")
+        ConcentrateDragonBreath = Builder("concentrate_dragon_breath")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0x9400D3)
                 .buildAndRegister()
                 .setFormula("Dc2?", true);
         //  25403 Dragon Blood
-        DragonBlood = new Material.Builder("dragon_blood")
+        DragonBlood = Builder("dragon_blood")
                 .fluid()
                 .color(0xDC2814)
                 .iconSet(MaterialIconSet.DULL)
                 .buildAndRegister()
                 .setFormula("*Dc*Rn?", true);
         //  25404 Dragon Tear
-        DragonTear = new Material.Builder("dragon_tear")
+        DragonTear = Builder("dragon_tear")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2992))
                 .color(0x9999FF)
                 .iconSet(MaterialIconSet.DULL)

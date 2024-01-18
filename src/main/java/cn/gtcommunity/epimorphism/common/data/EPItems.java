@@ -26,6 +26,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
@@ -45,166 +46,26 @@ public class EPItems {
     public final static ItemEntry<ComponentItem> SPINTRONIC_CIRCUIT_BOARD = registerItemWithTooltip("circuit_board.spintronic", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
 
     //  Circuits
-    public final static ItemEntry<ComponentItem> GOOWARE_PROCESSOR = EP_REGISTRATE.item("circuit.gooware_processor", ComponentItem::create)
-            .lang("Gooware Processor")
-            .tag(CustomTags.ZPM_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.gooware_processor.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.zpm.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> GOOWARE_ASSEMBLY = EP_REGISTRATE.item("circuit.gooware_assembly", ComponentItem::create)
-            .lang("Gooware Assembly")
-            .tag(CustomTags.UV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.gooware_assembly.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> GOOWARE_COMPUTER = EP_REGISTRATE.item("circuit.gooware_computer", ComponentItem::create)
-            .lang("Gooware Supercomputer")
-            .tag(CustomTags.UHV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.gooware_computer.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uhv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> GOOWARE_MAINFRAME = EP_REGISTRATE.item("circuit.gooware_mainframe", ComponentItem::create)
-            .lang("Gooware Mainframe")
-            .tag(CustomTags.UEV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.gooware_mainframe.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> OPTICAL_PROCESSOR = EP_REGISTRATE.item("circuit.optical_processor", ComponentItem::create)
-            .lang("Optical IMC Processor")
-            .tag(CustomTags.UV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.optical_processor.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> OPTICAL_ASSEMBLY = EP_REGISTRATE.item("circuit.optical_assembly", ComponentItem::create)
-            .lang("Optical IMC Assembly")
-            .tag(CustomTags.UHV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.optical_assembly.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uhv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> OPTICAL_COMPUTER = EP_REGISTRATE.item("circuit.optical_computer", ComponentItem::create)
-            .lang("Optical IMC Supercomputer")
-            .tag(CustomTags.UEV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.optical_computer.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> OPTICAL_MAINFRAME = EP_REGISTRATE.item("circuit.optical_mainframe", ComponentItem::create)
-            .lang("Optical IMC Mainframe")
-            .tag(CustomTags.UIV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.optical_mainframe.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SPINTRONIC_PROCESSOR = EP_REGISTRATE.item("circuit.spintronic_processor", ComponentItem::create)
-            .lang("Spintronic IMC Processor")
-            .tag(CustomTags.UHV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_processor.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uhv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SPINTRONIC_ASSEMBLY = EP_REGISTRATE.item("circuit.spintronic_assembly", ComponentItem::create)
-            .lang("Spintronic IMC Assembly")
-            .tag(CustomTags.UEV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_assembly.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SPINTRONIC_COMPUTER = EP_REGISTRATE.item("circuit.spintronic_computer", ComponentItem::create)
-            .lang("Spintronic IMC Supercomputer")
-            .tag(CustomTags.UIV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_computer.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SPINTRONIC_MAINFRAME = EP_REGISTRATE.item("circuit.spintronic_mainframe", ComponentItem::create)
-            .lang("Spintronic IMC Mainframe")
-            .tag(CustomTags.UXV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.spintronic_mainframe.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uxv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> COSMIC_PROCESSOR = EP_REGISTRATE.item("circuit.cosmic_processor", ComponentItem::create)
-            .lang("Cosmic Planetary Processor")
-            .tag(CustomTags.UEV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.cosmic_processor.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uev.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> COSMIC_ASSEMBLY = EP_REGISTRATE.item("circuit.cosmic_assembly", ComponentItem::create)
-            .lang("Cosmic Planetary Assembly")
-            .tag(CustomTags.UIV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.cosmic_assembly.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> COSMIC_COMPUTER = EP_REGISTRATE.item("circuit.cosmic_computer", ComponentItem::create)
-            .lang("Cosmic Planetary Supercomputer")
-            .tag(CustomTags.UXV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.cosmic_computer.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uxv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> COSMIC_MAINFRAME = EP_REGISTRATE.item("circuit.cosmic_mainframe", ComponentItem::create)
-            .lang("Cosmic Planetary Mainframe")
-            .tag(CustomTags.OpV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.cosmic_mainframe.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.opv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SUPRACAUSAL_PROCESSOR = EP_REGISTRATE.item("circuit.supracausal_processor", ComponentItem::create)
-            .lang("Supracausal Galactic Processor")
-            .tag(CustomTags.UIV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.supracausal_processor.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uiv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SUPRACAUSAL_ASSEMBLY = EP_REGISTRATE.item("circuit.supracausal_assembly", ComponentItem::create)
-            .lang("Supracausal Galactic Assembly")
-            .tag(CustomTags.UXV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.supracausal_assembly.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.uxv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SUPRACAUSAL_COMPUTER = EP_REGISTRATE.item("circuit.supracausal_computer", ComponentItem::create)
-            .lang("Supracausal Galactic Supercomputer")
-            .tag(CustomTags.OpV_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.supracausal_computer.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.opv.tooltip"));
-            })))
-            .register();
-    public final static ItemEntry<ComponentItem> SUPRACAUSAL_MAINFRAME = EP_REGISTRATE.item("circuit.supracausal_mainframe", ComponentItem::create)
-            .lang("Supracausal Galactic Mainframe")
-            .tag(CustomTags.MAX_CIRCUITS)
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.circuit.supracausal_mainframe.tooltip"));
-                lines.add(Component.translatable("item.epimorphism.circuit.max.tooltip"));
-            })))
-            .register();
+    public final static ItemEntry<ComponentItem> GOOWARE_PROCESSOR = registerItemWithTooltip("circuit.gooware_processor", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.zpm.desc")).lang("Gooware Processor").tag(CustomTags.ZPM_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> GOOWARE_ASSEMBLY = registerItemWithTooltip("circuit.gooware_assembly", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uv.desc")).lang("Gooware Assembly").tag(CustomTags.UV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> GOOWARE_COMPUTER = registerItemWithTooltip("circuit.gooware_computer", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uhv.desc")).lang("Gooware Supercomputer").tag(CustomTags.UHV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> GOOWARE_MAINFRAME = registerItemWithTooltip("circuit.gooware_mainframe", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uev.desc")).lang("Gooware Mainframe").tag(CustomTags.UEV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_PROCESSOR = registerItemWithTooltip("circuit.optical_processor", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uv.desc")).lang("Optical IMC Processor").tag(CustomTags.UV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_ASSEMBLY = registerItemWithTooltip("circuit.optical_assembly", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uhv.desc")).lang("Optical IMC Assembly").tag(CustomTags.UHV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_COMPUTER = registerItemWithTooltip("circuit.optical_computer", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uev.desc")).lang("Optical IMC Supercomputer").tag(CustomTags.UEV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_MAINFRAME = registerItemWithTooltip("circuit.optical_mainframe", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uiv.desc")).lang("Optical IMC Mainframe").tag(CustomTags.UIV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_PROCESSOR = registerItemWithTooltip("circuit.spintronic_processor", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uhv.desc")).lang("Spintronic IMC Processor").tag(CustomTags.UHV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_ASSEMBLY = registerItemWithTooltip("circuit.spintronic_assembly", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uev.desc")).lang("Spintronic IMC Assembly").tag(CustomTags.UEV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_COMPUTER = registerItemWithTooltip("circuit.spintronic_computer", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uiv.desc")).lang("Spintronic IMC Supercomputer").tag(CustomTags.UIV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SPINTRONIC_MAINFRAME = registerItemWithTooltip("circuit.spintronic_mainframe", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uxv.desc")).lang("Spintronic IMC Mainframe").tag(CustomTags.UXV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> COSMIC_PROCESSOR = registerItemWithTooltip("circuit.cosmic_processor", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uev.desc")).lang("Cosmic Planetary Processor").tag(CustomTags.UEV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> COSMIC_ASSEMBLY = registerItemWithTooltip("circuit.cosmic_assembly", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uiv.desc")).lang("Cosmic Planetary Assembly").tag(CustomTags.UIV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> COSMIC_COMPUTER = registerItemWithTooltip("circuit.cosmic_computer", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uxv.desc")).lang("Cosmic Planetary Supercomputer").tag(CustomTags.UXV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> COSMIC_MAINFRAME = registerItemWithTooltip("circuit.cosmic_mainframe", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.opv.desc")).lang("Cosmic Planetary Mainframe").tag(CustomTags.OpV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_PROCESSOR = registerItemWithTooltip("circuit.supracausal_processor", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uiv.desc")).lang("Supracausal Galactic Processor").tag(CustomTags.UIV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_ASSEMBLY = registerItemWithTooltip("circuit.supracausal_assembly", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.uxv.desc")).lang("Supracausal Galactic Assembly").tag(CustomTags.UXV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_COMPUTER = registerItemWithTooltip("circuit.supracausal_computer", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.opv.desc")).lang("Supracausal Galactic Supercomputer").tag(CustomTags.OpV_CIRCUITS).register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_MAINFRAME = registerItemWithTooltip("circuit.supracausal_mainframe", ComponentItem::create, 1, Component.translatable("item.epimorphism.circuit.max.desc")).lang("Supracausal Galactic Mainframe").tag(CustomTags.MAX_CIRCUITS).register();
 
     //  Components
     public final static ItemEntry<ComponentItem> OPTICAL_TRANSISTOR = registerItemWithTooltip("component.optical_smd.transistor", ComponentItem::create, 1).lang("Phototransistor").register();
@@ -604,6 +465,23 @@ public class EPItems {
                         for (int i = 0; i < num; i++) {
                             lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
                         }
+                    }
+                })));
+    }
+
+    private static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num, Component... other) {
+        return EP_REGISTRATE.item(name, factory)
+                .onRegister(attach(new TooltipBehavior(lines -> {
+                    if (num <= 0) return;
+
+                    if (num == 1) {
+                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EP_REGISTRATE.getModid(), name)));
+                        lines.addAll(Arrays.asList(other));
+                    } else {
+                        for (int i = 0; i < num; i++) {
+                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
+                        }
+                        lines.addAll(Arrays.asList(other));
                     }
                 })));
     }

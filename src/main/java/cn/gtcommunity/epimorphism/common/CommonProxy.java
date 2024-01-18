@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.common;
 
 import cn.gtcommunity.epimorphism.EPGTAddon;
+import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.common.data.*;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
@@ -10,6 +11,12 @@ import cn.gtcommunity.epimorphism.network.s2c.PacketVajraDestroy;
 import cn.gtcommunity.epimorphism.utils.EPBlockUtil;
 import cn.gtcommunity.epimorphism.utils.EPItemUtil;
 import com.google.common.collect.ImmutableMap;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -34,6 +41,8 @@ public class CommonProxy {
         // used for forge events (ClientProxy + CommonProxy)
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.register(this);
+        eventBus.addGenericListener(GTRecipeType.class, EPRegistries::registerRecipeTypes);
+        eventBus.addGenericListener(MachineDefinition.class, EPRegistries::registerMachine);
         // init common features
         synchronized (LOCK) {
             if (!isGTCEuSetup) {
@@ -48,8 +57,6 @@ public class CommonProxy {
     public void init() {
         EPCreativeModeTabs.init();
         EPBlocks.init();
-        EPRecipeTypes.init();
-        EPMachines.init();
         EPItems.init();
         EPDatagen.init();
         EPRegistries.EP_REGISTRATE.registerRegistrate();
