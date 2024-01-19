@@ -13,11 +13,13 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.InfiniteWaterHatchPartMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.RadiationHatchMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -57,6 +59,7 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
 public class EPMachines {
+    public static final int[] NO_HIGH_TIERS = GTValues.tiersBetween(1, 8);
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
@@ -64,7 +67,7 @@ public class EPMachines {
     // Multiblocks
     public final static MultiblockMachineDefinition YOTTA_FLUID_TANK = EP_REGISTRATE.multiblock("yotta_fluid_tank", YottaFluidTankMachine::new)
             .langValue("Yotta Fluid Tank")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.yotta_fluid_tank.desc0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.YOTTA_FLUID_TANK_CASING)
@@ -126,7 +129,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition TFFT = EP_REGISTRATE.multiblock("tfft", TFFTMachine::new)
             .langValue("T.F.F.T.")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.tfft.desc0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.TFFT_CASING)
@@ -182,7 +185,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition NEUTRON_ACTIVATOR = EP_REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
             .langValue("Neutron Activator")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.neutron_activator.desc0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.NEUTRON_ACTIVATOR_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -213,7 +216,7 @@ public class EPMachines {
 
     public static final MultiblockMachineDefinition EXTREME_INDUSTRIAL_GREENHOUSE = EP_REGISTRATE.multiblock("extreme_industrial_greenhouse", IndustrialGreenhouseMachine::new)
             .langValue("Extreme Industrial Greenhouse")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -272,7 +275,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition BACTERIAL_CULTURE_TANK = EP_REGISTRATE.multiblock("bacterial_culture_tank", BacterialCultureTankMachine::new)
             .langValue("Bacterial Culture Tank")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.bacterial_culture_tank.desc0"))
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -288,6 +291,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
                             .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1))
+                            .or(abilities(EPPartAbility.RADIATION).setExactLimit(1))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where('C', EPPredicates.glass())
                     .build()
@@ -299,7 +303,7 @@ public class EPMachines {
                         .aisle("AAAAA", "C   C", "C   C", "AAAAA")
                         .aisle("AAAAA", "C   C", "C   C", "AAAAA")
                         .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                        .aisle("DEBFG", "CCCCC", "CCCCC", "AAAAA")
+                        .aisle("DEBFG", "CCCCC", "CCCCC", "AAJAA")
                         .where('B', definition, Direction.SOUTH)
                         .where('A', GTBlocks.CASING_STAINLESS_CLEAN.get())
                         .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
@@ -307,7 +311,8 @@ public class EPMachines {
                         .where('F', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
                         .where('G', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
                         .where('H', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
-                        .where('I', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH);
+                        .where('I', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('J', EPMachines.RADIATION_HATCH[3], Direction.SOUTH);
                 BlockMaps.SHAPE_GLASSES.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
                         .map(Map.Entry::getValue)
@@ -321,9 +326,9 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition CHEMICAL_PLANT = EP_REGISTRATE.multiblock("chemical_plant", ChemicalPlantMachine::new)
             .langValue("Chemical Plant")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc0"))
             .rotationState(RotationState.ALL)
-            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .recipeTypes(EPRecipeTypes.CHEMICAL_PLANT_RECIPES, GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
@@ -408,7 +413,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingWorkableElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.component_assembly_line.desc0"))
             .rotationState(RotationState.ALL)
             .recipeType(EPRecipeTypes.COMPONENT_ASSEMBLY_LINE_RECIPES)
             .appearanceBlock(EPBlocks.IRIDIUM_CASING)
@@ -546,16 +551,17 @@ public class EPMachines {
     public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = EP_REGISTRATE.multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
             .langValue("General Processing Plant")
             .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.0"));
                 if (GTUtil.isShiftDown()) {
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.1"));
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.2"));
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.3"));
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.shift_tooltip.4"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.2"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.3"));
                 } else {
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.1"));
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.2"));
-                    components.add(Component.translatable("epimorphism.multiblock.epimorphism.general_processing_plant.tooltip.3"));
-                    components.add(Component.translatable("epimorphism.tooltip_extended_info"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
+                    components.add(Component.translatable("epimorphism.desc_extended_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -616,7 +622,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition INDUSTRIAL_FISHING_POND = EP_REGISTRATE.multiblock("industrial_fishing_pond", IndustrialFishingPondMachine::new)
             .langValue("Industrial Fishing Pond")
-            .tooltips(Component.translatable("item.epimorphism.debug.structure_writer.structural_scale"))
+            .tooltips(Component.translatable("block.epimorphism.neutron_activator.desc0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.BREEDING_CASING)
@@ -673,21 +679,35 @@ public class EPMachines {
                     .abilities(EPPartAbility.NEUTRON_ACCELERATOR)
                     .overlayTieredHullRenderer("neutron_accelerator")
                     .tooltips(
-                            Component.translatable("epimorphism.block.neutron_accelerator.desc0"),
+                            Component.translatable("block.epimorphism.neutron_accelerator.desc.0"),
                             Component.translatable("epimorphism.universal.desc.max_eu_in", GTValues.V[tier]),
                             Component.translatable("epimorphism.universal.desc.max_eu_consume", Math.round(GTValues.V[tier] * 0.8)),
-                            Component.translatable("epimorphism.block.neutron_accelerator.desc1"),
+                            Component.translatable("block.epimorphism.neutron_accelerator.desc.1"),
                             Component.translatable("gtceu.universal.tooltip.max_voltage_in", GTValues.V[tier], VNF[tier]),
                             Component.translatable("gtceu.universal.tooltip.energy_storage_capacity", GTValues.V[tier] * 72))
                     .register(),
             ELECTRIC_TIERS);
+    public static final MachineDefinition[] RADIATION_HATCH = registerTieredEPMachines("radiation_hatch", RadiationHatchMachine::new,
+            (tier, builder) -> builder
+                    .langValue("%s §rRadiation Hatch".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(EPPartAbility.RADIATION)
+                    .recipeType(EPRecipeTypes.RADIATION_HATCH_RECIPES)
+                    .overlayTieredHullRenderer("radiation_hatch")
+                    .tooltips(
+                            Component.translatable("block.epimorphism.radiation_hatch.desc.0"),
+                            Component.translatable("epimorphism.universal.desc.kg_capacity", Math.max(1, tier - 2)),
+                            Component.translatable("block.epimorphism.radiation_hatch.desc.1")
+                    )
+                    .register(),
+            GTValues.tiersBetween(3, 13));
 
     // Single Machines
     public final static MachineDefinition INFINITY_CRATE = EP_REGISTRATE.machine("infinity_crate", holder -> new InfinityCrateMachine(holder, EPMaterials.Infinity, 252))
             .langValue("Infinity Crate")
             .rotationState(RotationState.NONE)
             .tooltips(Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 252))
-            .tooltips(Component.translatable("block.epimorphism.infinity_crate.tooltip"))
+            .tooltips(Component.translatable("block.epimorphism.infinity_crate.desc"))
             .renderer(() -> new TextureOverrideRenderer(new ResourceLocation("block/cube_all"), Map.of("all", Epimorphism.id("block/storage/crates/infinity_crate"))))
             .register();
 

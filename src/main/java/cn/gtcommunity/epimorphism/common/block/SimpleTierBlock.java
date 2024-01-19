@@ -52,7 +52,7 @@ public class SimpleTierBlock extends AppearanceBlock implements IBlockRendererPr
         if (data == null) return;
 
         if (GTUtil.isShiftDown()) {
-            tooltip.add(Component.translatable("epimorphism.block_tier.desc", GTValues.VNF[data.tier()]));
+            tooltip.add(Component.translatable("epimorphism.universal.desc.tier", GTValues.VNF[data.tier()]));
         } else {
             tooltip.add(Component.translatable("epimorphism.desc_extended_info"));
         }

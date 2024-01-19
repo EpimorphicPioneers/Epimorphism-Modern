@@ -2,6 +2,7 @@ package cn.gtcommunity.epimorphism.data.lang;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.item.Item;
@@ -26,11 +27,17 @@ public class EPLangHelper {
         }
     }
 
-    public static void add(LanguageProvider provider, String key, String enTooltip, String cnTooltip) {
+    public static void add(LanguageProvider provider, String key, String enText, String cnText) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
-            cnLangProvider.add(key, cnTooltip);
+            cnLangProvider.add(key, cnText);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
-            enLangProvider.add(key, enTooltip);
+            enLangProvider.add(key, enText);
+        }
+    }
+
+    public static void addCN(LanguageProvider provider, String key, String cnText) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.add(key, cnText);
         }
     }
 
@@ -39,6 +46,18 @@ public class EPLangHelper {
             cnLangProvider.addBlockWithTooltip(block, cnName, cnTooltip);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
             enLangProvider.addTooltip(block, enTooltip);
+        }
+    }
+
+    public static void addBlockWithTooltip(LanguageProvider provider, String blockName, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add("block.%s.%s.desc.".formatted(Epimorphism.MOD_ID, blockName) + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add("block.%s.%s.desc.".formatted(Epimorphism.MOD_ID, blockName) + i, enTooltip.get(i));
+            }
         }
     }
 
@@ -59,6 +78,18 @@ public class EPLangHelper {
         }
     }
 
+    public static void addBlockWithShiftTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add(block.get().asItem().getDescriptionId() + ".shift_desc." + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add(block.get().asItem().getDescriptionId() + ".shift_desc." + i, enTooltip.get(i));
+            }
+        }
+    }
+
     public static void addBlock(LanguageProvider provider, NonNullSupplier<? extends Block> block, String enName, String cnName) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.addBlock(block, cnName);
@@ -73,6 +104,14 @@ public class EPLangHelper {
             if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
                 cnLangProvider.add(name, "%s§r%s".formatted(GTValues.VNF[tier], cnName));
             }
+        }
+    }
+
+    public static void addRecipeType(LanguageProvider provider, GTRecipeType recipeType, String enName, String cnName) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.add(recipeType.registryName.toLanguageKey(), cnName);
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            enLangProvider.add(recipeType.registryName.toLanguageKey(), enName);
         }
     }
 }

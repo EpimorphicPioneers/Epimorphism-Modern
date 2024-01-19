@@ -54,8 +54,8 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
         super.onLoad();
         if (getLevel() instanceof ServerLevel serverLevel) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTankSubscription));
+            tankSubs = tank.addChangedListener(this::updateTankSubscription);
         }
-        tankSubs = tank.addChangedListener(this::updateTankSubscription);
     }
 
     @Override

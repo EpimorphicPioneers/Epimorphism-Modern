@@ -7,9 +7,29 @@ import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 
 public class BlockLang {
     public static void init(LanguageProvider provider) {
-        add(provider, "epimorphism.block_tier.desc",
-                "§7Tier: %s",
-                "§7等级：%s");
+        //  Glass
+        add(provider, "epimorphism.glass_tier.desc",
+                "§7Glass Tier: %s",
+                "§7玻璃等级：%s");
+
+        add(provider, "epimorphism.optical_glass_tier.desc.0",
+                "Crude Optical Glass",
+                "粗制光学玻璃");
+        add(provider, "epimorphism.optical_glass_tier.desc.1",
+                "Ordinary Optical Glass",
+                "普通光学玻璃");
+        add(provider, "epimorphism.optical_glass_tier.desc.2",
+                "Modified Optical Glass",
+                "改良光学玻璃");
+        add(provider, "epimorphism.optical_glass_tier.desc.3",
+                "High-quality Optical Glass",
+                "优质光学玻璃");
+        add(provider, "epimorphism.optical_glass_tier.desc.4",
+                "Precision Optical Glass",
+                "精密光学玻璃");
+        add(provider, "epimorphism.optical_glass_tier.desc.5",
+                "Marvellous Optical Glass",
+                "精奇光学玻璃");
 
         //  Fluid Tank Cell Block
         addBlock(provider, FLUID_TANK_CELL_1, "Fluid Tank Cell Block T1", "流体单元方块T1");
@@ -34,13 +54,6 @@ public class BlockLang {
         addBlock(provider, STORAGE_FIELD_BLOCK_8, "Storage Field Block T8", "存储立场方块T8");
         addBlock(provider, STORAGE_FIELD_BLOCK_9, "Storage Field Block T9", "存储立场方块T9");
         addBlock(provider, STORAGE_FIELD_BLOCK_10, "Storage Field Block T10", "存储立场方块T10");
-
-        add(provider, "epimorphism.fluid_capacity.desc",
-                "§7Capacity: %s L",
-                "§7容量：%s L");
-        add(provider, "epimorphism.power_cost.desc",
-                "§7Energy consumption: %s EU/t",
-                "§7能耗：%s EU/t");
 
         //  Component Assembly Line Casings
         addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_LV, "Component Assembly Line Casing (LV)", "部件装配线外壳（LV）",

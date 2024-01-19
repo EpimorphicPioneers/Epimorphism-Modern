@@ -26,7 +26,7 @@ public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         String id = stack.getDescriptionId();
-        tooltip.add(Component.translatable(id + ".tooltip"));
+        tooltip.add(Component.translatable(id + ".desc"));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 

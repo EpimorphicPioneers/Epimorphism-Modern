@@ -28,6 +28,31 @@ public class ItemLang {
                 "§7自旋转移矩效应的最好实现");
 
         //  Circuits
+        add(provider, "item.epimorphism.circuit.zpm.desc",
+                "§cZPM-Tier Circuit",
+                "§cZPM级电路");
+        add(provider, "item.epimorphism.circuit.uv.desc",
+                "§3UV-Tier Circuit",
+                "§3UV级电路");
+        add(provider, "item.epimorphism.circuit.uhv.desc",
+                "§4UHV-Tier Circuit",
+                "§4UHV级电路");
+        add(provider, "item.epimorphism.circuit.uev.desc",
+                "§aUEV-Tier Circuit",
+                "§aUEV级电路");
+        add(provider, "item.epimorphism.circuit.uiv.desc",
+                "§2UIV-Tier Circuit",
+                "§2UIV级电路");
+        add(provider, "item.epimorphism.circuit.uxv.desc",
+                "§eUXV-Tier Circuit",
+                "§eUXV级电路");
+        add(provider, "item.epimorphism.circuit.opv.desc",
+                "§9OpV-Tier Circuit",
+                "§9OpV级电路");
+        add(provider, "item.epimorphism.circuit.max.desc",
+                "§c§lMAX-Tier Circuit",
+                "§c§lMAX级电路");
+
         addItemWithTooltip(provider,GOOWARE_PROCESSOR, "生物活性处理器",
                 "Viscous organic slurry adheres the board",
                 "§7粘稠的有机浆液附着于表面");
@@ -40,6 +65,7 @@ public class ItemLang {
         addItemWithTooltip(provider,GOOWARE_MAINFRAME, "生物活性主机",
                 "Microbial Awareness Network",
                 "§7菌群意识网络");
+
         //  Components
         addItemWithTooltip(provider, OPTICAL_TRANSISTOR, "光学晶体管",
                 "§Optical Transistor",
@@ -183,8 +209,26 @@ public class ItemLang {
         addItemWithTooltip(provider, DEBUG_STRUCTURE_BUILDER, "多方块构建工具",
                 "§7Because I need one...",
                 "§7因为我需要一个...");
+        add(provider, "item.epimorphism.debug.structure_writer.structural_scale",
+                "Structure size: X:%s Y:%s Z:%s",
+                "结构规模： X:%s  Y:%s  Z:%s");
+        add(provider, "item.epimorphism.debug.structure_writer.export_order",
+                "Export order: C:%s S:%s A:%s",
+                "导出顺序： C:%s  S:%s  A:%s");
+        add(provider, "item.epimorphism.debug.structure_writer.export_to_log",
+                "Export as a log",
+                "导出为日志");
+        add(provider, "item.epimorphism.debug.structure_writer.export_to_file",
+                "Export as a file",
+                "导出为文件");
+        add(provider, "item.epimorphism.debug.structure_writer.rotate_along_x_axis",
+                "Rotate along the X axis",
+                "沿X轴旋转");
+        add(provider, "item.epimorphism.debug.structure_writer.rotate_along_y_axis",
+                "Rotate along the Y axis",
+                "沿Y轴旋转");
 
-        //  Tool
+                //  Tool
         addItemWithTooltip(provider, ORGANISM_CAPTURE_TOOL, "生物捕捉工具",
                 "§7It's really not a Poké Ball!",
                 "§7这真的不是精灵球！");
