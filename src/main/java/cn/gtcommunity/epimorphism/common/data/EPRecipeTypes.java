@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import static cn.gtcommunity.epimorphism.common.machine.multiblock.electric.GeneralProcessingPlantMachine.RECIPE_MAP;
 
 public class EPRecipeTypes {
+    public static final String CUSTOM = "custom";
 
 
     //////////////////////////////////////
@@ -26,10 +27,18 @@ public class EPRecipeTypes {
     public final static GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = GTRecipeTypes.register("component_assembly_line", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(12, 1, 12, 0).setEUIO(IO.IN)
             .setSound(GTSoundEntries.ASSEMBLER);
 
+    public final static GTRecipeType CHEMICAL_PLANT_RECIPES = GTRecipeTypes.register("chemical_plant", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.CHEMICAL);
+
     //  Universal Processing Plant Recipemaps (Pseudo Recipemap)
     public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);
     public final static GTRecipeType GENERAL_RECIPES_B = registerGeneralRecipeType("general_recipes_b", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
     public final static GTRecipeType GENERAL_RECIPES_C = registerGeneralRecipeType("general_recipes_c", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
+
+    //////////////////////////////////////
+    //*****     Multiblock Part    *****//
+    //////////////////////////////////////
+    public final static GTRecipeType RADIATION_HATCH_RECIPES = GTRecipeTypes.register("radiation_hatch", CUSTOM).setMaxIOSize(1, 0, 0, 0).setEUIO(IO.NONE);
 
     public static void init() {/**/}
 
