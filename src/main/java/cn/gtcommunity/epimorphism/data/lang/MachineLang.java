@@ -41,7 +41,22 @@ public class MachineLang {
                 ));
 
 
+        addBlockWithTooltip(provider, YOTTA_FLUID_TANK::getBlock, "YOT液体储罐",
+                List.of(
 
+                ),
+                List.of(
+
+                ));
+        add(provider, "block.epimorphism.yotta_fluid_tank.fluid",
+                "Fluid: %s",
+                "液体：%s");
+        add(provider, "block.epimorphism.yotta_fluid_tank.stored",
+                "Stored: %s L",
+                "存储：%s L");
+        add(provider, "block.epimorphism.yotta_fluid_tank.capacity",
+                "Capacity: %s L",
+                "容量：%s L");
 
 
         addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);

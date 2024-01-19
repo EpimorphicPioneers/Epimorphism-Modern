@@ -40,5 +40,13 @@ public class MiscLang {
         add(provider, "epimorphism.universal.desc.fluid_capacity",
                 "§7Capacity: %s L",
                 "§7容量：%s L");
+
+        // GUI
+        add(provider, "gui.epimorphism.machine_parallel.title",
+                "The number of current machine parallels",
+                "当前机器并行");
+        add(provider, "gui.epimorphism.change_parallel.desc",
+                "Adjust the number of machine parallels",
+                "调整机器并行数");
     }
 }

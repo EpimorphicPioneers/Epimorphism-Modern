@@ -17,7 +17,7 @@ public class RadiationHatchRecipeHandler {
         registerRadioactiveMaterial(GTMaterials.Uranium235, 80 * 20, 92, provider);
         registerRadioactiveMaterial(GTMaterials.Uranium238, 80 * 20, 92, provider);
         registerRadioactiveMaterial(GTMaterials.Plutonium239, 66 * 20, 94, provider);
-        registerRadioactiveMaterial(GTMaterials.Plutonium239, 66 * 20, 94, provider);
+        registerRadioactiveMaterial(GTMaterials.Plutonium241, 66 * 20, 94, provider);
         registerRadioactiveMaterial(GTMaterials.Naquadah, (int) (14.5 * 20), 130, provider);
         registerRadioactiveMaterial(GTMaterials.NaquadahEnriched, (int) (10.5 * 20), 140, provider);
         registerRadioactiveMaterial(GTMaterials.Naquadria, 8 * 20, 150, provider);
@@ -25,7 +25,7 @@ public class RadiationHatchRecipeHandler {
 
     private static void registerRadioactiveMaterial(Material material, int duration, int radioactivity, Consumer<FinishedRecipe> provider) {
         if (material.hasFlag(MaterialFlags.GENERATE_ROD)) {
-            EPRecipeTypes.RADIATION_HATCH_RECIPES.recipeBuilder("radioactive_material.%s".formatted(material.getName().toLowerCase(Locale.ROOT)))
+            EPRecipeTypes.RADIATION_HATCH_RECIPES.recipeBuilder("radioactive_material_rod.%s".formatted(material.getName().toLowerCase(Locale.ROOT)))
                     .inputItems(ChemicalHelper.get(TagPrefix.rod, material, 1))
                     .duration(duration)
                     .addData("radioactivity", radioactivity)
@@ -34,7 +34,7 @@ public class RadiationHatchRecipeHandler {
         }
 
         if (material.hasFlag(MaterialFlags.GENERATE_LONG_ROD)) {
-            EPRecipeTypes.RADIATION_HATCH_RECIPES.recipeBuilder("radioactive_material.%s".formatted(material.getName().toLowerCase(Locale.ROOT)))
+            EPRecipeTypes.RADIATION_HATCH_RECIPES.recipeBuilder("radioactive_material_long_rod.%s".formatted(material.getName().toLowerCase(Locale.ROOT)))
                     .inputItems(ChemicalHelper.get(TagPrefix.rodLong, material, 1))
                     .duration(duration)
                     .addData("radioactivity", radioactivity)

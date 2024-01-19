@@ -22,7 +22,7 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
     }
     @Override
     public String getTitle() {
-        return "epimorphism.gui.machine_parallel.title";
+        return "gui.epimorphism.machine_parallel.title";
     }
 
     @Override
@@ -76,7 +76,7 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
     @Override
     public List<Component> getTooltips() {
         List<Component> tooltip = new ArrayList<>();
-        tooltip.add(Component.translatable("epimorphism.gui.change_parallel.tooltip"));
+        tooltip.add(Component.translatable("gui.epimorphism.change_parallel.desc"));
         return tooltip;
     }
 }
