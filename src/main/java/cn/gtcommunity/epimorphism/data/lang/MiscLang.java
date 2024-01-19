@@ -35,8 +35,8 @@ public class MiscLang {
 
 
         add(provider, "epimorphism.universal.desc.kg_capacity",
-                "§6Capacity: §r%s Kg",
-                "§6容量：§r%d千克");
+                "§6Capacity: §r%d kg",
+                "§6容量：§r%d kg");
         add(provider, "epimorphism.universal.desc.fluid_capacity",
                 "§7Capacity: %s L",
                 "§7容量：%s L");

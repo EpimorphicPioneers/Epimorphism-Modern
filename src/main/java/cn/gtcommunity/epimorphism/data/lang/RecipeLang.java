@@ -13,5 +13,14 @@ public class RecipeLang {
         addRecipeType(provider, GENERAL_RECIPES_A, "Machining Mode A", "加工模式A");
         addRecipeType(provider, GENERAL_RECIPES_B, "Machining Mode B", "加工模式B");
         addRecipeType(provider, GENERAL_RECIPES_C, "Machining Mode C", "加工模式C");
+        addRecipeType(provider, RADIATION_HATCH_RECIPES, "List of materials in the radiation chamber", "放射仓材料列表");
+
+        //  Recipe Data
+        add(provider, "epimorphism.recipe.mass",
+                "Mass: %s kg",
+                "质量：%s kg");
+        add(provider, "epimorphism.recipe.radioactivity",
+                "Radiation dose: %s Sv",
+                "辐射剂量：%s Sv");
     }
 }
