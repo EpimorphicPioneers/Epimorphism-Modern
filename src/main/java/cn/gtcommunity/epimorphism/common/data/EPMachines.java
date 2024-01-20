@@ -2,7 +2,7 @@ package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.EPPartAbility;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingWorkableElectricMultiblockMachine;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
@@ -19,7 +19,6 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTa
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -29,17 +28,14 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.MachineRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.TieredHullMachineRenderer;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -48,7 +44,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -411,7 +406,7 @@ public class EPMachines {
             .register();
 
 
-    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingWorkableElectricMultiblockMachine(holder, "CACasing"))
+    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
             .tooltips(Component.translatable("block.epimorphism.component_assembly_line.desc0"))
             .rotationState(RotationState.ALL)
@@ -622,9 +617,17 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition INDUSTRIAL_FISHING_POND = EP_REGISTRATE.multiblock("industrial_fishing_pond", IndustrialFishingPondMachine::new)
             .langValue("Industrial Fishing Pond")
-            .tooltips(Component.translatable("block.epimorphism.neutron_activator.desc0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.0"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.1"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.2"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.3"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.4"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.5")
+            )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(EPBlocks.BREEDING_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEEEEEE", "XXXXXXXXX", "XXXXXXXXX")

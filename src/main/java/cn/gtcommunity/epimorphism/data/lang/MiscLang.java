@@ -62,5 +62,12 @@ public class MiscLang {
         add(provider, "gui.epimorphism.change_parallel.desc",
                 "Adjust the number of machine parallels",
                 "调整机器并行数");
+
+        add(provider, "gui.epimorphism.fishing_mode.title",
+                "Current Fishing Mode",
+                "当前捕捞模式");
+        add(provider, "gui.epimorphism.change_fishing_mode.desc",
+                "Adjust Fishing Mode",
+                "调整捕捞模式");
     }
 }
