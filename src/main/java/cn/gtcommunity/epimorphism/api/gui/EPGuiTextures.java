@@ -6,7 +6,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class EPGuiTextures {
-    public static final ResourceTexture PROGRESS_BAR_NEUTRON_ACTIVATOR = createTexture("progress_bar/progress_bar_neutron_activator.png");
+    public static final ResourceTexture PROGRESS_BAR_RADIATION_HATCH = createTexture("progress_bar/progress_bar_radiation_hatch.png");
+    public static final ResourceTexture PROGRESS_BAR_SIEVERT = createTexture("progress_bar/progress_bar_sievert.png");
+    public static final ResourceTexture BAR_CONTAINER_SIEVERT = createTexture("progress_bar/bar_container_sievert.png");
+    public static final ResourceTexture PROGRESS_BAR_DECAY_TIME = createTexture("progress_bar/progress_bar_decay_time.png");
+    public static final ResourceTexture BAR_CONTAINER_DECAY_TIME = createTexture("progress_bar/bar_container_decay_time.png");
 
     public static final ResourceTexture TOGGLE_BUTTON_LOCK = createTexture("widget/button_lock.png");
     public static final ResourceTexture TOGGLE_BUTTON_VOID = createTexture("widget/button_void.png");

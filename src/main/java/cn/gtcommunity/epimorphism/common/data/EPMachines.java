@@ -651,6 +651,31 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/industrial_fishing_pond"), false)
             .register();
 
+    public final static MultiblockMachineDefinition FERMENTATION_TANK = EP_REGISTRATE.multiblock("fermentation_tank", FermentationTankMachine::new)
+            .langValue("Fermentation Tank")
+            .tooltips(Component.translatable("block.epimorphism.fermentation_tank.desc0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(EPRecipeTypes.FERMENTATION_TANK_RECIPES)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("FAAAF", "FXXXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
+                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
+                    .aisle("AXXXA", "XEPEX", "GEPEG", "GEPEG", "GEPEG", "XEPEX", "AXXXA")
+                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
+                    .aisle("FAAAF", "FXSXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(42).or(autoAbilities(EPRecipeTypes.FERMENTATION_TANK_RECIPES)))
+                    .where('G', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('F', frames(GTMaterials.WatertightSteel))
+                    .where('P', blocks(GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where('A', any())
+                    .where('E', air())
+                    .build()
+            )
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    Epimorphism.id("block/multiblock/fermentation_tank"), false)
+            .register();
 
 
 

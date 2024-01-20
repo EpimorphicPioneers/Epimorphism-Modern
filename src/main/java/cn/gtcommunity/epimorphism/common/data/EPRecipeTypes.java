@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data;
 
+import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.recipe.GeneralRecipeType;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.GeneralProcessingPlantMachine;
 import com.gregtechceu.gtceu.GTCEu;
@@ -10,6 +11,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,6 +34,8 @@ public class EPRecipeTypes {
 
     public final static GTRecipeType CHEMICAL_PLANT_RECIPES = GTRecipeTypes.register("chemical_plant", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
+    public final static GTRecipeType FERMENTATION_TANK_RECIPES = GTRecipeTypes.register("fermentation_tank", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.CHEMICAL);
 
     //  Universal Processing Plant Recipemaps (Pseudo Recipemap)
     public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);
@@ -42,6 +46,7 @@ public class EPRecipeTypes {
     //*****     Multiblock Part    *****//
     //////////////////////////////////////
     public final static GTRecipeType RADIATION_HATCH_RECIPES = GTRecipeTypes.register("radiation_hatch", CUSTOM).setMaxIOSize(1, 0, 0, 0).setEUIO(IO.NONE)
+            .setProgressBar(EPGuiTextures.PROGRESS_BAR_RADIATION_HATCH, ProgressTexture.FillDirection.ALWAYS_FULL)
             .addDataInfo(compoundTag -> {
                 int radioactivity = compoundTag.getInt("radioactivity");
                 return LocalizationUtils.format("epimorphism.recipe.radioactivity", radioactivity);

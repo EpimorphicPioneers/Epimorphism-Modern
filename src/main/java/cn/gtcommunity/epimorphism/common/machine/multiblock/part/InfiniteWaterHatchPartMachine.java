@@ -82,6 +82,7 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
 
     protected void productWater() {
         isFilled = tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false) == 0;
+        updateTankSubscription();
     }
 
     @Override

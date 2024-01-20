@@ -40,6 +40,20 @@ public class MiscLang {
         add(provider, "epimorphism.universal.desc.fluid_capacity",
                 "§7Capacity: %s L",
                 "§7容量：%s L");
+        add(provider, "epimorphism.universal.desc.mass",
+                "Mass: %s",
+                "质量：%s");
+
+        add(provider, "epimorphism.universal.desc.sievert",
+                "Radiation dose: %s Sv",
+                "辐射剂量：%s Sv");
+        add(provider, "epimorphism.universal.desc.radioactive_source",
+                "Radioactive Source: %s",
+                "放射源：%s");
+
+        add(provider, "epimorphism.universal.desc.time",
+                "Time: %s",
+                "时间：%s");
 
         // GUI
         add(provider, "gui.epimorphism.machine_parallel.title",
