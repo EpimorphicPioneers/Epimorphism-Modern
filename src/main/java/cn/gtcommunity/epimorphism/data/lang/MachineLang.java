@@ -85,6 +85,37 @@ public class MachineLang {
                         "§7使用螺丝刀设置抑制等级"
                 ));
 
+        addBlockWithTooltip(provider, INDUSTRIAL_FISHING_POND::getBlock, "珠海渔场",
+                List.of(
+                        "§7The Gift of the Sea",
+                        "Catch a lot of seafood for you in different modes",
+                        "§9The inside of the multiblock needs to be filled with water",
+                        "§bFor each voltage level raised, §e8§b is added to the maximum number of parallels",
+                        "§7Use a screwdriver to switch fishing modes",
+                        "§7The water in the input bin is automatically filled into the structure"
+                ),
+                List.of(
+                        "§7海之恩赐",
+                        "以不同的模式为你捕捞大量水产",
+                        "§9多方块的内部需要填满水",
+                        "§b每提升一个电压等级，最大并行数加§e2",
+                        "§7使用螺丝刀切换捕捞模式",
+                        "§7输入仓中的水会自动填入结构"
+                ));
+
+        add(provider, "block.epimorphism.industrial_fishing_pond.fishing_mode.0",
+                "Fishing for Fish",
+                "捕捞鱼类");
+        add(provider, "block.epimorphism.industrial_fishing_pond.fishing_mode.1",
+                "Fishing for Junk",
+                "捕捞垃圾");
+        add(provider, "block.epimorphism.industrial_fishing_pond.fishing_mode.2",
+                "Fishing for Treasure",
+                "捕捞宝藏");
+        add(provider, "block.epimorphism.industrial_fishing_pond.warning.fill_water",
+                "WARNING: Water sources are insufficient.",
+                "警告：水源不足");
+
 
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
                 "§7Can hold §r2^31-1§7 items per slot, and cannot store items with §eNBT",
