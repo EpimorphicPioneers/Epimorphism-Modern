@@ -301,33 +301,33 @@ public class EPItems {
 //            })))
 //            .register();
     public final static ItemEntry<ComponentItem> INTRAVITAL_SOC = registerItemWithTooltip("component.gooware.intravital_soc", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Intravital SoC")
             .register();
     public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_BOULE = registerItemWithTooltip("boule.strontium_carbonate.bohrium", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Bohrium-doped Monocrystalline Strontium Carbonate Boule")
             .register();
     public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_WAFER = registerItemWithTooltip("wafer.strontium_carbonate.bohrium", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Bohrium-doped Strontium Carbonate Wafer")
             .register();
     public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_OPTICAL_WAFER = registerItemWithTooltip("component.optical.strontium_carbonate_wafer", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Coated Strontium Carbonate Wafer")
             .register();
     public final static ItemEntry<ComponentItem> OPTICAL_IMC_BOARD = registerItemWithTooltip("component.optical.optical_imc_board", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Preassembled Photoelectric Circuit Board")
             .register();
     public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = registerItemWithTooltip("component.optical.photoelectron_soc", ComponentItem::create, 1)
-            .lang("Infinite Circuit Board")
+            .lang("Photoelectric SoC")
             .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.component.optical.photoelectron_soc.tooltip"));
+                lines.add(Component.translatable("item.epimorphism.component.optical.photoelectron_soc.deac"));
             })))
             .register();
     //  Others
 //    public final static ItemEntry<Item> MAGNETRON;
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = registerItemWithTooltip("uhv_voltage_coil", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UEV = registerItemWithTooltip("uev_voltage_coil", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UIV = registerItemWithTooltip("uiv_voltage_coil", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UXV = registerItemWithTooltip("uxv_voltage_coil", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_OPV = registerItemWithTooltip("opv_voltage_coil", ComponentItem::create, 1).lang("Infinite Circuit Board").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = registerItemWithTooltip("uhv_voltage_coil", ComponentItem::create, 1).lang("Ultra High Voltage Coil").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UEV = registerItemWithTooltip("uev_voltage_coil", ComponentItem::create, 1).lang("Ultra Excessive Voltage Coil").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UIV = registerItemWithTooltip("uiv_voltage_coil", ComponentItem::create, 1).lang("Ultra Immense Voltage Coil").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UXV = registerItemWithTooltip("uxv_voltage_coil", ComponentItem::create, 1).lang("Ultra Extreme Voltage Coil").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_OPV = registerItemWithTooltip("opv_voltage_coil", ComponentItem::create, 1).lang("Overpowered Voltage Coil").register();
     //    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_MAX;
 //    public final static ItemEntry<Item> CARBON_ALLOTROPE;
 //    public final static ItemEntry<Item> GRAPHENE_ALIGNED;
@@ -336,10 +336,10 @@ public class EPItems {
 //    public final static ItemEntry<Item> SEPARATION_ELECTROMAGNET;
 //    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX;
 //    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX;
-    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = EP_REGISTRATE.item("metastable_self_healing_adhesive", Item::new).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = EP_REGISTRATE.item("hyperdimensional_tachyon_condensed_matter", Item::new).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<Item> UNSTABLE_STAR = EP_REGISTRATE.item("unstable_star", Item::new).lang("Infinite Circuit Board").register();
-    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = EP_REGISTRATE.item("component.cosmic.cladded_optical_fiber_core", Item::new).lang("Infinite Circuit Board").register();
+    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = EP_REGISTRATE.item("metastable_self_healing_adhesive", Item::new).lang("Metastable Self-healing Adhesive").register();
+    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = EP_REGISTRATE.item("hyperdimensional_tachyon_condensed_matter", Item::new).lang("Hyperdimensional Tachyon Condensed Matter").register();
+    public final static ItemEntry<Item> UNSTABLE_STAR = EP_REGISTRATE.item("unstable_star", Item::new).lang("Unstable Star").register();
+    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = EP_REGISTRATE.item("component.cosmic.cladded_optical_fiber_core", Item::new).lang("Cladded Optical Fiber Core").register();
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT;
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT;
 //    public final static ItemEntry<Item> NUCLEAR_CLOCK;

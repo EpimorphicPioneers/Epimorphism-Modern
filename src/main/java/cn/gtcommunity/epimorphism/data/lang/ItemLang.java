@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.data.lang;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
+import static cn.gtcommunity.epimorphism.common.data.EPItems.SUPRACAUSAL_MAINFRAME;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 
 public class ItemLang {
@@ -17,6 +18,9 @@ public class ItemLang {
         addItemWithTooltip(provider, SPINTRONIC_BOARD, "碳纳米管磁性存储电路基板",
                 "§7Third generation Spintronic Technology",
                 "§7第三代自旋电子技术");
+        addItemWithTooltip(provider, OPTICAL_IMC_BOARD, "光学控制基板",
+                "§7The Basis Point Of The Integration Of Storage And Computing",
+                "§7存算一体的基点");
         addItemWithTooltip(provider, GOOWARE_CIRCUIT_BOARD, "终极电路板",
                 "§7Revitalization on circuit boards",
                 "§7电路板上焕发生机");
@@ -53,18 +57,7 @@ public class ItemLang {
                 "§c§lMAX-Tier Circuit",
                 "§c§lMAX级电路");
 
-        addItemWithTooltip(provider,GOOWARE_PROCESSOR, "生物活性处理器",
-                "Viscous organic slurry adheres the board",
-                "§7粘稠的有机浆液附着于表面");
-        addItemWithTooltip(provider,GOOWARE_ASSEMBLY, "生物活性处理器集群",
-                "Seems to be able to hear whispers",
-                "§7似乎能听到窃窃私语");
-        addItemWithTooltip(provider,GOOWARE_COMPUTER, "生物活性超级处理器",
-                "Slime mold covered in metal",
-                "§7金属之间布满了黏菌");
-        addItemWithTooltip(provider,GOOWARE_MAINFRAME, "生物活性主机",
-                "Microbial Awareness Network",
-                "§7菌群意识网络");
+
 
         //  Components
         addItemWithTooltip(provider, OPTICAL_TRANSISTOR, "光学晶体管",
@@ -113,15 +106,103 @@ public class ItemLang {
                 "§7Cosmic Inductor",
                 "§7寰宇电感");
 
+        //
+
+
+        //  SoC
+        addItemWithTooltip(provider, INTRAVITAL_SOC, "活体SoC",
+                "§7Wriggling Circuits",
+                "§7蠕动着的电路");
+        addItemWithTooltip(provider, PHOTOELECTRON_SOC, "光电子SoC",
+                "§7Fluorescent Circuits",
+                "§7荧光电路");
+
         //  Gooware Components
+        addItemWithTooltip(provider, GOOWARE_PROCESSOR, "生物活性处理器",
+                "Viscous organic slurry adheres the board",
+                "§7粘稠的有机浆液附着于表面");
+        addItemWithTooltip(provider, GOOWARE_ASSEMBLY, "生物活性处理器集群",
+                "Seems to be able to hear whispers",
+                "§7似乎能听到窃窃私语");
+        addItemWithTooltip(provider, GOOWARE_COMPUTER, "生物活性超级计算机",
+                "Slime mold covered in metal",
+                "§7金属之间布满了黏菌");
+        addItemWithTooltip(provider, GOOWARE_MAINFRAME, "生物活性主机",
+                "Microbial Awareness Network",
+                "§7菌群意识网络");
 
         //  Optical Components
+        addItemWithTooltip(provider, OPTICAL_PROCESSOR, "光学存算一体处理器",
+                "§7Ultra efficient Photoelectron Transport",
+                "§7超高效光电子载运");
+        addItemWithTooltip(provider, OPTICAL_ASSEMBLY, "光学存算一体处理器集群",
+                "§7Photon Surge",
+                "§7光子涌流");
+        addItemWithTooltip(provider, OPTICAL_COMPUTER, "光学存算一体超级计算机",
+                "§7Ultra Large scale Computing data support",
+                "§7超大规模计算数据支持");
+        addItemWithTooltip(provider, OPTICAL_MAINFRAME, "光学存算一体主机",
+                "§7Calculating speed infinitely close to Light speed",
+                "§7计算速度无限逼近于光速");
 
         //  Spintronic Components
+        addItemWithTooltip(provider, SPINTRONIC_PROCESSOR, "自旋电子存算一体处理器",
+                "§7Super Magnetic Semiconductor Circuit",
+                "§7超级磁性半导体电路");
+        addItemWithTooltip(provider, SPINTRONIC_ASSEMBLY, "自旋电子存算一体处理器集群",
+                "§7Quantum Random Walk",
+                "§7量子随机游走");
+        addItemWithTooltip(provider, SPINTRONIC_COMPUTER, "自旋电子存算一体超级计算机",
+                "§7Control everything with Spin",
+                "§7以自旋控制一切");
+        addItemWithTooltip(provider, SPINTRONIC_MAINFRAME, "自旋电子存算一体主机",
+                "§7Circuit from the Future",
+                "§7来自未来的电路");
 
         //  Cosmic Components
+        addItemWithTooltip(provider, COSMIC_PROCESSOR, "寰宇行星级处理器",
+                "§7Holding Star in Hand",
+                "§7手握星辰");
+        addItemWithTooltip(provider, COSMIC_ASSEMBLY, "寰宇行星级处理器集群",
+                "§7Rotate slightly",
+                "§7于握揽微微转动");
+        addItemWithTooltip(provider, COSMIC_COMPUTER, "寰宇行星级超级计算机",
+                "§7A small thing with a density approaching a Singularity",
+                "§7度趋近于奇点的小东西");
+        addItemWithTooltip(provider, COSMIC_MAINFRAME, "寰宇行星级主机",
+                "§7Simulate everything, Analyze everything, Understand everything",
+                "§7模拟一切，分析一切，理解一切");
 
         //  Supracausal Components
+        addItemWithTooltip(provider, SUPRACAUSAL_PROCESSOR, "超因果星系级处理器",
+                "§7The laws of the Universe emerge here",
+                "§7宇宙的法则涌现于此");
+        addItemWithTooltip(provider, SUPRACAUSAL_ASSEMBLY, "超因果星系级处理器集群",
+                "§7Crossing the Barrier in front of the Gate of Truth",
+                "§7跨过真理之门前的宏伟障壁");
+        addItemWithTooltip(provider, SUPRACAUSAL_COMPUTER, "超因果星系级超级计算机",
+                "§7Beyond the Shadow of Time",
+                "§7超越时间之影");
+        addItemWithTooltip(provider, SUPRACAUSAL_MAINFRAME, "超因果星系级主机",
+                "§7One of All Things,and the Original Miracle",
+                "§7万物归一者，原初的神迹");
+
+        //  Coil
+        addItemWithTooltip(provider, VOLTAGE_COIL_UHV,"极高压线圈",
+                "Ultra Coil",
+                "极致线圈");
+        addItemWithTooltip(provider, VOLTAGE_COIL_UEV,"极超压线圈",
+                "Unreal Coil",
+                "超凡线圈");
+        addItemWithTooltip(provider, VOLTAGE_COIL_UIV,"极巨压线圈",
+                "Insane Coil",
+                "疯狂线圈");
+        addItemWithTooltip(provider, VOLTAGE_COIL_UXV,"极顶压线圈",
+                "Epic Coil",
+                "史诗线圈");
+        addItemWithTooltip(provider, VOLTAGE_COIL_OPV,"过载压线圈",
+                "Legendary Coil",
+                "传奇线圈");
 
         //  Lasers
         addItemWithTooltip(provider, OPTICAL_FIBER, "光纤",
@@ -148,19 +229,53 @@ public class ItemLang {
         //  Condenser Components
 
         //  Wafers
-
-        //  Others
+        addItemWithTooltip(provider, NANO_PIC_WAFER, "NPIC晶圆",
+                "§7Raw Nano Power Circuit",
+                "§7纳米功率集成电路原料");
+        addItemWithTooltip(provider, NANO_PIC_CHIP, "NPIC芯片",
+                "§7Nano Power Integrated Circuit",
+                "§7纳米功率集成电路");
+        addItemWithTooltip(provider, PICO_PIC_WAFER, "PPIC晶圆",
+                "§7Raw Pico Power Circuit",
+                "§7皮米功率集成电路原料");
+        addItemWithTooltip(provider, PICO_PIC_CHIP, "PPIC芯片",
+                "§7Pico Power Integrated Circuit",
+                "§7皮米功率集成电路");
+        addItemWithTooltip(provider, DUBNIUM_BOULE, "𬭊掺杂的单晶硅",
+                "§7Raw Circuit",
+                "§7电路原料");
+        addItemWithTooltip(provider, DUBNIUM_WAFER, "𬭊掺杂的晶圆",
+                "§7Raw Circuit",
+                "§7电路原料");
+        addItemWithTooltip(provider, CUBIC_ZIRCONIA_EUROPIUM_BOULE, "铕掺杂的单晶立方氧化锆",
+                "§7Raw Crystal",
+                "§7晶体原料");
+        addItemWithTooltip(provider, CUBIC_ZIRCONIA_EUROPIUM_WAFER, "铕掺杂的立方氧化锆晶圆",
+                "§7Raw Crystal",
+                "§7晶体原料");
+        addItemWithTooltip(provider, CRYSTAL_INTERFACE_WAFER, "晶体接口晶圆",
+                "§7Raw Crystal",
+                "§7晶体原料");
+        addItemWithTooltip(provider, STRONTIUM_CARBONATE_BOHRIUM_BOULE, "𬭛掺杂的单晶碳酸锶",
+                "§7Raw Optical Crystal",
+                "§7光学晶体原料");
+        addItemWithTooltip(provider, STRONTIUM_CARBONATE_BOHRIUM_WAFER, "𬭛掺杂的碳酸锶晶圆",
+                "§7Raw Optical Crystal",
+                "§7光学晶体原料");
+        addItemWithTooltip(provider, STRONTIUM_CARBONATE_OPTICAL_WAFER, "光聚合液涂覆的碳酸锶晶圆",
+                "§7Pre-treatment Of Dielectric Reflective Wafer",
+                "§7预处理电介质反射晶圆");
 
         //  Crystal Components
         addItemWithTooltip(provider, DIAMOND_CHIP, "刻蚀钻石晶片",
                 "§7Raw Crystal Logic Circuit",
-                "§7待处理晶体逻辑电路");
+                "§7晶体逻辑电路原料");
         addItemWithTooltip(provider, RUBY_CHIP, "刻蚀红宝石晶片",
                 "§7Raw Crystal Control Circuit",
-                "§7待处理晶体控制电路");
+                "§7晶体控制电路原料");
         addItemWithTooltip(provider, SAPPHIRE_CHIP, "刻蚀蓝宝石晶片",
                 "§7Raw Crystal Conversion Circuit",
-                "§7待处理晶体转换电路");
+                "§7晶体转换电路原料");
 
         //  High Energy Physics items
 
@@ -189,7 +304,13 @@ public class ItemLang {
         addItemCNName(provider, CHRYSOPHYCEAE, "金藻");
         addItemCNName(provider, BROWN_ALGA, "褐藻");
 
+        //  QFT item
+        addItemCNName(provider, METASTABLE_SELF_HEALING_ADHESIVE,"超稳态自修复粘合剂");
+        addItemCNName(provider, HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER,"超维度快子凝聚物质");
 
+        //  Item
+        addItemCNName(provider,UNSTABLE_STAR,"易变之星");
+        addItemCNName(provider,CLADDED_OPTICAL_FIBER_CORE,"包层光导纤维内芯");
 
         //  Covers
         addItemCNName(provider, ELECTRIC_PUMP_MAX, "§c§lMAX§r电动泵");
@@ -235,5 +356,8 @@ public class ItemLang {
         add(provider, "item.epimorphism.organism_capture_tool.desc.info",
                 "§7Creatures: §r%s",
                 "§7生物：§r%s");
+        addItemWithTooltip(provider, VAJRA,"金刚杵",
+                "",
+                "");
     }
 }
