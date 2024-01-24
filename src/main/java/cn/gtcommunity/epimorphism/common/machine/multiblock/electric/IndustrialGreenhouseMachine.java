@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
+import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
@@ -8,6 +9,7 @@ import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +26,12 @@ public class IndustrialGreenhouseMachine extends WorkableMultiblockMachine imple
 
     @Override
     public List<IFancyUIProvider> getSubTabs() {
-        var list = new ArrayList<>(IFancyUIMachine.super.getSubTabs());
+        List<IFancyUIProvider> list = new ArrayList<>();
 
         list.add(new IFancyUIProvider() {
             @Override
             public Widget createMainPage() {
-                return IndustrialGreenhouseMachine.this.createMainPage();
+                return new WidgetGroup(0, 0, 170 + 8, 129 + 8);
             }
 
             @Override
@@ -47,6 +49,8 @@ public class IndustrialGreenhouseMachine extends WorkableMultiblockMachine imple
 
             }
         });
+
+        list.addAll(getParts().stream().filter(IFancyUIProvider.class::isInstance).map(IFancyUIProvider.class::cast).toList());
         return list;
     }
 

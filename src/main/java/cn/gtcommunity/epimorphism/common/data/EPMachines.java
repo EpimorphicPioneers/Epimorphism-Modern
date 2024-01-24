@@ -10,16 +10,14 @@ import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ChemicalPlantR
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.InfiniteWaterHatchPartMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.RadiationHatchMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -28,7 +26,6 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
@@ -36,6 +33,7 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -180,7 +178,14 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition NEUTRON_ACTIVATOR = EP_REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
             .langValue("Neutron Activator")
-            .tooltips(Component.translatable("block.epimorphism.neutron_activator.desc0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.neutron_activator.desc.0"),
+                    Component.translatable("block.epimorphism.neutron_activator.desc.1"),
+                    Component.translatable("block.epimorphism.neutron_activator.desc.2"),
+                    Component.translatable("block.epimorphism.neutron_activator.desc.3"),
+                    Component.translatable("block.epimorphism.neutron_activator.desc.4")
+
+            )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.NEUTRON_ACTIVATOR_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -729,6 +734,36 @@ public class EPMachines {
                     )
                     .register(),
             GTValues.tiersBetween(3, 13));
+
+//    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
+//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),
+//            (tier, builder) -> builder
+//                    .langValue("%s §rWireless Energy Input Hatch".formatted(VNF[tier]))
+//                    .rotationState(RotationState.ALL)
+//                    .abilities(PartAbility.INPUT_ENERGY)
+//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_input_hatch"))
+//                    .tooltips(
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.0"),
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.1"),
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.2")
+//                    )
+//                    .register(),
+//            ELECTRIC_TIERS);
+
+//    public static final MachineDefinition[] WIRELESS_ENERGY_OUTPUT_HATCH = registerTieredEPMachines("wireless_energy_output_hatch",
+//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.OUT, 2),
+//            (tier, builder) -> builder
+//                    .langValue("%s §rWireless Energy Output Hatch".formatted(VNF[tier]))
+//                    .rotationState(RotationState.ALL)
+//                    .abilities(PartAbility.OUTPUT_ENERGY)
+//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_output_hatch"))
+//                    .tooltips(
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.0"),
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.1"),
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.2")
+//                    )
+//                    .register(),
+//            ELECTRIC_TIERS);
 
     // Single Machines
     public final static MachineDefinition INFINITY_CRATE = EP_REGISTRATE.machine("infinity_crate", holder -> new InfinityCrateMachine(holder, EPMaterials.Infinity, 252))

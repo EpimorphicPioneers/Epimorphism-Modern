@@ -62,7 +62,15 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
         super(holder);
         this.material = material;
         this.inventorySize = inventorySize;
-        this.inventory = new NotifiableItemStackHandler(this, inventorySize, IO.BOTH, IO.BOTH, slots -> new ItemStackTransfer(slots) {
+        this.inventory = createInventoryItemHandler();
+    }
+
+    //////////////////////////////////////
+    //*****     Initialization     *****//
+    //////////////////////////////////////
+
+    protected NotifiableItemStackHandler createInventoryItemHandler(Object... args) {
+        return new NotifiableItemStackHandler(this, inventorySize, IO.BOTH, IO.BOTH, slots -> new ItemStackTransfer(slots) {
             @Override
             public int getSlotLimit(int slot) {
                 return Integer.MAX_VALUE;
@@ -107,6 +115,10 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
             }
         });
     }
+
+    //////////////////////////////////////
+    //**********     GUI     ***********//
+    //////////////////////////////////////
 
     @Override
     public ModularUI createUI(Player entityPlayer) {
@@ -204,6 +216,10 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
             }
         }.setBackgroundTexture(GuiTextures.SLOT);
     }
+
+    //////////////////////////////////////
+    //*******       Data        ********//
+    //////////////////////////////////////
 
     @Override
     public void onDrops(List<ItemStack> drops, Player entity) {

@@ -22,5 +22,10 @@ public class RecipeLang {
         add(provider, "epimorphism.recipe.radioactivity",
                 "Radiation dose: %s Sv",
                 "辐射剂量：%s Sv");
+
+        //  Recipe Condition
+        add(provider, "recipe.condition.neutron_kinetic_energy.desc",
+                "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
+                "最小中子动能: %seV\n最大中子动能: %seV");
     }
 }

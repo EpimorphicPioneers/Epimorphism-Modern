@@ -76,7 +76,7 @@ dependencies {
     modImplementation("maven.modrinth:oculus:1.20.1-1.6.9")
 
     // GTM
-    modImplementation("maven.modrinth:gregtechceu-modern:mc")
+    modImplementation("maven.modrinth:gregtechceu-modern:kFon4npq")
 
     // Runtime only testing mods
     //modRuntimeOnly(forge.worldStripper)

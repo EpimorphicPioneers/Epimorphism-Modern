@@ -3,13 +3,9 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 import cn.gtcommunity.epimorphism.utils.EPMathUtil;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
-import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.InteractionHand;
@@ -21,7 +17,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class NeutronAcceleratorMachine extends EnergyHatchPartMachine {
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronAcceleratorMachine.class, TieredIOPartMachine.MANAGED_FIELD_HOLDER);
+    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronAcceleratorMachine.class, EnergyHatchPartMachine.MANAGED_FIELD_HOLDER);
 
     public NeutronAcceleratorMachine(IMachineBlockEntity holder, int tier, Object... args) {
         super(holder, tier, IO.IN, 1, args);

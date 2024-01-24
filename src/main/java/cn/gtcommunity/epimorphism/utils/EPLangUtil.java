@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 public class EPLangUtil {
     private static final TreeMap<BigInteger, String> UNITS = new TreeMap<>();
+    public static final DecimalFormat DECIMAL_FORMAT_0F = new DecimalFormat("#");
     public static final DecimalFormat DECIMAL_FORMAT_1F = new DecimalFormat("#.#");
     public static final DecimalFormat DECIMAL_FORMAT_2F = new DecimalFormat("#.##");
 
@@ -23,7 +24,7 @@ public class EPLangUtil {
         UNITS.put(BigInteger.TEN.pow(3), "K");
     }
 
-    public static String abbreviate(int number) {
+    public static String abbreviate1F(int number) {
         Map.Entry<BigInteger, String> entry = UNITS.floorEntry(BigInteger.valueOf(number));
         if (entry == null) {
             return FormattingUtil.formatNumbers(number);
@@ -31,6 +32,16 @@ public class EPLangUtil {
         BigInteger divisor = entry.getKey();
         String unit = entry.getValue();
         return DECIMAL_FORMAT_1F.format(number / divisor.doubleValue()) + unit;
+    }
+
+    public static String abbreviate0F(int number) {
+        Map.Entry<BigInteger, String> entry = UNITS.floorEntry(BigInteger.valueOf(number));
+        if (entry == null) {
+            return FormattingUtil.formatNumbers(number);
+        }
+        BigInteger divisor = entry.getKey();
+        String unit = entry.getValue();
+        return DECIMAL_FORMAT_0F.format(number / divisor.doubleValue()) + unit;
     }
 
     public static String abbreviate(long number) {

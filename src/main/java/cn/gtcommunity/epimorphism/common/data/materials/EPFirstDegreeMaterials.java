@@ -77,7 +77,7 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DIAMOND)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, MaterialFlags.FLAMMABLE, MaterialFlags.EXPLOSIVE)
                 .components(GTMaterials.Boron, 1, GTMaterials.Nitrogen, 1)
-                .toolStats(new ToolProperty(14.0F, 9.0F, 12400, 15, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
+                .toolStats(new ToolProperty(14.0F, 9.0F, 12400, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .buildAndRegister()
                 .setFormula("c-BN", true);
         //  24008 Boric Acid

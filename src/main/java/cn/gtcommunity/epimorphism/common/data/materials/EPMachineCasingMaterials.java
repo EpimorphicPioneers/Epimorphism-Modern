@@ -75,7 +75,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x334433)
                 .iconSet(MaterialIconSet.SHINY)
-                .toolStats(new ToolProperty(20.0F, 10.0F, 18000, 18, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
+                .toolStats(new ToolProperty(20.0F, 10.0F, 18000, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .blastTemp(11900, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 2400)
                 .components(GTMaterials.TungstenSteel, 12, GTMaterials.HSSS, 9, GTMaterials.HSSG, 6, GTMaterials.Ruridit, 3, MagnetoResonatic, 2, GTMaterials.Plutonium241, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
@@ -110,7 +110,7 @@ public class EPMachineCasingMaterials {
                 .blastTemp(11500, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 4580)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .components(GTMaterials.Titanium, 26, GTMaterials.Lanthanum, 6, GTMaterials.TungstenSteel, 4, GTMaterials.Cobalt, 3, GTMaterials.Manganese, 2, GTMaterials.Phosphorus, 2, GTMaterials.Palladium, 2, GTMaterials.Niobium, 1, GTMaterials.Argon, 5)
-                .toolStats(new ToolProperty(9.0F, 30.0F, 32000, 20, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
+                .toolStats(new ToolProperty(9.0F, 30.0F, 32000, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .buildAndRegister();
         //  24510 Talonite
         Talonite = Builder("talonite")

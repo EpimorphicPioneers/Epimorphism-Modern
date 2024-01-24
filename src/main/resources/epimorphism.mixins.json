@@ -12,9 +12,9 @@
     "mc.DimensionSpecialEffectsMixin"
   ],
   "mixins": [
+    "gtm.ComponentItemMixin",
     "gtm.GTBlocksMixin",
     "gtm.GTRecipeTypesMixin",
-    "gtm.ComponentItemMixin",
     "gtm.RendererGlassBlockMixin",
     "gtm.TagPrefixItemMixin",
     "mc.BlockGlassMixin",

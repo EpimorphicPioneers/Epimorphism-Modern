@@ -58,6 +58,31 @@ public class MachineLang {
                 "Capacity: %s L",
                 "容量：%s L");
 
+        addBlockWithTooltip(provider, NEUTRON_ACTIVATOR::getBlock, "中子活化器",
+                List.of(
+                        "§o§7Faster-than-light motion!",
+                        "§6Additional high-speed tubing blocks provide recipe time reduction while reducing the efficiency of the neutron accelerator",
+                        "§6When operating without a neutron accelerator, neutron kinetic energy decreases §e72KeV§6 neutron kinetic energy per second",
+                        "§6Input graphite beryllium powder can immediately absorb §e10MeV§6 neutron kinetic energy",
+                        "§6Neutron kinetic energy will explode when it exceeds §41200MeV§6!"
+                ),
+                List.of(
+                        "§o§7超光速运动!",
+                        "§6额外的高速管道方块提供配方时间减免，同时降低中子加速器的效率",
+                        "§6没有中子加速器运行时，中子动能每秒降低§e72KeV§6中子动能",
+                        "§6输入石墨/铍粉可以立即吸收§e10MeV§6中子动能",
+                        "§6当中子动能超过§41200MeV§6后将会爆炸！"
+                ));
+        add(provider, "block.epimorphism.neutron_activator.ev",
+                "Current Neutron Energy: %deV",
+                "当前中子动能: %seV");
+        add(provider, "block.epimorphism.neutron_activator.height",
+                "Height: %s",
+                "高度: %s");
+        add(provider, "block.epimorphism.neutron_activator.efficiency",
+                "Time-consuming: %s%%",
+                "耗时: %s%%");
+
 
         addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "neutron_accelerator",
@@ -83,6 +108,33 @@ public class MachineLang {
                 List.of(
                         "为多方块结构输入放射性物品",
                         "§7使用螺丝刀设置抑制等级"
+                ));
+
+        addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
+        addBlockWithTooltip(provider, "wireless_energy_input_hatch",
+                List.of(
+                        "§7Wireless EU Network",
+                        "Extracting energy from Wireless EU Network",
+                        ""
+                ),
+                List.of(
+                        "§7无线电网",
+                        "从无线电网中提取能量",
+                        ""
+                ));
+
+
+        addTieredMachineName(provider, "wireless_energy_output_hatch", "无线动力仓", ELECTRIC_TIERS);
+        addBlockWithTooltip(provider, "wireless_energy_output_hatch",
+                List.of(
+                        "§7Wireless EU Network",
+                        "Input energy to Wireless EU Network",
+                        ""
+                ),
+                List.of(
+                        "§7无线电网",
+                        "向无线电网输入能量",
+                        ""
                 ));
 
         addBlockWithTooltip(provider, INDUSTRIAL_FISHING_POND::getBlock, "珠海渔场",

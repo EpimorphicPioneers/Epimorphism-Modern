@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.data.recipe.misc;
 
+import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
@@ -12,6 +13,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
+import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
 
 public class NeutronActivatorLoader {
     public static void init(Consumer<FinishedRecipe> provider) {
@@ -24,6 +26,7 @@ public class NeutronActivatorLoader {
                 .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
+                .addCondition(new NeutronKineticEnergyCondition(400 * K, 500 * M))
                 .duration(800).save(provider);
 
 //        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder("test2")

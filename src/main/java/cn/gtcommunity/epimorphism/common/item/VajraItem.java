@@ -10,14 +10,19 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 import java.util.Set;
 
 @ParametersAreNonnullByDefault
@@ -27,7 +32,7 @@ public class VajraItem extends ComponentItem{
     public static final Set<ToolAction> ALWAYS_SUPPORTED_ACTIONS = Set.of(ToolActions.AXE_DIG, ToolActions.HOE_DIG, ToolActions.SHOVEL_DIG, ToolActions.PICKAXE_DIG, ToolActions.SWORD_DIG);
     private static final long DESTROY_ENERGY = 3000L;
 
-    private VajraItem(Properties properties) {
+    public VajraItem(Properties properties) {
         super(properties);
     }
 
@@ -83,6 +88,19 @@ public class VajraItem extends ComponentItem{
 //        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", MekanismConfig.gear.disassemblerAttackSpeed.get(), Operation.ADDITION));
 //        return builder.build();
 //    }
+
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        var electricItem = GTCapabilityHelper.getElectricItem(stack);
+        if (electricItem != null) {
+            tooltipComponents.add(Component.translatable("metaitem.generic.electric_item.tooltip",
+                    electricItem.getCharge(),
+                    electricItem.getMaxCharge(),
+                    GTValues.VNF[electricItem.getTier()]));
+        }
+    }
 
     @Override
     public boolean isEnchantable(ItemStack stack) {

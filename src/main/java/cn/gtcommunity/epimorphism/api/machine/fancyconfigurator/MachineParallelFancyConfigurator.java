@@ -8,6 +8,8 @@ import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
                 setMax(machine.getMaxParallel());
             }
 
+            @OnlyIn(Dist.CLIENT)
             @Override
             public void readInitialData(FriendlyByteBuf buffer) {
                 super.readInitialData(buffer);
@@ -59,6 +62,7 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
                 }
             }
 
+            @OnlyIn(Dist.CLIENT)
             @Override
             public void readUpdateInfo(int id, FriendlyByteBuf buffer) {
                 super.readUpdateInfo(id, buffer);

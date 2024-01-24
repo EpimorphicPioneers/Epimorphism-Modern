@@ -311,6 +311,9 @@ public class ItemLang {
         //  Item
         addItemCNName(provider,UNSTABLE_STAR,"易变之星");
         addItemCNName(provider,CLADDED_OPTICAL_FIBER_CORE,"包层光导纤维内芯");
+        addItemWithTooltip(provider, RADIOACTIVE_WASTE, "放射性废物",
+                "§7Do not throw it away",
+                "§7请勿随意丢弃");
 
         //  Covers
         addItemCNName(provider, ELECTRIC_PUMP_MAX, "§c§lMAX§r电动泵");
@@ -359,5 +362,7 @@ public class ItemLang {
         addItemWithTooltip(provider, VAJRA,"金刚杵",
                 "",
                 "");
+
+        WrapItemLang.init(provider);
     }
 }

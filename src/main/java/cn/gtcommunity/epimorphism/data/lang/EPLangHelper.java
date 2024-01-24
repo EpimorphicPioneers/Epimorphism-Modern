@@ -27,6 +27,14 @@ public class EPLangHelper {
         }
     }
 
+    public static void addItemName(LanguageProvider provider, NonNullSupplier<? extends Item> item, String enName, String cnName) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.addItem(item, cnName);
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            LangHandler.replace(enLangProvider, item.get().getDescriptionId(), enName);
+        }
+    }
+
     public static void add(LanguageProvider provider, String key, String enText, String cnText) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.add(key, cnText);

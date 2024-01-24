@@ -29,7 +29,7 @@ public class EPElementMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_FRAME, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_DENSE)
                 .element(EPElements.Draconium)
-                .toolStats(ToolProperty.Builder.of(7.0F, 25.0F, 17000, 22)
+                .toolStats(ToolProperty.Builder.of(7.0F, 25.0F, 17000, 6)
                                        .magnetic()
                                        .enchantment(Enchantments.BLOCK_EFFICIENCY, 5)
                                        .enchantment(Enchantments.BLOCK_FORTUNE, 5)

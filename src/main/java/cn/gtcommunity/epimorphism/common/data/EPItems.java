@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.common.item.behaviors.OrganismCaptureBehavior;
 import cn.gtcommunity.epimorphism.common.item.behaviors.StructureWriteBehavior;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
@@ -267,21 +268,11 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.wafer.chip.zepto_pic.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> DUBNIUM_BOULE = registerItemWithTooltip("boule.dubnium", ComponentItem::create, 1)
-            .lang("Dubnium-doped Monocrystalline Silicon Boule")
-            .register();
-    public final static ItemEntry<ComponentItem> DUBNIUM_WAFER = registerItemWithTooltip("wafer.dubnium", ComponentItem::create, 1)
-            .lang("Dubnium-doped Wafer")
-            .register();
-    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_BOULE = registerItemWithTooltip("boule.cubic_zirconia.europium", ComponentItem::create, 1)
-            .lang("Europium-doped Monocrystalline Cubic Zirconia Boule")
-            .register();
-    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_WAFER = registerItemWithTooltip("wafer.cubic_zirconia.europium", ComponentItem::create, 1)
-            .lang("Europium-doped Cubic Zirconia Wafer")
-            .register();
-    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_WAFER = registerItemWithTooltip("wafer.crystal_interface", ComponentItem::create, 1)
-            .lang("Crystal Interface Wafer")
-            .register();
+    public final static ItemEntry<ComponentItem> DUBNIUM_BOULE = registerItemWithTooltip("boule.dubnium", ComponentItem::create, 1).lang("Dubnium-doped Monocrystalline Silicon Boule").register();
+    public final static ItemEntry<ComponentItem> DUBNIUM_WAFER = registerItemWithTooltip("wafer.dubnium", ComponentItem::create, 1).lang("Dubnium-doped Wafer").register();
+    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_BOULE = registerItemWithTooltip("boule.cubic_zirconia.europium", ComponentItem::create, 1).lang("Europium-doped Monocrystalline Cubic Zirconia Boule").register();
+    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_WAFER = registerItemWithTooltip("wafer.cubic_zirconia.europium", ComponentItem::create, 1).lang("Europium-doped Cubic Zirconia Wafer").register();
+    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_WAFER = registerItemWithTooltip("wafer.crystal_interface", ComponentItem::create, 1).lang("Crystal Interface Wafer").register();
 //    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_CHIP = registerItemWithTooltip("wafer.chip.crystal_interface", ComponentItem::create)
 //            .lang("Infinite Circuit Board")
 //            .onRegister(attach(new TooltipBehavior(lines -> {
@@ -300,27 +291,12 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.wafer.chip.uhasoc.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> INTRAVITAL_SOC = registerItemWithTooltip("component.gooware.intravital_soc", ComponentItem::create, 1)
-            .lang("Intravital SoC")
-            .register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_BOULE = registerItemWithTooltip("boule.strontium_carbonate.bohrium", ComponentItem::create, 1)
-            .lang("Bohrium-doped Monocrystalline Strontium Carbonate Boule")
-            .register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_WAFER = registerItemWithTooltip("wafer.strontium_carbonate.bohrium", ComponentItem::create, 1)
-            .lang("Bohrium-doped Strontium Carbonate Wafer")
-            .register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_OPTICAL_WAFER = registerItemWithTooltip("component.optical.strontium_carbonate_wafer", ComponentItem::create, 1)
-            .lang("Coated Strontium Carbonate Wafer")
-            .register();
-    public final static ItemEntry<ComponentItem> OPTICAL_IMC_BOARD = registerItemWithTooltip("component.optical.optical_imc_board", ComponentItem::create, 1)
-            .lang("Preassembled Photoelectric Circuit Board")
-            .register();
-    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = registerItemWithTooltip("component.optical.photoelectron_soc", ComponentItem::create, 1)
-            .lang("Photoelectric SoC")
-            .onRegister(attach(new TooltipBehavior(lines -> {
-                lines.add(Component.translatable("item.epimorphism.component.optical.photoelectron_soc.deac"));
-            })))
-            .register();
+    public final static ItemEntry<ComponentItem> INTRAVITAL_SOC = registerItemWithTooltip("component.gooware.intravital_soc", ComponentItem::create, 1).lang("Intravital SoC").register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_BOULE = registerItemWithTooltip("boule.strontium_carbonate.bohrium", ComponentItem::create, 1).lang("Bohrium-doped Monocrystalline Strontium Carbonate Boule").register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_WAFER = registerItemWithTooltip("wafer.strontium_carbonate.bohrium", ComponentItem::create, 1).lang("Bohrium-doped Strontium Carbonate Wafer").register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_OPTICAL_WAFER = registerItemWithTooltip("component.optical.strontium_carbonate_wafer", ComponentItem::create, 1).lang("Coated Strontium Carbonate Wafer").register();
+    public final static ItemEntry<ComponentItem> OPTICAL_IMC_BOARD = registerItemWithTooltip("component.optical.optical_imc_board", ComponentItem::create, 1).lang("Preassembled Photoelectric Circuit Board").register();
+    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = registerItemWithTooltip("component.optical.photoelectron_soc", ComponentItem::create, 1).lang("Photoelectric SoC").register();
     //  Others
 //    public final static ItemEntry<Item> MAGNETRON;
     public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = registerItemWithTooltip("uhv_voltage_coil", ComponentItem::create, 1).lang("Ultra High Voltage Coil").register();
@@ -336,6 +312,7 @@ public class EPItems {
 //    public final static ItemEntry<Item> SEPARATION_ELECTROMAGNET;
 //    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX;
 //    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX;
+    public final static ItemEntry<ComponentItem> RADIOACTIVE_WASTE = registerItemWithTooltip("radioactive_waste", ComponentItem::create, 1).lang("Radioactive Waste").register();
     public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = EP_REGISTRATE.item("metastable_self_healing_adhesive", Item::new).lang("Metastable Self-healing Adhesive").register();
     public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = EP_REGISTRATE.item("hyperdimensional_tachyon_condensed_matter", Item::new).lang("Hyperdimensional Tachyon Condensed Matter").register();
     public final static ItemEntry<Item> UNSTABLE_STAR = EP_REGISTRATE.item("unstable_star", Item::new).lang("Unstable Star").register();
@@ -442,7 +419,7 @@ public class EPItems {
             .onRegister(GTItems.modelPredicate(Epimorphism.id("organism_capture_tool"), (itemStack) -> OrganismCaptureBehavior.hasEntity(itemStack) ? 1f : 0f))
             .register();
 
-    public final static ItemEntry<ComponentItem> VAJRA = EP_REGISTRATE.item("tool.vajra", VajraItem::create)
+    public final static ItemEntry<VajraItem> VAJRA = EP_REGISTRATE.item("tool.vajra", VajraItem::new)
             .lang("Vajra")
             .model(EPModels.simpleCustomModel(Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
             .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))

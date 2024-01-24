@@ -24,15 +24,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class CommonProxy {
-    private static final Object LOCK = new Object();
-    private static boolean isGTCEuSetup = false;
+//    private static final Object LOCK = new Object();
+//    private static boolean isGTCEuSetup = false;
 
-    public static void onGTCEuSetup() {
-        synchronized (LOCK) {
-            isGTCEuSetup = true;
-            LOCK.notify();
-        }
-    }
+//    public static void onGTCEuSetup() {
+//        synchronized (LOCK) {
+//            isGTCEuSetup = true;
+//            LOCK.notify();
+//        }
+//    }
 
     public CommonProxy() {
         // used for forge events (ClientProxy + CommonProxy)
@@ -41,14 +41,15 @@ public class CommonProxy {
         eventBus.addGenericListener(GTRecipeType.class, EPRegistries::registerRecipeTypes);
         eventBus.addGenericListener(MachineDefinition.class, EPRegistries::registerMachine);
         // init common features
-        synchronized (LOCK) {
-            if (!isGTCEuSetup) {
-                try {
-                    LOCK.wait();
-                } catch (InterruptedException ignored) {/**/}
-            }
-        }
-        init();
+//        synchronized (LOCK) {
+//            if (!isGTCEuSetup) {
+//                try {
+//                    LOCK.wait();
+//                } catch (InterruptedException ignored) {/**/}
+//            }
+//        }
+
+        EPRegistries.EP_REGISTRATE.registerRegistrate();
     }
 
     public void init() {
@@ -56,7 +57,6 @@ public class CommonProxy {
         EPBlocks.init();
         EPItems.init();
         EPDatagen.init();
-        EPRegistries.EP_REGISTRATE.registerRegistrate();
         EPDimensionTypes.init();
     }
 

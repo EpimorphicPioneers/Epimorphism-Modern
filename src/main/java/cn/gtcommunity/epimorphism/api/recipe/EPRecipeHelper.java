@@ -5,6 +5,8 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,5 +21,13 @@ public class EPRecipeHelper {
             newRecipe.inputs.computeIfAbsent(ItemRecipeCapability.CAP, capability -> new ArrayList<>()).add(new Content(ItemRecipeCapability.CAP.of(SizedIngredient.create(stack)), 0, 0, null, null));
             return newRecipe;
         });
+    }
+
+    public static Content itemStack(ItemStack itemStack, float chance, float tierChanceBoost) {
+        return new Content(ItemRecipeCapability.CAP.of(SizedIngredient.create(itemStack)), chance, tierChanceBoost, null, null);
+    }
+
+    public static Content itemStack(Item item, int amount, float chance, float tierChanceBoost) {
+        return new Content(ItemRecipeCapability.CAP.of(SizedIngredient.create(new ItemStack(item, amount))), chance, tierChanceBoost, null, null);
     }
 }

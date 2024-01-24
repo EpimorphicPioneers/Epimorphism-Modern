@@ -30,6 +30,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
@@ -91,24 +93,31 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
                 return new ResourceTexture("minecraft:textures/item/fishing_rod.png");
             }
 
+            @Override
             public void writeInitialData(FriendlyByteBuf buffer) {
                 buffer.writeVarInt(getMode());
             }
 
+            @OnlyIn(Dist.CLIENT)
+            @Override
             public void readInitialData(FriendlyByteBuf buffer) {
                 setMode(buffer.readVarInt());
             }
 
+            @Override
             public void detectAndSendChange(BiConsumer<Integer, Consumer<FriendlyByteBuf>> sender) {
                 sender.accept(0, (buf) -> buf.writeVarInt(getMode()));
             }
 
+            @OnlyIn(Dist.CLIENT)
+            @Override
             public void readUpdateInfo(int id, FriendlyByteBuf buffer) {
                 if (id == 0) {
                     setMode(buffer.readVarInt());
                 }
             }
 
+            @Override
             public Widget createConfigurator() {
                 WidgetGroup group = new WidgetGroup(0, 0, 140, 64);
                 group.setBackground(GuiTextures.BACKGROUND_INVERSE);

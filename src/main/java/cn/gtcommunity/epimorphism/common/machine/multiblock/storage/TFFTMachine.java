@@ -1,6 +1,10 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.storage;
 
+import cn.gtcommunity.epimorphism.api.fluid.TankFluidStack;
+import cn.gtcommunity.epimorphism.api.gui.widget.FluidTankMapWidget;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -10,8 +14,11 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.MachineTrait;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
+import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -19,13 +26,18 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(TFFTMachine.class, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
+
+    @Persisted
+    public final NotifiableItemStackHandler inventory;
+    private TFFTMachine.TFFTFluidTank fluidTank;
     public TFFTMachine(IMachineBlockEntity holder) {
         super(holder);
-
+        inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
     }
 
     //////////////////////////////////////
@@ -67,7 +79,42 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
     @Override
     public List<IFancyUIProvider> getSubTabs() {
-        return getParts().stream().filter(IFancyUIProvider.class::isInstance).map(IFancyUIProvider.class::cast).toList();
+        List<IFancyUIProvider> list = new ArrayList<>();
+
+        list.add(new IFancyUIProvider() {
+            @Override
+            public Widget createMainPage() {
+                var group = new WidgetGroup(0, 0, 170 + 8, 129 + 8);
+
+                var slotContainer = new WidgetGroup(4, 4, 18 + 8, 18 + 8);
+                slotContainer.addWidget(new SlotWidget(inventory.storage, 0, 4, 4, true, true)
+                        .setBackground(GuiTextures.SLOT));
+                slotContainer.setBackground(GuiTextures.BACKGROUND_INVERSE);
+
+                group.addWidget(slotContainer);
+                group.addWidget(new FluidTankMapWidget(2, 2, 170, 129));
+
+                return group;
+            }
+
+            @Override
+            public IGuiTexture getTabIcon() {
+                return TFFTMachine.this.getTabIcon();
+            }
+
+            @Override
+            public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
+
+            }
+
+            @Override
+            public void attachTooltips(TooltipsPanel tooltipsPanel) {
+
+            }
+        });
+
+        list.addAll(getParts().stream().filter(IFancyUIProvider.class::isInstance).map(IFancyUIProvider.class::cast).toList());
+        return list;
     }
 
     @Override
@@ -91,17 +138,17 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
         return MANAGED_FIELD_HOLDER;
     }
 
-    @Override
-    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
-        super.loadCustomPersistedData(tag);
-
-    }
-
-    @Override
-    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
-        super.saveCustomPersistedData(tag, forDrop);
-
-    }
+//    @Override
+//    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+//        super.loadCustomPersistedData(tag);
+//        fluidTank.writeToNBT(tag);
+//    }
+//
+//    @Override
+//    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+//        super.saveCustomPersistedData(tag, forDrop);
+//        fluidTank.readFromNBT(tag);
+//    }
 
     //////////////////////////////////////
     //***  Multiblock Subscriptions  ***//
@@ -118,6 +165,8 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
         private static final String NBT_STORED = "Stored";
         private static final String NBT_MAX = "Max";
 
+        private TankFluidStack[] tankFluidStacks;
+
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(TFFTMachine.TFFTFluidTank.class);
 
         public TFFTFluidTank(MetaMachine machine) {
@@ -125,11 +174,21 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
         }
 
         public void readFromNBT(CompoundTag storageTag) {
-
+            for (int i = 0; i < tankFluidStacks.length; i++) {
+                var tag = storageTag.getCompound("Tank_%s".formatted(i));
+                if (!tag.isEmpty()) {
+                    tankFluidStacks[i] = TankFluidStack.loadFromTag(tag);
+                }
+            }
         }
 
         public CompoundTag writeToNBT(CompoundTag compound) {
-
+            for (int i = 0; i < tankFluidStacks.length; i++) {
+                var tank = tankFluidStacks[i];
+                var tag = new CompoundTag();
+                tank.saveToTag(tag);
+                compound.put("Tank_%s".formatted(i), tag);
+            }
             return compound;
         }
 

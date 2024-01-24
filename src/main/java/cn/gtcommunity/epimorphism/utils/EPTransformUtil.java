@@ -1,6 +1,12 @@
 package cn.gtcommunity.epimorphism.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.internal.Streams;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -10,6 +16,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.StringReader;
 
 public class EPTransformUtil {
     private static final Fluid EMPTY = BuiltInRegistries.FLUID.get(BuiltInRegistries.FLUID.getDefaultKey());
@@ -58,5 +67,27 @@ public class EPTransformUtil {
        }
 
        return entity;
+    }
+
+    // Json
+    public static JsonElement fromString(@Nullable String string) {
+        if (string != null && !string.isEmpty() && !string.equals("null")) {
+            try {
+                JsonReader jsonReader = new JsonReader(new StringReader(string));
+                boolean lenient = jsonReader.isLenient();
+                jsonReader.setLenient(true);
+                JsonElement element = Streams.parse(jsonReader);
+                if (!element.isJsonNull() && jsonReader.peek() != JsonToken.END_DOCUMENT) {
+                    throw new JsonSyntaxException("Did not consume the entire document.");
+                } else {
+                    return element;
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                return JsonNull.INSTANCE;
+            }
+        } else {
+            return JsonNull.INSTANCE;
+        }
     }
 }
