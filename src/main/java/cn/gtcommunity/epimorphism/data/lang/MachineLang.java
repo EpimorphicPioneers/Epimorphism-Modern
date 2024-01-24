@@ -13,40 +13,14 @@ public class MachineLang {
     public static void init(LanguageProvider provider) {
 
 
-        addBlockWithTooltip(provider, GENERAL_PROCESSING_PLANT::getBlock, "通用加工厂",
+        addBlockWithTooltip(provider, YOTTA_FLUID_TANK::getBlock, "YOT流体储罐",
                 List.of(
-                        "§7Highly Integrated Machining",
-                        "§e2.5§6 times faster than a single-block machine of the same voltage",
-                        "§5Only §e80%% §5of the required power of the recipe needs to be used",
-                        "§bFor each voltage level raised, §e8§b is added to the maximum number of parallels"
+                        "The maximum level of the fluid Cell Is Limited By The Glass Level",
+                        "Fluid Tank Cell Can Be Stacked Up To 15 Blocks"
                 ),
                 List.of(
-                        "§7高度集成加工",
-                        "§6比相同电压的单方块机器快§e2.5§6倍",
-                        "§5只需要使用配方要求功率的§e80%%",
-                        "§b每提升一个电压等级，最大并行数加§e8"
-                ));
-        addBlockWithShiftTooltip(provider, GENERAL_PROCESSING_PLANT::getBlock,
-                List.of(
-                        "§7Use a programming circuit to control the recipe in the current mode",
-                        "§4Mode A§r: §e20§r - compressor §e21§r - lathe §e22§r - two-pole magnetizer",
-                        "§3Mode B§r: §e20§r - fermentation tank §e21§r - extractor §e22§r - canning machine",
-                        "§2Mode C§r: §e20§r - Precision Laser Etching Machine §e21§r - Autoclave §e22§r - Fluid Curing Machine"
-                ),
-                List.of(
-                        "§7使用编程电路控制当前模式下的配方",
-                        "§4模式A§r：§e20§r-压缩机 §e21§r-车床 §e22§r-两极磁化机",
-                        "§3模式B§r：§e20§r-发酵槽 §e21§r-提取机 §e22§r-装罐机",
-                        "§2模式C§r：§e20§r-精密激光蚀刻机 §e21§r-高压釜 §e22§r-流体固化机"
-                ));
-
-
-        addBlockWithTooltip(provider, YOTTA_FLUID_TANK::getBlock, "YOT液体储罐",
-                List.of(
-
-                ),
-                List.of(
-
+                        "流体单元等级上限由玻璃等级限制",
+                        "流体单元的堆叠高度上限为15格"
                 ));
         add(provider, "block.epimorphism.yotta_fluid_tank.fluid",
                 "Fluid: %s",
@@ -57,6 +31,14 @@ public class MachineLang {
         add(provider, "block.epimorphism.yotta_fluid_tank.capacity",
                 "Capacity: %s L",
                 "容量：%s L");
+
+        addBlockWithTooltip(provider, TFFT::getBlock,"T.F.F.T",
+                List.of(
+                        "Technology Field Fluid Tank"
+                ),
+                List.of(
+                        "科技立场液态储罐"
+                ));
 
         addBlockWithTooltip(provider, NEUTRON_ACTIVATOR::getBlock, "中子活化器",
                 List.of(
@@ -83,12 +65,11 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-
         addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "neutron_accelerator",
                 List.of(
-                        "§7Input the EU and accelerate the neutron!",
-                        "Each point of EU is converted into 10~20 eV neutron kinetic energy"
+                        "§7Input The Eu And Accelerate The Neutron!",
+                        "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"
                 ),
                 List.of(
                         "§7输入EU，加速中子！",
@@ -96,55 +77,93 @@ public class MachineLang {
                 ));
 
         addBlockWithTooltip(provider, NEUTRON_SENSOR::getBlock, "中子传感器",
-                "§7Can be installed on §bNeutron Activator§r, which outputs a redstone signal based on §6neutron kinetic energy§r, and right-clicks to open the GUI to set it.",
+                "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It.",
                 "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。");
 
         addTieredMachineName(provider, "radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
         addBlockWithTooltip(provider, "radiation_hatch",
                 List.of(
-                        "Input radioactive materials for Multiblock",
-                        "§7Use a screwdriver to set the suppression level"
+                        "Input Radioactive Materials For Multiblock",
+                        "§7Use A Screwdriver To Set The Suppression Level"
                 ),
                 List.of(
                         "为多方块结构输入放射性物品",
                         "§7使用螺丝刀设置抑制等级"
                 ));
 
-        addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
-        addBlockWithTooltip(provider, "wireless_energy_input_hatch",
+        addBlockWithTooltip(provider, EXTREME_INDUSTRIAL_GREENHOUSE::getBlock,"极限工业温室",
                 List.of(
-                        "§7Wireless EU Network",
-                        "Extracting energy from Wireless EU Network",
-                        ""
+
                 ),
                 List.of(
-                        "§7无线电网",
-                        "从无线电网中提取能量",
-                        ""
+
                 ));
 
-
-        addTieredMachineName(provider, "wireless_energy_output_hatch", "无线动力仓", ELECTRIC_TIERS);
-        addBlockWithTooltip(provider, "wireless_energy_output_hatch",
+        addBlockWithTooltip(provider, BACTERIAL_CULTURE_TANK::getBlock,"细菌培养缸",
                 List.of(
-                        "§7Wireless EU Network",
-                        "Input energy to Wireless EU Network",
-                        ""
+
                 ),
                 List.of(
-                        "§7无线电网",
-                        "向无线电网输入能量",
-                        ""
+
+                ));
+
+        addBlockWithTooltip(provider, CHEMICAL_PLANT::getBlock,"化工厂",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE::getBlock,"部件装配线",
+                List.of(
+                        "Assemble A Wide Variety Of Parts In Batches",
+                        "Efficiency Crushes The Same Level Of Assembly Machine/Assembly Line!",
+                        "Requires §6 Component Assembly Line Casing§7 Of Different Grades",
+                        "Component Assembly Line Enclosures Limit §rRecipe Level§7 That The Machine Can Execute"
+                ),
+                List.of(
+                        "批量装配各式各样的零部件",
+                        "效率碾压同等级组装机/装配线！",
+                        "需要不同等级的§6装配线外壳§7",
+                        "部件装配线外壳限制了机器可执行的§r配方等级§7"
+                ));
+
+        addBlockWithTooltip(provider, GENERAL_PROCESSING_PLANT::getBlock, "通用加工厂",
+                List.of(
+                        "§7Highly Integrated Machining",
+                        "§e2.5§6 Times Faster Than A Single Block Machine Of The Same Voltage",
+                        "§5Only §E 80%% §5 Of The Required Power Of The Recipe Needs To Be Used",
+                        "§bFor Each Voltage Level Raised, §e8§b Is Added To The Maximum Number Of Parallels"
+                ),
+                List.of(
+                        "§7高度集成加工",
+                        "§6比相同电压的单方块机器快§e2.5§6倍",
+                        "§5只需要使用配方要求功率的§e80%%",
+                        "§b每提升一个电压等级，最大并行数加§e8"
+                ));
+        addBlockWithShiftTooltip(provider, GENERAL_PROCESSING_PLANT::getBlock,
+                List.of(
+                        "§7Use A Programming Circuit To Control The Recipe In The Current Mode",
+                        "§4Mode A§r: §e20§r - Compressor §e21§r - Lathe §e22§r - Two Pole Magnetizer",
+                        "§3Mode B§r: §e20§r - Fermentation Tank §e21§r - Extractor §e22§r - Canning Machine",
+                        "§2Mode C§r: §e20§r - Precision Laser Etching Machine §e21§r - Autoclave §e22§r - Fluid Curing Machine"
+                ),
+                List.of(
+                        "§7使用编程电路控制当前模式下的配方",
+                        "§4模式A§r：§e20§r-压缩机 §e21§r-车床 §e22§r-两极磁化机",
+                        "§3模式B§r：§e20§r-发酵槽 §e21§r-提取机 §e22§r-装罐机",
+                        "§2模式C§r：§e20§r-精密激光蚀刻机 §e21§r-高压釜 §e22§r-流体固化机"
                 ));
 
         addBlockWithTooltip(provider, INDUSTRIAL_FISHING_POND::getBlock, "珠海渔场",
                 List.of(
-                        "§7The Gift of the Sea",
-                        "Catch a lot of seafood for you in different modes",
-                        "§9The inside of the multiblock needs to be filled with water",
-                        "§bFor each voltage level raised, §e8§b is added to the maximum number of parallels",
-                        "§7Use a screwdriver to switch fishing modes",
-                        "§7The water in the input bin is automatically filled into the structure"
+                        "§7The Gift Of The Sea",
+                        "Catch A Lot Of Seafood For You In Different Modes",
+                        "§9The Inside Of The Multiblock Needs To Be Filled With Water",
+                        "§bFor Each Voltage Level Raised, §E 8§B Is Added To The Maximum Number Of Parallels",
+                        "§7Use A Screwdriver To Switch Fishing Modes",
+                        "§7The Water In The Input Bin Is Automatically Filled Into The Structure"
                 ),
                 List.of(
                         "§7海之恩赐",
@@ -165,12 +184,55 @@ public class MachineLang {
                 "Fishing for Treasure",
                 "捕捞宝藏");
         add(provider, "block.epimorphism.industrial_fishing_pond.warning.fill_water",
-                "WARNING: Water sources are insufficient.",
+                "WARNING: Water Sources Are Insufficient.",
                 "警告：水源不足");
 
+        addBlockWithTooltip(provider, FERMENTATION_TANK::getBlock, "发酵罐",
+                "",
+                "");
 
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
-                "§7Can hold §r2^31-1§7 items per slot, and cannot store items with §eNBT",
+                "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
                 "§7每格能容纳§r2^31-1§7个物品，不能存储带有§eNBT§7的物品");
+
+        addBlockWithTooltip(provider, INFINITE_WATER_HATCH::getBlock, "无限水仓",
+                List.of(
+                        "§7Minecraft Exclusive!",
+                        "§3Unlimited Water For Multiblocks!",
+                        "§4WARNING: Water In This Hatch Cannot Be Pumped Out!"
+                ),
+                List.of(
+                        "§7Minecraft 独家技术！",
+                        "§3为多方块结构提供无限的水！",
+                        "§4警告：该仓室中的水无法被抽出！"
+                )
+        );
+
+        addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
+        addBlockWithTooltip(provider, "wireless_energy_input_hatch",
+                List.of(
+                        "§7Wireless EU Network",
+                        "Extracting energy from Wireless EU Network",
+                        ""
+                ),
+                List.of(
+                        "§7无线电网",
+                        "从无线电网中提取能量",
+                        ""
+                ));
+
+        addTieredMachineName(provider, "wireless_energy_output_hatch", "无线动力仓", ELECTRIC_TIERS);
+        addBlockWithTooltip(provider, "wireless_energy_output_hatch",
+                List.of(
+                        "§7Wireless EU Network",
+                        "Input energy to Wireless EU Network",
+                        ""
+                ),
+                List.of(
+                        "§7无线电网",
+                        "向无线电网输入能量",
+                        ""
+                ));
+
     }
 }

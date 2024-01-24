@@ -111,10 +111,10 @@ public class ItemLang {
 
         //  SoC
         addItemWithTooltip(provider, INTRAVITAL_SOC, "活体SoC",
-                "§7Wriggling Circuits",
+                "§7A wriggling Circuits",
                 "§7蠕动着的电路");
         addItemWithTooltip(provider, PHOTOELECTRON_SOC, "光电子SoC",
-                "§7Fluorescent Circuits",
+                "§7Luminous Circuits",
                 "§7荧光电路");
 
         //  Gooware Components
