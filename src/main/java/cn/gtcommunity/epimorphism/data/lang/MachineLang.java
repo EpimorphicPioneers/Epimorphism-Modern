@@ -37,7 +37,7 @@ public class MachineLang {
                         "Technology Field Fluid Tank"
                 ),
                 List.of(
-                        "科技立场液态储罐"
+                        "科技立场流体储罐"
                 ));
 
         addBlockWithTooltip(provider, NEUTRON_ACTIVATOR::getBlock, "中子活化器",
@@ -65,16 +65,7 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-        addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
-        addBlockWithTooltip(provider, "neutron_accelerator",
-                List.of(
-                        "§7Input The Eu And Accelerate The Neutron!",
-                        "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"
-                ),
-                List.of(
-                        "§7输入EU，加速中子！",
-                        "每点EU都会转化为10～20eV中子动能"
-                ));
+
 
         addBlockWithTooltip(provider, NEUTRON_SENSOR::getBlock, "中子传感器",
                 "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It.",
@@ -207,6 +198,31 @@ public class MachineLang {
                         "§4警告：该仓室中的水无法被抽出！"
                 )
         );
+
+        //  ############################################################################################################
+        //  Hatch
+
+        addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
+        addBlockWithTooltip(provider, "neutron_accelerator",
+                List.of(
+                        "§7Input The Eu And Accelerate The Neutron!",
+                        "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"
+                ),
+                List.of(
+                        "§7输入EU，加速中子！",
+                        "每点EU都会转化为10～20eV中子动能"
+                ));
+
+        addTieredMachineName(provider, "radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
+        addBlockWithTooltip(provider, "radiation_hatch",
+                List.of(
+                        "Input Radioactive Materials For Multiblock",
+                        "§7Use A Screwdriver To Set The Suppression Level"
+                ),
+                List.of(
+                        "为多方块结构输入放射性物品",
+                        "§7使用螺丝刀设置抑制等级"
+                ));
 
         addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "wireless_energy_input_hatch",

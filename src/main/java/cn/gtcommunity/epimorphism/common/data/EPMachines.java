@@ -17,7 +17,6 @@ import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -33,7 +32,6 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -60,7 +58,10 @@ public class EPMachines {
     // Multiblocks
     public final static MultiblockMachineDefinition YOTTA_FLUID_TANK = EP_REGISTRATE.multiblock("yotta_fluid_tank", YottaFluidTankMachine::new)
             .langValue("Yotta Fluid Tank")
-            .tooltips(Component.translatable("block.epimorphism.yotta_fluid_tank.desc0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.0"),
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1")
+            )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.YOTTA_FLUID_TANK_CASING)
@@ -122,7 +123,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition TFFT = EP_REGISTRATE.multiblock("tfft", TFFTMachine::new)
             .langValue("T.F.F.T.")
-            .tooltips(Component.translatable("block.epimorphism.tfft.desc0"))
+            .tooltips(Component.translatable("block.epimorphism.tfft.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.TFFT_CASING)
@@ -216,7 +217,7 @@ public class EPMachines {
 
     public static final MultiblockMachineDefinition EXTREME_INDUSTRIAL_GREENHOUSE = EP_REGISTRATE.multiblock("extreme_industrial_greenhouse", IndustrialGreenhouseMachine::new)
             .langValue("Extreme Industrial Greenhouse")
-            .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc0"))
+            .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -275,7 +276,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition BACTERIAL_CULTURE_TANK = EP_REGISTRATE.multiblock("bacterial_culture_tank", BacterialCultureTankMachine::new)
             .langValue("Bacterial Culture Tank")
-            .tooltips(Component.translatable("block.epimorphism.bacterial_culture_tank.desc0"))
+            .tooltips(Component.translatable("block.epimorphism.bacterial_culture_tank.desc.0"))
             .rotationState(RotationState.ALL)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -326,7 +327,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition CHEMICAL_PLANT = EP_REGISTRATE.multiblock("chemical_plant", ChemicalPlantMachine::new)
             .langValue("Chemical Plant")
-            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc0"))
+            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CHEMICAL_PLANT_RECIPES, GTRecipeTypes.LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(GTBlocks.CASING_BRONZE_BRICKS)
@@ -413,7 +414,12 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
-            .tooltips(Component.translatable("block.epimorphism.component_assembly_line.desc0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.component_assembly_line.desc.0"),
+                    Component.translatable("block.epimorphism.component_assembly_line.desc.1"),
+                    Component.translatable("block.epimorphism.component_assembly_line.desc.2"),
+                    Component.translatable("block.epimorphism.component_assembly_line.desc.3")
+            )
             .rotationState(RotationState.ALL)
             .recipeType(EPRecipeTypes.COMPONENT_ASSEMBLY_LINE_RECIPES)
             .appearanceBlock(EPBlocks.IRIDIUM_CASING)
@@ -661,7 +667,7 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition FERMENTATION_TANK = EP_REGISTRATE.multiblock("fermentation_tank", FermentationTankMachine::new)
             .langValue("Fermentation Tank")
-            .tooltips(Component.translatable("block.epimorphism.fermentation_tank.desc0"))
+            .tooltips(Component.translatable("block.epimorphism.fermentation_tank.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.FERMENTATION_TANK_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -694,7 +700,11 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(PartAbility.IMPORT_FLUIDS)
             .overlayTieredHullRenderer("infinite_water_hatch")
-            .tooltips(Component.translatable("gtceu.machine.fluid_hatch.export.tooltip"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.0"),
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.1"),
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.2")
+            )
             .register();
 
     public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)

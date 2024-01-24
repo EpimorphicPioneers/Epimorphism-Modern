@@ -38,7 +38,7 @@ public class BlockLang {
         addBlockWithTooltip(provider, BPA_POLYCARBONATE_GLASS, "BPA Polycarbonate Glass", "BPA聚碳酸酯玻璃",
                "§7Gray Quartz",
                "§7灰色石英");
-        addBlockWithTooltip(provider, NEU_PMMA_GLASS, "CBDO Polycarbonate Glass", "CBDO聚碳酸酯玻璃",
+        addBlockWithTooltip(provider, CBDO_POLYCARBONATE_GLASS, "CBDO Polycarbonate Glass", "CBDO聚碳酸酯玻璃",
                "§7It is not the Windshield",
                "§7并不是挡风玻璃");
 
