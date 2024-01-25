@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorMachine;
 import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
 import cn.gtcommunity.epimorphism.utils.EPLangUtil;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
@@ -138,20 +139,26 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
                     }
                 }
 
-                if (eV > 0 && part instanceof ItemBusPartMachine itemBusPartMachine){
-                    var inv = itemBusPartMachine.getInventory();
-                    var io = inv.getHandlerIO();
-                    if (io == IO.IN || io == IO.BOTH) {
-                        for (int i = 0; i < inv.getSlots(); i++){
-                            var dustBeryllium = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Beryllium).getItem();
-                            var dustGraphite = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite).getItem();
-                            var stack = inv.getStackInSlot(i);
-                            if(stack.is(dustBeryllium) || stack.is(dustGraphite)){
-                                int consume = Math.min(Math.max(eV / (10 * M), 1), stack.getCount());
-                                inv.extractItemInternal(i, consume, false);
-                                this.eV -= 10 * M * consume;
+                if (eV > 0){
+                    if (part instanceof ItemBusPartMachine itemBusPartMachine) {
+                        var inv = itemBusPartMachine.getInventory();
+                        var io = inv.getHandlerIO();
+                        if (io == IO.IN || io == IO.BOTH) {
+                            for (int i = 0; i < inv.getSlots(); i++){
+                                var dustBeryllium = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Beryllium).getItem();
+                                var dustGraphite = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite).getItem();
+                                var stack = inv.getStackInSlot(i);
+                                if(stack.is(dustBeryllium) || stack.is(dustGraphite)){
+                                    int consume = Math.min(Math.max(eV / (10 * M), 1), stack.getCount());
+                                    inv.extractItemInternal(i, consume, false);
+                                    this.eV -= 10 * M * consume;
+                                }
                             }
                         }
+                    }
+
+                    if (part instanceof NeutronSensorMachine neutronSensorMachine) {
+                        neutronSensorMachine.update(eV);
                     }
                 }
             }

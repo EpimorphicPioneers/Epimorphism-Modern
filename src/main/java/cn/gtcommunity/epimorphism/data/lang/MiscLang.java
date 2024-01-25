@@ -63,7 +63,12 @@ public class MiscLang {
                 "Max Energy\n(%s)",
                 "最大中子动能\n(%s)");
 
-
+        addMultilineLang(provider, "gui.epimorphism.neutron_sensor.invert.enabled",
+                "Output: Inverted\n\nToggle to invert the redstone logic\nBy default, redstone stops emitting when less than the minimum neutron kinetic energy, and starts emitting when greater than the min neutron kinetic energy up to the set maximum",
+                "输出：反转\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号");
+        addMultilineLang(provider, "gui.epimorphism.neutron_sensor.invert.disabled",
+                "Output: Normal\n\nToggle to invert the redstone logic\nBy default, redstone stops emitting when less than the minimum neutron kinetic energy, and starts emitting when greater than the min neutron kinetic energy up to the set maximum",
+                "输出：普通\n\n切换以反转红石逻辑\n默认情况下，中子动能介于所设定的最小值和最大值之间时传感器将发出红石信号，小于最小值时则停止发出红石信号");
 
         add(provider, "gui.epimorphism.machine_parallel.title",
                 "The number of current machine parallels",

@@ -43,6 +43,14 @@ public class EPLangHelper {
         }
     }
 
+    public static void addMultilineLang(LanguageProvider provider, String key, String enText, String cnText) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            LangHandler.multilineLang(cnLangProvider, key, cnText);
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            LangHandler.multilineLang(enLangProvider, key, enText);
+        }
+    }
+
     public static void addCN(LanguageProvider provider, String key, String cnText) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.add(key, cnText);

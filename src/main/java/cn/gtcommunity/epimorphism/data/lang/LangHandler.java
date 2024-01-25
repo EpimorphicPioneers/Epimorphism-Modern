@@ -72,7 +72,7 @@ public class LangHandler {
      * @param key      Base key of the key-value-pairs. The real key for each translation will be appended by ".0" for the first, ".1" for the second, etc. This ensures that the keys are unique.
      * @param values   All translation values.
      */
-    protected static void multiLang(RegistrateLangProvider provider, String key, String... values) {
+    protected static void multiLang(LanguageProvider provider, String key, String... values) {
         for (var i = 0; i < values.length; i++) {
             provider.add(getSubKey(key, i), values[i]);
         }
@@ -191,7 +191,7 @@ public class LangHandler {
      * @param key       Base key of the key-value-pair. The real key for each line will be appended by ".0" for the first line, ".1" for the second, etc. This ensures that the keys are unique.
      * @param multiline The multiline string. It is a multiline because it contains at least one newline character '\n'.
      */
-    protected static void multilineLang(RegistrateLangProvider provider, String key, String multiline) {
+    protected static void multilineLang(LanguageProvider provider, String key, String multiline) {
         var lines = multiline.split("\n");
         multiLang(provider, key, lines);
     }
