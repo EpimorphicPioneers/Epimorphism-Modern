@@ -61,14 +61,30 @@ public class NeutronSensorMachine extends TieredPartMachine {
         group.addWidget(new TextFieldWidget(80, 35, 85, 18, () ->
                 toText(min),
                 stringValue -> setMin(clamp(fromText(stringValue), 0, max))) {
-
-        });
+            private int maxValue;
+            @Override
+            public void updateScreen() {
+                super.updateScreen();
+                if (maxValue != max) {
+                    maxValue = max;
+                    setNumbersOnly(0, maxValue);
+                }
+            }
+        }.setNumbersOnly(0, max));
 
         group.addWidget(new TextFieldWidget(80, 80, 85, 18, () ->
                 toText(max),
                 stringValue -> setMax(clamp(fromText(stringValue), min, 1200000))) {
-
-        });
+            private int minValue;
+            @Override
+            public void updateScreen() {
+                super.updateScreen();
+                if (minValue != min) {
+                    minValue = min;
+                    setNumbersOnly(minValue, 1200000);
+                }
+            }
+        }.setNumbersOnly(min, 1200000));
 
         group.addWidget(new ToggleButtonWidget(
                 8, 8, 20, 20,
