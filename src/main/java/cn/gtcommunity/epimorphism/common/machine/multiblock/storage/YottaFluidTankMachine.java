@@ -292,11 +292,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             if (fluidTank.hasFluid()) {
                 var free = isVoiding ? EPMathUtil.LONG_MAX_VALUE : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
                 inputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), free.min(EPMathUtil.LONG_MAX_VALUE).longValue());
-                GTRecipe recipe = GTRecipeBuilder.ofRaw().inputFluids(inputFluidStack).buildRawRecipe();
                 List<IRecipeHandler<?>> handlers = UniverUtil.getOrDefault(capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 List<?> list = List.of(FluidIngredient.of(inputFluidStack));
                 for (var handler : handlers) {
-                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.IN, recipe, list, null, false), Collections::emptyList);
+                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.IN, null, list, null, false), Collections::emptyList);
                 }
 
                 if (!list.isEmpty()) {
@@ -318,11 +317,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             // Debank to Fluid Output Hatches
             FluidStack outputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), fluidTank.getCurrentStorage().min(EPMathUtil.LONG_MAX_VALUE).longValue());
             if (!EPTransformUtil.isDefaultFluid(outputFluidStack) && outputFluidStack.getAmount() >= 0) {
-                GTRecipe recipe = GTRecipeBuilder.ofRaw().outputFluids(outputFluidStack).buildRawRecipe();
                 List<?> list = List.of(FluidIngredient.of(outputFluidStack));
                 List<IRecipeHandler<?>> handlers = UniverUtil.getOrDefault(capabilitiesProxy.get(IO.OUT, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 for (var handler : handlers) {
-                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.OUT, recipe, list, null, false), Collections::emptyList);
+                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.OUT, null, list, null, false), Collections::emptyList);
                 }
                 if (!list.isEmpty()) {
                     outputFluidStack.shrink(((FluidIngredient) list.get(0)).getAmount());

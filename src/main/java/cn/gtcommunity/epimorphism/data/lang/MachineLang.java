@@ -65,23 +65,6 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-
-
-        addBlockWithTooltip(provider, NEUTRON_SENSOR::getBlock, "中子传感器",
-                "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It.",
-                "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。");
-
-        addTieredMachineName(provider, "radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
-        addBlockWithTooltip(provider, "radiation_hatch",
-                List.of(
-                        "Input Radioactive Materials For Multiblock",
-                        "§7Use A Screwdriver To Set The Suppression Level"
-                ),
-                List.of(
-                        "为多方块结构输入放射性物品",
-                        "§7使用螺丝刀设置抑制等级"
-                ));
-
         addBlockWithTooltip(provider, EXTREME_INDUSTRIAL_GREENHOUSE::getBlock,"极限工业温室",
                 List.of(
 
@@ -212,6 +195,10 @@ public class MachineLang {
                         "§7输入EU，加速中子！",
                         "每点EU都会转化为10～20eV中子动能"
                 ));
+
+        addBlockWithTooltip(provider, NEUTRON_SENSOR::getBlock, "中子传感器",
+                "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It.",
+                "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。");
 
         addTieredMachineName(provider, "radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
         addBlockWithTooltip(provider, "radiation_hatch",

@@ -20,7 +20,7 @@ public class RecipeLang {
                 "Mass: %s kg",
                 "质量：%s kg");
         add(provider, "epimorphism.recipe.radioactivity",
-                "Radiation dose: %s Sv",
+                "Radiation Dose: %s Sv",
                 "辐射剂量：%s Sv");
 
         //  Recipe Condition

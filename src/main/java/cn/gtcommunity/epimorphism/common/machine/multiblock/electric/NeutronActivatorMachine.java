@@ -3,7 +3,6 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.UniverUtil;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
 import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
@@ -11,18 +10,15 @@ import cn.gtcommunity.epimorphism.utils.EPLangUtil;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IExplosionMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.lowdragmc.lowdraglib.side.item.IItemTransfer;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -30,13 +26,10 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.TickTask;
-import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +43,8 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     private int height = 0;
     @Getter @Persisted @DescSynced
     private int eV;
+    @Persisted
+    private boolean isWorking;
 
     protected ConditionalSubscriptionHandler neutronEnergySubs;
     protected ConditionalSubscriptionHandler moderateSubs;
@@ -58,8 +53,8 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
 
     public NeutronActivatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
-        this.neutronEnergySubs = new ConditionalSubscriptionHandler(this, this::neutronEnergyUpdate, () -> this.isFormed);
-        this.moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate, () -> this.isFormed && eV > 0);
+        this.neutronEnergySubs = new ConditionalSubscriptionHandler(this, this::neutronEnergyUpdate, this::isFormed);
+        this.moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate, () -> eV > 0);
     }
 
     //////////////////////////////////////
@@ -79,30 +74,22 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
             IO io = ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
             if (io == IO.NONE) continue;
             for (var handler : part.getRecipeHandlers()) {
-                var handlerIO = handler.getHandlerIO();
                 // If IO not compatible
-                if (io != IO.BOTH && handlerIO != IO.BOTH && io != handlerIO) continue;
-                if (handler.getCapability() == ItemRecipeCapability.CAP && handler instanceof IItemTransfer) {
-                    traitSubscriptions.add(handler.addChangedListener(moderateSubs::updateSubscription));
-                }
-
                 if (handler.getCapability() == EURecipeCapability.CAP && handler instanceof IEnergyContainer) {
                     traitSubscriptions.add(handler.addChangedListener(neutronEnergySubs::updateSubscription));
+                    traitSubscriptions.add(handler.addChangedListener(moderateSubs::updateSubscription));
                 }
             }
         }
 
-        if (getLevel() instanceof ServerLevel serverLevel) {
-            serverLevel.getServer().tell(new TickTask(0, neutronEnergySubs::updateSubscription));
-        }
+        neutronEnergySubs.updateSubscription();
     }
 
     @Override
     public void onLoad() {
         super.onLoad();
-        if (getLevel() instanceof ServerLevel serverLevel) {
-            serverLevel.getServer().tell(new TickTask(0, neutronEnergySubs::updateSubscription));
-        }
+        neutronEnergySubs.initialize(getLevel());
+        moderateSubs.initialize(getLevel());
     }
 
     @Override
@@ -150,40 +137,36 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
                         this.eV += (int) Math.round(Math.max(increase * getEfficiencyFactor(), 1));
                     }
                 }
-            }
 
-            if (!anyWorking && getOffsetTimer() % 20 == 0) {
-                this.eV = Math.max(eV - 72 * K, 0);
+                if (eV > 0 && part instanceof ItemBusPartMachine itemBusPartMachine){
+                    var inv = itemBusPartMachine.getInventory();
+                    var io = inv.getHandlerIO();
+                    if (io == IO.IN || io == IO.BOTH) {
+                        for (int i = 0; i < inv.getSlots(); i++){
+                            var dustBeryllium = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Beryllium).getItem();
+                            var dustGraphite = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite).getItem();
+                            var stack = inv.getStackInSlot(i);
+                            if(stack.is(dustBeryllium) || stack.is(dustGraphite)){
+                                int consume = Math.min(Math.max(eV / (10 * M), 1), stack.getCount());
+                                inv.extractItemInternal(i, consume, false);
+                                this.eV -= 10 * M * consume;
+                            }
+                        }
+                    }
+                }
             }
-            if (this.eV < 0) this.eV = 0;
+            this.isWorking = anyWorking;
 
             if (this.eV > MAX_ENERGY) doExplosion(4 * 32);
         }
     }
 
     protected void moderateUpdate() {
-        moderate(GTMaterials.Beryllium);
-        moderate(GTMaterials.Graphite);
-    }
-
-    private void moderate(Material material) {
-        if (eV <= 0) return;
-
-        List<IRecipeHandler<?>> handlers = UniverUtil.getOrDefault(getCapabilitiesProxy().get(IO.IN, ItemRecipeCapability.CAP), Collections::emptyList);
-        int consume = Math.max(eV / (10 * M), 1);
-        var stack = ChemicalHelper.get(TagPrefix.dust, material, consume);
-        GTRecipe recipe = GTRecipeBuilder.ofRaw().inputItems(stack).buildRawRecipe();
-        List<?> list = List.of(SizedIngredient.of(stack));
-        for (var handler : handlers) {
-            list = UniverUtil.getOrDefault(handler.handleRecipe(IO.IN, recipe, list, null, false), Collections::emptyList);
+        if (!isWorking && getOffsetTimer() % 20 == 0) {
+            this.eV = Math.max(eV - 72 * K, 0);
         }
-
-        if (!list.isEmpty()) {
-            stack.shrink(((SizedIngredient) list.get(0)).getAmount());
-        }
-        this.eV = Math.max(0, 10 * M * stack.getCount());
+        if (this.eV < 0) this.eV = 0;
     }
-
 
     //////////////////////////////////////
     //***        Multiblock UI       ***//
@@ -192,9 +175,9 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     @Override
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
+        textList.add(Component.translatable("block.epimorphism.neutron_activator.ev", processNumber(eV)));
         if (isFormed()) {
-            textList.add(Component.translatable("block.epimorphism.neutron_activator.ev", processNumber(eV)));
-            textList.add(Component.translatable("block.epimorphism.neutron_activator.height", FormattingUtil.formatNumbers(height)));
+            textList.add(Component.translatable("block.epimorphism.neutron_activator.height", FormattingUtil.formatNumbers(height + 2)));
             textList.add(Component.translatable("block.epimorphism.neutron_activator.efficiency", FormattingUtil.formatNumbers(getEfficiencyFactor() * 100)));
         }
     }

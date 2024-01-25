@@ -33,29 +33,38 @@ public class MiscLang {
                 "§7Energy consumption: %s EU/t",
                 "§7能耗：%s EU/t");
 
-
         add(provider, "epimorphism.universal.desc.kg_capacity",
                 "§6Capacity: §r%d kg",
                 "§6容量：§r%d kg");
         add(provider, "epimorphism.universal.desc.fluid_capacity",
                 "§7Capacity: %s L",
                 "§7容量：%s L");
+
+        // GUI
         add(provider, "epimorphism.universal.desc.mass",
                 "Mass: %s",
                 "质量：%s");
 
         add(provider, "epimorphism.universal.desc.sievert",
-                "Radiation dose: %s Sv",
+                "Dose: %s Sv",
                 "辐射剂量：%s Sv");
         add(provider, "epimorphism.universal.desc.radioactive_source",
-                "Radioactive Source: %s",
+                "Actinogen: %s",
                 "放射源：%s");
 
         add(provider, "epimorphism.universal.desc.time",
                 "Time: %s",
                 "时间：%s");
 
-        // GUI
+        add(provider, "epimorphism.universal.desc.neutron_kinetic_energy.min",
+                "Min Energy\n(%s)",
+                "最小中子动能\n(%s)");
+        add(provider, "epimorphism.universal.desc.neutron_kinetic_energy.max",
+                "Max Energy\n(%s)",
+                "最大中子动能\n(%s)");
+
+
+
         add(provider, "gui.epimorphism.machine_parallel.title",
                 "The number of current machine parallels",
                 "当前机器并行");

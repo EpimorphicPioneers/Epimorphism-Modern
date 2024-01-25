@@ -33,7 +33,7 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     private boolean isFilled;
 
     public InfiniteWaterHatchPartMachine(IMachineBlockEntity holder) {
-        super(holder, GTValues.UHV, IO.IN);
+        super(holder, GTValues.IV, IO.IN);
         this.tank = createTank();
     }
 

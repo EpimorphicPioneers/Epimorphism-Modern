@@ -697,6 +697,7 @@ public class EPMachines {
     // Multiblock Parts
     public final static MachineDefinition INFINITE_WATER_HATCH = EP_REGISTRATE.machine("infinite_water_hatch", InfiniteWaterHatchPartMachine::new)
             .langValue("Infinite Water Hatch")
+            .tier(GTValues.IV)
             .rotationState(RotationState.ALL)
             .abilities(PartAbility.IMPORT_FLUIDS)
             .overlayTieredHullRenderer("infinite_water_hatch")
@@ -709,6 +710,7 @@ public class EPMachines {
 
     public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)
             .langValue("Neutron Sensor")
+            .tier(GTValues.IV)
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.NEUTRON_SENSOR)
             .overlayTieredHullRenderer("neutron_sensor")
