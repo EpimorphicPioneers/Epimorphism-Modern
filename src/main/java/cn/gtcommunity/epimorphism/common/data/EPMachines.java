@@ -725,10 +725,9 @@ public class EPMachines {
                     .overlayTieredHullRenderer("neutron_accelerator")
                     .tooltips(
                             Component.translatable("block.epimorphism.neutron_accelerator.desc.0"),
-                            Component.translatable("epimorphism.universal.desc.max_eu_in", GTValues.V[tier]),
-                            Component.translatable("epimorphism.universal.desc.max_eu_consume", Math.round(GTValues.V[tier] * 0.8)),
                             Component.translatable("block.epimorphism.neutron_accelerator.desc.1"),
                             Component.translatable("gtceu.universal.tooltip.max_voltage_in", GTValues.V[tier], VNF[tier]),
+                            Component.translatable("epimorphism.universal.desc.max_power_consume", Math.round(GTValues.V[tier] * 0.8)),
                             Component.translatable("gtceu.universal.tooltip.energy_storage_capacity", GTValues.V[tier] * 72))
                     .register(),
             ELECTRIC_TIERS);
