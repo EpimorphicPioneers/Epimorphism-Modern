@@ -2,6 +2,8 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.storage;
 
 import cn.gtcommunity.epimorphism.api.fluid.TankFluidStack;
 import cn.gtcommunity.epimorphism.api.gui.widget.FluidTankMapWidget;
+import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlockContainer;
+import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -27,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {
@@ -47,6 +50,16 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
+        IValueContainer<?> container = getMultiblockState().getMatchContext().getOrCreate("StorageFieldBlockValue", IValueContainer::noop);
+
+        // get the capacity and initialize the tank
+        if (container instanceof StorageFieldBlockContainer blockContainer) {
+            if (this.fluidTank == null) {
+                this.fluidTank = new TFFTMachine.TFFTFluidTank(this, blockContainer.getValue(), blockContainer.getBlockNumber());
+            } else {
+                this.fluidTank = fluidTank.rebuild(blockContainer.getValue(), blockContainer.getBlockNumber());
+            }
+        }
     }
 
     @Override
@@ -141,13 +154,14 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
     @Override
     public void loadCustomPersistedData(@NotNull CompoundTag tag) {
         super.loadCustomPersistedData(tag);
-        fluidTank.writeToNBT(tag);
+        fluidTank.readFromNBT(tag.getCompound("TFFT"));
     }
 
     @Override
     public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
         super.saveCustomPersistedData(tag, forDrop);
-        fluidTank.readFromNBT(tag);
+        CompoundTag tankTag = fluidTank.writeToNBT(new CompoundTag());
+        tag.put("TFFT", tankTag);
     }
 
     //////////////////////////////////////
@@ -161,19 +175,19 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
     public static class TFFTFluidTank extends MachineTrait {
 
-        private static final String NBT_SIZE = "Size";
-        private static final String NBT_STORED = "Stored";
-        private static final String NBT_MAX = "Max";
+        private static final String NBT_SIZE = "TFFT_Size";
 
         private TankFluidStack[] tankFluidStacks;
 
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(TFFTMachine.TFFTFluidTank.class);
 
-        public TFFTFluidTank(MetaMachine machine) {
+        public TFFTFluidTank(MetaMachine machine, BigInteger capacity, int tanks) {
             super(machine);
+            tankFluidStacks = new TankFluidStack[tanks];
         }
 
         public void readFromNBT(CompoundTag storageTag) {
+            tankFluidStacks = new TankFluidStack[storageTag.getInt(NBT_SIZE)];
             for (int i = 0; i < tankFluidStacks.length; i++) {
                 var tag = storageTag.getCompound("Tank_%s".formatted(i));
                 if (!tag.isEmpty()) {
@@ -183,6 +197,7 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
         }
 
         public CompoundTag writeToNBT(CompoundTag compound) {
+            compound.putInt(NBT_SIZE, tankFluidStacks.length);
             for (int i = 0; i < tankFluidStacks.length; i++) {
                 var tank = tankFluidStacks[i];
                 var tag = new CompoundTag();
@@ -192,8 +207,15 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
             return compound;
         }
 
-        public TFFTFluidTank rebuild(@NotNull BigInteger capacity) {
-            return null;
+        public TFFTFluidTank rebuild(@NotNull BigInteger capacity, int tanks) {
+            var tank = new TFFTFluidTank(this.machine, capacity, tanks);
+            var stacks = Arrays.copyOf(tankFluidStacks, tanks);
+            var tankCapacity = capacity.divide(BigInteger.valueOf(tanks));
+            for (var stack : stacks) {
+                stack.rebuild(tankCapacity);
+            }
+            tank.tankFluidStacks = stacks;
+            return tank;
         }
 
         @Override

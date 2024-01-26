@@ -16,7 +16,7 @@ public class EPPredicates {
     public static TraceabilityPredicate glass() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "Glass")
                 .map(BlockMaps.ALL_GLASSES)
-                .errorKey(Component.translatable("cn.gtcommunity.epimorphism.multiblock.pattern.error.glasses"))
+                .errorKey(Component.translatable("epimorphism.multiblock.pattern.error.glasses"))
                 .build();
     }
 

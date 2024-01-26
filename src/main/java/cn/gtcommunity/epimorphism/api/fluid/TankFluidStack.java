@@ -171,4 +171,8 @@ public class TankFluidStack {
     public void shrink(BigInteger amount) {
         setAmount(this.getAmount().subtract(amount));
     }
+
+    public void rebuild(BigInteger amount) {
+
+    }
 }
