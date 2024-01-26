@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 
+import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -35,6 +36,7 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     public InfiniteWaterHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV, IO.IN);
         this.tank = createTank();
+        this.tankSubs = tank.addChangedListener(this::updateTankSubscription);
     }
 
     //////////////////////////////////////
@@ -54,7 +56,6 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
         super.onLoad();
         if (getLevel() instanceof ServerLevel serverLevel) {
             serverLevel.getServer().tell(new TickTask(0, this::updateTankSubscription));
-            tankSubs = tank.addChangedListener(this::updateTankSubscription);
         }
     }
 
@@ -72,22 +73,28 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     //////////////////////////////////////
 
     protected void updateTankSubscription() {
-        if (isWorkingEnabled() && !isFilled) {
+        if (isWorkingEnabled()) {
             productSubs = subscribeServerTick(productSubs, this::productWater);
-        } else if (productSubs != null) {
-            productSubs.unsubscribe();
-            productSubs = null;
-        }
+        } else unsubscribe();
     }
 
     protected void productWater() {
         isFilled = tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false) == 0;
-        updateTankSubscription();
+
+        if (isFilled) unsubscribe();
+        else updateTankSubscription();
     }
 
     @Override
     public void setWorkingEnabled(boolean workingEnabled) {
         super.setWorkingEnabled(workingEnabled);
         updateTankSubscription();
+    }
+
+    private void unsubscribe() {
+        if (productSubs != null) {
+            productSubs.unsubscribe();
+            productSubs = null;
+        }
     }
 }

@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
+import cn.gtcommunity.epimorphism.api.structure.utils.UniverUtil;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorMachine;
@@ -20,6 +21,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.lowdragmc.lowdraglib.side.item.IItemTransfer;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -31,8 +33,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
 
@@ -40,15 +44,23 @@ import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
 @MethodsReturnNonnullByDefault
 public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implements IExplosionMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(NeutronActivatorMachine.class, NoEnergyMultiblockMachine.MANAGED_FIELD_HOLDER);
-    @Getter @Persisted
+    @Getter
+    @Persisted
     private int height = 0;
-    @Getter @Persisted @DescSynced
+    @Getter
+    @Persisted
+    @DescSynced
     private int eV;
     @Persisted
     private boolean isWorking;
 
     protected ConditionalSubscriptionHandler neutronEnergySubs;
     protected ConditionalSubscriptionHandler moderateSubs;
+    protected ConditionalSubscriptionHandler absorptionSubs;
+
+    private Set<NeutronSensorMachine> sensorMachines;
+    private Set<ItemBusPartMachine> busMachines;
+    private Set<NeutronAcceleratorMachine> acceleratorMachines;
 
     private final static int MAX_ENERGY = 1200 * M;
 
@@ -56,6 +68,7 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
         super(holder, args);
         this.neutronEnergySubs = new ConditionalSubscriptionHandler(this, this::neutronEnergyUpdate, this::isFormed);
         this.moderateSubs = new ConditionalSubscriptionHandler(this, this::moderateUpdate, () -> eV > 0);
+        this.absorptionSubs = new ConditionalSubscriptionHandler(this, this::absorptionUpdate, () -> eV > 0);
     }
 
     //////////////////////////////////////
@@ -75,21 +88,41 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
             IO io = ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
             if (io == IO.NONE) continue;
             for (var handler : part.getRecipeHandlers()) {
+                var handlerIO = handler.getHandlerIO();
                 // If IO not compatible
+                if (io != IO.BOTH && handlerIO != IO.BOTH && io != handlerIO) continue;
                 if (handler.getCapability() == EURecipeCapability.CAP && handler instanceof IEnergyContainer) {
                     traitSubscriptions.add(handler.addChangedListener(neutronEnergySubs::updateSubscription));
                     traitSubscriptions.add(handler.addChangedListener(moderateSubs::updateSubscription));
                 }
+
+                if (handler.getCapability() == ItemRecipeCapability.CAP && handler instanceof IItemTransfer) {
+                    if (handlerIO == IO.IN || handlerIO == IO.BOTH) {
+                        traitSubscriptions.add(handler.addChangedListener(absorptionSubs::updateSubscription));
+                    }
+                }
+            }
+
+            if (part instanceof ItemBusPartMachine itemBusPartMachine) {
+                busMachines = UniverUtil.getOrDefault(busMachines, HashSet::new);
+                busMachines.add(itemBusPartMachine);
+            }
+            if (part instanceof NeutronSensorMachine neutronSensorMachine) {
+                sensorMachines = UniverUtil.getOrDefault(sensorMachines, HashSet::new);
+                sensorMachines.add(neutronSensorMachine);
+            }
+            if (part instanceof NeutronAcceleratorMachine neutronAccelerator) {
+                acceleratorMachines = UniverUtil.getOrDefault(acceleratorMachines, HashSet::new);
+                acceleratorMachines.add(neutronAccelerator);
             }
         }
 
-        neutronEnergySubs.updateSubscription();
+        neutronEnergySubs.initialize(getLevel());
     }
 
     @Override
     public void onLoad() {
         super.onLoad();
-        neutronEnergySubs.initialize(getLevel());
         moderateSubs.initialize(getLevel());
     }
 
@@ -97,6 +130,9 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     public void onStructureInvalid() {
         super.onStructureInvalid();
         height = 0;
+        sensorMachines = null;
+        busMachines = null;
+        acceleratorMachines = null;
     }
 
     //////////////////////////////////////
@@ -104,7 +140,7 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     //////////////////////////////////////
 
     @Override
-    public boolean alwaysTryModifyRecipe(){
+    public boolean alwaysTryModifyRecipe() {
         return true;
     }
 
@@ -128,44 +164,22 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     //////////////////////////////////////
 
     protected void neutronEnergyUpdate() {
+        if (acceleratorMachines == null) return;
+
         boolean anyWorking = false;
-        if (!isRemote()) {
-            for (IMultiPart part : getParts()) {
-                if (part instanceof NeutronAcceleratorMachine neutronAccelerator) {
-                    long increase = neutronAccelerator.consumeEnergy();
-                    if (increase > 0) {
-                        anyWorking = true;
-                        this.eV += (int) Math.round(Math.max(increase * getEfficiencyFactor(), 1));
-                    }
-                }
-
-                if (eV > 0){
-                    if (part instanceof ItemBusPartMachine itemBusPartMachine) {
-                        var inv = itemBusPartMachine.getInventory();
-                        var io = inv.getHandlerIO();
-                        if (io == IO.IN || io == IO.BOTH) {
-                            for (int i = 0; i < inv.getSlots(); i++){
-                                var dustBeryllium = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Beryllium).getItem();
-                                var dustGraphite = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite).getItem();
-                                var stack = inv.getStackInSlot(i);
-                                if(stack.is(dustBeryllium) || stack.is(dustGraphite)){
-                                    int consume = Math.min(Math.max(eV / (10 * M), 1), stack.getCount());
-                                    inv.extractItemInternal(i, consume, false);
-                                    this.eV -= 10 * M * consume;
-                                }
-                            }
-                        }
-                    }
-
-                    if (part instanceof NeutronSensorMachine neutronSensorMachine) {
-                        neutronSensorMachine.update(eV);
-                    }
-                }
+        for (var accelerator : acceleratorMachines) {
+            long increase = accelerator.consumeEnergy();
+            if (increase > 0) {
+                anyWorking = true;
+                this.eV += (int) Math.round(Math.max(increase * getEfficiencyFactor(), 1));
             }
-            this.isWorking = anyWorking;
-
-            if (this.eV > MAX_ENERGY) doExplosion(4 * 32);
         }
+
+        this.isWorking = anyWorking;
+
+        if (this.eV > MAX_ENERGY) doExplosion(4 * 32);
+
+        if (!isWorking) neutronEnergySubs.unsubscribe();
     }
 
     protected void moderateUpdate() {
@@ -173,6 +187,34 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
             this.eV = Math.max(eV - 72 * K, 0);
         }
         if (this.eV < 0) this.eV = 0;
+
+        if (!isFormed() || sensorMachines == null) return;
+        sensorMachines.forEach(sensor -> sensor.update(eV));
+    }
+
+    protected void absorptionUpdate() {
+        if (busMachines == null || eV <= 0) return;
+
+        boolean hasSlower = false;
+        for (var bus : busMachines) {
+            var inv = bus.getInventory();
+            var io = inv.getHandlerIO();
+            if (io == IO.IN || io == IO.BOTH) {
+                for (int i = 0; i < inv.getSlots(); i++) {
+                    var dustBeryllium = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Beryllium).getItem();
+                    var dustGraphite = ChemicalHelper.get(TagPrefix.dust, GTMaterials.Graphite).getItem();
+                    var stack = inv.getStackInSlot(i);
+                    if (stack.is(dustBeryllium) || stack.is(dustGraphite)) {
+                        hasSlower = true;
+                        int consume = Math.min(Math.max(eV / (10 * M), 1), stack.getCount());
+                        inv.extractItemInternal(i, consume, false);
+                        this.eV -= 10 * M * consume;
+                    }
+                }
+            }
+        }
+
+        if (!hasSlower) absorptionSubs.unsubscribe();
     }
 
     //////////////////////////////////////
