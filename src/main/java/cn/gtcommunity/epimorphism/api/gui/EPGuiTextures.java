@@ -11,7 +11,7 @@ public class EPGuiTextures {
     public static final ResourceTexture PROGRESS_BAR_DECAY_TIME = createTexture("progress_bar/progress_bar_decay_time.png");
     public static final ResourceTexture BAR_CONTAINER_DECAY_TIME = createTexture("progress_bar/bar_container_decay_time.png");
 
-    public static final ResourceBorderTexture BUTTON_NO_BORDER = createBorderTexture("widget/button_no_border.png", 32, 32, 1, 1);
+    public static final ResourceBorderTexture BUTTON_NO_BORDER_LIGHT = createBorderTexture("widget/button_no_border_light.png", 32, 32, 1, 1);
     public static final ResourceBorderTexture BUTTON_HALF_NO_BORDER = createBorderTexture("widget/button_half_no_border.png", 32, 32, 1, 1);
 
     public static final ResourceTexture TOGGLE_BUTTON_LOCK = createTexture("widget/button_lock.png");

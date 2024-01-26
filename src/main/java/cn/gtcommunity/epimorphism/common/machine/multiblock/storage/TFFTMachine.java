@@ -138,17 +138,17 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
         return MANAGED_FIELD_HOLDER;
     }
 
-//    @Override
-//    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
-//        super.loadCustomPersistedData(tag);
-//        fluidTank.writeToNBT(tag);
-//    }
-//
-//    @Override
-//    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
-//        super.saveCustomPersistedData(tag, forDrop);
-//        fluidTank.readFromNBT(tag);
-//    }
+    @Override
+    public void loadCustomPersistedData(@NotNull CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+        fluidTank.writeToNBT(tag);
+    }
+
+    @Override
+    public void saveCustomPersistedData(@NotNull CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        fluidTank.readFromNBT(tag);
+    }
 
     //////////////////////////////////////
     //***  Multiblock Subscriptions  ***//

@@ -6,6 +6,7 @@ import cn.gtcommunity.epimorphism.api.structure.UniverTraceabilityPredicate;
 import cn.gtcommunity.epimorphism.api.structure.predicates.TierTraceabilityPredicateFactory;
 import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
+import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
@@ -63,7 +64,7 @@ public class EPPredicates {
 
     // Univer
     public static TraceabilityPredicate countBlock(String name, Block... blocks) {
-        return UniverTraceabilityPredicate.enhanceBlocks(name,
-                () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), blocks);
+        return UniverTraceabilityPredicate.enhancePredicate(name,
+                () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), Predicates.blocks(blocks));
     }
 }

@@ -20,9 +20,17 @@ public class FluidTankMapWidget extends WidgetGroup implements SearchComponentWi
         super(xPosition, yPosition, width, height);
         var group = (WidgetGroup) new WidgetGroup(xPosition, yPosition + 28, width, height - 28).setBackground(GuiTextures.BACKGROUND_INVERSE);
         group.addWidget(fluidList = new DraggableScrollableWidgetGroup(3, 3, group.getSize().width - 6, group.getSize().height - 6)
-                .setYScrollBarWidth(4).setYBarStyle(null, EPGuiTextures.BUTTON_NO_BORDER));
+                .setYScrollBarWidth(4).setYBarStyle(null, EPGuiTextures.BUTTON_NO_BORDER_LIGHT));
         addWidget(new SearchComponentWidget<>(34, 6, group.getSize().width - 33, 18, this));
         addWidget(group);
+        addNewFluid("aaa", "aaa", null, 0);
+        addNewFluid("aaai", "aaa", null, 0);
+        addNewFluid("aaao", "aaa", null, 0);
+        addNewFluid("aaap", "aaa", null, 0);
+        addNewFluid("aaah", "aaa", null, 0);
+        addNewFluid("aaaj", "aaa", null, 0);
+        addNewFluid("aaab", "aaa", null, 0);
+        addNewFluid("aaan", "aaa", null, 0);
     }
 
     private void addNewFluid(String uniqueID, String renderingName, IGuiTexture icon, int color) {
