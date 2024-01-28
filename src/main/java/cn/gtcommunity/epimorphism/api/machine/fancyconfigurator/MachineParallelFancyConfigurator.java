@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.api.machine.fancyconfigurator;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.IParallelMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfigurator;
 import com.gregtechceu.gtceu.api.gui.widget.IntInputWidget;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;

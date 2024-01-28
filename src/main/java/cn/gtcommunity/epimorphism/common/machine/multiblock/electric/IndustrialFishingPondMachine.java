@@ -51,7 +51,7 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
     private boolean filledWater;
 
     public IndustrialFishingPondMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, args);
+        super(holder, machine -> Math.max(machine.getTier() * 2 + 1, 1), args);
     }
 
     @Override
@@ -67,11 +67,6 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
     @Override
     public RecipeLogic createRecipeLogic(Object... args) {
         return new FishingPondRecipeLogic(this);
-    }
-
-    @Override
-    public int getMaxParallel() {
-        return Math.max(getTier() * 2 + 1, 1);
     }
 
     //////////////////////////////////////

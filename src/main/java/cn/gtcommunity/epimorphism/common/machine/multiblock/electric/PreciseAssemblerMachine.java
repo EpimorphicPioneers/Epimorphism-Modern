@@ -14,17 +14,13 @@ public class PreciseAssemblerMachine  extends ParallelElectricMultiblockMachine 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(PreciseAssemblerMachine.class, ParallelElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     public PreciseAssemblerMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, args);
+        super(holder, machine -> Math.max(machine.getTier() * 8 + 1, 1), args);
     }
 
     //////////////////////////////////////
     //******     Recipe Logic    *******//
     //////////////////////////////////////
 
-    @Override
-    public int getMaxParallel() {
-        return Math.max(getTier() * 8 + 1, 1);
-    }
 
 
     //////////////////////////////////////

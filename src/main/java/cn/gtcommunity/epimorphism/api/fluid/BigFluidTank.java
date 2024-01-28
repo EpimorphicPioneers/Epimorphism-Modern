@@ -17,28 +17,28 @@ import javax.annotation.Nonnull;
 import java.math.BigInteger;
 import java.util.Objects;
 
-public class TankFluidStack {
-    public static TankFluidStack empty() {
+public class BigFluidTank {
+    public static BigFluidTank empty() {
         return EMPTY;
     }
 
-    public static TankFluidStack create(Fluid fluid, BigInteger amount, CompoundTag nbt) {
-        return new TankFluidStack(fluid, amount, nbt);
+    public static BigFluidTank create(Fluid fluid, BigInteger amount, CompoundTag nbt) {
+        return new BigFluidTank(fluid, amount, nbt);
     }
 
-    public static TankFluidStack create(Fluid fluid, BigInteger amount) {
+    public static BigFluidTank create(Fluid fluid, BigInteger amount) {
         return create(fluid, amount, null);
     }
 
-    public static TankFluidStack create(FluidStack stack, BigInteger amount) {
+    public static BigFluidTank create(FluidStack stack, BigInteger amount) {
         return create(stack.getFluid(), amount, stack.getTag());
     }
 
-    public static TankFluidStack create(TankFluidStack stack, BigInteger amount) {
+    public static BigFluidTank create(BigFluidTank stack, BigInteger amount) {
         return create(stack.getFluid(), amount, stack.getTag());
     }
 
-    private static final TankFluidStack EMPTY = new TankFluidStack(Fluids.EMPTY, BigInteger.ZERO, null);
+    private static final BigFluidTank EMPTY = new BigFluidTank(Fluids.EMPTY, BigInteger.ZERO, null);
     private boolean isEmpty;
     private BigInteger amount;
     @Getter
@@ -46,7 +46,7 @@ public class TankFluidStack {
     @Setter
     private Fluid fluid;
 
-    private TankFluidStack(Fluid fluid, BigInteger amount, CompoundTag nbt) {
+    private BigFluidTank(Fluid fluid, BigInteger amount, CompoundTag nbt) {
         this.fluid = fluid;
         this.amount = amount;
         if (nbt != null) {
@@ -56,7 +56,7 @@ public class TankFluidStack {
 
     }
 
-    public static TankFluidStack loadFromTag(CompoundTag nbt) {
+    public static BigFluidTank loadFromTag(CompoundTag nbt) {
         if (nbt == null) {
             return EMPTY;
         }
@@ -69,7 +69,7 @@ public class TankFluidStack {
         if (fluid == Fluids.EMPTY) {
             return EMPTY;
         }
-        var stack = TankFluidStack.create(fluid, new BigInteger(nbt.getString("Amount")));
+        var stack = BigFluidTank.create(fluid, new BigInteger(nbt.getString("Amount")));
 
         if (nbt.contains("Tag", Tag.TAG_COMPOUND)) {
             stack.setTag(nbt.getCompound("Tag"));
@@ -77,12 +77,12 @@ public class TankFluidStack {
         return stack;
     }
 
-    public static TankFluidStack readFromBuf(FriendlyByteBuf buf) {
+    public static BigFluidTank readFromBuf(FriendlyByteBuf buf) {
         Fluid fluid = BuiltInRegistries.FLUID.get(new ResourceLocation(buf.readUtf()));
         BigInteger amount = new BigInteger(buf.readUtf());
         CompoundTag tag = buf.readNbt();
         if (fluid == Fluids.EMPTY) return EMPTY;
-        return TankFluidStack.create(fluid, amount, tag);
+        return BigFluidTank.create(fluid, amount, tag);
     }
 
     protected void updateEmpty() {
@@ -140,11 +140,11 @@ public class TankFluidStack {
         return FluidHelper.getDisplayName(FluidStack.create(getFluid(), 1));
     }
 
-    public TankFluidStack copy() {
+    public BigFluidTank copy() {
         return create(getFluid(), getAmount(), getTag());
     }
 
-    public TankFluidStack copy(BigInteger amount) {
+    public BigFluidTank copy(BigInteger amount) {
         return create(getFluid(), amount, getTag());
     }
 
@@ -152,7 +152,7 @@ public class TankFluidStack {
         return getFluid() == other.getFluid() && Objects.equals(getTag(), other.getTag());
     }
 
-    public boolean isFluidEqual(@Nonnull TankFluidStack other) {
+    public boolean isFluidEqual(@Nonnull BigFluidTank other) {
         return getFluid() == other.getFluid() && Objects.equals(getTag(), other.getTag());
     }
 
@@ -160,7 +160,7 @@ public class TankFluidStack {
         return isFluidEqual(other) && getAmount().equals(BigInteger.valueOf(other.getAmount()));
     }
 
-    public boolean isFluidStackEqual(@Nonnull TankFluidStack other) {
+    public boolean isFluidStackEqual(@Nonnull BigFluidTank other) {
         return isFluidEqual(other) && getAmount().equals(other.getAmount());
     }
 

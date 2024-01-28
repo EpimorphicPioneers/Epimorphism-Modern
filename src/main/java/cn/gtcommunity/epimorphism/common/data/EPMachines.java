@@ -2,6 +2,8 @@ package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.EPPartAbility;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassCoilMultiblockMachine;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
@@ -27,11 +29,14 @@ import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
+import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
+import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -40,6 +45,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -375,10 +381,10 @@ public class EPMachines {
                         .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
                         .where('#', Blocks.AIR)
                         .where('J', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ?*/ GTMachines.MAINTENANCE_HATCH /*: MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF)*/, Direction.NORTH);
-                List<Block> listCoil = GTBlocks.ALL_COILS.entrySet().stream()
+                List<CoilBlock> listCoil = GTBlocks.ALL_COILS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                         .map(entry -> entry.getValue().get())
-                        .collect(Collectors.toList());
+                        .toList();
                 List<Block> listCasing = BlockMaps.ALL_CP_CASINGS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
                         .map(entry -> entry.getValue().get())
@@ -391,12 +397,12 @@ public class EPMachines {
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
                         .map(entry -> entry.getValue().get())
                         .toList();
-                int maxLeng = StructureUtil.maxLength(new ArrayList<List<Block>>() {{
-                    add(listCoil);
-                    add(listCasing);
-                    add(listTube);
-                    add(listMachineCasing);
-                }});
+                int maxLeng = StructureUtil.maxLength(new List[] {
+                    listCoil,
+                    listCasing,
+                    listTube,
+                    listMachineCasing
+                });
 
                 for (int i = 0; i < maxLeng; ++i) {
                     builder.where('X', EPUniverUtil.getOrLast(listCoil, i));
@@ -690,8 +696,318 @@ public class EPMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/fermentation_tank"), false)
             .register();
+    public final static MultiblockMachineDefinition MEGA_OIL_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_oil_cracking_unit", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+            .langValue("Mega Oil Cracking Unit")
+            .tooltips(Component.translatable("block.epimorphism.mega_oil_cracking_unit.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.CRACKING_RECIPES)
+            .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC"
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " CGGGGGGGGGC "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " GALALALALAG ",
+                            " EAAAAAAAAAD ",
+                            " EALALALALAD ",
+                            " EAAAAAAAAAD ",
+                            " GALALALALAG ",
+                            " CGGGEEEGGGC "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " GALALALALAG ",
+                            " EALALALALAD ",
+                            " EALALALALAD ",
+                            " EALALALALAD ",
+                            " GALALALALAG ",
+                            " CGGGEEEGGGC "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " GALALALALAG ",
+                            " EAAAAAAAAAD ",
+                            " EALALALALAD ",
+                            " EAAAAAAAAAD ",
+                            " GALALALALAG ",
+                            " CGGGEEEGGGC "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " GALALALALAG ",
+                            " CGGGGGGGGGC "
+                    )
+                    .aisle(
+                            "CCCCCCCCCCCCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC",
+                            "CCGGGGGGGGGCC"
+                    )
+                    .aisle(
+                            "CCCCCCSCCCCCC",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C ",
+                            " C         C "
+                    )
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('C', blocks(GTBlocks.CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(190)
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.INPUT_ENERGY))
+                            .or(abilities(PartAbility.MAINTENANCE)))
+                    .where('G', EPPredicates.glass())
+                    .where('L', Predicates.heatingCoils())
+                    .where('D', blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
+                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
+                    .where('E', blocks(GTBlocks.CASING_STAINLESS_CLEAN.get())
+                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
+                    .where(' ', any())
+                    .where('A', air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle(
+                                "CCCCCCJHCCCCC",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC"
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " CGGGGGGGGGC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                " GALALALALAG ",
+                                " CAAAAAAAAAC ",
+                                " CALALALALAC ",
+                                " CAAAAAAAAAC ",
+                                " GALALALALAG ",
+                                " CGGGCCCGGGC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                " GALALALALAG ",
+                                " CALALALALAC ",
+                                " DALALALALAN ",
+                                " CALALALALAC ",
+                                " GALALALALAG ",
+                                " CGGGCVCGGGC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                " GALALALALAG ",
+                                " CAAAAAAAAAC ",
+                                " CALALALALAC ",
+                                " CAAAAAAAAAC ",
+                                " GALALALALAG ",
+                                " CGGGCCCGGGC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " GALALALALAG ",
+                                " CGGGGGGGGGC "
+                        )
+                        .aisle(
+                                "CCCCCCCCCCCCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC",
+                                "CCGGGGGGGGGCC"
+                        )
+                        .aisle(
+                                "CCCCCCSKCCCCC",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC ",
+                                " CAAAAAAAAAC "
+                        )
+                        .where('S', definition, Direction.SOUTH)
+                        .where('C', GTBlocks.CASING_STAINLESS_CLEAN)
+                        .where('V', GTMachines.FLUID_IMPORT_HATCH[4], Direction.UP)
+                        .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.WEST)
+                        .where('N', GTMachines.FLUID_EXPORT_HATCH[4], Direction.EAST)
+                        .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('A', Blocks.AIR)
+                        .where('J', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ? */GTMachines.MAINTENANCE_HATCH, /*: GTBlocks.CASING_STAINLESS_CLEAN, */Direction.NORTH);
 
+                List<CoilBlock> coils = GTBlocks.ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
+                List<Block> glasses = BlockMaps.SHAPE_GLASSES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
 
+                int maxLeng = StructureUtil.maxLength(new List[]{
+                        coils,
+                        glasses
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('L', EPUniverUtil.getOrLast(coils, i));
+                    builder.where('G', EPUniverUtil.getOrLast(glasses, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    Epimorphism.id("block/multiblock/mega_oil_cracking_unit"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = EP_REGISTRATE.multiblock("mega_alloy_blast_smelter", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+            .langValue("Mega Alloy Blast Smelter")
+            .tooltips(Component.translatable("block.epimorphism.mega_alloy_blast_smelter.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GCyMRecipeTypes.ALLOY_BLAST_RECIPES)
+            .appearanceBlock(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("   BBBBB   ", "   CCCCC   ", "   CCCCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
+                    .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
+                    .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DVVVVVD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DDDDDDD  ", "  DDDDDDD  ", "   DDDDD   ")
+                    .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VBBBV  C", "BDDDDDDDDDB", " DVVVVVVVD ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                    .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  B   B  C", "BDHDDDDDHDB", " DVVVVVVVD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                    .aisle("BDHDDDDDHDB", "C  W V W  C", "C  B V B  C", "C  B V B  C", "BDHDDVDDHDB", " DVVVVVVVD ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDMDDD  ")
+                    .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  B   B  C", "BDHDDDDDHDB", " DVVVVVVVD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                    .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VBBBV  C", "BDDDDDDDDDB", " DVVVVVVVD ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                    .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DVVVVVD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DDDDDDD  ", "  DDDDDDD  ", "   DDDDD   ")
+                    .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
+                    .aisle("   BBBBB   ", "   CCCCC   ", "   CCSCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('B', blocks(GCyMBlocks.HEAT_VENT.get()))
+                    .where('D', blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where('G', EPPredicates.glass())
+                    .where('H', blocks(GCyMBlocks.HEAT_VENT.get()))
+                    .where('V', blocks(EPBlocks.TFFT_CASING.get()))
+                    .where('W', Predicates.heatingCoils())
+                    .where('C', blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(15)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where(' ', any())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("   BBBBB   ", "   CCENC   ", "   CCCCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
+                        .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
+                        .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DVVVVVD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DDDDDDD  ", "  DDDDDDD  ", "   DDDDD   ")
+                        .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VBBBV  C", "BDDDDDDDDDB", " DVVVVVVVD ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                        .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  B   B  C", "BDHDDDDDHDB", " DVVVVVVVD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                        .aisle("BDHDDDDDHDB", "C  W V W  C", "C  B V B  C", "C  B V B  C", "BDHDDVDDHDB", " DVVVVVVVD ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " GW  V  WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDMDDD  ")
+                        .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  B   B  C", "BDHDDDDDHDB", " DVVVVVVVD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                        .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VBBBV  C", "BDDDDDDDDDB", " DVVVVVVVD ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " GWW   WWG ", " DDDDDDDDD ", " DDDDDDDDD ", "  DDDDDDD  ")
+                        .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DVVVVVD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DDDDDDD  ", "  DDDDDDD  ", "   DDDDD   ")
+                        .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
+                        .aisle("   BBBBB   ", "   ICXCJ   ", "   CCSCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('B', GCyMBlocks.HEAT_VENT)
+                        .where('D', GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+                        .where('H', GCyMBlocks.HEAT_VENT)
+                        .where('V', EPBlocks.TFFT_CASING)
+                        .where('C', GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+                        .where('E', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('N', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ?*/ GTMachines.MAINTENANCE_HATCH /*: GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING*/, Direction.NORTH)
+                        .where('I', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                        .where('X', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('J', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                        .where('M', GTMachines.MUFFLER_HATCH[1], Direction.UP)
+                        .where(' ', Blocks.AIR);
+
+                List<CoilBlock> coils = GTBlocks.ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
+                List<Block> glasses = BlockMaps.SHAPE_GLASSES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
+
+                int maxLeng = StructureUtil.maxLength(new List[]{
+                        coils,
+                        glasses
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('W', EPUniverUtil.getOrLast(coils, i));
+                    builder.where('G', EPUniverUtil.getOrLast(glasses, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
+                    Epimorphism.id("block/multiblock/mega_alloy_blast_smelter"), false)
+            .register();
 
 
     // Multiblock Parts

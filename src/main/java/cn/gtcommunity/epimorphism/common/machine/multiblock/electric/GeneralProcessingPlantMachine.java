@@ -1,19 +1,13 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.IEnhanceFancyUIMachine;
-import cn.gtcommunity.epimorphism.api.machine.feature.IParallelMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -29,7 +23,7 @@ public class GeneralProcessingPlantMachine extends ParallelElectricMultiblockMac
                 GTRecipeTypes.LASER_ENGRAVER_RECIPES, GTRecipeTypes.AUTOCLAVE_RECIPES, GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES};
 
     public GeneralProcessingPlantMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, args);
+        super(holder, machine -> Math.max(machine.getTier() * 8 + 1, 1), args);
     }
 
     //////////////////////////////////////
@@ -56,11 +50,6 @@ public class GeneralProcessingPlantMachine extends ParallelElectricMultiblockMac
         newRecipe.duration = (int) Math.round(recipe.duration * 0.4);
         RecipeHelper.setInputEUt(newRecipe, Math.round(RecipeHelper.getInputEUt(recipe) * 0.8));
         return super.getRealRecipe(newRecipe);
-    }
-
-    @Override
-    public int getMaxParallel() {
-        return Math.max(getTier() * 8 + 1, 1);
     }
 
     //////////////////////////////////////

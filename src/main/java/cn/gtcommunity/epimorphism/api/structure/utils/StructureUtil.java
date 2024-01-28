@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.api.structure.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StructureUtil {
@@ -8,6 +9,10 @@ public class StructureUtil {
     //  List Utils
     public static <T> int maxLength(List<List<T>> lists) {
         return lists.stream().mapToInt(List::size).max().orElse(0);
+    }
+
+    public static int maxLength(List<?>[] lists) {
+        return Arrays.stream(lists).mapToInt(List::size).max().orElse(0);
     }
 
     public static <T> List<T> consistentList(List<T> list, int length) {
