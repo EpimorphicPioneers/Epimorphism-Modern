@@ -696,9 +696,9 @@ public class EPMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/fermentation_tank"), false)
             .register();
-    public final static MultiblockMachineDefinition MEGA_OIL_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_oil_cracking_unit", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+    public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_cracking_unit", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Oil Cracking Unit")
-            .tooltips(Component.translatable("block.epimorphism.mega_oil_cracking_unit.desc.0"))
+            .tooltips(Component.translatable("block.epimorphism.mega_cracking_unit.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.CRACKING_RECIPES)
             .appearanceBlock(GTBlocks.CASING_STAINLESS_CLEAN)
@@ -918,7 +918,7 @@ public class EPMachines {
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-                    Epimorphism.id("block/multiblock/mega_oil_cracking_unit"), false)
+                    Epimorphism.id("block/multiblock/mega_cracking_unit"), false)
             .register();
 
     public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = EP_REGISTRATE.multiblock("mega_alloy_blast_smelter", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))

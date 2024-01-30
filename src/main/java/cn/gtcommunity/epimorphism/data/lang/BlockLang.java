@@ -143,6 +143,7 @@ public class BlockLang {
         addBlock(provider, MARAGING_STEEL_CASING,"Maraging Steel Casing","马氏体时效钢-250机械方块");
         addBlock(provider, ADVANCED_FILTER_CASING,"Advanced Filter Casing","高级过滤器机械方块");
         addBlock(provider, TFFT_CASING,"TFFT Casing","TFFT机械方块");
+        addBlock(provider, PROCESS_MACHINE_CASING,"Process Machine Casing","处理器机械方块");
         addBlock(provider, YOTTA_FLUID_TANK_CASING,"Yotta Fluid Tank Casing","YOT流体储罐机械方块");
         addBlock(provider, CASING_POLYBENZIMIDAZOLE_PIPE,"Casing Polybenzimidazole Pipe","聚苯并咪唑管道方块");
         addBlock(provider, SPEEDING_PIPE,"Speeding Pipe","高速管道");

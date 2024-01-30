@@ -165,6 +165,22 @@ public class MachineLang {
                 "",
                 "");
 
+        addBlockWithTooltip(provider, MEGA_CRACKING_UNIT::getBlock,"巨型裂化装置",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        addBlockWithTooltip(provider, MEGA_ALLOY_BLAST_SMELTER::getBlock,"巨型合金冶炼厂",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
                 "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
                 "§7每格能容纳§r2^31-1§7个物品，不能存储带有§eNBT§7的物品");
