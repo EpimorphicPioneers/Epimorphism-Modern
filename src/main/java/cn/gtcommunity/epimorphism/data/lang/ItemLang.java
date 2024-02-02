@@ -18,16 +18,16 @@ public class ItemLang {
         addItemWithTooltip(provider, SPINTRONIC_BOARD, "碳纳米管磁性存储电路基板",
                 "§7Third generation Spintronic Technology",
                 "§7第三代自旋电子技术");
-        addItemWithTooltip(provider, OPTICAL_IMC_BOARD, "光学控制基板",
+        addItemWithTooltip(provider, OPTICAL_IMC_BOARD, "光学控制电路基板",
                 "§7The Basis Point Of The Integration Of Storage And Computing",
                 "§7存算一体的基点");
-        addItemWithTooltip(provider, GOOWARE_CIRCUIT_BOARD, "终极电路板",
+        addItemWithTooltip(provider, GOOWARE_CIRCUIT_BOARD, "终极印刷电路基板",
                 "§7Revitalization on circuit boards",
                 "§7电路板上焕发生机");
-        addItemWithTooltip(provider, OPTICAL_CIRCUIT_BOARD, "究极电路板",
+        addItemWithTooltip(provider, OPTICAL_CIRCUIT_BOARD, "究极印刷电路基板",
                 "§7The Technology Star of the Semiconductor Industry",
                 "§7半导体工业的技术之星");
-        addItemWithTooltip(provider, SPINTRONIC_CIRCUIT_BOARD, "无尽电路板",
+        addItemWithTooltip(provider, SPINTRONIC_CIRCUIT_BOARD, "无尽印刷电路基板",
                 "§7The Best Implementation of Spin Transfer Torque",
                 "§7自旋转移矩效应的最好实现");
 
@@ -168,7 +168,7 @@ public class ItemLang {
                 "§7于握揽微微转动");
         addItemWithTooltip(provider, COSMIC_COMPUTER, "寰宇行星级超级计算机",
                 "§7A small thing with a density approaching a Singularity",
-                "§7度趋近于奇点的小东西");
+                "§7密度趋近于奇点的小东西");
         addItemWithTooltip(provider, COSMIC_MAINFRAME, "寰宇行星级主机",
                 "§7Simulate everything, Analyze everything, Understand everything",
                 "§7模拟一切，分析一切，理解一切");
