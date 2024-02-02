@@ -23,8 +23,10 @@ public class FluidTankCellContainer extends SimpleValueContainer<BigInteger> {
     }
 
     @Override
-    public void operate(Block block, ITierType data) {
+    public void operate(Block block, Object data) {
         super.operate(block, data);
-        maxTier = Math.max(maxTier, data.tier());
+        if (data instanceof ITierType tierType) {
+            maxTier = Math.max(maxTier, tierType.tier());
+        }
     }
 }

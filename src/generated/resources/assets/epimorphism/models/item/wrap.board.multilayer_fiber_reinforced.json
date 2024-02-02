@@ -1,5 +1,5 @@
 {
-  "parent": "epimorphism:item/wrap_circuit",
+  "parent": "epimorphism:item/wrap_item",
   "textures": {
     "layer0": "gtceu:item/multilayer_fiber_reinforced_circuit_board",
     "layer4": "epimorphism:item/wrap_overlay"

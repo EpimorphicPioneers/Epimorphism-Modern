@@ -1,5 +1,5 @@
 {
-  "parent": "epimorphism:item/wrap_circuit",
+  "parent": "epimorphism:item/wrap_item",
   "textures": {
     "layer0": "epimorphism:item/component.optical_smd.diode",
     "layer4": "epimorphism:item/wrap_overlay"

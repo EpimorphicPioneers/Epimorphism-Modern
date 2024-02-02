@@ -22,7 +22,7 @@ public class StorageFieldBlockContainer extends SimpleValueContainer<BigInteger>
     }
 
     @Override
-    public void operate(Block block, ITierType data) {
+    public void operate(Block block, Object data) {
         super.operate(block, data);
         blockNumber++;
     }

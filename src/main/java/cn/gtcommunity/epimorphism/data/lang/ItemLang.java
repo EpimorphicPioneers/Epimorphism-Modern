@@ -3,7 +3,7 @@ package cn.gtcommunity.epimorphism.data.lang;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPItems.SUPRACAUSAL_MAINFRAME;
+import static cn.gtcommunity.epimorphism.common.data.EPPhysicsItem.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 
 public class ItemLang {
@@ -277,8 +277,6 @@ public class ItemLang {
                 "§7Raw Crystal Conversion Circuit",
                 "§7晶体转换电路原料");
 
-        //  High Energy Physics items
-
         //  Biological Components
         addItemWithTooltip(provider, ELECTROCHEMICAL_GRADIENT_RECORDER, "电化学梯度记录仪",
                 "§7Fundamentals of Biocomputing",
@@ -362,6 +360,33 @@ public class ItemLang {
         addItemWithTooltip(provider, VAJRA,"金刚杵",
                 "",
                 "");
+
+        //  Particle Capsule
+        add(provider, "epimorphism.particle_type.desc",
+                "Particle Type: %s",
+                "粒子类型：%s");
+        add(provider, "particleType.epimorphism.quark",
+                "§dQuark",
+                "§d夸克");
+        add(provider, "particleType.epimorphism.boson",
+                "§cBoson",
+                "§c玻色子");
+        add(provider, "particleType.epimorphism.baryon",
+                "§9Baryon",
+                "§9重子");
+        add(provider, "particleType.epimorphism.lepton",
+                "§aLepton",
+                "§a轻子");
+        add(provider, "particleType.epimorphism.meson",
+                "§rMeson",
+                "§r介子");
+
+        addItemWithTooltip(provider, EMPTY_PARTICLE_CAPSULE, "空粒子胶囊",
+                "§7A particle container constrained by a force field",
+                "§7力场约束粒子容器"
+        );
+
+        //  High Energy Physics items
 
         WrapItemLang.init(provider);
     }

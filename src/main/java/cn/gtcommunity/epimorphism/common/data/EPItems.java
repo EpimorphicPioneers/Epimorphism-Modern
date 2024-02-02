@@ -15,12 +15,15 @@ import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
+import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import lombok.Getter;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -84,36 +87,11 @@ public class EPItems {
     public final static ItemEntry<ComponentItem> COSMIC_CAPACITOR = registerItemWithTooltip("component.cosmic_smd.capacitor", ComponentItem::create, 1).lang("Holographic Energy Charge").register();
     public final static ItemEntry<ComponentItem> COSMIC_DIODE = registerItemWithTooltip("component.cosmic_smd.diode", ComponentItem::create, 1).lang("Cosmic Ion Diode").register();
     public final static ItemEntry<ComponentItem> COSMIC_INDUCTOR = registerItemWithTooltip("component.cosmic_smd.inductor", ComponentItem::create, 1).lang("Zenith Polarizer").register();
-//    public final static ItemEntry<ComponentItem> SUPRACAUSAL_TRANSISTOR = registerItemWithTooltip("component.supracausal_smd.transistor", ComponentItem::create)
-//            .lang("Kaluza-Klein Extradimensional Dilator Field Effect Transistor")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.transistor.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SUPRACAUSAL_RESISTOR = registerItemWithTooltip("component.supracausal_smd.resistor", ComponentItem::create)
-//            .lang("Non anomalous Quantum Main Constraint Generator")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.resistor.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SUPRACAUSAL_CAPACITOR = registerItemWithTooltip("component.supracausal_smd.capacitor", ComponentItem::create)
-//            .lang("Energy-Momentum-Stress Tensor Memory")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.capacitor.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SUPRACAUSAL_DIODE = registerItemWithTooltip("component.supracausal_smd.diode", ComponentItem::create)
-//            .lang("Spin network Carrier Diode")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.diode.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> SUPRACAUSAL_INDUCTOR = registerItemWithTooltip("component.supracausal_smd.inductor", ComponentItem::create)
-//            .lang("Supersymmetric Conformal Polarizer")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.component.supracausal_smd.inductor.tooltip"));
-//            })))
-//            .register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_TRANSISTOR = registerItemWithTooltip("component.supracausal_smd.transistor", ComponentItem::create, 1).lang("Kaluza-Klein Extradimensional Dilator Field Effect Transistor").register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_RESISTOR = registerItemWithTooltip("component.supracausal_smd.resistor", ComponentItem::create, 1).lang("Non anomalous Quantum Main Constraint Generator").register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_CAPACITOR = registerItemWithTooltip("component.supracausal_smd.capacitor", ComponentItem::create, 1).lang("Energy-Momentum-Stress Tensor Memory").register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_DIODE = registerItemWithTooltip("component.supracausal_smd.diode", ComponentItem::create, 1).lang("Spin network Carrier Diode").register();
+    public final static ItemEntry<ComponentItem> SUPRACAUSAL_INDUCTOR = registerItemWithTooltip("component.supracausal_smd.inductor", ComponentItem::create, 1).lang("Supersymmetric Conformal Polarizer").register();
 
     //  Gooware Components
 //    public final static ItemEntry<ComponentItem> BZ_REACTION_CHAMBER = EP_REGISTRATE.item("component.gooware.reaction_chamber", ComponentItem::create)
@@ -335,14 +313,6 @@ public class EPItems {
 //    public final static ItemEntry<Item> CRYSTAL_SOC_SOCKET;
 //
 //
-//    //  High Energy Physics items
-//    public final static ItemEntry<Item> PLASMA_CONTAINMENT_CELL;
-//    public final static ItemEntry<Item> RHENIUM_PLASMA_CONTAINMENT_CELL;
-//    public final static ItemEntry<Item> NEUTRON_PLASMA_CONTAINMENT_CELL;
-//    public final static ItemEntry<Item> HYPOGEN_PLASMA_CONTAINMENT_CELL;
-//    public final static ItemEntry<Item> ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL;
-//    public final static ItemEntry<Item> QUANTUM_ANOMALY;
-//
     //  Biological Components
     public final static ItemEntry<ComponentItem> ELECTROCHEMICAL_GRADIENT_RECORDER = registerItemWithTooltip("biological.components.electrochemical_gradient_recorder", ComponentItem::create, 1).lang("Electrochemical Gradient Recorder").register();
     public final static ItemEntry<ComponentItem> ULTRA_MICRO_PHASE_SEPARATOR = registerItemWithTooltip("biological.components.ultra_micro_phase_separator", ComponentItem::create, 1).lang("Ultra-micro Phase Separator").register();
@@ -429,9 +399,10 @@ public class EPItems {
 
     public static void init() {
         EPWrapItem.init();
+        EPPhysicsItem.init();
     }
 
-    private static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {
+    protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {
         return EP_REGISTRATE.item(name, factory)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     if (num <= 0) return;
@@ -446,7 +417,7 @@ public class EPItems {
                 })));
     }
 
-    private static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num, Component... other) {
+    protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num, Component... other) {
         return EP_REGISTRATE.item(name, factory)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     if (num <= 0) return;
@@ -463,10 +434,10 @@ public class EPItems {
                 })));
     }
 
-    private static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
+    protected static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
         return (item) -> item.attachComponents(components);
     }
-    private static <T extends ComponentItem> NonNullConsumer<T> attachRenderer(ICustomRenderer customRenderer) {
+    protected static <T extends ComponentItem> NonNullConsumer<T> attachRenderer(ICustomRenderer customRenderer) {
         return !Platform.isClient() ? NonNullConsumer.noop() : (item) -> item.attachComponents(customRenderer);
     }
 }

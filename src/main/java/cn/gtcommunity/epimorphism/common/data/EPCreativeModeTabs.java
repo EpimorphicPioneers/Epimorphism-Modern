@@ -26,6 +26,12 @@ public class EPCreativeModeTabs {
                             .icon(EPItems.GOOWARE_BOARD::asStack)
                             .build())
                     .register();
+    public final static RegistryEntry<CreativeModeTab> EP_PHYSICS = EP_REGISTRATE.defaultCreativeTab("physics",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("physics", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("physics"), Epimorphism.NAME + " | Physics"))
+                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .build())
+            .register();
 
     public static void init() {/**/}
 }

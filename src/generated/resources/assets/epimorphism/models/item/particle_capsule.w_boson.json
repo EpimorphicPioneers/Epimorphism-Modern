@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/particle_capsule/capsule_base",
+    "layer1": "epimorphism:item/particle_capsule/w_boson"
+  }
+}

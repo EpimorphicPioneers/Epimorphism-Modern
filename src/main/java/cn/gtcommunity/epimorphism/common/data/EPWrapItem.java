@@ -1,7 +1,9 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.TierRenderItemBehavior;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.resources.ResourceLocation;
@@ -23,21 +25,21 @@ public class EPWrapItem {
         EP_REGISTRATE.creativeModeTab(() -> EP_CIRCUIT_REFORM);
     }
     //  Wrap Circuits
-    public final static ItemEntry<Item> WRAP_CIRCUIT_ULV = registerWrapCircuit("wrap.circuit.ulv", GTCEu.id("item/nand_chip"), ULV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_LV = registerWrapCircuit("wrap.circuit.lv", GTCEu.id("item/microchip_processor"), LV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_MV = registerWrapCircuit("wrap.circuit.mv", GTCEu.id("item/micro_processor"), MV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_HV = registerWrapCircuit("wrap.circuit.hv", GTCEu.id("item/nano_processor"), HV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_EV = registerWrapCircuit("wrap.circuit.ev", GTCEu.id("item/quantum_processor"), EV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_IV = registerWrapCircuit("wrap.circuit.iv", GTCEu.id("item/crystal_processor"), IV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_LuV = registerWrapCircuit("wrap.circuit.luv", GTCEu.id("item/wetware_processor"), LuV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_ZPM = registerWrapCircuit("wrap.circuit.zpm", Epimorphism.id("item/circuit.gooware_processor"), ZPM_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UV = registerWrapCircuit("wrap.circuit.uv", Epimorphism.id("item/circuit.optical_processor"), UV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UHV = registerWrapCircuit("wrap.circuit.uhv", Epimorphism.id("item/circuit.spintronic_processor"), UHV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UEV = registerWrapCircuit("wrap.circuit.uev", Epimorphism.id("item/circuit.cosmic_processor"), UEV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UIV = registerWrapCircuit("wrap.circuit.uiv", Epimorphism.id("item/circuit.supracausal_processor"), UIV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_UXV = registerWrapCircuit("wrap.circuit.uxv", Epimorphism.id("item/circuit.supracausal_assembly"), UXV_CIRCUITS);
-    public final static ItemEntry<Item> WRAP_CIRCUIT_OpV = registerWrapCircuit("wrap.circuit.opv", Epimorphism.id("item/circuit.supracausal_computer"), OpV_CIRCUITS);
-    public final static ItemEntry<Item> CIRCUIT_MAX = registerWrapCircuit("wrap.circuit.max", Epimorphism.id("item/circuit.supracausal_mainframe"), MAX_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_ULV = registerWrapCircuit("wrap.circuit.ulv", GTCEu.id("item/nand_chip"), ULV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_LV = registerWrapCircuit("wrap.circuit.lv", GTCEu.id("item/microchip_processor"), LV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_MV = registerWrapCircuit("wrap.circuit.mv", GTCEu.id("item/micro_processor"), MV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_HV = registerWrapCircuit("wrap.circuit.hv", GTCEu.id("item/nano_processor"), HV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_EV = registerWrapCircuit("wrap.circuit.ev", GTCEu.id("item/quantum_processor"), EV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_IV = registerWrapCircuit("wrap.circuit.iv", GTCEu.id("item/crystal_processor"), IV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_LuV = registerWrapCircuit("wrap.circuit.luv", GTCEu.id("item/wetware_processor"), LuV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_ZPM = registerWrapCircuit("wrap.circuit.zpm", Epimorphism.id("item/circuit.gooware_processor"), ZPM_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_UV = registerWrapCircuit("wrap.circuit.uv", Epimorphism.id("item/circuit.optical_processor"), UV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_UHV = registerWrapCircuit("wrap.circuit.uhv", Epimorphism.id("item/circuit.spintronic_processor"), UHV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_UEV = registerWrapCircuit("wrap.circuit.uev", Epimorphism.id("item/circuit.cosmic_processor"), UEV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_UIV = registerWrapCircuit("wrap.circuit.uiv", Epimorphism.id("item/circuit.supracausal_processor"), UIV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_UXV = registerWrapCircuit("wrap.circuit.uxv", Epimorphism.id("item/circuit.supracausal_assembly"), UXV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_OpV = registerWrapCircuit("wrap.circuit.opv", Epimorphism.id("item/circuit.supracausal_computer"), OpV_CIRCUITS);
+    public final static ItemEntry<ComponentItem> CIRCUIT_MAX = registerWrapCircuit("wrap.circuit.max", Epimorphism.id("item/circuit.supracausal_mainframe"), MAX_CIRCUITS);
 
     public static ItemEntry<Item> WRAP_BOARD_COATED = registerWrapItem("wrap.board.resin", GTCEu.id("item/resin_circuit_board"), COATED_BOARD);
     public static ItemEntry<Item> WRAP_BOARD_PHENOLIC = registerWrapItem("wrap.board.phenolic", GTCEu.id("item/phenolic_circuit_board"), PHENOLIC_BOARD);
@@ -91,15 +93,17 @@ public class EPWrapItem {
 
     private static ItemEntry<Item> registerWrapItem(String id, ResourceLocation wrappedTexture, ItemEntry<?> wrappedItem) {
         var itemEntry = EP_REGISTRATE.item(id, Item::new)
-                .model(EPModels.wrapCircuitModel(wrappedTexture))
+                .model(EPModels.wrapItemModel(wrappedTexture))
                 .register();
         WRAP_ITEM_MAP.put(wrappedItem, itemEntry);
         return itemEntry;
     }
 
-    private static ItemEntry<Item> registerWrapCircuit(String id, ResourceLocation wrappedTexture, TagKey<Item> wrappedCircuit) {
-        var itemEntry = EP_REGISTRATE.item(id, Item::new)
-                .model(EPModels.wrapCircuitModel(wrappedTexture))
+    private static ItemEntry<ComponentItem> registerWrapCircuit(String id, ResourceLocation wrappedTexture, TagKey<Item> wrappedCircuit) {
+        String key = wrappedCircuit.location().getPath().split("/")[1];
+        var itemEntry = EP_REGISTRATE.item(id, ComponentItem::create)
+                .model(EPModels.wrapItemModel(wrappedTexture))
+                .onRegister(EPItems.attachRenderer(new TierRenderItemBehavior(Epimorphism.id("item/voltage_overlay/%s".formatted(key)))))
                 .register();
         WRAP_CIRCUIT_MAP.put(wrappedCircuit, itemEntry);
         return itemEntry;

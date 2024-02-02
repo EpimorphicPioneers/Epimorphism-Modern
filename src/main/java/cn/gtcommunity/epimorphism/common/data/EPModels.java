@@ -9,8 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public class EPModels {
-    public static <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateItemModelProvider> wrapCircuitModel(ResourceLocation wrapped) {
-        return (ctx, prov) -> prov.getBuilder("item/" + prov.name(ctx::getEntry)).parent(new ModelFile.UncheckedModelFile(Epimorphism.id("item/wrap_circuit")))
+    public static <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateItemModelProvider> wrapItemModel(ResourceLocation wrapped) {
+        return (ctx, prov) -> prov.getBuilder("item/" + prov.name(ctx::getEntry)).parent(new ModelFile.UncheckedModelFile(Epimorphism.id("item/wrap_item")))
                 .texture("layer0", wrapped)
                 .texture("layer4", Epimorphism.id("item/wrap_overlay"));
     }

@@ -1,5 +1,5 @@
 {
-  "parent": "epimorphism:item/wrap_circuit",
+  "parent": "epimorphism:item/wrap_item",
   "textures": {
     "layer0": "gtceu:item/advanced_smd_resistor",
     "layer4": "epimorphism:item/wrap_overlay"

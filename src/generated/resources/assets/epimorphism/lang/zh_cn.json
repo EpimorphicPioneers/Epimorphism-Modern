@@ -206,6 +206,7 @@
   "epimorphism.optical_glass_tier.desc.3": "优质光学玻璃",
   "epimorphism.optical_glass_tier.desc.4": "精密光学玻璃",
   "epimorphism.optical_glass_tier.desc.5": "精奇光学玻璃",
+  "epimorphism.particle_type.desc": "粒子类型：%s",
   "epimorphism.recipe.mass": "质量：%s kg",
   "epimorphism.recipe.radioactivity": "辐射剂量：%s Sv",
   "epimorphism.universal.desc.fluid_capacity": "§7容量：%s L",
@@ -409,6 +410,8 @@
   "item.epimorphism.organism_capture_tool": "生物捕捉工具",
   "item.epimorphism.organism_capture_tool.desc": "§7这真的不是精灵球！",
   "item.epimorphism.organism_capture_tool.desc.info": "§7生物：§r%s",
+  "item.epimorphism.particle_capsule.empty": "空粒子胶囊",
+  "item.epimorphism.particle_capsule.empty.desc": "§7力场约束粒子容器",
   "item.epimorphism.radioactive_waste": "放射性废物",
   "item.epimorphism.radioactive_waste.desc": "§7请勿随意丢弃",
   "item.epimorphism.tool.vajra": "金刚杵",
@@ -477,5 +480,11 @@
   "itemGroup.epimorphism.block": "Epimorphism丨方块",
   "itemGroup.epimorphism.circuit_reform": "Epimorphism丨电路板改革",
   "itemGroup.epimorphism.item": "Epimorphism丨物品",
+  "itemGroup.epimorphism.physics": "Epimorphism丨物理学",
+  "particleType.epimorphism.baryon": "§9重子",
+  "particleType.epimorphism.boson": "§c玻色子",
+  "particleType.epimorphism.lepton": "§a轻子",
+  "particleType.epimorphism.meson": "§r介子",
+  "particleType.epimorphism.quark": "§d夸克",
   "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV"
 }

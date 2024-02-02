@@ -6,6 +6,7 @@ import cn.gtcommunity.epimorphism.api.structure.UniverTraceabilityPredicate;
 import cn.gtcommunity.epimorphism.api.structure.predicates.TierTraceabilityPredicateFactory;
 import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
+import cn.gtcommunity.epimorphism.common.data.EPBlocks;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
@@ -62,9 +63,14 @@ public class EPPredicates {
                 .build();
     }
 
+    // Solar Tower
+    public static TraceabilityPredicate mirrorBlock(int tier) {
+        return UniverTraceabilityPredicate.tierOptionalPredicate("Mirror", tier, Predicates.blocks(EPBlocks.TFFT_CASING.get()));
+    }
+
     // Univer
     public static TraceabilityPredicate countBlock(String name, Block... blocks) {
         return UniverTraceabilityPredicate.enhancePredicate(name,
-                () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), Predicates.blocks(blocks));
+                () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), Predicates.blocks(blocks), null);
     }
 }
