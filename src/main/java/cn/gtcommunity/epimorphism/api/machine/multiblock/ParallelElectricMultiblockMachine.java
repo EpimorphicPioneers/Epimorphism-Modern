@@ -15,7 +15,7 @@ import java.util.function.Function;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public abstract class ParallelElectricMultiblockMachine extends MultiStatsElectricMultiblockMachine implements IParallelMachine {
+public class ParallelElectricMultiblockMachine extends MultiStatsElectricMultiblockMachine implements IParallelMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ParallelElectricMultiblockMachine.class, MultiStatsElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     @Persisted

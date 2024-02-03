@@ -23,6 +23,7 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
@@ -33,24 +34,26 @@ import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
-import static com.gregtechceu.gtceu.api.GTValues.VNF;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_COILS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
 public class EPMachines {
@@ -1050,6 +1053,83 @@ public class EPMachines {
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/vacuum_casing"),
                     Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = EP_REGISTRATE.multiblock("advanced_electric_blast_furnace", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+            .langValue("Advanced Electric Blast Furnace")
+            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
+
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.BLAST_RECIPES)
+            .recipeModifier(GTRecipeModifiers::ebfOverclock)
+            .appearanceBlock(EPBlocks.ADVANCED_INVAR_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "CCC", "CCC", "XXX")
+                    .aisle("XXX", "C#C", "C#C", "XMX")
+                    .aisle("XSX", "CCC", "CCC", "XXX")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(EPBlocks.ADVANCED_INVAR_CASING.get()).setMinGlobalLimited(9)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('C', heatingCoils())
+                    .where('#', air())
+                    .build())
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                var builder = MultiblockShapeInfo.builder()
+                        .aisle("ISO", "CCC", "CCC", "XMX")
+                        .aisle("FXD", "C#C", "C#C", "XHX")
+                        .aisle("EEX", "CCC", "CCC", "XXX")
+                        .where('X', EPBlocks.ADVANCED_INVAR_CASING.getDefaultState())
+                        .where('S', definition, Direction.NORTH)
+                        .where('#', Blocks.AIR.defaultBlockState())
+                        .where('E', ENERGY_INPUT_HATCH[GTValues.LV], Direction.SOUTH)
+                        .where('I', ITEM_IMPORT_BUS[GTValues.LV], Direction.NORTH)
+                        .where('O', ITEM_EXPORT_BUS[GTValues.LV], Direction.NORTH)
+                        .where('F', FLUID_IMPORT_HATCH[GTValues.LV], Direction.WEST)
+                        .where('D', FLUID_EXPORT_HATCH[GTValues.LV], Direction.EAST)
+                        .where('H', MUFFLER_HATCH[GTValues.LV], Direction.UP)
+                        .where('M', MAINTENANCE_HATCH, Direction.NORTH);
+                ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
+                return shapeInfo;
+            })
+            .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/advanced_invar_casing"),
+                    Epimorphism.id("block/multiblock/advanced_electric_blast_furnace"), false)
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                            Component.translatable(FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K").setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
+                }
+            })
+            .register();
+
+    public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = EP_REGISTRATE.multiblock("industrial_vacuum_freezer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+            .langValue("Industrial Vacuum Freezer")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.VACUUM_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(EPBlocks.ADVANCED_ALUMINIUM_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "XXX", "XXX")
+                    .aisle("XXX", "X#X", "XXX")
+                    .aisle("XXX", "XSX", "XXX")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('X', blocks(EPBlocks.ADVANCED_ALUMINIUM_CASING.get()).setMinGlobalLimited(14)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, true, false)))
+                    .where('#', Predicates.air())
+                    .build())
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/advanced_aluminium_casing"),
+                    Epimorphism.id("block/multiblock/industrial_vacuum_freezer"), false)
             .register();
 
 
