@@ -513,7 +513,6 @@
   "particleType.epimorphism.lepton": "§a轻子",
   "particleType.epimorphism.meson": "§r介子",
   "particleType.epimorphism.quark": "§d夸克",
-  "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV"
   "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV",
   "material.gtceu.draconium": "龙素",
   "material.gtceu.awakened_draconium": "觉醒龙素",

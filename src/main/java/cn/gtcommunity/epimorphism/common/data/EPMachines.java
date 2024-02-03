@@ -1,10 +1,7 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.EPPartAbility;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassCoilMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.*;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
@@ -53,6 +50,7 @@ import java.util.stream.Collectors;
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
 import static com.gregtechceu.gtceu.api.GTValues.VNF;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.ALL_COILS;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
 public class EPMachines {
@@ -380,7 +378,7 @@ public class EPMachines {
                         .where('Z', /*GTMachines.MULTIPART_CATALYST_HATCH*/GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
                         .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
                         .where('#', Blocks.AIR)
-                        .where('J', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ?*/ GTMachines.MAINTENANCE_HATCH /*: MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.INVAR_HEATPROOF)*/, Direction.NORTH);
+                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
                 List<CoilBlock> listCoil = GTBlocks.ALL_COILS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                         .map(entry -> entry.getValue().get())
@@ -547,7 +545,7 @@ public class EPMachines {
                                 .where('N', ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.TungstenSteel))
                                 .where('K', GTMachines.ITEM_EXPORT_BUS[4], Direction.NORTH)
                                 .where('L', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
-                                .where('I', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ? */GTMachines.MAINTENANCE_HATCH/* : EPBlocks.IRIDIUM_CASING.get()*/, Direction.SOUTH)
+                                .where('I', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
                                 .where('Q', GTMachines.ITEM_IMPORT_BUS[4], Direction.WEST)
                                 .where('P', GTMachines.FLUID_IMPORT_HATCH[4], Direction.EAST);
                         BlockMaps.ALL_CA_TIRED_CASINGS.entrySet().stream()
@@ -891,7 +889,7 @@ public class EPMachines {
                         .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
                         .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
                         .where('A', Blocks.AIR)
-                        .where('J', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ? */GTMachines.MAINTENANCE_HATCH, /*: GTBlocks.CASING_STAINLESS_CLEAN, */Direction.NORTH);
+                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
 
                 List<CoilBlock> coils = GTBlocks.ALL_COILS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
@@ -974,7 +972,7 @@ public class EPMachines {
                         .where('V', EPBlocks.TFFT_CASING)
                         .where('C', GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
                         .where('E', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
-                        .where('N', /*() -> ConfigHolder.INSTANCE.machines.enableMaintenance ?*/ GTMachines.MAINTENANCE_HATCH /*: GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING*/, Direction.NORTH)
+                        .where('N', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
                         .where('I', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
                         .where('X', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
                         .where('J', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
@@ -1007,6 +1005,51 @@ public class EPMachines {
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
                     Epimorphism.id("block/multiblock/mega_alloy_blast_smelter"), false)
+            .register();
+    public final static MultiblockMachineDefinition VACUUM_DRYING_FURNACE = EP_REGISTRATE.multiblock("vacuum_drying_furnace", blockEntity -> new ParallelCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+            .langValue("Vacuum Drying Furnace")
+            .tooltips(Component.translatable("block.epimorphism.vacuum_drying_furnace.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(EPRecipeTypes.VACUUM_DRYING_FURNACE_RECIPES)
+            .appearanceBlock(EPBlocks.VACUUM_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
+                    .aisle("XXX", "C#C", "C#C", "C#C", "XMX")
+                    .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(EPBlocks.VACUUM_CASING.get())
+                            .setMinGlobalLimited(9)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('C', heatingCoils())
+                    .where('#', air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("EEM", "CCC", "CCC", "CCC", "XXX")
+                        .aisle("FXD", "C#C", "C#C", "C#C", "XHX")
+                        .aisle("ISO", "CCC", "CCC", "CCC", "XXX")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('X', EPBlocks.VACUUM_CASING)
+                        .where('E', GTMachines.ENERGY_INPUT_HATCH[6], Direction.NORTH)
+                        .where('I', GTMachines.ITEM_IMPORT_BUS[6], Direction.SOUTH)
+                        .where('O', GTMachines.ITEM_EXPORT_BUS[6], Direction.SOUTH)
+                        .where('F', GTMachines.FLUID_IMPORT_HATCH[6], Direction.WEST)
+                        .where('D', GTMachines.FLUID_EXPORT_HATCH[6], Direction.EAST)
+                        .where('H', GTMachines.MUFFLER_HATCH[1], Direction.UP)
+                        .where('#', Blocks.AIR.defaultBlockState())
+                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
+                ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/vacuum_casing"),
+                    Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
             .register();
 
 
