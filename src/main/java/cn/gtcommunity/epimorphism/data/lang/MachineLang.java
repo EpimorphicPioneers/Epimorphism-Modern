@@ -181,6 +181,38 @@ public class MachineLang {
 
                 ));
 
+        addBlockWithTooltip(provider, VACUUM_DRYING_FURNACE::getBlock,"真空干燥炉",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        addBlockWithTooltip(provider, BLAZING_PYROTHEUM_BLAST_FURNACE::getBlock,"炽炎高炉",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        addBlockWithTooltip(provider, GELID_CRYOTHEUM_FREEZER::getBlock,"凛冰冷冻机",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock,"工业级浮选机",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
                 "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
                 "§7每格能容纳§r2^31-1§7个物品，不能存储带有§eNBT§7的物品");

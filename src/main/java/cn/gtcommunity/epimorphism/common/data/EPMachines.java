@@ -1055,7 +1055,7 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
             .register();
 
-    public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = EP_REGISTRATE.multiblock("advanced_electric_blast_furnace", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+    public final static MultiblockMachineDefinition BLAZING_PYROTHEUM_BLAST_FURNACE = EP_REGISTRATE.multiblock("blazing_pyrotheum_blast_furnace", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
             .langValue("Advanced Electric Blast Furnace")
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
@@ -1100,7 +1100,7 @@ public class EPMachines {
             })
             .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/advanced_invar_casing"),
-                    Epimorphism.id("block/multiblock/advanced_electric_blast_furnace"), false)
+                    Epimorphism.id("block/multiblock/blazing_pyrotheum_blast_furnace"), false)
             .additionalDisplay((controller, components) -> {
                 if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
                     components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
@@ -1109,10 +1109,10 @@ public class EPMachines {
             })
             .register();
 
-    public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = EP_REGISTRATE.multiblock("industrial_vacuum_freezer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+    public final static MultiblockMachineDefinition GELID_CRYOTHEUM_FREEZER = EP_REGISTRATE.multiblock("gelid_cryotheum_freezer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
             .langValue("Industrial Vacuum Freezer")
             .tooltips(
-                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0")
+                    Component.translatable("block.epimorphism.gelid_cryotheum_freezer.desc.0")
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.VACUUM_RECIPES)
@@ -1125,11 +1125,39 @@ public class EPMachines {
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
                     .where('X', blocks(EPBlocks.ADVANCED_ALUMINIUM_CASING.get()).setMinGlobalLimited(14)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.autoAbilities(true, true, false)))
+                            .or(Predicates.autoAbilities(true, false, false)))
                     .where('#', Predicates.air())
                     .build())
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/advanced_aluminium_casing"),
-                    Epimorphism.id("block/multiblock/industrial_vacuum_freezer"), false)
+                    Epimorphism.id("block/multiblock/gelid_cryotheum_freezer"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+            .langValue("Industrial Vacuum Freezer")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.VACUUM_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(EPBlocks.FLOTATION_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
+                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
+                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
+                    .aisle("AAAAAAA", "AAAAAAA", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", "  ASA  ")
+                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
+                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
+                    .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('C', blocks(EPBlocks.FLOTATION_CELL.get()).setMinGlobalLimited(48))
+                    .where('A', blocks(EPBlocks.FLOTATION_CASING.get()).setMinGlobalLimited(64)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, true, false)))
+                    .where('D', Predicates.air())
+                    .build())
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/flotation_casing"),
+                    Epimorphism.id("block/multiblock/industrial_flotation_cell"), false)
             .register();
 
 
