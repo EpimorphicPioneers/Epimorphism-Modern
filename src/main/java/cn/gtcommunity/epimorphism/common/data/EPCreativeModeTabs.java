@@ -31,7 +31,13 @@ public class EPCreativeModeTabs {
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("physics"), Epimorphism.NAME + " | Physics"))
                             .icon(EPItems.GOOWARE_BOARD::asStack)
                             .build())
-            .register();
+                    .register();
+    public final static RegistryEntry<CreativeModeTab> EP_AGRICULTURE = EP_REGISTRATE.defaultCreativeTab("agriculture",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("agriculture", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("agriculture"), Epimorphism.NAME + " | Agriculture"))
+                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .build())
+                    .register();
 
     public static void init() {/**/}
 }

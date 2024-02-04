@@ -19,6 +19,7 @@ public class LangHandler {
     public static void init(RegistrateLangProvider provider) {
         ItemLang.init(provider);
         BlockLang.init(provider);
+        MaterialLang.init(provider);
         RecipeLang.init(provider);
         MachineLang.init(provider);
         MiscLang.init(provider);
@@ -27,6 +28,7 @@ public class LangHandler {
     public static void init(RegistrateCNLangProvider provider) {
         ItemLang.init(provider);
         BlockLang.init(provider);
+        MaterialLang.init(provider);
         RecipeLang.init(provider);
         MachineLang.init(provider);
         MiscLang.init(provider);

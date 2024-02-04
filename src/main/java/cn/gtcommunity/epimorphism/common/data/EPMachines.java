@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.api.machine.multiblock.*;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
+import cn.gtcommunity.epimorphism.client.renderer.handler.machine.BallHatchMachineRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ChemicalPlantRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
@@ -1055,6 +1056,35 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
             .register();
 
+    public final static MultiblockMachineDefinition ISA_MILL = EP_REGISTRATE.multiblock("isa_mill", IsaMillMachine::new)
+            .langValue("Isa Mill")
+            .tooltips(
+                    Component.translatable("block.epimorphism.isa_mill.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(EPBlocks.ISA_MILL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("CEEEEEE", "CEEEEEE", "CEEEEEE")
+                    .aisle("CEEEEEE", "BGGGGGE", "CEEEEEE")
+                    .aisle("CEEEEEE", "CEESEEE", "CEEEEEE")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('B', abilities(EPPartAbility.GRIND_BALL))
+                    .where('C', blocks(EPBlocks.CASING_ISA_MILL_PIPE.get()))
+                    .where('E', blocks(EPBlocks.ISA_MILL_CASING.get()).setMinGlobalLimited(31)
+                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1)))
+                    .where('G', blocks(EPBlocks.CASING_ISA_MILL_GEARBOX.get()))
+                    .build()
+            )
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/isa_mill_casing"),
+                    Epimorphism.id("block/multiblock/isa_mill"), false)
+            .register();
+
     public final static MultiblockMachineDefinition BLAZING_PYROTHEUM_BLAST_FURNACE = EP_REGISTRATE.multiblock("blazing_pyrotheum_blast_furnace", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
             .langValue("Advanced Electric Blast Furnace")
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
@@ -1212,6 +1242,15 @@ public class EPMachines {
                     )
                     .register(),
             GTValues.tiersBetween(3, 13));
+
+    public final static MachineDefinition GRIND_BALL_HATCH = EP_REGISTRATE.machine("grind_ball_hatch", BallHatchMachine::new)
+            .langValue("Grind Ball Hatch")
+            .tier(GTValues.IV)
+            .rotationState(RotationState.ALL)
+            .abilities(EPPartAbility.GRIND_BALL)
+            .renderer(() -> BallHatchMachineRenderer.INSTANCE)
+            .tooltips(Component.translatable("block.epimorphism.grind_ball_hatch.desc"))
+            .register();
 
 //    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
 //            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),

@@ -1,5 +1,6 @@
 {
   "values": [
+    "epimorphism:isa_mill_casing",
     "epimorphism:flotation_casing",
     "epimorphism:vacuum_casing",
     "epimorphism:hyper_casing",
@@ -17,6 +18,10 @@
     "epimorphism:speeding_pipe",
     "epimorphism:substrate_casing",
     "epimorphism:advanced_substrate_casing",
+    "epimorphism:polybenzimidazole_pipe",
+    "epimorphism:isa_mill_casing_pipe",
+    "epimorphism:nonconducting_casing",
+    "epimorphism:casing_isa_mill_gearbox",
     "epimorphism:polybenzimidazole_pipe",
     "epimorphism:nonconducting_casing",
     "epimorphism:casing_isa_mill_gearbox",

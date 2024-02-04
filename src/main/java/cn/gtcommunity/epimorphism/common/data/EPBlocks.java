@@ -53,7 +53,7 @@ public class EPBlocks {
 
 
     // Multiblock Machine Casing Blocks
-    public static final BlockEntry<Block> ISA_MILL_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> ISA_MILL_CASING = createCasingBlock("isa_mill_casing", Epimorphism.id("block/casings/solid/isa_mill_casing"));
     public static final BlockEntry<Block> FLOTATION_CASING = createCasingBlock("flotation_casing", Epimorphism.id("block/casings/solid/flotation_casing"));
     public static final BlockEntry<Block> VACUUM_CASING = createCasingBlock("vacuum_casing", Epimorphism.id("block/casings/solid/vacuum_casing"));
     public static final BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
@@ -98,7 +98,7 @@ public class EPBlocks {
 
     // Multiblock Machine Pipe Casing Blocks
     public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("polybenzimidazole_pipe", Epimorphism.id("block/casings/pipe/polybenzimidazole_pipe"));
-    public static final BlockEntry<Block> CASING_ISA_MILL_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> CASING_ISA_MILL_PIPE = createCasingBlock("isa_mill_casing_pipe", Epimorphism.id("block/casings/solid/isa_mill_casing_pipe"));
     public static final BlockEntry<Block> CASING_FLOTATION_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> CASING_ALLOY_SMELTING_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
 
@@ -162,6 +162,10 @@ public class EPBlocks {
 
 
     //  Misc
+
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);
+    }
     public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
             .block("fertilized_dirt", FertilizedDirtBlock::new)
             .initialProperties(() -> Blocks.DIRT)
@@ -186,6 +190,9 @@ public class EPBlocks {
             .item()
             .build()
             .register();
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
+    }
 
     public static void init() {/**/}
 
