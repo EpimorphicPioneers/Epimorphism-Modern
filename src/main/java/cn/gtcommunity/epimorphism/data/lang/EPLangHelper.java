@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.data.lang;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -137,6 +138,14 @@ public class EPLangHelper {
             cnLangProvider.add(material.getUnlocalizedName(), cnName);
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
             enLangProvider.add(material.getUnlocalizedName(), enName);
+        }
+    }
+
+    public static void addTagPrefix(LanguageProvider provider, TagPrefix tagPrefix, String enName, String cnName) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.add(tagPrefix.getUnlocalizedName(), cnName);
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            enLangProvider.add(tagPrefix.getUnlocalizedName(), enName);
         }
     }
 }

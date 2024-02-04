@@ -2,10 +2,10 @@ package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
+import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
 import cn.gtcommunity.epimorphism.common.item.behaviors.OrganismCaptureBehavior;
 import cn.gtcommunity.epimorphism.common.item.behaviors.StructureWriteBehavior;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
@@ -15,15 +15,12 @@ import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
-import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
-import lombok.Getter;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -323,8 +320,18 @@ public class EPItems {
     //    public final static ItemEntry<Item> DNA_ENCODER = REGISTRATE.item(307, "biological.components.dna_encoder");
 //    public final static ItemEntry<Item> DNA_DECODER = REGISTRATE.item(308, "biological.components.dna_decoder");
 //    public final static ItemEntry<Item> DNA_DECODE_ENCODER = REGISTRATE.item(309, "biological.components.dna_decode_encoder");
-//    public final static ItemEntry<ComponentItem> GRINDBALL_SOAPSTONE;
-//    public final static ItemEntry<ComponentItem> GRINDBALL_ALUMINIUM;
+    public final static ItemEntry<ComponentItem> GRINDBALL_SOAPSTONE = EP_REGISTRATE.item("mill.grindball_soapstone", ComponentItem::create)
+            .lang("Soapstone Grind Ball")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new GrindBallBehaviour()))
+            .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.gtceu.electric.pump.tooltip")))))
+            .register();
+    public final static ItemEntry<ComponentItem> GRINDBALL_ALUMINIUM = EP_REGISTRATE.item("mill.grindball_aluminium", ComponentItem::create)
+            .lang("Aluminium Grind Ball")
+            .properties(p -> p.stacksTo(1))
+            .onRegister(attach(new GrindBallBehaviour()))
+            .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.gtceu.electric.pump.tooltip")))))
+            .register();
     public final static ItemEntry<Item> ORDINARY_ALGAE = EP_REGISTRATE.item("algae.ordinary_algae", Item::new).lang("Ordinary Algae").register();
     public final static ItemEntry<Item> RED_ALGA = EP_REGISTRATE.item("algae.red_alga", Item::new).lang("Red Alga").register();
     public final static ItemEntry<Item> GREEN_ALGA = EP_REGISTRATE.item("algae.green_alga", Item::new).lang("Green Alga").register();

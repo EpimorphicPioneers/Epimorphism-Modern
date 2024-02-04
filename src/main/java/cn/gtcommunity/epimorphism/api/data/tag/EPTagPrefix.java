@@ -12,7 +12,6 @@ public class EPTagPrefix {
             new HaloRenderItemBehavior(4, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, false))
             .defaultTagPath("singularity/%s")
             .unformattedTagPath("singularity")
-            .langValue("%s Singularity")
             .materialAmount(-1)
             .materialIconType(EPMaterialIconType.singularity)
             .unificationEnabled(true)

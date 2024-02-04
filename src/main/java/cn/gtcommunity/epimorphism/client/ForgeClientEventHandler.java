@@ -1,4 +1,4 @@
-package cn.gtcommunity.epimorphism.common;
+package cn.gtcommunity.epimorphism.client;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.client.renderer.handler.StructureSelectRenderer;

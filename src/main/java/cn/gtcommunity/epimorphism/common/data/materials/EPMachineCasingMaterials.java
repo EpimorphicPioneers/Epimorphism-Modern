@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
@@ -9,10 +8,10 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.ToolProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPMachineCasingMaterials {
     public static void register() {
@@ -25,7 +24,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.METALLIC)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_GEAR, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR)
                 .blastTemp(4850, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.IV], 1000)
-                .components(GTMaterials.Nickel, 8, /*Chrome, 6, */GTMaterials.Molybdenum, 4, GTMaterials.Niobium, 4, GTMaterials.Titanium, 3, GTMaterials.Iron, 2, GTMaterials.Aluminium, 2)
+                .components(Nickel, 8, /*Chrome, 6, */Molybdenum, 4, Niobium, 4, Titanium, 3, Iron, 2, Aluminium, 2)
                 .buildAndRegister();
         //  24502 Hastelloy-N
         HastelloyN = Builder("hastelloy_n")
@@ -35,7 +34,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .flags(MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_FRAME, GENERATE_CURVED_PLATE)
                 .blastTemp(4550, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.EV], 800)
-                .components(GTMaterials.Nickel, 15, GTMaterials.Molybdenum, 4, /*Chrome, 2, */GTMaterials.Titanium, 2, GTMaterials.Yttrium, 2)
+                .components(Nickel, 15, Molybdenum, 4, /*Chrome, 2, */Titanium, 2, Yttrium, 2)
                 .buildAndRegister();
         //  24503 Stellite
         Stellite = Builder("stellite")
@@ -44,7 +43,7 @@ public class EPMachineCasingMaterials {
                 .color(0x9991A5)
                 .iconSet(MaterialIconSet.METALLIC)
                 .blastTemp(4310, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.EV], 1200)
-                .components(/*Chrome, 9, */GTMaterials.Cobalt, 9, GTMaterials.Manganese, 5, GTMaterials.Titanium, 2)
+                .components(/*Chrome, 9, */Cobalt, 9, Manganese, 5, Titanium, 2)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24504 Quantum Alloy
@@ -54,7 +53,7 @@ public class EPMachineCasingMaterials {
                 .color(0x0F0F0F)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(10800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 1600)
-                .components(Stellite, 15, GTMaterials.Emerald, 5, GTMaterials.Gallium, 5, GTMaterials.Americium, 5, GTMaterials.Germanium, 5, GTMaterials.TitaniumTungstenCarbide, 5)
+                .components(Stellite, 15, Emerald, 5, Gallium, 5, Americium, 5, Germanium, 5, TitaniumTungstenCarbide, 5)
                 .cableProperties(GTValues.V[GTValues.UHV], 24, 0, true)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
@@ -65,7 +64,7 @@ public class EPMachineCasingMaterials {
                 .color(0x355D6A)
                 .iconSet(MaterialIconSet.METALLIC)
                 .blastTemp(11800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 2000)
-                .components(BETSPerrhenate, 1, /*Trinaquadalloy, 4, */Vibranium, 2, Taranium, 1, GTMaterials.TitaniumCarbide, 9, GTMaterials.Potassium, 9, GTMaterials.Lithium, 9, GTMaterials.Sulfur, 6)
+                .components(BETSPerrhenate, 1, /*Trinaquadalloy, 4, */Vibranium, 2, Taranium, 1, TitaniumCarbide, 9, Potassium, 9, Lithium, 9, Sulfur, 6)
                 .flags(MaterialFlags.GENERATE_FINE_WIRE)
                 .cableProperties(GTValues.V[GTValues.UEV], 48, 0, true)
                 .buildAndRegister();
@@ -77,7 +76,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .toolStats(new ToolProperty(20.0F, 10.0F, 18000, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .blastTemp(11900, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 2400)
-                .components(GTMaterials.TungstenSteel, 12, GTMaterials.HSSS, 9, GTMaterials.HSSG, 6, GTMaterials.Ruridit, 3, MagnetoResonatic, 2, GTMaterials.Plutonium241, 1)
+                .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium241, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24507 Abyssalloy
@@ -87,7 +86,7 @@ public class EPMachineCasingMaterials {
                 .color(0x9E706A)
                 .iconSet(MaterialIconSet.METALLIC)
                 .blastTemp(9625, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 2250)
-                .components(GTMaterials.StainlessSteel, 5, GTMaterials.TungstenCarbide, 5, GTMaterials.Nichrome, 5, GTMaterials.IncoloyMA956, 5, GTMaterials.Germanium, 1, GTMaterials.Rutherfordium, 1, GTMaterials.Radon, 1)
+                .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, IncoloyMA956, 5, Germanium, 1, Rutherfordium, 1, Radon, 1)
                 .cableProperties(GTValues.V[GTValues.UEV], 64, 64, false)
                 .flags(MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
@@ -98,7 +97,7 @@ public class EPMachineCasingMaterials {
                 .color(0x0D0D60)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(9865, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 1860)
-                .components(HastelloyN, 8, GTMaterials.Naquadria, 4, GTMaterials.Samarium, 2, GTMaterials.Tungsten, 4, GTMaterials.Aluminium, 6, GTMaterials.Nickel, 8, GTMaterials.Titanium, 4, GTMaterials.Carbon, 2, GTMaterials.Argon, 2)
+                .components(HastelloyN, 8, Naquadria, 4, Samarium, 2, Tungsten, 4, Aluminium, 6, Nickel, 8, Titanium, 4, Carbon, 2, Argon, 2)
                 .fluidPipeProperties(23000, 8000, true, true, true, true)
                 .buildAndRegister();
         //  24509 Black Titanium
@@ -109,7 +108,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(11500, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 4580)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
-                .components(GTMaterials.Titanium, 26, GTMaterials.Lanthanum, 6, GTMaterials.TungstenSteel, 4, GTMaterials.Cobalt, 3, GTMaterials.Manganese, 2, GTMaterials.Phosphorus, 2, GTMaterials.Palladium, 2, GTMaterials.Niobium, 1, GTMaterials.Argon, 5)
+                .components(Titanium, 26, Lanthanum, 6, TungstenSteel, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium, 2, Niobium, 1, Argon, 5)
                 .toolStats(new ToolProperty(9.0F, 30.0F, 32000, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .buildAndRegister();
         //  24510 Talonite
@@ -120,7 +119,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(3454)
                 .flags(MaterialFlags.GENERATE_PLATE)
-                .components(GTMaterials.Cobalt, 4,/* Chrome, 3, */GTMaterials.Phosphorus, 2, GTMaterials.Molybdenum, 1)
+                .components(Cobalt, 4,/* Chrome, 3, */Phosphorus, 2, Molybdenum, 1)
                 .buildAndRegister();
         //  24511 Black Plutonium
         BlackPlutonium = Builder("black_plutonium")
@@ -130,7 +129,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.BRIGHT)
                 .blastTemp(12960, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 3600)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
-                .components(Plutonium244, 18, GTMaterials.Cerium, 9, GTMaterials.Gadolinium, 3, GTMaterials.Dysprosium, 3, GTMaterials.Thulium, 2, GTMaterials.TungstenCarbide, 6, GTMaterials.RedSteel, 6, GTMaterials.Duranium, 2, GTMaterials.Radon, 2)
+                .components(Plutonium244, 18, Cerium, 9, Gadolinium, 3, Dysprosium, 3, Thulium, 2, TungstenCarbide, 6, RedSteel, 6, Duranium, 2, Radon, 2)
                 .buildAndRegister();
         //  24512 Maraging Steel-250
         MaragingSteel250 = Builder("maraging_steel_250")
@@ -140,7 +139,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(2413, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 680)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR)
-                .components(GTMaterials.Steel, 16, GTMaterials.Molybdenum, 1, GTMaterials.Titanium, 1, GTMaterials.Nickel, 4, GTMaterials.Cobalt, 2)
+                .components(Steel, 16, Molybdenum, 1, Titanium, 1, Nickel, 4, Cobalt, 2)
                 .buildAndRegister();
         //  24513 Staballoy
         Staballoy = Builder("staballoy")
@@ -150,7 +149,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(3450, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.EV], 462)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR)
-                .components(GTMaterials.Uranium238, 9, GTMaterials.Titanium, 1)
+                .components(Uranium238, 9, Titanium, 1)
                 .buildAndRegister();
         //  24514 Babbitt Alloy
         BabbittAlloy = Builder("babbitt_alloy")
@@ -158,7 +157,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0xA19CA4)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Tin, 5, GTMaterials.Lead, 36, GTMaterials.Antimony, 8, GTMaterials.Astatine, 1)
+                .components(Tin, 5, Lead, 36, Antimony, 8, Astatine, 1)
                 .blastTemp(737, BlastProperty.GasTier.MID, GTValues.VA[GTValues.MV], 214)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
@@ -168,7 +167,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0xFFDACD)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Zirconium, 1, GTMaterials.Carbon, 1)
+                .components(Zirconium, 1, Carbon, 1)
                 .blastTemp(1200, BlastProperty.GasTier.MID, GTValues.VA[GTValues.HV], 344)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
@@ -178,7 +177,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x6CF076)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Nickel, 2, GTMaterials.Niobium, 1, GTMaterials.Aluminium, 2, GTMaterials.Nichrome, 1)
+                .components(Nickel, 2, Niobium, 1, Aluminium, 2, Nichrome, 1)
                 .blastTemp(6200, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 1266)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR)
                 .fluidPipeProperties(4900, 220, true, true, true, false)
@@ -189,7 +188,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x6CF076)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.VanadiumSteel, 4, GTMaterials.Osmiridium, 2, GTMaterials.HSSS, 3, GTMaterials.Germanium, 4, GTMaterials.Duranium, 5, GTMaterials.Dubnium, 1)
+                .components(VanadiumSteel, 4, Osmiridium, 2, HSSS, 3, Germanium, 4, Duranium, 5, Dubnium, 1)
                 .blastTemp(9900, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.ZPM], 1277)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
@@ -200,7 +199,7 @@ public class EPMachineCasingMaterials {
                 .color(0x6BA3E3)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(12800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 4997)
-                .components(GTMaterials.NaquadahAlloy, 10, GTMaterials.Rhenium, 5, GTMaterials.Naquadria, 4, GTMaterials.Gadolinium, 3, GTMaterials.Strontium, 2, GTMaterials.Polonium, 3, GTMaterials.Rutherfordium, 2, GTMaterials.Fermium, 1)
+                .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3, Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24519 Hastelloy-K243
@@ -210,7 +209,7 @@ public class EPMachineCasingMaterials {
                 .color(0xa4ff70)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .blastTemp(12400, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 5032)
-                .components(HastelloyX78, 5, GTMaterials.NiobiumNitride, 2, GTMaterials.Tritanium, 4, GTMaterials.TungstenCarbide, 4, GTMaterials.Promethium, 4, GTMaterials.Mendelevium, 1)
+                .components(HastelloyX78, 5, NiobiumNitride, 2, Tritanium, 4, TungstenCarbide, 4, Promethium, 4, Mendelevium, 1)
                 .buildAndRegister();
         //  24520 Mar-M200 Steel
         MARM200Steel = Builder("mar_m_200_steel")
@@ -219,7 +218,7 @@ public class EPMachineCasingMaterials {
                 .color(0x515151)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(5000, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 200)
-                .components(GTMaterials.Niobium, 2, /*Chrome, 9, */GTMaterials.Aluminium, 5, GTMaterials.Titanium, 2, GTMaterials.Cobalt, 10, GTMaterials.Tungsten, 13, GTMaterials.Nickel, 18)
+                .components(Niobium, 2, /*Chrome, 9, */Aluminium, 5, Titanium, 2, Cobalt, 10, Tungsten, 13, Nickel, 18)
                 .flags(MaterialFlags.GENERATE_PLATE, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24521 Mar-M200-Ce Steel
@@ -229,7 +228,7 @@ public class EPMachineCasingMaterials {
                 .color(0x383030)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .blastTemp(7500, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.LuV], 432)
-                .components(MARM200Steel, 18, GTMaterials.Cerium, 1)
+                .components(MARM200Steel, 18, Cerium, 1)
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24522 Tanmolyium Beta-C
@@ -239,7 +238,7 @@ public class EPMachineCasingMaterials {
                 .color(0xc72fcc)
                 .iconSet(MaterialIconSet.METALLIC)
                 .blastTemp(5300, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 180)
-                .components(GTMaterials.Titanium, 5, GTMaterials.Molybdenum, 5, GTMaterials.Vanadium, 2, /*Chrome, 3, */GTMaterials.Aluminium, 1)
+                .components(Titanium, 5, Molybdenum, 5, Vanadium, 2, /*Chrome, 3, */Aluminium, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24523 Hastelloy-C59
@@ -249,7 +248,7 @@ public class EPMachineCasingMaterials {
                 .color(0xD6D0F0)
                 .iconSet(MaterialIconSet.DULL)
                 .blastTemp(7600, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.LuV], 559)
-                .components(GTMaterials.Nickel, 18, /*Chrome, 16, */GTMaterials.TinAlloy, 8, GTMaterials.Cobalt, 6, GTMaterials.Niobium, 4, GTMaterials.Aluminium, 4, GTMaterials.Silicon, 2, GTMaterials.Phosphorus, 2)
+                .components(Nickel, 18, /*Chrome, 16, */TinAlloy, 8, Cobalt, 6, Niobium, 4, Aluminium, 4, Silicon, 2, Phosphorus, 2)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24524 HMS-1J79 Alloy
@@ -259,7 +258,7 @@ public class EPMachineCasingMaterials {
                 .color(0xD1CB0B)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(8100, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.LuV], 886)
-                .components(GTMaterials.Nickel, 14, GTMaterials.Iron, 12, GTMaterials.Molybdenum, 11, GTMaterials.CobaltBrass, 8, /*Chrome, 6, */GTMaterials.Silicon, 4)
+                .components(Nickel, 14, Iron, 12, Molybdenum, 11, CobaltBrass, 8, /*Chrome, 6, */Silicon, 4)
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24525 High Strength Structural Steel-HY130-1
@@ -269,7 +268,7 @@ public class EPMachineCasingMaterials {
                 .color(0x6F3E57)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(7850, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.LuV], 766)
-                .components(GTMaterials.Nickel, 9, GTMaterials.NickelZincFerrite, 6, /*Chrome, 4, */GTMaterials.Nichrome, 4, GTMaterials.Iron, 4, GTMaterials.Molybdenum, 4, GTMaterials.Rhenium, 2, GTMaterials.Silicon, 1)
+                .components(Nickel, 9, NickelZincFerrite, 6, /*Chrome, 4, */Nichrome, 4, Iron, 4, Molybdenum, 4, Rhenium, 2, Silicon, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24526 Super Austenitic Stainless Steel-904L
@@ -279,7 +278,7 @@ public class EPMachineCasingMaterials {
                 .color(0x881357)
                 .iconSet(MaterialIconSet.METALLIC)
                 .blastTemp(4960, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 344)
-                .components(GTMaterials.StainlessSteel, 8, GTMaterials.NickelZincFerrite, 4, GTMaterials.Kanthal, 4, GTMaterials.Molybdenum, 4)
+                .components(StainlessSteel, 8, NickelZincFerrite, 4, Kanthal, 4, Molybdenum, 4)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
         //  24527 Eglin Steel Base
@@ -287,7 +286,7 @@ public class EPMachineCasingMaterials {
                 .dust()
                 .color(0x8B4513)
                 .iconSet(MaterialIconSet.SAND)
-                .components(GTMaterials.Iron, 4, GTMaterials.Kanthal, 1, GTMaterials.Invar, 5)
+                .components(Iron, 4, Kanthal, 1, Invar, 5)
                 .buildAndRegister();
         //  24528 Eglin Steel
         EglinSteel = Builder("eglin_steel")
@@ -295,7 +294,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x8B4513)
                 .iconSet(MaterialIconSet.METALLIC)
-                .components(EglinSteelBase, 10, GTMaterials.Sulfur, 1, GTMaterials.Silicon, 1, GTMaterials.Carbon, 1)
+                .components(EglinSteelBase, 10, Sulfur, 1, Silicon, 1, Carbon, 1)
                 .blastTemp(1048, BlastProperty.GasTier.LOW, GTValues.VA[GTValues.MV], 24)
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
@@ -306,7 +305,7 @@ public class EPMachineCasingMaterials {
                 .color(0x3467BA)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(10400, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.ZPM], 2487)
-                .components(Inconel792, 8, EglinSteel, 5, GTMaterials.NaquadahAlloy, 4, GTMaterials.TungstenSteel, 4, GTMaterials.Cerium, 3, GTMaterials.Antimony, 2, GTMaterials.Platinum, 2, GTMaterials.Ytterbium, 1)
+                .components(Inconel792, 8, EglinSteel, 5, NaquadahAlloy, 4, TungstenSteel, 4, Cerium, 3, Antimony, 2, Platinum, 2, Ytterbium, 1)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_SPRING, MaterialFlags.GENERATE_SPRING_SMALL)
                 .buildAndRegister();
         //  24530 Cinobite
@@ -316,7 +315,7 @@ public class EPMachineCasingMaterials {
                 .color(0x010101)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(11465, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UV], 3608)
-                .components(GTMaterials.Zeron100, 8, GTMaterials.Stellite100, 6, GTMaterials.Titanium, 6, GTMaterials.Naquadria, 4, GTMaterials.Osmiridium, 3, GTMaterials.Aluminium, 2, GTMaterials.Tin, 1, GTMaterials.Mercury, 1)
+                .components(Zeron100, 8, Stellite100, 6, Titanium, 6, Naquadria, 4, Osmiridium, 3, Aluminium, 2, Tin, 1, Mercury, 1)
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24531 Titan Steel
@@ -326,7 +325,7 @@ public class EPMachineCasingMaterials {
                 .color(0xAA0D0D)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(12000, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 4550)
-                .components(GTMaterials.TitaniumTungstenCarbide, 18, GTMaterials.Ruridit, 9, AusteniticStainlessSteel904L, 6, GTMaterials.Naquadah, 4, GTMaterials.RedSteel, 4, GTMaterials.BlueSteel, 4)
+                .components(TitaniumTungstenCarbide, 18, Ruridit, 9, AusteniticStainlessSteel904L, 6, Naquadah, 4, RedSteel, 4, BlueSteel, 4)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
         //  24532 Incoloy-DS
@@ -336,7 +335,7 @@ public class EPMachineCasingMaterials {
                 .color(0x6746B7)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .blastTemp(5680, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 680)
-                .components(GTMaterials.Iron, 23, GTMaterials.Cobalt, 9, /*Chrome, 9, */GTMaterials.Nickel, 9)
+                .components(Iron, 23, Cobalt, 9, /*Chrome, 9, */Nickel, 9)
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
         //  24533 Inconel-690
@@ -345,7 +344,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x4FC050)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(/*Chrome, 1, */GTMaterials.Niobium, 2, GTMaterials.Molybdenum, 2, GTMaterials.Nichrome, 3)
+                .components(/*Chrome, 1, */Niobium, 2, Molybdenum, 2, Nichrome, 3)
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW)
                 .blastTemp(3440, BlastProperty.GasTier.MID, GTValues.VA[GTValues.HV], 45)
                 .buildAndRegister();
@@ -355,7 +354,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x717171)
                 .iconSet(MaterialIconSet.METALLIC)
-                .components(GTMaterials.Tantalum, 13, GTMaterials.Tungsten, 12, GTMaterials.Titanium, 6, GTMaterials.Yttrium, 4)
+                .components(Tantalum, 13, Tungsten, 12, Titanium, 6, Yttrium, 4)
                 .blastTemp(6900, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.LuV], 801)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
                 .buildAndRegister();
@@ -365,7 +364,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0xF8BFFC)
                 .iconSet(MaterialIconSet.METALLIC)
-                .components(GTMaterials.Iron, 10, GTMaterials.Nickel, 9, /*Chrome, 5, */GTMaterials.Copper, 1)
+                .components(Iron, 10, Nickel, 9, /*Chrome, 5, */Copper, 1)
                 .blastTemp(3400, BlastProperty.GasTier.MID, GTValues.VA[GTValues.MV], 53)
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW)
                 .buildAndRegister();
@@ -375,7 +374,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x235497)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Mercury, 1, GTMaterials.Barium, 2, GTMaterials.Calcium, 2, GTMaterials.Copper, 3, GTMaterials.Oxygen, 8)
+                .components(Mercury, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 8)
                 .blastTemp(5325, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.EV], 301)
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();
@@ -385,7 +384,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x9E927D)
                 .iconSet(MaterialIconSet.DULL)
-                .components(GTMaterials.Nickel, 12, GTMaterials.TinAlloy, 8, /*Chrome, 4, */GTMaterials.Phosphorus, 2, GTMaterials.Silicon, 2)
+                .components(Nickel, 12, TinAlloy, 8, /*Chrome, 4, */Phosphorus, 2, Silicon, 2)
                 .blastTemp(4330, BlastProperty.GasTier.MID, GTValues.VA[GTValues.EV], 290)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
@@ -395,7 +394,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x8BF743)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .components(BoronFranciumMixture, 8, ActiniumSuperhydride, 13, Abyssalloy, 6, LanthanumFullereneNanotube, 4, MetastableOganesson, 4, Cinobite, 3, GTMaterials.Radium, 2, GTMaterials.Astatine, 2, GTMaterials.Radon, 5)
+                .components(BoronFranciumMixture, 8, ActiniumSuperhydride, 13, Abyssalloy, 6, LanthanumFullereneNanotube, 4, MetastableOganesson, 4, Cinobite, 3, Radium, 2, Astatine, 2, Radon, 5)
                 //  TODO UEV stage coil?
                 .blastTemp(12960, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UIV], 5560)
                 .cableProperties(GTValues.V[GTValues.UIV], 256, 0, true)
@@ -406,7 +405,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0xF58FDA)
 //                .iconSet(CUSTOM_LEGENDARIUM)
-                .components(GTMaterials.Naquadria, 1, GTMaterials.Trinium, 1, GTMaterials.Duranium, 1, GTMaterials.Tritanium, 1, Orichalcum, 1, Adamantium, 1, Vibranium, 1, Taranium, 1)
+                .components(Naquadria, 1, Trinium, 1, Duranium, 1, Tritanium, 1, Orichalcum, 1, Adamantium, 1, Vibranium, 1, Taranium, 1)
                 //  TODO UEV stage coil?
                 .blastTemp(12960, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UIV], 4998)
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR)
@@ -417,7 +416,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0xE84B36)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Copernicium, 1, GTMaterials.Nihonium, 1, MetastableFlerovium, 1, GTMaterials.Moscovium, 1, GTMaterials.Livermorium, 1, GTMaterials.Tennessine, 1, MetastableOganesson, 1)
+                .components(Copernicium, 1, Nihonium, 1, MetastableFlerovium, 1, Moscovium, 1, Livermorium, 1, Tennessine, 1, MetastableOganesson, 1)
                 //  TODO UEV stage coil?
                 .blastTemp(12960, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UIV], 5236)
                 .flags(MaterialFlags.GENERATE_FINE_WIRE)
@@ -429,7 +428,7 @@ public class EPMachineCasingMaterials {
                 .fluid()
                 .color(0x4D8BE9)
                 .iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Rutherfordium, 1, GTMaterials.Dubnium, 1, GTMaterials.Seaborgium, 1, GTMaterials.Bohrium, 1, MetastableHassium, 1, GTMaterials.Meitnerium, 1, GTMaterials.Darmstadtium, 1, GTMaterials.Roentgenium, 1)
+                .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Darmstadtium, 1, Roentgenium, 1)
                 .blastTemp(10800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV], 4990)
                 .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FINE_WIRE)
                 .buildAndRegister();
@@ -437,9 +436,9 @@ public class EPMachineCasingMaterials {
         PlatinumGroupAlloy = Builder("platinum_group_alloy")
                 .ingot()
                 .fluid()
-                .color(GTMaterials.Gold.getMaterialRGB() + GTMaterials.Silver.getMaterialRGB() + GTMaterials.Platinum.getMaterialRGB() + GTMaterials.Palladium.getMaterialRGB() + GTMaterials.Ruthenium.getMaterialRGB() + GTMaterials.Rhodium.getMaterialRGB() + GTMaterials.Iridium.getMaterialRGB() + GTMaterials.Osmium.getMaterialRGB())
+                .color(Gold.getMaterialRGB() + Silver.getMaterialRGB() + Platinum.getMaterialRGB() + Palladium.getMaterialRGB() + Ruthenium.getMaterialRGB() + Rhodium.getMaterialRGB() + Iridium.getMaterialRGB() + Osmium.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
-                .components(GTMaterials.Gold, 1, GTMaterials.Silver, 1, GTMaterials.Platinum, 1, GTMaterials.Palladium, 1, GTMaterials.Ruthenium, 1, GTMaterials.Rhodium, 1, GTMaterials.Iridium, 1, GTMaterials.Osmium, 1)
+                .components(Gold, 1, Silver, 1, Platinum, 1, Palladium, 1, Ruthenium, 1, Rhodium, 1, Iridium, 1, Osmium, 1)
                 .blastTemp(10000, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UV], 1800)
                 .flags(MaterialFlags.GENERATE_PLATE)
                 .buildAndRegister();

@@ -400,6 +400,8 @@
   "item.epimorphism.max_robot_arm": "ɯɹⱯ ʇoqoᴚ ɹ§XⱯWן§ɔ§",
   "item.epimorphism.max_sensor": "ɹosuǝS ɹ§XⱯWן§ɔ§",
   "item.epimorphism.metastable_self_healing_adhesive": "ǝʌısǝɥpⱯ buıןɐǝɥ-ɟןǝS ǝןqɐʇsɐʇǝW",
+  "item.epimorphism.mill.grindball_aluminium": "ןןɐᗺ puıɹ⅁ ɯnıuıɯnןⱯ",
+  "item.epimorphism.mill.grindball_soapstone": "ןןɐᗺ puıɹ⅁ ǝuoʇsdɐoS",
   "item.epimorphism.opv_voltage_coil": "ןıoƆ ǝbɐʇןoΛ pǝɹǝʍodɹǝʌO",
   "item.epimorphism.opv_voltage_coil.desc": "ןıoƆ ʎɹɐpuǝbǝꞀ",
   "item.epimorphism.organism_capture_tool": "ןoo⟘ ǝɹnʇdɐƆ ɯsıuɐbɹO",
@@ -532,5 +534,6 @@
   "particleType.epimorphism.lepton": "uoʇdǝꞀɐ§",
   "particleType.epimorphism.meson": "uosǝWɹ§",
   "particleType.epimorphism.quark": "ʞɹɐnὉp§",
-  "recipe.condition.neutron_kinetic_energy.desc": "Λǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıxɐW\nΛǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıuıW"
+  "recipe.condition.neutron_kinetic_energy.desc": "Λǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıxɐW\nΛǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıuıW",
+  "tagprefix.singularity": "ʎʇıɹɐןnbuıS %s"
 }

@@ -400,6 +400,8 @@
   "item.epimorphism.max_robot_arm": "§c§lMAX§r Robot Arm",
   "item.epimorphism.max_sensor": "§c§lMAX§r Sensor",
   "item.epimorphism.metastable_self_healing_adhesive": "Metastable Self-healing Adhesive",
+  "item.epimorphism.mill.grindball_aluminium": "Aluminium Grind Ball",
+  "item.epimorphism.mill.grindball_soapstone": "Soapstone Grind Ball",
   "item.epimorphism.opv_voltage_coil": "Overpowered Voltage Coil",
   "item.epimorphism.opv_voltage_coil.desc": "Legendary Coil",
   "item.epimorphism.organism_capture_tool": "Organism Capture Tool",
@@ -532,5 +534,6 @@
   "particleType.epimorphism.lepton": "§aLepton",
   "particleType.epimorphism.meson": "§rMeson",
   "particleType.epimorphism.quark": "§dQuark",
-  "recipe.condition.neutron_kinetic_energy.desc": "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV"
+  "recipe.condition.neutron_kinetic_energy.desc": "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
+  "tagprefix.singularity": "%s Singularity"
 }
