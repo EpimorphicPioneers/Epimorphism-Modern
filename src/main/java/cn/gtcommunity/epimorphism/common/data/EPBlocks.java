@@ -157,6 +157,10 @@ public class EPBlocks {
 
 
     //  Misc
+
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);
+    }
     public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
             .block("fertilized_dirt", FertilizedDirtBlock::new)
             .initialProperties(() -> Blocks.DIRT)
@@ -181,6 +185,9 @@ public class EPBlocks {
             .item()
             .build()
             .register();
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
+    }
 
     public static void init() {/**/}
 
