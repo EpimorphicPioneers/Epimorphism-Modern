@@ -1,5 +1,6 @@
-package cn.gtcommunity.epimorphism;
+package cn.gtcommunity.epimorphism.common;
 
+import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;

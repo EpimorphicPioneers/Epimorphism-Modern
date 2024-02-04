@@ -9,4 +9,5 @@ public class MaterialLang {
     public static void init(LanguageProvider provider) {
         addMaterial(provider, GrapheneOxide, "Graphene Oxide", "氧化石墨烯");
     }
+
 }

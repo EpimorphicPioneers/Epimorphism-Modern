@@ -28,7 +28,6 @@ public class EPGTAddon implements IGTAddon {
     public void initializeAddon() {
         EPMaterialIconSet.init();
         EPMaterialIconType.init();
-//        CommonProxy.onGTCEuSetup();
         Epimorphism.proxy.init();
         Epimorphism.LOGGER.info("Epimorphism's GT Addon Loaded!");
     }

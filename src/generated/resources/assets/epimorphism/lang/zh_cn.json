@@ -1193,4 +1193,6 @@
   "material.gtceu.superheavy_h_alloy": "超重元素-重合金",
   "material.gtceu.superheavy_l_alloy": "超重元素-轻合金",
   "material.gtceu.platinum_group_alloy": "稀有金属合金"
+  "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV",
+  "tagprefix.singularity": "%s奇点"
 }

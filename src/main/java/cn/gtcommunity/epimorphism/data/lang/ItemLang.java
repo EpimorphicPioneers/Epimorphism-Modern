@@ -1,5 +1,8 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
+import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
@@ -442,5 +445,11 @@ public class ItemLang {
         //  High Energy Physics items
 
         WrapItemLang.init(provider);
+        initGeneratedNames(provider);
+    }
+
+    private static void initGeneratedNames(LanguageProvider provider) {
+        // TagPrefix
+        addTagPrefix(provider, EPTagPrefix.singularity, "%s Singularity", "%s奇点");
     }
 }

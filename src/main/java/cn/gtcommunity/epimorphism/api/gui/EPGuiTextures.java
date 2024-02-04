@@ -19,7 +19,7 @@ public class EPGuiTextures {
     public static final ResourceTexture TOGGLE_BUTTON_SELECTED = createTexture("widget/button_selected.png");
 
     public static final ResourceTexture OVERLAY_PARALLEL_CONFIGURATOR = createTexture("overlay/parallel_configurator.png");
-
+    public static final ResourceTexture BALL_OVERLAY = createTexture("overlay/ball_overlay.png");
     private static ResourceTexture createTexture(String imageLocation) {
         return new ResourceTexture("epimorphism:textures/gui/%s".formatted(imageLocation));
     }
