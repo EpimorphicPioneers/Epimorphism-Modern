@@ -330,11 +330,6 @@ public class EPItems {
             .properties(p -> p.stacksTo(1))
             .onRegister(attach(new GrindBallBehaviour()))
             .register();
-    public final static ItemEntry<Item> ORDINARY_ALGAE = EP_REGISTRATE.item("algae.ordinary_algae", Item::new).lang("Ordinary Algae").register();
-    public final static ItemEntry<Item> RED_ALGA = EP_REGISTRATE.item("algae.red_alga", Item::new).lang("Red Alga").register();
-    public final static ItemEntry<Item> GREEN_ALGA = EP_REGISTRATE.item("algae.green_alga", Item::new).lang("Green Alga").register();
-    public final static ItemEntry<Item> CHRYSOPHYCEAE = EP_REGISTRATE.item("algae.chrysophyceae", Item::new).lang("Chrysophyceae").register();
-    public final static ItemEntry<Item> BROWN_ALGA = EP_REGISTRATE.item("algae.brown_alga", Item::new).lang("Brown Alga").register();
 
     //  Covers
     public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
@@ -405,6 +400,7 @@ public class EPItems {
     public static void init() {
         EPWrapItem.init();
         EPPhysicsItem.init();
+        EPAgricultureItem.init();
     }
 
     protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {

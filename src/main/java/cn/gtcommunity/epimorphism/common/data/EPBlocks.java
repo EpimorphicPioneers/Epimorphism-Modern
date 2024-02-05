@@ -7,38 +7,51 @@ import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.common.block.*;
+import cn.gtcommunity.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.api.item.RendererBlockItem;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
-import com.gregtechceu.gtceu.common.data.GTModels;
+import com.gregtechceu.gtceu.common.data.*;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 
 @SuppressWarnings("all")
 public class EPBlocks {
@@ -49,8 +62,6 @@ public class EPBlocks {
     //////////////////////////////////////
     //******     Casing Blocks     *****//
     //////////////////////////////////////
-
-
 
     // Multiblock Machine Casing Blocks
     public static final BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
@@ -191,6 +202,66 @@ public class EPBlocks {
             .item()
             .build()
             .register();
+
+    public static final BlockEntry<SaplingBlock> PINE_SAPLING = EP_REGISTRATE.block("pine_sapling", properties -> new SaplingBlock(new AbstractTreeGrower() {
+                protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource random, boolean largeHive) {
+                    return EPConfiguredFeatures.PINE;
+                }
+            }, properties))
+            .initialProperties(() -> Blocks.OAK_SAPLING)
+            .lang("Pine Sapling")
+            .blockstate(GTModels::createCrossBlockState)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .tag(BlockTags.SAPLINGS)
+            .item()
+            .model(EPModels::simpleCustomBlockItemModel)
+            .tag(ItemTags.SAPLINGS)
+            .build()
+            .register();
+
+
+    public static final BlockEntry<RotatedPillarBlock> PINE_LOG = EP_REGISTRATE.block("pine_log", RotatedPillarBlock::new)
+            .properties(p -> p.strength(2.0F).sound(SoundType.WOOD))
+            .lang("Pine Log")
+            .tag(BlockTags.LOGS)
+            .blockstate((ctx, provider) -> provider.logBlock(ctx.get()))
+            .item()
+            .tag(ItemTags.LOGS)
+            .build()
+            .register();
+
+    // Fortune Level
+    public static final float[] PINE_LEAVES_DROPPING_CHANCE = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+
+    public static final BlockEntry<LeavesBlock> PINE_LEAVES = EP_REGISTRATE
+            .block("pine_leaves", LeavesBlock::new)
+            .initialProperties(() -> Blocks.OAK_LEAVES)
+            .lang("Pine Leaves")
+            .blockstate((ctx, prov) -> createModelBlockState(ctx, prov, Epimorphism.id("block/pine_leaves")))
+            .loot((table, block) -> table.add(block, table.createLeavesDrops(block, PINE_SAPLING.get(), PINE_LEAVES_DROPPING_CHANCE)
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .when(BlockLootSubProviderAccessor.getHasNoShearsOrSilkTouch())
+                            .add(table.applyExplosionCondition(block, LootItem.lootTableItem(EPAgricultureItem.PINECONE))
+                                    .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F}))))))
+            .tag(BlockTags.LEAVES)
+            .color(() -> EPBlocks::pineLeavesBlockColor)
+            .item()
+            .color(() -> EPBlocks::pineLeavesItemColor)
+            .tag(ItemTags.LEAVES)
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> RUBBER_PLANK = EP_REGISTRATE
+            .block("pine_planks", Block::new)
+            .initialProperties(() -> Blocks.OAK_PLANKS)
+            .lang("Pine Planks")
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))
+            .tag(BlockTags.PLANKS)
+            .item()
+            .tag(ItemTags.PLANKS)
+            .build()
+            .register();
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
@@ -306,5 +377,15 @@ public class EPBlocks {
                 .model(NonNullBiConsumer.noop())
                 .build()
                 .register();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static BlockColor pineLeavesBlockColor() {
+        return (state, reader, pos, tintIndex) -> FoliageColor.getEvergreenColor();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static ItemColor pineLeavesItemColor() {
+        return (stack, tintIndex) -> FoliageColor.getEvergreenColor();
     }
 }

@@ -6,7 +6,7 @@ package cn.gtcommunity.epimorphism.client;
  * https://github.com/BluSunrize/ImmersiveEngineering
  * */
 
-import cn.gtcommunity.epimorphism.core.mixins.accessors.client.FontResourceManagerAccess;
+import cn.gtcommunity.epimorphism.core.mixins.accessors.client.FontResourceManagerAccessor;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.client.MinecraftAccessor;
 import com.google.common.base.Preconditions;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
@@ -82,7 +82,7 @@ public class ClientUtil {
         if(unicodeRenderer==null)
             unicodeRenderer = new Font(rl -> {
                 FontManager resourceManager = ((MinecraftAccessor)Minecraft.getInstance()).getFontManager();
-                Map<ResourceLocation, FontSet> fonts = ((FontResourceManagerAccess)resourceManager).getFontSets();
+                Map<ResourceLocation, FontSet> fonts = ((FontResourceManagerAccessor)resourceManager).getFontSets();
                 return fonts.get(Minecraft.UNIFORM_FONT);
             }, false);
         return unicodeRenderer;

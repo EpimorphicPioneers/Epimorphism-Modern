@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "epimorphism:block/pine_log_top",
+    "side": "epimorphism:block/pine_log"
+  }
+}

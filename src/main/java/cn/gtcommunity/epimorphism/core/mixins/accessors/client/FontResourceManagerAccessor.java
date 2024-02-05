@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Map;
 
 @Mixin(FontManager.class)
-public interface FontResourceManagerAccess {
+public interface FontResourceManagerAccessor {
     @Accessor
     Map<ResourceLocation, FontSet> getFontSets();
 }
