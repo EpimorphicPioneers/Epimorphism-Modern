@@ -324,13 +324,11 @@ public class EPItems {
             .lang("Soapstone Grind Ball")
             .properties(p -> p.stacksTo(1))
             .onRegister(attach(new GrindBallBehaviour()))
-            .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.gtceu.electric.pump.tooltip")))))
             .register();
     public final static ItemEntry<ComponentItem> GRINDBALL_ALUMINIUM = EP_REGISTRATE.item("mill.grindball_aluminium", ComponentItem::create)
             .lang("Aluminium Grind Ball")
             .properties(p -> p.stacksTo(1))
             .onRegister(attach(new GrindBallBehaviour()))
-            .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.gtceu.electric.pump.tooltip")))))
             .register();
     public final static ItemEntry<Item> ORDINARY_ALGAE = EP_REGISTRATE.item("algae.ordinary_algae", Item::new).lang("Ordinary Algae").register();
     public final static ItemEntry<Item> RED_ALGA = EP_REGISTRATE.item("algae.red_alga", Item::new).lang("Red Alga").register();

@@ -197,21 +197,33 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, BLAZING_PYROTHEUM_BLAST_FURNACE::getBlock,"炽炎高炉",
+        addBlockWithTooltip(provider, ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock,"炽炎高炉",
                 List.of(
 
                 ),
                 List.of(
 
                 ));
+        add(provider, "block.epimorphism.advanced_electric_blast_furnace.warning.blazing_pyrotheum",
+                "WARNING: Insufficient Blazing Pyrotheum",
+                "警告：烈焰之炽焱不足");
+        add(provider, "block.epimorphism.advanced_electric_blast_furnace.blazing_pyrotheum",
+                "Blazing Pyrotheum are converting into heat!",
+                "烈焰之炽焱正在转换为热量！");
 
-        addBlockWithTooltip(provider, GELID_CRYOTHEUM_FREEZER::getBlock,"凛冰冷冻机",
+        addBlockWithTooltip(provider, INDUSTRIAL_VACUUM_FREEZER::getBlock,"凛冰冷冻机",
                 List.of(
 
                 ),
                 List.of(
 
                 ));
+        add(provider, "block.epimorphism.industrial_vacuum_freezer.warning.gelid_cryotheum",
+                "WARNING: Insufficient Gelid Cryotheum",
+                "警告：极寒之凛冰不足");
+        add(provider, "block.epimorphism.industrial_vacuum_freezer.gelid_cryotheum",
+                "Gelid Cryotheum are absorbing surrounding heat!",
+                "极寒之凛冰正在吸收周围的热量！");
 
         addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock,"工业级浮选机",
                 List.of(
@@ -238,18 +250,6 @@ public class MachineLang {
                 )
         );
 
-        addBlockWithTooltip(provider, GRIND_BALL_HATCH::getBlock, "研磨球仓",
-                List.of(
-                        "§7Watch Your Fingers!",
-                        "§fGrind Balls Are Provided To Use For Multiblocks。",
-                        "§eAllows The Input Of Grinding Balls From The Input Bus。"
-                ),
-                List.of(
-                        "§7小心你的手指！",
-                        "§f为多方块结构提供研磨球来使用。",
-                        "§e允许从输入总线输入研磨球。"
-                )
-        );
         //  ############################################################################################################
         //  Hatch
 
@@ -278,6 +278,19 @@ public class MachineLang {
                         "为多方块结构输入放射性物品",
                         "§7使用螺丝刀设置抑制等级"
                 ));
+
+        addBlockWithTooltip(provider, GRIND_BALL_HATCH::getBlock, "研磨球仓",
+                List.of(
+                        "§7Watch Your Fingers!",
+                        "§fGrind Balls Are Provided To Use For Multiblocks。",
+                        "§eAllows The Input Of Grinding Balls From The Input Bus。"
+                ),
+                List.of(
+                        "§7小心你的手指！",
+                        "§f为多方块结构提供研磨球来使用。",
+                        "§e允许从输入总线输入研磨球。"
+                )
+        );
 
         addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "wireless_energy_input_hatch",

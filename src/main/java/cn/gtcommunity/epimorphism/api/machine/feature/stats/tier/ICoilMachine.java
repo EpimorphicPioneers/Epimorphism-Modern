@@ -11,6 +11,8 @@ import lombok.Getter;
 public interface ICoilMachine {
     int getCoilTier();
 
+    ICoilType getCoilType();
+
     class CoilTierStats extends MultiblockStats implements ICoilMachine {
 
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(CoilTierStats.class, MultiblockStats.MANAGED_FIELD_HOLDER);

@@ -35,14 +35,14 @@ public class EPUnknownCompositionMaterials {
                 .buildAndRegister();
         //  25205 Blazing Pyrotheum
         BlazingPyrotheum = Builder("blazing_pyrotheum")
-                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8000))
+                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8000).textures(true).color(-1))
                 .color(Blaze.getMaterialRGB())
                 .components(Blaze, 2, Redstone, 1, Sulfur, 1)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25206 Gelid Cryotheum
         GelidCryotheum = Builder("gelid_cryotheum")
-                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8))
+                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8).textures(true).color(-1))
                 .color(0x40B8FB)
                 .components(Ice, 2, Electrotine, 1, Water, 1)
                 .flags(MaterialFlags.DISABLE_DECOMPOSITION)
