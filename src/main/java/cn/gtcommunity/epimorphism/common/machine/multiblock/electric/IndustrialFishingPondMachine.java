@@ -147,7 +147,7 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
             long maxVoltage = this.getMaxVoltage();
             if (maxVoltage > 0L) {
                 String voltageName = GTValues.VNF[GTUtil.getFloorTierByVoltage(maxVoltage)];
-                textList.add(Component.translatable("gtceu.multiblock.max_energy_per_tick", new Object[]{maxVoltage, voltageName}));
+                textList.add(Component.translatable("gtceu.multiblock.max_energy_per_tick", maxVoltage, voltageName));
             }
 
             textList.add(Component.translatable("block.epimorphism.industrial_fishing_pond.fishing_mode.%s".formatted(getMode())).setStyle(Style.EMPTY.withColor(ChatFormatting.AQUA).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("gtceu.gui.machinemode.title")))));
@@ -156,7 +156,7 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
             } else if (this.isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.running"));
                 int currentProgress = (int)(this.recipeLogic.getProgressPercent() * 100.0);
-                textList.add(Component.translatable("gtceu.multiblock.progress", new Object[]{currentProgress}));
+                textList.add(Component.translatable("gtceu.multiblock.progress", currentProgress));
             } else {
                 textList.add(Component.translatable("gtceu.multiblock.idling"));
             }
