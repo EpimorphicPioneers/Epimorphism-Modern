@@ -1,10 +1,9 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.tterrag.registrate.providers.RegistrateLangProvider;
 import net.minecraftforge.common.data.LanguageProvider;
 
+import static cn.gtcommunity.epimorphism.common.data.EPAgricultureItem.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 import static cn.gtcommunity.epimorphism.common.data.EPPhysicsItem.*;
 import static cn.gtcommunity.epimorphism.common.data.EPWrapItem.*;

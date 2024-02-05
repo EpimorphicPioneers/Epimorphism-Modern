@@ -89,7 +89,8 @@ public class EPMachines {
                             .or(abilities(PartAbility.EXPORT_FLUIDS)))
                     .where('G', blocks(YOTTA_FLUID_TANK_CASING.get())
                             .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .build())
+                    .build()
+            )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
                 MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
@@ -148,7 +149,8 @@ public class EPMachines {
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where('B', blocks(CASING_LAMINATED_GLASS.get()))
                     .where('C', EPPredicates.storageFieldBlock())
-                    .build())
+                    .build()
+            )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
                 MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
@@ -217,8 +219,7 @@ public class EPMachines {
                     .where('D', blocks(PROCESS_MACHINE_CASING.get()))
                     .where('E', blocks(CASING_LAMINATED_GLASS.get()))
                     .where('F', EPPredicates.countBlock("SpeedPipe", SPEEDING_PIPE.get()))
-                    .build()
-            )
+                    .build())
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/neutron_activator"), false)
@@ -667,8 +668,7 @@ public class EPMachines {
                     .where('E', blocks(BREEDING_CASING.get())
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3)))
                     .where('#', any())
-                    .build()
-            )
+                    .build())
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/breeding_casing"),
                     Epimorphism.id("block/multiblock/industrial_fishing_pond"), false)
@@ -693,8 +693,7 @@ public class EPMachines {
                     .where('P', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                     .where('A', any())
                     .where('E', air())
-                    .build()
-            )
+                    .build())
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/fermentation_tank"), false)
@@ -1080,8 +1079,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1)))
                     .where('G', blocks(CASING_ISA_MILL_GEARBOX.get()))
-                    .build()
-            )
+                    .build())
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/isa_mill_casing"),
                     Epimorphism.id("block/multiblock/isa_mill"), false)
             .register();
@@ -1107,7 +1105,8 @@ public class EPMachines {
                     .where('M', abilities(PartAbility.MUFFLER))
                     .where('C', heatingCoils())
                     .where('#', air())
-                    .build())
+                    .build()
+            )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
                 var builder = MultiblockShapeInfo.builder()
@@ -1164,22 +1163,22 @@ public class EPMachines {
             .register();
 
     public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
-            .langValue("Industrial Vacuum Freezer")
+            .langValue("Industrial Flotation Cell")
             .tooltips(
                     Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GTRecipeTypes.VACUUM_RECIPES)
+            .recipeType(GTRecipeTypes.DUMMY_RECIPES)
             .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(EPBlocks.FLOTATION_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
                     .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
                     .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
-                    .aisle("AAAAAAA", "AAAAAAA", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", "  ASA  ")
+                    .aisle("AAAAAAA", "AAAAAAA", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", "  AAA  ")
                     .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
                     .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
-                    .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
+                    .aisle("  AAA  ", "  ASA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
                     .where('S', Predicates.controller(blocks(definition.getBlock())))
                     .where('C', blocks(EPBlocks.FLOTATION_CELL.get()).setMinGlobalLimited(48))
                     .where('A', blocks(EPBlocks.FLOTATION_CASING.get()).setMinGlobalLimited(64)

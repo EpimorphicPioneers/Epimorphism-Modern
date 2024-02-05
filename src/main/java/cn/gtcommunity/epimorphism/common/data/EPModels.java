@@ -5,10 +5,12 @@ import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 public class EPModels {
+
     public static <T extends Item> NonNullBiConsumer<DataGenContext<Item, T>, RegistrateItemModelProvider> wrapItemModel(ResourceLocation wrapped) {
         return (ctx, prov) -> prov.getBuilder("item/" + prov.name(ctx::getEntry)).parent(new ModelFile.UncheckedModelFile(Epimorphism.id("item/wrap_item")))
                 .texture("layer0", wrapped)
@@ -22,6 +24,10 @@ public class EPModels {
                 builder.texture("layer%s".formatted(i), textureLocations[i]);
             }
         };
+    }
+
+    public static void simpleCustomBlockItemModel(DataGenContext<Item, BlockItem> context, RegistrateItemModelProvider provider) {
+        provider.generated(context, provider.modLoc("block/" + provider.name(context)));
     }
 
     public static void captureToolModel(DataGenContext<Item, ? extends Item> ctx, RegistrateItemModelProvider prov) {
