@@ -189,6 +189,14 @@ public class MachineLang {
 
                 ));
 
+        addBlockWithTooltip(provider, ISA_MILL::getBlock,"艾萨研磨机",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
         addBlockWithTooltip(provider, BLAZING_PYROTHEUM_BLAST_FURNACE::getBlock,"炽炎高炉",
                 List.of(
 
@@ -230,6 +238,18 @@ public class MachineLang {
                 )
         );
 
+        addBlockWithTooltip(provider, GRIND_BALL_HATCH::getBlock, "研磨球仓",
+                List.of(
+                        "§7Watch Your Fingers!",
+                        "§fGrind Balls Are Provided To Use For Multiblocks。",
+                        "§eAllows The Input Of Grinding Balls From The Input Bus。"
+                ),
+                List.of(
+                        "§7小心你的手指！",
+                        "§f为多方块结构提供研磨球来使用。",
+                        "§e允许从输入总线输入研磨球。"
+                )
+        );
         //  ############################################################################################################
         //  Hatch
 

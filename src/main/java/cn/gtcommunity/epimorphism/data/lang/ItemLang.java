@@ -207,19 +207,19 @@ public class ItemLang {
         addItemCNName(provider,WRAP_BOARD_WETWARE, "封装湿件电路基板"
         );
 
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_BASIC, "封装覆膜电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_BASIC, "封装覆膜印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_GOOD, "封装酚醛树脂电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_GOOD, "封装酚醛树脂印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_PLASTIC, "封装塑料电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_PLASTIC, "封装塑料印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ADVANCED, "封装环氧树脂基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ADVANCED, "封装环氧树脂印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_EXTREME, "封装纤维强化电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_EXTREME, "封装纤维强化印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ELITE, "封装多层纤维强化电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ELITE, "封装多层纤维强化印刷电路基板"
         );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_WETWARE, "封装湿件电路基板"
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_WETWARE, "封装湿件印刷电路基板"
         );
 
         addItemCNName(provider,WRAP_SMD_TRANSISTOR, "封装贴片晶体管"

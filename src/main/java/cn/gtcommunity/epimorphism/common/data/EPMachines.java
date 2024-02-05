@@ -16,6 +16,7 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTa
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -73,7 +74,7 @@ public class EPMachines {
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
-            .appearanceBlock(YOTTA_FLUID_TANK_CASING)
+            .appearanceBlock(EPBlocks.YOTTA_FLUID_TANK_CASING)
             .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                     .aisle("     ", " FFF ", " FFF ", " FFF ", "     ")
                     .aisle("AABAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
@@ -135,18 +136,18 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.tfft.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GTRecipeTypes.DUMMY_RECIPES)
-            .appearanceBlock(TFFT_CASING)
+            .appearanceBlock(EPBlocks.TFFT_CASING)
             .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                     .aisle("AADAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
                     .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB").setRepeatable(1, 15)
                     .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
                     .where('D', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(TFFT_CASING.get())
+                    .where('A', blocks(EPBlocks.TFFT_CASING.get())
                             .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
                             .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where('B', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('B', blocks(GTBlocks.CASING_LAMINATED_GLASS.get()))
                     .where('C', EPPredicates.storageFieldBlock())
                     .build())
             .shapeInfos(definition -> {
@@ -1206,6 +1207,19 @@ public class EPMachines {
             )
             .register();
 
+    public final static MachineDefinition GRIND_BALL_HATCH = EP_REGISTRATE.machine("grind_ball_hatch", BallHatchMachine::new)
+            .langValue("Grind Ball Hatch")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(EPPartAbility.GRIND_BALL)
+            .renderer(() -> BallHatchMachineRenderer.INSTANCE)
+            .tooltips(
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.0"),
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.1"),
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.2")
+                    )
+            .register();
+
     public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)
             .langValue("Neutron Sensor")
             .tier(IV)
@@ -1244,14 +1258,7 @@ public class EPMachines {
                     .register(),
             tiersBetween(3, 13));
 
-    public final static MachineDefinition GRIND_BALL_HATCH = EP_REGISTRATE.machine("grind_ball_hatch", BallHatchMachine::new)
-            .langValue("Grind Ball Hatch")
-            .tier(IV)
-            .rotationState(RotationState.ALL)
-            .abilities(EPPartAbility.GRIND_BALL)
-            .renderer(() -> BallHatchMachineRenderer.INSTANCE)
-            .tooltips(Component.translatable("block.epimorphism.grind_ball_hatch.desc"))
-            .register();
+
 
 //    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
 //            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),

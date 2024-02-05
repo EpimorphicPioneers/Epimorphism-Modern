@@ -149,6 +149,14 @@ public class BlockLang {
         addBlock(provider, SPEEDING_PIPE,"Speeding Pipe","高速管道");
         addBlock(provider, SUBSTRATE_CASING,"Substrate Casing","基材机械方块");
         addBlock(provider, ADVANCED_SUBSTRATE_CASING,"Advanced Substrate Casing","高级基材机械方块");
+        addBlock(provider, ADVANCED_INVAR_CASING,"Advanced Invar Casing","殷钢高级隔热机械方块");
+        addBlock(provider, ADVANCED_ALUMINIUM_CASING,"Advanced Aluminium Casing","铝制高级防冻机械方块");
+        addBlock(provider, ISA_MILL_CASING,"Isa Mill Casing","艾萨研磨机械方块");
+        addBlock(provider, CASING_ISA_MILL_PIPE,"Casing Isa Mill Pipe","艾萨研磨管道方块");
+        addBlock(provider, CASING_ISA_MILL_GEARBOX,"Casing Isa Mill Gearbox","艾萨研磨齿轮箱");
+        addBlock(provider, FLOTATION_CASING,"Flotation Casing","浮选机械方块");
+        addBlock(provider, FLOTATION_CELL,"Flotation Cell","浮选槽");
+        addBlock(provider, VACUUM_CASING,"Vacuum Casing","真空机械方块");
 
     }
 }
