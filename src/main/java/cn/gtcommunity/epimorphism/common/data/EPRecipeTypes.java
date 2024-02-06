@@ -44,6 +44,9 @@ public class EPRecipeTypes {
     public final static GTRecipeType FERMENTATION_TANK_RECIPES = GTRecipeTypes.register("fermentation_tank", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
 
+    public final static GTRecipeType PRECISE_ASSEMBLER_RECIPES = GTRecipeTypes.register("precise_assembler", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.ASSEMBLER);
+
     public final static GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = GTRecipeTypes.register("vacuum_drying_furnace", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)
             .addDataInfo(data -> {
                 int temp = data.getInt("ebf_temp");

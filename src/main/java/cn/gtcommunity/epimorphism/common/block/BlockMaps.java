@@ -24,4 +24,8 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_CP_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_CP_TUBES = new Object2ObjectOpenHashMap<>();
+
+    // Precise Assembler
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> PA_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_PA_CASINGS = new Object2ObjectOpenHashMap<>();
 }

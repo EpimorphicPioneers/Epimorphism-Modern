@@ -6,8 +6,8 @@ import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.BallHatchMachineRenderer;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ChemicalPlantRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
+import cn.gtcommunity.epimorphism.client.renderer.handler.machine.WorkableTierCasingMachineRenderer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
@@ -360,7 +360,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
                     .where('C', EPPredicates.CPCasingBlock())
                     .where('X', heatingCoils())
-                    .where('M', EPPredicates.CPMachineCasingBlock())
+                    .where('M', EPPredicates.MachineCasingBlock())
                     .where('T', EPPredicates.CPPipeBlock())
                     .where('#', any())
                     .where('A',air())
@@ -418,9 +418,9 @@ public class EPMachines {
                 return shapeInfo;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .renderer(() -> new ChemicalPlantRenderer(Epimorphism.id("block/multiblock/chemical_plant")))
+            .renderer(() -> new WorkableTierCasingMachineRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/chemical_plant"), ChemicalPlantMachine::locationGetter))
             .register();
-
 
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
@@ -1188,6 +1188,75 @@ public class EPMachines {
                     .build())
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/flotation_casing"),
                     Epimorphism.id("block/multiblock/industrial_flotation_cell"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
+            .langValue("Precise Assembler")
+            .tooltips(Component.translatable("block.epimorphism.precise_assembler.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(GTRecipeTypes.ASSEMBLER_RECIPES, EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES)
+            .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("DDDDDDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
+                    .aisle("DDDDSDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('C', EPPredicates.PACasingBlock())
+                    .where('D', EPPredicates.PACasingBlock().setMinGlobalLimited(42)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, true, false)))
+                    .where('F', frames(MARM200Steel))
+                    .where('G', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('M', EPPredicates.PAMachineCasingBlock())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("ETCCCCCCC", "F       F", "F       F", "F       F", "XYZCCCCCC")
+                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
+                        .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "CCCCOCCCC")
+                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
+                        .aisle("CCCCSCCCC", "F       F", "F       F", "F       F", "CCCCCCCCC")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('X', ITEM_IMPORT_BUS[LuV], Direction.NORTH)
+                        .where('Y', ITEM_EXPORT_BUS[LuV], Direction.NORTH)
+                        .where('Z', FLUID_IMPORT_HATCH[LuV], Direction.NORTH)
+                        .where('E', ENERGY_INPUT_HATCH[LuV], Direction.NORTH)
+                        .where('T', MAINTENANCE_HATCH, Direction.NORTH)
+                        .where('O', MUFFLER_HATCH[LuV], Direction.UP)
+                        .where('G', CASING_LAMINATED_GLASS.get())
+                        .where('F', ChemicalHelper.getBlock(TagPrefix.frameGt, MARM200Steel))
+                        .where(' ', Blocks.AIR.defaultBlockState());
+
+                List<Block> casing = BlockMaps.ALL_PA_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
+                List<Block> machineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
+                        .toList();
+
+                int maxLeng = StructureUtil.maxLength(new List[]{
+                        casing,
+                        machineCasing
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('C', EPUniverUtil.getOrLast(casing, i));
+                    builder.where('M', EPUniverUtil.getOrLast(machineCasing, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .renderer(() -> new WorkableTierCasingMachineRenderer(Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"),
+                    Epimorphism.id("block/multiblock/precise_assembler"), PreciseAssemblerMachine::locationGetter))
             .register();
 
 

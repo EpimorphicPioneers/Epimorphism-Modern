@@ -46,5 +46,12 @@ public class NeutronActivatorLoader {
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
                 .duration(800).EUt(30).save(provider);
+
+        PRECISE_ASSEMBLER_RECIPES.recipeBuilder("test4")
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
+                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
+                .duration(800).EUt(30).save(provider);
     }
 }

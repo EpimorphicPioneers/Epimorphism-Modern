@@ -2,9 +2,6 @@ package cn.gtcommunity.epimorphism;
 
 import cn.gtcommunity.epimorphism.client.ClientProxy;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
-import cn.gtcommunity.epimorphism.data.EPProviderTypes;
-import cn.gtcommunity.epimorphism.network.EPNetworking;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.DistExecutor;
@@ -21,11 +18,6 @@ public class Epimorphism {
     public static CommonProxy proxy;
 
     public Epimorphism () {
-        ConfigHolder.init();
-        EPProviderTypes.init();
-        EPNetworking.init();
-        Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
-
         proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 
