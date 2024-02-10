@@ -351,11 +351,6 @@ public class ItemLang {
         addItemWithTooltip(provider, SUPEREXCITED_CONDUCTIVE_POLYMER, "超激发传导聚合体",
                 "§7Biological High-voltage Line",
                 "§7生物高压线");
-        addItemCNName(provider, ORDINARY_ALGAE, "普通藻类");
-        addItemCNName(provider, RED_ALGA, "红藻");
-        addItemCNName(provider, GREEN_ALGA,"绿藻");
-        addItemCNName(provider, CHRYSOPHYCEAE, "金藻");
-        addItemCNName(provider, BROWN_ALGA, "褐藻");
 
         //  QFT item
         addItemCNName(provider, METASTABLE_SELF_HEALING_ADHESIVE,"超稳态自修复粘合剂");
@@ -378,6 +373,16 @@ public class ItemLang {
         addItemCNName(provider, EMITTER_MAX, "§c§lMAX§r发射器");
         addItemCNName(provider, SENSOR_MAX, "§c§lMAX§r传感器");
         addItemCNName(provider, FIELD_GENERATOR_MAX, "§c§lMAX§r力场发生器");
+
+        //  Agriculture
+        addItemCNName(provider, ORDINARY_ALGAE, "普通藻类");
+        addItemCNName(provider, RED_ALGA, "红藻");
+        addItemCNName(provider, GREEN_ALGA,"绿藻");
+        addItemCNName(provider, CHRYSOPHYCEAE, "金藻");
+        addItemCNName(provider, BROWN_ALGA, "褐藻");
+        addItemCNName(provider, PINECONE,"松果");
+
+
 
         //  Debug
         addItemWithTooltip(provider, DEBUG_STRUCTURE_WRITER, "多方块导出工具",
