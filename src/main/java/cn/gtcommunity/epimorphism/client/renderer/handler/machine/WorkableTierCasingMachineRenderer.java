@@ -1,7 +1,5 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.ChemicalPlantMachine;
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.client.model.SpriteOverrider;
@@ -17,18 +15,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 
-public class ChemicalPlantRenderer extends WorkableCasingMachineRenderer {
+public class WorkableTierCasingMachineRenderer extends WorkableCasingMachineRenderer {
 
     @OnlyIn(Dist.CLIENT)
     protected Map<ResourceLocation, Map<Direction, BakedModel>> tierBlockModels;
 
-    public ChemicalPlantRenderer(ResourceLocation workableModel) {
-        super(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), workableModel, false);
+    protected final Function<MetaMachine, ResourceLocation> locationGetter;
+
+    public WorkableTierCasingMachineRenderer(ResourceLocation baseCasing, ResourceLocation workableModel, Function<MetaMachine, ResourceLocation> locationGetter) {
+        super(baseCasing, workableModel, false);
+        this.locationGetter = locationGetter;
         if (LDLib.isClient()) {
             this.tierBlockModels = new ConcurrentHashMap<>();
         }
@@ -37,15 +38,16 @@ public class ChemicalPlantRenderer extends WorkableCasingMachineRenderer {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void renderBaseModel(List<BakedQuad> quads, MachineDefinition definition, @Nullable MetaMachine machine, Direction frontFacing, @Nullable Direction side, RandomSource rand) {
-        if (machine instanceof ChemicalPlantMachine chemicalPlant && chemicalPlant.isFormed()) {
-            quads.addAll(getRotatedModel(frontFacing, ResourceLocation.tryParse(chemicalPlant.getLocation())).getQuads(definition.defaultBlockState(), side, rand));
+        var location = locationGetter.apply(machine);
+        if (location != null) {
+            quads.addAll(getRotatedModel(frontFacing, location).getQuads(definition.defaultBlockState(), side, rand));
         } else {
             super.renderBaseModel(quads, definition, machine, frontFacing, side, rand);
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    private BakedModel getRotatedModel(Direction frontFacing, ResourceLocation location) {
+    protected BakedModel getRotatedModel(Direction frontFacing, ResourceLocation location) {
         return tierBlockModels.computeIfAbsent(location, location1 -> {
             var map = new ConcurrentHashMap<Direction, BakedModel>();
             map.put(frontFacing, renderModel(frontFacing, location1));
@@ -54,7 +56,7 @@ public class ChemicalPlantRenderer extends WorkableCasingMachineRenderer {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private BakedModel renderModel(Direction frontFacing, ResourceLocation location) {
+    protected BakedModel renderModel(Direction frontFacing, ResourceLocation location) {
         return this.getModel().bake(ModelFactory.getModeBaker(), new SpriteOverrider(Map.of("all", location)), ModelFactory.getRotation(frontFacing), this.modelLocation);
     }
 }

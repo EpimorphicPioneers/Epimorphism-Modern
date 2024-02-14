@@ -75,14 +75,15 @@ public class EPBlocks {
     public static final BlockEntry<Block> GENERAL_PROCESSING_CASING = createCasingBlock("general_processing_casing", Epimorphism.id("block/casings/solid/general_processing_casing"));
     public static final BlockEntry<Block> MARAGING_STEEL_CASING = createCasingBlock("maraging_steel_250_casing", Epimorphism.id("block/casings/solid/maraging_steel_250_casing"));
     public static final BlockEntry<Block> BABBITT_ALLOY_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> NEUTRONIUM_MINING_CASING = createCasingBlock("neutronium_mining_casing", Epimorphism.id("block/casings/solid/neutronium_mining_casing"));
     public static final BlockEntry<Block> ZIRCONIUM_CARBIDE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> SUPERCRITICAL_FLUID_TURBINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> CORROSION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> HASTELLOYX78_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> HASTELLOYK243_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("precise_assembler_casing_mk1", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("precise_assembler_casing_mk2", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk2"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("precise_assembler_casing_mk3", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk3"));
     public static final BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> RADIATION_PROOF_SCAN_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
@@ -108,6 +109,7 @@ public class EPBlocks {
     public static final BlockEntry<Block> SPEEDING_PIPE = createComplexTextureCasingBlock("speeding_pipe");
     public static final BlockEntry<Block> SUBSTRATE_CASING = createComplexTextureCasingBlock("substrate_casing");
     public static final BlockEntry<Block> ADVANCED_SUBSTRATE_CASING = createComplexTextureCasingBlock("advanced_substrate_casing");
+    public static final BlockEntry<Block> DRILL_HEAD = createComplexTextureCasingBlock("drill_head");
 
 
     // Multiblock Machine Pipe Casing Blocks

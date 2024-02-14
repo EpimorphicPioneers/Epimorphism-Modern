@@ -150,6 +150,10 @@
   "block.epimorphism.pmma_glass_block": "PMMA Glass",
   "block.epimorphism.pmma_glass_block.desc": "§7Acrylic Glassr",
   "block.epimorphism.polybenzimidazole_pipe": "Casing Polybenzimidazole Pipe",
+  "block.epimorphism.precise_assembler": "Precise Assembler",
+  "block.epimorphism.precise_assembler_casing_mk1": "Precise Assembler Casing Mk1",
+  "block.epimorphism.precise_assembler_casing_mk2": "Precise Assembler Casing Mk2",
+  "block.epimorphism.precise_assembler_casing_mk3": "Precise Assembler Casing Mk3",
   "block.epimorphism.process_machine_casing": "Process Machine Casing",
   "block.epimorphism.radiation_hatch.desc.0": "Input Radioactive Materials For Multiblock",
   "block.epimorphism.radiation_hatch.desc.1": "§7Use A Screwdriver To Set The Suppression Level",
@@ -549,5 +553,6 @@
   "particleType.epimorphism.meson": "§rMeson",
   "particleType.epimorphism.quark": "§dQuark",
   "recipe.condition.neutron_kinetic_energy.desc": "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
+  "recipe.condition.precise_assembler_casing.desc": "Casing Tier: MK-%s",
   "tagprefix.singularity": "%s Singularity"
 }

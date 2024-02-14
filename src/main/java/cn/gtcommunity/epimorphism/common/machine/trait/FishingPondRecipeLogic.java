@@ -6,7 +6,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import net.minecraft.core.BlockPos;
@@ -31,6 +31,8 @@ import javax.annotation.Nullable;
 
 public class FishingPondRecipeLogic extends RecipeLogic {
     public static final int MAX_PROGRESS = 20 * 20;
+    public static final long ENERGY = GTValues.VA[GTValues.HV];
+    public static final FluidStack STACK = FluidStack.create(Fluids.WATER, 1000);
 
     private static final ItemStack fishingRod = new ItemStack(Items.FISHING_ROD);
 
@@ -59,8 +61,7 @@ public class FishingPondRecipeLogic extends RecipeLogic {
             lastRecipe = null;
             var match = getFishingRecipe();
             if (match != null) {
-                var copied = match.copy(new ContentModifier(match.duration, 0));
-                if (match.matchRecipe(this.machine).isSuccess() && copied.matchTickRecipe(this.machine).isSuccess()) {
+                if (match.matchRecipe(this.machine).isSuccess() && match.matchTickRecipe(this.machine).isSuccess()) {
                     setupRecipe(match);
                 }
             }
@@ -77,8 +78,7 @@ public class FishingPondRecipeLogic extends RecipeLogic {
 
         var match = getFishingRecipe();
         if (match != null) {
-            var copied = match.copy(new ContentModifier(match.duration, 0));
-            if (match.matchRecipe(this.machine).isSuccess() && copied.matchTickRecipe(this.machine).isSuccess()) {
+            if (match.matchRecipe(this.machine).isSuccess() && match.matchTickRecipe(this.machine).isSuccess()) {
                 setupRecipe(match);
                 return;
             }
@@ -91,47 +91,54 @@ public class FishingPondRecipeLogic extends RecipeLogic {
 
     @Nullable
     private GTRecipe getFishingRecipe() {
-        if (!getMachine().isFilledWater()) return null;
+        var machine = getMachine();
+        var level = getLevel();
+        if (!machine.isFilledWater()) return null;
 
-        LootTable lootTable = getLevel().getServer().getLootData().getLootTable(switch (getMachine().getMode()) {
+        LootTable lootTable = level.getServer().getLootData().getLootTable(switch (machine.getMode()) {
             case 0 -> BuiltInLootTables.FISHING_FISH;
             case 1 -> BuiltInLootTables.FISHING_JUNK;
             case 2 -> BuiltInLootTables.FISHING_TREASURE;
             default -> BuiltInLootTables.FISHING;
         });
 
-        FishingHook simulatedHook = new FishingHook(EntityType.FISHING_BOBBER, getLevel()) {
+        FishingHook simulatedHook = new FishingHook(EntityType.FISHING_BOBBER, level) {
             public boolean isOpenWaterFishing() {
                 return true;
             }
         };
 
-        LootParams lootContext = new LootParams.Builder(getLevel())
+        LootParams lootContext = new LootParams.Builder(level)
                 .withOptionalParameter(LootContextParams.THIS_ENTITY, simulatedHook)
                 .withParameter(LootContextParams.TOOL, fishingRod)
                 .withParameter(LootContextParams.ORIGIN, new Vec3(getPos().getX(), getPos().getY(), getPos().getZ()))
                 .create(LootContextParamSets.FISHING);
 
+        var builder = GTRecipeBuilder.ofRaw()
+                .duration(MAX_PROGRESS)
+                .EUt(ENERGY);
+
+        var tuple = GTRecipeModifiers.accurateParallel(machine,
+                GTRecipeBuilder.ofRaw().copyFrom(builder).outputItems(Items.BARRIER.getDefaultInstance()).buildRawRecipe(),
+                (int) Math.min(machine.getParallelNumber(), machine.getMaxHatchVoltage() / ENERGY), false);
+        int parallel = tuple.getB();
         NonNullList<ItemStack> generatedLoot = NonNullList.create();
-        for (int i = 0; i < getMachine().getParallelNumber(); i++) {
+        for (int i = 0; i < parallel; i++) {
             generatedLoot.addAll(lootTable.getRandomItems(lootContext));
         }
 
-        var builder = GTRecipeBuilder.ofRaw()
-                .duration(MAX_PROGRESS)
-                .EUt(GTValues.VA[GTValues.HV] * (long) getMachine().getParallelNumber());
         generatedLoot.stream()
                 .filter(itemStack -> !itemStack.isEmpty())
                 .forEach(builder::outputItems);
-        var recipe = builder.buildRawRecipe();
+        var recipe = builder.EUt(ENERGY * parallel).buildRawRecipe();
 
-        var newRecipe = getMachine().doModifyRecipe(recipe);
+        var newRecipe = machine.doModifyRecipe(recipe);
         if (newRecipe != null) {
-            if (newRecipe.matchRecipe(getMachine()).isSuccess() && newRecipe.matchTickRecipe(getMachine()).isSuccess()) {
-                return recipe;
+            if (newRecipe.matchRecipe(machine).isSuccess() && newRecipe.matchTickRecipe(machine).isSuccess()) {
+                return newRecipe;
             }
         }
-        return null;
+        return recipe;
     }
 
     private Boolean checkWater() {
@@ -158,7 +165,7 @@ public class FishingPondRecipeLogic extends RecipeLogic {
                     BlockPos.MutableBlockPos waterCheckPos = pos.mutable().move(xDir + i, h, zDir + j);
                     FluidState fluidState = level.getBlockState(waterCheckPos).getFluidState();
 
-                    if (!fluidState.is(Fluids.WATER) && canFill(waterCheckPos) && depleteWater(1000)) {
+                    if (!fluidState.is(Fluids.WATER) && canFill(waterCheckPos) && depleteWater()) {
                         level.destroyBlock(waterCheckPos, true);
                         level.setBlock(waterCheckPos, Blocks.WATER.defaultBlockState(), Block.UPDATE_ALL);
                     }
@@ -174,9 +181,8 @@ public class FishingPondRecipeLogic extends RecipeLogic {
         return tAmount >= 98;
     }
 
-    private boolean depleteWater(long num) {
-        var fluidStack = FluidStack.create(Fluids.WATER, 1000);
-        var recipe = GTRecipeBuilder.ofRaw().inputFluids(fluidStack).buildRawRecipe();
+    private boolean depleteWater() {
+        var recipe = GTRecipeBuilder.ofRaw().inputFluids(STACK).buildRawRecipe();
         if (recipe.matchRecipe(getMachine()).isSuccess()) {
             return recipe.handleRecipeIO(IO.IN, getMachine());
         }

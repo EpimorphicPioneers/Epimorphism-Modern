@@ -27,5 +27,8 @@ public class RecipeLang {
         add(provider, "recipe.condition.neutron_kinetic_energy.desc",
                 "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
                 "最小中子动能: %seV\n最大中子动能: %seV");
+        add(provider, "recipe.condition.precise_assembler_casing.desc",
+                "Casing Tier: MK-%s",
+                "外壳等级：MK-%s");
     }
 }

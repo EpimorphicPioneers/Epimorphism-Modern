@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static net.minecraft.world.level.block.Blocks.*;
 
@@ -62,6 +63,11 @@ public class BlockTypeAdditions {
             CPTierTypeAdd(CASING_STAINLESS_CLEAN, 4, GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"));
             CPTierTypeAdd(CASING_TITANIUM_STABLE, 5, GTCEu.id("block/casings/solid/machine_casing_stable_titanium"));
             CPTierTypeAdd(CASING_TUNGSTENSTEEL_ROBUST, 6, GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"));
+
+            //  ALL_PA_CASINGS Init
+            simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK1, 1);
+            simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK2, 2);
+            simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK3, 3);
         }
     }
 

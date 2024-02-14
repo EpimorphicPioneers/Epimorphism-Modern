@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
+import cn.gtcommunity.epimorphism.integration.EPIntegration;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -11,6 +12,12 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 
 public class EPModCompatibilityMaterials {
     public static void init() {
+        if (EPIntegration.isBotaniaLoaded()) botaniaMaterial();
+
+        if (EPIntegration.isEmbersLoaded()) embersMaterial();
+    }
+
+    private static void botaniaMaterial() {
         // 27000 Mana
         Mana = Builder("mana")
                 .fluid(FluidStorageKeys.GAS, new FluidBuilder().temperature(/*0*/1))
@@ -21,6 +28,9 @@ public class EPModCompatibilityMaterials {
                 .fluid(FluidStorageKeys.GAS, new FluidBuilder().temperature(/*0*/1))
                 .color(0x0000FF)
                 .buildAndRegister();
+    }
+
+    private static void embersMaterial() {
         // 27002 Dawnstone
         Dawnstone = Builder("dawnstone")
                 .ingot(3)

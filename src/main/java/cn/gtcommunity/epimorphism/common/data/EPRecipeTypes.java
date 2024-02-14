@@ -6,6 +6,7 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.GeneralProc
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
@@ -42,6 +43,18 @@ public class EPRecipeTypes {
     public final static GTRecipeType CHEMICAL_PLANT_RECIPES = GTRecipeTypes.register("chemical_plant", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
     public final static GTRecipeType FERMENTATION_TANK_RECIPES = GTRecipeTypes.register("fermentation_tank", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.CHEMICAL);
+
+    public final static GTRecipeType PRECISE_ASSEMBLER_RECIPES = GTRecipeTypes.register("precise_assembler", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.ASSEMBLER);
+
+    public final static GTRecipeType DRILLING_RECIPES = GTRecipeTypes.register("industrial_drill", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 1, 0, 1).setEUIO(IO.IN)
+            .setSlotOverlay(false, false, true, GuiTextures.CRUSHED_ORE_OVERLAY)
+            .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
+            .setSound(GTSoundEntries.MACERATOR);
+
+    public final static GTRecipeType DIGESTER_RECIPES = GTRecipeTypes.register("digester", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 1, 1, 1).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
 
     public final static GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = GTRecipeTypes.register("vacuum_drying_furnace", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)

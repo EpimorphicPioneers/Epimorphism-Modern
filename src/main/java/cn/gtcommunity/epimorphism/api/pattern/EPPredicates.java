@@ -7,12 +7,16 @@ import cn.gtcommunity.epimorphism.api.structure.predicates.TierTraceabilityPredi
 import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
+import cn.gtcommunity.epimorphism.utils.EPBlockUtil;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
 
+import javax.annotation.Nonnull;
+
 public class EPPredicates {
+
     // Glasses
     public static TraceabilityPredicate glass() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "Glass")
@@ -57,8 +61,15 @@ public class EPPredicates {
                 .build();
     }
 
-    public static TraceabilityPredicate CPMachineCasingBlock() {
-        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "CPMachineCasing")
+    // Precise Assembler
+    public static TraceabilityPredicate PACasingBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "PACasing")
+                .map(BlockMaps.ALL_PA_CASINGS)
+                .build();
+    }
+
+    public static TraceabilityPredicate PAMachineCasingBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "PAMachineCasing")
                 .map(BlockMaps.ALL_MACHINE_CASINGS)
                 .build();
     }
@@ -68,9 +79,23 @@ public class EPPredicates {
         return UniverTraceabilityPredicate.tierOptionalPredicate("Mirror", tier, Predicates.blocks(EPBlocks.TFFT_CASING.get()));
     }
 
+    // Industrial Drill
+    public static TraceabilityPredicate bedrockPredicate() {
+        return new TraceabilityPredicate(state -> {
+            state.getMatchContext().set("Bedrock", state.getPos());
+            return true;
+        }, null);
+    }
+
     // Univer
     public static TraceabilityPredicate countBlock(String name, Block... blocks) {
         return UniverTraceabilityPredicate.enhancePredicate(name,
                 () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), Predicates.blocks(blocks), null);
+    }
+
+    public static TraceabilityPredicate MachineCasingBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "MachineCasing")
+                .map(BlockMaps.ALL_MACHINE_CASINGS)
+                .build();
     }
 }

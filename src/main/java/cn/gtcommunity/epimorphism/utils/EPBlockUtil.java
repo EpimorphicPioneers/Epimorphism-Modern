@@ -15,6 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 public class EPBlockUtil {
+    public static ItemStack getBlockItem(BlockState state, int amount) {
+        return new ItemStack(state.getBlock(), amount);
+    }
+
+    public static ItemStack getBlockItem(BlockState state) {
+        return getBlockItem(state, 1);
+    }
+
     public static List<ItemStack> getBlockDrops (ServerLevel level, BlockPos pos, Player player, Map<Enchantment, Integer> enchantments) {
         var state = level.getBlockState(pos);
         var blockEntity = level.getBlockEntity(pos);
