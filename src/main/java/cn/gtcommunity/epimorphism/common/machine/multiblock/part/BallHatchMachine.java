@@ -3,7 +3,6 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredPartMachine;
 import com.gregtechceu.gtceu.api.syncdata.RequireRerender;
@@ -26,24 +25,8 @@ public class BallHatchMachine extends TieredPartMachine implements IMachineModif
     @Persisted @DescSynced @RequireRerender
     private boolean isWorking;
 
-    @Getter @Setter
-    @Persisted @DescSynced @RequireRerender
-    private boolean isForm;
-
     public BallHatchMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV);
-    }
-
-    @Override
-    public void addedToController(IMultiController controller) {
-        super.addedToController(controller);
-        this.isForm = true;
-    }
-
-    @Override
-    public void removedFromController(IMultiController controller) {
-        super.removedFromController(controller);
-        this.isForm = false;
     }
 
     @Override
@@ -57,6 +40,7 @@ public class BallHatchMachine extends TieredPartMachine implements IMachineModif
         super.afterWorking(controller);
         this.isWorking = false;
     }
+
 
     @Override
     public void onDrops(List<ItemStack> list, Player player) {

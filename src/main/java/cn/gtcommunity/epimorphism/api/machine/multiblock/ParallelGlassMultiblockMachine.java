@@ -3,12 +3,9 @@ package cn.gtcommunity.epimorphism.api.machine.multiblock;
 import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
 import cn.gtcommunity.epimorphism.api.machine.feature.stats.tier.IGlassMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Function;
@@ -36,14 +33,6 @@ public class ParallelGlassMultiblockMachine extends MultiStatsElectricMultiblock
     //////////////////////////////////////
     //******     Recipe Logic    *******//
     //////////////////////////////////////
-
-    @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var newRecipe = recipe.copy();
-        var result = GTRecipeModifiers.accurateParallel(this, newRecipe, getParallelNumber(), false);
-        return super.getRealRecipe(result.getA());
-    }
-
     @Override
     public int getMaxParallel() {
         return parallelStats.getMaxParallel();

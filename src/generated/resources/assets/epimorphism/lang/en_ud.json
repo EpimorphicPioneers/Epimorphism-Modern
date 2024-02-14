@@ -150,6 +150,10 @@
   "block.epimorphism.pmma_glass_block": "ssɐן⅁ ⱯWWԀ",
   "block.epimorphism.pmma_glass_block.desc": "ɹssɐן⅁ ɔıןʎɹɔⱯㄥ§",
   "block.epimorphism.polybenzimidazole_pipe": "ǝdıԀ ǝןozɐpıɯızuǝqʎןoԀ buısɐƆ",
+  "block.epimorphism.precise_assembler": "ɹǝןqɯǝssⱯ ǝsıɔǝɹԀ",
+  "block.epimorphism.precise_assembler_casing_mk1": "ƖʞW buısɐƆ ɹǝןqɯǝssⱯ ǝsıɔǝɹԀ",
+  "block.epimorphism.precise_assembler_casing_mk2": "ᄅʞW buısɐƆ ɹǝןqɯǝssⱯ ǝsıɔǝɹԀ",
+  "block.epimorphism.precise_assembler_casing_mk3": "ƐʞW buısɐƆ ɹǝןqɯǝssⱯ ǝsıɔǝɹԀ",
   "block.epimorphism.process_machine_casing": "buısɐƆ ǝuıɥɔɐW ssǝɔoɹԀ",
   "block.epimorphism.radiation_hatch.desc.0": "ʞɔoןqıʇןnW ɹoℲ sןɐıɹǝʇɐW ǝʌıʇɔɐoıpɐᴚ ʇnduI",
   "block.epimorphism.radiation_hatch.desc.1": "ןǝʌǝꞀ uoıssǝɹddnS ǝɥ⟘ ʇǝS o⟘ ɹǝʌıɹpʍǝɹɔS Ɐ ǝs∩ㄥ§",
@@ -549,5 +553,6 @@
   "particleType.epimorphism.meson": "uosǝWɹ§",
   "particleType.epimorphism.quark": "ʞɹɐnὉp§",
   "recipe.condition.neutron_kinetic_energy.desc": "Λǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıxɐW\nΛǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıuıW",
+  "recipe.condition.precise_assembler_casing.desc": "%s-ʞW :ɹǝı⟘ buısɐƆ",
   "tagprefix.singularity": "ʎʇıɹɐןnbuıS %s"
 }

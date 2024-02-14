@@ -7,10 +7,13 @@ import cn.gtcommunity.epimorphism.api.structure.predicates.TierTraceabilityPredi
 import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
+import cn.gtcommunity.epimorphism.utils.EPBlockUtil;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
+
+import javax.annotation.Nonnull;
 
 public class EPPredicates {
 
@@ -74,6 +77,14 @@ public class EPPredicates {
     // Solar Tower
     public static TraceabilityPredicate mirrorBlock(int tier) {
         return UniverTraceabilityPredicate.tierOptionalPredicate("Mirror", tier, Predicates.blocks(EPBlocks.TFFT_CASING.get()));
+    }
+
+    // Industrial Drill
+    public static TraceabilityPredicate bedrockPredicate() {
+        return new TraceabilityPredicate(state -> {
+            state.getMatchContext().set("Bedrock", state.getPos());
+            return true;
+        }, null);
     }
 
     // Univer

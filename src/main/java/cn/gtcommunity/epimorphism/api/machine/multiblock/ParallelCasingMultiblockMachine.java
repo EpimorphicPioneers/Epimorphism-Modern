@@ -4,12 +4,9 @@ import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
 import cn.gtcommunity.epimorphism.api.machine.feature.stats.tier.ICasingMachine;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Function;
@@ -40,13 +37,6 @@ public class ParallelCasingMultiblockMachine extends MultiStatsElectricMultibloc
     //////////////////////////////////////
     //******     Recipe Logic    *******//
     //////////////////////////////////////
-
-    @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var newRecipe = recipe.copy();
-        var result = GTRecipeModifiers.accurateParallel(this, newRecipe, getParallelNumber(), false);
-        return super.getRealRecipe(result.getA());
-    }
 
     @Override
     public int getMaxParallel() {

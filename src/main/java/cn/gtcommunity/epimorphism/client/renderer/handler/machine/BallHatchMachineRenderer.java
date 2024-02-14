@@ -27,6 +27,7 @@ public class BallHatchMachineRenderer extends TieredHullMachineRenderer {
     public static final ResourceLocation BALL_HATCH_OVERLAY = Epimorphism.id("block/overlay/machine/overlay_ball_hatch");
     public static final ResourceLocation IDLE = Epimorphism.id("block/multiblock/isa_mill/idle");
     public static final ResourceLocation SPINNING = Epimorphism.id("block/multiblock/isa_mill/spinning");
+    public static final AABB AABB = new AABB(-1, -1, -0.01, 2, 2, 1.01);
 
     public static final BallHatchMachineRenderer INSTANCE = new BallHatchMachineRenderer();
 
@@ -41,12 +42,11 @@ public class BallHatchMachineRenderer extends TieredHullMachineRenderer {
         if (side == frontFacing && modelFacing != null) {
             quads.add(FaceQuad.bakeFace(modelFacing, ModelFactory.getBlockSprite(BALL_HATCH_OVERLAY), modelState));
             if (machine instanceof BallHatchMachine ballHatchMachine) {
-                var aabb = new AABB(-1, -1, -0.01, 2, 2, 1.01);
-                if (ballHatchMachine.isForm()) {
+                if (ballHatchMachine.isFormed()) {
                     if (ballHatchMachine.isWorking()) {
-                        quads.add(FaceQuad.bakeFace(aabb, modelFacing, ModelFactory.getBlockSprite(SPINNING), modelState, 2, 0, true, true));
+                        quads.add(FaceQuad.bakeFace(AABB, modelFacing, ModelFactory.getBlockSprite(SPINNING), modelState, 2, 0, true, true));
                     } else {
-                        quads.add(FaceQuad.bakeFace(aabb, modelFacing, ModelFactory.getBlockSprite(IDLE), modelState, 2, 0, true, true));
+                        quads.add(FaceQuad.bakeFace(AABB, modelFacing, ModelFactory.getBlockSprite(IDLE), modelState, 2, 0, true, true));
                     }
                 }
             }
