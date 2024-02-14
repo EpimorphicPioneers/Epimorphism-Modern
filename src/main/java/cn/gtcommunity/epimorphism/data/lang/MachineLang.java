@@ -205,11 +205,11 @@ public class MachineLang {
 
                 ));
         add(provider, "block.epimorphism.advanced_electric_blast_furnace.warning.blazing_pyrotheum",
-                "WARNING: Insufficient Blazing Pyrotheum",
-                "警告：烈焰之炽焱不足");
+                "§4WARNING: Insufficient Blazing Pyrotheum",
+                "§4警告：烈焰之炽焱不足");
         add(provider, "block.epimorphism.advanced_electric_blast_furnace.blazing_pyrotheum",
-                "Blazing Pyrotheum are converting into heat!",
-                "烈焰之炽焱正在转换为热量！");
+                "§cBlazing Pyrotheum are converting into heat!",
+                "§c烈焰之炽焱正在转换为热量！");
 
         addBlockWithTooltip(provider, INDUSTRIAL_VACUUM_FREEZER::getBlock,"凛冰冷冻机",
                 List.of(
@@ -219,11 +219,11 @@ public class MachineLang {
 
                 ));
         add(provider, "block.epimorphism.industrial_vacuum_freezer.warning.gelid_cryotheum",
-                "WARNING: Insufficient Gelid Cryotheum",
-                "警告：极寒之凛冰不足");
+                "§4WARNING: Insufficient Gelid Cryotheum",
+                "§4警告：极寒之凛冰不足");
         add(provider, "block.epimorphism.industrial_vacuum_freezer.gelid_cryotheum",
-                "Gelid Cryotheum are absorbing surrounding heat!",
-                "极寒之凛冰正在吸收周围的热量！");
+                "§bGelid Cryotheum are absorbing surrounding heat!",
+                "§b极寒之凛冰正在吸收周围的热量！");
 
         addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock,"工业级浮选机",
                 List.of(

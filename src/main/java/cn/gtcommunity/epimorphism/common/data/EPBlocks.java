@@ -252,7 +252,7 @@ public class EPBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<Block> RUBBER_PLANK = EP_REGISTRATE
+    public static final BlockEntry<Block> PINE_PLANK = EP_REGISTRATE
             .block("pine_planks", Block::new)
             .initialProperties(() -> Blocks.OAK_PLANKS)
             .lang("Pine Planks")
