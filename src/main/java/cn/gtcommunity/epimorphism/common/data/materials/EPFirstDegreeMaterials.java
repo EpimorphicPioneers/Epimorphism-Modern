@@ -14,6 +14,7 @@ import net.minecraft.ChatFormatting;
 
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPFirstDegreeMaterials {
@@ -147,7 +148,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x9193C5)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, NO_SMELTING)
                 .components(Boron, 1, Nitrogen, 1)
                 .buildAndRegister()
                 .setFormula("a-BN", true);
@@ -174,7 +175,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x05090C)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_SPRING, GENERATE_COIL)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_SPRING, GENERATE_COIL)
                 .cableProperties(GTValues.V[GTValues.UEV], 8, 6)
                 .components(Carbon, 48)
                 .buildAndRegister()
@@ -505,7 +506,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x72556A)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
                 .components(Carbon, 60)
                 .buildAndRegister();
         //  24068 Geodesic Polyarene
@@ -1592,15 +1593,15 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2147483647))
                 .color(0x70ecff)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_FRAME)
+                .flags(MaterialFlags.NO_SMASHING, NO_SMELTING, MaterialFlags.GENERATE_PLATE, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_FRAME)
                 .buildAndRegister();
         //  24212 Magneto Hydrodynamically Constrained Star Matter
-//        MagnetoHydrodynamicallyConstrainedStarMatter = Builder("magneto_hydrodynamically_constrained_star_matter")
-//                .ingot()
-//                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(600000000))
+        MagnetoHydrodynamicallyConstrainedStarMatter = Builder("magneto_hydrodynamically_constrained_star_matter")
+                .ingot()
+                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(600000000))
 //                .iconSet(CUSTOM_MHCSM)
-//                .flags(NO_SMELTING, GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_ROUND, GENERATE_BOLT_SCREW, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
-//                .buildAndRegister();
+                .flags(NO_SMELTING, GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_ROUND, GENERATE_BOLT_SCREW, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                .buildAndRegister();
         //  24213 White Dwarf Matter
         WhiteDwarfMatter = Builder("white_dwarf_matter")
                 .ingot()
@@ -2518,7 +2519,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x2F0B01)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Lead, 1, Iron, 1, Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
                 .buildAndRegister();
         //  24338 Radium-Radon Mixture
         RadiumRadonMixture = Builder("radium_radon_mixture")
