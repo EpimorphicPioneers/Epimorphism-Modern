@@ -23,8 +23,8 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
         this.machine = machine;
     }
     @Override
-    public String getTitle() {
-        return "gui.epimorphism.machine_parallel.title";
+    public Component getTitle() {
+        return Component.translatable("gui.epimorphism.machine_parallel.title");
     }
 
     @Override

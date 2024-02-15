@@ -7,9 +7,7 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
 
 public class GeneralRecipeType extends GTRecipeType {
     private final GTRecipeType recipe_1;
@@ -23,57 +21,33 @@ public class GeneralRecipeType extends GTRecipeType {
     }
 
     @Override
-    public List<GTRecipe> searchRecipe(RecipeManager recipeManager, IRecipeCapabilityHolder holder) {
-        if (!holder.hasProxies()) return Collections.emptyList();
-        List<GTRecipe> matches;
-        do {
+    public Iterator<GTRecipe> searchRecipe(RecipeManager recipeManager, IRecipeCapabilityHolder holder) {
+        if (!holder.hasProxies()) return null;
 
-            if (checkCircuit(holder, 20)) {
-                var list = matchRecipe(recipe_1, 20, recipeManager, holder);
-                if (!list.isEmpty()) {
-                    matches = list;
-                    break;
-                }
-            }
-
-            if (checkCircuit(holder, 21)) {
-                var list = matchRecipe(recipe_2, 21, recipeManager, holder);
-                if (!list.isEmpty()) {
-                    matches = list;
-                    break;
-                }
-            }
-
-            if (checkCircuit(holder, 22)) {
-                var list = matchRecipe(recipe_3, 22, recipeManager, holder);
-                if (!list.isEmpty()) {
-                    matches = list;
-                    break;
-                }
-            }
-
-            matches = new ArrayList<>();
-
-        } while (false);
-
-
-        for (List<GTRecipe> recipes : proxyRecipes.values()) {
-            var found = recipes.parallelStream()
-                    .filter(recipe -> !recipe.isFuel && recipe.matchRecipe(holder).isSuccess() && recipe.matchTickRecipe(holder).isSuccess())
-                    .toList();
-            matches.addAll(found);
+        if (checkCircuit(holder, 20)) {
+            return matchRecipe(recipe_1, 20, holder);
         }
-        return matches;
+
+        if (checkCircuit(holder, 21)) {
+            return matchRecipe(recipe_2, 21, holder);
+        }
+
+        if (checkCircuit(holder, 22)) {
+            return matchRecipe(recipe_3, 22, holder);
+        }
+
+        return null;
     }
 
     private boolean checkCircuit(IRecipeCapabilityHolder holder, int configuration) {
         return GTRecipeBuilder.ofRaw().circuitMeta(configuration).buildRawRecipe().matchRecipe(holder).isSuccess();
     }
 
-    private List<GTRecipe> matchRecipe(GTRecipeType recipeType, int configuration, RecipeManager recipeManager, IRecipeCapabilityHolder holder) {
-        return recipeManager.getAllRecipesFor(recipeType).parallelStream()
-                .map(recipe -> EPRecipeHelper.addCircuitMeta(recipe, configuration))
-                .filter(recipe -> !recipe.isFuel && recipe.matchRecipe(holder).isSuccess() && recipe.matchTickRecipe(holder).isSuccess())
-                .toList();
+    private Iterator<GTRecipe> matchRecipe(GTRecipeType recipeType, int configuration, IRecipeCapabilityHolder holder) {
+        return recipeType.getLookup().getRecipeIterator(holder, recipe -> {
+            var newRecipe = EPRecipeHelper.addCircuitMeta(recipe, configuration);
+            return !newRecipe.isFuel
+                    && newRecipe.matchRecipe(holder).isSuccess()
+                    && newRecipe.matchTickRecipe(holder).isSuccess();});
     }
 }

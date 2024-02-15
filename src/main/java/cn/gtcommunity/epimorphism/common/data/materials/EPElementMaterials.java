@@ -27,7 +27,7 @@ public class EPElementMaterials {
                 .fluid()
                 .color(0xbe49ed)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_FRAME, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_DENSE)
+                .flags(GENERATE_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_CURVED_PLATE, GENERATE_DENSE)
                 .element(EPElements.Draconium)
                 .toolStats(ToolProperty.Builder.of(7.0F, 25.0F, 17000, 6)
                                        .magnetic()
@@ -42,7 +42,7 @@ public class EPElementMaterials {
                 .fluid()
                 .color(0xf58742)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .element(EPElements.AwakenedDraconium)
                 .blastTemp(10800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UV])
                 .cableProperties(V[GTValues.UHV], 16, 4)
@@ -53,7 +53,7 @@ public class EPElementMaterials {
                 .fluid()
                 .color(0x2C195A)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.NO_SMELTING, GENERATE_PLATE)
+                .flags(NO_SMELTING, GENERATE_PLATE)
                 .element(EPElements.ChaoticDraconium)
                 .cableProperties(V[GTValues.UEV], 32, 16)
                 .buildAndRegister();
@@ -65,7 +65,7 @@ public class EPElementMaterials {
                 .color(0x72A0C1)
                 .iconSet(MaterialIconSet.METALLIC)
                 .element(EPElements.Orichalcum)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_GEAR)
                 .blastTemp(9000, BlastProperty.GasTier.HIGH)
                 .buildAndRegister();
         //  26005 Vibranium
@@ -75,7 +75,7 @@ public class EPElementMaterials {
                 .plasma()
                 .color(0xC880FF)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_FRAME, GENERATE_COIL, MaterialFlags.GENERATE_BOLT_SCREW)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME, GENERATE_COIL, GENERATE_BOLT_SCREW)
                 .element(EPElements.Vibranium)
                 .blastTemp(4852, BlastProperty.GasTier.HIGH)
                 .buildAndRegister();
@@ -86,7 +86,7 @@ public class EPElementMaterials {
                 .plasma()
                 .color(0xFF0040)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_SPRING, GENERATE_CURVED_PLATE)
+                .flags(GENERATE_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_CURVED_PLATE)
                 .element(EPElements.Adamantium)
                 .blastTemp(5225, BlastProperty.GasTier.HIGH)
                 .cableProperties(GTValues.VA[GTValues.UHV], 18, 9, false)
@@ -127,7 +127,7 @@ public class EPElementMaterials {
                 .color(0x2D3A9D)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .element(GTElements.Hs)
-                .flags(MaterialFlags.GENERATE_ROD, GENERATE_PLATE)
+                .flags(GENERATE_ROD, GENERATE_PLATE)
                 .blastTemp(11240, BlastProperty.GasTier.HIGHEST)
                 .buildAndRegister();
         //  26011 Metastable Flerovium
@@ -137,14 +137,14 @@ public class EPElementMaterials {
                 .color(0x521973)
                 .iconSet(MaterialIconSet.SHINY)
                 .element(GTElements.Fl)
-                .flags(MaterialFlags.GENERATE_ROD)
+                .flags(GENERATE_ROD)
                 .buildAndRegister();
         //  26012 Cosmic Neutronium
         CosmicNeutronium = Builder("cosmic_neutronium")
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2000000000))
                 .iconSet(CUSTOM_NEUTRONIUM)
-                .flags(MaterialFlags.NO_SMELTING, MaterialFlags.NO_SMASHING, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(NO_SMELTING, NO_SMASHING, GENERATE_FINE_WIRE)
                 .element(EPElements.CosmicNeutronium)
                 .cableProperties(V[GTValues.UIV], 256, 128, false)
                 .buildAndRegister();
@@ -166,7 +166,7 @@ public class EPElementMaterials {
                 .iconSet(CUSTOM_INFINITY)
                 .element(EPElements.Infinity)
                 .blastTemp(12600, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 5901)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_BOLT_SCREW, MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_ROUND, GENERATE_BOLT_SCREW, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  26015 Rhugnor
         Rhugnor = Builder("rhugnor")
@@ -213,7 +213,7 @@ public class EPElementMaterials {
                 //  TODO may be re-balance
                 .blastTemp(12000, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV])
                 .element(EPElements.AstralTitanium)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
+                .flags(GENERATE_PLATE, GENERATE_FOIL)
                 .buildAndRegister();
         //  26019 Celestial Tungsten
         CelestialTungsten = Builder("celestial_tungsten")
@@ -225,7 +225,7 @@ public class EPElementMaterials {
                 //  TODO may be re-balance
                 .blastTemp(12000, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV])
                 .element(EPElements.CelestialTungsten)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_BOLT_SCREW)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, GENERATE_ROD, GENERATE_BOLT_SCREW)
                 .buildAndRegister();
         //  26020 Ytterbium-178
         Ytterbium178 = Builder("ytterbium_178")
@@ -277,7 +277,7 @@ public class EPElementMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .blastTemp(10900, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV])
                 .element(EPElements.Mithril)
-                .flags(GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  26026 Bismuth-209
         Bismuth209 = Builder("bismuth_209")

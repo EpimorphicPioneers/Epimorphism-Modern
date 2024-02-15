@@ -5,16 +5,15 @@ import cn.gtcommunity.epimorphism.api.machine.multiblock.*;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.BallHatchMachineRenderer;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.DigesterMachineRenderer;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.IndustrialGreenhouseRenderer;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.WorkableTierCasingMachineRenderer;
+import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.gtm.ProcessingArrayMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
+import cn.gtcommunity.epimorphism.config.EPConfigHolder;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -39,8 +38,6 @@ import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.ChatFormatting;
@@ -51,6 +48,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.shapes.Shapes;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -1416,6 +1414,38 @@ public class EPMachines {
                     .register(),
             MV, EV);
 
+    public final static MultiblockMachineDefinition[] PROCESSING_ARRAY = EPConfigHolder.INSTANCE.machines.doProcessingArray ? registerTieredEPMultis("ep_processing_array", ProcessingArrayMachine::new,
+            (tier, builder) ->  builder
+                    .langValue(VNF[tier] + " Processing Array")
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .blockProp(p -> p.noOcclusion().isViewBlocking((state, level, pos) -> false))
+                    .shape(Shapes.box(0.001, 0.001, 0.001, 0.999, 0.999, 0.999))
+                    .appearanceBlock(() -> ProcessingArrayMachine.getCasingState(tier))
+                    .recipeType(DUMMY_RECIPES)
+                    .recipeModifier(ProcessingArrayMachine::recipeModifier, true)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("XXX", "CCC", "XXX")
+                            .aisle("XXX", "C#C", "XXX")
+                            .aisle("XSX", "CCC", "XXX")
+                            .where('S', Predicates.controller(blocks(definition.getBlock())))
+                            .where('X', blocks(ProcessingArrayMachine.getCasingState(tier)).setMinGlobalLimited(4)
+                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
+                                    .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY))
+                                    .or(Predicates.autoAbilities(true, false, false)))
+                            .where('C', blocks(CLEANROOM_GLASS.get()))
+                            .where('#', Predicates.air())
+                            .build())
+                    .tooltips(Component.translatable("gtceu.universal.tooltip.parallel", ProcessingArrayMachine.getMachineLimit(tier)))
+                    .renderer(() -> new ProcessingArrayMachineRenderer(tier == IV ?
+                            GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel") :
+                            GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"),
+                            Epimorphism.id("block/multiblock/processing_array")))
+                    .register(),
+            IV, LuV) : null;
 
     // Multiblock Parts
     public final static MachineDefinition INFINITE_WATER_HATCH = EP_REGISTRATE.machine("infinite_water_hatch", InfiniteWaterHatchPartMachine::new)

@@ -24,14 +24,14 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x777777)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Graphene, 1, Oxygen, 1)
                 .buildAndRegister();
         //  24002 Hydrazine
         Hydrazine = Builder("hydrazine")
                 .fluid()
                 .color(0xB50707)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 2, Hydrogen, 4)
                 .buildAndRegister();
 
@@ -39,7 +39,7 @@ public class EPFirstDegreeMaterials {
         BerylliumOxide = Builder("beryllium_oxide")
                 .ingot()
                 .color(0x54C757)
-                .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_RING)
+                .flags(GENERATE_ROD, GENERATE_RING)
                 .components(Beryllium, 1, Oxygen, 1)
                 .buildAndRegister();
 
@@ -47,7 +47,7 @@ public class EPFirstDegreeMaterials {
         HydrogenPeroxide = Builder("hydrogen_peroxide")
                 .fluid()
                 .color(0xD2FFFF)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 2, Oxygen, 2)
                 .buildAndRegister();
 
@@ -56,7 +56,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xC7D300)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Tungsten, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24006 Hexagonal Boron Nitride
@@ -64,7 +64,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x6A6A72)
                 .iconSet(MaterialIconSet.GEM_VERTICAL)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Boron, 1, Nitrogen, 1)
                 .buildAndRegister()
                 .setFormula("h-BN", true);
@@ -74,7 +74,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x545572)
                 .iconSet(MaterialIconSet.DIAMOND)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, MaterialFlags.FLAMMABLE, MaterialFlags.EXPLOSIVE)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, FLAMMABLE, EXPLOSIVE)
                 .components(Boron, 1, Nitrogen, 1)
                 .toolStats(new ToolProperty(14.0F, 9.0F, 12400, 6, GTToolType.getTypes().values().toArray(GTToolType[]::new)))
                 .buildAndRegister()
@@ -85,7 +85,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xFAFAFA)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 3, Boron, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24009 Boron Trioxide
@@ -113,21 +113,21 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x90FAF6)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Lithium, 1, Boron, 1, Fluorine, 4)
                 .buildAndRegister();
         //  24013 Diborane
         Diborane = Builder("diborane")
                 .gas()
                 .color(0x3F3131)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Boron, 2, Hydrogen, 6)
                 .buildAndRegister();
         //  24014 Borazine
         Borazine = Builder("borazine")
                 .fluid()
                 .color(0x542828)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Boron, 3, Hydrogen, 6, Nitrogen, 3)
                 .buildAndRegister();
         //  24015 Boron Trichloride
@@ -140,7 +140,7 @@ public class EPFirstDegreeMaterials {
         Trichloroborazine = Builder("trichloroborazine")
                 .fluid()
                 .color(0xD62929)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Boron, 3, Chlorine, 3, Hydrogen, 3, Nitrogen, 3)
                 .buildAndRegister();
         //  24017 Amorphous Boron Nitride
@@ -148,7 +148,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x9193C5)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, NO_SMELTING)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
                 .components(Boron, 1, Nitrogen, 1)
                 .buildAndRegister()
                 .setFormula("a-BN", true);
@@ -157,7 +157,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x512A72)
                 .iconSet(MaterialIconSet.GEM_HORIZONTAL)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Boron, 1, Carbon, 1, Nitrogen, 1)
                 .buildAndRegister();
         //  24019 Cubic Heterodiamond
@@ -165,7 +165,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x753DA6)
                 .iconSet(MaterialIconSet.DIAMOND)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Boron, 1, Carbon, 2, Nitrogen, 1)
                 .buildAndRegister()
                 .setFormula("c-BC2N", true);
@@ -175,7 +175,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x05090C)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_SPRING, GENERATE_COIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_COIL)
                 .cableProperties(GTValues.V[GTValues.UEV], 8, 6)
                 .components(Carbon, 48)
                 .buildAndRegister()
@@ -184,7 +184,7 @@ public class EPFirstDegreeMaterials {
         SilverTetrafluoroborate = Builder("silver_tetrafluoroborate")
                 .fluid()
                 .color(0x818024)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Silver, 1, Boron, 1, Fluorine, 4)
                 .buildAndRegister()
                 .setFormula("AgBF4", true);
@@ -192,7 +192,7 @@ public class EPFirstDegreeMaterials {
         TrimethyltinChloride = Builder("trimethyltin_chloride")
                 .fluid()
                 .color(0x7F776F)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 3, Hydrogen, 6, Tin, 1, Chlorine, 1)
                 .buildAndRegister()
                 .setFormula("(CH3)3SnCl", true);
@@ -208,7 +208,7 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0xFFB546)
                 .components(Hydrogen, 2, Platinum, 1, Chlorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24025 Potassium Tetrachloroplatinate
         PotassiumTetrachloroplatinate = Builder("potassium_tetrachloroplatinate")
@@ -216,7 +216,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xF1B04F)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Potassium, 2, Platinum, 1, Chlorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("K2PtCl4", true);
         //  24026 Nickel Triphenylphosphite
@@ -224,7 +224,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xCCCC66)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 36, Hydrogen, 30, Chlorine, 2, Nickel, 1, Phosphorus, 2)
                 .buildAndRegister()
                 .setFormula("C36H30Cl2NiP2", true);
@@ -278,7 +278,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x9C222C)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Thallium, 2, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24035 Thallium Chloride
@@ -383,7 +383,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x480104)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Palladium, 1, Carbon, 1)
                 .buildAndRegister();
         //  24051 Potassium Permanganate
@@ -467,14 +467,14 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x78C3EB)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Aluminium, 1, Chlorine, 3)
                 .buildAndRegister();
         //  24063 Aluminium Hydroxide
         AluminiumHydroxide = Builder("aluminium_hydroxide")
                 .dust()
                 .color(0xBEBEC8)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Aluminium, 1, Oxygen, 3, Hydrogen, 3)
                 .buildAndRegister()
                 .setFormula("Al(OH)3", true);
@@ -498,7 +498,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0xFFF458)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_PLATE)
+                .flags(GENERATE_PLATE)
                 .components(Gallium, 1, Nitrogen, 1)
                 .buildAndRegister();
         //  24067 Fullerene
@@ -506,7 +506,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x72556A)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
+                .flags(DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_ROD, GENERATE_RING, GENERATE_FRAME)
                 .components(Carbon, 60)
                 .buildAndRegister();
         //  24068 Geodesic Polyarene
@@ -514,7 +514,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x9E81A8)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 60, Hydrogen, 30)
                 .buildAndRegister();
         //  24069 Ti-Al Catalyst
@@ -549,7 +549,7 @@ public class EPFirstDegreeMaterials {
         BismuthVanadateSolution = Builder("bismuth_vanadate_solution")
                 .fluid()
                 .color(0xFFAF33)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Bismuth, 1, Vanadium, 1, Hydrogen, 2, Oxygen, 5)
                 .buildAndRegister()
                 .setFormula("BiVO4(H2O)", true);
@@ -558,7 +558,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xCC9933)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 1, Hydrogen, 4, Vanadium, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24075 Vanadium Slag
@@ -566,7 +566,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xCC9933)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Vanadium, 1, Oxygen, 1)
                 .buildAndRegister();
         //  24076 Bismuth Nitrate Solution
@@ -574,7 +574,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x3ABF50)
                 .components(Bismuth, 1, Nitrogen, 3, Oxygen, 10, Hydrogen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Bi(NO3)3(H2O)");
         //  24077 Sodium Vanadate
@@ -582,14 +582,14 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xCC9933)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Sodium, 3, Vanadium, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24078 Vanadium Waste Solution
         VanadiumWasteSolution = Builder("vanadium_waste_solution")
                 .fluid()
                 .color(0xA28097)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("NaCl(Na2SO4)(SiO2)(Al(OH)3)");
         //  24079 Sodium Bromide
@@ -604,7 +604,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0xECEADD)
                 .iconSet(MaterialIconSet.FLINT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24081 Red Phosphorus
@@ -612,7 +612,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x77040E)
                 .iconSet(MaterialIconSet.FLINT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24082 Violet Phosphorus
@@ -620,7 +620,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x8000FF)
                 .iconSet(MaterialIconSet.FLINT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24083 Black Phosphorus
@@ -628,7 +628,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x36454F)
                 .iconSet(MaterialIconSet.FLINT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24084 Blue Phosphorus
@@ -636,14 +636,14 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x9BE3E4)
                 .iconSet(MaterialIconSet.FLINT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24085 Wollastonite
         Wollastonite = Builder("wollastonite")
                 .dust()
                 .color(0xF0F0F0)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(Quicklime, 2, SiliconDioxide, 3)
                 .buildAndRegister()
                 .setFormula("CaSiO3", true);
@@ -652,7 +652,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x273239)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL)
                 .components(Phosphorus, 4)
                 .buildAndRegister();
         //  24087 Phosphoryl Chloride
@@ -665,7 +665,7 @@ public class EPFirstDegreeMaterials {
         Phosphine = Builder("phosphine")
                 .gas()
                 .color(0xACB330)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING, MaterialFlags.FLAMMABLE)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING, FLAMMABLE)
                 .components(Phosphorus, 1, Hydrogen, 3)
                 .buildAndRegister();
         //  24089 Copper Chloride
@@ -688,7 +688,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xAEA7D4)
                 .iconSet(MaterialIconSet.FINE)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Mercury, 1, Lithium, 1)
                 .buildAndRegister();
         //  24092 Hexafluoride Enriched Naquadah Solution
@@ -696,21 +696,21 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x868D7F)
                 .components(NaquadahEnriched, 1, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24093 Xenon Hexafluoro Enriched Naquadate
         XenonHexafluoroEnrichedNaquadate = Builder("xenon_hexafluoro_enriched_naquadate")
                 .fluid()
                 .color(0x255A55)
                 .components(Xenon, 1, NaquadahEnriched, 1, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24094 Enriched Naquadah Residue Solution
         EnrichedNaquadahResidueSolution = Builder("enriched_naquadah_residue_solution")
                 .fluid()
                 .color(0x868D7F)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("XeAuSbKeF6S2?");
         //  24095 Xenoauric Fluoroantimonic Acid
@@ -718,7 +718,7 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0xE0BD74)
                 .components(Xenon, 1, Gold, 1, Antimony, 1, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24096 Gold Chloride
         GoldChloride = Builder("gold_chloride")
@@ -744,7 +744,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xAAEB69)
                 .components(Naquadria, 1, Fluorine, 3, Caesium, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("*Nq*F2CsF", true);
         //  24100 Acidic Naquadria Caesiumfluoride
@@ -752,7 +752,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x75EB00)
                 .components(Naquadria, 1, Fluorine, 3, Caesium, 1, Sulfur, 2, Oxygen, 8)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("*Nq*F2CsF(SO4)2", true);
         //  24101 Nitrosonium Octafluoroxenate
@@ -767,22 +767,22 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x54C248)
                 .components(Naquadria, 1, Caesium, 1, Xenon, 1, Fluorine, 9)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24103 Radon Naquadria Octafluoride
         RadonNaquadriaOctafluoride = Builder("radon_naquadria_octafluoride")
                 .fluid()
                 .color(0x85F378)
                 .components(Radon, 1, Naquadria, 1, Fluorine, 8)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24104 Caesium Xenontrioxide Fluoride
         CaesiumXenontrioxideFluoride = Builder("caesium_xenontrioxide_fluoride")
                 .fluid()
                 .color(0x5067D7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Caesium, 1, Xenon, 1, Oxygen, 3, Fluorine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24105 Radon Trioxide
         RadonTrioxide = Builder("radon_trioxide")
@@ -807,14 +807,14 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x25C213)
                 .components(Naquadria, 1, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24109 Naquadria Residue Solution
         NaquadriaResidueSolution = Builder("naquadria_residue_solution")
                 .fluid()
                 .color(0x25C213)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("InPS6?", true);
         //  24110 Radon Difluoride
@@ -827,7 +827,7 @@ public class EPFirstDegreeMaterials {
         HeavyAlkaliChlorideSolution = Builder("heavy_alkali_chloride_solution")
                 .fluid()
                 .color(0x8F5353)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Rubidium, 1, Caesium, 2, Chlorine, 6, Water, 2)
                 .buildAndRegister()
                 .setFormula("RbCl(CsCl)2Cl3(H2O)2", true);
@@ -855,7 +855,7 @@ public class EPFirstDegreeMaterials {
         GermaniumDioxide = Builder("germanium_dioxide")
                 .dust()
                 .color(0x666666)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Germanium, 1, Oxygen, 2)
                 .buildAndRegister();
         //  24116 Roasted Sphalerite
@@ -863,7 +863,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xAC8B5C)
                 .iconSet(MaterialIconSet.FINE)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Gallium, 1, GermaniumDioxide, 1)
                 .buildAndRegister();
         //  24117 Zinc Rich Sphalerite
@@ -871,7 +871,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xC3AC8F)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Zinc, 2, RoastedSphalerite, 3)
                 .buildAndRegister()
                 .setFormula("Zn2(GaGeO2)", true);
@@ -879,7 +879,7 @@ public class EPFirstDegreeMaterials {
         ZincOxide = Builder("zinc_oxide")
                 .dust()
                 .color(0xB85C34)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
                 .components(Zinc, 1, Oxygen, 1)
                 .buildAndRegister();
         //  24119 Waelz Oxide
@@ -887,7 +887,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xB8B8B8)
                 .iconSet(MaterialIconSet.FINE)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Zinc, 1, GermaniumDioxide, 1)
                 .buildAndRegister();
         //  24120 Waelz Slag
@@ -895,7 +895,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xAC8B5C)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Gallium, 1, Zinc, 1, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24121 Impure Germanium Dioxide
@@ -903,7 +903,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x666666)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(GermaniumDioxide, 1)
                 .buildAndRegister()
                 .setFormula("GeO2?", true);
@@ -911,7 +911,7 @@ public class EPFirstDegreeMaterials {
         GermaniumTetrachloride = Builder("germanium_tetrachloride")
                 .fluid()
                 .color(0x787878)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Germanium, 1, Chlorine, 4)
                 .buildAndRegister();
         //  24123 Molybdenum Trioxide
@@ -919,7 +919,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xCBCFDA)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Molybdenum, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24124 Lead Chloride
@@ -934,7 +934,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xE6DC70)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 1, Rhenium, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24126 Ammonium Perrhenate
@@ -943,7 +943,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xA69970)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24127 Niobium Pentoxide
@@ -986,7 +986,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x5F8764)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
                 .buildAndRegister()
                 .setFormula("Ca(OH)2", true);
@@ -995,7 +995,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xC6C9BE)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Sodium, 2, Tellurium, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24134 Selenium Dioxide
@@ -1003,7 +1003,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xE0DDD8)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Selenium, 1, Oxygen, 2)
                 .buildAndRegister();
         //  24135 Tellurium Dioxide
@@ -1011,7 +1011,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xE3DDB8)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Tellurium, 1, Oxygen, 2)
                 .buildAndRegister();
         //  24136 Selenous Acid
@@ -1019,7 +1019,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xE0E083)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 2, Selenium, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24137 GST Glass
@@ -1028,7 +1028,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xCFFFFF)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.NO_SMASHING, MaterialFlags.NO_WORKING, MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(GENERATE_PLATE, NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING)
                 .components(Germanium, 2, Antimony, 2, Tellurium, 5)
                 .blastTemp(873, BlastProperty.GasTier.MID)
                 .buildAndRegister();
@@ -1038,7 +1038,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xACB4BC)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.NO_SMASHING, MaterialFlags.NO_WORKING, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE)
                 .components(Zirconium, 5, Barium, 2, Lanthanum, 1, Aluminium, 1, Sodium, 2, Fluorine, 6)
                 .buildAndRegister()
                 .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2", true);
@@ -1047,7 +1047,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x505444)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.NO_SMASHING, MaterialFlags.NO_WORKING, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE)
+                .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .components(ZBLANGlass, 1, Erbium, 1)
                 .buildAndRegister()
                 .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true);
@@ -1056,7 +1056,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0xC5C88D)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.NO_SMASHING, MaterialFlags.NO_WORKING, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE)
+                .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .components(ZBLANGlass, 1, Praseodymium, 1)
                 .buildAndRegister()
                 .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true);
@@ -1064,14 +1064,14 @@ public class EPFirstDegreeMaterials {
         SiliconTetrachloride = Builder("silicon_tetrachloride")
                 .fluid()
                 .color(0x5B5B7A)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Silicon, 1, Chlorine, 4)
                 .buildAndRegister();
         //  24142 Cadmium Sulfide
         CadmiumSulfide = Builder("cadmium_sulfide")
                 .dust()
                 .color(0xC8C43C)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING, MaterialFlags.GENERATE_PLATE)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING, GENERATE_PLATE)
                 .iconSet(MaterialIconSet.METALLIC)
                 .components(Cadmium, 1, Sulfur, 1)
                 .buildAndRegister();
@@ -1081,7 +1081,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x4D4D4D)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_FINE_WIRE)
                 .components(Silicon, 1, Carbon, 1)
                 .blastTemp(2500, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.UV])
                 .cableProperties(GTValues.V[GTValues.UHV], 6, 8)
@@ -1092,7 +1092,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x8F103E)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD)
                 .components(/*Chrome, 1, */Germanium, 1, Tellurium, 3)
                 .blastTemp(2900, BlastProperty.GasTier.HIGHER)
                 .buildAndRegister();
@@ -1101,7 +1101,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x8F103E)
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.IS_MAGNETIC)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC)
                 .components(ChromiumGermaniumTelluride, 1)
                 .ingotSmeltInto(ChromiumGermaniumTelluride)
                 .arcSmeltInto(ChromiumGermaniumTelluride)
@@ -1139,7 +1139,7 @@ public class EPFirstDegreeMaterials {
         CadmiumSelenide = Builder("cadmium_selenide")
                 .dust()
                 .color(0x983034)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
                 .iconSet(MaterialIconSet.METALLIC)
                 .components(Cadmium, 1, Selenium, 1)
                 .buildAndRegister();
@@ -1149,7 +1149,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x3C5CB5)
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_FINE_WIRE)
                 .components(Thallium, 1, Copper, 1, Chlorine, 3)
                 .buildAndRegister();
         //  24152 Plutonium Trihydride
@@ -1157,7 +1157,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x140002)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Plutonium239, 1, Hydrogen, 3)
                 .buildAndRegister()
                 .setFormula("PuH3", true);
@@ -1166,7 +1166,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x1F0104)
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD)
                 .components(Plutonium239, 1, Phosphorus, 1)
                 .buildAndRegister()
                 .setFormula("PuP", true);
@@ -1176,7 +1176,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x5E228F)
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD)
                 .components(Neptunium, 1, Aluminium, 3)
                 .blastTemp(1568, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.ZPM])
                 .buildAndRegister()
@@ -1200,7 +1200,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x43634B)
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.GENERATE_PLATE)
+                .flags(CRYSTALLIZABLE, GENERATE_PLATE)
                 .components(BismuthTrioxide, 2, FerricOxide, 2)
                 .buildAndRegister()
                 .setFormula("BiFeO3", true);
@@ -1209,7 +1209,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .color(0x91994D)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, DECOMPOSITION_BY_ELECTROLYZING)
                 .components(Bismuth, 1, Antimony, 1, Tellurium, 2, Sulfur, 1)
                 .buildAndRegister();
         //  24159 Mercury Cadmium Telluride
@@ -1218,7 +1218,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x823C80)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .components(Mercury, 2, Cadmium, 1, Tellurium, 2)
                 .blastTemp(2170, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.UHV])
                 .buildAndRegister();
@@ -1227,7 +1227,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0xFFDFE2)
                 .iconSet(MaterialIconSet.DIAMOND)
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
                 .components(Zirconium, 1, Oxygen, 2)
                 .buildAndRegister();
         //  24161 Bismuth Tellurite
@@ -1244,7 +1244,7 @@ public class EPFirstDegreeMaterials {
                 .addOreByproducts(SiliconDioxide)
                 .color(0x9EB749)
                 .iconSet(MaterialIconSet.QUARTZ)
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.GENERATE_LENS)
+                .flags(CRYSTALLIZABLE, GENERATE_LENS)
                 .components(SiliconDioxide, 5, Iron, 1)
                 .buildAndRegister();
         //  24163 Magneto Resonatic
@@ -1253,7 +1253,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xFF97FF)
                 .iconSet(MaterialIconSet.MAGNETIC)
                 .components(Prasiolite, 3, BismuthTellurite, 6, CubicZirconia, 1, SteelMagnetic, 1)
-                .flags(MaterialFlags.GENERATE_LENS)
+                .flags(GENERATE_LENS)
                 .buildAndRegister();
         //  24164 Yttrium Trioxide
         YttriumTrioxide = Builder("yttrium_trioxide")
@@ -1266,42 +1266,42 @@ public class EPFirstDegreeMaterials {
         HeavyTaraniumFuel = Builder("heavy_taranium_fuel")
                 .fluid()
                 .color(0x141414)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24166 Medium Taranium Fuel
         MediumTaraniumFuel = Builder("medium_taranium_fuel")
                 .fluid()
                 .color(0x181818)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24167 Light Taraniumm Fuel
         LightTaraniumFuel = Builder("light_taranium_fuel")
                 .fluid()
                 .color(0x1C1C1C)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24168 Heavy Enriched Taranium Fuel
         HeavyEnrichedTaraniumFuel = Builder("heavy_enriched_taranium_fuel")
                 .fluid()
                 .color(0x0F1414)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24169 Medium Enriched Taranium Fuel
         MediumEnrichedTaraniumFuel = Builder("medium_enriched_taranium_fuel")
                 .fluid()
                 .color(0x0F1818)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24170 Light Enriched Taranium Fuel
         LightEnrichedTaraniumFuel = Builder("light_enriched_taranium_fuel")
                 .fluid()
                 .color(0x0F1C1C)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Taranium, 1)
                 .buildAndRegister();
         //  24171 Adamantite
@@ -1315,7 +1315,7 @@ public class EPFirstDegreeMaterials {
         AdamantiumUnstable = Builder("adamantium_unstable")
                 .fluid()
                 .color(0xFF763C)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Adamantium, 1)
                 .buildAndRegister();
         //  24173 Energized Orichalcum
@@ -1323,7 +1323,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0xF4FC0C)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Orichalcum, 1)
                 .buildAndRegister();
         //  24174 Enriched Adamantium
@@ -1331,7 +1331,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x64B4FF)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Vibranium, 1, RareEarth, 1)
                 .buildAndRegister();
         //  24175 Deep Iron
@@ -1339,14 +1339,14 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x968C8C)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Iron, 2, Trinium, 1, Indium, 1)
                 .buildAndRegister();
         //  24176 Unstable Vibranium
         VibraniumUnstable = Builder("vibranium_unstable")
                 .fluid()
                 .color(0xFF7832)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Vibranium, 1)
                 .buildAndRegister();
         //  24177 Lanthanum Oxide
@@ -1530,7 +1530,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0xD99DE4)
                 .iconSet(MaterialIconSet.GEM_VERTICAL)
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING, MaterialFlags.GENERATE_LENS)
+                .flags(CRYSTALLIZABLE, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_LENS)
                 .components(YttriumOxide, 2, NeodymiumOxide, 1, Alumina, 5)
                 .buildAndRegister()
                 .setFormula("NdY2Al5O12", true);
@@ -1553,14 +1553,14 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x595E54)
                 .components(Sodium, 1, Tungsten, 1, Oxygen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24207 Sodium Phosphotungstate
         SodiumPhosphotungstate = Builder("sodium_phosphotungstate")
                 .dust()
                 .color(0x4D3635)
                 .components(Oxygen, 40, Tungsten, 12, Sodium, 3, Phosphorus, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(WO3)12Na3PO4", true);
         //  24208 Sodium Molybdate
@@ -1569,7 +1569,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xCCCC99)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Sodium, 2, Molybdenum, 1, Oxygen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24209 Sodium Phosphomolybdate
         SodiumPhosphomolybdate = Builder("sodium_phosphomolybdate")
@@ -1577,7 +1577,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xF3E0A8)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Oxygen, 40, Molybdenum, 12, Sodium, 3, Phosphorus, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(MoO3)12Na3PO4", true);
         //  24210 Sodium Acetate
@@ -1593,7 +1593,7 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2147483647))
                 .color(0x70ecff)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.NO_SMASHING, NO_SMELTING, MaterialFlags.GENERATE_PLATE, GENERATE_CURVED_PLATE, MaterialFlags.GENERATE_ROTOR, MaterialFlags.GENERATE_FRAME)
+                .flags(NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_CURVED_PLATE, GENERATE_ROTOR, GENERATE_FRAME)
                 .buildAndRegister();
         //  24212 Magneto Hydrodynamically Constrained Star Matter
         MagnetoHydrodynamicallyConstrainedStarMatter = Builder("magneto_hydrodynamically_constrained_star_matter")
@@ -1607,7 +1607,7 @@ public class EPFirstDegreeMaterials {
                 .ingot()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(288000000))
                 .iconSet(MaterialIconSet.MAGNETIC)
-                .flags(MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_LONG_ROD)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD)
                 .buildAndRegister();
         //  24214 BlackDwarfMatter
         BlackDwarfMatter = Builder("black_dwarf_matter")
@@ -1659,7 +1659,7 @@ public class EPFirstDegreeMaterials {
         CosmicComputingMixture = Builder("cosmic_computing_mixture")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(536870912))
                 .components(HeavyLeptonMixture, 32, HeavyQuarks, 8, Gluons, 8, Instantons, 4, TemporalFluid, 4, HiggsBosons, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula(ChatFormatting.OBFUSCATED + "aaaaaa", false);
         //  24224 Silica Gel
@@ -1668,7 +1668,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x9695FD)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Silicon, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24225 Silica Gel Base
         SilicaGelBase = Builder("silica_gel_base")
@@ -1676,7 +1676,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x9695FD)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(SiliconDioxide, 1, HydrochloricAcid, 1, SodiumHydroxide, 1, Water, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24226 Nitronium Tetrafluoroborate
         NitroniumTetrafluoroborate = Builder("nitronium_tetrafluoroborate")
@@ -1684,7 +1684,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x787449)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Sodium, 1, Oxygen, 2, Boron, 1, Fluorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24227 Nitrosonium Tetrafluoroborate
         NitrosoniumTetrafluoroborate = Builder("nitrosonium_tetrafluoroborate")
@@ -1692,14 +1692,14 @@ public class EPFirstDegreeMaterials {
                 .color(0xA32A8C)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Sodium, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24228 Tetrafluoroboric Acid
         TetrafluoroboricAcid = Builder("tetrafluoroboric_acid")
                 .fluid()
                 .color(0x83A731)
                 .components(Hydrogen, 1, Boron, 1, Fluorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24229 Nitrogen Monoxide
         NitrogenMonoxide = Builder("nitrogen_monoxide")
@@ -1713,7 +1713,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x999933)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Nitrogen, 2, Hydrogen, 8, Oxygen, 6, Sulfur, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(NH3OH)2SO4", true);
         //  24231 Potassium Hydroxylaminedisulfonate
@@ -1722,7 +1722,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x627D25)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Potassium, 2, Nitrogen, 1, Hydrogen, 1, Sulfur, 2, Oxygen, 7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24232 Potassium Bisulfite
         PotassiumBisulfite = Builder("potassium_bisulfite")
@@ -1730,7 +1730,7 @@ public class EPFirstDegreeMaterials {
                 .color(344314)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Potassium, 1, Hydrogen, 1, Sulfur, 1, Oxygen, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24233 Potassium Carbonate
         PotassiumCarbonate = Builder("potassium_carbonate")
@@ -1738,7 +1738,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x7C89D9)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Potassium, 2, Carbon, 1, Oxygen, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24234 Nitrous Acid
         NitrousAcid = Builder("nitrous_acid")
@@ -1771,7 +1771,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x71560B)
                 .components(Barium, 1, Sulfur, 1, Oxygen, 4, Water, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24239 Ammonium Acetate
         AmmoniumAcetate = Builder("ammonium_acetate")
@@ -1821,7 +1821,7 @@ public class EPFirstDegreeMaterials {
         HeliumNeon = Builder("helium_neon")
                 .gas()
                 .color(0xFF0080)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(Helium, 1, Neon, 1)
                 .buildAndRegister();
         //  24247 Polonium Nitrate
@@ -1829,7 +1829,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(Polonium.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .components(Polonium, 1, Nitrogen, 4, Oxygen, 12)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Po(NO3)4", true);
         //  24248 Polonium Chloride
@@ -1837,7 +1837,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(Polonium.getMaterialRGB() + Chlorine.getMaterialRGB())
                 .components(Polonium, 1, Chlorine, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24249 Celestite
         Celestite = Builder("celestite")
@@ -1845,7 +1845,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x4AE3E6)
                 .iconSet(MaterialIconSet.OPAL)
                 .components(Strontium, 1, Sulfur, 1, Oxygen, 4)
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_LENS)
+                .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_LENS)
                 .buildAndRegister();
         //  24250 Strontium Carbonate
         StrontiumCarbonate = Builder("strontium_carbonate")
@@ -1853,7 +1853,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x1DAFD3)
                 .iconSet(MaterialIconSet.SAND)
                 .components(Strontium, 1, Carbon, 1, Oxygen, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24251 Strontium Oxide
         StrontiumOxide = Builder("stronium_oxide")
@@ -1868,7 +1868,7 @@ public class EPFirstDegreeMaterials {
                 .color(Pyrochlore.getMaterialRGB() + SulfuricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Pyrochlore, 1, SulfuricAcid, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24253 Thorium-Uranium Solution
         ThoriumUraniumSolution = Builder("thorium_uranium_solution")
@@ -1889,28 +1889,28 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(Barite.getMaterialRGB())
                 .components(Barite, 1, Gypsum, 1, Celestite, 1, Radium, 1, Water, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24256 Fluoroniobic Acid
         FluoroniobicAcid = Builder("fluoroniobic_acid")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(Niobium.getMaterialRGB() + HydrofluoricAcid.getMaterialRGB())
                 .components(Niobium, 1, Hydrogen, 1, Fluorine, 7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24257 Oxypentafluoroniobate
         Oxypentafluoroniobate = Builder("oxypentafluoroniobate")
                 .fluid()
                 .color(0x17F742)
                 .components(Hydrogen, 2, Niobium, 1, Oxygen, 1, Fluorine, 5)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24258 Heptafluorotantalate
         Heptafluorotantalate = Builder("heptafluorotantalate")
                 .fluid()
                 .color(0x16EB3F)
                 .components(Hydrogen, 2, Tantalum, 1, Fluorine, 7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24259 Potassium Fluoride
         PotassiumFluoride = Builder("potassium_fluoride")
@@ -1925,7 +1925,7 @@ public class EPFirstDegreeMaterials {
                 .color(PotassiumFluoride.getMaterialRGB() + FluoroniobicAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Potassium, 2, Niobium, 1, Fluorine, 7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24261 Potassium Fluotantalate
         PotassiumFluotantalate = Builder("potassium_fluotantalate")
@@ -1933,7 +1933,7 @@ public class EPFirstDegreeMaterials {
                 .color(Tantalum.getMaterialRGB() + PotassiumFluoniobate.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Potassium, 2, Tantalum, 1, Fluorine, 7)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24262 Uranium Thorium Nitrate
         UraniumThoriumNitrate = Builder("uranium_thorium_nitrate")
@@ -1960,7 +1960,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(Thorium.getMaterialRGB() + Oxygen.getMaterialRGB())
                 .components(Thorium, 1, Oxygen, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24266 Gold Copper Mixture
         GoldCopperMixture = Builder("gold_copper_mixture")
@@ -1968,7 +1968,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xD2D242)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Copper, 3, Gold, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Cu3Au?", true);
         //  24267 Leaching Gold
@@ -1977,7 +1977,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xA7650F)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Copper, 3, Gold, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Cu3Au?", true);
         //  24268 Chloroauric Acid
@@ -1985,7 +1985,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(LeachingGold.getMaterialRGB() + HydrochloricAcid.getMaterialRGB())
                 .components(Hydrogen, 1, Gold, 1, Chlorine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("HAuCl?", false);
         //  24269 Leaching Copper
@@ -1994,7 +1994,7 @@ public class EPFirstDegreeMaterials {
                 .color(Copper.getMaterialRGB() + LeachingGold.getMaterialRGB())
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Copper, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Cu3?", true);
         //  24270 Potassium Metabisulfite
@@ -2010,7 +2010,7 @@ public class EPFirstDegreeMaterials {
                 .color(PlatinumRaw.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Platinum, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Pt?", false);
         //  24272 Platinum Slag
@@ -2019,7 +2019,7 @@ public class EPFirstDegreeMaterials {
                 .color(PlatinumRaw.getMaterialRGB())
                 .iconSet(MaterialIconSet.DULL)
                 .components(Platinum, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Pt?", false);
         //  24273 Palladium Metal
@@ -2028,7 +2028,7 @@ public class EPFirstDegreeMaterials {
                 .color(Palladium.getMaterialRGB())
                 .iconSet(MaterialIconSet.DULL)
                 .components(Palladium, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Pd?", false);
         //  24274 Concentrate Platinum
@@ -2037,7 +2037,7 @@ public class EPFirstDegreeMaterials {
                 .color(Platinum.getMaterialRGB())
                 .iconSet(MaterialIconSet.DULL)
                 .components(Platinum, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Pt?", false);
         //  24275 Crude Platinum
@@ -2046,7 +2046,7 @@ public class EPFirstDegreeMaterials {
                 .color(PlatinumRaw.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Platinum, 1, Chlorine, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("PtCl2?", true);
         //  24276 Palladium Rich Ammonia
@@ -2054,7 +2054,7 @@ public class EPFirstDegreeMaterials {
                 .gas()
                 .color(Palladium.getMaterialRGB() + Ammonia.getMaterialRGB())
                 .components(Palladium, 1, Ammonia, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Pd(NH3)?", true);
         //  24277 Iridium Dioxide
@@ -2063,14 +2063,14 @@ public class EPFirstDegreeMaterials {
                 .color(Iridium.getMaterialRGB() + Oxygen.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Iridium, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24278 Acidic Iridium Solution
         AcidicIridiumSolution = Builder("acidic_iridium_solution")
                 .fluid()
                 .color(IridiumDioxide.getMaterialRGB() + HydrochloricAcid.getMaterialRGB())
                 .components(IridiumDioxide, 2, HydrochloricAcid, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24279 Osmium Tetrachloride
         OsmiumTetrachloride = Builder("osmium_tetrachloride")
@@ -2084,7 +2084,7 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x605C6C)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Ruthenium, 1, Chlorine, 3)
                 .buildAndRegister();
         //  24281 Sodium Peroxide
@@ -2111,7 +2111,7 @@ public class EPFirstDegreeMaterials {
         AmmoniumHexachloroPlatinumGroupSludge = Builder("ammonium_hexachloro_platinum_group_sludge")
                 .fluid()
                 .color(0xFEF0C2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24285 Leaching Nickel
         LeachingNickel = Builder("leaching_nickel")
@@ -2119,7 +2119,7 @@ public class EPFirstDegreeMaterials {
                 .color(LeachingCopper.getMaterialRGB() + Nickel.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Nickel, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ni3?", true);
         //  24286 Gold Nickel Mixture
@@ -2128,7 +2128,7 @@ public class EPFirstDegreeMaterials {
                 .color(GoldCopperMixture.getMaterialRGB() + Nickel.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Nickel, 3, Gold, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ni3Au?", true);
         //  24287 Lanthanum Fullerene Mixture
@@ -2151,7 +2151,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xD24473)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Lanthanum, 2, GeodesicPolyarene, 2, CarbonNanotube, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24290 HRA Magnesium
         HRAMagnesium = Builder("hra_magnesium")
@@ -2179,14 +2179,14 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0xA65A7F)
                 .components(Oganesson, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24294 Hot Oganesson
         HotOganesson = Builder("hot_oganesson")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(14118))
                 .color(Oganesson.getMaterialRGB())
                 .components(Oganesson, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24295 Dragon Dust
         DragonDust = Builder("dragon_dust")
@@ -2203,7 +2203,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x914626)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Californium, 1, Nitrogen, 3, Oxygen, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Cf(NO2)3", true);
         //  24297 Californium Dioxide
@@ -2212,35 +2212,35 @@ public class EPFirstDegreeMaterials {
                 .color(0x912D01)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Californium, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24298 Californium Hexachloride
         CaliforniumHexachloride = Builder("californium_hexachloride")
                 .fluid()
                 .color(Californium.getMaterialRGB() + Chlorine.getMaterialRGB())
                 .components(Californium, 2, Chlorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24299 Californium Hexafluoride
         CaliforniumHexafluoride = Builder("californium_hexafluoride")
                 .gas()
                 .color(Californium.getMaterialRGB() + Fluorine.getMaterialRGB())
                 .components(Californium, 2, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24300 Californium-252 Hexafluoride
         Californium252Hexafluoride = Builder("californium_252_hexafluoride")
                 .gas()
                 .color(Californium252.getMaterialRGB() + Fluorine.getMaterialRGB())
                 .components(Californium252, 2, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24301 Steam Cracked Californium-252 Hexafluoride
         SteamCrackedCalifornium252Hexafluoride = Builder("steam_cracked_californium_252_hexafluoride")
                 .gas()
                 .color(Californium252Hexafluoride.getMaterialRGB() + Steam.getMaterialRGB())
                 .components(Californium252, 2, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24302 Californium-252 Dioxide
         Californium252Dioxide = Builder("californium_252_dioxide")
@@ -2248,7 +2248,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x912D01)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Californium252, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24303 Actinium Draconium Hydroxides
         ActiniumDraconiumHydroxides = Builder("actinium_draconium_hydroxides")
@@ -2256,7 +2256,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xB613BF)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Draconium, 3, Actinium, 2, Oxygen, 12, Hydrogen, 12)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Dc3Ac3(OH)12", true);
         //  24304 Actinium Nitrate
@@ -2265,7 +2265,7 @@ public class EPFirstDegreeMaterials {
                 .color(Actinium.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Actinium, 1, Nitrogen, 3, Oxygen, 9)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ac(NO3)3", true);
         //  24305 Radium Nitrate
@@ -2274,7 +2274,7 @@ public class EPFirstDegreeMaterials {
                 .color(Radium.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Radium, 1, Nitrogen, 2, Oxygen, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ra(NO3)2", true);
         //  24306 Caesium Carborane
@@ -2283,7 +2283,7 @@ public class EPFirstDegreeMaterials {
                 .color(Caesium.getMaterialRGB() + Carbon.getMaterialRGB())
                 .iconSet(MaterialIconSet.DULL)
                 .components(Caesium, 1, Carbon, 1, Boron, 11, Hydrogen, 12)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24307 Silver Nitrate
         SilverNitrate = Builder("silver_nitrate")
@@ -2291,7 +2291,7 @@ public class EPFirstDegreeMaterials {
                 .color(Silver.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Silver, 1, Nitrogen, 1, Oxygen, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24308 Caesium Nitrate
         CaesiumNitrate = Builder("caesium_nitrate")
@@ -2299,7 +2299,7 @@ public class EPFirstDegreeMaterials {
                 .color(Caesium.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Caesium, 1, Nitrogen, 1, Oxygen, 3)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
                 .buildAndRegister();
         //  24309 Silver Iodide
         SilverIodide = Builder("silver_iodide")
@@ -2307,14 +2307,14 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .color(Silver.getMaterialRGB() + Iodine.getMaterialRGB())
                 .components(Silver, 1, Iodine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24310 Caesium Hydroxide
         CaesiumHydroxide = Builder("caesium_hydroxide")
                 .dust()
                 .color(Caesium.getMaterialRGB() + Hydrogen.getMaterialRGB() + Oxygen.getMaterialRGB())
                 .components(Caesium, 1, Oxygen, 1, Hydrogen, 1)
-                .flags(MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING)
                 .buildAndRegister();
         //  24311 Sodium Tetrafluoroborate
         SodiumTetrafluoroborate = Builder("sodium_tetrafluoroborate")
@@ -2322,7 +2322,7 @@ public class EPFirstDegreeMaterials {
                 .color(Sodium.getMaterialRGB() + BoronTrifluoride.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Sodium, 1, Boron, 1, Fluorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24312 Sodium Borohydride
         SodiumBorohydride = Builder("sodium_borohydride")
@@ -2330,7 +2330,7 @@ public class EPFirstDegreeMaterials {
                 .color(Sodium.getMaterialRGB() + Boron.getMaterialRGB())
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Sodium, 1, Boron, 1, Hydrogen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24313 Sodium Ethoxide
         SodiumEthoxide = Builder("sodium_ethoxide")
@@ -2351,7 +2351,7 @@ public class EPFirstDegreeMaterials {
                 .color(0xBA16A6)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Draconium, 1, Fluorine, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24316 Actinium Oxalate
         ActiniumOxalate = Builder("actinium_oxalate")
@@ -2394,7 +2394,7 @@ public class EPFirstDegreeMaterials {
         FleroviumYtterbiumPlasma = Builder("flerovium_ytterbium_plasma")
                 .fluid(FluidStorageKeys.PLASMA, new FluidBuilder().temperature(300))
                 .components(MetastableFlerovium, 1, Ytterbium178, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24322 Solar-Grade Silicon
         SolarGradeSilicon = Builder("solar_grade_silicon")
@@ -2408,21 +2408,21 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x912565)
                 .components(Dimethylhydrazine, 1, Methanol, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24324 Highly Purified Coal Tar
         HighlyPurifiedCoalTar = Builder("highly_purified_coal_tar")
                 .fluid()
                 .color(0x7F811D)
                 .components(CoalTar, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24325 RP-1 Rocket Fuel
         RP1RocketFuel = Builder("rp_1_rocket_fuel")
                 .fluid()
                 .color(0xFB2A08)
                 .components(HighlyPurifiedCoalTar, 1, Oxygen/*LiquidOxygen*/, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24326 Methylhydrazine
         Methylhydrazine = Builder("methylhydrazine")
@@ -2435,7 +2435,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x607186)
                 .components(Methylhydrazine, 1, Tetranitromethane, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24328 Lithium Niobate
         LithiumNiobate = Builder("lithium_niobate")
@@ -2444,8 +2444,8 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Lithium, 1, Niobium, 1, Oxygen, 4)
                 .blastTemp(6700)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_LENS)
+                .flags(DISABLE_DECOMPOSITION)
+                .flags(GENERATE_PLATE, GENERATE_LENS)
                 .buildAndRegister();
         //  24329 Niobium Pentachloride
         NiobiumPentachloride = Builder("niobium_pentachloride")
@@ -2453,7 +2453,7 @@ public class EPFirstDegreeMaterials {
                 .color(Niobium.getMaterialRGB() + Chlorine.getMaterialRGB())
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Niobium, 1, Chlorine, 5)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24330 High Purity Sodium Vanadate
         HighPuritySodiumVanadate = Builder("high_purity_sodium_vanadate")
@@ -2461,14 +2461,14 @@ public class EPFirstDegreeMaterials {
                 .color(0xE3E147)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Sodium, 3, Vanadium, 1, Oxygen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24331 Lutetium Thulium Yttrium Chlorides Solution
         LutetiumThuliumYttriumChloridesSolution = Builder("lutetium_thulium_yttrium_chlorides_solution")
                 .fluid()
                 .color(Lutetium.getMaterialRGB() + Thulium.getMaterialRGB() + Yttrium.getMaterialRGB())
                 .components(Lutetium, 2, Thulium, 2, Yttrium, 6, Chlorine, 30, Hydrogen, 30, Oxygen, 15)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(LuCl3)2(TmCl3)2(YCl3)6(H2O)15", true);
         //  24332 Lu-Tm-droped Yttrium Vanadate Deposition
@@ -2483,7 +2483,7 @@ public class EPFirstDegreeMaterials {
                 .gem()
                 .color(0x8C1B23)
                 .iconSet(MaterialIconSet.GEM_HORIZONTAL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_LENS, MaterialFlags.CRYSTALLIZABLE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_LENS, CRYSTALLIZABLE)
                 .components(Yttrium, 1, Vanadium, 1, Oxygen, 1, Lutetium, 1, Thulium, 1)
                 .buildAndRegister()
                 .setFormula("Lu/Tm:YVO", false);
@@ -2492,7 +2492,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(HeavyQuarks.getMaterialRGB() + LightQuarks.getMaterialRGB())
                 .components(LightQuarks, 1, HeavyQuarks, 3)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .buildAndRegister()
                 .setFormula(ChatFormatting.OBFUSCATED  + "a"  + ChatFormatting.RESET + "§e(u2)d(c2)s(t2)b" + ChatFormatting.OBFUSCATED  + "a" , true);
         //  24335 Deuterium-Superheavy Mixture
@@ -2500,7 +2500,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x7B9F8E)
                 .components(Deuterium, 2, MetastableHassium, 1, MetastableFlerovium, 1, MetastableOganesson, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24336 Heavy Quark Degenerate Matter
         HeavyQuarkDegenerateMatter = Builder("heavy_quark_degenerate_matter")
@@ -2510,7 +2510,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x5DBD3A)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .blastTemp(12960, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UEV])
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .buildAndRegister();
         //  24337 Fullerene Polymer Matrix
         FullerenePolymerMatrix = Builder("fullerene_polymer_matrix")
@@ -2519,21 +2519,21 @@ public class EPFirstDegreeMaterials {
                 .color(0x2F0B01)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Lead, 1, Iron, 1, Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
                 .buildAndRegister();
         //  24338 Radium-Radon Mixture
         RadiumRadonMixture = Builder("radium_radon_mixture")
                 .fluid()
                 .color(Radium.getMaterialRGB() + Radon.getMaterialRGB())
                 .components(Radium, 1, Radon, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24339 Scandium-Titanium Mixture
         ScandiumTitaniumMixture = Builder("scandium_titanium_mixture")
                 .fluid()
                 .color(Scandium.getMaterialRGB() + Titanium.getMaterialRGB())
                 .components(Scandium, 1, Titanium, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24340 Caesium Iodide
         CaesiumIodide = Builder("caesium_iodide")
@@ -2548,7 +2548,7 @@ public class EPFirstDegreeMaterials {
                 .color(Thallium.getMaterialRGB() + Thulium.getMaterialRGB() + CaesiumIodide.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Thallium, 1, Thulium, 1, CaesiumIodide, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Tl/Tm:CsI");
         //  24342 Cadmium Tungstate
@@ -2557,7 +2557,7 @@ public class EPFirstDegreeMaterials {
                 .color(Cadmium.getMaterialRGB() + Tungsten.getMaterialRGB())
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Cadmium, 1, Tungsten, 1, Oxygen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24343 Bismuth Germanate
         BismuthGermanate = Builder("bismuth_germanate")
@@ -2565,7 +2565,7 @@ public class EPFirstDegreeMaterials {
                 .color(Bismuth.getMaterialRGB() + Germanium.getMaterialRGB())
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Bismuth, 12, Germanium, 1, Oxygen, 20)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24344 Iodine Monochloride
         IodineMonochloride = Builder("iodine_monochloride")
@@ -2594,7 +2594,7 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(3100)
                 .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE)
                 .buildAndRegister();
         //  24348 Titanium Nitrate
         TitaniumNitrate = Builder("titanium_nitrate")
@@ -2602,7 +2602,7 @@ public class EPFirstDegreeMaterials {
                 .color(Titanium.getMaterialRGB() + NitricAcid.getMaterialRGB())
                 .iconSet(MaterialIconSet.DULL)
                 .components(Titanium, 1, Nitrogen, 4, Oxygen, 12)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ti(NO3)4", true);
 

@@ -7,12 +7,10 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -23,7 +21,6 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.GelidCryotheum;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class IndustrialFreezerMachine extends ParallelElectricMultiblockMachine {
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialFreezerMachine.class, ParallelElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
 
     private final FluidStack CRYOTHEUM_STACK = GelidCryotheum.getFluid(FluidHelper.getBucket() / 1000);
 
@@ -81,14 +78,5 @@ public class IndustrialFreezerMachine extends ParallelElectricMultiblockMachine 
                 }
             }
         }
-    }
-
-    //////////////////////////////////////
-    //***       Multiblock Data      ***//
-    //////////////////////////////////////
-
-    @Override
-    public @NotNull ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

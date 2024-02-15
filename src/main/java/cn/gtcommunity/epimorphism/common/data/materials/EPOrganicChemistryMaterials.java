@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPOrganicChemistryMaterials {
@@ -17,7 +18,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(16764498)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
                 .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
                 .buildAndRegister()
                 .setFormula("(C7H2N2O4)(O(C6H4)2)", true);
@@ -26,7 +27,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(16768908)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
                 .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
                 .buildAndRegister()
                 .setFormula("O(C6H4NH2)2", true);
@@ -40,7 +41,7 @@ public class EPOrganicChemistryMaterials {
         Polystyrene = Builder("polystyrene")
                 .fluid()
                 .color(14795458)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Hydrogen, 8)
                 .buildAndRegister();
         //  25004 PolystyreneSulfonate
@@ -48,7 +49,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(14777458)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
                 .buildAndRegister();
         //  25005  PEDOT:PSS
@@ -56,7 +57,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(14771623)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE)
                 .components(Edot, 1, PolystyreneSulfonate, 1)
                 .cableProperties(GTValues.V[GTValues.UHV], 24, 6, false)
                 .buildAndRegister();
@@ -65,7 +66,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(9554657)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE)
                 .components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
                 .buildAndRegister();
         //  25007  PEDOT-TMA
@@ -73,7 +74,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(6201057)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_SPRING, MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_FINE_WIRE)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_ROD, GENERATE_SPRING, GENERATE_LONG_ROD, GENERATE_FINE_WIRE)
                 .components(Edot, 1, PMMA, 2)
                 .cableProperties(GTValues.V[GTValues.UEV], 8, 6)
                 .buildAndRegister();
@@ -81,7 +82,7 @@ public class EPOrganicChemistryMaterials {
         TetramethylammoniumHydroxide = Builder("tetramethylammonium_hydroxide")
                 .fluid()
                 .color(4259798)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 1, Carbon, 4, Hydrogen, 12, Oxygen, 1, Hydrogen, 1)
                 .buildAndRegister()
                 .setFormula("N(CH3)4OH", true);
@@ -90,14 +91,14 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(633))
                 .color(0xFA9849)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
                 .buildAndRegister();
         //  25010 Potassium Bromate
         PotassiumBromate = Builder("potassium_bromate")
                 .dust()
                 .color(0x782828)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Potassium, 1, Bromine, 1, Oxygen, 3)
                 .buildAndRegister();
@@ -105,7 +106,7 @@ public class EPOrganicChemistryMaterials {
         MalonicAcid = Builder("malonic_acid")
                 .dust()
                 .color(0x61932E)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Carbon, 3, Hydrogen, 4, Oxygen, 4)
                 .buildAndRegister();
@@ -113,7 +114,7 @@ public class EPOrganicChemistryMaterials {
         ChloroaceticAcid = Builder("chloroacetic_acid")
                 .dust()
                 .color(0x38541A)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Carbon, 2, Hydrogen, 3, Chlorine, 1, Oxygen, 2)
                 .buildAndRegister();
@@ -121,14 +122,14 @@ public class EPOrganicChemistryMaterials {
         Trichloroethylene = Builder("trichloroethylene")
                 .fluid()
                 .color(0xB685B1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 1, Chlorine, 3)
                 .buildAndRegister();
         //  25014 Dichloroethane
         Dichloroethane = Builder("dichloroethane")
                 .fluid()
                 .color(0xDAAED3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 4, Chlorine, 2)
                 .buildAndRegister();
         //  25015 Hydrobromic Acid
@@ -141,7 +142,7 @@ public class EPOrganicChemistryMaterials {
         Butanediol = Builder("butanediol")
                 .fluid()
                 .color(0xAAC4DA)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 4, Hydrogen, 10, Oxygen, 2)
                 .buildAndRegister()
                 .setFormula("C4H8(OH)2", true);
@@ -168,14 +169,14 @@ public class EPOrganicChemistryMaterials {
         AcetoneCyanohydrin = Builder("acetone_cyanohydrin")
                 .fluid()
                 .color(0xA1FFD0)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 4, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
                 .buildAndRegister();
         //  25021 Para Xylene
         ParaXylene = Builder("para_xylene")
                 .fluid()
                 .color(0x666040)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Hydrogen, 10)
                 .buildAndRegister()
                 .setFormula("C6H4(CH3)2", true);
@@ -183,7 +184,7 @@ public class EPOrganicChemistryMaterials {
         Cycloparaphenylene = Builder("cycloparaphenylene")
                 .fluid()
                 .color(0x60545A)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 6, Hydrogen, 4)
                 .buildAndRegister();
         //  25023 Dichlorocyclooctadieneplatinium
@@ -191,7 +192,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0xD4E982)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Hydrogen, 12, Chlorine, 2, Platinum, 1)
                 .buildAndRegister()
                 .setFormula("C8H12Cl2Pt", true);
@@ -200,7 +201,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x000C52)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 12, Hydrogen, 8, Iodine, 2)
                 .buildAndRegister()
                 .setFormula("C12H8I2", true);
@@ -209,7 +210,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x716449)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 8, Nitrogen, 2)
                 .buildAndRegister()
                 .setFormula("C10H8N2", true);
@@ -218,7 +219,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x996881)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 51, Hydrogen, 42, Oxygen, 3, Palladium, 2)
                 .buildAndRegister()
                 .setFormula("C51H42O3Pd2", true);
@@ -281,7 +282,7 @@ public class EPOrganicChemistryMaterials {
         Polyetheretherketone = Builder("polyetheretherketone")
                 .polymer()
                 .color(0x45433D)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE)
                 .components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
                 .buildAndRegister();
         //  25037 Difluorobenzophenone
@@ -321,7 +322,7 @@ public class EPOrganicChemistryMaterials {
         Kevlar = Builder("kevlar")
                 .polymer()
                 .color(0xF0F078)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE)
                 .components(Carbon, 14, Hydrogen, 10, Nitrogen, 2, Oxygen, 2)
                 .buildAndRegister()
                 .setFormula("(C6H4)2(CO)2(NH)2", true);
@@ -359,7 +360,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x336040)
                 .iconSet(MaterialIconSet.FINE)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 14)
                 .buildAndRegister()
                 .setFormula("C6H2(CH3)4", true);
@@ -368,7 +369,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 2, Oxygen, 6)
                 .buildAndRegister()
                 .setFormula("C6H2(C2O3)2", true);
@@ -376,7 +377,7 @@ public class EPOrganicChemistryMaterials {
         Oxydianiline = Builder("oxydianiline")
                 .dust()
                 .color(0xF0E130)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
                 .buildAndRegister()
                 .setFormula("O(C6H4NH2)2", true);
@@ -384,7 +385,7 @@ public class EPOrganicChemistryMaterials {
         Dimethylformamide = Builder("dimethylformamide")
                 .fluid()
                 .color(0x42BDFF)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 3, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
                 .buildAndRegister()
                 .setFormula("(CH3)2NC(O)H", true);
@@ -392,7 +393,7 @@ public class EPOrganicChemistryMaterials {
         PhthalicAnhydride = Builder("phthalic_anhydride")
                 .dust()
                 .color(0xEEAAEE)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
                 .buildAndRegister()
                 .setFormula("C6H4(CO)2O", true);
@@ -400,7 +401,7 @@ public class EPOrganicChemistryMaterials {
         BiphenylTetracarboxylicAcidDianhydride = Builder("biphenyl_tetracarboxylic_acid_dianhydride")
                 .dust()
                 .color(0xFF7F50)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 16, Hydrogen, 6, Oxygen, 6)
                 .buildAndRegister()
                 .setFormula("(C8H3O3)2", true);
@@ -442,7 +443,7 @@ public class EPOrganicChemistryMaterials {
         Trimethylaluminium = Builder("trimethylaluminium")
                 .fluid()
                 .color(0x6ECCFF)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Aluminium, 2, Carbon, 6, Hydrogen, 18)
                 .buildAndRegister()
                 .setFormula("Al2(CH3)6", true);
@@ -450,7 +451,7 @@ public class EPOrganicChemistryMaterials {
         Trimethylgallium = Builder("trimethylgallium")
                 .fluid()
                 .color(0x4F92FF)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Gallium, 1, Carbon, 3, Hydrogen, 9)
                 .buildAndRegister()
                 .setFormula("Ga(CH3)3", true);
@@ -535,7 +536,7 @@ public class EPOrganicChemistryMaterials {
         Ethylanthraquinone = Builder("ethylanthraquinone")
                 .fluid()
                 .color(0xCC865A)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 16, Hydrogen, 12, Oxygen, 2)
                 .buildAndRegister()
                 .setFormula("C6H4(CO)2C6H3Et", true);
@@ -543,7 +544,7 @@ public class EPOrganicChemistryMaterials {
         Ethylanthrahydroquinone = Builder("ethylanthrahydroquinone")
                 .fluid()
                 .color(0xAD531A)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 16, Hydrogen, 18, Oxygen, 2)
                 .buildAndRegister()
                 .setFormula("C6H4(CH2OH)2C6H3Et", true);
@@ -551,7 +552,7 @@ public class EPOrganicChemistryMaterials {
         Ethylenediamine = Builder("ethylenediamine")
                 .fluid()
                 .color(0xD00ED0)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 8, Nitrogen, 2)
                 .buildAndRegister()
                 .setFormula("C2H4(NH2)2", true);
@@ -560,7 +561,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x8890E0)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 12, Nitrogen, 2, Oxygen, 8, Sodium, 4)
                 .buildAndRegister();
         //  25075 EthylenediaminetetraaceticAcid
@@ -569,14 +570,14 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x87E6D9)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 16, Nitrogen, 2, Oxygen, 8)
                 .buildAndRegister();
         //  25076 Tetramethylammonium Chloride
         TetramethylammoniumChloride = Builder("tetramethylammonium_chloride")
                 .dust()
                 .color(0x27FF81)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.METALLIC)
                 .components(Carbon, 4, Hydrogen, 12, Nitrogen, 1, Chlorine, 1)
                 .buildAndRegister()
@@ -592,7 +593,7 @@ public class EPOrganicChemistryMaterials {
         Pyrocatechol = Builder("pyrocatechol")
                 .dust()
                 .color(0x784421)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Carbon, 6, Hydrogen, 6, Oxygen, 2)
                 .buildAndRegister();
@@ -601,7 +602,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x8B7EFF)
                 .components(Nitrogen, 1, Oxygen, 2, Fluorine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25080 Dimethylamine Hydrochloride
         DimethylamineHydrochloride = Builder("dimethylamine_hydrochloride")
@@ -620,7 +621,7 @@ public class EPOrganicChemistryMaterials {
         DiethylSuflide = Builder("diethyl_sulfide")
                 .fluid()
                 .color(0xFF7E4B)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Ethylene, 2, Sulfur, 1)
                 .buildAndRegister()
                 .setFormula("(C2H5)2S", true);
@@ -628,7 +629,7 @@ public class EPOrganicChemistryMaterials {
         Dimethylcadmium = Builder("dimethylcadmium")
                 .fluid()
                 .color(0x5C037F)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 6, Cadmium, 1)
                 .buildAndRegister()
                 .setFormula("(CH3)2Cd", true);
@@ -636,7 +637,7 @@ public class EPOrganicChemistryMaterials {
         BETSPerrhenate = Builder("bets_perrhenate")
                 .dust()
                 .color(0x98E993)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Rhenium, 1, Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4, Oxygen, 4)
                 .buildAndRegister();
@@ -644,7 +645,7 @@ public class EPOrganicChemistryMaterials {
         Bisethylenedithiotetraselenafulvalene = Builder("bisethylenedithiotetraselenafulvalene")
                 .dust()
                 .color(0x98E993)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4)
                 .buildAndRegister();
@@ -653,7 +654,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x689E64)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 4, Hydrogen, 4, Sulfur, 2, Lithium, 2, Selenium, 2)
                 .buildAndRegister();
         //  25087 Cyclopentadienyl Titanium Trichloride
@@ -661,7 +662,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x752C7A)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 10, Chlorine, 2, Titanium, 1)
                 .buildAndRegister()
                 .setFormula("(C5H5)2Cl2Ti", true);
@@ -677,7 +678,7 @@ public class EPOrganicChemistryMaterials {
                 .color(0xFFC183)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Barium, 1, Oxygen, 6, Carbon, 2, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Ba(OSO2CF3)2", true);
         //  25090 Scandium Triflate
@@ -686,14 +687,14 @@ public class EPOrganicChemistryMaterials {
                 .color(0xCC9999)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Scandium, 1, Oxygen, 9, Carbon, 3, Fluorine, 9)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("Sc(OSO2CF3)3", true);
         //  25091 Barium Triflate Solution
         BariumTriflateSolution = Builder("barium_triflate_solution")
                 .fluid()
                 .color(0xFFC183)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("C2BaF6O6S2Hg(H2O)3", true);
         //  25092 Biperfluoromethanedisulfide
@@ -749,7 +750,7 @@ public class EPOrganicChemistryMaterials {
         DiethylhexylPhosphoricAcid = Builder("diethylhexyl_phosphoric_acid")
                 .fluid()
                 .color(0xFFFF99)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 16, Hydrogen, 35, Oxygen, 4, Phosphorus, 1)
                 .buildAndRegister()
                 .setFormula("(C8H7O)2PO2H", true);
@@ -771,7 +772,7 @@ public class EPOrganicChemistryMaterials {
                 .polymer()
                 .color(0xFFE000)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
                 .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
                 .buildAndRegister();
         //  25104 Pre Zylon
@@ -779,7 +780,7 @@ public class EPOrganicChemistryMaterials {
                 .dust()
                 .color(0x623250)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
                 .components(Carbon, 20, Hydrogen, 22, Nitrogen, 2, Oxygen, 2)
                 .buildAndRegister();
         //  25105 Terephthalaldehyde
@@ -927,7 +928,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(0xE3EBDA)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE)
                 .components(Carbon, 16, Hydrogen, 14, Oxygen, 3)
                 .buildAndRegister();
         //  25126 Isobutyric Acid
@@ -959,7 +960,7 @@ public class EPOrganicChemistryMaterials {
                 .ingot()
                 .fluid()
                 .color(0xDFDFDF)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.NO_SMASHING, MaterialFlags.NO_SMELTING, MaterialFlags.GENERATE_PLATE)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE)
                 .components(Carbon, 9, Hydrogen, 14, Oxygen, 3)
                 .buildAndRegister();
         //  25131 Nitrile Butadiene Rubber
@@ -967,14 +968,14 @@ public class EPOrganicChemistryMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(433))
                 .polymer()
                 .color(0x211A18)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_RING)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_RING)
                 .components(Carbon, 7, Hydrogen, 9, Nitrogen, 1)
                 .buildAndRegister();
         //  25132 Poly (Phosphonitrile Fluoro) Rubber
         PolyPhosphonitrileFluoroRubber = Builder("poly_phosphonitrile_fluoro_rubber")
                 .polymer()
                 .color(0x372B28)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION, MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_RING)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_RING)
                 .components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
                 .buildAndRegister();
         //  25133 Acrylonitrile
@@ -988,7 +989,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x082C38)
                 .components(Chlorine, 6, Nitrogen, 3, Phosphorus, 3)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25135 Sodium Trifluoroethanolate
         SodiumTrifluoroethanolate = Builder("sodium_trifluoroethanolate")
@@ -996,7 +997,7 @@ public class EPOrganicChemistryMaterials {
                 .color(0x50083E)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Carbon, 2, Hydrogen, 4, Fluorine, 3, Sodium, 1, Oxygen, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25136 Octafluoro Pentanol
         OctafluoroPentanol = Builder("octafluoro_pentanol")
@@ -1009,7 +1010,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0xBED323)
                 .components(Carbon, 12, Hydrogen, 27, Phosphorus, 1, Oxygen, 4)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(C4H9)3PO4", true);
         //  25138 Methyl Isobutyl Ketone
@@ -1023,7 +1024,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(TributylPhosphate.getMaterialRGB() + MethylIsobutylKetone.getMaterialRGB())
                 .components(TributylPhosphate, 1, MethylIsobutylKetone, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25140 Mesityl Oxide
         MesitylOxide = Builder("mesityl_oxide")
@@ -1036,20 +1037,20 @@ public class EPOrganicChemistryMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(209))
                 .color(0xE62A35)
                 .components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25142 Ethylene Dibromide
         EthyleneDibromide = Builder("ethylene_dibromide")
                 .fluid()
                 .color(0x4F1743)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 4, Bromine, 2)
                 .buildAndRegister();
         //  25143 Grignard Reagent
         GrignardReagent = Builder("grignard_reagent")
                 .fluid()
                 .color(0xA12AA1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 1, Hydrogen, 3, Magnesium, 1, Bromine, 1)
                 .buildAndRegister();
         //  25144 Fluorocarborane
@@ -1058,7 +1059,7 @@ public class EPOrganicChemistryMaterials {
                 .color(0x59B35C)
                 .iconSet(MaterialIconSet.BRIGHT)
                 .components(Carbon, 1, Hydrogen, 2, Boron, 11, Fluorine, 11)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("HCHB11F11", true);
         //  25145 Perfluorobenzene
@@ -1066,7 +1067,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x39733B)
                 .components(Carbon, 6, Fluorine, 6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25146 Trimethylsilane
         Trimethylsilane = Builder("trimethylsilane")
@@ -1087,7 +1088,7 @@ public class EPOrganicChemistryMaterials {
                 .color(CaesiumCarborane.getMaterialRGB())
                 .iconSet(MaterialIconSet.SAND)
                 .components(Caesium, 1, Boron, 10, Hydrogen, 21, Carbon, 4, Nitrogen, 1, Chlorine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("CsB10H12CN(CH3)3Cl", true);
         //  25149 Borane Dimethylsulfide
@@ -1095,7 +1096,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(Lead.getMaterialRGB() + Boron.getMaterialRGB())
                 .components(Caesium, 1, Carbon, 1, Boron, 11, Hydrogen, 12)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25150 Decaborane
         Decaborane = Builder("decaborane")
@@ -1103,14 +1104,14 @@ public class EPOrganicChemistryMaterials {
                 .color(0x4C994F)
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Boron, 10, Hydrogen, 14)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25151 Diethyl Ether
         DiethylEther = Builder("diethyl_ether")
                 .fluid()
                 .color(0xFFA4A3)
                 .components(Carbon, 4, Hydrogen, 10, Oxygen, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(C2H5)2O", true);
         //  25152 Boron Trifluoride Etherate
@@ -1118,7 +1119,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0xBF6E6E)
                 .components(Boron, 1, Fluorine, 3, Carbon, 4, Hydrogen, 7, Oxygen, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(BF3)(C2H5)2O", true);
         //  25153 Dimethyl Sulfide
@@ -1126,7 +1127,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(SulfuricAcid.getMaterialRGB() + Methanol.getMaterialRGB())
                 .components(Carbon, 2, Hydrogen, 6, Sulfur, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("(CH3)2S", true);
         //  25154 Oxalic Acid
@@ -1181,7 +1182,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0xA1DF62)
                 .components(Carbon, 18, Hydrogen, 11, Hydrogen, 2, Iodine, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25162 Dimethylnaphthalene
         Dimethylnaphthalene = Builder("dimethylnaphthalene")
@@ -1194,13 +1195,13 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x500C45)
                 .components(Carbon, 9, Hydrogen, 12, Silicon, 1, MagnesiumBromide, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25164 Dichlorodicyanobenzoquinone
         Dichlorodicyanobenzoquinone = Builder("dichlorodicyanobenzoquinone")
                 .fluid()
                 .color(0x47BFA6)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Chlorine, 2, Nitrogen, 2, Oxygen, 2)
                 .buildAndRegister();
         //  25165 Dichlorodicyanohydroquinone
@@ -1208,7 +1209,7 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x1BC3A2)
                 .components(Carbon, 8, Chlorine, 2, Nitrogen, 2, Oxygen, 2, Hydrogen, 2)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("C8Cl2N2(OH)2", true);
         //  25166 Isopropyl Alcohol
