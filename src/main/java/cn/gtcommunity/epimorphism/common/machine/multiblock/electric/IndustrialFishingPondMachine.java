@@ -79,8 +79,8 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
         configuratorPanel.attachConfigurators(new IFancyConfigurator() {
 
             @Override
-            public String getTitle() {
-                return "gui.epimorphism.fishing_mode.title";
+            public Component getTitle() {
+                return Component.translatable("gui.epimorphism.fishing_mode.title");
             }
 
             @Override

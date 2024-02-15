@@ -102,8 +102,8 @@ public class RadiationHatchMachine extends TieredIOPartMachine implements IRecip
             if (recipeTypes.length == 0) return;
             var recipeType = recipeTypes[0];
             var recipes = recipeType.searchRecipe(Platform.getMinecraftServer().getRecipeManager(), this);
-            if (recipes.isEmpty()) return;
-            var recipe = recipes.get(0);
+            if (recipes == null) return;
+            var recipe = recipes.next();
             if (recipe.handleRecipeIO(IO.IN, this)) {
                 radioactiveSource = ItemRecipeCapability.CAP.of(recipe.getInputContents(ItemRecipeCapability.CAP).get(0).getContent()).getItems()[0].getItem().getDescription().getString();
                 mass = recipe.data.getInt("mass") - 1;

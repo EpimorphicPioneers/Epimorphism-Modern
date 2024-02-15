@@ -10,7 +10,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -22,9 +21,6 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class IndustrialDrillMachine extends WorkableElectricMultiblockMachine {
-
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialDrillMachine.class, WorkableElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-
     protected BlockPos targetBlock;
     protected NotifiableItemStackHandler inventory;
 
@@ -67,21 +63,10 @@ public class IndustrialDrillMachine extends WorkableElectricMultiblockMachine {
     }
 
     //////////////////////////////////////
-    //***       Multiblock Data      ***//
-    //////////////////////////////////////
-
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
-
-    //////////////////////////////////////
     //***      Multiblock Traits     ***//
     //////////////////////////////////////
 
     protected class IndustrialDrillRecipeLogic extends RecipeLogic {
-
-        protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialDrillRecipeLogic.class, RecipeLogic.MANAGED_FIELD_HOLDER);
 
         public IndustrialDrillRecipeLogic(IRecipeLogicMachine machine) {
             super(machine);
@@ -114,11 +99,6 @@ public class IndustrialDrillMachine extends WorkableElectricMultiblockMachine {
                 return drill.getLevel().destroyBlock(drill.targetBlock, false);
             }
             return true;
-        }
-
-        @Override
-        public ManagedFieldHolder getFieldHolder() {
-            return MANAGED_FIELD_HOLDER;
         }
     }
 }

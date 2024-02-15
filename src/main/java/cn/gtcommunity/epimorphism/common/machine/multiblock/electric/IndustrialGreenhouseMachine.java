@@ -2,6 +2,7 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
+import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
 import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -10,6 +11,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +32,18 @@ public class IndustrialGreenhouseMachine extends WorkableMultiblockMachine imple
 
         list.add(new IFancyUIProvider() {
             @Override
-            public Widget createMainPage() {
+            public Widget createMainPage(FancyMachineUIWidget fancyMachineUIWidget) {
                 return new WidgetGroup(0, 0, 170 + 8, 129 + 8);
             }
 
             @Override
             public IGuiTexture getTabIcon() {
                 return IndustrialGreenhouseMachine.this.getTabIcon();
+            }
+
+            @Override
+            public Component getTitle() {
+                return Component.translatable("extreme_industrial_greenhouse");
             }
 
             @Override

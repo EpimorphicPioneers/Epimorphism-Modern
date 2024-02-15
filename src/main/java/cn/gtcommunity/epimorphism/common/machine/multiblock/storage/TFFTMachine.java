@@ -6,9 +6,7 @@ import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlock
 import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
-import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
-import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
+import com.gregtechceu.gtceu.api.gui.fancy.*;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
@@ -74,30 +72,27 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
     @Override
     public Widget createUIWidget() {
-        var group = new WidgetGroup(0, 0, 170 + 8, 129 + 8);
-        var container = new WidgetGroup(4, 4, 170, 129);
-        container.addWidget(new DraggableScrollableWidgetGroup(4, 4, 162, 121).setBackground(getScreenTexture())
+        var group = new WidgetGroup(0, 0, 182 + 8, 117 + 8);
+        group.addWidget(new DraggableScrollableWidgetGroup(4, 4, 182, 117).setBackground(getScreenTexture())
                 .addWidget(new LabelWidget(4, 5, self().getBlockState().getBlock().getDescriptionId()))
                 .addWidget(new ComponentPanelWidget(4, 17, this::addDisplayText)
                         .setMaxWidthLimit(150)
                         .clickHandler(this::handleDisplayClick)));
-        container.setBackground(GuiTextures.BACKGROUND_INVERSE);
-        group.addWidget(container);
+        group.setBackground(GuiTextures.BACKGROUND_INVERSE);
         return group;
     }
 
     @Override
     public ModularUI createUI(Player entityPlayer) {
-        return IFancyUIMachine.super.createUI(entityPlayer);
+        return new ModularUI(198, 208, this, entityPlayer).widget(new FancyMachineUIWidget(this, 198, 208));
     }
 
     @Override
-    public List<IFancyUIProvider> getSubTabs() {
-        List<IFancyUIProvider> list = new ArrayList<>();
-
-        list.add(new IFancyUIProvider() {
+    public void attachSideTabs(TabsWidget sideTabs) {
+        IFancyUIMachine.super.attachSideTabs(sideTabs);
+        sideTabs.attachSubTab(new IFancyUIProvider() {
             @Override
-            public Widget createMainPage() {
+            public Widget createMainPage(FancyMachineUIWidget fancyMachineUIWidget) {
                 var group = new WidgetGroup(0, 0, 170 + 8, 129 + 8);
 
                 var slotContainer = new WidgetGroup(4, 4, 18 + 8, 18 + 8);
@@ -117,6 +112,11 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
             }
 
             @Override
+            public Component getTitle() {
+                return Component.translatable("tfft");
+            }
+
+            @Override
             public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
 
             }
@@ -126,9 +126,6 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
             }
         });
-
-        list.addAll(getParts().stream().filter(IFancyUIProvider.class::isInstance).map(IFancyUIProvider.class::cast).toList());
-        return list;
     }
 
     @Override

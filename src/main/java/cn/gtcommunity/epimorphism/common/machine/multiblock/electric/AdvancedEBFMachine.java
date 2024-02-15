@@ -7,12 +7,10 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
-import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -22,8 +20,6 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.BlazingPyrotheu
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class AdvancedEBFMachine extends ParallelCoilMultiblockMachine {
-    protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(AdvancedEBFMachine.class, ParallelCoilMultiblockMachine.MANAGED_FIELD_HOLDER);
-
     private final FluidStack PYROTHEUM_STACK = BlazingPyrotheum.getFluid(FluidHelper.getBucket() / 1000);
 
     private boolean insufficient;
@@ -69,14 +65,5 @@ public class AdvancedEBFMachine extends ParallelCoilMultiblockMachine {
                 }
             }
         }
-    }
-
-    //////////////////////////////////////
-    //***       Multiblock Data      ***//
-    //////////////////////////////////////
-
-    @Override
-    public @NotNull ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
     }
 }

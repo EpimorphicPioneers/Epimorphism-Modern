@@ -2,7 +2,6 @@ package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.recipe.GeneralRecipeType;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.GeneralProcessingPlantMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -11,7 +10,6 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
@@ -20,12 +18,12 @@ import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.common.machine.multiblock.electric.GeneralProcessingPlantMachine.RECIPE_MAP;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class EPRecipeTypes {
     public static final String CUSTOM = "custom";
@@ -34,30 +32,30 @@ public class EPRecipeTypes {
     //////////////////////////////////////
     //*******     Multiblock     *******//
     //////////////////////////////////////
-    public final static GTRecipeType NEUTRON_ACTIVATOR_RECIPES = GTRecipeTypes.register("neutron_activator", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(6, 6, 1, 1)
+    public final static GTRecipeType NEUTRON_ACTIVATOR_RECIPES = register("neutron_activator", MULTIBLOCK).setMaxIOSize(6, 6, 1, 1)
             .setSound(GTSoundEntries.FURNACE);
 
-    public final static GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = GTRecipeTypes.register("component_assembly_line", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(12, 1, 12, 0).setEUIO(IO.IN)
+    public final static GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = register("component_assembly_line", MULTIBLOCK).setMaxIOSize(12, 1, 12, 0).setEUIO(IO.IN)
             .setSound(GTSoundEntries.ASSEMBLER);
 
-    public final static GTRecipeType CHEMICAL_PLANT_RECIPES = GTRecipeTypes.register("chemical_plant", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
+    public final static GTRecipeType CHEMICAL_PLANT_RECIPES = register("chemical_plant", MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
-    public final static GTRecipeType FERMENTATION_TANK_RECIPES = GTRecipeTypes.register("fermentation_tank", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
+    public final static GTRecipeType FERMENTATION_TANK_RECIPES = register("fermentation_tank", MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
 
-    public final static GTRecipeType PRECISE_ASSEMBLER_RECIPES = GTRecipeTypes.register("precise_assembler", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
+    public final static GTRecipeType PRECISE_ASSEMBLER_RECIPES = register("precise_assembler", MULTIBLOCK).setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
             .setSound(GTSoundEntries.ASSEMBLER);
 
-    public final static GTRecipeType DRILLING_RECIPES = GTRecipeTypes.register("industrial_drill", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 1, 0, 1).setEUIO(IO.IN)
+    public final static GTRecipeType DRILLING_RECIPES = register("industrial_drill", MULTIBLOCK).setMaxIOSize(1, 1, 0, 1).setEUIO(IO.IN)
             .setSlotOverlay(false, false, true, GuiTextures.CRUSHED_ORE_OVERLAY)
             .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
             .setSound(GTSoundEntries.MACERATOR);
 
-    public final static GTRecipeType DIGESTER_RECIPES = GTRecipeTypes.register("digester", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 1, 1, 1).setEUIO(IO.IN)
+    public final static GTRecipeType DIGESTER_RECIPES = register("digester", MULTIBLOCK).setMaxIOSize(1, 1, 1, 1).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
 
-    public final static GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = GTRecipeTypes.register("vacuum_drying_furnace", GTRecipeTypes.MULTIBLOCK).setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)
+    public final static GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = register("vacuum_drying_furnace", MULTIBLOCK).setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)
             .addDataInfo(data -> {
                 int temp = data.getInt("ebf_temp");
                 ICoilType requiredCoil = ICoilType.getMinRequiredType(temp);
@@ -77,14 +75,14 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.FURNACE);
 
     //  Universal Processing Plant Recipemaps (Pseudo Recipemap)
-    public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);
-    public final static GTRecipeType GENERAL_RECIPES_B = registerGeneralRecipeType("general_recipes_b", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
-    public final static GTRecipeType GENERAL_RECIPES_C = registerGeneralRecipeType("general_recipes_c", GTRecipeTypes.MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
+    public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);
+    public final static GTRecipeType GENERAL_RECIPES_B = registerGeneralRecipeType("general_recipes_b", MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
+    public final static GTRecipeType GENERAL_RECIPES_C = registerGeneralRecipeType("general_recipes_c", MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
 
     //////////////////////////////////////
     //*****     Multiblock Part    *****//
     //////////////////////////////////////
-    public final static GTRecipeType RADIATION_HATCH_RECIPES = GTRecipeTypes.register("radiation_hatch", CUSTOM).setMaxIOSize(1, 0, 0, 0).setEUIO(IO.NONE)
+    public final static GTRecipeType RADIATION_HATCH_RECIPES = register("radiation_hatch", CUSTOM).setMaxIOSize(1, 0, 0, 0).setEUIO(IO.NONE)
             .setProgressBar(EPGuiTextures.PROGRESS_BAR_RADIATION_HATCH, ProgressTexture.FillDirection.ALWAYS_FULL)
             .addDataInfo(compoundTag -> {
                 int radioactivity = compoundTag.getInt("radioactivity");

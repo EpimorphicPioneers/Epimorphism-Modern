@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
@@ -9,6 +8,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import net.minecraft.ChatFormatting;
 
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPUnknownCompositionMaterials {
@@ -38,14 +38,14 @@ public class EPUnknownCompositionMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8000).textures(true).color(-1))
                 .color(Blaze.getMaterialRGB())
                 .components(Blaze, 2, Redstone, 1, Sulfur, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25206 Gelid Cryotheum
         GelidCryotheum = Builder("gelid_cryotheum")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8).textures(true).color(-1))
                 .color(0x40B8FB)
                 .components(Ice, 2, Electrotine, 1, Water, 1)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  25207 Co/AC-AB Catalyst
         CoACABCatalyst = Builder("co_ac_ab_catalyst")
@@ -301,7 +301,7 @@ public class EPUnknownCompositionMaterials {
         RareEarthHydroxidesSolution = Builder("rare_earth_hydroxides_solution")
                 .fluid()
                 .color(0x434327)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(RareEarth, 1, Oxygen, 1, Hydrogen, 1, Water, 1)
                 .buildAndRegister();
         //  25255 Rare Earth Chlorides Slurry
@@ -309,7 +309,7 @@ public class EPUnknownCompositionMaterials {
                 .dust()
                 .color(0x838367)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(RareEarth, 1, Chlorine, 1, Water, 1)
                 .buildAndRegister();
         //  25256 Low-purity Rare Earth Chlorides Solution
@@ -317,7 +317,7 @@ public class EPUnknownCompositionMaterials {
                 .fluid()
                 .color(0x838333)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(RareEarth, 1, Chlorine, 1, Water, 2)
                 .buildAndRegister();
         //  25257 Roughly Purified Rare Earth Chlorides Solution
@@ -325,7 +325,7 @@ public class EPUnknownCompositionMaterials {
                 .fluid()
                 .color(0xA2A27F)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(LowPurityRareEarthChloridesSolution, 4, AquaRegia, 2)
                 .buildAndRegister();
         //  25258 High Purity Rare Earth Chlorides Slurry
@@ -333,14 +333,14 @@ public class EPUnknownCompositionMaterials {
                 .dust()
                 .color(0x838367)
                 .iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(RareEarth, 1, Chlorine, 1, Water, 1)
                 .buildAndRegister();
         //  25259 High Purity Rare Earth Chlorides Solution
         HighPurityRareEarthChloridesSolution = Builder("high_purity_rare_earth_chlorides_solution")
                 .fluid()
                 .color(0x838367)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(RareEarth, 1, Chlorine, 1, Water, 1)
                 .buildAndRegister();
         //  25260 Low Purity Rare Earth Chlorides Slag
@@ -353,28 +353,28 @@ public class EPUnknownCompositionMaterials {
         LaPrNdCeOxidesSolution = Builder("la_pr_nd_ce_oxides_solution")
                 .fluid()
                 .color(0x9CE3DB)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(LanthanumOxide, 1, PraseodymiumOxide, 1, NeodymiumOxide, 1, CeriumOxide, 1)
                 .buildAndRegister();
         //  25262 Sc-Eu-Gd-Sm Oxides Solution
         ScEuGdSmOxidesSolution = Builder("sc_eu_gd_sm_oxides_solution")
                 .fluid()
                 .color(0xFFFF99)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(ScandiumOxide, 1, EuropiumOxide, 1, GadoliniumOxide, 1, SamariumOxide, 1)
                 .buildAndRegister();
         //  25263 Y-Tb-Dy-Ho Oxides Solution
         YTbDyHoOxidesSolution = Builder("y_tb_dy_ho_oxides_solution")
                 .fluid()
                 .color(0x99FF99)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(YttriumOxide, 1, TerbiumOxide, 1, DysprosiumOxide, 1, HolmiumOxide, 1)
                 .buildAndRegister();
         //  25264 Er-Tm-Yb-Lu Oxides Solution
         ErTmYbLuOxidesSolution = Builder("er_tm_yb_lu_oxides_solution")
                 .fluid()
                 .color(0xFFB3FF)
-                .flags(MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .components(ErbiumOxide, 1, ThuliumOxide, 1, YtterbiumOxide, 1, LutetiumOxide, 1)
                 .buildAndRegister();
         //  25265 Chlorinated Solvents
@@ -387,14 +387,14 @@ public class EPUnknownCompositionMaterials {
         SuperheatedSteam = Builder("superheated_steam")
                 .fluid(FluidStorageKeys.GAS, new FluidBuilder().temperature(573))
                 .color(0xC4C4C4, false)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         //  25267 Supercritical Steam
         SupercriticalSteam = Builder("supercritical_steam")
                 .fluid(FluidStorageKeys.GAS, new FluidBuilder().temperature(873))
                 .color(0xC4C4C4, false)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION)
                 .components(Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         // 25268 High-Temperature Exhaust Gas
