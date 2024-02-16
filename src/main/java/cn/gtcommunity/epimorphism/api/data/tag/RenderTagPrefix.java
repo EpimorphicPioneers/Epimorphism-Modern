@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.api.data.tag;
 import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
+import net.minecraft.world.item.ItemStack;
 
 public class RenderTagPrefix extends TagPrefix implements IRendererMetaInfo {
     private final ICustomRenderer customRenderer;
@@ -17,7 +18,7 @@ public class RenderTagPrefix extends TagPrefix implements IRendererMetaInfo {
     }
 
     @Override
-    public ICustomRenderer getMetaInfo() {
+    public ICustomRenderer getMetaInfo(ItemStack itemStack) {
         return customRenderer;
     }
 }

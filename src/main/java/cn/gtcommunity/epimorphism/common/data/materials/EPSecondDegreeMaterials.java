@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 
 public class EPSecondDegreeMaterials {
-    public static void init() {
+    public static void register() {
         //  25401 Dragon Breath
         DragonBreath = Builder("dragon_breath")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))

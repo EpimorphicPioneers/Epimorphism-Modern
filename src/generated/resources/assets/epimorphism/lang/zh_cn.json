@@ -407,6 +407,10 @@
   "item.epimorphism.debug.structure_writer.rotate_along_x_axis": "沿X轴旋转",
   "item.epimorphism.debug.structure_writer.rotate_along_y_axis": "沿Y轴旋转",
   "item.epimorphism.debug.structure_writer.structural_scale": "结构规模： X:%s  Y:%s  Z:%s",
+  "item.epimorphism.grind_ball": "研磨球",
+  "item.epimorphism.grind_ball.desc": "§7放入艾萨研磨机以处理矿物",
+  "item.epimorphism.grind_ball.desc.energy_cons_multiplier": "耗能系数：%s",
+  "item.epimorphism.grind_ball.desc.yield_multiplier": "产量系数：%s",
   "item.epimorphism.hyperdimensional_tachyon_condensed_matter": "超维度快子凝聚物质",
   "item.epimorphism.laser.dielectric_mirror": "介电镜",
   "item.epimorphism.laser.dielectric_mirror.desc": "§7布氏镜",
@@ -1218,5 +1222,6 @@
   "particleType.epimorphism.quark": "§d夸克",
   "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV",
   "recipe.condition.precise_assembler_casing.desc": "外壳等级：MK-%s",
+  "tagprefix.milled": "研磨%s粉",
   "tagprefix.singularity": "%s奇点"
 }

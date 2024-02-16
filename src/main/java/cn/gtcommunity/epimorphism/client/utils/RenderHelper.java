@@ -19,6 +19,7 @@ import com.mojang.blaze3d.vertex.*;
 import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -29,8 +30,10 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -41,6 +44,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
@@ -187,6 +191,17 @@ public class RenderHelper {
         }
         for(BakedQuad quad : quads)
             renderer.putBulkData(transform.last(), quad, red, green, blue, light, overlay);
+    }
+
+    public static BakedModel getVanillaModel(ItemStack stack, @Nullable Level level, @Nullable LivingEntity entity) {
+        var shaper = ClientUtil.itemRenderer().getItemModelShaper();
+        var model = shaper.getItemModel(stack.getItem());
+        var clientlevel = level instanceof ClientLevel ? (ClientLevel) level : null;
+        if (model != null) {
+            var bakedmodel = model.getOverrides().resolve(model, stack, clientlevel, entity, 0);
+            if (bakedmodel != null) return bakedmodel;
+        }
+        return shaper.getModelManager().getMissingModel();
     }
 
     public static void vanillaRender(ItemStack stack, ItemDisplayContext transformType, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model) {

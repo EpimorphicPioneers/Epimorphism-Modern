@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.network.s2c;
 
-import cn.gtcommunity.epimorphism.client.ClientProxy;
+import cn.gtcommunity.epimorphism.client.ClientUtil;
+import cn.gtcommunity.epimorphism.core.mixins.accessors.client.MultiPlayerGameModeAccessor;
 import com.lowdragmc.lowdraglib.networking.IHandlerContext;
 import com.lowdragmc.lowdraglib.networking.IPacket;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,10 @@ public class PacketVajraDestroy implements IPacket {
     @Override
     public void execute(IHandlerContext handler) {
         if (handler.isClient() && didHarvest) {
-            ClientProxy.delayDestroy();
+            var gameMode = ClientUtil.mc().gameMode;
+            if (gameMode != null) {
+                ((MultiPlayerGameModeAccessor)gameMode).setDestroyDelay(5);
+            }
         }
     }
 }

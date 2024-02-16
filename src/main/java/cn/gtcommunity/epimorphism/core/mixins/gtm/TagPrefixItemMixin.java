@@ -36,14 +36,14 @@ public abstract class TagPrefixItemMixin extends Item implements IItemRendererPr
     )
     private void TagPrefixItem(Properties properties, TagPrefix tagPrefix, Material material, CallbackInfo ci) {
         if (Platform.isClient()) {
-            if (material.getMaterialIconSet() instanceof IRendererMetaInfo metaInfo) setCustomRenderer(metaInfo.getMetaInfo());
+            if (material.getMaterialIconSet() instanceof IRendererMetaInfo metaInfo) setCustomRenderer(metaInfo.getMetaInfo(null));
 
-            if (tagPrefix instanceof IRendererMetaInfo metaInfo) setCustomRenderer(metaInfo.getMetaInfo());
+            if (tagPrefix instanceof IRendererMetaInfo metaInfo) setCustomRenderer(metaInfo.getMetaInfo(null));
         }
     }
 
     @Override
-    public ICustomRenderer getMetaInfo() {
+    public ICustomRenderer getMetaInfo(ItemStack itemStack) {
         return customRenderer;
     }
 

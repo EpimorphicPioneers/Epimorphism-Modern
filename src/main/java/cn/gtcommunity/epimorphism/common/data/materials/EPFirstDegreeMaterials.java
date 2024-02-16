@@ -175,7 +175,7 @@ public class EPFirstDegreeMaterials {
                 .fluid()
                 .color(0x05090C)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_COIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_PLATE, GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_FINE_WIRE, GENERATE_SPRING)
                 .cableProperties(GTValues.V[GTValues.UEV], 8, 6)
                 .components(Carbon, 48)
                 .buildAndRegister()
@@ -1593,7 +1593,7 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2147483647))
                 .color(0x70ecff)
                 .iconSet(MaterialIconSet.BRIGHT)
-                .flags(NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_CURVED_PLATE, GENERATE_ROTOR, GENERATE_FRAME)
+                .flags(NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_ROTOR, GENERATE_FRAME)
                 .buildAndRegister();
         //  24212 Magneto Hydrodynamically Constrained Star Matter
         MagnetoHydrodynamicallyConstrainedStarMatter = Builder("magneto_hydrodynamically_constrained_star_matter")

@@ -54,10 +54,10 @@ public class HaloItemRenderer implements IRenderer {
                            boolean leftHand, PoseStack poseStack,
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
-        model = ClientUtil.itemRenderer().getItemModelShaper().getItemModel(stack.getItem());
+        model = RenderHelper.getVanillaModel(stack, null, null);
         if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererMetaInfo componentItem) {
 
-            if (componentItem.getMetaInfo() instanceof IHaloRenderBehavior hri) {
+            if (componentItem.getMetaInfo(stack) instanceof IHaloRenderBehavior hri) {
                 Tesselator tess = Tesselator.getInstance();
                 BufferBuilder buf = tess.getBuilder();
                 buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
