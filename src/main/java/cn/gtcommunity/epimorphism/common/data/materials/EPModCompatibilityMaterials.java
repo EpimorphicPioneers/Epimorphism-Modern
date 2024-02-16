@@ -12,7 +12,7 @@ import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 
 public class EPModCompatibilityMaterials {
-    public static void init() {
+    public static void register() {
         if (EPIntegration.isBotaniaLoaded()) botaniaMaterial();
 
         if (EPIntegration.isEmbersLoaded()) embersMaterial();
@@ -44,7 +44,7 @@ public class EPModCompatibilityMaterials {
                 .blastTemp(2300)
                 .components(GTMaterials.Gold, 1, GTMaterials.Copper, 1)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(GENERATE_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_CURVED_PLATE)
+                .flags(GENERATE_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_GEAR, GENERATE_SMALL_GEAR)
                 .buildAndRegister();
     }
 }

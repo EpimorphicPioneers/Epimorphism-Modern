@@ -708,16 +708,17 @@ public class EPMaterials {
 
     //  Range: 24000-28000
     public static void init() {
-        EPMaterialPropertyAddition.init();
-        EPMaterialFlagAddition.init();
         EPElementMaterials.register();
         EPFirstDegreeMaterials.register();
-        EPSecondDegreeMaterials.init();
+        EPSecondDegreeMaterials.register();
         EPOrganicChemistryMaterials.register();
         EPUnknownCompositionMaterials.register();
         EPBiologicalMaterials.register();
         EPMachineCasingMaterials.register();
-        EPModCompatibilityMaterials.init();
+        EPModCompatibilityMaterials.register();
+
+        EPMaterialPropertyAddition.init();
+        EPMaterialFlagAddition.init();
     }
 
     public static Material.Builder Builder(String name) {

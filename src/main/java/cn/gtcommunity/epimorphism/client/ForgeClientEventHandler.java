@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Epimorphism.MOD_ID,  bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
 public class ForgeClientEventHandler {
+
     @SubscribeEvent
     public static void onRenderWorldLast(RenderLevelStageEvent event) {
         var stage = event.getStage();

@@ -1,160 +1,85 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
-
 import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPMaterialFlagAddition {
 
     public static void init() {
-        //  Coils
 
-        //  Motor coils
-        //  Copper (LV), Cupronickel (MV), Electrum (HV), Kanthal (EV),
-        //  Graphene (IV), Ruridit (LuV), Vanadium Gallium (ZPM), Americium (UV)
-        //  Europium (UHV), Carbon Nanotube (UEV)
-
-        Copper.addFlags(GENERATE_COIL);
-        Cupronickel.addFlags(GENERATE_COIL);
-        Electrum.addFlags(GENERATE_COIL);
-        Kanthal.addFlags(GENERATE_COIL);
-        Graphene.addFlags(GENERATE_COIL);
-        Ruridit.addFlags(GENERATE_COIL);
-        VanadiumGallium.addFlags(GENERATE_COIL);
-        Americium.addFlags(GENERATE_COIL);
-        Europium.addFlags(GENERATE_COIL);
-        // CarbonNanotube.addFlags(GENERATE_COIL);
-
-        //  Voltage coils
-        //  Lead (ULV), Steel (LV), Aluminium (MV), Black Steel (HV),
-        //  Tungsten Steel (EV), Iridium (IV), Osmiridium (LuV), Europium (ZPM),
-        //  Tritanium (UV), Vibranium (UHV), Seaborgium (UEV)
-        Lead.addFlags(GENERATE_COIL);
-        Steel.addFlags(GENERATE_COIL);
-        Aluminium.addFlags(GENERATE_COIL);
-        BlackSteel.addFlags(GENERATE_COIL);
-        TungstenSteel.addFlags(GENERATE_COIL);
-        Iridium.addFlags(GENERATE_COIL);
-        Osmiridium.addFlags(GENERATE_COIL);
-        // Europium.addFlags(GENERATE_COIL);
-        Tritanium.addFlags(GENERATE_COIL);
-        // Vibranium.addFlags(GENERATE_COIL);
-        Seaborgium.addFlags(GENERATE_COIL);
-
-        //  Curved plates
-
-        //  Rotors
-        Iron.addFlags(GENERATE_CURVED_PLATE);
-        WroughtIron.addFlags(GENERATE_CURVED_PLATE);
-        Darmstadtium.addFlags(GENERATE_CURVED_PLATE);
-        RhodiumPlatedPalladium.addFlags(GENERATE_CURVED_PLATE);
-        NaquadahAlloy.addFlags(GENERATE_CURVED_PLATE);
-        HSSS.addFlags(GENERATE_CURVED_PLATE);
-        //  HastelloyN.addFlags(GENERATE_CURVED_PLATE);
-        //  Draconium.addFlags(GENERATE_CURVED_PLATE);
-        //  Adamantium.addFlags(GENERATE_CURVED_PLATE);
-        //  Dawnstone.addFlags(GENERATE_CURVED_PLATE);
-
-        /*
-        *  CEu Vanilla Fluid Pipes
-        *  Aluminium
-        *  Bronze
-        *  Chrome
-        *  Copper
-        *  Duranium
-        *  Europium
-        *  Gold
-        *  Iridium
-        *  Lead
-        *  Naquadah
-        *  Neutronium
-        *  NiobiumTitanium
-        *  Polyethylene            (x)
-        *  Polybenzimidazole       (x)
-        *  Polytetrafluoroethylene (x)
-        *  Potin
-        *  Stainless Steel
-        *  Steel
-        *  Tin Alloy
-        *  Titanium
-        *  Tungsten
-        *  Tungsten Carbide
-        *  TungstenSteel
-        *  VanadiumSteel
-         */
-        Aluminium.addFlags(GENERATE_CURVED_PLATE);
-        Bronze.addFlags(GENERATE_CURVED_PLATE);
-//        Chrome.addFlags(GENERATE_CURVED_PLATE);
-        Copper.addFlags(GENERATE_CURVED_PLATE);
-        Duranium.addFlags(GENERATE_CURVED_PLATE);
-        Europium.addFlags(GENERATE_CURVED_PLATE);
-        Gold.addFlags(GENERATE_CURVED_PLATE);
-        Iridium.addFlags(GENERATE_CURVED_PLATE);
-        Lead.addFlags(GENERATE_CURVED_PLATE);
-        Naquadah.addFlags(GENERATE_CURVED_PLATE);
-        Neutronium.addFlags(GENERATE_CURVED_PLATE);
-        NiobiumTitanium.addFlags(GENERATE_CURVED_PLATE);
-        // Polyethylene.addFlags(GENERATE_CURVED_PLATE);
-        // Polybenzimidazole.addFlags(GENERATE_CURVED_PLATE);
-        // Polytetrafluoroethylene.addFlags(GENERATE_CURVED_PLATE);
-        Potin.addFlags(GENERATE_CURVED_PLATE);
-        StainlessSteel.addFlags(GENERATE_CURVED_PLATE);
-        Steel.addFlags(GENERATE_CURVED_PLATE);
-        TinAlloy.addFlags(GENERATE_CURVED_PLATE);
-        Titanium.addFlags(GENERATE_CURVED_PLATE);
-        Tungsten.addFlags(GENERATE_CURVED_PLATE);
-        TungstenCarbide.addFlags(GENERATE_CURVED_PLATE);
-        TungstenSteel.addFlags(GENERATE_CURVED_PLATE);
-        VanadiumSteel.addFlags(GENERATE_CURVED_PLATE);
-
-        /*
-         *  CEu Vanilla Item Pipes
-         *  Americium
-         *  Magnalium
-         *  Sterling Silver
-         *  Tin
-         *  Cupronickel
-         *  Black Bronze
-         *  Cobalt Brass
-         *  Electrum
-         *  Cobalt
-         *  Platinum
-         *  Brass
-         *  Osmium
-         *  Ultimet
-         *  Osmiridium
-         *  Nickel
-         *  Polyvinyl Chloride (x)
-         *  Rose Gold
-         */
-        Americium.addFlags(GENERATE_CURVED_PLATE);
-        Magnalium.addFlags(GENERATE_CURVED_PLATE);
-        SterlingSilver.addFlags(GENERATE_CURVED_PLATE);
-        Tin.addFlags(GENERATE_CURVED_PLATE);
-        Cupronickel.addFlags(GENERATE_CURVED_PLATE);
-        BlackBronze.addFlags(GENERATE_CURVED_PLATE);
-        CobaltBrass.addFlags(GENERATE_CURVED_PLATE);
-        Electrum.addFlags(GENERATE_CURVED_PLATE);
-        Cobalt.addFlags(GENERATE_CURVED_PLATE);
-        Platinum.addFlags(GENERATE_CURVED_PLATE);
-        Brass.addFlags(GENERATE_CURVED_PLATE);
-        Osmium.addFlags(GENERATE_CURVED_PLATE);
-        Ultimet.addFlags(GENERATE_CURVED_PLATE);
-        Osmiridium.addFlags(GENERATE_CURVED_PLATE);
-        Nickel.addFlags(GENERATE_CURVED_PLATE);
-        // PolyvinylChloride.addFlags(GENERATE_CURVED_PLATE);
-        RoseGold.addFlags(GENERATE_CURVED_PLATE);
+        //////////////////////////////////////
+        //*******       EP Flag      *******//
+        //////////////////////////////////////
 
         //  Disable Crystallization
         Monazite.addFlags(DISABLE_CRYSTALLIZATION);
 
         //  Crystallizable
-        Sapphire.addFlags(MaterialFlags.CRYSTALLIZABLE);
-        Ruby.addFlags(MaterialFlags.CRYSTALLIZABLE);
-        Emerald.addFlags(MaterialFlags.CRYSTALLIZABLE);
-        Olivine.addFlags(MaterialFlags.CRYSTALLIZABLE);
-        Amethyst.addFlags(MaterialFlags.CRYSTALLIZABLE);
-        Opal.addFlags(MaterialFlags.CRYSTALLIZABLE);
+        Sapphire.addFlags(CRYSTALLIZABLE);
+        Ruby.addFlags(CRYSTALLIZABLE);
+        Emerald.addFlags(CRYSTALLIZABLE);
+        Olivine.addFlags(CRYSTALLIZABLE);
+        Amethyst.addFlags(CRYSTALLIZABLE);
+        Opal.addFlags(CRYSTALLIZABLE);
+
+        // Milled
+        Pyrope.addFlags(GENERATE_MILLED);
+        Redstone.addFlags(GENERATE_MILLED);
+        Nickel.addFlags(GENERATE_MILLED);
+        Chalcopyrite.addFlags(GENERATE_MILLED);
+        Almandine.addFlags(GENERATE_MILLED);
+        Grossular.addFlags(GENERATE_MILLED);
+        Pentlandite.addFlags(GENERATE_MILLED);
+        Sphalerite.addFlags(GENERATE_MILLED);
+        Spessartine.addFlags(GENERATE_MILLED);
+        Platinum.addFlags(GENERATE_MILLED);
+        Monazite.addFlags(GENERATE_MILLED);
+
+        //////////////////////////////////////
+        //*******       GT Flag      *******//
+        //////////////////////////////////////
+
+        WroughtIron.addFlags(GENERATE_ROTOR, GENERATE_SMALL_GEAR);
+        Rhenium.addFlags(GENERATE_PLATE, GENERATE_DENSE);
+        Nickel.addFlags(GENERATE_FOIL);
+        Titanium.addFlags(GENERATE_FOIL);
+        Germanium.addFlags(GENERATE_FOIL);
+        Tungsten.addFlags(GENERATE_FINE_WIRE);
+        RhodiumPlatedPalladium.addFlags(GENERATE_FRAME, GENERATE_GEAR);
+        Darmstadtium.addFlags(GENERATE_FRAME, GENERATE_GEAR);
+        Naquadria.addFlags(GENERATE_FRAME);
+        Neutronium.addFlags(GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR);
+        Dubnium.addFlags(GENERATE_ROD, GENERATE_BOLT_SCREW);
+        Rutherfordium.addFlags(GENERATE_ROD, GENERATE_BOLT_SCREW);
+        Livermorium.addFlags(GENERATE_ROD, GENERATE_BOLT_SCREW);
+//        Trinaquadalloy.addFlags(GENERATE_FRAME);
+        CobaltBrass.addFlags(GENERATE_FRAME);
+        Trinium.addFlags(GENERATE_SPRING);
+        Tritanium.addFlags(GENERATE_SPRING, GENERATE_ROTOR);
+        Nichrome.addFlags(GENERATE_FINE_WIRE);
+        Uranium238.addFlags(GENERATE_FRAME);
+        Plutonium241.addFlags(GENERATE_FRAME);
+        Trinium.addFlags(GENERATE_FRAME);
+        RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE, GENERATE_ROD, GENERATE_SPRING);
+        Polybenzimidazole.addFlags(GENERATE_ROD, GENERATE_FRAME);
+        Steel.addFlags(GENERATE_DENSE);
+        IronMagnetic.addFlags(GENERATE_LONG_ROD);
+        SteelMagnetic.addFlags(GENERATE_LONG_ROD);
+        NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD);
+//        Chrome.addFlags(GENERATE_LONG_ROD);
+        Bohrium.addFlags(GENERATE_PLATE, GENERATE_DENSE);
+        Rhodium.addFlags(GENERATE_FRAME);
+        DamascusSteel.addFlags(GENERATE_FRAME);
+        Duranium.addFlags(GENERATE_FRAME);
+
+        Pyrochlore.addFlags(DISABLE_DECOMPOSITION);
+        Tantalite.addFlags(DISABLE_DECOMPOSITION);
+        Molybdenite.addFlags(DISABLE_DECOMPOSITION);
+        Powellite.addFlags(DISABLE_DECOMPOSITION);
+        Wulfenite.addFlags(DISABLE_DECOMPOSITION);
+        RockSalt.addFlags(DISABLE_DECOMPOSITION);
+        Salt.addFlags(DISABLE_DECOMPOSITION);
+        Pollucite.addFlags(DISABLE_DECOMPOSITION);
     }
 }

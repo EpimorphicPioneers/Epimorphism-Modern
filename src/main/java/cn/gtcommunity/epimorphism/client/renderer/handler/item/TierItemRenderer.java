@@ -9,7 +9,6 @@ import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -47,11 +46,11 @@ public class TierItemRenderer implements IRenderer {
                            boolean leftHand, PoseStack poseStack,
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
-        model = ClientUtil.itemRenderer().getItemModelShaper().getItemModel(stack.getItem());
+        model = RenderHelper.getVanillaModel(stack, null, null);
 
         if (transformType == ItemDisplayContext.GUI
                 && stack.getItem() instanceof IRendererMetaInfo componentItem
-                && componentItem.getMetaInfo() instanceof TierRenderItemBehavior tri) {
+                && componentItem.getMetaInfo(stack) instanceof TierRenderItemBehavior tri) {
 
             Tesselator tess = Tesselator.getInstance();
 

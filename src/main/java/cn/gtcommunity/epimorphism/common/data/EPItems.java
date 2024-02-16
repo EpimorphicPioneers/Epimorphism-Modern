@@ -1,18 +1,23 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.item.GrindBall;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
 import cn.gtcommunity.epimorphism.common.item.behaviors.OrganismCaptureBehavior;
 import cn.gtcommunity.epimorphism.common.item.behaviors.StructureWriteBehavior;
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
+import com.gregtechceu.gtceu.api.item.component.IMaterialPartItem;
+import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
+import com.gregtechceu.gtceu.common.item.TurbineRotorBehaviour;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.Registrate;
@@ -21,6 +26,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -31,6 +37,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
+import static com.gregtechceu.gtceu.common.data.GTModels.createTextureModel;
+import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 public class EPItems {
 
@@ -299,7 +307,7 @@ public class EPItems {
 //
 //    public final static ItemEntry<Item> SCINTILLATOR;
 //    public final static ItemEntry<Item> SCINTILLATOR_CRYSTAL;
-//
+
     //  Crystal Components
     public final static ItemEntry<ComponentItem> DIAMOND_CHIP = registerItemWithTooltip("crystal.diamond_chip", ComponentItem::create, 1).lang("Engraved Diamond Crystal Chip").register();
     public final static ItemEntry<ComponentItem> RUBY_CHIP = registerItemWithTooltip("crystal.ruby_chip", ComponentItem::create, 1).lang("Engraved Ruby Crystal Chip").register();
@@ -320,16 +328,6 @@ public class EPItems {
     //    public final static ItemEntry<Item> DNA_ENCODER = REGISTRATE.item(307, "biological.components.dna_encoder");
 //    public final static ItemEntry<Item> DNA_DECODER = REGISTRATE.item(308, "biological.components.dna_decoder");
 //    public final static ItemEntry<Item> DNA_DECODE_ENCODER = REGISTRATE.item(309, "biological.components.dna_decode_encoder");
-    public final static ItemEntry<ComponentItem> GRINDBALL_SOAPSTONE = EP_REGISTRATE.item("mill.grindball_soapstone", ComponentItem::create)
-            .lang("Soapstone Grind Ball")
-            .properties(p -> p.stacksTo(1))
-            .onRegister(attach(new GrindBallBehaviour()))
-            .register();
-    public final static ItemEntry<ComponentItem> GRINDBALL_ALUMINIUM = EP_REGISTRATE.item("mill.grindball_aluminium", ComponentItem::create)
-            .lang("Aluminium Grind Ball")
-            .properties(p -> p.stacksTo(1))
-            .onRegister(attach(new GrindBallBehaviour()))
-            .register();
 
     //  Covers
     public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
@@ -386,13 +384,21 @@ public class EPItems {
                 }
             }))
             .onRegister(attach(OrganismCaptureBehavior.INSTANCE))
-            .onRegister(GTItems.modelPredicate(Epimorphism.id("organism_capture_tool"), (itemStack) -> OrganismCaptureBehavior.hasEntity(itemStack) ? 1f : 0f))
+            .onRegister(GTItems.modelPredicate(Epimorphism.id("organism_capture_tool"), itemStack -> OrganismCaptureBehavior.hasEntity(itemStack) ? 1f : 0f))
             .register();
 
     public final static ItemEntry<VajraItem> VAJRA = EP_REGISTRATE.item("tool.vajra", VajraItem::new)
             .lang("Vajra")
             .model(EPModels.simpleCustomModel(Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
             .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
+            .register();
+
+    // Grind Ball
+    public static ItemEntry<GrindBall> GRIND_BALL = EP_REGISTRATE.item("grind_ball", GrindBall::new)
+            .properties(p -> p.stacksTo(1))
+            .color(() -> IMaterialPartItem::getItemStackColor)
+            .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/grind_ball/base")))
+            .onRegister(attach(new GrindBallBehaviour()))
             .register();
 
     private EPItems() {/**/}

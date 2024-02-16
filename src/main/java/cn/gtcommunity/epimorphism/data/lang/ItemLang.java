@@ -191,56 +191,32 @@ public class ItemLang {
                 "§7万物归一者，原初的神迹");
 
         //  Weap Item
-        addItemCNName(provider,WRAP_BOARD_COATED, "封装覆膜电路基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_PHENOLIC, "封装酚醛树脂电路基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_PLASTIC, "封装塑料电路基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_EPOXY, "封装环氧树脂基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_FIBER, "封装纤维强化电路基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_MULTILAYER_FIBER, "封装多层纤维强化电路基板"
-        );
-        addItemCNName(provider,WRAP_BOARD_WETWARE, "封装湿件电路基板"
-        );
+        addItemCNName(provider,WRAP_BOARD_COATED, "封装覆膜电路基板");
+        addItemCNName(provider,WRAP_BOARD_PHENOLIC, "封装酚醛树脂电路基板");
+        addItemCNName(provider,WRAP_BOARD_PLASTIC, "封装塑料电路基板");
+        addItemCNName(provider,WRAP_BOARD_EPOXY, "封装环氧树脂基板");
+        addItemCNName(provider,WRAP_BOARD_FIBER, "封装纤维强化电路基板");
+        addItemCNName(provider,WRAP_BOARD_MULTILAYER_FIBER, "封装多层纤维强化电路基板");
+        addItemCNName(provider,WRAP_BOARD_WETWARE, "封装湿件电路基板");
 
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_BASIC, "封装覆膜印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_GOOD, "封装酚醛树脂印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_PLASTIC, "封装塑料印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ADVANCED, "封装环氧树脂印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_EXTREME, "封装纤维强化印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ELITE, "封装多层纤维强化印刷电路基板"
-        );
-        addItemCNName(provider,WRAP_CIRCUIT_BOARD_WETWARE, "封装湿件印刷电路基板"
-        );
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_BASIC, "封装覆膜印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_GOOD, "封装酚醛树脂印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_PLASTIC, "封装塑料印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ADVANCED, "封装环氧树脂印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_EXTREME, "封装纤维强化印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_ELITE, "封装多层纤维强化印刷电路基板");
+        addItemCNName(provider,WRAP_CIRCUIT_BOARD_WETWARE, "封装湿件印刷电路基板");
 
-        addItemCNName(provider,WRAP_SMD_TRANSISTOR, "封装贴片晶体管"
-        );
-        addItemCNName(provider,WRAP_SMD_RESISTOR, "封装贴片电阻"
-        );
-        addItemCNName(provider,WRAP_SMD_CAPACITOR, "封装贴片电容"
-        );
-        addItemCNName(provider,WRAP_SMD_DIODE, "封装贴片二极管"
-        );
-        addItemCNName(provider,WRAP_SMD_INDUCTOR, "封装贴片电感"
-        );
-        addItemCNName(provider,WRAP_SMD_TRANSISTOR_ADVANCED, "封装高级贴片晶体管"
-        );
-        addItemCNName(provider,WRAP_SMD_RESISTOR_ADVANCED, "封装高级贴片电阻"
-        );
-        addItemCNName(provider,WRAP_SMD_CAPACITOR_ADVANCED, "封装高级贴片电容"
-        );
-        addItemCNName(provider,WRAP_SMD_DIODE_ADVANCED, "封装高级贴片二极管"
-        );
-        addItemCNName(provider,WRAP_SMD_INDUCTOR_ADVANCED, "封装高级贴片电感"
-        );
+        addItemCNName(provider,WRAP_SMD_TRANSISTOR, "封装贴片晶体管");
+        addItemCNName(provider,WRAP_SMD_RESISTOR, "封装贴片电阻");
+        addItemCNName(provider,WRAP_SMD_CAPACITOR, "封装贴片电容");
+        addItemCNName(provider,WRAP_SMD_DIODE, "封装贴片二极管");
+        addItemCNName(provider,WRAP_SMD_INDUCTOR, "封装贴片电感");
+        addItemCNName(provider,WRAP_SMD_TRANSISTOR_ADVANCED, "封装高级贴片晶体管");
+        addItemCNName(provider,WRAP_SMD_RESISTOR_ADVANCED, "封装高级贴片电阻");
+        addItemCNName(provider,WRAP_SMD_CAPACITOR_ADVANCED, "封装高级贴片电容");
+        addItemCNName(provider,WRAP_SMD_DIODE_ADVANCED, "封装高级贴片二极管");
+        addItemCNName(provider,WRAP_SMD_INDUCTOR_ADVANCED, "封装高级贴片电感");
 
         //  Coil
         addItemWithTooltip(provider, VOLTAGE_COIL_UHV,"极高压线圈",
@@ -410,7 +386,7 @@ public class ItemLang {
                 "Rotate along the Y axis",
                 "沿Y轴旋转");
 
-                //  Tool
+        //  Tool
         addItemWithTooltip(provider, ORGANISM_CAPTURE_TOOL, "生物捕捉工具",
                 "§7It's really not a Poké Ball!",
                 "§7这真的不是精灵球！");
@@ -420,6 +396,17 @@ public class ItemLang {
         addItemWithTooltip(provider, VAJRA,"金刚杵",
                 "",
                 "");
+
+        // Grind Ball
+        addItemWithTooltip(provider, GRIND_BALL, "研磨球",
+                "§7Put it in an Isa grinder to process the minerals",
+                "§7放入艾萨研磨机以处理矿物");
+        add(provider, "item.epimorphism.grind_ball.desc.yield_multiplier",
+                "Yield Multiplier: %s",
+                "产量系数：%s");
+        add(provider, "item.epimorphism.grind_ball.desc.energy_cons_multiplier",
+                "Energy Cons Multiplier: %s",
+                "耗能系数：%s");
 
         //  Particle Capsule
         add(provider, "epimorphism.particle_type.desc",
@@ -455,5 +442,6 @@ public class ItemLang {
     private static void initGeneratedNames(LanguageProvider provider) {
         // TagPrefix
         addTagPrefix(provider, EPTagPrefix.singularity, "%s Singularity", "%s奇点");
+        addTagPrefix(provider, EPTagPrefix.milled, "Milled %s", "研磨%s粉");
     }
 }

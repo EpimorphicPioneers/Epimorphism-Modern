@@ -22,7 +22,7 @@ public class EPMachineCasingMaterials {
                 .fluidPipeProperties(5500, 340, true, true, true, false)
                 .color(0x3fcc60)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_BOLT_SCREW, GENERATE_GEAR, GENERATE_CURVED_PLATE, GENERATE_ROTOR)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_BOLT_SCREW, GENERATE_GEAR, GENERATE_ROTOR)
                 .blastTemp(4850, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.IV], 1000)
                 .components(Nickel, 8, /*Chrome, 6, */Molybdenum, 4, Niobium, 4, Titanium, 3, Iron, 2, Aluminium, 2)
                 .buildAndRegister();
@@ -32,7 +32,7 @@ public class EPMachineCasingMaterials {
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(3980))
                 .color(0x939554)
                 .iconSet(MaterialIconSet.DULL)
-                .flags(GENERATE_GEAR, GENERATE_BOLT_SCREW, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_CURVED_PLATE)
+                .flags(GENERATE_GEAR, GENERATE_BOLT_SCREW, GENERATE_ROTOR, GENERATE_FRAME)
                 .blastTemp(4550, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.EV], 800)
                 .components(Nickel, 15, Molybdenum, 4, /*Chrome, 2, */Titanium, 2, Yttrium, 2)
                 .buildAndRegister();
@@ -148,7 +148,7 @@ public class EPMachineCasingMaterials {
                 .color(0x444B42)
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(3450, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.EV], 462)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_CURVED_PLATE, GENERATE_ROTOR)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_ROTOR)
                 .components(Uranium238, 9, Titanium, 1)
                 .buildAndRegister();
         //  24514 Babbitt Alloy
@@ -179,7 +179,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .components(Nickel, 2, Niobium, 1, Aluminium, 2, Nichrome, 1)
                 .blastTemp(6200, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 1266)
-                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_BOLT_SCREW, GENERATE_CURVED_PLATE, GENERATE_ROTOR)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_BOLT_SCREW, GENERATE_ROTOR)
                 .fluidPipeProperties(4900, 220, true, true, true, false)
                 .buildAndRegister();
         //  24517 Incoloy-MA813
@@ -219,7 +219,7 @@ public class EPMachineCasingMaterials {
                 .iconSet(MaterialIconSet.SHINY)
                 .blastTemp(5000, BlastProperty.GasTier.HIGHER, GTValues.VA[GTValues.IV], 200)
                 .components(Niobium, 2, /*Chrome, 9, */Aluminium, 5, Titanium, 2, Cobalt, 10, Tungsten, 13, Nickel, 18)
-                .flags(GENERATE_PLATE, GENERATE_CURVED_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_FRAME)
+                .flags(GENERATE_PLATE, GENERATE_ROTOR, GENERATE_ROD, GENERATE_FRAME)
                 .buildAndRegister();
         //  24521 Mar-M200-Ce Steel
         MARM200CeSteel = Builder("mar_m_200_ce_steel")

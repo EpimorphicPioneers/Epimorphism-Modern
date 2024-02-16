@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -20,7 +21,7 @@ public abstract class ComponentItemMixin extends Item implements IRendererMetaIn
     }
 
     @Override
-    public ICustomRenderer getMetaInfo() {
+    public ICustomRenderer getMetaInfo(ItemStack itemStack) {
         for (IItemComponent component : components) {
             if (component instanceof ICustomRenderer customRenderer) {
                 return customRenderer;
