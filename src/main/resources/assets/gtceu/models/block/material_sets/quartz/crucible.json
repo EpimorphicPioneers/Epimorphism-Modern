@@ -1,0 +1,6 @@
+{
+  "parent": "epimorphism:block/crucible",
+  "textures": {
+    "all": "gtceu:block/material_sets/quartz/block"
+  }
+}

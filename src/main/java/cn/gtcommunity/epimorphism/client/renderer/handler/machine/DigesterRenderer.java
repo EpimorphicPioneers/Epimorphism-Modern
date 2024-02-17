@@ -24,9 +24,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DigesterMachineRenderer extends WorkableCasingMachineRenderer {
+public class DigesterRenderer extends WorkableCasingMachineRenderer {
 
-    public static final DigesterMachineRenderer INSTANCE = new DigesterMachineRenderer();
+    public static final DigesterRenderer INSTANCE = new DigesterRenderer();
 
     public static final FluidStack STACK = FluidStack.create(Fluids.WATER, 1);
     public static final Set<AABB> BLOCKS;
@@ -41,7 +41,7 @@ public class DigesterMachineRenderer extends WorkableCasingMachineRenderer {
         BLOCKS = Collections.unmodifiableSet(tSet);
     }
 
-    private DigesterMachineRenderer() {
+    private DigesterRenderer() {
         super(GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"), Epimorphism.id("block/multiblock/digester"), false);
     }
 

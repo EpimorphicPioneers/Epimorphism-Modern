@@ -24,8 +24,8 @@ import java.util.List;
  * @date 2023/7/24
  * @implNote ProcessingArrayMachineRenderer
  */
-public class ProcessingArrayMachineRenderer extends WorkableCasingMachineRenderer {
-    public ProcessingArrayMachineRenderer(ResourceLocation baseCasing, ResourceLocation workableModel) {
+public class ProcessingArrayRenderer extends WorkableCasingMachineRenderer {
+    public ProcessingArrayRenderer(ResourceLocation baseCasing, ResourceLocation workableModel) {
         super(baseCasing, workableModel, false);
     }
 

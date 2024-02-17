@@ -409,25 +409,6 @@ public class ItemLang {
                 "耗能系数：%s");
 
         //  Particle Capsule
-        add(provider, "epimorphism.particle_type.desc",
-                "Particle Type: %s",
-                "粒子类型：%s");
-        add(provider, "particleType.epimorphism.quark",
-                "§dQuark",
-                "§d夸克");
-        add(provider, "particleType.epimorphism.boson",
-                "§cBoson",
-                "§c玻色子");
-        add(provider, "particleType.epimorphism.baryon",
-                "§9Baryon",
-                "§9重子");
-        add(provider, "particleType.epimorphism.lepton",
-                "§aLepton",
-                "§a轻子");
-        add(provider, "particleType.epimorphism.meson",
-                "§rMeson",
-                "§r介子");
-
         addItemWithTooltip(provider, EMPTY_PARTICLE_CAPSULE, "空粒子胶囊",
                 "§7A particle container constrained by a force field",
                 "§7力场约束粒子容器"
@@ -436,12 +417,5 @@ public class ItemLang {
         //  High Energy Physics items
 
         WrapItemLang.init(provider);
-        initGeneratedNames(provider);
-    }
-
-    private static void initGeneratedNames(LanguageProvider provider) {
-        // TagPrefix
-        addTagPrefix(provider, EPTagPrefix.singularity, "%s Singularity", "%s奇点");
-        addTagPrefix(provider, EPTagPrefix.milled, "Milled %s", "研磨%s粉");
     }
 }

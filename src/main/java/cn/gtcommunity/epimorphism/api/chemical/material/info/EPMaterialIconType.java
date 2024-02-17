@@ -9,5 +9,7 @@ public class EPMaterialIconType {
     public static final MaterialIconType boule = new MaterialIconType("boule");
     public static final MaterialIconType singularity = new MaterialIconType("singularity");
 
+    public static final MaterialIconType crucible = new MaterialIconType("crucible");
+
     public static void init() {/**/}
 }

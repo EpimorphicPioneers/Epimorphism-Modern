@@ -21,7 +21,7 @@ public class GeneralProcessingPlantMachine extends ParallelElectricMultiblockMac
                 GTRecipeTypes.LASER_ENGRAVER_RECIPES, GTRecipeTypes.AUTOCLAVE_RECIPES, GTRecipeTypes.FLUID_SOLIDFICATION_RECIPES};
 
     public GeneralProcessingPlantMachine(IMachineBlockEntity holder, Object... args) {
-        super(holder, machine -> Math.max(machine.getTier() * 8 + 1, 1), args);
+        super(holder, machine -> Math.max(machine.getTier() * 8, 1), args);
     }
 
     //////////////////////////////////////

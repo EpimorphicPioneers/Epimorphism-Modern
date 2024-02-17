@@ -223,10 +223,10 @@
   "epimorphism.optical_glass_tier.desc.3": "High-quality Optical Glass",
   "epimorphism.optical_glass_tier.desc.4": "Precision Optical Glass",
   "epimorphism.optical_glass_tier.desc.5": "Marvellous Optical Glass",
-  "epimorphism.particle_type.desc": "Particle Type: %s",
   "epimorphism.recipe.mass": "Mass: %s kg",
   "epimorphism.recipe.radioactivity": "Radiation Dose: %s Sv",
   "epimorphism.universal.desc.fluid_capacity": "§7Capacity: %s L",
+  "epimorphism.universal.desc.heat": "§cHeat Capacity: §f%d K",
   "epimorphism.universal.desc.kg_capacity": "§6Capacity: §r%d kg",
   "epimorphism.universal.desc.mass": "Mass: %s",
   "epimorphism.universal.desc.max_power_consume": "§6Max power consumption: §r%d",
@@ -239,6 +239,7 @@
   "epimorphism.universal.desc.tier": "§7Tier: %s",
   "epimorphism.universal.desc.time": "Time: %s",
   "epimorphism.universal.none": "None",
+  "epimorphism.universal.particle_type.desc": "Particle Type: %s",
   "gtceu.chemical_plant": "Chemical Reactions",
   "gtceu.component_assembly_line": "Large-scale Component Assembly",
   "gtceu.general_recipes_a": "Machining Mode A",
@@ -1241,6 +1242,7 @@
   "particleType.epimorphism.quark": "§dQuark",
   "recipe.condition.neutron_kinetic_energy.desc": "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
   "recipe.condition.precise_assembler_casing.desc": "Casing Tier: MK-%s",
+  "tagprefix.crucible": "%s Crucible",
   "tagprefix.milled": "Milled %s",
   "tagprefix.singularity": "%s Singularity"
 }

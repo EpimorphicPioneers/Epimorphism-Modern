@@ -64,7 +64,7 @@ public class EPPhysicsItem {
     private static ItemBuilder<ComponentItem, Registrate> registerParticleCapsule(String name, ParticleType particleType) {
         return EP_REGISTRATE.item("particle_capsule." + name, ComponentItem::create)
                 .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/particle_capsule/capsule_base"), Epimorphism.id("item/particle_capsule/" + name)))
-                .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("epimorphism.particle_type.desc", particleType.getText())))));
+                .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("epimorphism.universal.particle_type.desc", particleType.getText())))));
     }
 
     private static ItemBuilder<ComponentItem, Registrate> registerParticleCapsule(String name) {

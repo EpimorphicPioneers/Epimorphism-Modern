@@ -223,10 +223,10 @@
   "epimorphism.optical_glass_tier.desc.3": "ssɐן⅁ ןɐɔıʇdO ʎʇıןɐnb-ɥbıH",
   "epimorphism.optical_glass_tier.desc.4": "ssɐן⅁ ןɐɔıʇdO uoısıɔǝɹԀ",
   "epimorphism.optical_glass_tier.desc.5": "ssɐן⅁ ןɐɔıʇdO snoןןǝʌɹɐW",
-  "epimorphism.particle_type.desc": "%s :ǝdʎ⟘ ǝןɔıʇɹɐԀ",
   "epimorphism.recipe.mass": "bʞ %s :ssɐW",
   "epimorphism.recipe.radioactivity": "ʌS %s :ǝsoᗡ uoıʇɐıpɐᴚ",
   "epimorphism.universal.desc.fluid_capacity": "Ꞁ %s :ʎʇıɔɐdɐƆㄥ§",
+  "epimorphism.universal.desc.heat": "ʞ %dɟ§ :ʎʇıɔɐdɐƆ ʇɐǝHɔ§",
   "epimorphism.universal.desc.kg_capacity": "bʞ %dɹ§ :ʎʇıɔɐdɐƆ9§",
   "epimorphism.universal.desc.mass": "%s :ssɐW",
   "epimorphism.universal.desc.max_power_consume": "%dɹ§ :uoıʇdɯnsuoɔ ɹǝʍod xɐW9§",
@@ -239,6 +239,7 @@
   "epimorphism.universal.desc.tier": "%s :ɹǝı⟘ㄥ§",
   "epimorphism.universal.desc.time": "%s :ǝɯı⟘",
   "epimorphism.universal.none": "ǝuoN",
+  "epimorphism.universal.particle_type.desc": "%s :ǝdʎ⟘ ǝןɔıʇɹɐԀ",
   "gtceu.chemical_plant": "suoıʇɔɐǝᴚ ןɐɔıɯǝɥƆ",
   "gtceu.component_assembly_line": "ʎןqɯǝssⱯ ʇuǝuodɯoƆ ǝןɐɔs-ǝbɹɐꞀ",
   "gtceu.general_recipes_a": "Ɐ ǝpoW buıuıɥɔɐW",
@@ -1241,6 +1242,7 @@
   "particleType.epimorphism.quark": "ʞɹɐnὉp§",
   "recipe.condition.neutron_kinetic_energy.desc": "Λǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıxɐW\nΛǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıuıW",
   "recipe.condition.precise_assembler_casing.desc": "%s-ʞW :ɹǝı⟘ buısɐƆ",
+  "tagprefix.crucible": "ǝןqıɔnɹƆ %s",
   "tagprefix.milled": "%s pǝןןıW",
   "tagprefix.singularity": "ʎʇıɹɐןnbuıS %s"
 }

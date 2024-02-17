@@ -32,30 +32,4 @@ public class EPRecipeModifiers {
         }
         return new Tuple<>(recipe, 1);
     }
-
-    public static GTRecipe advEBFOverclock(MetaMachine machine, @Nonnull GTRecipe recipe) {
-        if (machine instanceof ParallelCoilMultiblockMachine coilMachine) {
-            val blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature();
-            if (!recipe.data.contains("ebf_temp") || recipe.data.getInt("ebf_temp") > blastFurnaceTemperature) {
-                return null;
-            }
-            if (RecipeHelper.getRecipeEUtTier(recipe) > coilMachine.getTier()) {
-                return null;
-            }
-            return RecipeHelper.applyOverclock(new OverclockingLogic((recipe1, recipeEUt, maxVoltage, duration, amountOC) -> {
-                var pair = OverclockingLogic.heatingCoilOverclockingLogic(
-                        Math.abs(recipeEUt),
-                        maxVoltage,
-                        duration,
-                        amountOC,
-                        blastFurnaceTemperature,
-                        recipe.data.contains("ebf_temp") ? recipe.data.getInt("ebf_temp") : 0);
-                var eu = pair.firstLong() * 0.9;
-                var dur = pair.secondInt() * 0.45;
-                pair.first((long) Math.max(1, eu)).second((int) Math.max(1, dur));
-                return pair;
-            }), recipe, coilMachine.getMaxVoltage());
-        }
-        return null;
-    }
 }

@@ -42,6 +42,29 @@ public class MiscLang {
                 "§7Capacity: %s L",
                 "§7容量：%s L");
 
+        add(provider, "epimorphism.universal.desc.heat",
+                "§cHeat Capacity: §f%d K",
+                "§c热容：§f%d K");
+
+        add(provider, "epimorphism.universal.particle_type.desc",
+                "Particle Type: %s",
+                "粒子类型：%s");
+        add(provider, "particleType.epimorphism.quark",
+                "§dQuark",
+                "§d夸克");
+        add(provider, "particleType.epimorphism.boson",
+                "§cBoson",
+                "§c玻色子");
+        add(provider, "particleType.epimorphism.baryon",
+                "§9Baryon",
+                "§9重子");
+        add(provider, "particleType.epimorphism.lepton",
+                "§aLepton",
+                "§a轻子");
+        add(provider, "particleType.epimorphism.meson",
+                "§rMeson",
+                "§r介子");
+
         // GUI
         add(provider, "epimorphism.universal.desc.mass",
                 "Mass: %s",

@@ -4,19 +4,30 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
 import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
 import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
+import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys;
+import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.common.block.*;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
+import com.google.common.collect.ImmutableTable;
+import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.item.MaterialBlockItem;
 import com.gregtechceu.gtceu.api.item.RendererBlockItem;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.gregtechceu.gtceu.common.data.*;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -52,9 +63,57 @@ import java.util.function.Supplier;
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
+import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 @SuppressWarnings("all")
 public class EPBlocks {
+
+    //////////////////////////////////////
+    //*****     Tables Builders    *****//
+    //////////////////////////////////////
+    private static ImmutableTable.Builder<TagPrefix, Material, BlockEntry<CrucibleBlock>> CRUCIBLE_BLOCKS_BUILDER = ImmutableTable.builder();
+
+    //////////////////////////////////////
+    //*****    Reference Tables    *****//
+    //////////////////////////////////////
+
+    public static Table<TagPrefix, Material, BlockEntry<CrucibleBlock>> CRUCIBLE_BLOCKS;
+
+    // Crucible Blocks
+    private static void generateCrucibleBlocks() {
+        Epimorphism.LOGGER.debug("Generating Epimorphism Crucible Blocks...");
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
+            GTRegistrate registrate = registry.getRegistrate();
+            for (Material material : registry.getAllMaterials()) {
+                if (allowCrucibleBlock(material)) {
+                    registerCrucibleBlock(material, registrate);
+                }
+            }
+        }
+        CRUCIBLE_BLOCKS = CRUCIBLE_BLOCKS_BUILDER.build();
+        Epimorphism.LOGGER.debug("Generating Epimorphism Crucible Blocks... Complete!");
+    }
+
+    private static boolean allowCrucibleBlock(Material material) {
+        return material.hasProperty(EPPropertyKeys.CRUCIBLE);
+    }
+    private static void registerCrucibleBlock(Material material, GTRegistrate registrate) {
+        var entry = registrate.block("%s_crucible".formatted(material.getName()), p -> new CrucibleBlock(p, material))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> EPTagPrefix.crucible.blockProperties().properties().apply(p).noLootTable())
+                .transform(GTBlocks.unificationBlock(EPTagPrefix.crucible, material))
+                .addLayer(() -> RenderType::cutout)
+                .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
+                .setData(ProviderType.LANG, NonNullBiConsumer.noop())
+                .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
+                .color(() -> CrucibleBlock::tintedColor)
+                .item(MaterialBlockItem::create)
+                .model(NonNullBiConsumer.noop())
+                .color(() -> MaterialBlockItem::tintColor)
+                .build()
+                .register();
+        CRUCIBLE_BLOCKS_BUILDER.put(EPTagPrefix.crucible, material, entry);
+    }
 
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
@@ -268,7 +327,10 @@ public class EPBlocks {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
 
-    public static void init() {/**/}
+    public static void init() {
+        REGISTRATE.creativeModeTab(() -> GTCreativeModeTabs.MATERIAL_BLOCK);
+        generateCrucibleBlocks();
+    }
 
     protected static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
         return createCasingBlock(name, RendererBlock::new, texture, () -> Blocks.IRON_BLOCK, () -> RenderType::cutoutMipped);

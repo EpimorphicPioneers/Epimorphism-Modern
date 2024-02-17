@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
+import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
@@ -699,6 +700,14 @@ public class MaterialLang {
         addMaterial(provider, SuperheavyHAlloy, " ", "超重元素-重合金");
         addMaterial(provider, SuperheavyLAlloy, " ", "超重元素-轻合金");
         addMaterial(provider, PlatinumGroupAlloy, " ", "稀有金属合金");
+
+        initGeneratedNames(provider);
     }
 
+    private static void initGeneratedNames(LanguageProvider provider) {
+        // TagPrefix
+        addTagPrefix(provider, EPTagPrefix.singularity, "%s Singularity", "%s奇点");
+        addTagPrefix(provider, EPTagPrefix.milled, "Milled %s", "研磨%s粉");
+        addTagPrefix(provider, EPTagPrefix.crucible, "%s Crucible", "%s坩埚");
+    }
 }

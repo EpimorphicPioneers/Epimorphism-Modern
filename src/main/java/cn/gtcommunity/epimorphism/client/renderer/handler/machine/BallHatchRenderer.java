@@ -23,15 +23,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class BallHatchMachineRenderer extends TieredHullMachineRenderer {
+public class BallHatchRenderer extends TieredHullMachineRenderer {
     public static final ResourceLocation BALL_HATCH_OVERLAY = Epimorphism.id("block/overlay/machine/overlay_ball_hatch");
     public static final ResourceLocation IDLE = Epimorphism.id("block/multiblock/isa_mill/idle");
     public static final ResourceLocation SPINNING = Epimorphism.id("block/multiblock/isa_mill/spinning");
     public static final AABB AABB = new AABB(-1, -1, -0.01, 2, 2, 1.01);
 
-    public static final BallHatchMachineRenderer INSTANCE = new BallHatchMachineRenderer();
+    public static final BallHatchRenderer INSTANCE = new BallHatchRenderer();
 
-    private BallHatchMachineRenderer() {
+    private BallHatchRenderer() {
         super(GTValues.IV, GTCEu.id("block/machine/hull_machine"));
     }
 
@@ -60,6 +60,7 @@ public class BallHatchMachineRenderer extends TieredHullMachineRenderer {
         if (atlasName.equals(InventoryMenu.BLOCK_ATLAS)) {
             register.accept(IDLE);
             register.accept(SPINNING);
+            register.accept(BALL_HATCH_OVERLAY);
         }
     }
 }
