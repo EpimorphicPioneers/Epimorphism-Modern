@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.item.component.IMaterialPartItem;
 import com.gregtechceu.gtceu.api.item.component.ISubItemHandler;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -97,8 +98,8 @@ public class GrindBallBehaviour implements IMaterialPartItem, ICustomRenderer, I
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc"));
         IMaterialPartItem.super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.yield_multiplier", "§e%.1f×".formatted(getYieldMultiplier(stack))));
-        tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.energy_cons_multiplier", "§e%.1f×".formatted(getEnergyConsMultiplier(stack))));
+        tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.yield_multiplier", ChatFormatting.YELLOW + "%.1f×".formatted(getYieldMultiplier(stack))));
+        tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.energy_cons_multiplier", ChatFormatting.YELLOW + "%.1f×".formatted(getEnergyConsMultiplier(stack))));
     }
 
     @Nullable

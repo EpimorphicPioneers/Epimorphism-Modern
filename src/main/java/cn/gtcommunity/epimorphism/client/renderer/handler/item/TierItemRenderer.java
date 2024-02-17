@@ -23,6 +23,7 @@ import org.joml.Matrix4f;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class TierItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
@@ -83,6 +84,14 @@ public class TierItemRenderer implements IRenderer {
             poseStack.popPose();
         } else {
             RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
+        }
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void onPrepareTextureAtlas(ResourceLocation atlasName, Consumer<ResourceLocation> register) {
+        if (atlasName.equals(InventoryMenu.BLOCK_ATLAS)) {
+            TEXTURES.forEach(register);
         }
     }
 }

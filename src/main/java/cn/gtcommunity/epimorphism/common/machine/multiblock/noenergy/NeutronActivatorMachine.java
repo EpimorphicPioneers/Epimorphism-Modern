@@ -1,4 +1,4 @@
-package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
+package cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy;
 
 import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;

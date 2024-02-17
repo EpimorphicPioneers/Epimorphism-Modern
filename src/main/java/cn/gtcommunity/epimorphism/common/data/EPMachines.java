@@ -7,8 +7,10 @@ import cn.gtcommunity.epimorphism.api.pattern.LayerShapeInfo;
 import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
+import cn.gtcommunity.epimorphism.common.block.CrucibleBlock;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.gtm.ProcessingArrayMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy.NeutronActivatorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
@@ -40,6 +42,7 @@ import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -1101,7 +1104,7 @@ public class EPMachines {
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(BLAST_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> EPRecipeModifiers::advEBFOverclock))
+            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
             .appearanceBlock(ADVANCED_INVAR_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXX", "CCC", "CCC", "XXX")
@@ -1295,7 +1298,7 @@ public class EPMachines {
                     .where('A', air())
                     .where(' ', any())
                     .build())
-            .renderer(() -> DigesterMachineRenderer.INSTANCE)
+            .renderer(() -> DigesterRenderer.INSTANCE)
             .register();
 
     public final static MultiblockMachineDefinition INDUSTRIAL_DRILL = EP_REGISTRATE.multiblock("industrial_drill", IndustrialDrillMachine::new)
@@ -1440,12 +1443,84 @@ public class EPMachines {
                             .where('#', Predicates.air())
                             .build())
                     .tooltips(Component.translatable("gtceu.universal.tooltip.parallel", ProcessingArrayMachine.getMachineLimit(tier)))
-                    .renderer(() -> new ProcessingArrayMachineRenderer(tier == IV ?
+                    .renderer(() -> new ProcessingArrayRenderer(tier == IV ?
                             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel") :
                             GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"),
                             Epimorphism.id("block/multiblock/processing_array")))
                     .register(),
             IV, LuV) : null;
+
+    public final static MultiblockMachineDefinition NANOSCALE_FABRICATOR = EP_REGISTRATE.multiblock("nanoscale_fabricator", NanoscaleFabricatorMachine::new)
+            .langValue("Nanoscale Fabricator")
+            .tooltips(
+                    Component.translatable("block.epimorphism.nanoscale_fabricator.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(MOLECULAR_BEAM_RECIPES)
+            .appearanceBlock(NEUTRONIUM_MINING_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("   TTT   ", "   TIT   ", "   TCT   ", "         ")
+                    .aisle("  XXXXX  ", "  XX#XX  ", "  XXXXX  ", "  XXXXX  ")
+                    .aisle(" XXXXXXX ", " X#####X ", " X#####X ", " XXGGGXX ")
+                    .aisle("TXXTTTXXT", "TX#####XT", "TX#####XT", " XGGGGGX ")
+                    .aisle("TXXTITXXT", "I###A###I", "CX#####XC", " XGGGGGX ")
+                    .aisle("TXXTTTXXT", "TX#####XT", "TX#####XT", " XGGGGGX ")
+                    .aisle(" XXXXXXX ", " X#####X ", " X#####X ", " XXGGGXX ")
+                    .aisle("  XXXXX  ", "  XX#XX  ", "  XXXXX  ", "  XXSXX  ")
+                    .aisle("   TTT   ", "   TIT   ", "   TCT   ", "         ")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_LASER_SAFE_ENGRAVING.get()).setMinGlobalLimited(84)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('T', blocks(CASING_NONCONDUCTING.get()).setMinGlobalLimited(36))
+                    .where('G', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('I', ability(PartAbility.IMPORT_ITEMS, ULV)
+                            .or(blocks(CASING_NONCONDUCTING.get())))
+                    .where('C', blocks(CASING_NONCONDUCTING.get()).or(NanoscaleFabricatorMachine.cruciblePredicate()))
+                    .where('A', blocks(ADVANCED_SUBSTRATE_CASING.get()))
+                    .where('#', air())
+                    .where(' ', any())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("   TTT   ", "   TPT   ", "   TCT   ", "         ")
+                        .aisle("  XXXXX  ", "  XX#XX  ", "  XXXXX  ", "  XXXXX  ")
+                        .aisle(" XXXXXXX ", " X     X ", " X     X ", " XXGGGXX ")
+                        .aisle("TXXTTTXXT", "TX     XT", "TX     XT", " XGGGGGX ")
+                        .aisle("TXXTATXXT", "N   J   U", "CX     XC", " XGGGGGX ")
+                        .aisle("TXXTTTXXT", "TX     XT", "TX     XT", " XGGGGGX ")
+                        .aisle(" XXXXXXX ", " X     X ", " X     X ", " XXGGGXX ")
+                        .aisle("  XXXXX  ", "  FX XO  ", "  LXXXX  ", "  XMSEX  ")
+                        .aisle("   TTT   ", "   TIT   ", "   TCT   ", "         ")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('X', CASING_LASER_SAFE_ENGRAVING.get())
+                        .where('T', CASING_NONCONDUCTING.get())
+                        .where('G', CASING_LAMINATED_GLASS.get())
+                        .where('J', ADVANCED_SUBSTRATE_CASING.get())
+                        .where('I', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.SOUTH)
+                        .where('N', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.WEST)
+                        .where('P', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.NORTH)
+                        .where('U', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.EAST)
+                        .where('A', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.DOWN)
+                        .where('E', GTMachines.ENERGY_INPUT_HATCH[LuV], Direction.SOUTH)
+                        .where('F', GTMachines.FLUID_IMPORT_HATCH[HV], Direction.SOUTH)
+                        .where('L', GTMachines.FLUID_EXPORT_HATCH[HV], Direction.SOUTH)
+                        .where('O', GTMachines.ITEM_EXPORT_BUS[HV], Direction.SOUTH)
+                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where(' ', Blocks.AIR.defaultBlockState());
+
+                CRUCIBLE_BLOCKS.values().stream()
+                        .map(BlockEntry::get)
+                        .sorted(Comparator.comparingInt(CrucibleBlock::getTemperature))
+                        .forEach(crucible -> shapeInfos.add(builder.where('C', crucible).build()));
+
+                return shapeInfos;
+            })
+            .renderer(() -> new CustomPartRenderer(GTCEu.id("block/casings/gcym/laser_safe_engraving_casing"),
+                    Epimorphism.id("block/multiblock/nanoscale_fabricator"), NanoscaleFabricatorMachine::getBaseTexture))
+            .register();
 
     // Multiblock Parts
     public final static MachineDefinition INFINITE_WATER_HATCH = EP_REGISTRATE.machine("infinite_water_hatch", InfiniteWaterHatchPartMachine::new)
@@ -1466,7 +1541,7 @@ public class EPMachines {
             .tier(IV)
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.GRIND_BALL)
-            .renderer(() -> BallHatchMachineRenderer.INSTANCE)
+            .renderer(() -> BallHatchRenderer.INSTANCE)
             .tooltips(
                     Component.translatable("block.epimorphism.grind_ball_hatch.desc.0"),
                     Component.translatable("block.epimorphism.grind_ball_hatch.desc.1"),

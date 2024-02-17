@@ -1,16 +1,16 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.api.chemical.material.properties.CrucibleProperty;
 import cn.gtcommunity.epimorphism.api.chemical.material.properties.GrindBallProperty;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import net.minecraft.resources.ResourceLocation;
 
 import static cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys.*;
-import static cn.gtcommunity.epimorphism.common.data.EPMaterials.CosmicNeutronium;
+import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey.*;
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.*;
@@ -141,6 +141,12 @@ public class EPMaterialPropertyAddition {
                 new GrindBallProperty(3F, 0.5F, 20000)
                 .model(Epimorphism.id("item/grind_ball/neutronium"))
                 .renderer(new HaloRenderItemBehavior(8, 0x99FFFFFF, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo_noise"), true, false)));
+
+        //  Crucible Properties
+        Quartzite.setProperty(CRUCIBLE, new CrucibleProperty(2482));
+        Tungsten.setProperty(CRUCIBLE, new CrucibleProperty(3695));
+        Graphite.setProperty(CRUCIBLE, new CrucibleProperty(4750));
+        HexagonalBoronNitride.setProperty(CRUCIBLE, new CrucibleProperty(5328));
 
         //  IconSets
         Bromine.setMaterialIconSet(MaterialIconSet.FLUID);

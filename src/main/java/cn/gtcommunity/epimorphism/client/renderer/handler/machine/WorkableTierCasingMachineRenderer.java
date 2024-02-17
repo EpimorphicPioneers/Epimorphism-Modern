@@ -25,12 +25,13 @@ public class WorkableTierCasingMachineRenderer extends WorkableCasingMachineRend
     @OnlyIn(Dist.CLIENT)
     protected Map<ResourceLocation, Map<Direction, BakedModel>> tierBlockModels;
 
-    protected final Function<MetaMachine, ResourceLocation> locationGetter;
+    @OnlyIn(Dist.CLIENT)
+    protected Function<MetaMachine, ResourceLocation> locationGetter;
 
     public WorkableTierCasingMachineRenderer(ResourceLocation baseCasing, ResourceLocation workableModel, Function<MetaMachine, ResourceLocation> locationGetter) {
         super(baseCasing, workableModel, false);
-        this.locationGetter = locationGetter;
         if (LDLib.isClient()) {
+            this.locationGetter = locationGetter;
             this.tierBlockModels = new ConcurrentHashMap<>();
         }
     }

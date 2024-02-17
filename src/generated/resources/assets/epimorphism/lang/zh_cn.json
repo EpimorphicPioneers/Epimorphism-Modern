@@ -234,10 +234,10 @@
   "epimorphism.optical_glass_tier.desc.3": "优质光学玻璃",
   "epimorphism.optical_glass_tier.desc.4": "精密光学玻璃",
   "epimorphism.optical_glass_tier.desc.5": "精奇光学玻璃",
-  "epimorphism.particle_type.desc": "粒子类型：%s",
   "epimorphism.recipe.mass": "质量：%s kg",
   "epimorphism.recipe.radioactivity": "辐射剂量：%s Sv",
   "epimorphism.universal.desc.fluid_capacity": "§7容量：%s L",
+  "epimorphism.universal.desc.heat": "§c热容：§f%d K",
   "epimorphism.universal.desc.kg_capacity": "§6容量：§r%d kg",
   "epimorphism.universal.desc.mass": "质量：%s",
   "epimorphism.universal.desc.max_power_consume": "§6最大能量消耗：§r%d EU",
@@ -250,6 +250,7 @@
   "epimorphism.universal.desc.tier": "§7等级：%s",
   "epimorphism.universal.desc.time": "时间：%s",
   "epimorphism.universal.none": "无",
+  "epimorphism.universal.particle_type.desc": "粒子类型：%s",
   "gtceu.chemical_plant": "化工反应",
   "gtceu.component_assembly_line": "大规模部件装配",
   "gtceu.general_recipes_a": "加工模式A",
@@ -1222,6 +1223,7 @@
   "particleType.epimorphism.quark": "§d夸克",
   "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV",
   "recipe.condition.precise_assembler_casing.desc": "外壳等级：MK-%s",
+  "tagprefix.crucible": "%s坩埚",
   "tagprefix.milled": "研磨%s粉",
   "tagprefix.singularity": "%s奇点"
 }

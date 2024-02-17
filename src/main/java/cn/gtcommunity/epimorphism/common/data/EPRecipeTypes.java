@@ -38,6 +38,16 @@ public class EPRecipeTypes {
     public final static GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = register("component_assembly_line", MULTIBLOCK).setMaxIOSize(12, 1, 12, 0).setEUIO(IO.IN)
             .setSound(GTSoundEntries.ASSEMBLER);
 
+    public final static GTRecipeType MOLECULAR_BEAM_RECIPES = register("molecular_beam", MULTIBLOCK).setMaxIOSize(5, 1, 2, 1).setEUIO(IO.IN)
+            .setSlotOverlay(false, false, false, EPGuiTextures.NANOSCALE_OVERLAY_1)
+            .setSlotOverlay(false, false, true, EPGuiTextures.NANOSCALE_OVERLAY_1)
+            .setSlotOverlay(false, true, false, EPGuiTextures.NANOSCALE_OVERLAY_2)
+            .setSlotOverlay(false, true, true, EPGuiTextures.NANOSCALE_OVERLAY_2)
+            .setSlotOverlay(true, false, true, EPGuiTextures.NANOSCALE_OVERLAY_1)
+            .setSlotOverlay(true, true, true, EPGuiTextures.NANOSCALE_OVERLAY_2)
+            .setProgressBar(EPGuiTextures.PROGRESS_BAR_NANOSCALE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.ELECTROLYZER);
+
     public final static GTRecipeType CHEMICAL_PLANT_RECIPES = register("chemical_plant", MULTIBLOCK).setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
     public final static GTRecipeType FERMENTATION_TANK_RECIPES = register("fermentation_tank", MULTIBLOCK).setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)

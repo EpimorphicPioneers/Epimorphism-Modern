@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.recipe;
 
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.NeutronActivatorMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy.NeutronActivatorMachine;
 import cn.gtcommunity.epimorphism.utils.EPLangUtil;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;

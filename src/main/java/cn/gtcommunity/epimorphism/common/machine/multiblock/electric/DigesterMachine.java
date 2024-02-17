@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.DigesterMachineRenderer;
+import cn.gtcommunity.epimorphism.client.renderer.handler.machine.DigesterRenderer;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -15,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class DigesterMachine extends WorkableElectricMultiblockMachine {
-    private static final int COLOR = FluidHelper.getColor(DigesterMachineRenderer.STACK) | 0xff000000;
+    private static final int COLOR = FluidHelper.getColor(DigesterRenderer.STACK) | 0xff000000;
 
     public DigesterMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);

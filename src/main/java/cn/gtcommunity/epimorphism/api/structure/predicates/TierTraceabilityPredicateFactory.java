@@ -113,7 +113,7 @@ public class TierTraceabilityPredicateFactory {
         return () -> CACHE.computeIfAbsent(name, key -> map.keySet().stream()
                         .filter(predicate)
                         .sorted(comparator)
-                        .map(type -> BlockInfo.fromBlockState(map.get(type).get().defaultBlockState()))
+                        .map(type -> BlockInfo.fromBlock(map.get(type).get()))
                         .toArray(BlockInfo[]::new));
     }
 
