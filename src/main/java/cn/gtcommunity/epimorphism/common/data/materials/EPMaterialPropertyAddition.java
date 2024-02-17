@@ -143,8 +143,16 @@ public class EPMaterialPropertyAddition {
                 .renderer(new HaloRenderItemBehavior(8, 0x99FFFFFF, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo_noise"), true, false)));
 
         //  Crucible Properties
+        Bronze.setProperty(CRUCIBLE, new CrucibleProperty(1696));
+        Invar.setProperty(CRUCIBLE, new CrucibleProperty(2395));
         Quartzite.setProperty(CRUCIBLE, new CrucibleProperty(2482));
+        Chromium.setProperty(CRUCIBLE, new CrucibleProperty(2725));
+        Vanadium.setProperty(CRUCIBLE, new CrucibleProperty(2728));
+        NiobiumTitanium.setProperty(CRUCIBLE, new CrucibleProperty(2931));
+        Iridium.setProperty(CRUCIBLE, new CrucibleProperty(3398));
+        Molybdenum.setProperty(CRUCIBLE, new CrucibleProperty(3620));
         Tungsten.setProperty(CRUCIBLE, new CrucibleProperty(3695));
+        Osmium.setProperty(CRUCIBLE, new CrucibleProperty(4132));
         Graphite.setProperty(CRUCIBLE, new CrucibleProperty(4750));
         HexagonalBoronNitride.setProperty(CRUCIBLE, new CrucibleProperty(5328));
 

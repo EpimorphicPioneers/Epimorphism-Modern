@@ -1093,7 +1093,7 @@ public class EPFirstDegreeMaterials {
                 .color(0x8F103E)
                 .iconSet(MaterialIconSet.METALLIC)
                 .flags(GENERATE_ROD, GENERATE_LONG_ROD)
-                .components(/*Chrome, 1, */Germanium, 1, Tellurium, 3)
+                .components(Chromium, 1, Germanium, 1, Tellurium, 3)
                 .blastTemp(2900, BlastProperty.GasTier.HIGHER)
                 .buildAndRegister();
         //  24145 Magnetic Chromium Germanium Telluride

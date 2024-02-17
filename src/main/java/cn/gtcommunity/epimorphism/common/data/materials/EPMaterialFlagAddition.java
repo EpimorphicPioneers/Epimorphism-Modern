@@ -67,7 +67,7 @@ public class EPMaterialFlagAddition {
         IronMagnetic.addFlags(GENERATE_LONG_ROD);
         SteelMagnetic.addFlags(GENERATE_LONG_ROD);
         NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD);
-//        Chrome.addFlags(GENERATE_LONG_ROD);
+        Chromium.addFlags(GENERATE_LONG_ROD);
         Bohrium.addFlags(GENERATE_PLATE, GENERATE_DENSE);
         Rhodium.addFlags(GENERATE_FRAME);
         DamascusSteel.addFlags(GENERATE_FRAME);
