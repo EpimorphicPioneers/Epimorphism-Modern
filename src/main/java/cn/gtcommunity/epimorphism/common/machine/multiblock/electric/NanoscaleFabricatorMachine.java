@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.utils.BlockInfo;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
@@ -27,7 +28,8 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachine {
 
-    private int temperature;
+    @Getter
+    private int heatCapacity;
 
     public NanoscaleFabricatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
@@ -42,14 +44,14 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
         super.onStructureFormed();
         var context = getMultiblockState().getMatchContext();
         int crucibleAmount = context.getInt("CrucibleAmount");
-        if (crucibleAmount != 0) this.temperature = context.getInt("Temperature") / crucibleAmount;
-        else this.temperature = 0;
+        if (crucibleAmount != 0) this.heatCapacity = context.getInt("HeatCapacity") / crucibleAmount;
+        else this.heatCapacity = 0;
     }
 
     @Override
     public void onStructureInvalid() {
         super.onStructureInvalid();
-        this.temperature = 0;
+        this.heatCapacity = 0;
     }
 
     //////////////////////////////////////
@@ -60,8 +62,8 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
             Block block = blockWorldState.getBlockState().getBlock();
             if (block instanceof CrucibleBlock crucible) {
                 PatternMatchContext context = blockWorldState.getMatchContext();
-                int storedTemperature = context.getOrPut("Temperature", 0);
-                context.set("Temperature", crucible.getTemperature() + storedTemperature);
+                int storedHeatCapacity = context.getOrPut("HeatCapacity", 0);
+                context.set("HeatCapacity", crucible.getHeatCapacity() + storedHeatCapacity);
 
                 int storedCrucibleAmount = context.getOrPut("CrucibleAmount", 0);
                 context.set("CrucibleAmount", 1 + storedCrucibleAmount);
@@ -70,7 +72,7 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
             return false;
         }, () -> EPBlocks.CRUCIBLE_BLOCKS.values().stream()
                 .map(BlockEntry::get)
-                .sorted(Comparator.comparingInt(CrucibleBlock::getTemperature))
+                .sorted(Comparator.comparingInt(CrucibleBlock::getHeatCapacity))
                 .map(BlockInfo::fromBlock)
                 .toArray(BlockInfo[]::new));
     }
@@ -83,7 +85,7 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
-            textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", ChatFormatting.RED + FormattingUtil.formatNumbers(temperature) + "K"));
+            textList.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature", ChatFormatting.RED + FormattingUtil.formatNumbers(heatCapacity) + "K"));
         }
     }
 
