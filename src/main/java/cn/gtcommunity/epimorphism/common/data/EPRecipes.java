@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data;
 
+import cn.gtcommunity.epimorphism.data.recipe.generated.BouleRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.RadiationHatchRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.WrapItemRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.misc.NeutronActivatorLoader;
@@ -12,5 +13,6 @@ public class EPRecipes {
         NeutronActivatorLoader.init(consumer);
         WrapItemRecipeHandler.init(consumer);
         RadiationHatchRecipeHandler.init(consumer);
+        BouleRecipeHandler.init(consumer);
     }
 }

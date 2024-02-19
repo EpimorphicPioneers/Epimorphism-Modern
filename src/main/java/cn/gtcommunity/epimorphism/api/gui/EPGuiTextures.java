@@ -22,6 +22,7 @@ public class EPGuiTextures {
 
     public static final ResourceTexture OVERLAY_PARALLEL_CONFIGURATOR = createTexture("overlay/parallel_configurator.png");
 
+    public static final ResourceTexture SLOT_LOCK_OVERLAY = createTexture("overlay/slot_lock_overlay.png");
     public static final ResourceTexture BALL_OVERLAY = createTexture("overlay/ball_overlay.png");
     public static final ResourceTexture NANOSCALE_OVERLAY_1 = createTexture("overlay/nanoscale_overlay_1.png");
     public static final ResourceTexture NANOSCALE_OVERLAY_2 = createTexture("overlay/nanoscale_overlay_2.png");

@@ -1238,9 +1238,12 @@
   "particleType.epimorphism.lepton": "§a轻子",
   "particleType.epimorphism.meson": "§r介子",
   "particleType.epimorphism.quark": "§d夸克",
+  "recipe.condition.heat_capacity.desc": "温度：%sK",
   "recipe.condition.neutron_kinetic_energy.desc": "最小中子动能: %seV\n最大中子动能: %seV",
   "recipe.condition.precise_assembler_casing.desc": "外壳等级：MK-%s",
+  "tagprefix.boule": "人造%s",
   "tagprefix.crucible": "%s坩埚",
   "tagprefix.milled": "研磨%s粉",
+  "tagprefix.seed_crystal": "%s晶种",
   "tagprefix.singularity": "%s奇点"
 }

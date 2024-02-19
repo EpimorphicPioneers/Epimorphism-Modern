@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.data.recipe.misc;
 
+import cn.gtcommunity.epimorphism.common.recipe.HeatCapacityCondituon;
 import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
 import cn.gtcommunity.epimorphism.common.recipe.PACasingCondition;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -54,6 +55,13 @@ public class NeutronActivatorLoader {
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
                 .addCondition(new PACasingCondition(PACasingCondition.MK_3))
+                .duration(800).EUt(30).save(provider);
+        MOLECULAR_BEAM_RECIPES.recipeBuilder("test5")
+                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
+                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
+                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
+                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
+                .addCondition(new HeatCapacityCondituon(3000))
                 .duration(800).EUt(30).save(provider);
     }
 }

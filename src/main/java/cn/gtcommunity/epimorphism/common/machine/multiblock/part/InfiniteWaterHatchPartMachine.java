@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 
-import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -30,8 +29,6 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
 
     @Persisted
     public final NotifiableFluidTank tank;
-    @Persisted
-    private boolean isFilled;
 
     public InfiniteWaterHatchPartMachine(IMachineBlockEntity holder) {
         super(holder, GTValues.IV, IO.IN);
@@ -79,7 +76,7 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     }
 
     protected void productWater() {
-        isFilled = tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false) == 0;
+        boolean isFilled = tank.fillInternal(FluidStack.create(Fluids.WATER, Long.MAX_VALUE), false) == 0;
 
         if (isFilled) unsubscribe();
         else updateTankSubscription();

@@ -1,8 +1,7 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.storage;
 
-import cn.gtcommunity.epimorphism.api.fluid.BigFluidTank;
+import cn.gtcommunity.epimorphism.api.misc.BigFluidTank;
 import cn.gtcommunity.epimorphism.api.gui.widget.FluidTankMapWidget;
-import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlockContainer;
 import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -21,14 +20,11 @@ import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMachine, IDisplayUIMachine {

@@ -27,9 +27,6 @@ public class DebugBlockPattern {
     public DebugBlockPattern() {
         symbolMap = new HashMap<>();
         structureDir = new RelativeDirection[]{RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.FRONT};
-        symbolMap.computeIfAbsent(' ', key -> new HashSet<>()).add("any"); // any
-        symbolMap.computeIfAbsent('#', key -> new HashSet<>()).add("air"); // air
-        symbolMap.computeIfAbsent('@', key -> new HashSet<>()).add("controller"); // controller
     }
 
     public DebugBlockPattern(Level world, int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {

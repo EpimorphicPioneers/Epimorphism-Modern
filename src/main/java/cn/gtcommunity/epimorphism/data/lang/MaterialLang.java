@@ -709,5 +709,7 @@ public class MaterialLang {
         addTagPrefix(provider, EPTagPrefix.singularity, "%s Singularity", "%s奇点");
         addTagPrefix(provider, EPTagPrefix.milled, "Milled %s", "研磨%s粉");
         addTagPrefix(provider, EPTagPrefix.crucible, "%s Crucible", "%s坩埚");
+        addTagPrefix(provider, EPTagPrefix.seedCrystal, "%s Seed Crystal", "%s晶种");
+        addTagPrefix(provider, EPTagPrefix.boule, "%s Boule", "人造%s");
     }
 }
