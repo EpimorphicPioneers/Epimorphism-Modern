@@ -40,6 +40,8 @@ import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -52,6 +54,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.shapes.Shapes;
+import org.joml.Math;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -1174,7 +1177,7 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/industrial_vacuum_freezer"), false)
             .register();
 
-    public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 4))
+    public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 1))
             .langValue("Industrial Flotation Cell")
             .tooltips(
                     Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0")
@@ -1195,7 +1198,7 @@ public class EPMachines {
                     .where('C', blocks(EPBlocks.FLOTATION_CELL.get()).setMinGlobalLimited(48))
                     .where('A', blocks(EPBlocks.FLOTATION_CASING.get()).setMinGlobalLimited(64)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.autoAbilities(true, true, false)))
+                            .or(Predicates.autoAbilities(true, false, false)))
                     .where('D', Predicates.air())
                     .build())
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/flotation_casing"),
@@ -1204,7 +1207,12 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
             .langValue("Precise Assembler")
-            .tooltips(Component.translatable("block.epimorphism.precise_assembler.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.precise_assembler.desc.0"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.1"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.2"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.3"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.4"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
             .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
@@ -1218,7 +1226,7 @@ public class EPMachines {
                     .where('C', EPPredicates.PACasingBlock())
                     .where('D', EPPredicates.PACasingBlock().setMinGlobalLimited(42)
                             .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, true, false)))
+                            .or(autoAbilities(true, false, false)))
                     .where('F', frames(MARM200Steel))
                     .where('G', blocks(CASING_LAMINATED_GLASS.get()))
                     .where('M', EPPredicates.PAMachineCasingBlock())
@@ -1449,6 +1457,42 @@ public class EPMachines {
                             Epimorphism.id("block/multiblock/processing_array")))
                     .register(),
             IV, LuV) : null;
+    public final static MultiblockMachineDefinition ROASTER = EP_REGISTRATE.multiblock("roaster", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
+            .langValue("Roaster")
+            .tooltips(
+                    Component.translatable("block.epimorphism.roaster.desc.0"),
+                    Component.translatable("block.epimorphism.roaster.desc.1")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .appearanceBlock(CASING_INVAR_HEATPROOF)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("     ", "     ", " D D ", " D D ", " D D ")
+                    .aisle("A   A", "ACCCA", "BDBDB", "BBBBB", " D D ")
+                    .aisle("     ", "BCCCB", "BD#DB", "BDEDB", " D D ")
+                    .aisle("A   A", "ACCCA", "BBSBB", "BBBBB", "     ")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('A', frames(Invar))
+                    .where('B', blocks(CASING_INVAR_HEATPROOF.get()).setMinGlobalLimited(18)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
+                            .or(Predicates.autoAbilities(true, false, false)))
+                    .where('C', blocks(FIREBOX_BRONZE.get()))
+                    .where('D', blocks(CASING_TITANIUM_PIPE.get()))
+                    .where('E', abilities(PartAbility.MUFFLER))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_heatproof"),
+                    Epimorphism.id("block/multiblock/roaster"), false)
+            .register();
+
+
 
     public final static MultiblockMachineDefinition NANOSCALE_FABRICATOR = EP_REGISTRATE.multiblock("nanoscale_fabricator", NanoscaleFabricatorMachine::new)
             .langValue("Nanoscale Fabricator")
