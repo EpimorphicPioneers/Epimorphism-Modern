@@ -147,6 +147,10 @@ public class BlockLang {
         addBlock(provider, BREEDING_CASING,"Breeding Casing","养殖机械方块");
         addBlock(provider, GENERAL_PROCESSING_CASING,"General Processing Casing","通用加工机械方块");
         addBlock(provider, MARAGING_STEEL_CASING,"Maraging Steel Casing","马氏体时效钢-250机械方块");
+        addBlock(provider, NEUTRONIUM_MINING_CASING,"Neutronium Mining Casing","中子素采矿机械方块");
+        addBlock(provider, PRECISE_ASSEMBLER_CASING_MK1,"Precise Assembler Casing Mk 1","精密装配机械方块 Mk-I");
+        addBlock(provider, PRECISE_ASSEMBLER_CASING_MK2,"Precise Assembler Casing Mk 2","精密装配机械方块 Mk-II");
+        addBlock(provider, PRECISE_ASSEMBLER_CASING_MK3,"Precise Assembler Casing Mk 3","精密装配机械方块 Mk-III");
         addBlock(provider, ADVANCED_FILTER_CASING,"Advanced Filter Casing","高级过滤器机械方块");
         addBlock(provider, TFFT_CASING,"TFFT Casing","TFFT机械方块");
         addBlock(provider, PROCESS_MACHINE_CASING,"Process Machine Casing","处理器机械方块");
