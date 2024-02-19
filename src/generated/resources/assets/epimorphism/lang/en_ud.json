@@ -49,6 +49,7 @@
   "block.epimorphism.component_assembly_line_casing_uxv.desc": "ʇıu∩ ʎןqɯǝssⱯ ןɐɹnʇɔnɹʇsɹǝdnSㄥ§",
   "block.epimorphism.component_assembly_line_casing_zpm": ")ɹ§WԀZɔ§( buısɐƆ ǝuıꞀ ʎןqɯǝssⱯ ʇuǝuodɯoƆ",
   "block.epimorphism.component_assembly_line_casing_zpm.desc": "ʇıu∩ ʎןqɯǝssⱯ uoısıɔǝɹd ɥbıɥ-ɐɹʇן∩ㄥ§",
+  "block.epimorphism.crystallization_crucible": "ǝןqıɔnɹƆ uoıʇɐzıןןɐʇsʎɹƆ",
   "block.epimorphism.digester": "ɹǝʇsǝbıᗡ",
   "block.epimorphism.drill_head": "pɐǝH ןןıɹᗡ",
   "block.epimorphism.ev_concrete_backfiller": "ɹǝןןıɟʞɔɐᗺ ǝʇǝɹɔuoƆ",
@@ -130,6 +131,7 @@
   "block.epimorphism.mega_cracking_unit": "ʇıu∩ buıʞɔɐɹƆ ןıO ɐbǝW",
   "block.epimorphism.mv_concrete_backfiller": "ɹǝןןıɟʞɔɐᗺ ǝʇǝɹɔuoƆ",
   "block.epimorphism.mv_neutron_accelerator": "ɹoʇɐɹǝןǝɔɔⱯ uoɹʇnǝNɹ§ ΛWq§",
+  "block.epimorphism.nanoscale_fabricator": "ɹoʇɐɔıɹqɐℲ ǝןɐɔsouɐN",
   "block.epimorphism.naq_boron_silicate_glass_block": "ssɐן⅁ ǝʇɐɔıןıS uoɹoᗺ pǝɔɹoɟuıǝɹ-ɥɐpɐnbɐN",
   "block.epimorphism.naq_boron_silicate_glass_block.desc": "ǝɔuɐʇsısǝᴚ ʇɔɐdɯIㄥ§",
   "block.epimorphism.neu_pmma_glass_block": "ssɐן⅁ ⱯWWԀ pǝɔɹoɟuıǝɹ-ɯnıuoɹʇnǝN",
@@ -1240,9 +1242,12 @@
   "particleType.epimorphism.lepton": "uoʇdǝꞀɐ§",
   "particleType.epimorphism.meson": "uosǝWɹ§",
   "particleType.epimorphism.quark": "ʞɹɐnὉp§",
+  "recipe.condition.heat_capacity.desc": "ʞ%s :ǝɹnʇɐɹǝdɯǝ⟘",
   "recipe.condition.neutron_kinetic_energy.desc": "Λǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıxɐW\nΛǝ%s :ʎbɹǝuǝ ɔıʇǝuıʞ uoɹʇnǝu ɯnɯıuıW",
   "recipe.condition.precise_assembler_casing.desc": "%s-ʞW :ɹǝı⟘ buısɐƆ",
+  "tagprefix.boule": "ǝןnoᗺ %s",
   "tagprefix.crucible": "ǝןqıɔnɹƆ %s",
   "tagprefix.milled": "%s pǝןןıW",
+  "tagprefix.seed_crystal": "ןɐʇsʎɹƆ pǝǝS %s",
   "tagprefix.singularity": "ʎʇıɹɐןnbuıS %s"
 }

@@ -30,5 +30,8 @@ public class RecipeLang {
         add(provider, "recipe.condition.precise_assembler_casing.desc",
                 "Casing Tier: MK-%s",
                 "外壳等级：MK-%s");
+        add(provider, "recipe.condition.heat_capacity.desc",
+                "Temperature: %sK",
+                "温度：%sK");
     }
 }

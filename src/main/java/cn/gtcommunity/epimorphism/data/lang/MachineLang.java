@@ -65,7 +65,7 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-        addBlockWithTooltip(provider, EXTREME_INDUSTRIAL_GREENHOUSE::getBlock,"极限工业温室",
+        addBlockWithTooltip(provider, EXTREME_INDUSTRIAL_GREENHOUSE::getBlock, "极限工业温室",
                 List.of(
 
                 ),
@@ -73,7 +73,7 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, BACTERIAL_CULTURE_TANK::getBlock,"细菌培养缸",
+        addBlockWithTooltip(provider, BACTERIAL_CULTURE_TANK::getBlock, "细菌培养缸",
                 List.of(
 
                 ),
@@ -81,7 +81,7 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, CHEMICAL_PLANT::getBlock,"化工厂",
+        addBlockWithTooltip(provider, CHEMICAL_PLANT::getBlock, "化工厂",
                 List.of(
 
                 ),
@@ -89,7 +89,7 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE::getBlock,"部件装配线",
+        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE::getBlock, "部件装配线",
                 List.of(
                         "Assemble A Wide Variety Of Parts In Batches",
                         "Efficiency Crushes The Same Level Of Assembly Machine/Assembly Line!",
@@ -237,6 +237,9 @@ public class MachineLang {
                 "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
                 "§7每格能容纳§r2^31-1§7个物品，不能存储带有§eNBT§7的物品");
 
+        //  ############################################################################################################
+        //  Hatch
+
         addBlockWithTooltip(provider, INFINITE_WATER_HATCH::getBlock, "无限水仓",
                 List.of(
                         "§7Minecraft Exclusive!",
@@ -249,9 +252,6 @@ public class MachineLang {
                         "§4警告：该仓室中的水无法被抽出！"
                 )
         );
-
-        //  ############################################################################################################
-        //  Hatch
 
         addTieredMachineName(provider, "neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "neutron_accelerator",

@@ -49,6 +49,7 @@
   "block.epimorphism.component_assembly_line_casing_uxv.desc": "§7Superstructural Assembly Unit",
   "block.epimorphism.component_assembly_line_casing_zpm": "Component Assembly Line Casing (§cZPM§r)",
   "block.epimorphism.component_assembly_line_casing_zpm.desc": "§7Ultra-high precision Assembly Unit",
+  "block.epimorphism.crystallization_crucible": "Crystallization Crucible",
   "block.epimorphism.digester": "Digester",
   "block.epimorphism.drill_head": "Drill Head",
   "block.epimorphism.ev_concrete_backfiller": "Concrete Backfiller",
@@ -130,6 +131,7 @@
   "block.epimorphism.mega_cracking_unit": "Mega Oil Cracking Unit",
   "block.epimorphism.mv_concrete_backfiller": "Concrete Backfiller",
   "block.epimorphism.mv_neutron_accelerator": "§bMV §rNeutron Accelerator",
+  "block.epimorphism.nanoscale_fabricator": "Nanoscale Fabricator",
   "block.epimorphism.naq_boron_silicate_glass_block": "Naquadah-reinforced Boron Silicate Glass",
   "block.epimorphism.naq_boron_silicate_glass_block.desc": "§7Impact Resistance",
   "block.epimorphism.neu_pmma_glass_block": "Neutronium-reinforced PMMA Glass",
@@ -1240,9 +1242,12 @@
   "particleType.epimorphism.lepton": "§aLepton",
   "particleType.epimorphism.meson": "§rMeson",
   "particleType.epimorphism.quark": "§dQuark",
+  "recipe.condition.heat_capacity.desc": "Temperature: %sK",
   "recipe.condition.neutron_kinetic_energy.desc": "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
   "recipe.condition.precise_assembler_casing.desc": "Casing Tier: MK-%s",
+  "tagprefix.boule": "%s Boule",
   "tagprefix.crucible": "%s Crucible",
   "tagprefix.milled": "Milled %s",
+  "tagprefix.seed_crystal": "%s Seed Crystal",
   "tagprefix.singularity": "%s Singularity"
 }
