@@ -20,16 +20,16 @@ import java.util.List;
 public class CrucibleBlock extends MaterialBlock {
 
     @Getter
-    private final int temperature;
+    private final int heatCapacity;
 
     public CrucibleBlock(Properties properties, Material material) {
         super(properties, EPTagPrefix.crucible, material, true);
-        this.temperature = material.getProperty(EPPropertyKeys.CRUCIBLE).getTemperature();
+        this.heatCapacity = material.getProperty(EPPropertyKeys.CRUCIBLE).getHeatCapacity();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("epimorphism.universal.desc.heat", getTemperature()));
+        tooltip.add(Component.translatable("epimorphism.universal.desc.heat", getHeatCapacity()));
     }
 }

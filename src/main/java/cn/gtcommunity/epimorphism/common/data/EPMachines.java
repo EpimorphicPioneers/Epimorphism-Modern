@@ -18,6 +18,7 @@ import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -66,6 +67,7 @@ import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -118,7 +120,7 @@ public class EPMachines {
                         .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
                         .where('B', definition, Direction.NORTH)
                         .where('A', YOTTA_FLUID_TANK_CASING.get())
-                        .where('D', ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.Steel))
+                        .where('D', ChemicalHelper.getBlock(frameGt, GTMaterials.Steel))
                         .where('F', GTMachines.FLUID_EXPORT_HATCH[ULV], Direction.DOWN)
                         .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.UP)
                         .where(' ', Blocks.AIR.defaultBlockState());
@@ -558,12 +560,12 @@ public class EPMachines {
                                 .where('A', OSMIR_BORON_SILICATE_GLASS.get())
                                 .where('H', IRIDIUM_CASING.get())
                                 .where('C', CASING_ASSEMBLY_LINE.get())
-                                .where('D', ChemicalHelper.getBlock(TagPrefix.frameGt, MARM200Steel))
+                                .where('D', ChemicalHelper.getBlock(frameGt, MARM200Steel))
                                 .where('G', CASING_POLYBENZIMIDAZOLE_PIPE.get())
                                 .where('E', ADVANCED_FILTER_CASING.get())
                                 .where('J', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
                                 .where('X', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
-                                .where('N', ChemicalHelper.getBlock(TagPrefix.frameGt, GTMaterials.TungstenSteel))
+                                .where('N', ChemicalHelper.getBlock(frameGt, GTMaterials.TungstenSteel))
                                 .where('K', GTMachines.ITEM_EXPORT_BUS[4], Direction.NORTH)
                                 .where('L', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
                                 .where('I', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
@@ -645,7 +647,7 @@ public class EPMachines {
                     .where('P', GENERAL_PROCESSING_CASING.get())
                     .where('L', ADVANCED_SUBSTRATE_CASING.get())
                     .where('T', CASING_LAMINATED_GLASS.get())
-                    .where('F', ChemicalHelper.getBlock(TagPrefix.frameGt, MaragingSteel250)).build())
+                    .where('F', ChemicalHelper.getBlock(frameGt, MaragingSteel250)).build())
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/maraging_steel_250_casing"),
                     Epimorphism.id("block/multiblock/general_processing_plant"), false)
@@ -1248,7 +1250,7 @@ public class EPMachines {
                         .where('T', MAINTENANCE_HATCH, Direction.NORTH)
                         .where('O', MUFFLER_HATCH[LuV], Direction.UP)
                         .where('G', CASING_LAMINATED_GLASS.get())
-                        .where('F', ChemicalHelper.getBlock(TagPrefix.frameGt, MARM200Steel))
+                        .where('F', ChemicalHelper.getBlock(frameGt, MARM200Steel))
                         .where(' ', Blocks.AIR.defaultBlockState());
 
                 List<Block> casing = BlockMaps.ALL_PA_CASINGS.entrySet().stream()
@@ -1557,13 +1559,73 @@ public class EPMachines {
 
                 CRUCIBLE_BLOCKS.values().stream()
                         .map(BlockEntry::get)
-                        .sorted(Comparator.comparingInt(CrucibleBlock::getTemperature))
+                        .sorted(Comparator.comparingInt(CrucibleBlock::getHeatCapacity))
                         .forEach(crucible -> shapeInfos.add(builder.where('C', crucible).build()));
 
                 return shapeInfos;
             })
             .renderer(() -> new CustomPartRenderer(GTCEu.id("block/casings/gcym/laser_safe_engraving_casing"),
                     Epimorphism.id("block/multiblock/nanoscale_fabricator"), NanoscaleFabricatorMachine::getBaseTexture))
+            .register();
+
+    public final static MultiblockMachineDefinition CRYSTALLIZATION_CRUCIBLE = EP_REGISTRATE.multiblock("crystallization_crucible", CoilWorkableElectricMultiblockMachine::new)
+            .langValue("Crystallization Crucible")
+            .tooltips(
+                    Component.translatable("block.epimorphism.crystallization_crucible.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CRYSTALLIZATION_RECIPES)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXXXX", "G###G", "G###G", "XXXXX")
+                    .aisle("XXXXX", "#VCV#", "#VCV#", "XXXXX")
+                    .aisle("XXXXX", "#CAC#", "#CAC#", "XXMXX")
+                    .aisle("XXXXX", "#VCV#", "#VCV#", "XXXXX")
+                    .aisle("XXSXX", "G###G", "G###G", "XXXXX")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_TITANIUM_STABLE.get()).setMinGlobalLimited(32)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('C', heatingCoils())
+                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('G', frames(Titanium))
+                    .where('V', blocks(HEAT_VENT.get()))
+                    .where('A', air())
+                    .where('#', any())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("XXEXX", "G###G", "G###G", "XXXXX")
+                        .aisle("XXXXX", "#VCV#", "#VCV#", "XXXXX")
+                        .aisle("XXXXX", "#C#C#", "#C#C#", "XXHXX")
+                        .aisle("XXXXX", "#VCV#", "#VCV#", "XXXXX")
+                        .aisle("IOSMF", "G###G", "G###G", "XXXXX")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('X', CASING_TITANIUM_STABLE.get())
+                        .where('G', ChemicalHelper.getBlock(frameGt, Titanium))
+                        .where('V', HEAT_VENT.get())
+                        .where('#', Blocks.AIR.defaultBlockState())
+                        .where('E', GTMachines.ENERGY_INPUT_HATCH[GTValues.HV], Direction.NORTH)
+                        .where('I', GTMachines.ITEM_IMPORT_BUS[GTValues.LV], Direction.SOUTH)
+                        .where('O', GTMachines.ITEM_EXPORT_BUS[GTValues.LV], Direction.SOUTH)
+                        .where('F', GTMachines.FLUID_IMPORT_HATCH[GTValues.LV], Direction.SOUTH)
+                        .where('H', GTMachines.MUFFLER_HATCH[GTValues.LV], Direction.UP)
+                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH);
+                ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
+                return shapeInfo;
+            })
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    Epimorphism.id("block/multiblock/crystallization_crucible"), false)
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                            Component.translatable(FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K").setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
+                }
+            })
             .register();
 
     // Multiblock Parts

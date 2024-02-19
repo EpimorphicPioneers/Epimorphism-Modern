@@ -8,15 +8,15 @@ import lombok.Getter;
 public class CrucibleProperty implements IMaterialProperty<CrucibleProperty> {
 
     @Getter
-    private int temperature;
+    private int heatCapacity;
 
-    public CrucibleProperty(int temperature) {
-        this.temperature = temperature;
+    public CrucibleProperty(int heatCapacity) {
+        this.heatCapacity = heatCapacity;
     }
 
-    public void setTemperature(int temperature) {
-        Preconditions.checkArgument(temperature > 0, "Invalid temperature");
-        this.temperature = temperature;
+    public void setTemperature(int heatCapacity) {
+        Preconditions.checkArgument(heatCapacity > 0, "Invalid Heat Capacity");
+        this.heatCapacity = heatCapacity;
     }
 
     @Override

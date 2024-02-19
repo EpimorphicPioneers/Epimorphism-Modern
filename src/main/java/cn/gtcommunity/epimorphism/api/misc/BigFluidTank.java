@@ -1,4 +1,4 @@
-package cn.gtcommunity.epimorphism.api.fluid;
+package cn.gtcommunity.epimorphism.api.misc;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;

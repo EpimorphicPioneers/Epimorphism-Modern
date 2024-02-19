@@ -4,7 +4,6 @@ import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKey
 import cn.gtcommunity.epimorphism.client.renderer.handler.item.GrindBallItemRenderer;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IMaterialPartItem;
