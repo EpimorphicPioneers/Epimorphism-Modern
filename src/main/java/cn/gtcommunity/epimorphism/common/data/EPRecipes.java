@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data;
 
+import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.data.recipe.generated.BouleRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.RadiationHatchRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.WrapItemRecipeHandler;
@@ -10,13 +11,16 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 public class EPRecipes {
-    public static void recipeAddition(Consumer<FinishedRecipe> consumer) {
-        NeutronActivatorLoader.init(consumer);
-        WrapItemRecipeHandler.init(consumer);
-        RadiationHatchRecipeHandler.init(consumer);
-        BouleRecipeHandler.init(consumer);
+    public static void init(Consumer<FinishedRecipe> provider) {
+        NeutronActivatorLoader.init(provider);
+        WrapItemRecipeHandler.init(provider);
+        RadiationHatchRecipeHandler.init(provider);
+        BouleRecipeHandler.init(provider);
+        initOreProcessings(provider);
+    }
 
-        initOreProcessings(consumer);
+    public static void remove(GTRecipeEvent.RemoveRecipe event) {
+
     }
 
     private static void initOreProcessings(Consumer<FinishedRecipe> consumer) {

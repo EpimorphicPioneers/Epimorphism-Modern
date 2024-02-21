@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
-import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPAgricultureItem.*;

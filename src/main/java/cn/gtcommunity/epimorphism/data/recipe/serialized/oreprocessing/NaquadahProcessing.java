@@ -94,7 +94,7 @@ public class NaquadahProcessing {
                 .outputFluids(DiethylhexylPhosphoricAcid.getFluid(3000))
                 .EUt(VH[LuV])
                 .duration(100)
-                .addCondition(new NeutronKineticEnergyCondition(325 * K, 800 * K))
+//                .addCondition(new NeutronKineticEnergyCondition(325 * K, 800 * K))
                 .save(provider);
     }
 

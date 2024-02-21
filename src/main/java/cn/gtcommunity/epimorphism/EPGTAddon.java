@@ -4,15 +4,13 @@ import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
 import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
-import cn.gtcommunity.epimorphism.common.CommonProxy;
 import cn.gtcommunity.epimorphism.common.block.BlockTypeAdditions;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeConditions;
-import cn.gtcommunity.epimorphism.common.recipe.RecipeTypeAdditions;
+import cn.gtcommunity.epimorphism.data.recipe.GTRecipeManager;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import cn.gtcommunity.epimorphism.common.data.EPCovers;
 import cn.gtcommunity.epimorphism.common.data.EPElements;
-import cn.gtcommunity.epimorphism.common.data.EPRecipes;
 import com.gregtechceu.gtceu.api.addon.events.KJSRecipeKeyEvent;
 import com.gregtechceu.gtceu.api.addon.events.MaterialCasingCollectionEvent;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -29,6 +27,7 @@ public class EPGTAddon implements IGTAddon {
         EPMaterialIconSet.init();
         EPMaterialIconType.init();
         Epimorphism.proxy.init();
+        GTRecipeManager.onGTPostInitialization();
         Epimorphism.LOGGER.info("Epimorphism's GT Addon Loaded!");
     }
 
@@ -39,10 +38,6 @@ public class EPGTAddon implements IGTAddon {
 
     public static void postInitializeAddon() {
         BlockTypeAdditions.init();
-    }
-
-    public static void onPostInitializeRecipeTypes() {
-        RecipeTypeAdditions.init();
     }
 
     @Override
@@ -72,7 +67,7 @@ public class EPGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        EPRecipes.recipeAddition(provider);
+        GTRecipeManager.onGTRecipeAddition(provider);
     }
 
     @Override

@@ -68,6 +68,12 @@ public class BlockTypeAdditions {
             simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK1, 1);
             simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK2, 2);
             simpleTierTypeAdd(ALL_PA_CASINGS, PRECISE_ASSEMBLER_CASING_MK3, 3);
+
+            //  ALL_FIREBOXS Init
+            simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_BRONZE::get, 1);
+            simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_STEEL::get, 2);
+            simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_TITANIUM::get, 3);
+            simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_TUNGSTENSTEEL::get, 4);
         }
     }
 

@@ -13,9 +13,10 @@
   ],
   "mixins": [
     "accessors.BlockLootSubProviderAccessor",
+    "accessors.GTRecipeTypeAccessor",
     "gtm.ComponentItemMixin",
     "gtm.GTBlocksMixin",
-    "gtm.GTRecipeTypesMixin",
+    "gtm.GTRecipeBuilderMixin",
     "gtm.RendererGlassBlockMixin",
     "gtm.TagPrefixItemMixin",
     "mc.BlockGlassMixin",

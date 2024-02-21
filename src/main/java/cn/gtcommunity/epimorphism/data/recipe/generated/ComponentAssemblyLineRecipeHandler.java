@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.data.recipe.generated;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeTypes;
 import cn.gtcommunity.epimorphism.common.data.EPWrapItem;
@@ -20,6 +21,7 @@ import java.util.function.Consumer;
 
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class ComponentAssemblyLineRecipeHandler {
     private static final LinkedList<Item> LIST = asLinkedList(

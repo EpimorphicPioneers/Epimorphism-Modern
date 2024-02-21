@@ -90,9 +90,15 @@ public class EPPredicates {
                 () -> new SimpleValueContainer<>(0, (integer, block, tierType) -> ++integer), Predicates.blocks(blocks), null);
     }
 
-    public static TraceabilityPredicate MachineCasingBlock() {
+    public static TraceabilityPredicate machineCasingBlock() {
         return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "MachineCasing")
                 .map(BlockMaps.ALL_MACHINE_CASINGS)
+                .build();
+    }
+
+    public static TraceabilityPredicate fireboxBlock() {
+        return TierTraceabilityPredicateFactory.create(TierTraceabilityPredicateFactory.TraceabilityPredicateType.TIER, "Firebox")
+                .map(BlockMaps.ALL_FIREBOXS)
                 .build();
     }
 }
