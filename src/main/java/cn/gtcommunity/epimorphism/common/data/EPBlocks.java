@@ -259,7 +259,7 @@ public class EPBlocks {
                     .withPool(table.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)))
                             .add(LootItem.lootTableItem(EPBlocks.FERTILIZED_DIRT.asItem())))))
             .tag(BlockTags.BIG_DRIPLEAF_PLACEABLE)
-                   .addLayer(() -> RenderType::cutout)
+            .addLayer(() -> RenderType::cutout)
             .item()
             .build()
             .register();

@@ -9,6 +9,7 @@ import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.block.CrucibleBlock;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.AdvancedEBFMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.gtm.ProcessingArrayMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy.NeutronActivatorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
@@ -65,12 +66,15 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import static cn.gtcommunity.epimorphism.api.pattern.EPPredicates.*;
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
+import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -380,7 +384,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
                     .where('C', EPPredicates.CPCasingBlock())
                     .where('X', heatingCoils())
-                    .where('M', EPPredicates.MachineCasingBlock())
+                    .where('M', EPPredicates.machineCasingBlock())
                     .where('T', EPPredicates.CPPipeBlock())
                     .where('#', any())
                     .where('A',air())
@@ -718,7 +722,8 @@ public class EPMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/fermentation_tank"), false)
             .register();
-    public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_cracking_unit", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+    public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_cracking_unit",
+                    blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Oil Cracking Unit")
             .tooltips(Component.translatable("block.epimorphism.mega_cracking_unit.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -943,7 +948,8 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/mega_cracking_unit"), false)
             .register();
 
-    public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = EP_REGISTRATE.multiblock("mega_alloy_blast_smelter", blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+    public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = EP_REGISTRATE.multiblock("mega_alloy_blast_smelter",
+                    blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Alloy Blast Smelter")
             .tooltips(Component.translatable("block.epimorphism.mega_alloy_blast_smelter.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
@@ -971,7 +977,7 @@ public class EPMachines {
                     .where('C', blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(15)
                             .or(autoAbilities(definition.getRecipeTypes()))
                             .or(autoAbilities(true, false, false)))
-                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('M', abilities(MUFFLER))
                     .where(' ', any())
                     .build()
             )
@@ -1030,6 +1036,75 @@ public class EPMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
                     Epimorphism.id("block/multiblock/mega_alloy_blast_smelter"), false)
             .register();
+
+    public final static MultiblockMachineDefinition INDUSTRIAL_COKE_OVEN = EP_REGISTRATE.multiblock("industrial_coke_oven",
+                    blockEntity -> new ParallelCoilCasingMultiblockMachine(blockEntity, "Firebox", machine -> machine.getCoilTier() * 4))
+            .langValue("Industrial Coke Oven")
+            .tooltips(Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(PYROLYSE_RECIPES)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                    .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                    .aisle("AAAAA", " C C ", " D D ", " D D ", " D D ", " C C ", "AAMAA")
+                    .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                    .aisle("AAEAA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                    .where('E', controller(blocks(definition.get())))
+                    .where('A', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(30)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('B', frames(Steel))
+                    .where('C', fireboxBlock())
+                    .where('D', heatingCoils())
+                    .where('M', abilities(MUFFLER))
+                    .where(' ', air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("IOEFK", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                        .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                        .aisle("AAAAA", " C C ", " D D ", " D D ", " D D ", " C C ", "AAMAA")
+                        .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                        .aisle("AAHGA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                        .where('E', definition, Direction.NORTH)
+                        .where('A', CASING_STEEL_SOLID)
+                        .where('B', ChemicalHelper.getBlock(frameGt, Steel))
+                        .where('I', ITEM_IMPORT_BUS[EV], Direction.NORTH)
+                        .where('O', ITEM_EXPORT_BUS[EV], Direction.NORTH)
+                        .where('F', FLUID_IMPORT_HATCH[EV], Direction.NORTH)
+                        .where('K', FLUID_EXPORT_HATCH[EV], Direction.NORTH)
+                        .where('M', MUFFLER_HATCH[LV], Direction.UP)
+                        .where('G', ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
+                        .where('H', MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where(' ', Blocks.AIR.defaultBlockState());
+                List<Block> listFirebox = ALL_FIREBOXS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                int maxLeng = StructureUtil.maxLength(new List[] {
+                        listCoil,
+                        listFirebox
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('C', EPUniverUtil.getOrLast(listFirebox, i));
+                    builder.where('D', EPUniverUtil.getOrLast(listCoil, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    Epimorphism.id("block/multiblock/industrial_coke_oven"), false)
+            .register();
+
     public final static MultiblockMachineDefinition VACUUM_DRYING_FURNACE = EP_REGISTRATE.multiblock("vacuum_drying_furnace", blockEntity -> new ParallelCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Vacuum Drying Furnace")
             .tooltips(Component.translatable("block.epimorphism.vacuum_drying_furnace.desc.0"))
@@ -1045,7 +1120,7 @@ public class EPMachines {
                             .setMinGlobalLimited(9)
                             .or(autoAbilities(definition.getRecipeTypes()))
                             .or(autoAbilities(true, false, false)))
-                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('M', abilities(MUFFLER))
                     .where('C', heatingCoils())
                     .where('#', air())
                     .build()
@@ -1093,7 +1168,7 @@ public class EPMachines {
                     .where('B', abilities(EPPartAbility.GRIND_BALL))
                     .where('C', blocks(CASING_ISA_MILL_PIPE.get()))
                     .where('E', blocks(ISA_MILL_CASING.get()).setMinGlobalLimited(31)
-                            .or(abilities(PartAbility.MUFFLER).setExactLimit(1))
+                            .or(abilities(MUFFLER).setExactLimit(1))
                             .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                             .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
                             .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
@@ -1122,7 +1197,7 @@ public class EPMachines {
                     .where('X', blocks(ADVANCED_INVAR_CASING.get()).setMinGlobalLimited(9)
                             .or(autoAbilities(definition.getRecipeTypes()))
                             .or(autoAbilities(true, false, false)))
-                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('M', abilities(MUFFLER))
                     .where('C', heatingCoils())
                     .where('#', air())
                     .build()
@@ -1231,7 +1306,7 @@ public class EPMachines {
                     .where('C', EPPredicates.PACasingBlock())
                     .where('D', EPPredicates.PACasingBlock().setMinGlobalLimited(42)
                             .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, false)))
+                            .or(autoAbilities(true, true, false)))
                     .where('F', frames(MARM200Steel))
                     .where('G', blocks(CASING_LAMINATED_GLASS.get()))
                     .where('M', EPPredicates.PAMachineCasingBlock())
@@ -1315,7 +1390,7 @@ public class EPMachines {
             .register();
 
     public final static MultiblockMachineDefinition INDUSTRIAL_DRILL = EP_REGISTRATE.multiblock("industrial_drill", IndustrialDrillMachine::new)
-            .langValue("Digester")
+            .langValue("Industrial Drill")
             .tooltips(
                     Component.translatable("block.epimorphism.industrial_drill.desc.0")
             )
@@ -1462,22 +1537,22 @@ public class EPMachines {
                             Epimorphism.id("block/multiblock/processing_array")))
                     .register(),
             IV, LuV) : null;
-    public final static MultiblockMachineDefinition ROASTER = EP_REGISTRATE.multiblock("roaster", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
+    public final static MultiblockMachineDefinition ROASTER = EP_REGISTRATE.multiblock("roaster", holder -> new TierCasingElectricMultiblockMachine(holder, "Firebox"))
             .langValue("Roaster")
             .tooltips(
                     Component.translatable("block.epimorphism.roaster.desc.0"),
                     Component.translatable("block.epimorphism.roaster.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(ROASTER_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("     ", "     ", " D D ", " D D ", " D D ")
                     .aisle("A   A", "ACCCA", "BDBDB", "BBBBB", " D D ")
                     .aisle("     ", "BCCCB", "BD#DB", "BDEDB", " D D ")
                     .aisle("A   A", "ACCCA", "BBSBB", "BBBBB", "     ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('S', Predicates.controller(blocks(definition.get())))
                     .where('A', frames(Invar))
                     .where('B', blocks(CASING_INVAR_HEATPROOF.get()).setMinGlobalLimited(18)
                             .or(Predicates.autoAbilities(definition.getRecipeTypes()))
@@ -1487,12 +1562,13 @@ public class EPMachines {
                             .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
                             .or(Predicates.autoAbilities(true, false, false)))
-                    .where('C', blocks(FIREBOX_BRONZE.get()))
+                    .where('C', fireboxBlock())
                     .where('D', blocks(CASING_TITANIUM_PIPE.get()))
-                    .where('E', abilities(PartAbility.MUFFLER))
+                    .where('E', abilities(MUFFLER))
                     .where('#', Predicates.air())
                     .where(' ', Predicates.any())
-                    .build())
+                    .build()
+            )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_heatproof"),
                     Epimorphism.id("block/multiblock/roaster"), false)
             .register();
@@ -1590,7 +1666,7 @@ public class EPMachines {
                             .or(autoAbilities(definition.getRecipeTypes()))
                             .or(autoAbilities(true, false, false)))
                     .where('C', heatingCoils())
-                    .where('M', abilities(PartAbility.MUFFLER))
+                    .where('M', abilities(MUFFLER))
                     .where('G', frames(Titanium))
                     .where('V', blocks(HEAT_VENT.get()))
                     .where('A', air())
@@ -1645,19 +1721,19 @@ public class EPMachines {
                     .aisle("AAA", " E ", "   ", "   ", "   ")
                     .aisle("ABA", "E#E", "EBE", "ECE", "EDE")
                     .aisle("AAA", " S ", "   ", "   ", "   ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('S', controller(blocks(definition.get())))
                     .where('A', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(5)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS))
-                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS))
-                            .or(Predicates.abilities(PartAbility.STEAM))
-                            .or(Predicates.autoAbilities(false, false, false)))
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(abilities(PartAbility.STEAM_IMPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM))
+                            .or(autoAbilities(false, false, false)))
                     .where('B', blocks(ChemicalHelper.getBlock(block,Steel)))
                     .where('C', blocks(Blocks.STICKY_PISTON))
                     .where('D', abilities(PartAbility.STEAM))
                     .where('E', blocks(CASING_BRONZE_BRICKS.get()))
-                    .where('#', Predicates.air())
-                    .where(' ', Predicates.any())
+                    .where('#', air())
+                    .where(' ', any())
                     .build())
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
                     Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
