@@ -232,7 +232,7 @@ public class MachineLang {
                                         "§6运行§d组装机§6配方时，§b耗时§6减少§e50%§6。",
                                         "§6运行§d组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
 
-                addBlockWithTooltip(provider, DIGESTER::getBlock, "沼气池",
+                addBlockWithTooltip(provider, DIGESTER::getBlock, "注解池",
                                 List.of(
 
                                 ),
@@ -298,12 +298,12 @@ public class MachineLang {
 
                 addBlockWithTooltip(provider, ROASTER::getBlock, "焙烧炉",
                                 List.of(
-"§7Cook slowly over low heat.",
-                                        "For every 1 level above the recipe firebox  level, §bDuration §rmultiplied by §e50%§r."
+                                                "§7Cook slowly over low heat.",
+                                                "For every 1 level above the recipe firebox  level, §bDuration §rmultiplied by §e50%§r."
                                 ),
                                 List.of(
-"§7小火慢烹。",
-            "每超过配方所需燃烧室等级1级，§b耗时§r乘以§e50%§r。"
+                                                "§7小火慢烹。",
+                                                "每超过配方所需燃烧室等级1级，§b耗时§r乘以§e50%§r。"
                                 ));
 
                 addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",

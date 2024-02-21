@@ -19,9 +19,12 @@ import cn.gtcommunity.epimorphism.config.EPConfigHolder;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.block.MaterialBlock;
+import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.item.MaterialBlockItem;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -1626,6 +1629,38 @@ public class EPMachines {
                             Component.translatable(FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K").setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
                 }
             })
+            .register();
+
+    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
+            .langValue("Steam Piston Hammer")
+            .tooltips(
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .appearanceBlock(CASING_BRONZE_BRICKS)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAA", " E ", "   ", "   ", "   ")
+                    .aisle("ABA", "E#E", "EBE", "ECE", "EDE")
+                    .aisle("AAA", " S ", "   ", "   ", "   ")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('A', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(5)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.STEAM))
+                            .or(Predicates.autoAbilities(false, false, false)))
+                    .where('B', blocks(ChemicalHelper.getBlock(block,Steel)))
+                    .where('C', blocks(Blocks.STICKY_PISTON))
+                    .where('D', abilities(PartAbility.STEAM))
+                    .where('E', blocks(CASING_BRONZE_BRICKS.get()))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
             .register();
 
     // Multiblock Parts
