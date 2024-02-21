@@ -386,6 +386,8 @@ public class MaterialLang {
         addMaterial(provider, RhReNqCatalyst, "Rh-Re-Nq Catalyst", "铑-铼-硅岩混合催化剂");
         addMaterial(provider, LithiumTitanate, "Lithium Titanate", "钛酸锂");
         addMaterial(provider, TitaniumNitrate, "Titanium Nitrate", "硝酸钛");
+        addMaterial(provider, NaquadahOxideMixture, "Naquadah Oxide Mixture", "氧化硅岩混合物");
+        addMaterial(provider, ExtractiveNaquadahOxide, "Extractive Naquadah Oxide", "氧化硅岩浸出物");
 
         // Second Degree Materials
         addMaterial(provider, DragonBreath, "Dragon Breath", "龙息");
@@ -641,6 +643,11 @@ public class MaterialLang {
         addMaterial(provider, HeavyFluorinatedDraconiumSolution, "Heavy Fluorinated Draconium Solution", "重氟龙素溶液");
         addMaterial(provider, QuasifissioningPlasma, "Quasifissioning Plasma", "拟裂变");
         addMaterial(provider, TranscendentMental, "Transcendent Mental", "超时空金属");
+        addMaterial(provider, LowPurityNaquadahSolution, "Low-purity Naquadah Solution", "低纯度硅岩乳液");
+        addMaterial(provider, NaquadahHydroxidesSolution, "Naquadah Hydroxides Solution", "硅岩氯化物溶液");
+        addMaterial(provider, ConcentrateEnrichedNaquadahMixture, "Concentrate Enriched Naquadah Mixture", "浓缩富集硅岩混合物");
+        addMaterial(provider, ImpureNaquadahMixtureSolution, "Impure Naquadah Mixture Solution", "含杂硅岩混合物溶液");
+        addMaterial(provider, PureNaquadriaMixtureSolution, "Pure Naquadria Mixture Solution", "洁净超能硅岩混合物乳液");
 
         // Mod Compatibility Materials
         addMaterial(provider, Mana, "Mana", "魔力");

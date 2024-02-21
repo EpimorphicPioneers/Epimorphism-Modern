@@ -386,6 +386,8 @@ public class EPMaterials {
     public static Material RhReNqCatalyst;
     public static Material LithiumTitanate;
     public static Material TitaniumNitrate;
+    public static Material NaquadahOxideMixture;
+    public static Material ExtractiveNaquadahOxide;
 
     //  Second Degree Materials
     public static Material DragonBreath;
@@ -640,6 +642,11 @@ public class EPMaterials {
     public static Material HeavyFluorinatedDraconiumSolution;
     public static Material QuasifissioningPlasma;
     public static Material TranscendentMental;
+    public static Material LowPurityNaquadahSolution;
+    public static Material NaquadahHydroxidesSolution;
+    public static Material ConcentrateEnrichedNaquadahMixture;
+    public static Material ImpureNaquadahMixtureSolution;
+    public static Material PureNaquadriaMixtureSolution;
 
     //  Machine Casing Materials
     public static Material Inconel625;
