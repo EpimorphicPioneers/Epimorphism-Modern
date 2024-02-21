@@ -76,6 +76,9 @@ public class EPRecipeTypes {
     public final static GTRecipeType PRECISE_ASSEMBLER_RECIPES = register("precise_assembler", MULTIBLOCK).setMaxIOSize(4, 1, 4, 0).setEUIO(IO.IN)
             .setSound(GTSoundEntries.ASSEMBLER);
 
+    public final static GTRecipeType ROASTER_RECIPES = register("roaster", MULTIBLOCK).setMaxIOSize(2, 4, 2, 2).setEUIO(IO.IN)
+            .setSound(GTSoundEntries.FURNACE);
+
     public final static GTRecipeType DRILLING_RECIPES = register("industrial_drill", MULTIBLOCK).setMaxIOSize(1, 1, 0, 1).setEUIO(IO.IN)
             .setSlotOverlay(false, false, true, GuiTextures.CRUSHED_ORE_OVERLAY)
             .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
@@ -84,6 +87,10 @@ public class EPRecipeTypes {
     public final static GTRecipeType DIGESTER_RECIPES = register("digester", MULTIBLOCK).setMaxIOSize(1, 1, 1, 1).setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
+
+    public final static GTRecipeType ORE_MILLING_RECIPES = register("ore_milling", MULTIBLOCK).setMaxIOSize(1, 1, 0, 0).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.FORGE_HAMMER);
 
     public final static GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = register("vacuum_drying_furnace", MULTIBLOCK).setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)
             .addDataInfo(data -> {

@@ -14,6 +14,16 @@ public class RecipeLang {
         addRecipeType(provider, GENERAL_RECIPES_B, "Machining Mode B", "加工模式B");
         addRecipeType(provider, GENERAL_RECIPES_C, "Machining Mode C", "加工模式C");
         addRecipeType(provider, RADIATION_HATCH_RECIPES, "List of materials in the radiation chamber", "放射仓材料列表");
+        addRecipeType(provider, ROASTER_RECIPES, "Roasting", "焙烧");
+        addRecipeType(provider, DRILLING_RECIPES, "Drilling", "钻取");
+        addRecipeType(provider, DIGESTER_RECIPES, "Digestion", "煮解");
+        addRecipeType(provider, ORE_MILLING_RECIPES, "Ore Milling", "矿石加工");
+        addRecipeType(provider, VACUUM_DRYING_FURNACE_RECIPES, "Vacuum Drying", "真空干燥");
+        addRecipeType(provider, PRECISE_ASSEMBLER_RECIPES, "Precise Assembler", "精密组装");
+        addRecipeType(provider, FERMENTATION_TANK_RECIPES, "Biological Fermentation", "生物发酵");
+        addRecipeType(provider, MOLECULAR_BEAM_RECIPES, "Molecular Beam Epitaxy", "分子束外延");
+        addRecipeType(provider, CRYSTALLIZATION_RECIPES, "Crystallization", "结晶");
+
 
         //  Recipe Data
         add(provider, "epimorphism.recipe.mass",

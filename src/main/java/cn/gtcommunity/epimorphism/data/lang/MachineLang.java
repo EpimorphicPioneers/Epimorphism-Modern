@@ -227,12 +227,12 @@ public class MachineLang {
                                         "§6When running §d Assembler§6 recipes, §5Parallel §6add §e2^(machine enclosure level +4) §6.)"),
                                 List.of(
                                         "§7误差不超过7nm",
-                                        "可用配方类型：§d组装机§r，§d组装精密",
+                                        "可用配方类型：§d组装机§r，§精密组装",
                                         "使用不同的机器外壳判定机器等级",
                                         "§6运行§d组装机§6配方时，§b耗时§6减少§e50%§6。",
                                         "§6运行§d组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
 
-                addBlockWithTooltip(provider, DIGESTER::getBlock, "注解池",
+                addBlockWithTooltip(provider, DIGESTER::getBlock, "煮解池",
                                 List.of(
 
                                 ),
