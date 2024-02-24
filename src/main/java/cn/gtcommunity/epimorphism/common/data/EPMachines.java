@@ -1711,7 +1711,10 @@ public class EPMachines {
             .langValue("Steam Piston Hammer")
             .tooltips(
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1")
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"),
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.4")
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)

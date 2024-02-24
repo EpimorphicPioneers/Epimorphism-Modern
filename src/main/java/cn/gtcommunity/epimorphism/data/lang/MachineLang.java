@@ -222,17 +222,17 @@ public class MachineLang {
 
         addBlockWithTooltip(provider, PRECISE_ASSEMBLER::getBlock, "精密组装机",
                 List.of(
-                        "§7 The error does not exceed 7 nm",
-                        "Available Recipe Types：§dAssembler§r,§dPrecision Assemble",
+                        "§7The error does not exceed 7 nm",
+                        "Available Recipe Types：§9Assembler§r,§9Precision Assemble",
                         "Different Machine Housings Are Used To Determine The Machine Class",
-                        "§6When running §d Assembler§6 recipes, §bDuration §6reduction §f50%§e6.",
-                        "§6When running §d Assembler§6 recipes, §5Parallel §6add §e2^(machine enclosure level +4) §6.)"),
+                        "§6When running §9Assembler§6 recipes, §bDuration §6reduction §f50%§e6.",
+                        "§6When running §9Assembler§6 recipes, §5Parallel §6add §e2^(machine enclosure level +4) §6.)"),
                 List.of(
                         "§7误差不超过7nm",
-                        "可用配方类型：§d组装机§r，§d组装精密",
+                        "可用配方类型：§9组装机§r，§9组装精密",
                         "使用不同的机器外壳判定机器等级",
-                        "§6运行§d组装机§6配方时，§b耗时§6减少§e50%§6。",
-                        "§6运行§d组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
+                        "§6运行§9组装机§6配方时，§b耗时§6减少§e50%§6。",
+                        "§6运行§9组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
 
         addBlockWithTooltip(provider, DIGESTER::getBlock, "煮解池",
                 List.of(
@@ -275,13 +275,13 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock, "工业级浮选机",
+/*        addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock, "工业级浮选机",
                 List.of(
 
                 ),
                 List.of(
 
-                ));
+                ));*/
 
         addBlockWithTooltip(provider, ROASTER::getBlock, "焙烧炉",
                 List.of(
@@ -291,6 +291,34 @@ public class MachineLang {
                 List.of(
                         "§7小火慢烹。",
                         "每超过配方所需燃烧室等级1级，§b耗时§r乘以§e50%§r。"
+                ));
+
+        addBlockWithTooltip(provider, NANOSCALE_FABRICATOR::getBlock, "纳米制造室",
+                List.of(
+                ),
+                List.of(
+                ));
+
+        addBlockWithTooltip(provider, CRYSTALLIZATION_CRUCIBLE::getBlock, "结晶坩埚",
+                List.of(
+                ),
+                List.of(
+                ));
+
+        addBlockWithTooltip(provider, STEAM_PISTON_HAMMER::getBlock, "蒸汽锻造锤",
+                List.of(
+                        "A Multiblock Piston Hammer at the Steam Age. ",
+                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
+                        "Available Recipe Types：§9Piston Hammer§r,§9Ore Milling",
+                        "§bDuration：§e+50%",
+                        "§dParallel：§e8"
+                ),
+                List.of(
+                        "蒸汽时代的多方块锻造锤。",
+                        "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
+                        "可用配方类型：§9锻造锤§r，§9矿石加工",
+                        "§b耗时：§e+50%",
+                        "§d并行：§e8"
                 ));
 
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
