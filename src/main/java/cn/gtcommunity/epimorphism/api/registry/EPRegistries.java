@@ -1,6 +1,8 @@
 package cn.gtcommunity.epimorphism.api.registry;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.data.EPBlocks;
+import cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs;
 import cn.gtcommunity.epimorphism.common.data.EPMachines;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeTypes;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
@@ -19,6 +21,8 @@ public class EPRegistries {
     }
 
     public static void registerMachine(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
+        EPCreativeModeTabs.init();
+        EPBlocks.init();
         EPMachines.init();
     }
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 import static cn.gtcommunity.epimorphism.common.data.EPMachines.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.MV;
+import static cn.gtcommunity.epimorphism.integration.ae2.machine.EPAEMachine.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
 public class MachineLang {
@@ -275,14 +275,6 @@ public class MachineLang {
 
                 ));
 
-/*        addBlockWithTooltip(provider, INDUSTRIAL_FLOTATION_CELL::getBlock, "工业级浮选机",
-                List.of(
-
-                ),
-                List.of(
-
-                ));*/
-
         addBlockWithTooltip(provider, ROASTER::getBlock, "焙烧炉",
                 List.of(
                         "§7Cook slowly over low heat.",
@@ -320,6 +312,16 @@ public class MachineLang {
                         "§b耗时：§e+50%",
                         "§d并行：§e8"
                 ));
+
+        addCN(provider, "block.epimorphism.uhv_fusion_reactor", "核聚变反应堆控制电脑 MK-IV");
+        add(provider, "gtceu.multiblock.fusion_reactor.uhv.description",
+                "The Fusion Reactor MK 4 is a large multiblock structure used for fusing elements into heavier ones. It can only use UHV and UEV Energy Hatches. For every Hatch it has, its buffer increases by 80M EU, and has a maximum of 1280M.",
+                "核聚变反应堆 MK4是一台大型多方块结构，用于融合元素形成更重的元素。它只能使用§4UHV§r和§aUEV§r等级的能源仓。每个能源仓可增加80M EU的能量缓存，最大能量缓存为1280M。");
+
+        addCN(provider, "block.epimorphism.uev_fusion_reactor", "核聚变反应堆控制电脑 MK-V");
+        add(provider, "gtceu.multiblock.fusion_reactor.uev.description",
+                "The Fusion Reactor MK 5 is a large multiblock structure used for fusing elements into heavier ones. It can only use UEV Energy Hatches. For every Hatch it has, its buffer increases by 160M EU, and has a maximum of 2560M.",
+                "核聚变反应堆 MK5是一台大型多方块结构，用于融合元素形成更重的元素。它只能使用§aUEV§r等级的能源仓。每个能源仓可增加160M EU的能量缓存，最大能量缓存为2560M。");
 
         addBlockWithTooltip(provider, INFINITY_CRATE::getBlock, "无尽板条箱",
                 "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
@@ -368,6 +370,14 @@ public class MachineLang {
                         "§7小心你的手指！",
                         "§f为多方块结构提供研磨球来使用。",
                         "§e允许从输入总线输入研磨球。"));
+
+        addBlockWithTooltip(provider, TANK_ACCESS_HATCH::getBlock, "储罐访问仓",
+                List.of(
+
+                        ),
+                List.of(
+
+                        ));
 
         addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "wireless_energy_input_hatch",

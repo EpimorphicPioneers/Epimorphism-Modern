@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.api.machine.feature;
 
 import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.MachineParallelFancyConfigurator;
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
 

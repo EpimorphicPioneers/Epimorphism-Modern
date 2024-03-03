@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.gui.utils;
 
+import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import net.minecraft.client.Minecraft;

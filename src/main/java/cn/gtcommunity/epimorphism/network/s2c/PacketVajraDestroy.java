@@ -6,6 +6,7 @@ import com.lowdragmc.lowdraglib.networking.IHandlerContext;
 import com.lowdragmc.lowdraglib.networking.IPacket;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 
 @NoArgsConstructor
@@ -25,7 +26,7 @@ public class PacketVajraDestroy implements IPacket {
     @Override
     public void execute(IHandlerContext handler) {
         if (handler.isClient() && didHarvest) {
-            var gameMode = ClientUtil.mc().gameMode;
+            var gameMode = Minecraft.getInstance().gameMode;
             if (gameMode != null) {
                 ((MultiPlayerGameModeAccessor)gameMode).setDestroyDelay(5);
             }

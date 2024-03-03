@@ -1,481 +1,278 @@
-//package cn.gtcommunity.cn.gtcommunity.epimorphism.common.eunetwork;
-//
-//import cn.gtcommunity.cn.gtcommunity.epimorphism.api.eunetwork.AccessLevel;
-//import cn.gtcommunity.cn.gtcommunity.epimorphism.api.eunetwork.NetworkMember;
-//import cn.gtcommunity.cn.gtcommunity.epimorphism.utils.EPLevelUtils;
-//import cn.gtcommunity.cn.gtcommunity.epimorphism.utils.EPNetUtils;
-//import net.minecraft.Util;
-//import net.minecraft.core.GlobalPos;
-//import net.minecraft.nbt.CompoundTag;
-//import net.minecraft.nbt.ListTag;
-//import net.minecraft.nbt.Tag;
-//import net.minecraft.server.level.ServerPlayer;
-//import net.minecraft.world.entity.player.Player;
-//
-//import javax.annotation.Nonnull;
-//import javax.annotation.Nullable;
-//import javax.annotation.ParametersAreNonnullByDefault;
-//import java.util.*;
-//
-///**
-// * The base class of a flux network.
-// * <p>
-// * There are two common types of implementation: client and server.
-// * Client instances are cache values that updated from server, used for pre-checks in UI.
-// * Server instances are logical networks and are responsible for energy transfer.
-// * <p>
-// * When the client operates the server-side network, it needs double side checks to ensure security.
-// * The server-side data will be persistent stored with the game save.
-// */
-//@ParametersAreNonnullByDefault
-//public class EUNetwork {
-//
-//    /**
-//     * An invalid network avoids nullability checks, any operation on this network is invalid.
-//     * You can check {@link #isValid()} to skip your operations. Even if the operation is performed,
-//     * there will be no error.
-//     * <p>
-//     * A disconnected device is considered connected to this network.
-//     */
-//    public static final EUNetwork INVALID = new EUNetwork(
-//            EUNetConstants.INVALID_NETWORK_ID, "", Util.NIL_UUID);
-//
-//    /**
-//     * Constant IDs used to identify logical devices.
-//     *
-//     * @see #getLogicalDevices(int)
-//     */
-//    public static final int
-//            ANY = 0,
-//            PLUG = 1,
-//            POINT = 2,
-//            NODE = 3;
-//
-//    /**
-//     * Some contracts.
-//     */
-//    public static final int MAX_NETWORK_NAME_LENGTH = 24;
-//
-//    public static final String NETWORK_NAME = "name";
-//    public static final String OWNER_UUID = "owner";
-//    public static final String MEMBERS = "members";
-//    public static final String CONNECTIONS = "connections";
-//
-//    //public ICustomValue<Integer> network_id = new CustomValue<>();
-//    //public ICustomValue<String> network_name = new CustomValue<>();
-//    //public ICustomValue<UUID> network_owner = new CustomValue<>();
-//    //public ICustomValue<SecurityType> network_security = new CustomValue<>();
-//    //public ICustomValue<String> network_password = new CustomValue<>();
-//    //public ICustomValue<Integer> network_color = new CustomValue<>();
-//    //public ICustomValue<EnergyType> network_energy = new CustomValue<>();
-//    //public ICustomValue<Integer> network_wireless = new CustomValue<>(0);
-//    //public ICustomValue<NetworkStatistics> network_stats = new CustomValue<>(new NetworkStatistics(this));
-//
-//    int mID;
-//    String mName;
-//    UUID mOwnerUUID;
-//
-//    final NetworkStatistics mStatistics = new NetworkStatistics(this);
-//    final HashMap<UUID, NetworkMember> mMemberMap = new HashMap<>();
-//    /**
-//     * Server: {@link TileFluxDevice} (loaded) and {@link PhantomFluxDevice} (unloaded)
-//     * <p>
-//     * Client: {@link PhantomFluxDevice} (data container)
-//     */
-//    final HashMap<GlobalPos, IFluxDevice> mConnectionMap = new HashMap<>();
-//
-//    EUNetwork() {
-//    }
-//
-//    private EUNetwork(int id, String name, @Nonnull UUID owner) {
-//        mID = id;
-//        mName = name;
-//        mOwnerUUID = owner;
-//    }
-//
-//    EUNetwork(int id, String name, @Nonnull Player owner) {
-//        this(id, name, owner.getUUID());
-//        mMemberMap.put(mOwnerUUID, NetworkMember.create(owner, AccessLevel.OWNER));
-//    }
-//
-//    /**
-//     * Returns the unique ID of this network.
-//     *
-//     * @return a positive integer or {@link FluxConstants#INVALID_NETWORK_ID}
-//     */
-//    public final int getNetworkID() {
-//        return mID;
-//    }
-//
-//    /**
-//     * @return the owner UUID
-//     */
-//    @Nonnull
-//    public final UUID getOwnerUUID() {
-//        return mOwnerUUID;
-//    }
-//
-//    /**
-//     * Returns the network name. For an invalid network this is empty,
-//     * and client should display an alternative text instead.
-//     *
-//     * @return the name of this network
-//     */
-//    @Nonnull
-//    public final String getNetworkName() {
-//        return mName;
-//    }
-//
-//    public boolean setNetworkName(@Nonnull String name) {
-//        if (!name.equals(mName) && !EPNetUtils.isBadNetworkName(name)) {
-//            mName = name;
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    @Nonnull
-//    public NetworkStatistics getStatistics() {
-//        return mStatistics;
-//    }
-//
-//    @Nullable
-//    public NetworkMember getMemberByUUID(@Nonnull UUID uuid) {
-//        return mMemberMap.get(uuid);
-//    }
-//
-//    /**
-//     * Returns a collection view that contains all network members
-//     *
-//     * @return all members
-//     */
-//    @Nonnull
-//    public Collection<NetworkMember> getAllMembers() {
-//        return mMemberMap.values();
-//    }
-//
-//    /**
-//     * Get connection by global pos from all connections collection
-//     *
-//     * @param pos global pos
-//     * @return possible device
-//     * @see #getAllConnections()
-//     */
-//    @Nullable
-//    public IFluxDevice getConnectionByPos(@Nonnull GlobalPos pos) {
-//        return mConnectionMap.get(pos);
-//    }
-//
-//    /**
-//     * Returns a collection view that contains all loaded entities and unloaded devices.
-//     *
-//     * @return the list of all connections
-//     * @see #getLogicalDevices(int)
-//     */
-//    @Nonnull
-//    public Collection<IFluxDevice> getAllConnections() {
-//        return mConnectionMap.values();
-//    }
-//
-//    /**
-//     * Ticks the server. Server only.
-//     */
-//    public void onEndServerTick() {
-//    }
-//
-//    /**
-//     * Called when this network is deleted from its manager.
-//     */
-//    public void onDelete() {
-//        mMemberMap.clear();
-//        mConnectionMap.clear();
-//    }
-//
-//    /**
-//     * Helper method to get player's access level for this network including super admin,
-//     * even if the player in not a member in the network.
-//     *
-//     * @param player the server player
-//     * @return access level
-//     */
-//    @Nonnull
-//    public AccessLevel getPlayerAccess(@Nonnull Player player) {
-//        final UUID uuid = player.getUUID();
-//        if (mOwnerUUID.equals(uuid)) {
-//            return AccessLevel.OWNER;
-//        }
-//        final NetworkMember member = getMemberByUUID(uuid);
-//        if (member != null) {
-//            return member.getAccessLevel();
-//        }
-//        return AccessLevel.BLOCKED;
-//    }
-//
-//    /**
-//     * Can player access this network logically, without password?
-//     *
-//     * @param player the player
-//     * @return has permission or not
-//     */
-//    public final boolean canPlayerAccess(@Nonnull Player player) {
-//        return getPlayerAccess(player).canUse();
-//    }
-//
-//    /**
-//     * Get all network device entities with given logical type,
-//     * this method should be only invoked on the server side.
-//     *
-//     * @param logic the logical type
-//     * @return a list of devices
-//     */
-//    @Nonnull
-//    public List<TileFluxDevice> getLogicalDevices(int logic) {
-//        return Collections.emptyList();
-//    }
-//
-//    /**
-//     * A sum value that limits energy going to device's buffer. Server only.
-//     *
-//     * @return buffer limit
-//     */
-//    public long getBufferLimiter() {
-//        return 0;
-//    }
-//
-//    /**
-//     * Add a logical device to this network. Called by {@link TileFluxDevice}.
-//     *
-//     * @param device the logical device
-//     * @return success or not
-//     */
-//    public boolean enqueueConnectionAddition(@Nonnull TileFluxDevice device) {
-//        return true;
-//    }
-//
-//    /**
-//     * Remove a logical device from this network. Called by {@link TileFluxDevice}.
-//     *
-//     * @param device the logical device
-//     * @param unload true if just chunk unload, false if it no longer belongs to this network
-//     */
-//    public void enqueueConnectionRemoval(@Nonnull TileFluxDevice device, boolean unload) {
-//    }
-//
-//    /*@Override
-//    public <T> T getSetting(NetworkSettings<T> setting) {
-//        return setting.getValue(this).getValue();
-//    }
-//
-//    @Override
-//    public <T> void setSetting(NetworkSettings<T> settings, T value) {
-//        settings.getValue(this).setValue(value);
-//    }*/
-//
-//    /**
-//     * Change the membership of a target. Check valid first.
-//     *
-//     * @param player     the player performing this action
-//     * @param targetUUID the UUID of the player to change
-//     * @param type       the operation type, e.g. {@link FluxConstants#MEMBERSHIP_SET_USER}
-//     * @return a response code
-//     */
-//    public int changeMembership(Player player, UUID targetUUID, byte type) {
-//        throw new IllegalStateException();
-//    }
-//
-//    /**
-//     * Returns whether this network is a valid network.
-//     * An invalid network is actually a null network, but we use a singleton to avoid nullability checks.
-//     *
-//     * @return {@code true} if it is valid, {@code false} otherwise
-//     * @see FluxConstants#INVALID_NETWORK_ID
-//     */
-//    public boolean isValid() {
-//        return false;
-//    }
-//
-//    public void writeCustomTag(@Nonnull CompoundTag tag, byte type) {
-//        if (type == EUNetConstants.NBT_NET_BASIC || type == EUNetConstants.NBT_SAVE_ALL) {
-//            tag.putInt(EUNetConstants.NETWORK_ID, mID);
-//            tag.putString(NETWORK_NAME, mName);
-//            tag.putUUID(OWNER_UUID, mOwnerUUID);
-//        }
-//        if (type == EUNetConstants.NBT_SAVE_ALL) {
-//            Collection<NetworkMember> members = getAllMembers();
-//            if (!members.isEmpty()) {
-//                ListTag list = new ListTag();
-//                for (NetworkMember m : members) {
-//                    CompoundTag subTag = new CompoundTag();
-//                    m.writeNBT(subTag);
-//                    list.add(subTag);
-//                }
-//                tag.put(MEMBERS, list);
-//            }
-//
-//            Collection<IFluxDevice> connections = getAllConnections();
-//            // all unloaded
-//            if (!connections.isEmpty()) {
-//                ListTag list = new ListTag();
-//                for (IFluxDevice d : connections) {
-//                    if (!d.isChunkLoaded()) {
-//                        CompoundTag subTag = new CompoundTag();
-//                        d.writeCustomTag(subTag, EUNetConstants.NBT_SAVE_ALL);
-//                        list.add(subTag);
-//                    }
-//                }
-//                tag.put(CONNECTIONS, list);
-//            }
-//        }
-//        if (type == EUNetConstants.NBT_NET_MEMBERS) {
-//            Collection<NetworkMember> members = getAllMembers();
-//            ListTag list = new ListTag();
-//            if (!members.isEmpty()) {
-//                for (NetworkMember m : members) {
-//                    CompoundTag subTag = new CompoundTag();
-//                    m.writeNBT(subTag);
-//                    list.add(subTag);
-//                }
-//            }
-//            List<ServerPlayer> players = EPLevelUtils.getCurrentServer().getPlayerList().getPlayers();
-//            for (ServerPlayer p : players) {
-//                if (getMemberByUUID(p.getUUID()) == null) {
-//                    CompoundTag subTag = new CompoundTag();
-//                    NetworkMember.create(p, FluxPlayer.isPlayerSuperAdmin(p) ?
-//                                    AccessLevel.SUPER_ADMIN : AccessLevel.BLOCKED)
-//                            .writeNBT(subTag);
-//                    list.add(subTag);
-//                }
-//            }
-//            tag.put(MEMBERS, list);
-//        }
-//        if (type == EUNetConstants.NBT_NET_ALL_CONNECTIONS) {
-//            Collection<IFluxDevice> connections = getAllConnections();
-//            if (!connections.isEmpty()) {
-//                ListTag list = new ListTag();
-//                for (IFluxDevice d : connections) {
-//                    CompoundTag subTag = new CompoundTag();
-//                    d.writeCustomTag(subTag, EUNetConstants.NBT_PHANTOM_UPDATE);
-//                    list.add(subTag);
-//                }
-//                tag.put(CONNECTIONS, list);
-//            }
-//        }
-//        if (type == EUNetConstants.NBT_NET_STATISTICS) {
-//            mStatistics.writeNBT(tag);
-//        }
-//        /*if (flags == NBTType.NETWORK_GENERAL || flags == NBTType.ALL_SAVE) {
-//            nbt.putInt(FluxNetworkData.NETWORK_ID, network_id.getValue());
-//            nbt.putString(FluxNetworkData.NETWORK_NAME, network_name.getValue());
-//            nbt.putUniqueId(FluxNetworkData.OWNER_UUID, network_owner.getValue());
-//            nbt.putInt(FluxNetworkData.SECURITY_TYPE, network_security.getValue().ordinal());
-//            nbt.putString(FluxNetworkData.NETWORK_PASSWORD, network_password.getValue());
-//            nbt.putInt(FluxNetworkData.NETWORK_COLOR, network_color.getValue());
-//            nbt.putInt(FluxNetworkData.ENERGY_TYPE, network_energy.getValue().ordinal());
-//            nbt.putInt(FluxNetworkData.WIRELESS_MODE, network_wireless.getValue());
-//
-//            if (flags == NBTType.ALL_SAVE) {
-//                FluxNetworkData.writePlayers(this, nbt);
-//                FluxNetworkData.writeConnections(this, nbt);
-//            }
-//        }
-//
-//        if (flags == NBTType.NETWORK_PLAYERS) {
-//            FluxNetworkData.writeAllPlayers(this, nbt);
-//        }
-//
-//        if (flags == NBTType.NETWORK_CONNECTIONS) {
-//            allDevices.getValue().removeIf(IFluxDevice::isChunkLoaded);
-//            List<IFluxDevice> connectors = getConnections(FluxLogicType.ANY);
-//            connectors.forEach(f -> allDevices.getValue().add(new SimpleFluxDevice(f)));
-//            FluxNetworkData.writeAllConnections(this, nbt);
-//        }
-//        if (flags == NBTType.NETWORK_STATISTICS) {
-//            network_stats.getValue().writeNBT(nbt);
-//        }
-//        if (flags == NBTType.NETWORK_CLEAR) {
-//            nbt.putBoolean("clear", true); // Nothing
-//        }*/
-//    }
-//
-//    public void readCustomTag(@Nonnull CompoundTag tag, byte type) {
-//        if (type == EUNetConstants.NBT_NET_BASIC || type == EUNetConstants.NBT_SAVE_ALL) {
-//            mID = tag.getInt(EUNetConstants.NETWORK_ID);
-//            mName = tag.getString(NETWORK_NAME);
-//            mOwnerUUID = tag.getUUID(OWNER_UUID);
-//        }
-//        if (type == EUNetConstants.NBT_SAVE_ALL) {
-//            ListTag list = tag.getList(MEMBERS, Tag.TAG_COMPOUND);
-//            for (int i = 0; i < list.size(); i++) {
-//                CompoundTag c = list.getCompound(i);
-//                NetworkMember m = new NetworkMember(c);
-//                mMemberMap.put(m.getPlayerUUID(), m);
-//            }
-//            list = tag.getList(CONNECTIONS, Tag.TAG_COMPOUND);
-//            for (int i = 0; i < list.size(); i++) {
-//                CompoundTag c = list.getCompound(i);
-//                PhantomFluxDevice f = PhantomFluxDevice.make(c);
-//                mConnectionMap.put(f.getGlobalPos(), f);
-//            }
-//        }
-//        if (type == EUNetConstants.NBT_NET_MEMBERS) {
-//            mMemberMap.clear();
-//            ListTag list = tag.getList(MEMBERS, Tag.TAG_COMPOUND);
-//            for (int i = 0; i < list.size(); i++) {
-//                CompoundTag c = list.getCompound(i);
-//                NetworkMember m = new NetworkMember(c);
-//                mMemberMap.put(m.getPlayerUUID(), m);
-//            }
-//        }
-//        if (type == EUNetConstants.NBT_NET_ALL_CONNECTIONS) {
-//            //TODO waiting for new GUI system, see GuiTabConnections, we request a full connections update
-//            // when we (re)open the gui, but if a tile removed by someone or on world unloads, this won't send
-//            // to player, so calling clear() here as a temporary solution, (f != null) is always false
-//            mConnectionMap.clear();
-//
-//            ListTag list = tag.getList(CONNECTIONS, Tag.TAG_COMPOUND);
-//            for (int i = 0; i < list.size(); i++) {
-//                CompoundTag c = list.getCompound(i);
-//                GlobalPos pos = EPNetUtils.readGlobalPos(c);
-//                mConnectionMap.put(pos, PhantomFluxDevice.makeUpdated(pos, c));
-//            }
-//        }
-//        if (type == EUNetConstants.NBT_NET_STATISTICS) {
-//            mStatistics.readNBT(tag);
-//        }
-//        /*if (flags == NBTType.NETWORK_GENERAL || flags == NBTType.ALL_SAVE) {
-//            network_id.setValue(nbt.getInt(FluxNetworkData.NETWORK_ID));
-//            network_name.setValue(nbt.getString(FluxNetworkData.NETWORK_NAME));
-//            network_owner.setValue(nbt.getUniqueId(FluxNetworkData.OWNER_UUID));
-//            network_security.setValue(SecurityType.values()[nbt.getInt(FluxNetworkData.SECURITY_TYPE)]);
-//            network_password.setValue(nbt.getString(FluxNetworkData.NETWORK_PASSWORD));
-//            network_color.setValue(nbt.getInt(FluxNetworkData.NETWORK_COLOR));
-//            network_energy.setValue(EnergyType.values()[nbt.getInt(FluxNetworkData.ENERGY_TYPE)]);
-//            network_wireless.setValue(nbt.getInt(FluxNetworkData.WIRELESS_MODE));
-//
-//            if (flags == NBTType.ALL_SAVE) {
-//                FluxNetworkData.readPlayers(this, nbt);
-//                FluxNetworkData.readConnections(this, nbt);
-//            }
-//        }
-//
-//        if (flags == NBTType.NETWORK_PLAYERS) {
-//            FluxNetworkData.readPlayers(this, nbt);
-//        }
-//
-//        if (flags == NBTType.NETWORK_CONNECTIONS) {
-//            FluxNetworkData.readAllConnections(this, nbt);
-//        }
-//        if (flags == NBTType.NETWORK_STATISTICS) {
-//            network_stats.getValue().readNBT(nbt);
-//        }*/
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "FluxNetwork{" +
-//                "id=" + mID +
-//                ", name='" + mName + '\'' +
-//                ", owner=" + mOwnerUUID +
-//                '}';
-//    }
-//}
+package cn.gtcommunity.epimorphism.common.eunetwork;
+
+import cn.gtcommunity.epimorphism.api.eunetwork.AccessLevel;
+import cn.gtcommunity.epimorphism.api.eunetwork.NetworkMember;
+import cn.gtcommunity.epimorphism.utils.EPLevelUtil;
+import cn.gtcommunity.epimorphism.utils.EPNetUtil;
+import net.minecraft.Util;
+import net.minecraft.core.GlobalPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.*;
+
+/**
+ *  网络的基类
+ *  有两种实现类型：客户端和服务器。
+ *  客户端实例是从服务器更新的缓存值，用于 UI 中的预检查。
+ *  服务器实例是逻辑网络，负责能量传输。
+ *  客户端在运行服务器端网络时，需要进行双侧检查以确保安全性。服务器端数据将与游戏保存一起持久存储
+ */
+@ParametersAreNonnullByDefault
+public class EUNetwork {
+
+    /**
+     * 无效网络可避免可空性检查，此网络上的任何操作都是无效的。
+     * 您可以检查 isValid() 以跳过您的操作。
+     * 即使执行了操作，也不会出现错误。
+     * 断开连接的设备被视为已连接到此网络。
+     */
+    public static final EUNetwork INVALID = new EUNetwork(EUNetConstants.INVALID_NETWORK_ID, "", Util.NIL_UUID);
+
+    public static final int MAX_NETWORK_NAME_LENGTH = 24;
+
+    public static final String NETWORK_NAME = "name";
+    public static final String OWNER_UUID = "owner";
+    public static final String MEMBERS = "members";
+    public static final String CONNECTIONS = "connections";
+
+    //////////////////////////////////////
+    //*******       Data        ********//
+    //////////////////////////////////////
+
+    int mID;
+    String mName;
+    UUID mOwnerUUID;
+
+    final NetworkStatistics mStatistics = new NetworkStatistics(this);
+    final HashMap<UUID, NetworkMember> mMemberMap = new HashMap<>();
+
+    EUNetwork() {/**/}
+
+    private EUNetwork(int id, String name, @Nonnull UUID owner) {
+        mID = id;
+        mName = name;
+        mOwnerUUID = owner;
+    }
+
+    EUNetwork(int id, String name, @Nonnull Player owner) {
+        this(id, name, owner.getUUID());
+        mMemberMap.put(mOwnerUUID, NetworkMember.create(owner, AccessLevel.OWNER));
+    }
+
+    /**
+     * 返回此网络的唯一 ID。
+     * @return 正整数或 EUNetConstants.INVALID_NETWORK_ID
+     */
+    public final int getNetworkID() {
+        return mID;
+    }
+
+    @Nonnull
+    public final UUID getOwnerUUID() {
+        return mOwnerUUID;
+    }
+
+    /**
+     * 返回网络名称。对于无效网络，此值为空，客户端应改为显示替代文本。
+     * @return 此网络的名称
+     */
+    @Nonnull
+    public final String getNetworkName() {
+        return mName;
+    }
+
+    public boolean setNetworkName(@Nonnull String name) {
+        if (!name.equals(mName) && !EPNetUtil.isBadNetworkName(name)) {
+            mName = name;
+            return true;
+        }
+        return false;
+    }
+
+    @Nonnull
+    public NetworkStatistics getStatistics() {
+        return mStatistics;
+    }
+
+    //////////////////////////////////////
+    //*******      Member       ********//
+    //////////////////////////////////////
+
+    @Nullable
+    public NetworkMember getMemberByUUID(@Nonnull UUID uuid) {
+        return mMemberMap.get(uuid);
+    }
+
+    /**
+     * 返回包含所有网络成员的集合
+     * @return 所有成员
+     */
+    @Nonnull
+    public Collection<NetworkMember> getAllMembers() {
+        return mMemberMap.values();
+    }
+
+    /**
+     * Ticks the server. Server only.
+     */
+    public void onEndServerTick() {
+    }
+
+    /**
+     * 当此网络从其管理器中删除时调用。
+     */
+    public void onDelete() {
+        mMemberMap.clear();
+    }
+
+    /**
+     * 帮助程序方法，用于获取玩家对此网络的访问级别，即使该玩家不是网络中的成员
+     *
+     * @param player the server player
+     * @return access level
+     */
+    @Nonnull
+    public AccessLevel getPlayerAccess(@Nonnull Player player) {
+        final UUID uuid = player.getUUID();
+        if (mOwnerUUID.equals(uuid)) {
+            return AccessLevel.OWNER;
+        }
+        final NetworkMember member = getMemberByUUID(uuid);
+        if (member != null) {
+            return member.getAccessLevel();
+        }
+        return AccessLevel.BLOCKED;
+    }
+
+    /**
+     * 玩家可以逻辑地访问这个网络吗？
+     *
+     * @param player the player
+     * @return has permission or not
+     */
+    public final boolean canPlayerAccess(@Nonnull Player player) {
+        return getPlayerAccess(player).canUse();
+    }
+
+    /**
+     * 一个总和值，用于限制流向设备缓冲区的能量。仅限服务器
+     *
+     * @return buffer limit
+     */
+    public long getBufferLimiter() {
+        return 0;
+    }
+
+    /**
+     * 更改目标的成员身份。首先检查有效。
+     *
+     * @param player     the player performing this action
+     * @param targetUUID the UUID of the player to change
+     * @param type       the operation type, e.g. {@link EUNetConstants#MEMBERSHIP_SET_USER}
+     * @return a response code
+     */
+    public int changeMembership(Player player, UUID targetUUID, byte type) {
+        throw new IllegalStateException();
+    }
+
+    /**
+     * 返回此网络是否为有效网络。无效网络实际上是空网络，但我们使用单例来避免可空性检查。
+     *
+     * @return {@code true} if it is valid, {@code false} otherwise
+     * @see EUNetConstants#INVALID_NETWORK_ID
+     */
+    public boolean isValid() {
+        return false;
+    }
+
+    public void writeCustomTag(@Nonnull CompoundTag tag, byte type) {
+        if (type == EUNetConstants.NBT_NET_BASIC || type == EUNetConstants.NBT_SAVE_ALL) {
+            tag.putInt(EUNetConstants.NETWORK_ID, mID);
+            tag.putString(NETWORK_NAME, mName);
+            tag.putUUID(OWNER_UUID, mOwnerUUID);
+        }
+        if (type == EUNetConstants.NBT_SAVE_ALL) {
+            Collection<NetworkMember> members = getAllMembers();
+            if (!members.isEmpty()) {
+                ListTag list = new ListTag();
+                for (NetworkMember m : members) {
+                    CompoundTag subTag = new CompoundTag();
+                    m.writeNBT(subTag);
+                    list.add(subTag);
+                }
+                tag.put(MEMBERS, list);
+            }
+
+        }
+        if (type == EUNetConstants.NBT_NET_MEMBERS) {
+            Collection<NetworkMember> members = getAllMembers();
+            ListTag list = new ListTag();
+            if (!members.isEmpty()) {
+                for (NetworkMember m : members) {
+                    CompoundTag subTag = new CompoundTag();
+                    m.writeNBT(subTag);
+                    list.add(subTag);
+                }
+            }
+            List<ServerPlayer> players = EPLevelUtil.getCurrentServer().getPlayerList().getPlayers();
+            for (ServerPlayer p : players) {
+                if (getMemberByUUID(p.getUUID()) == null) {
+                    CompoundTag subTag = new CompoundTag();
+                    NetworkMember.create(p, AccessLevel.BLOCKED)
+                            .writeNBT(subTag);
+                    list.add(subTag);
+                }
+            }
+            tag.put(MEMBERS, list);
+        }
+
+        if (type == EUNetConstants.NBT_NET_STATISTICS) {
+            mStatistics.writeNBT(tag);
+        }
+    }
+
+    public void readCustomTag(@Nonnull CompoundTag tag, byte type) {
+        if (type == EUNetConstants.NBT_NET_BASIC || type == EUNetConstants.NBT_SAVE_ALL) {
+            mID = tag.getInt(EUNetConstants.NETWORK_ID);
+            mName = tag.getString(NETWORK_NAME);
+            mOwnerUUID = tag.getUUID(OWNER_UUID);
+        }
+        if (type == EUNetConstants.NBT_SAVE_ALL) {
+            ListTag list = tag.getList(MEMBERS, Tag.TAG_COMPOUND);
+            for (int i = 0; i < list.size(); i++) {
+                CompoundTag c = list.getCompound(i);
+                NetworkMember m = new NetworkMember(c);
+                mMemberMap.put(m.getPlayerUUID(), m);
+            }
+        }
+        if (type == EUNetConstants.NBT_NET_MEMBERS) {
+            mMemberMap.clear();
+            ListTag list = tag.getList(MEMBERS, Tag.TAG_COMPOUND);
+            for (int i = 0; i < list.size(); i++) {
+                CompoundTag c = list.getCompound(i);
+                NetworkMember m = new NetworkMember(c);
+                mMemberMap.put(m.getPlayerUUID(), m);
+            }
+        }
+
+        if (type == EUNetConstants.NBT_NET_STATISTICS) {
+            mStatistics.readNBT(tag);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "FluxNetwork{" +
+                "id=" + mID +
+                ", name='" + mName + '\'' +
+                ", owner=" + mOwnerUUID +
+                '}';
+    }
+}

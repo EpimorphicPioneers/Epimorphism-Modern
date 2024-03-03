@@ -4,6 +4,7 @@ import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
 import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.block.BlockTypeAdditions;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeConditions;
 import cn.gtcommunity.epimorphism.data.recipe.GTRecipeManager;
@@ -37,6 +38,7 @@ public class EPGTAddon implements IGTAddon {
     }
 
     public static void postInitializeAddon() {
+        BlockMaps.init();
         BlockTypeAdditions.init();
     }
 

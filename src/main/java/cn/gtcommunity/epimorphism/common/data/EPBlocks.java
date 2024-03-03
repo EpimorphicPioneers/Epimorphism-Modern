@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.block.IFusionCasingType;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -24,7 +25,9 @@ import com.gregtechceu.gtceu.api.item.RendererBlockItem;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
+import com.gregtechceu.gtceu.common.block.FusionCasingBlock;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.tterrag.registrate.providers.ProviderType;
@@ -62,6 +65,7 @@ import java.util.function.Supplier;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
@@ -97,6 +101,7 @@ public class EPBlocks {
     private static boolean allowCrucibleBlock(Material material) {
         return material.hasProperty(EPPropertyKeys.CRUCIBLE);
     }
+
     private static void registerCrucibleBlock(Material material, GTRegistrate registrate) {
         var entry = registrate.block("%s_crucible".formatted(material.getName()), p -> new CrucibleBlock(p, material))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
@@ -149,6 +154,10 @@ public class EPBlocks {
     public static final BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> ULTIMATE_HIGH_ENERGY_CASING = createCasingBlock("ultimate_high_energy_casing", Epimorphism.id("block/casings/solid/ultimate_high_energy_casing"));
+    public static final BlockEntry<Block> ADVANCED_HIGH_ENERGY_CASING = createCasingBlock("advanced_high_energy_casing", Epimorphism.id("block/casings/solid/advanced_high_energy_casing"));
+    public static final BlockEntry<Block> DIMENSIONAL_BRIDGE_CASING = createCasingBlock("dimensional_bridge_casing", Epimorphism.id("block/casings/solid/dimensional_bridge_casing"));
+    public static final BlockEntry<Block> DIMENSIONAL_PRESERVE_CASING = createCasingBlock("dimensional_preserve_casing", Epimorphism.id("block/casings/solid/dimensional_preserve_casing"));
     public static final BlockEntry<Block> ADVANCED_INVAR_CASING = createCasingBlock("advanced_invar_casing", Epimorphism.id("block/casings/solid/advanced_invar_casing"));
     public static final BlockEntry<Block> ADVANCED_ALUMINIUM_CASING = createCasingBlock("advanced_aluminium_casing", Epimorphism.id("block/casings/solid/advanced_aluminium_casing"));
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock("advanced_filter_casing", Epimorphism.id("block/casings/solid/advanced_filter_casing"));
@@ -192,7 +201,6 @@ public class EPBlocks {
     public static final BlockEntry<TierGlassBlock> CBDO_POLYCARBONATE_GLASS = createGlassBlock(TierGlassBlock.GlassType.CBDO_POLYCARBONATE_GLASS, SoundType.STONE, () -> RenderType::translucent);
 
 
-
     // Fluid Tank Cell Blocks
     public static final BlockEntry<FluidTankCellBlock> FLUID_TANK_CELL_1 = createFluidCellBlock(FluidTankCellBlock.FluidCellType.CELL_1);
     public static final BlockEntry<FluidTankCellBlock> FLUID_TANK_CELL_2 = createFluidCellBlock(FluidTankCellBlock.FluidCellType.CELL_2);
@@ -233,12 +241,17 @@ public class EPBlocks {
     public static final BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_OpV = createComponentAssemblyBlock(ITierType.TierBlockType.OpV);
     public static final BlockEntry<SimpleTierBlock> COMPONENT_ASSEMBLY_LINE_CASING_MAX = createComponentAssemblyBlock(ITierType.TierBlockType.MAX);
 
+    // Fusion
+    public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK4 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK4);
+    public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK5 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK5);
 
     //  Misc
+
 
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);
     }
+
     public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
             .block("fertilized_dirt", FertilizedDirtBlock::new)
             .initialProperties(() -> Blocks.DIRT)
@@ -303,7 +316,7 @@ public class EPBlocks {
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .when(BlockLootSubProviderAccessor.getHasNoShearsOrSilkTouch())
-                            .add(table.applyExplosionCondition(block, LootItem.lootTableItem(EPAgricultureItem.PINECONE))
+                            .add(table.applyExplosionCondition(block, LootItem.lootTableItem(EPAgricultureItems.PINECONE))
                                     .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F}))))))
             .tag(BlockTags.LEAVES)
             .color(() -> EPBlocks::pineLeavesBlockColor)
@@ -323,6 +336,7 @@ public class EPBlocks {
             .tag(ItemTags.PLANKS)
             .build()
             .register();
+
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
@@ -347,7 +361,7 @@ public class EPBlocks {
     private static BlockEntry<TierGlassBlock> createGlassBlock(ITierGlassType glassType, SoundType soundType, Supplier<Supplier<RenderType>> type) {
         BlockEntry<TierGlassBlock> glassBlock = EP_REGISTRATE.block("%s_block".formatted(glassType.typeName()),
                         p -> new TierGlassBlock(p, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
-                        Map.of("all", Epimorphism.id("block/casings/glass/%s".formatted(glassType.typeName())))) : null, glassType))
+                                Map.of("all", Epimorphism.id("block/casings/glass/%s".formatted(glassType.typeName())))) : null, glassType))
                 .initialProperties(() -> Blocks.GLASS)
                 .properties(p -> p.sound(soundType))
                 .addLayer(type)
@@ -360,6 +374,21 @@ public class EPBlocks {
         ALL_GLASSES.put(glassType, glassBlock::get);
         SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
+    }
+
+    private static BlockEntry<FusionCasingBlock> createFusionCasing(IFusionCasingType casingType) {
+        BlockEntry<FusionCasingBlock> casingBlock = EP_REGISTRATE.block(casingType.getSerializedName(), p -> (FusionCasingBlock) new EPFusionCasingBlock(p, casingType))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(properties -> properties.strength(5.0f, 10.0f).sound(SoundType.METAL))
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), CustomTags.TOOL_TIERS[casingType.getHarvestLevel()])
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_FUSION_CASINGS.put(casingType, casingBlock);
+        return casingBlock;
     }
 
     private static BlockEntry<FluidTankCellBlock> createFluidCellBlock(IFluidTankCell cellData) {

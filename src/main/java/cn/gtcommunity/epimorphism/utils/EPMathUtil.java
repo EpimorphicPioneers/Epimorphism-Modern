@@ -27,6 +27,13 @@ public class EPMathUtil {
         }
     }
 
+    public static long getLongNumber(BigInteger number) {
+        if (number != null) {
+            return number.compareTo(EPMathUtil.LONG_MAX_VALUE) >= 0 ? Long.MAX_VALUE : number.longValue();
+        }
+        return 0;
+    }
+
     public static ThreadLocalRandom LocalRandom() {
         return ThreadLocalRandom.current();
     }

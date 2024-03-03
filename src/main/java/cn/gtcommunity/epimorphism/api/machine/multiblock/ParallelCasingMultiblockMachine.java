@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.api.machine.multiblock;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.tier.ICasingMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier.ICasingMachine;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;

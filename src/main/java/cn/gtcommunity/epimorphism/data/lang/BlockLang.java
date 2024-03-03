@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
-import appeng.debug.PhantomNodeBlock;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
@@ -134,14 +133,6 @@ public class BlockLang {
                 "§7Space-time Assembly Unit",
                 "§7时空装配单元");
 
-        //  Agriculture
-        addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
-        addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
-        addBlock(provider, PINE_SAPLING,"Pine Sapling","松树树苗");
-        addBlock(provider, PINE_LOG,"Pine Log","松树原木");
-        addBlock(provider, PINE_LEAVES,"Pine Leaves","松树树叶");
-        addBlock(provider, PINE_PLANK,"Pine Plank","松树木板");
-
         addBlock(provider, HYPER_CASING,"Hyper Casing","超级机械方块");
         addBlock(provider, IRIDIUM_CASING,"Iridium Casing","铱机械方块");
         addBlock(provider, BREEDING_CASING,"Breeding Casing","养殖机械方块");
@@ -167,6 +158,14 @@ public class BlockLang {
         addBlock(provider, FLOTATION_CASING,"Flotation Casing","浮选机械方块");
         addBlock(provider, FLOTATION_CELL,"Flotation Cell","浮选槽");
         addBlock(provider, VACUUM_CASING,"Vacuum Casing","真空机械方块");
+
+        //  Agriculture
+        addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
+        addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
+        addBlock(provider, PINE_SAPLING,"Pine Sapling","松树树苗");
+        addBlock(provider, PINE_LOG,"Pine Log","松树原木");
+        addBlock(provider, PINE_LEAVES,"Pine Leaves","松树树叶");
+        addBlock(provider, PINE_PLANK,"Pine Plank","松树木板");
 
     }
 }
