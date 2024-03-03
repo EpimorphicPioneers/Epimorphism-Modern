@@ -39,8 +39,6 @@ public class CommonProxy {
     }
 
     public void init() {
-        EPCreativeModeTabs.init();
-        EPBlocks.init();
         EPItems.init();
         EPDatagen.init();
         EPDimensionTypes.init();

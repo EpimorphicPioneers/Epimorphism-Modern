@@ -14,6 +14,8 @@ public class EPLangUtil {
     public static final DecimalFormat DECIMAL_FORMAT_2F = new DecimalFormat("#.##");
 
     static {
+        UNITS.put(BigInteger.TEN.pow(30), "Q");
+        UNITS.put(BigInteger.TEN.pow(27), "R");
         UNITS.put(BigInteger.TEN.pow(24), "Y");
         UNITS.put(BigInteger.TEN.pow(21), "Z");
         UNITS.put(BigInteger.TEN.pow(18), "E");

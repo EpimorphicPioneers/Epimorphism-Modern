@@ -6,18 +6,15 @@ import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
 import cn.gtcommunity.epimorphism.common.item.behaviors.OrganismCaptureBehavior;
 import cn.gtcommunity.epimorphism.common.item.behaviors.StructureWriteBehavior;
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import com.gregtechceu.gtceu.api.item.component.IMaterialPartItem;
-import com.gregtechceu.gtceu.common.data.GTCompassSections;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
 import com.gregtechceu.gtceu.common.item.TooltipBehavior;
-import com.gregtechceu.gtceu.common.item.TurbineRotorBehaviour;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.Registrate;
@@ -37,8 +34,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
-import static com.gregtechceu.gtceu.common.data.GTModels.createTextureModel;
-import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 public class EPItems {
 
@@ -173,18 +168,8 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.tube.topological_insulator.tooltip"));
 //            })))
 //            .register();
-//    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT = registerItemWithTooltip("containment_unit.bose_einstein_condensate", ComponentItem::create)
-//            .lang("Bose-Einstein Condensate Containment Unit")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.containment_unit.bose_einstein_condensate.tooltip"));
-//            })))
-//            .register();
-//    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE = registerItemWithTooltip("bose_einstein_condensate", ComponentItem::create)
-//            .lang("Bose-Einstein Condensate")
-//            .onRegister(attach(new TooltipBehavior(lines -> {
-//                lines.add(Component.translatable("item.epimorphism.bose_einstein_condensate.tooltip"));
-//            })))
-//            .register();
+    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT = registerItemWithTooltip("containment_unit.bose_einstein_condensate", ComponentItem::create, 1).lang("Bose-Einstein Condensate Containment Unit").register();
+    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE = registerItemWithTooltip("bose_einstein_condensate", ComponentItem::create, 1).lang("Bose-Einstein Condensate").register();
 
     //  Wafers
 //    public final static ItemEntry<ComponentItem> PHASE_CHANGE_MEMORY = registerItemWithTooltip("wafer.chip.phase_change_memory", ComponentItem::create)
@@ -318,16 +303,7 @@ public class EPItems {
 //    public final static ItemEntry<Item> CRYSTAL_SOC_SOCKET;
 //
 //
-    //  Biological Components
-    public final static ItemEntry<ComponentItem> ELECTROCHEMICAL_GRADIENT_RECORDER = registerItemWithTooltip("biological.components.electrochemical_gradient_recorder", ComponentItem::create, 1).lang("Electrochemical Gradient Recorder").register();
-    public final static ItemEntry<ComponentItem> ULTRA_MICRO_PHASE_SEPARATOR = registerItemWithTooltip("biological.components.ultra_micro_phase_separator", ComponentItem::create, 1).lang("Ultra-micro Phase Separator").register();
-    public final static ItemEntry<ComponentItem> QUANTUM_TUNNELING_MICROTUBULE = registerItemWithTooltip("biological.components.quantum_tunneling_microtubule", ComponentItem::create, 1).lang("Quantum Tunneling Microtubule").register();
-    public final static ItemEntry<ComponentItem> HYPERRIBOSOME = registerItemWithTooltip("biological.components.hyperribosome", ComponentItem::create, 1).lang("Hyperribosome").register();
-    public final static ItemEntry<ComponentItem> NEUTRON_ABSORBING_PROTEIN = registerItemWithTooltip("biological.components.neutron_absorbing_protein", ComponentItem::create, 1).lang("Neutron Absorbing Protein").register();
-    public final static ItemEntry<ComponentItem> SUPEREXCITED_CONDUCTIVE_POLYMER = registerItemWithTooltip("biological.components.superexcited_conductive_polymer", ComponentItem::create, 1).lang("Superexcited Conductive Polymer").register();
-    //    public final static ItemEntry<Item> DNA_ENCODER = REGISTRATE.item(307, "biological.components.dna_encoder");
-//    public final static ItemEntry<Item> DNA_DECODER = REGISTRATE.item(308, "biological.components.dna_decoder");
-//    public final static ItemEntry<Item> DNA_DECODE_ENCODER = REGISTRATE.item(309, "biological.components.dna_decode_encoder");
+
 
     //  Covers
     public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
@@ -405,8 +381,9 @@ public class EPItems {
 
     public static void init() {
         EPWrapItem.init();
-        EPPhysicsItem.init();
-        EPAgricultureItem.init();
+        EPPhysicsItems.init();
+        EPAgricultureItems.init();
+        EPBiologyItems.init();
     }
 
     protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {

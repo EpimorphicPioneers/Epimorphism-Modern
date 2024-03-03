@@ -4,7 +4,6 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -106,6 +105,12 @@ public class EPLangHelper {
             for (int i = 0; i < enTooltip.size(); i++) {
                 enLangProvider.add(block.get().asItem().getDescriptionId() + ".shift_desc." + i, enTooltip.get(i));
             }
+        }
+    }
+
+    public static void addBlockCNName(LanguageProvider provider, NonNullSupplier<? extends Block> block, String cnName) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.addBlock(block, cnName);
         }
     }
 

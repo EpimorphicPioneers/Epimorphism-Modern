@@ -13,31 +13,43 @@ public class EPCreativeModeTabs {
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("item"), Epimorphism.NAME + " | Item"))
                             .icon(EPItems.GOOWARE_BOARD::asStack)
                             .build())
-                    .register();
+            .register();
     public final static RegistryEntry<CreativeModeTab> EP_BLOCK = EP_REGISTRATE.defaultCreativeTab("block",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("block", EP_REGISTRATE))
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("block"), Epimorphism.NAME + " | Block"))
-                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .icon(EPBlocks.IRIDIUM_CASING::asStack)
                             .build())
-                    .register();
+            .register();
+    public final static RegistryEntry<CreativeModeTab> EP_MACHINE = EP_REGISTRATE.defaultCreativeTab("machine",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("machine", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("machine"), Epimorphism.NAME + " | Machine"))
+                            .icon(EPMachines.CHEMICAL_PLANT::asStack)
+                            .build())
+            .register();
     public final static RegistryEntry<CreativeModeTab> EP_CIRCUIT_REFORM = EP_REGISTRATE.defaultCreativeTab("circuit_reform",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("circuit_reform", EP_REGISTRATE))
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("circuit_reform"), Epimorphism.NAME + " | Circuit Reform"))
-                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .icon(EPWrapItem.WRAP_BOARD_GOOWARE::asStack)
                             .build())
-                    .register();
+            .register();
     public final static RegistryEntry<CreativeModeTab> EP_PHYSICS = EP_REGISTRATE.defaultCreativeTab("physics",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("physics", EP_REGISTRATE))
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("physics"), Epimorphism.NAME + " | Physics"))
-                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .icon(EPPhysicsItems.EMPTY_PARTICLE_CAPSULE::asStack)
                             .build())
-                    .register();
+            .register();
     public final static RegistryEntry<CreativeModeTab> EP_AGRICULTURE = EP_REGISTRATE.defaultCreativeTab("agriculture",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("agriculture", EP_REGISTRATE))
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("agriculture"), Epimorphism.NAME + " | Agriculture"))
-                            .icon(EPItems.GOOWARE_BOARD::asStack)
+                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
                             .build())
-                    .register();
+            .register();
+    public final static RegistryEntry<CreativeModeTab> EP_BIOLOGY = EP_REGISTRATE.defaultCreativeTab("biology",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("biology", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("biology"), Epimorphism.NAME + " | Biology"))
+                            .icon(EPBiologyItems.STERILIZED_PETRI_DISH::asStack)
+                            .build())
+            .register();
 
     public static void init() {/**/}
 }

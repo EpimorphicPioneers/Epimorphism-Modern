@@ -24,5 +24,9 @@ public class EPConfigHolder {
         @Configurable
         @Configurable.Comment({"Wether to add a \"Processing Array\"", "Default: true"})
         public boolean doProcessingArray = true;
+
+        @Configurable
+        @Configurable.Comment("Tree Growth Simulator replacements for dirt (use block names like minecraft:dirt)")
+        public String[] treeGrowthSimulatorDirts = new String[0];
     }
 }

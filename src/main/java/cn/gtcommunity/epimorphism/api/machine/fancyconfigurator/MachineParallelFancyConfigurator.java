@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.api.machine.fancyconfigurator;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfigurator;
 import com.gregtechceu.gtceu.api.gui.widget.IntInputWidget;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
@@ -43,8 +43,8 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
                 setMax(machine.getMaxParallel());
             }
 
-            @OnlyIn(Dist.CLIENT)
             @Override
+            @OnlyIn(Dist.CLIENT)
             public void readInitialData(FriendlyByteBuf buffer) {
                 super.readInitialData(buffer);
                 setMax(buffer.readVarInt());
@@ -53,8 +53,6 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
             @Override
             public void detectAndSendChanges() {
                 super.detectAndSendChanges();
-                if (isClientSideWidget) return;
-
                 int newMaxParallel = machine.getMaxParallel();
                 if (newMaxParallel != getMax()) {
                     setMax(newMaxParallel);
@@ -62,12 +60,10 @@ public class MachineParallelFancyConfigurator implements IFancyConfigurator {
                 }
             }
 
-            @OnlyIn(Dist.CLIENT)
             @Override
+            @OnlyIn(Dist.CLIENT)
             public void readUpdateInfo(int id, FriendlyByteBuf buffer) {
                 super.readUpdateInfo(id, buffer);
-                if (!isClientSideWidget) return;
-
                 if (id == 0) {
                     setMax(buffer.readVarInt());
                 }
