@@ -8,8 +8,10 @@ import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKey
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.client.renderer.handler.block.PlanetDisplayRenderer;
 import cn.gtcommunity.epimorphism.common.block.*;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
+import cn.gtcommunity.epimorphism.data.lang.EPLangHelper;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.GTCEu;
@@ -65,6 +67,7 @@ import java.util.function.Supplier;
 
 import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static cn.gtcommunity.epimorphism.common.block.DimensionDisplayBlock.Dimension.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
@@ -154,10 +157,6 @@ public class EPBlocks {
     public static final BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
     public static final BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> ULTIMATE_HIGH_ENERGY_CASING = createCasingBlock("ultimate_high_energy_casing", Epimorphism.id("block/casings/solid/ultimate_high_energy_casing"));
-    public static final BlockEntry<Block> ADVANCED_HIGH_ENERGY_CASING = createCasingBlock("advanced_high_energy_casing", Epimorphism.id("block/casings/solid/advanced_high_energy_casing"));
-    public static final BlockEntry<Block> DIMENSIONAL_BRIDGE_CASING = createCasingBlock("dimensional_bridge_casing", Epimorphism.id("block/casings/solid/dimensional_bridge_casing"));
-    public static final BlockEntry<Block> DIMENSIONAL_PRESERVE_CASING = createCasingBlock("dimensional_preserve_casing", Epimorphism.id("block/casings/solid/dimensional_preserve_casing"));
     public static final BlockEntry<Block> ADVANCED_INVAR_CASING = createCasingBlock("advanced_invar_casing", Epimorphism.id("block/casings/solid/advanced_invar_casing"));
     public static final BlockEntry<Block> ADVANCED_ALUMINIUM_CASING = createCasingBlock("advanced_aluminium_casing", Epimorphism.id("block/casings/solid/advanced_aluminium_casing"));
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock("advanced_filter_casing", Epimorphism.id("block/casings/solid/advanced_filter_casing"));
@@ -244,6 +243,98 @@ public class EPBlocks {
     // Fusion
     public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK4 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK4);
     public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK5 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK5);
+
+    // Physics
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_PHYSICS);
+    }
+
+    public static final BlockEntry<CasingBlock> ULTIMATE_HIGH_ENERGY_CASING = createCasingBlockWithTooltip("ultimate_high_energy_casing", Epimorphism.id("block/casings/solid/ultimate_high_energy_casing"), 2);
+    public static final BlockEntry<CasingBlock> ADVANCED_HIGH_ENERGY_CASING = createCasingBlockWithTooltip("advanced_high_energy_casing", Epimorphism.id("block/casings/solid/advanced_high_energy_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_BRIDGE_CASING = createCasingBlockWithTooltip("dimensional_bridge_casing", Epimorphism.id("block/casings/solid/dimensional_bridge_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_LINK_CASING = createCasingBlockWithTooltip("dimensional_link_casing", Epimorphism.id("block/casings/solid/dimensional_link_casing"), 2);
+    public static final BlockEntry<CasingBlock> CONTAINMENT_FIELD_GENERATOR = createCasingBlockWithTooltip("containment_field_generator", Epimorphism.id("block/casings/solid/containment_field_generator"), 2);
+    public static final BlockEntry<CasingBlock> ULTIMATE_CONTAINMENT_FIELD_GENERATOR = createCasingBlockWithTooltip("ultimate_containment_field_generator", Epimorphism.id("block/casings/solid/ultimate_containment_field_generator"), 2);
+    public static final BlockEntry<CasingBlock> HOLLOW_CASING = createCasingBlockWithTooltip("hollow_casing", Epimorphism.id("block/casings/solid/hollow_casing"), 2);
+    public static final BlockEntry<CasingBlock> SPACETIME_DISTORTION_CASING = createCasingBlockWithTooltip("spacetime_distortion_casing", Epimorphism.id("block/casings/solid/spacetime_distortion_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_CASING = createCasingBlockWithTooltip("dimensional_casing", Epimorphism.id("block/casings/solid/dimensional_casing"), 2);
+    public static final BlockEntry<CasingBlock> HYPERDIMENSIONAL_CASING = createCasingBlockWithTooltip("hyperdimensional_casing", Epimorphism.id("block/casings/solid/hyperdimensional_casing"), 2);
+
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_1 = createSCFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_2 = createSCFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_3 = createSCFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_4 = createSCFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_5 = createSCFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_6 = createSCFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_7 = createSCFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_8 = createSCFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_9 = createSCFieldGenerator(ITierType.TierBlockType.UHV);
+
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_1 = createSTFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_2 = createSTFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_3 = createSTFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_4 = createSTFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_5 = createSTFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_6 = createSTFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_7 = createSTFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_8 = createSTFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_9 = createSTFieldGenerator(ITierType.TierBlockType.UHV);
+
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_1 = createTAFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_2 = createTAFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_3 = createTAFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_4 = createTAFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_5 = createTAFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_6 = createTAFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_7 = createTAFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_8 = createTAFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_9 = createTAFieldGenerator(ITierType.TierBlockType.UHV);
+
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_GALAXY);
+    }
+
+    public static final BlockEntry<Block> PLANET_OVERWORLD = createPlanetDimensionDisplay(OVERWORLD);
+    public static final BlockEntry<Block> PLANET_NETHER = createPlanetDimensionDisplay(THE_NETHER);
+    public static final BlockEntry<Block> PLANET_THE_END = createPlanetDimensionDisplay(THE_END);
+    public static final BlockEntry<Block> PLANET_TWILIGHT_FOREST = createPlanetDimensionDisplay(TWILIGHT_FOREST);
+    public static final BlockEntry<Block> PLANET_MOON = createPlanetDimensionDisplay(MOON);
+    public static final BlockEntry<Block> PLANET_DEIMOS = createPlanetDimensionDisplay(DEIMOS);
+    public static final BlockEntry<Block> PLANET_MARS = createPlanetDimensionDisplay(MARS);
+    public static final BlockEntry<Block> PLANET_PHOBOS = createPlanetDimensionDisplay(PHOBOS);
+    public static final BlockEntry<Block> PLANET_CALLISTO = createPlanetDimensionDisplay(CALLISTO);
+    public static final BlockEntry<Block> PLANET_CERES = createPlanetDimensionDisplay(CERES);
+    public static final BlockEntry<Block> PLANET_EUROPA = createPlanetDimensionDisplay(EUROPA);
+    public static final BlockEntry<Block> PLANET_GANYMEDE = createPlanetDimensionDisplay(GANYMEDE);
+    public static final BlockEntry<Block> PLANET_ROSS_128_B = createPlanetDimensionDisplay(ROSS_128_B);
+    public static final BlockEntry<Block> PLANET_ASTEROID_BELT = createPlanetDimensionDisplay(ASTEROID_BELT);
+    public static final BlockEntry<Block> PLANET_IO = createPlanetDimensionDisplay(IO);
+    public static final BlockEntry<Block> PLANET_VENUS = createPlanetDimensionDisplay(VENUS);
+    public static final BlockEntry<Block> PLANET_MERCURY = createPlanetDimensionDisplay(MERCURY);
+    public static final BlockEntry<Block> PLANET_MIRANDA = createPlanetDimensionDisplay(MIRANDA);
+    public static final BlockEntry<Block> PLANET_OBERON = createPlanetDimensionDisplay(OBERON);
+    public static final BlockEntry<Block> PLANET_ENCELADUS = createPlanetDimensionDisplay(ENCELADUS);
+    public static final BlockEntry<Block> PLANET_ROSS_128_BA = createPlanetDimensionDisplay(ROSS_128_BA);
+    public static final BlockEntry<Block> PLANET_TITAN = createPlanetDimensionDisplay(TITAN);
+    public static final BlockEntry<Block> PLANET_PROTEUS = createPlanetDimensionDisplay(PROTEUS);
+    public static final BlockEntry<Block> PLANET_TRITON = createPlanetDimensionDisplay(TRITON);
+    public static final BlockEntry<Block> PLANET_HAUMEA = createPlanetDimensionDisplay(HAUMEA);
+    public static final BlockEntry<Block> PLANET_KUIPER_BELT = createPlanetDimensionDisplay(KUIPER_BELT);
+    public static final BlockEntry<Block> PLANET_MAKEMAKE = createPlanetDimensionDisplay(MAKEMAKE);
+    public static final BlockEntry<Block> PLANET_PLUTO = createPlanetDimensionDisplay(PLUTO);
+    public static final BlockEntry<Block> PLANET_BARNARDA_C = createPlanetDimensionDisplay(BARNARDA_C);
+    public static final BlockEntry<Block> PLANET_BARNARDA_E = createPlanetDimensionDisplay(BARNARDA_E);
+    public static final BlockEntry<Block> PLANET_BARNARDA_F = createPlanetDimensionDisplay(BARNARDA_F);
+    public static final BlockEntry<Block> PLANET_TAU_CETI_E = createPlanetDimensionDisplay(TAU_CETI_E);
+    public static final BlockEntry<Block> PLANET_VEGA_B = createPlanetDimensionDisplay(VEGA_B);
+    public static final BlockEntry<Block> PLANET_CENTAURI_BB = createPlanetDimensionDisplay(CENTAURI_BB);
+    public static final BlockEntry<Block> PLANET_SET = createPlanetDimensionDisplay(SET);
+    public static final BlockEntry<Block> PLANET_ANUBIS = createPlanetDimensionDisplay(ANUBIS);
+    public static final BlockEntry<Block> PLANET_HORUS = createPlanetDimensionDisplay(HORUS);
+    public static final BlockEntry<Block> PLANET_MAAHES = createPlanetDimensionDisplay(MAAHES);
+    public static final BlockEntry<Block> PLANET_MEHEN_BELT = createPlanetDimensionDisplay(MEHEN_BELT);
+    public static final BlockEntry<Block> PLANET_NEPERI = createPlanetDimensionDisplay(NEPERI);
+    public static final BlockEntry<Block> PLANET_DEEP_DARK = createPlanetDimensionDisplay(DEEP_DARK);
 
     //  Misc
 
@@ -358,6 +449,21 @@ public class EPBlocks {
         return createCasingBlock(name, RendererGlassBlock::new, texture, () -> Blocks.GLASS, type);
     }
 
+    protected static BlockEntry<CasingBlock> createCasingBlockWithTooltip(String name, ResourceLocation texture, int tooltips) {
+        return EPRegistries.EP_REGISTRATE.block(name, p -> new CasingBlock(p,
+                        Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", texture)) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(block -> block.addTooltip(EPLangHelper.getBlockTooltips(name, tooltips)))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+    }
+
     private static BlockEntry<TierGlassBlock> createGlassBlock(ITierGlassType glassType, SoundType soundType, Supplier<Supplier<RenderType>> type) {
         BlockEntry<TierGlassBlock> glassBlock = EP_REGISTRATE.block("%s_block".formatted(glassType.typeName()),
                         p -> new TierGlassBlock(p, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
@@ -421,6 +527,73 @@ public class EPBlocks {
                 .register();
         ALL_FIELD_BLOCKS.put(blockData, fieldBlock::get);
         return fieldBlock;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createSCFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> SCFieldGenerator = EP_REGISTRATE.block("spacetime_compression_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/spacetime_compression/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        SC_FIELD_GENERATORS.put(blockData, SCFieldGenerator::get);
+        return SCFieldGenerator;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createSTFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> STFieldGenerator = EP_REGISTRATE.block("stabilisation_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/stabilisation/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ST_FIELD_GENERATORS.put(blockData, STFieldGenerator::get);
+        return STFieldGenerator;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createTAFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> TAFieldGenerator = EP_REGISTRATE.block("time_acceleration_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/time_acceleration/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        TA_FIELD_GENERATORS.put(blockData, TAFieldGenerator::get);
+        return TAFieldGenerator;
+    }
+
+    private static BlockEntry<Block> createPlanetDimensionDisplay(DimensionDisplayBlock.Dimension dimension) {
+        var dim = dimension.getDimension();
+        BlockEntry<Block> planetBlock = EP_REGISTRATE.block("dimension_display_%s".formatted(dim),
+                        p -> (Block) new DimensionDisplayBlock(p, Platform.isClient() ? new PlanetDisplayRenderer(dim, dimension.getTier()) : null, dimension))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_DIM_DISPLAY_BLOCKS.put(dim, planetBlock);
+        return planetBlock;
     }
 
     private static BlockEntry<SimpleTierBlock> createComponentAssemblyBlock(ITierType blockData) {
