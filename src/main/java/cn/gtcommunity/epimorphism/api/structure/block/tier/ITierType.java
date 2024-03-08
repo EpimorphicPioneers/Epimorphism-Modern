@@ -4,6 +4,8 @@ import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.util.StringRepresentable;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
+
 public interface ITierType extends StringRepresentable{
     String typeName();
 
@@ -13,6 +15,14 @@ public interface ITierType extends StringRepresentable{
     @NotNull
     default String getSerializedName() {
         return typeName();
+    }
+
+    record SimpleTierBlockType(String typeName, int tier) implements ITierType {
+        @Nonnull
+        @Override
+        public String toString() {
+            return typeName();
+        }
     }
 
     enum TierBlockType implements ITierType {

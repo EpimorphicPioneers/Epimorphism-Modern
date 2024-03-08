@@ -1,9 +1,14 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import net.minecraftforge.common.data.LanguageProvider;
+
+import java.util.List;
+import java.util.Locale;
 
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class BlockLang {
     public static void init(LanguageProvider provider) {
@@ -46,92 +51,99 @@ public class BlockLang {
                 "§7Glass Tier: %s",
                 "§7玻璃等级：%s");
 
-        add(provider, "epimorphism.optical_glass_tier.desc.0",
-                "Crude Optical Glass",
-                "粗制光学玻璃");
-        add(provider, "epimorphism.optical_glass_tier.desc.1",
-                "Ordinary Optical Glass",
-                "普通光学玻璃");
-        add(provider, "epimorphism.optical_glass_tier.desc.2",
-                "Modified Optical Glass",
-                "改良光学玻璃");
-        add(provider, "epimorphism.optical_glass_tier.desc.3",
-                "High-quality Optical Glass",
-                "优质光学玻璃");
-        add(provider, "epimorphism.optical_glass_tier.desc.4",
-                "Precision Optical Glass",
-                "精密光学玻璃");
-        add(provider, "epimorphism.optical_glass_tier.desc.5",
-                "Marvellous Optical Glass",
-                "精奇光学玻璃");
+        addMultiLang(provider, "epimorphism.optical_glass_tier.desc",
+                List.of(
+                        "Crude Optical Glass",
+                        "Ordinary Optical Glass",
+                        "Modified Optical Glass",
+                        "High-quality Optical Glass",
+                        "Precision Optical Glass",
+                        "Marvellous Optical Glass"
+                ),
+                List.of(
+                        "粗制光学玻璃",
+                        "普通光学玻璃",
+                        "改良光学玻璃",
+                        "优质光学玻璃",
+                        "精密光学玻璃",
+                        "精奇光学玻璃"
+                ));
 
         //  Fluid Tank Cell Block
-        addBlock(provider, FLUID_TANK_CELL_1, "Fluid Tank Cell Block T1", "流体单元方块 T1");
-        addBlock(provider, FLUID_TANK_CELL_2, "Fluid Tank Cell Block T2", "流体单元方块 T2");
-        addBlock(provider, FLUID_TANK_CELL_3, "Fluid Tank Cell Block T3", "流体单元方块 T3");
-        addBlock(provider, FLUID_TANK_CELL_4, "Fluid Tank Cell Block T4", "流体单元方块 T4");
-        addBlock(provider, FLUID_TANK_CELL_5, "Fluid Tank Cell Block T5", "流体单元方块 T5");
-        addBlock(provider, FLUID_TANK_CELL_6, "Fluid Tank Cell Block T6", "流体单元方块 T6");
-        addBlock(provider, FLUID_TANK_CELL_7, "Fluid Tank Cell Block T7", "流体单元方块 T7");
-        addBlock(provider, FLUID_TANK_CELL_8, "Fluid Tank Cell Block T8", "流体单元方块 T8");
-        addBlock(provider, FLUID_TANK_CELL_9, "Fluid Tank Cell Block T9", "流体单元方块 T9");
-        addBlock(provider, FLUID_TANK_CELL_10, "Fluid Tank Cell Block T10", "流体单元方块 T10");
+        addTieredBlock(provider, "fluid_tank_cell_%s"::formatted,
+                "Fluid Tank Cell Block T%s"::formatted, "流体单元方块 T%s"::formatted, tiersBetween(1, 10));
 
         //  Storage Field Blocks
-        addBlock(provider, STORAGE_FIELD_BLOCK_1, "Storage Field Block T1", "存储立场方块 T1");
-        addBlock(provider, STORAGE_FIELD_BLOCK_2, "Storage Field Block T2", "存储立场方块 T2");
-        addBlock(provider, STORAGE_FIELD_BLOCK_3, "Storage Field Block T3", "存储立场方块 T3");
-        addBlock(provider, STORAGE_FIELD_BLOCK_4, "Storage Field Block T4", "存储立场方块 T4");
-        addBlock(provider, STORAGE_FIELD_BLOCK_5, "Storage Field Block T5", "存储立场方块 T5");
-        addBlock(provider, STORAGE_FIELD_BLOCK_6, "Storage Field Block T6", "存储立场方块 T6");
-        addBlock(provider, STORAGE_FIELD_BLOCK_7, "Storage Field Block T7", "存储立场方块 T7");
-        addBlock(provider, STORAGE_FIELD_BLOCK_8, "Storage Field Block T8", "存储立场方块 T8");
-        addBlock(provider, STORAGE_FIELD_BLOCK_9, "Storage Field Block T9", "存储立场方块 T9");
-        addBlock(provider, STORAGE_FIELD_BLOCK_10, "Storage Field Block T10", "存储立场方块 T10");
+        addTieredBlock(provider, "storage_field_block_%s"::formatted,
+                "Storage Field Block T%s"::formatted, "存储立场方块 T%s"::formatted, tiersBetween(1, 10));
 
         //  Component Assembly Line Casings
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_LV, "Component Assembly Line Casing (§7LV§r)", "部件装配线外壳（§7LV§r）",
-                "§7Simple Assembly Unit",
-                "§7简易装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_MV, "Component Assembly Line Casing (§bMV§r)", "部件装配线外壳（§bMV§r）",
-                "§7Crude Assembly Unit",
-                "§7粗制装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_HV, "Component Assembly Line Casing (§6HV§r)", "部件装配线外壳（§6HV§r）",
-                "§7Premium Assembly Unit",
-                "§7优质装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_EV, "Component Assembly Line Casing (§5EV§r)", "部件装配线外壳（§5EV§r）",
-                "§7Advanced Assembly Unit",
-                "§7进阶装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_IV, "Component Assembly Line Casing (§1IV§r)", "部件装配线外壳（§1IV§r）",
-                "§High-quality Assembly Unit",
-                "§7高级装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_LuV, "Component Assembly Line Casing (§dLuV§r)", "部件装配线外壳（§dLuV§r）",
-                "§7High-precision Assembly Unit",
-                "§7高精度装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_ZPM, "Component Assembly Line Casing (§cZPM§r)", "部件装配线外壳（§cZPM§r）",
-                "§7Ultra-high precision Assembly Unit",
-                "§7超高精度装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_UV, "Component Assembly Line Casing (§3UV§r)", "部件装配线外壳（§3UV§r）",
-                "§7Extreme precision Assembly Unit",
-                "§7极限精度装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_UHV, "Component Assembly Line Casing (§4UHV§r)", "部件装配线外壳（§4UHV§r）",
-                "§7Extremely High-precision Assembly Unit",
-                "§7极高精度装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_UEV, "Component Assembly Line Casing (§aUEV§r)", "部件装配线外壳（§aUEV§r）",
-                "§7Structural Assembly Unit",
-                "§7结构装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_UIV, "Component Assembly Line Casing (§2UIV)", "部件装配线外壳（§2UIV）",
-                "§7Large-scale Structural Assembly Unit",
-                "§7大尺度结构装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_UXV, "Component Assembly Line Casing (§eUXV§r)", "部件装配线外壳（§eUXV§r）",
-                "§7Superstructural Assembly Unit",
-                "§7超结构装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_OpV, "Component Assembly Line Casing (§9OpV§r)", "部件装配线外壳（§9OpV§r）",
-                "§7Cosmic Assembly Unit",
-                "§7宇宙装配单元");
-        addBlockWithTooltip(provider, COMPONENT_ASSEMBLY_LINE_CASING_MAX, "Component Assembly Line Casing (§c§lMAX§r)", "部件装配线外壳（§c§lMAX§r）",
-                "§7Space-time Assembly Unit",
-                "§7时空装配单元");
+        addTieredBlockWithTooltip(provider, tier -> "component_assembly_line_casing_%s".formatted(VN[tier].toLowerCase(Locale.ROOT)),
+                tier -> "Component Assembly Line Casing (%s§r)".formatted(VNF[tier]),
+                tier -> "部件装配线外壳（%s§r）".formatted(VNF[tier]),
+                tier -> "§7%s Assembly Unit".formatted(getCATier(tier, true)),
+                tier -> "§7%s装配单元".formatted(getCATier(tier, false)), tiersBetween(LV, MAX));
+
+
+        addTieredBlockWithTooltip(provider, "spacetime_compression_field_generator_%s"::formatted,
+                tier -> "%s Spacetime Compression Field Generator".formatted(getFieldGeneratorTier(tier, true)),
+                tier -> "%s压缩时空场发生器".formatted(getFieldGeneratorTier(tier, false)),
+                tier -> "Supports an internal spacetime volume of up to %skm³.".formatted(FormattingUtil.formatNumbers(Math.pow(10, 4 + tier))),
+                tier -> "支持高达%skm³的内部压缩时空。".formatted(FormattingUtil.formatNumbers(Math.pow(10, 4 + tier))), tiersBetween(1, 9));
+
+        addTieredBlockWithTooltip(provider, "stabilisation_field_generator_%s"::formatted,
+                tier -> "%s Stabilisation Field Generator".formatted(getFieldGeneratorTier(tier, true)),
+                tier -> "%s稳定力场发生器".formatted(getFieldGeneratorTier(tier, false)),
+                tier -> "§b§lIncreases stability of spacetime field.",
+                tier -> "§b§l增加时空场的稳定性。", tiersBetween(1, 9));
+
+        addTieredBlockWithTooltip(provider, "time_acceleration_field_generator_%s"::formatted,
+                tier -> "%s Time Acceleration Field Generator".formatted(getFieldGeneratorTier(tier, true)),
+                tier -> "%s时间膨胀场发生器".formatted(getFieldGeneratorTier(tier, false)),
+                tier -> "§b§lTime dilation in a box.",
+                tier -> "§b§l盒子里的时间膨胀。", tiersBetween(1, 9));
+
+        addDimensionDisplay(provider, PLANET_OVERWORLD, "Overworld", "主世界");
+        addDimensionDisplay(provider, PLANET_NETHER, "The Nether", "下界");
+        addDimensionDisplay(provider, PLANET_THE_END, "The End", "末地");
+        addDimensionDisplay(provider, PLANET_TWILIGHT_FOREST, "Twilight Forest", "暮色森林");
+        addDimensionDisplay(provider, PLANET_MOON, "Moon", "月球");
+        addDimensionDisplay(provider, PLANET_DEIMOS, "Deimos", "火卫二");
+        addDimensionDisplay(provider, PLANET_MARS, "Mars", "火星");
+        addDimensionDisplay(provider, PLANET_PHOBOS, "Phobos", "火卫一");
+        addDimensionDisplay(provider, PLANET_CALLISTO, "Callisto", "木卫四");
+        addDimensionDisplay(provider, PLANET_CERES, "Ceres", "谷神星");
+        addDimensionDisplay(provider, PLANET_EUROPA, "Europa", "木卫二");
+        addDimensionDisplay(provider, PLANET_GANYMEDE, "Ganymede", "木卫三");
+        addDimensionDisplay(provider, PLANET_ROSS_128_B, "Ross 128 B", "罗斯128b");
+        addDimensionDisplay(provider, PLANET_ASTEROID_BELT, "Asteroid Belt", "小行星带");
+        addDimensionDisplay(provider, PLANET_IO, "Io", "木卫一");
+        addDimensionDisplay(provider, PLANET_VENUS, "Venus", "金星");
+        addDimensionDisplay(provider, PLANET_MERCURY, "Mercury", "水星");
+        addDimensionDisplay(provider, PLANET_MIRANDA, "Miranda", "天卫五");
+        addDimensionDisplay(provider, PLANET_OBERON, "Oberon", "天卫四");
+        addDimensionDisplay(provider, PLANET_ENCELADUS, "Enceladus", "土卫二");
+        addDimensionDisplay(provider, PLANET_ROSS_128_BA, "Ross 128 Ba", "罗斯128ba");
+        addDimensionDisplay(provider, PLANET_TITAN, "Titan", "土卫六");
+        addDimensionDisplay(provider, PLANET_PROTEUS, "Proteus", "海卫八");
+        addDimensionDisplay(provider, PLANET_TRITON, "Triton", "海卫一");
+        addDimensionDisplay(provider, PLANET_HAUMEA, "Haumea", "妊神星");
+        addDimensionDisplay(provider, PLANET_KUIPER_BELT, "Kuiper Belt", "柯伊伯带");
+        addDimensionDisplay(provider, PLANET_MAKEMAKE, "Makemake", "鸟神星");
+        addDimensionDisplay(provider, PLANET_PLUTO, "Pluto", "冥王星");
+        addDimensionDisplay(provider, PLANET_BARNARDA_C, "Barnarda C", "巴纳德C");
+        addDimensionDisplay(provider, PLANET_BARNARDA_E, "Barnarda E", "巴纳德E");
+        addDimensionDisplay(provider, PLANET_BARNARDA_F, "Barnarda F", "巴纳德F");
+        addDimensionDisplay(provider, PLANET_TAU_CETI_E, "Tau Ceti E", "鲸鱼座T星E");
+        addDimensionDisplay(provider, PLANET_VEGA_B, "Vega B", "织女一B");
+        addDimensionDisplay(provider, PLANET_CENTAURI_BB, "Centauri Bb", "半人马Bb");
+        addDimensionDisplay(provider, PLANET_SET, "Set", "塞特");
+        addDimensionDisplay(provider, PLANET_ANUBIS, "Anubis", "阿努比斯");
+        addDimensionDisplay(provider, PLANET_HORUS, "Horus", "荷鲁斯");
+        addDimensionDisplay(provider, PLANET_MAAHES, "Maahes", "马赫斯");
+        addDimensionDisplay(provider, PLANET_MEHEN_BELT, "Mehen Belt", "迈罕带");
+        addDimensionDisplay(provider, PLANET_NEPERI, "Neperi", "奈佩里");
+        addDimensionDisplay(provider, PLANET_DEEP_DARK, "Deep Dark", "漆黑世界");
 
         addBlock(provider, HYPER_CASING,"Hyper Casing","超级机械方块");
         addBlock(provider, IRIDIUM_CASING,"Iridium Casing","铱机械方块");
@@ -159,6 +171,98 @@ public class BlockLang {
         addBlock(provider, FLOTATION_CELL,"Flotation Cell","浮选槽");
         addBlock(provider, VACUUM_CASING,"Vacuum Casing","真空机械方块");
 
+        addBlockWithTooltip(provider, ADVANCED_HIGH_ENERGY_CASING, "Advanced High Energy Casing", "进阶高能机械方块",
+                List.of(
+                        "§7Used for Ultrahigh Energy Physics Experiment",
+                        "§b§lThis block can last forever."
+                ),
+                List.of(
+                        "§7用于超高能物理实验器件",
+                        "§b§l这个方块可以持久不衰。"
+                ));
+        addBlockWithTooltip(provider, ULTIMATE_HIGH_ENERGY_CASING, "Ultimate High Energy Casing", "终极高能机械方块",
+                List.of(
+                        "§7Used for Ultrahigh Energy Physics Experiment in Extreme Situations",
+                        "§b§lIt can survive at least one big bang of the universe, maybe even two..."
+                ),
+                List.of(
+                        "§7用于极端情况下的超高能物理实验",
+                        "§b§l至少能在一次宇宙大爆炸中幸存，也许是两次……"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_BRIDGE_CASING, "Dimensional Bridge Casing", "维度桥接机械方块",
+                List.of(
+                        "§7Used to connect Time and Space from Different Dimensions",
+                        "§b§lIt's best not to touch it with your hands."
+                ),
+                List.of(
+                        "§7用于连接不同维度的时间与空间",
+                        "§b§l最好别用手碰它。"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_LINK_CASING, "Dimensional Link Casing", "维度联络机械方块",
+                List.of(
+                        "§7Multidimensional Operation",
+                        "§b§lThe universe or someplace else."
+                ),
+                List.of(
+                        "§7多维运算",
+                        "§b§l宇宙或别的地方。"
+                ));
+        addBlockWithTooltip(provider, CONTAINMENT_FIELD_GENERATOR, "Containment Field Generator", "遏制场发生器",
+                List.of(
+                        "§7Generate a field...",
+                        "§b§lIt can even block high-energy particles."
+                ),
+                List.of(
+                        "§7产生一个场……",
+                        "§b§l甚至可以阻止高能粒子。"
+                ));
+        addBlockWithTooltip(provider, ULTIMATE_CONTAINMENT_FIELD_GENERATOR, "Ultimate Containment Field Generator", "终极遏制场发生器",
+                List.of(
+                        "§7Black hole",
+                        "§b§lHmm..."
+                ),
+                List.of(
+                        "§7黑洞",
+                        "§b§l嗯……"
+                ));
+        addBlockWithTooltip(provider, HOLLOW_CASING, "Hollow Structure Casing", "中空结构方块",
+                List.of(
+                        "§7Enhanced Accelerator Pipe",
+                        "§b§lThe most advanced pipeline ever."
+                ),
+                List.of(
+                        "§7强化加速器通道",
+                        "§b§l有史以来最先进的管道。"
+                ));
+        addBlockWithTooltip(provider, SPACETIME_DISTORTION_CASING, "Spacetime Distortion Casing", "时空扭曲机械方块",
+                List.of(
+                        "§7Speed of Light no longer a Limit",
+                        "§b§lCould potentially trigger temporal and spatial turbulence."
+                ),
+                List.of(
+                        "§7光速不再是限制",
+                        "§b§l可能引发时空乱流。"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_CASING, "Dimensional Casing", "维度机械方块",
+                List.of(
+                        "§7Resist the spacetime shearing caused by the expansion of the universe",
+                        "§b§lProvide a stable barrier between spacetime regions."
+                ),
+                List.of(
+                        "§7抵抗宇宙膨胀带来的时空剪切",
+                        "§b§l在时空区域之间提供一道稳定的屏障。"
+                ));
+        addBlockWithTooltip(provider, HYPERDIMENSIONAL_CASING, "Hyperdimensional Casing", "超维度机械方块",
+                List.of(
+                        "§7Exists in all possible spacetime dimensions",
+                        "§b§lMerely a projection in three-dimensional space..."
+                ),
+                List.of(
+                        "§7存在于所有可能时空",
+                        "§b§l仅仅是三维空间下的投影……"
+                ));
+
+
         //  Agriculture
         addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
         addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
@@ -167,5 +271,38 @@ public class BlockLang {
         addBlock(provider, PINE_LEAVES,"Pine Leaves","松树树叶");
         addBlock(provider, PINE_PLANK,"Pine Plank","松树木板");
 
+    }
+
+    private static String getFieldGeneratorTier(int tier, boolean isEN) {
+        return switch (tier) {
+            case 1 -> isEN ? "Crude" : "粗制";
+            case 2 -> isEN ? "Raw" : "原始";
+            case 3 -> isEN ? "Stable" : "稳定";
+            case 4 -> isEN ? "Advanced" : "先进";
+            case 5 -> isEN ? "Excellence" : "卓越";
+            case 6 -> isEN ? "Alien" : "异星";
+            case 7 -> isEN ? "Perfect" : "完美";
+            case 8 -> isEN ? "Taishu" : "太初";
+            default -> isEN ? "§lHarmony§r" : "§l鸿蒙§r";
+        };
+    }
+
+    private static String getCATier(int tier, boolean isEN) {
+        return switch (tier) {
+            case LV -> isEN ? "Simple" : "简易";
+            case MV -> isEN ? "Crude" : "粗制";
+            case HV -> isEN ? "Premium" : "优质";
+            case EV -> isEN ? "Advanced" : "进阶";
+            case IV -> isEN ? "High-quality" : "高级";
+            case LuV -> isEN ? "High-precision" : "高精度";
+            case ZPM -> isEN ? "Ultra-high Precision" : "超高精度";
+            case UV -> isEN ? "Extreme Precision" : "极限精度";
+            case UHV -> isEN ? "Extremely High-precision" : "极高精度";
+            case UEV -> isEN ? "Structural" : "结构";
+            case UIV -> isEN ? "Large-scale Structural" : "大尺度结构";
+            case UXV -> isEN ? "Superstructural" : "超结构";
+            case OpV -> isEN ? "Cosmic" : "宇宙";
+            default -> isEN ? "Space-time" : "时空";
+        };
     }
 }
