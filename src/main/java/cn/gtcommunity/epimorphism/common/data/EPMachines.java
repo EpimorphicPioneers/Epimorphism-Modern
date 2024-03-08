@@ -1707,7 +1707,7 @@ public class EPMachines {
             })
             .register();
 
-    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
+    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  1))
             .langValue("Steam Piston Hammer")
             .tooltips(
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
