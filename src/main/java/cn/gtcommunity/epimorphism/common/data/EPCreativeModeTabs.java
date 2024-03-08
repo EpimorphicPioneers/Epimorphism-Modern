@@ -38,18 +38,23 @@ public class EPCreativeModeTabs {
                             .icon(EPPhysicsItems.EMPTY_PARTICLE_CAPSULE::asStack)
                             .build())
             .register();
-    public final static RegistryEntry<CreativeModeTab> EP_AGRICULTURE = EP_REGISTRATE.defaultCreativeTab("agriculture",
-                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("agriculture", EP_REGISTRATE))
-                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("agriculture"), Epimorphism.NAME + " | Agriculture"))
-                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
-                            .build())
-            .register();
     public final static RegistryEntry<CreativeModeTab> EP_BIOLOGY = EP_REGISTRATE.defaultCreativeTab("biology",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("biology", EP_REGISTRATE))
                             .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("biology"), Epimorphism.NAME + " | Biology"))
                             .icon(EPBiologyItems.STERILIZED_PETRI_DISH::asStack)
                             .build())
             .register();
-
+    public final static RegistryEntry<CreativeModeTab> EP_AGRICULTURE = EP_REGISTRATE.defaultCreativeTab("agriculture",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("agriculture", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("agriculture"), Epimorphism.NAME + " | Agriculture"))
+                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
+                            .build())
+            .register();
+    public final static RegistryEntry<CreativeModeTab> EP_GALAXY = EP_REGISTRATE.defaultCreativeTab("galaxy",
+                    builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("galaxy", EP_REGISTRATE))
+                            .title(EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("galaxy"), Epimorphism.NAME + " | Galaxy"))
+                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
+                            .build())
+            .register();
     public static void init() {/**/}
 }

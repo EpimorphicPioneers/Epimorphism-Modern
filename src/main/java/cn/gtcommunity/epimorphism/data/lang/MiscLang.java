@@ -12,6 +12,7 @@ public class MiscLang {
         addCN(provider, "itemGroup.epimorphism.physics", "Epimorphism丨物理学");
         addCN(provider, "itemGroup.epimorphism.biology", "Epimorphism丨生物学");
         addCN(provider, "itemGroup.epimorphism.agriculture", "Epimorphism丨农业");
+        addCN(provider, "itemGroup.epimorphism.galaxy", "Epimorphism丨银河");
         addCN(provider, "itemGroup.epimorphism.circuit_reform", "Epimorphism丨电路板改革");
 
         add(provider, "epimorphism.universal.none",
