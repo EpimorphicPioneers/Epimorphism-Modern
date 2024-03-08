@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.common.block;
 import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.AppearanceBlock;
+import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.client.renderer.IBlockRendererProvider;
@@ -20,23 +21,14 @@ import org.jetbrains.annotations.Nullable;
 import java.math.BigInteger;
 import java.util.List;
 
-public class FluidTankCellBlock extends AppearanceBlock implements IBlockRendererProvider {
-
-    private final IRenderer renderer;
+public class FluidTankCellBlock extends RendererBlock {
 
     @Getter
     private final IFluidTankCell data;
 
     public FluidTankCellBlock(Properties properties, IFluidTankCell data, IRenderer renderer) {
-        super(properties);
+        super(properties, renderer);
         this.data = data;
-        this.renderer = renderer;
-    }
-
-    @Nullable
-    @Override
-    public IRenderer getRenderer(BlockState state) {
-        return renderer;
     }
 
     @Override

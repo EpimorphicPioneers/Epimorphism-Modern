@@ -38,9 +38,15 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> PA_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_PA_CASINGS = new Object2ObjectOpenHashMap<>();
 
+    // Eye of Harmony
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> SC_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ST_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> TA_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
+
     // Univer
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FIREBOXS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<String, Supplier<Block>> ALL_DIM_DISPLAY_BLOCKS = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
         //  ALL_CP_TUBES Init
