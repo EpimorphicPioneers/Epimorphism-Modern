@@ -26,7 +26,6 @@ public class ParallelElectricMultiblockMachine extends MultiStatsElectricMultibl
             }
             return 1;
         });
-        addStats(parallelStats);
     }
 
     //////////////////////////////////////

@@ -18,7 +18,6 @@ public class TierCasingElectricMultiblockMachine extends MultiStatsElectricMulti
     public TierCasingElectricMultiblockMachine(IMachineBlockEntity holder, String typeName) {
         super(holder);
         this.casingTierStats = new CasingTierStats(this, typeName);
-        addStats(casingTierStats);
     }
 
     //////////////////////////////////////

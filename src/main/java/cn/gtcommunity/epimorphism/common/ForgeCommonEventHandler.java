@@ -1,7 +1,9 @@
 package cn.gtcommunity.epimorphism.common;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
+import cn.gtcommunity.epimorphism.common.data.EPRecipes;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.network.EPNetworking;
 import cn.gtcommunity.epimorphism.network.s2c.PacketVajraDestroy;
@@ -39,5 +41,10 @@ public class ForgeCommonEventHandler {
             }
 
         }
+    }
+
+    @SubscribeEvent
+    public static void addRecipes(GTRecipeEvent.AddRecipe event) {
+        event.register(EPRecipes::init);
     }
 }

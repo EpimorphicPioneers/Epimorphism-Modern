@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.machine.feature.stats.tier;
 
+import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
 import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -18,9 +19,10 @@ public interface ICasingMachine {
         private ITierType tierType = ITierType.TierBlockType.ULV;
         private final String typeName;
 
-        public CasingTierStats(MetaMachine machine, String typeName) {
+        public CasingTierStats(MultiStatsElectricMultiblockMachine machine, String typeName) {
             super(machine);
             this.typeName = typeName;
+            machine.addStats(this);
         }
 
         @Override

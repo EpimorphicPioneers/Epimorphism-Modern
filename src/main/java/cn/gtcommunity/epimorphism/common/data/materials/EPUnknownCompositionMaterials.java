@@ -452,5 +452,44 @@ public class EPUnknownCompositionMaterials {
                 .color(0x000000)
                 .iconSet(EPMaterialIconSet.CUSTOM_TRANSCENDENT_MENTAL)
                 .buildAndRegister();
+        //  Low Purity Naquadah Solution
+        LowPurityNaquadahSolution = Builder("low_purity_naquadah_solution")
+                .liquid(443)
+                .color(0x593649)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("(Nq2O3)?·(HNO3)3", true);
+        //  Naquadah Hydroxides Solution
+        NaquadahHydroxidesSolution = Builder("naquadah_hydroxides_solution")
+                .liquid(552)
+                .color(0x83586F)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("NQ(OH)3?", true);
+        //  Concentrate Enriched Naquadah Mixture
+        ConcentrateEnrichedNaquadahMixture = Builder("concentrate_enriched_naquadah_mixture")
+                .dust()
+                .color(0x153819)
+                .iconSet(MaterialIconSet.ROUGH)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("Nq+Ke?", true);
+        //  Impure Naquadah Mixture Solution
+        ImpureNaquadahMixtureSolution = Builder("impure_naquadah_mixture_solution")
+                .liquid()
+                .color(0x1A2A1C)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("*Nq*?", true);
+        //  Pure Naquadah Mixture Solution
+        PureNaquadriaMixtureSolution = Builder("pure_naquadria_mixture_solution")
+                .liquid()
+                .color(0x1A2A1C)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("*Nq*?", true);
     }
 }

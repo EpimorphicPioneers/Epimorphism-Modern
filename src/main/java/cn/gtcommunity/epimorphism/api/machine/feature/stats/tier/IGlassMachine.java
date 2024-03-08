@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.api.machine.feature.stats.tier;
 
 import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -25,8 +26,9 @@ public interface IGlassMachine {
         @Getter
         private int glassTier;
 
-        public GlassTierStats(MetaMachine machine) {
+        public GlassTierStats(MultiStatsElectricMultiblockMachine machine) {
             super(machine);
+            machine.addStats(this);
         }
 
         @Override

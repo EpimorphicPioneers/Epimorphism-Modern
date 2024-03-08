@@ -17,7 +17,6 @@ public class GlassElectricMultiblockMachine extends MultiStatsElectricMultiblock
     public GlassElectricMultiblockMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, args);
         this.glassTierStats = new GlassTierStats(this);
-        addStats(glassTierStats);
     }
 
     //////////////////////////////////////

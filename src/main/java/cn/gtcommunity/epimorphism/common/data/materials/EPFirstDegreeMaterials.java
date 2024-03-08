@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
@@ -695,7 +694,7 @@ public class EPFirstDegreeMaterials {
         HexafluorideEnrichedNaquadahSolution = Builder("hexafluoride_enriched_naquadah_solution")
                 .fluid()
                 .color(0x868D7F)
-                .components(NaquadahEnriched, 1, Fluorine, 6)
+                .components(NaquadahEnriched, 1, Trinium, 1, Fluorine, 6)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24093 Xenon Hexafluoro Enriched Naquadate
@@ -712,13 +711,12 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
-                .setFormula("XeAuSbKeF6S2?");
+                .setFormula("XeAuSbF6S2?");
         //  24095 Xenoauric Fluoroantimonic Acid
         XenoauricFluoroantimonicAcid = Builder("xenoauric_fluoroantimonic_acid")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().attribute(FluidAttributes.ACID))
                 .color(0xE0BD74)
                 .components(Xenon, 1, Gold, 1, Antimony, 1, Fluorine, 6)
-                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24096 Gold Chloride
         GoldChloride = Builder("gold_chloride")
@@ -1339,7 +1337,6 @@ public class EPFirstDegreeMaterials {
                 .dust()
                 .color(0x968C8C)
                 .iconSet(MaterialIconSet.METALLIC)
-                .flags(DISABLE_DECOMPOSITION)
                 .components(Iron, 2, Trinium, 1, Indium, 1)
                 .buildAndRegister();
         //  24176 Unstable Vibranium
@@ -2606,7 +2603,22 @@ public class EPFirstDegreeMaterials {
                 .buildAndRegister()
                 .setFormula("Ti(NO3)4", true);
 
-        //  24349 PalladiumLoadedRutileNanoparticles
+        //  Naquadah Oxide Mixture
+        NaquadahOxideMixture = Builder("naquadah_oxide_mixture")
+                .dust()
+                .color(0x20142C)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Naquadah, 2, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister()
+                .setFormula("Nq2O3?", true);
 
+        //  Extractive Naquadah Oxide
+        ExtractiveNaquadahOxide = Builder("extractive_naquadah_oxide")
+                .dust(0x432937)
+                .color(0x59434F)
+                .iconSet(MaterialIconSet.ROUGH)
+                .components(Naquadah, 2, Oxygen, 3)
+                .buildAndRegister();
     }
 }

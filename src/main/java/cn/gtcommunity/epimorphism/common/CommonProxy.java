@@ -2,11 +2,14 @@ package cn.gtcommunity.epimorphism.common;
 
 import cn.gtcommunity.epimorphism.EPGTAddon;
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
 import cn.gtcommunity.epimorphism.common.data.*;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
 import cn.gtcommunity.epimorphism.data.EPDatagen;
 import cn.gtcommunity.epimorphism.data.EPProviderTypes;
+import cn.gtcommunity.epimorphism.data.recipe.GTRecipeManager;
+import cn.gtcommunity.epimorphism.data.recipe.generated.GTRecipeHandlerManager;
 import cn.gtcommunity.epimorphism.network.EPNetworking;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -46,6 +49,7 @@ public class CommonProxy {
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
         EPGTAddon.postInitializeAddon();
+        GTRecipeManager.onCommonSetup();
     }
 
     @SubscribeEvent
@@ -55,5 +59,15 @@ public class CommonProxy {
     @SubscribeEvent
     public void registerMaterials(MaterialEvent event) {
         EPMaterials.init();
+    }
+
+    @SubscribeEvent
+    public void registerRecipeHandler(GTRecipeEvent.RegisterHandler event) {
+        GTRecipeHandlerManager.register(event);
+    }
+
+    @SubscribeEvent
+    public void removeRecipe(GTRecipeEvent.RemoveRecipe event) {
+        EPRecipes.remove(event);
     }
 }

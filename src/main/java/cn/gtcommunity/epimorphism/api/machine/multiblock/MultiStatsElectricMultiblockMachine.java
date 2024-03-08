@@ -55,7 +55,7 @@ public class MultiStatsElectricMultiblockMachine extends WorkableElectricMultibl
     //////////////////////////////////////
     //***       Multiblock Data      ***//
     //////////////////////////////////////
-    protected void addStats(MultiblockStats state) {
+    public void addStats(MultiblockStats state) {
         multiblockStats.add(state);
     }
 

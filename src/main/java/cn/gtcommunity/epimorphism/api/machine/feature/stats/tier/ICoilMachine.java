@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.machine.feature.stats.tier;
 
+import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -20,8 +21,9 @@ public interface ICoilMachine {
         @Getter
         private ICoilType coilType  = CoilBlock.CoilType.CUPRONICKEL;
 
-        public CoilTierStats(MetaMachine machine) {
+        public CoilTierStats(MultiStatsElectricMultiblockMachine machine) {
             super(machine);
+            machine.addStats(this);
         }
 
         @Override
