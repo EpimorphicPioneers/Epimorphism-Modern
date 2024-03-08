@@ -35,8 +35,8 @@ public class EPTagPrefix {
             .generationCondition(hasOreProperty.and(mat -> mat.hasFlag(GENERATE_MILLED)));
 
     public static final TagPrefix seedCrystal = new TagPrefix("seedCrystal")
-            .defaultTagPath("seedCrystal/%s")
-            .unformattedTagPath("seedCrystal")
+            .defaultTagPath("seed_crystal/%s")
+            .unformattedTagPath("seed_crystal")
             .materialAmount(M / 9)
             .materialIconType(EPMaterialIconType.seedCrystal)
             .unificationEnabled(true)
