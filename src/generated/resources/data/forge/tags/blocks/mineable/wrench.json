@@ -71,6 +71,8 @@
     "epimorphism:component_assembly_line_casing_uiv",
     "epimorphism:component_assembly_line_casing_uxv",
     "epimorphism:component_assembly_line_casing_opv",
-    "epimorphism:component_assembly_line_casing_max"
+    "epimorphism:component_assembly_line_casing_max",
+    "epimorphism:fusion_casing_mk4",
+    "epimorphism:fusion_casing_mk5"
   ]
 }

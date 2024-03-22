@@ -15,6 +15,7 @@ import com.lowdragmc.lowdraglib.gui.widget.ButtonWidget;
 import com.lowdragmc.lowdraglib.gui.widget.ImageWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
+import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
@@ -22,7 +23,6 @@ import lombok.Setter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
@@ -30,20 +30,16 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialFishingPondMachine.class, ParallelElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-    @Persisted
+    @Persisted @DescSynced
     @Getter @Setter
     private int mode = 0;
     @Persisted
@@ -89,43 +85,19 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
             }
 
             @Override
-            public void writeInitialData(FriendlyByteBuf buffer) {
-                buffer.writeVarInt(getMode());
-            }
-
-            @OnlyIn(Dist.CLIENT)
-            @Override
-            public void readInitialData(FriendlyByteBuf buffer) {
-                setMode(buffer.readVarInt());
-            }
-
-            @Override
-            public void detectAndSendChange(BiConsumer<Integer, Consumer<FriendlyByteBuf>> sender) {
-                sender.accept(0, (buf) -> buf.writeVarInt(getMode()));
-            }
-
-            @OnlyIn(Dist.CLIENT)
-            @Override
-            public void readUpdateInfo(int id, FriendlyByteBuf buffer) {
-                if (id == 0) {
-                    setMode(buffer.readVarInt());
-                }
-            }
-
-            @Override
             public Widget createConfigurator() {
                 WidgetGroup group = new WidgetGroup(0, 0, 140, 64);
                 group.setBackground(GuiTextures.BACKGROUND_INVERSE);
 
-                for(int i = 0; i < 3; ++i) {
+                for (int i = 0; i < 3; ++i) {
                     int tMode = i;
                     group.addWidget(new ButtonWidget(2, 2 + i * 20, 136, 20, IGuiTexture.EMPTY, (cd) -> setMode(tMode)));
                     group.addWidget(new ImageWidget(2, 2 + i * 20, 136, 20,
                             () -> new GuiTextureGroup(ResourceBorderTexture.BUTTON_COMMON.copy()
                                     .setColor(getMode() == tMode ? ColorPattern.CYAN.color : -1),
                                     new TextTexture("block.epimorphism.industrial_fishing_pond.fishing_mode.%s".formatted(tMode))
-                                    .setWidth(136)
-                                    .setType(TextTexture.TextType.ROLL))));
+                                            .setWidth(136)
+                                            .setType(TextTexture.TextType.ROLL))));
                 }
 
                 return group;
@@ -155,7 +127,7 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
                 textList.add(Component.translatable("gtceu.multiblock.work_paused"));
             } else if (this.isActive()) {
                 textList.add(Component.translatable("gtceu.multiblock.running"));
-                int currentProgress = (int)(this.recipeLogic.getProgressPercent() * 100.0);
+                int currentProgress = (int) (this.recipeLogic.getProgressPercent() * 100.0);
                 textList.add(Component.translatable("gtceu.multiblock.progress", currentProgress));
             } else {
                 textList.add(Component.translatable("gtceu.multiblock.idling"));

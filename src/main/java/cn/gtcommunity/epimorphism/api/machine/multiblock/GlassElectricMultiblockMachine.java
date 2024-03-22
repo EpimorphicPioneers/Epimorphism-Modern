@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.api.machine.multiblock;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.tier.IGlassMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier.IGlassMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import net.minecraft.MethodsReturnNonnullByDefault;
