@@ -3,7 +3,7 @@ package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.client.ClientUtil;
 import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.IndustrialGreenhouseMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.IndustrialGreenhouseMachine;
 import cn.gtcommunity.epimorphism.utils.EPDirectionUtil;
 import cn.gtcommunity.epimorphism.utils.EPMathUtil;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

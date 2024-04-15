@@ -52,16 +52,16 @@ public class EPWrapItem {
     public static ItemEntry<Item> WRAP_BOARD_OPTICAL = registerWrapItem("wrap.board.optical", Epimorphism.id("item/board.optical"), OPTICAL_BOARD);
     public static ItemEntry<Item> WRAP_BOARD_SPINTRONIC = registerWrapItem("wrap.board.spintronic", Epimorphism.id("item/board.spintronic"), SPINTRONIC_BOARD);
 
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_BASIC = registerWrapItem("wrap.circuit_board.resin", GTCEu.id("item/resin_printed_circuit_board"), BASIC_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_GOOD = registerWrapItem("wrap.circuit_board.phenolic", GTCEu.id("item/phenolic_printed_circuit_board"), GOOD_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_PLASTIC = registerWrapItem("wrap.circuit_board.plastic", GTCEu.id("item/plastic_printed_circuit_board"), PLASTIC_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_ADVANCED = registerWrapItem("wrap.circuit_board.epoxy", GTCEu.id("item/epoxy_printed_circuit_board"), ADVANCED_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_EXTREME = registerWrapItem("wrap.circuit_board.fiber_reinforced", GTCEu.id("item/fiber_reinforced_printed_circuit_board"), EXTREME_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_ELITE = registerWrapItem("wrap.circuit_board.multilayer_fiber_reinforced", GTCEu.id("item/multilayer_fiber_reinforced_printed_circuit_board"), ELITE_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_WETWARE = registerWrapItem("wrap.circuit_board.wetware", GTCEu.id("item/wetware_printed_circuit_board"), WETWARE_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_GOOWARE = registerWrapItem("wrap.circuit_board.gooware", Epimorphism.id("item/circuit_board.gooware"), GOOWARE_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_OPTICAL = registerWrapItem("wrap.circuit_board.optical", Epimorphism.id("item/circuit_board.optical"), OPTICAL_CIRCUIT_BOARD);
-    public static ItemEntry<Item> WRAP_CIRCUIT_BOARD_SPINTRONIC = registerWrapItem("wrap.circuit_board.spintronic", Epimorphism.id("item/circuit_board.spintronic"), SPINTRONIC_CIRCUIT_BOARD);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_BASIC = registerWrapCircuitBoard("wrap.circuit_board.resin", GTCEu.id("item/resin_printed_circuit_board"), BASIC_CIRCUIT_BOARD, 1);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_GOOD = registerWrapCircuitBoard("wrap.circuit_board.phenolic", GTCEu.id("item/phenolic_printed_circuit_board"), GOOD_CIRCUIT_BOARD, 2);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_PLASTIC = registerWrapCircuitBoard("wrap.circuit_board.plastic", GTCEu.id("item/plastic_printed_circuit_board"), PLASTIC_CIRCUIT_BOARD, 3);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ADVANCED = registerWrapCircuitBoard("wrap.circuit_board.epoxy", GTCEu.id("item/epoxy_printed_circuit_board"), ADVANCED_CIRCUIT_BOARD, 4);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_EXTREME = registerWrapCircuitBoard("wrap.circuit_board.fiber_reinforced", GTCEu.id("item/fiber_reinforced_printed_circuit_board"), EXTREME_CIRCUIT_BOARD, 5);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ELITE = registerWrapCircuitBoard("wrap.circuit_board.multilayer_fiber_reinforced", GTCEu.id("item/multilayer_fiber_reinforced_printed_circuit_board"), ELITE_CIRCUIT_BOARD, 6);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_WETWARE = registerWrapCircuitBoard("wrap.circuit_board.wetware", GTCEu.id("item/wetware_printed_circuit_board"), WETWARE_CIRCUIT_BOARD, 7);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_GOOWARE = registerWrapCircuitBoard("wrap.circuit_board.gooware", Epimorphism.id("item/circuit_board.gooware"), GOOWARE_CIRCUIT_BOARD, 8);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_OPTICAL = registerWrapCircuitBoard("wrap.circuit_board.optical", Epimorphism.id("item/circuit_board.optical"), OPTICAL_CIRCUIT_BOARD, 9);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_SPINTRONIC = registerWrapCircuitBoard("wrap.circuit_board.spintronic", Epimorphism.id("item/circuit_board.spintronic"), SPINTRONIC_CIRCUIT_BOARD, 10);
 
     public static ItemEntry<Item> WRAP_SMD_TRANSISTOR = registerWrapItem("wrap.component.smd_transistor", GTCEu.id("item/smd_transistor"), SMD_TRANSISTOR);
     public static ItemEntry<Item> WRAP_SMD_RESISTOR = registerWrapItem("wrap.component.smd_resistor", GTCEu.id("item/smd_resistor"), SMD_RESISTOR);
@@ -94,6 +94,15 @@ public class EPWrapItem {
     private static ItemEntry<Item> registerWrapItem(String id, ResourceLocation wrappedTexture, ItemEntry<?> wrappedItem) {
         var itemEntry = EP_REGISTRATE.item(id, Item::new)
                 .model(EPModels.wrapItemModel(wrappedTexture))
+                .register();
+        WRAP_ITEM_MAP.put(wrappedItem, itemEntry);
+        return itemEntry;
+    }
+
+    private static ItemEntry<ComponentItem> registerWrapCircuitBoard(String id, ResourceLocation wrappedTexture, ItemEntry<?> wrappedItem, int number) {
+        var itemEntry = EP_REGISTRATE.item(id, ComponentItem::create)
+                .model(EPModels.wrapItemModel(wrappedTexture))
+                .onRegister(EPItems.attachRenderer(new TierRenderItemBehavior(Epimorphism.id("item/number_overlay/%s".formatted(number)))))
                 .register();
         WRAP_ITEM_MAP.put(wrappedItem, itemEntry);
         return itemEntry;

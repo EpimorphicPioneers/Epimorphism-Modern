@@ -140,7 +140,7 @@ public class MaterialLang {
         addMaterial(provider, NaquadriaCaesiumfluoride, "Naquadria Caesiumfluoride", "二氟超能硅岩酸铯");
         addMaterial(provider, AcidicNaquadriaCaesiumfluoride, "Acidic Naquadria Caesiumfluoride", "硫酸二氟超能硅岩酸铯");
         addMaterial(provider, NitrosoniumOctafluoroxenate, "Nitrosonium Octafluoroxenate", "八氟氙酸亚硝酰");
-        addMaterial(provider, NaquadriaCaesiumXenonnonfluoride, "Naquadria Caesium Xenonnonfluoride", "九氟氙酸超能硅岩铯");
+        addMaterial(provider, NaquadriaCaesiumXenonnonfluoride, "Naquadria Caesium Xenonnonfluoride", "九氟氙酸超能硅岩酸铯");
         addMaterial(provider, RadonNaquadriaOctafluoride, "Radon Naquadria Octafluoride", "八氟超能硅岩酸氡");
         addMaterial(provider, CaesiumXenontrioxideFluoride, "Caesium Xenontrioxide Fluoride", "二氟三氧氙酸铯");
         addMaterial(provider, RadonTrioxide, "Radon Trioxide", "三氧化氡");
@@ -388,6 +388,11 @@ public class MaterialLang {
         addMaterial(provider, TitaniumNitrate, "Titanium Nitrate", "硝酸钛");
         addMaterial(provider, NaquadahOxideMixture, "Naquadah Oxide Mixture", "氧化硅岩混合物");
         addMaterial(provider, ExtractiveNaquadahOxide, "Extractive Naquadah Oxide", "氧化硅岩浸出物");
+        addMaterial(provider, AceticAnhydride, "Acetic Anhydride", "乙酸酐");
+        addMaterial(provider, HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
+        addMaterial(provider, SodiumCyanide, "Sodium Cyanide", "氰化钠");
+        addMaterial(provider, SodiumPerchlorate, "Sodium Perchlorate", "高氯酸钠");
+
 
         // Second Degree Materials
         addMaterial(provider, DragonBreath, "Dragon Breath", "龙息");

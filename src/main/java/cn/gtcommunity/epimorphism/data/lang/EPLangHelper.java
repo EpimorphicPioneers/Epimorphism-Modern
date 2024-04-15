@@ -4,7 +4,6 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
@@ -105,6 +104,36 @@ public class EPLangHelper {
         } else if (provider instanceof RegistrateLangProvider enLangProvider) {
             for (int i = 0; i < enTooltip.size(); i++) {
                 enLangProvider.add(block.get().asItem().getDescriptionId() + ".shift_desc." + i, enTooltip.get(i));
+            }
+        }
+    }
+
+    public static void addBlockCNName(LanguageProvider provider, NonNullSupplier<? extends Block> block, String cnName) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            cnLangProvider.addBlock(block, cnName);
+        }
+    }
+
+    public static void addBlockWithCtrlTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add(block.get().asItem().getDescriptionId() + ".ctrl_desc." + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add(block.get().asItem().getDescriptionId() + ".ctrl_desc." + i, enTooltip.get(i));
+            }
+        }
+    }
+
+    public static void addBlockWithAltTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add(block.get().asItem().getDescriptionId() + ".alt_desc." + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add(block.get().asItem().getDescriptionId() + ".alt_desc." + i, enTooltip.get(i));
             }
         }
     }

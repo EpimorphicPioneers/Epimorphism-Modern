@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.feature.IUIMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUIGuiContainer;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
@@ -33,6 +34,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
@@ -160,6 +162,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
 
     private Widget widget(int x, int y, int slot) {
         return new SlotWidget(inventory, slot, x * 18 + 7, y * 18 + 17) {
+
             @Override
             protected Slot createSlot(IItemTransfer itemHandler, int index) {
                 return new WidgetSlotItemTransfer(itemHandler, index, 0, 0) {
@@ -183,10 +186,10 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
             public void drawInBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
                 drawBackgroundTexture(graphics, mouseX, mouseY);
                 Position pos = getPosition();
-                if (slotReference != null)  {
+                if (slotReference != null) {
                     ItemStack itemStack = getRealStack(slotReference.getItem());
                     ModularUIGuiContainer modularUIGui = gui == null ? null : gui.getModularUIGui();
-                    if (itemStack.isEmpty() && modularUIGui!= null && modularUIGui.getQuickCrafting() && modularUIGui.getQuickCraftSlots().contains(slotReference)) { // draw split
+                    if (itemStack.isEmpty() && modularUIGui != null && modularUIGui.getQuickCrafting() && modularUIGui.getQuickCraftSlots().contains(slotReference)) { // draw split
                         int splitSize = modularUIGui.getQuickCraftSlots().size();
                         itemStack = gui.getModularUIContainer().getCarried();
                         if (!itemStack.isEmpty() && splitSize > 1 && AbstractContainerMenu.canItemQuickReplace(slotReference, itemStack, true)) {
@@ -199,9 +202,9 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                         }
                     }
                     if (!itemStack.isEmpty()) {
-                        DrawerHelper.drawItemStack(graphics, itemStack, pos.x+ 1, pos.y + 1, -1, " ");
+                        DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1, " ");
                         if (itemStack.getCount() > 1) {
-                            EPDrawerHelper.renderStackCount(graphics, EPLangUtil.abbreviate(itemStack.getCount()), pos.x+ 1, pos.y + 1);
+                            EPDrawerHelper.renderStackCount(graphics, EPLangUtil.abbreviate(itemStack.getCount()), pos.x + 1, pos.y + 1);
                         }
                     }
                 }
@@ -210,11 +213,18 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                 }
                 if (drawHoverOverlay && isMouseOverElement(mouseX, mouseY) && getHoverElement(mouseX, mouseY) == this) {
                     RenderSystem.colorMask(true, true, true, false);
-                    DrawerHelper.drawSolidRect(graphics,getPosition().x + 1, getPosition().y + 1, 16, 16, 0x80FFFFFF);
+                    DrawerHelper.drawSolidRect(graphics, getPosition().x + 1, getPosition().y + 1, 16, 16, 0x80FFFFFF);
                     RenderSystem.colorMask(true, true, true, true);
                 }
             }
-        }.setBackgroundTexture(GuiTextures.SLOT);
+
+        }.setOnAddedTooltips((widget, components) -> {
+            var slotReference = widget.getHandle();
+            if (slotReference != null && slotReference.hasItem()) {
+                int amount = slotReference.getItem().getCount();
+                components.add(Component.translatable("epimorphism.universal.desc.amount", FormattingUtil.formatNumbers(amount)));
+            }
+        }).setBackgroundTexture(GuiTextures.SLOT);
     }
 
     //////////////////////////////////////

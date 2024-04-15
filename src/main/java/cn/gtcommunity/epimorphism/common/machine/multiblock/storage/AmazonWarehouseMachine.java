@@ -67,7 +67,7 @@ public class AmazonWarehouseMachine extends WorkableMultiblockMachine implements
         BlockPos.MutableBlockPos uPos = getPos().mutable();
         BlockPos.MutableBlockPos dPos = getPos().mutable();
 
-        // find the distances from the controller to the plascrete blocks on one horizontal axis and the Y axis
+        // find the distances from the controller to the plascrete cn.gtcommunity.epimorphism.data.recipe.blocks on one horizontal axis and the Y axis
         // repeatable aisles take care of the second horizontal axis
         int lDist = 0;
         int rDist = 0;
@@ -207,7 +207,7 @@ public class AmazonWarehouseMachine extends WorkableMultiblockMachine implements
 //                .aisle(wall)
 //                .aisle(slice).setRepeatable(rDist + lDist - 1)
 //                .aisle(center)
-//                .where('S', Predicates.controller(Predicates.blocks(this.getDefinition().get())))
+//                .where('S', Predicates.controller(Predicates.cn.gtcommunity.epimorphism.data.recipe.blocks(this.getDefinition().get())))
 //                .where('B', states(getCasingState()).or(basePredicate))
 //                .where('X', wallPredicate.or(basePredicate)
 //                        .or(abilities(PartAbility.PASSTHROUGH_HATCH).setMaxGlobalLimited(30)))

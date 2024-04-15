@@ -1,13 +1,10 @@
 package cn.gtcommunity.epimorphism.common.data;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.stats.IParallelMachine;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilMultiblockMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
-import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import lombok.val;
 import net.minecraft.Util;
 import net.minecraft.util.Tuple;
 

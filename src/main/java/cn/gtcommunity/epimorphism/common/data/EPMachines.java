@@ -9,7 +9,12 @@ import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.block.CrucibleBlock;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.AdvancedEBFMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.AdvancedEBFMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.CompressedFusionReactorMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.DTPFMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.IndustrialFreezerMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.IndustrialGreenhouseMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.TreeGrowthSimulatorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.gtm.ProcessingArrayMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy.NeutronActivatorMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
@@ -84,6 +89,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class EPMachines {
     public static final int[] NO_HIGH_TIERS = tiersBetween(1, 8);
+
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
@@ -252,8 +258,8 @@ public class EPMachines {
     public static final MultiblockMachineDefinition EXTREME_INDUSTRIAL_GREENHOUSE = EP_REGISTRATE.multiblock("extreme_industrial_greenhouse", IndustrialGreenhouseMachine::new)
             .langValue("Extreme Industrial Greenhouse")
             .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc.0"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(DUMMY_RECIPES)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAAAA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
@@ -365,7 +371,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .recipeTypes(CHEMICAL_PLANT_RECIPES, LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_BRONZE_BRICKS)
-            .pattern(definition -> FactoryBlockPattern.start()
+                    .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
                     .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
                     .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
@@ -528,80 +534,80 @@ public class EPMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                        ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                        MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                                .aisle("HHHHHHHHH", "H  HKH  H", "H       H", "H       H", "H       H", "H       H", "HH     HH", " HHHHHHH ", "         ", "         ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EHHHHHE ", "         ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A  N N  A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-                                .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " ELHHHLE ", "         ")
-                                .aisle("HHHHHHHHH", "H  N N  H", "H  XXX  H", "H  JJJ  H", "H       H", "H       H", "HH HIH HH", " HHH~HHH ", "   HHH   ", "         ")
-                                .where('~', definition, Direction.SOUTH)
-                                .where('A', OSMIR_BORON_SILICATE_GLASS.get())
-                                .where('H', IRIDIUM_CASING.get())
-                                .where('C', CASING_ASSEMBLY_LINE.get())
-                                .where('D', ChemicalHelper.getBlock(frameGt, MARM200Steel))
-                                .where('G', CASING_POLYBENZIMIDAZOLE_PIPE.get())
-                                .where('E', ADVANCED_FILTER_CASING.get())
-                                .where('J', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
-                                .where('X', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
-                                .where('N', ChemicalHelper.getBlock(frameGt, GTMaterials.TungstenSteel))
-                                .where('K', GTMachines.ITEM_EXPORT_BUS[4], Direction.NORTH)
-                                .where('L', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
-                                .where('I', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-                                .where('Q', GTMachines.ITEM_IMPORT_BUS[4], Direction.WEST)
-                                .where('P', GTMachines.FLUID_IMPORT_HATCH[4], Direction.EAST);
-                        BlockMaps.ALL_CA_TIRED_CASINGS.entrySet().stream()
-                                .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                                .forEach(entry -> shapeInfo.add(builder.where('B', entry.getValue()).build()));
-                        return shapeInfo;
-                    })
-                    .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-                    .workableCasingRenderer(Epimorphism.id("block/casings/solid/iridium_casing"),
-                            Epimorphism.id("block/multiblock/component_assembly_line"), false)
-                    .register();
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("HHHHHHHHH", "H  HKH  H", "H       H", "H       H", "H       H", "H       H", "HH     HH", " HHHHHHH ", "         ", "         ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EHHHHHE ", "         ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A  N N  A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
+                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " ELHHHLE ", "         ")
+                        .aisle("HHHHHHHHH", "H  N N  H", "H  XXX  H", "H  JJJ  H", "H       H", "H       H", "HH HIH HH", " HHH~HHH ", "   HHH   ", "         ")
+                        .where('~', definition, Direction.SOUTH)
+                        .where('A', OSMIR_BORON_SILICATE_GLASS.get())
+                        .where('H', IRIDIUM_CASING.get())
+                        .where('C', CASING_ASSEMBLY_LINE.get())
+                        .where('D', ChemicalHelper.getBlock(frameGt, MARM200Steel))
+                        .where('G', CASING_POLYBENZIMIDAZOLE_PIPE.get())
+                        .where('E', ADVANCED_FILTER_CASING.get())
+                        .where('J', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('X', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                        .where('N', ChemicalHelper.getBlock(frameGt, GTMaterials.TungstenSteel))
+                        .where('K', GTMachines.ITEM_EXPORT_BUS[4], Direction.NORTH)
+                        .where('L', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
+                        .where('I', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where('Q', GTMachines.ITEM_IMPORT_BUS[4], Direction.WEST)
+                        .where('P', GTMachines.FLUID_IMPORT_HATCH[4], Direction.EAST);
+                BlockMaps.ALL_CA_TIRED_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .forEach(entry -> shapeInfo.add(builder.where('B', entry.getValue()).build()));
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/iridium_casing"),
+                    Epimorphism.id("block/multiblock/component_assembly_line"), false)
+            .register();
 
     public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = EP_REGISTRATE.multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
             .langValue("General Processing Plant")
             .tooltipBuilder((itemStack, components) -> {
                 components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.0"));
-                if (GTUtil.isShiftDown()) {
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.0"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.1"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.2"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.3"));
+                if (GTUtil.isAltDown()) {
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.2"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.3"));
                 } else {
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.1"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
-                    components.add(Component.translatable("epimorphism.desc_extended_info"));
+                    components.add(Component.translatable("epimorphism.alt_desc_extended_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -1181,10 +1187,25 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = EP_REGISTRATE.multiblock("advanced_electric_blast_furnace", AdvancedEBFMachine::new)
             .langValue("Advanced Electric Blast Furnace")
-            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
-
-            )
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"));
+                    components.add(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.2"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.3"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(BLAST_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
@@ -1236,9 +1257,23 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = EP_REGISTRATE.multiblock("industrial_vacuum_freezer", IndustrialFreezerMachine::new)
             .langValue("Industrial Vacuum Freezer")
-            .tooltips(
-                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0")
-            )
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.2"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.3"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(VACUUM_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
@@ -1287,12 +1322,22 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
             .langValue("Precise Assembler")
-            .tooltips(
-                    Component.translatable("block.epimorphism.precise_assembler.desc.0"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.1"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.2"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.3"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.4"))
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.0"));
+            if (GTUtil.isCtrlDown()) {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.0"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.2"));
+            }/* else if(GTUtil.isShiftDown()) {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.shift_desc.0"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.shift_desc.1"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            } */else {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
             .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
@@ -1544,7 +1589,7 @@ public class EPMachines {
                     Component.translatable("block.epimorphism.roaster.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
+            .recipeType(ROASTER_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1572,8 +1617,6 @@ public class EPMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_heatproof"),
                     Epimorphism.id("block/multiblock/roaster"), false)
             .register();
-
-
 
     public final static MultiblockMachineDefinition NANOSCALE_FABRICATOR = EP_REGISTRATE.multiblock("nanoscale_fabricator", NanoscaleFabricatorMachine::new)
             .langValue("Nanoscale Fabricator")
@@ -1709,13 +1752,22 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  1))
             .langValue("Steam Piston Hammer")
-            .tooltips(
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.4")
-            )
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
@@ -1766,7 +1818,7 @@ public class EPMachines {
                     Component.translatable("block.epimorphism.grind_ball_hatch.desc.0"),
                     Component.translatable("block.epimorphism.grind_ball_hatch.desc.1"),
                     Component.translatable("block.epimorphism.grind_ball_hatch.desc.2")
-                    )
+            )
             .register();
 
     public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)
@@ -1799,11 +1851,11 @@ public class EPMachines {
                     .abilities(EPPartAbility.RADIATION)
                     .recipeType(RADIATION_HATCH_RECIPES)
                     .overlayTieredHullRenderer("radiation_hatch")
-                    .tooltips(
+            .tooltips(
                             Component.translatable("block.epimorphism.radiation_hatch.desc.0"),
                             Component.translatable("epimorphism.universal.desc.kg_capacity", Math.max(1, tier - 2)),
                             Component.translatable("block.epimorphism.radiation_hatch.desc.1")
-                    )
+            )
                     .register(),
             tiersBetween(3, 13));
 
@@ -1849,9 +1901,9 @@ public class EPMachines {
     public static void init() {/**/}
 
     private static MachineDefinition[] registerTieredEPMachines(String name,
-                                                             BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
-                                                             BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,
-                                                             int... tiers) {
+                                                                BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
+                                                                BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,
+                                                                int... tiers) {
         MachineDefinition[] definitions = new MachineDefinition[TIER_COUNT];
         for (int tier : tiers) {
             var register = EP_REGISTRATE.machine(VN[tier].toLowerCase(Locale.ROOT) + "_" + name, holder -> factory.apply(holder, tier))
@@ -1862,9 +1914,9 @@ public class EPMachines {
     }
 
     public static MultiblockMachineDefinition[] registerTieredEPMultis(String name,
-                                                                     BiFunction<IMachineBlockEntity, Integer, MultiblockControllerMachine> factory,
-                                                                     BiFunction<Integer, MultiblockMachineBuilder, MultiblockMachineDefinition> builder,
-                                                                     int... tiers) {
+                                                                       BiFunction<IMachineBlockEntity, Integer, MultiblockControllerMachine> factory,
+                                                                       BiFunction<Integer, MultiblockMachineBuilder, MultiblockMachineDefinition> builder,
+                                                                       int... tiers) {
         MultiblockMachineDefinition[] definitions = new MultiblockMachineDefinition[TIER_COUNT];
         for (int tier : tiers) {
             var register = EP_REGISTRATE.multiblock(VN[tier].toLowerCase(Locale.ROOT) + "_" + name, holder -> factory.apply(holder, tier))

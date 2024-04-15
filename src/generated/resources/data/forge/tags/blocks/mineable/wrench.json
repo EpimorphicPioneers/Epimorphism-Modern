@@ -9,6 +9,10 @@
     "epimorphism:precise_assembler_casing_mk1",
     "epimorphism:precise_assembler_casing_mk2",
     "epimorphism:precise_assembler_casing_mk3",
+    "epimorphism:ultimate_high_energy_casing",
+    "epimorphism:advanced_high_energy_casing",
+    "epimorphism:dimensional_bridge_casing",
+    "epimorphism:dimensional_preserve_casing",
     "epimorphism:advanced_invar_casing",
     "epimorphism:advanced_aluminium_casing",
     "epimorphism:advanced_filter_casing",
@@ -71,6 +75,8 @@
     "epimorphism:component_assembly_line_casing_uiv",
     "epimorphism:component_assembly_line_casing_uxv",
     "epimorphism:component_assembly_line_casing_opv",
-    "epimorphism:component_assembly_line_casing_max"
+    "epimorphism:component_assembly_line_casing_max",
+    "epimorphism:fusion_casing_mk4",
+    "epimorphism:fusion_casing_mk5"
   ]
 }
