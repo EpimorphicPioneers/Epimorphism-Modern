@@ -184,7 +184,7 @@ public class CubeRenderer {
      * @implNote From Tinker's
      */
     private static int calculateDelta(float min, float max) {
-        //The texture can stretch over more blocks than the subtracted height is if min's decimal is bigger than max's decimal (causing UV over 1)
+        //The texture can stretch over more cn.gtcommunity.epimorphism.data.recipe.blocks than the subtracted height is if min's decimal is bigger than max's decimal (causing UV over 1)
         // ignoring the decimals prevents this, as yd then equals exactly how many ints are between the two
         // for example, if max = 5.1 and min = 2.3, 2.8 (which rounds to 2), with the face array becoming 2.3, 3, 4, 5.1
         int delta = (int) (max - (int) min);

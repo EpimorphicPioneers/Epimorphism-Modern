@@ -2620,5 +2620,37 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.ROUGH)
                 .components(Naquadah, 2, Oxygen, 3)
                 .buildAndRegister();
+
+        //  Acetic Anhydride
+        AceticAnhydride = Builder("acetic_anhydride")
+                .fluid()
+                .color(0xffccff)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Carbon, 4,Hydrogen, 6, Oxygen, 3)
+                .buildAndRegister();
+
+        //  Hydrogen Cyanide
+        HydrogenCyanide = Builder("hydrogen_cyanide")
+                .fluid()
+                .color(0xffb3da)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Hydrogen, 1, Carbon, 1,Nitrogen,1)
+                .buildAndRegister();
+
+        //  Sodium Cyanide
+        SodiumCyanide = Builder("sodium_cyanide")
+                .dust()
+                .color(0xff80c1)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Sodium, 1, Carbon, 1,Nitrogen,1)
+                .buildAndRegister();
+
+        //  Sodium Perchlorate
+        SodiumPerchlorate = Builder("sodium_perchlorate")
+                .dust()
+                .color(0xff4da6)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Chlorine, 1, Sodium, 1,Oxygen, 4)
+                .buildAndRegister();
     }
 }

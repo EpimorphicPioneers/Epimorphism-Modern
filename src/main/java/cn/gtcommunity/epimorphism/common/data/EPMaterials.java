@@ -388,6 +388,10 @@ public class EPMaterials {
     public static Material TitaniumNitrate;
     public static Material NaquadahOxideMixture;
     public static Material ExtractiveNaquadahOxide;
+    public static Material AceticAnhydride;
+    public static Material HydrogenCyanide;
+    public static Material SodiumCyanide;
+    public static Material SodiumPerchlorate;
 
     //  Second Degree Materials
     public static Material DragonBreath;

@@ -114,6 +114,30 @@ public class EPLangHelper {
         }
     }
 
+    public static void addBlockWithCtrlTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add(block.get().asItem().getDescriptionId() + ".ctrl_desc." + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add(block.get().asItem().getDescriptionId() + ".ctrl_desc." + i, enTooltip.get(i));
+            }
+        }
+    }
+
+    public static void addBlockWithAltTooltip(LanguageProvider provider, NonNullSupplier<? extends Block> block, List<String> enTooltip, List<String> cnTooltip) {
+        if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+            for (int i = 0; i < cnTooltip.size(); i++) {
+                cnLangProvider.add(block.get().asItem().getDescriptionId() + ".alt_desc." + i, cnTooltip.get(i));
+            }
+        } else if (provider instanceof RegistrateLangProvider enLangProvider) {
+            for (int i = 0; i < enTooltip.size(); i++) {
+                enLangProvider.add(block.get().asItem().getDescriptionId() + ".alt_desc." + i, enTooltip.get(i));
+            }
+        }
+    }
+
     public static void addBlock(LanguageProvider provider, NonNullSupplier<? extends Block> block, String enName, String cnName) {
         if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
             cnLangProvider.addBlock(block, cnName);

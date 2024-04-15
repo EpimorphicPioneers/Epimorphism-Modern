@@ -19,9 +19,17 @@ public class MiscLang {
                 "无");
 
         // Tooltip
-        add(provider, "epimorphism.desc_extended_info",
-                "§7Hold down Shift to show more information",
-                "§7按住§6SHIFT§7显示更多信息");
+        add(provider, "epimorphism.shift_desc_extended_info",
+                "§7Hold down §6SHIFT§7 to show formed hatch",
+                "§7按住§6SHIFT§7以显示成型需求仓室");
+
+        add(provider, "epimorphism.ctrl_desc_extended_info",
+                "§7Hold down §6CTRL§7 to show more information",
+                "§7按住§6CTRL§7以显示更多信息");
+
+        add(provider, "epimorphism.alt_desc_extended_info",
+                "§7Hold down §6ALT§7 to show more information",
+                "§7按住§6ALT§7以显示更多信息");
 
         add(provider, "epimorphism.universal.desc.tier",
                 "§7Tier: %s",

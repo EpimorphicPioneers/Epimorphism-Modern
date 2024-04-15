@@ -8,7 +8,6 @@ import cn.gtcommunity.epimorphism.api.structure.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.block.CrucibleBlock;
-import cn.gtcommunity.epimorphism.common.block.EPFusionCasingBlock;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.AdvancedEBFMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.adv.CompressedFusionReactorMachine;
@@ -23,14 +22,15 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
-import cn.gtcommunity.epimorphism.integration.EPIntegration;
-import cn.gtcommunity.epimorphism.integration.ae2.machine.EPAEMachine;
 import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.api.block.MaterialBlock;
+import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.item.MaterialBlockItem;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -50,10 +50,10 @@ import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.lowdragmc.lowdraglib.Platform;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
@@ -63,7 +63,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.phys.shapes.Shapes;
 import org.joml.Math;
 
@@ -87,201 +86,138 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
-import static net.minecraft.world.level.block.Blocks.*;
 
 public class EPMachines {
     public static final int[] NO_HIGH_TIERS = tiersBetween(1, 8);
 
     static {
-        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_MACHINE);
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
 
-    //////////////////////////////////////
-    //******     Steam Machine    ******//
-    //////////////////////////////////////
-
-
-    //////////////////////////////////////
-    //***    Simple Tiered Machine   ***//
-    //////////////////////////////////////
-
-
-    //////////////////////////////////////
-    //****     Simple Generator     ****//
-    //////////////////////////////////////
-
-
-    //////////////////////////////////////
-    //********     Electric     ********//
-    //////////////////////////////////////
-
-
-    ///////////////////////////////////////
-    //*********     Storage    *********//
-    //////////////////////////////////////
-
-    public final static MachineDefinition INFINITY_CRATE = EP_REGISTRATE.machine("infinity_crate", holder -> new InfinityCrateMachine(holder, Infinity, 252))
-            .langValue("Infinity Crate")
-            .rotationState(RotationState.NONE)
-            .tooltips(Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 252))
-            .tooltips(Component.translatable("block.epimorphism.infinity_crate.desc"))
-            .renderer(() -> new TextureOverrideRenderer(new ResourceLocation("block/cube_all"), Map.of("all", Epimorphism.id("block/storage/crates/infinity_crate"))))
-            .register();
-
-    //////////////////////////////////////
-    //**********     Part     **********//
-    //////////////////////////////////////
-
-    public final static MachineDefinition INFINITE_WATER_HATCH = EP_REGISTRATE.machine("infinite_water_hatch", InfiniteWaterHatchPartMachine::new)
-            .langValue("Infinite Water Hatch")
-            .tier(IV)
-            .rotationState(RotationState.ALL)
-            .abilities(PartAbility.IMPORT_FLUIDS)
-            .overlayTieredHullRenderer("infinite_water_hatch")
+    // Multiblocks
+    public final static MultiblockMachineDefinition YOTTA_FLUID_TANK = EP_REGISTRATE.multiblock("yotta_fluid_tank", YottaFluidTankMachine::new)
+            .langValue("Yotta Fluid Tank")
             .tooltips(
-                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.0"),
-                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.1"),
-                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.2")
-            )
-            .register();
-
-    public final static MachineDefinition GRIND_BALL_HATCH = EP_REGISTRATE.machine("grind_ball_hatch", BallHatchMachine::new)
-            .langValue("Grind Ball Hatch")
-            .tier(IV)
-            .rotationState(RotationState.ALL)
-            .abilities(EPPartAbility.GRIND_BALL)
-            .renderer(() -> BallHatchRenderer.INSTANCE)
-            .tooltips(
-                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.0"),
-                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.1"),
-                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.2")
-            )
-            .register();
-
-    public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)
-            .langValue("Neutron Sensor")
-            .tier(IV)
-            .rotationState(RotationState.ALL)
-            .abilities(EPPartAbility.NEUTRON_SENSOR)
-            .overlayTieredHullRenderer("neutron_sensor")
-            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc"))
-            .register();
-
-    public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredEPMachines("neutron_accelerator", NeutronAcceleratorMachine::new,
-            (tier, builder) -> builder
-                    .langValue("%s §rNeutron Accelerator".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(EPPartAbility.NEUTRON_ACCELERATOR)
-                    .overlayTieredHullRenderer("neutron_accelerator")
-                    .tooltips(
-                            Component.translatable("block.epimorphism.neutron_accelerator.desc.0"),
-                            Component.translatable("block.epimorphism.neutron_accelerator.desc.1"),
-                            Component.translatable("gtceu.universal.tooltip.max_voltage_in", V[tier], VNF[tier]),
-                            Component.translatable("epimorphism.universal.desc.max_power_consume", Math.round(V[tier] * 0.8)),
-                            Component.translatable("gtceu.universal.tooltip.energy_storage_capacity", V[tier] * 72))
-                    .register(),
-            ELECTRIC_TIERS);
-    public static final MachineDefinition[] RADIATION_HATCH = registerTieredEPMachines("radiation_hatch", RadiationHatchMachine::new,
-            (tier, builder) -> builder
-                    .langValue("%s §rRadiation Hatch".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(EPPartAbility.RADIATION)
-                    .recipeType(RADIATION_HATCH_RECIPES)
-                    .overlayTieredHullRenderer("radiation_hatch")
-                    .tooltips(
-                            Component.translatable("block.epimorphism.radiation_hatch.desc.0"),
-                            Component.translatable("epimorphism.universal.desc.kg_capacity", Math.max(1, tier - 2)),
-                            Component.translatable("block.epimorphism.radiation_hatch.desc.1")
-                    )
-                    .register(),
-            tiersBetween(3, 13));
-
-//    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
-//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),
-//            (tier, builder) -> builder
-//                    .langValue("%s §rWireless Energy Input Hatch".formatted(VNF[tier]))
-//                    .rotationState(RotationState.ALL)
-//                    .abilities(PartAbility.INPUT_ENERGY)
-//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_input_hatch"))
-//                    .tooltips(
-//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.0"),
-//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.1"),
-//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.2")
-//                    )
-//                    .register(),
-//            ELECTRIC_TIERS);
-
-//    public static final MachineDefinition[] WIRELESS_ENERGY_OUTPUT_HATCH = registerTieredEPMachines("wireless_energy_output_hatch",
-//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.OUT, 2),
-//            (tier, builder) -> builder
-//                    .langValue("%s §rWireless Energy Output Hatch".formatted(VNF[tier]))
-//                    .rotationState(RotationState.ALL)
-//                    .abilities(PartAbility.OUTPUT_ENERGY)
-//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_output_hatch"))
-//                    .tooltips(
-//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.0"),
-//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.1"),
-//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.2")
-//                    )
-//                    .register(),
-//            ELECTRIC_TIERS);
-
-    //////////////////////////////////////
-    //*******     Multiblock     *******//
-    //////////////////////////////////////
-
-    // Steam
-    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
-            .langValue("Steam Piston Hammer")
-            .tooltips(
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.4")
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.0"),
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
-            .appearanceBlock(CASING_BRONZE_BRICKS)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAA", " E ", "   ", "   ", "   ")
-                    .aisle("ABA", "E#E", "EBE", "ECE", "EDE")
-                    .aisle("AAA", " S ", "   ", "   ", "   ")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('A', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(5)
-                            .or(abilities(PartAbility.STEAM_IMPORT_ITEMS))
-                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
-                            .or(abilities(PartAbility.STEAM)))
-                    .where('B', blocks(ChemicalHelper.getBlock(block, Steel)))
-                    .where('C', states(Blocks.STICKY_PISTON.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.DOWN)))
-                    .where('D', abilities(PartAbility.STEAM))
-                    .where('E', blocks(CASING_BRONZE_BRICKS.get()))
-                    .where('#', air())
-                    .where(' ', any())
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(YOTTA_FLUID_TANK_CASING)
+            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
+                    .aisle("     ", " FFF ", " FFF ", " FFF ", "     ")
+                    .aisle("AABAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
+                    .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC").setRepeatable(1, 15)
+                    .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
+                    .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD")
+                    .where('B', controller(blocks(definition.getBlock())))
+                    .where('A', blocks(YOTTA_FLUID_TANK_CASING.get()))
+                    .where('C', EPPredicates.glass())
+                    .where('D', frames(GTMaterials.Steel))
+                    .where('E', EPPredicates.fluidTankCell())
+                    .where('F', blocks(YOTTA_FLUID_TANK_CASING.get())
+                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
+                    .where('G', blocks(YOTTA_FLUID_TANK_CASING.get())
+                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
                     .build()
             )
-            .shapeInfo(definition -> MultiblockShapeInfo.builder()
-                    .aisle("IAO", " S ", "   ", "   ", "   ")
-                    .aisle("ABA", "E E", "EBE", "ECE", "EDE")
-                    .aisle("AAA", " E ", "   ", "   ", "   ")
-                    .where('S', definition, Direction.NORTH)
-                    .where('A', CASING_BRONZE_BRICKS.get())
-                    .where('E', CASING_BRONZE_BRICKS.get())
-                    .where('I', ITEM_IMPORT_BUS[ULV], Direction.NORTH)
-                    .where('O', ITEM_EXPORT_BUS[ULV], Direction.NORTH)
-                    .where('D', STEAM_HATCH, Direction.NORTH)
-                    .where('B', ChemicalHelper.getBlock(block, Steel))
-                    .where('C', Blocks.STICKY_PISTON.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.DOWN))
-                    .where(' ', Blocks.AIR.defaultBlockState())
-                    .build()
-            )
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
+                        .aisle("     ", " FFF ", " FFF ", " FFF ", "     ")
+                        .aisle("AABAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
+                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                        .where('B', definition, Direction.NORTH)
+                        .where('A', YOTTA_FLUID_TANK_CASING.get())
+                        .where('D', ChemicalHelper.getBlock(frameGt, GTMaterials.Steel))
+                        .where('F', GTMachines.FLUID_EXPORT_HATCH[ULV], Direction.DOWN)
+                        .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.UP)
+                        .where(' ', Blocks.AIR.defaultBlockState());
+                var fluidCells = BlockMaps.ALL_FLUID_CELLS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .toList();
+                var glass = BlockMaps.ALL_GLASSES.entrySet().stream()
+                        .collect(Collectors.toMap(entry -> entry.getKey().tier(), Map.Entry::getValue, (a, b) -> a));
+                TreeMap<Integer, Supplier<Block>> glasses = new TreeMap<>(glass);
+                for (int i = 0; i < fluidCells.size(); i++) {
+                    var info = builder
+                            .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
+                            .where('C', glasses.ceilingEntry( i + 3).getValue())
+                            .where('E', fluidCells.get(i))
+                            .shallowCopy()
+                            .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
+                            .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD").build();
+                    shapeInfo.add(info);
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .sidedWorkableCasingRenderer("block/casings/yotta_fluid_tank_casing",
+                    Epimorphism.id("block/multiblock/yotta_fluid_tank"), false)
             .register();
 
-    // No Energy
+    public final static MultiblockMachineDefinition TFFT = EP_REGISTRATE.multiblock("tfft", TFFTMachine::new)
+            .langValue("T.F.F.T.")
+            .tooltips(Component.translatable("block.epimorphism.tfft.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(TFFT_CASING)
+            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
+                    .aisle("AADAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
+                    .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB").setRepeatable(1, 15)
+                    .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
+                    .where('D', controller(blocks(definition.getBlock())))
+                    .where('A', blocks(TFFT_CASING.get())
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('B', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('C', EPPredicates.storageFieldBlock())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
+                        .aisle("AFDEA", "AAAAA", "AAAAA", "AAAAA", "AAGHA")
+                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                        .where('D', definition, Direction.NORTH)
+                        .where('A', TFFT_CASING.get())
+                        .where('B', CASING_LAMINATED_GLASS.get())
+                        .where('E', GTMachines.FLUID_EXPORT_HATCH[ULV], Direction.NORTH)
+                        .where('F', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.NORTH)
+                        .where('G', GTMachines.ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
+                        .where('H', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where(' ', Blocks.AIR.defaultBlockState());
+                var fieldBlocks = BlockMaps.ALL_FIELD_BLOCKS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .toList();
+
+                for (Supplier<Block> fieldBlock : fieldBlocks) {
+                    var info = builder
+                            .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
+                            .where('C', fieldBlock)
+                            .shallowCopy()
+                            .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA").build();
+                    shapeInfo.add(info);
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/tfft_casing"),
+                    Epimorphism.id("block/multiblock/tfft"), false)
+            .register();
+
     public final static MultiblockMachineDefinition NEUTRON_ACTIVATOR = EP_REGISTRATE.multiblock("neutron_activator", NeutronActivatorMachine::new)
             .langValue("Neutron Activator")
             .tooltips(
@@ -319,39 +255,202 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/neutron_activator"), false)
             .register();
 
-    // Advanced Multiblock
-    public final static MultiblockMachineDefinition[] PROCESSING_ARRAY = EPConfigHolder.INSTANCE.machines.doProcessingArray ? registerTieredEPMultis("ep_processing_array", ProcessingArrayMachine::new,
-            (tier, builder) -> builder
-                    .langValue(VNF[tier] + " Processing Array")
+    public static final MultiblockMachineDefinition EXTREME_INDUSTRIAL_GREENHOUSE = EP_REGISTRATE.multiblock("extreme_industrial_greenhouse", IndustrialGreenhouseMachine::new)
+            .langValue("Extreme Industrial Greenhouse")
+            .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc.0"))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .blockProp(p -> p.noOcclusion().isViewBlocking((state, level, pos) -> false))
-                    .shape(Shapes.box(0.001, 0.001, 0.001, 0.999, 0.999, 0.999))
-                    .appearanceBlock(() -> ProcessingArrayMachine.getCasingState(tier))
                     .recipeType(DUMMY_RECIPES)
-                    .recipeModifier(ProcessingArrayMachine::recipeModifier, true)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
+                    .aisle("AGGGA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                    .aisle("AGGGA", "ADFDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                    .aisle("AGGGA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                    .aisle("AABAA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
+                    .where('B', controller(blocks(definition.getBlock())))
+                    .where('A', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(61)
+                            .or(abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(abilities(PartAbility.IMPORT_ITEMS))
+                            .or(abilities(PartAbility.INPUT_ENERGY))
+                            .or(abilities(PartAbility.EXPORT_ITEMS))
+                            .or(abilities(PartAbility.MAINTENANCE)))
+                    .where('C', EPPredicates.glass())
+                    .where('D', blocks(FERTILIZED_FARMLAND.get()))
+                    .where('E', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('F', blocks(Blocks.WATER))
+                    .where('G', blocks(CASING_STAINLESS_CLEAN.get()))
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("AIBGH", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
+                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                        .aisle("AAAAA", "ADFDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
+                        .aisle("AAJKA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
+                        .where('B', definition, Direction.NORTH)
+                        .where('A', CASING_STAINLESS_CLEAN.get())
+                        .where('D', FERTILIZED_FARMLAND.get())
+                        .where('E', CASING_LAMINATED_GLASS.get())
+                        .where('F', Blocks.WATER.defaultBlockState())
+                        .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.NORTH)
+                        .where('H', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.NORTH)
+                        .where('I', GTMachines.ITEM_EXPORT_BUS[ULV], Direction.NORTH)
+                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where('K', GTMachines.ENERGY_INPUT_HATCH[IV], Direction.SOUTH);
+                BlockMaps.SHAPE_GLASSES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .forEach(blockSupplier -> shapeInfo.add(builder.where('C', blockSupplier.get()).build()));
+
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .renderer(() -> new IndustrialGreenhouseRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    Epimorphism.id("block/multiblock/extreme_industrial_greenhouse")))
+//            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+//                    Epimorphism.id("block/multiblock/extreme_industrial_greenhouse"), false)
+            .hasTESR(true)
+            .register();
+
+    public final static MultiblockMachineDefinition BACTERIAL_CULTURE_TANK = EP_REGISTRATE.multiblock("bacterial_culture_tank", BacterialCultureTankMachine::new)
+            .langValue("Bacterial Culture Tank")
+            .tooltips(Component.translatable("block.epimorphism.bacterial_culture_tank.desc.0"))
+            .rotationState(RotationState.ALL)
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("AAAAA", "CCCCC", "CCCCC", "AAAAA")
+                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                    .aisle("AABAA", "CCCCC", "CCCCC", "AAAAA")
+                    .where('B', controller(blocks(definition.getBlock())))
+                    .where('A', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(19)
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1))
+                            .or(abilities(EPPartAbility.RADIATION).setExactLimit(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('C', EPPredicates.glass())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("AHIAA", "CCCCC", "CCCCC", "AAAAA")
+                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
+                        .aisle("DEBFG", "CCCCC", "CCCCC", "AAJAA")
+                        .where('B', definition, Direction.SOUTH)
+                        .where('A', CASING_STAINLESS_CLEAN.get())
+                        .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                        .where('E', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('F', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                        .where('G', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                        .where('H', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
+                        .where('I', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('J', EPMachines.RADIATION_HATCH[3], Direction.SOUTH);
+                BlockMaps.SHAPE_GLASSES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(Map.Entry::getValue)
+                        .forEach(blockSupplier -> shapeInfos.add(builder.where('C', blockSupplier.get()).build()));
+                return shapeInfos;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    Epimorphism.id("block/multiblock/bacterial_culture_tank"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition CHEMICAL_PLANT = EP_REGISTRATE.multiblock("chemical_plant", ChemicalPlantMachine::new)
+            .langValue("Chemical Plant")
+            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
+            .rotationState(RotationState.ALL)
+            .recipeTypes(CHEMICAL_PLANT_RECIPES, LARGE_CHEMICAL_RECIPES)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("XXX", "CCC", "XXX")
-                            .aisle("XXX", "C#C", "XXX")
-                            .aisle("XSX", "CCC", "XXX")
-                            .where('S', Predicates.controller(blocks(definition.getBlock())))
-                            .where('X', blocks(ProcessingArrayMachine.getCasingState(tier)).setMinGlobalLimited(4)
-                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
-                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
-                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
-                                    .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY))
-                                    .or(Predicates.autoAbilities(true, false, false)))
-                            .where('C', blocks(CLEANROOM_GLASS.get()))
-                            .where('#', Predicates.air())
-                            .build())
-                    .tooltips(Component.translatable("gtceu.universal.tooltip.parallel", ProcessingArrayMachine.getMachineLimit(tier)))
-                    .renderer(() -> new ProcessingArrayRenderer(tier == IV ?
-                            GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel") :
-                            GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"),
-                            Epimorphism.id("block/multiblock/processing_array")))
-                    .register(),
-            IV, LuV) : null;
+                    .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                    .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXAXM#", "##TAT##", "##XAX##", "##TAT##", "#MXAXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                    .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                    .aisle("EEESEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('E', EPPredicates.CPCasingBlock()
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1))
+//                            .or(abilities(PartAbility.CATALYST_MULTIBLOCK_ABILITY).setMaxGlobalLimited(2))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
+                    .where('C', EPPredicates.CPCasingBlock())
+                    .where('X', heatingCoils())
+                    .where('M', EPPredicates.machineCasingBlock())
+                    .where('T', EPPredicates.CPPipeBlock())
+                    .where('#', any())
+                    .where('A',air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("CCCHJCC", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MX#XM#", "##T#T##", "##X#X##", "##T#T##", "#MX#XM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
+                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
+                        .aisle("CVNSKLZ", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('V', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
+                        .where('N', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
+                        .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
+                        .where('L', GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
+                        .where('Z', /*GTMachines.MULTIPART_CATALYST_HATCH*/GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
+                        .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
+                        .where('#', Blocks.AIR)
+                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
+                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<Block> listCasing = BlockMaps.ALL_CP_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<Block> listTube = BlockMaps.ALL_CP_TUBES.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<Block> listMachineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                int maxLeng = StructureUtil.maxLength(new List[] {
+                    listCoil,
+                    listCasing,
+                    listTube,
+                    listMachineCasing
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('X', EPUniverUtil.getOrLast(listCoil, i));
+                    builder.where('C', EPUniverUtil.getOrLast(listCasing, i));
+                    builder.where('T', EPUniverUtil.getOrLast(listTube, i));
+                    builder.where('M', EPUniverUtil.getOrLast(listMachineCasing, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .renderer(() -> new WorkableTierCasingMachineRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/chemical_plant"), ChemicalPlantMachine::locationGetter))
+            .register();
 
     public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
@@ -495,94 +594,20 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/component_assembly_line"), false)
             .register();
 
-    public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
-            .langValue("Precise Assembler")
-            .tooltips(
-                    Component.translatable("block.epimorphism.precise_assembler.desc.0"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.1"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.2"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.3"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.4"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
-            .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("DDDDDDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
-                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
-                    .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "DDDDDDDDD")
-                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
-                    .aisle("DDDDSDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('C', EPPredicates.PACasingBlock())
-                    .where('D', EPPredicates.PACasingBlock().setMinGlobalLimited(42)
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, true, false)))
-                    .where('F', frames(MARM200Steel))
-                    .where('G', blocks(CASING_LAMINATED_GLASS.get()))
-                    .where('M', EPPredicates.PAMachineCasingBlock())
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("ETCCCCCCC", "F       F", "F       F", "F       F", "XYZCCCCCC")
-                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
-                        .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "CCCCOCCCC")
-                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
-                        .aisle("CCCCSCCCC", "F       F", "F       F", "F       F", "CCCCCCCCC")
-                        .where('S', definition, Direction.SOUTH)
-                        .where('X', ITEM_IMPORT_BUS[LuV], Direction.NORTH)
-                        .where('Y', ITEM_EXPORT_BUS[LuV], Direction.NORTH)
-                        .where('Z', FLUID_IMPORT_HATCH[LuV], Direction.NORTH)
-                        .where('E', ENERGY_INPUT_HATCH[LuV], Direction.NORTH)
-                        .where('T', MAINTENANCE_HATCH, Direction.NORTH)
-                        .where('O', MUFFLER_HATCH[LuV], Direction.UP)
-                        .where('G', CASING_LAMINATED_GLASS.get())
-                        .where('F', ChemicalHelper.getBlock(frameGt, MARM200Steel))
-                        .where(' ', Blocks.AIR.defaultBlockState());
-
-                List<Block> casing = BlockMaps.ALL_PA_CASINGS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .map(Supplier::get)
-                        .toList();
-                List<Block> machineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .map(Supplier::get)
-                        .toList();
-
-                int maxLeng = StructureUtil.maxLength(new List[]{
-                        casing,
-                        machineCasing
-                });
-
-                for (int i = 0; i < maxLeng; ++i) {
-                    builder.where('C', EPUniverUtil.getOrLast(casing, i));
-                    builder.where('M', EPUniverUtil.getOrLast(machineCasing, i));
-                    shapeInfo.add(builder.build());
-                }
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .renderer(() -> new WorkableTierCasingMachineRenderer(Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"),
-                    Epimorphism.id("block/multiblock/precise_assembler"), PreciseAssemblerMachine::locationGetter))
-            .register();
-
     public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = EP_REGISTRATE.multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
             .langValue("General Processing Plant")
             .tooltipBuilder((itemStack, components) -> {
                 components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.0"));
-                if (GTUtil.isShiftDown()) {
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.0"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.1"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.2"));
-                    components.add(Component.translatable("block.epimorphism.general_processing_plant.shift_desc.3"));
+                if (GTUtil.isAltDown()) {
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.2"));
+                    components.add(Component.translatable("block.epimorphism.general_processing_plant.alt_desc.3"));
                 } else {
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.1"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
-                    components.add(Component.translatable("epimorphism.desc_extended_info"));
+                    components.add(Component.translatable("epimorphism.alt_desc_extended_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -641,6 +666,68 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/general_processing_plant"), false)
             .register();
 
+    public final static MultiblockMachineDefinition INDUSTRIAL_FISHING_POND = EP_REGISTRATE.multiblock("industrial_fishing_pond", IndustrialFishingPondMachine::new)
+            .langValue("Industrial Fishing Pond")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.0"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.1"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.2"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.3"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.4"),
+                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.5")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(BREEDING_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("EEEEEEEEE", "XXXXXXXXX", "XXXXXXXXX")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
+                    .aisle("EEEEEEEEE", "XXXXSXXXX", "XXXXXXXXX")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(BREEDING_CASING.get()).setMinGlobalLimited(106)
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                    .where('E', blocks(BREEDING_CASING.get())
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3)))
+                    .where('#', any())
+                    .build())
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/breeding_casing"),
+                    Epimorphism.id("block/multiblock/industrial_fishing_pond"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition FERMENTATION_TANK = EP_REGISTRATE.multiblock("fermentation_tank", FermentationTankMachine::new)
+            .langValue("Fermentation Tank")
+            .tooltips(Component.translatable("block.epimorphism.fermentation_tank.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(FERMENTATION_TANK_RECIPES)
+            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("FAAAF", "FXXXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
+                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
+                    .aisle("AXXXA", "XEPEX", "GEPEG", "GEPEG", "GEPEG", "XEPEX", "AXXXA")
+                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
+                    .aisle("FAAAF", "FXSXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(42).or(autoAbilities(FERMENTATION_TANK_RECIPES)))
+                    .where('G', blocks(OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('F', frames(GTMaterials.WatertightSteel))
+                    .where('P', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where('A', any())
+                    .where('E', air())
+                    .build())
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
+                    Epimorphism.id("block/multiblock/fermentation_tank"), false)
+            .register();
     public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_cracking_unit",
                     blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Oil Cracking Unit")
@@ -956,226 +1043,169 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/mega_alloy_blast_smelter"), false)
             .register();
 
-    public final static MultiblockMachineDefinition DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE = EP_REGISTRATE.multiblock("dimensionally_transcendent_plasma_forge", holder -> new DTPFMachine(holder, m -> 4096))
-            .langValue("Dimensionally Transcendent Plasma Forge")
-            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
-
-            )
+    public final static MultiblockMachineDefinition INDUSTRIAL_COKE_OVEN = EP_REGISTRATE.multiblock("industrial_coke_oven",
+                    blockEntity -> new ParallelCoilCasingMultiblockMachine(blockEntity, "Firebox", machine -> machine.getCoilTier() * 4))
+            .langValue("Industrial Coke Oven")
+            .tooltips(Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(BLAST_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
-            .appearanceBlock(ADVANCED_INVAR_CASING)
+            .recipeType(PYROLYSE_RECIPES)
+            .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle(" NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN   N     N   NNN   NNN " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"                                 " ,"                                 " ,"                                 " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"                                 ")
-                    .aisle("NbbbN NbbbN    N N    NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ,"NbbbN NbbbN           NbbbN NbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbN NbbbN           NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC   N     N   CCC   CCC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         " ,"                                 " ,"         N   N     N   N         " ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"  s     s               s     s  " ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC   N     N   CbC   CbC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"  N     sbbbbbNNsNNbbbbbs     N  " ,"  N      bCCCb     bCCCb      N  " ,"  N      N   N     N   N      N  " ,"   s                         s   " ,"   s     N   N     N   N     s   " ,"    ss   bCCCb     bCCCb   ss    " ,"      NNNbbbbbNNsNNbbbbbNNN      " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbNNNbbbN           NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         NCCCN     NCCCN         " ,"  s      NCCCN     NCCCN      s  " ,"  s      NCCCN     NCCCN      s  " ,"         bCCCb     bCCCb         " ,"    ss   bCCCb     bCCCb   ss    " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NN    N     N    NN   NNN " ,"         N   N     N   N         " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"  s      NCCCN     NCCCN      s  " ,"   s     N   N     N   N     s   " ,"         N   N     N   N         " ,"                                 ")
-                    .aisle("   N   N       NbN       N   N   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   N   N                 N   N   " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"   N   N                 N   N   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   N   N                 N   N   " ,"                                 " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"  s      NCCCN     NCCCN      s  " ,"   s                         s   " ,"                                 " ,"                                 ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NN    N     N    NN   NNN " ,"         N   N     N   N         " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"         NCCCN     NCCCN         " ,"  N      N   N     N   N      N  " ,"         N   N     N   N         " ,"                                 ")
-                    .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbNNNbbbN           NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         NCCCN     NCCCN         " ,"         NCCCN     NCCCN         " ,"         NCCCN     NCCCN         " ,"         bCCCb     bCCCb         " ,"  N      bCCCb     bCCCb      N  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"  s     s               s     s  " ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC   N     N   CbC   CbC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"  s     sbbbbbNNsNNbbbbbs     s  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         " ,"                                 " ,"         N   N     N   N         " ,"         bCCCb     bCCCb         " ,"  N     sbbbbbNNsNNbbbbbs     N  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbN NbbbN    NbN    NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ,"NbbbN NbbbN           NbbbN NbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbN NbbbN           NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC   N     N   CCC   CCC " ,"NNNN   NNNCCCb     bCCCNNN   NNNN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ," NNN   NNN   N     N   NNN   NNN " ,"   N   N                 N   N   " ," NNN   NNN   N     N   NNN   NNN " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ," NNN   NNN   N     N   NNN   NNN ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC   N     N   CCC   CCC " ," CbC   CbC   N     N   CbC   CbC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC   N     N   CCCCCCCCC " ," CbC   CbC   N     N   CbC   CbC " ," CCC   CCC   N     N   CCC   CCC " ,"                                 ")
-                    .aisle("  N     N      NbN      N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC             CCC   CCC " ," CbC   CbC             CbC   CbC " ," CCCCCCCCC             CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC             CCCCCCCCC " ," CbC   CbC             CbC   CbC " ," CCC   CCC             CCC   CCC " ,"                                 ")
-                    .aisle("  N     N      NbN      N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC             CCC   CCC " ," CbC   CbC             CbC   CbC " ," CCCCCCCCC             CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC             CCCCCCCCC " ," CbC   CbC             CbC   CbC " ," CCC   CCC             CCC   CCC " ,"                                 ")
-                    .aisle("  N     N     NsNsN     N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbNNNbbbN           NbbbNNNbbbN" ," NNN   NNN             NNN   NNN " ,"   N   N                 N   N   " ," NNN   NNN             NNN   NNN " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN ")
-                    .aisle("  N     N    NbbbbbN    N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 ")
-                    .aisle(" NsNNNNNsNNNNsbbbbbsNNNNsNNNNNsN " ,"                N                " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 ")
-                    .aisle("  NbbbbbNbbbbNbbbbbNbbbbNbbbbbN  " ,"               NNN               " ,"                ~                " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  s     s               s     s  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  s     s               s     s  " ,"                                 " ,"                                 ")
-                    .aisle(" NsNNNNNsNNNNsbbbbbsNNNNsNNNNNsN " ,"                N                " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 ")
-                    .aisle("  N     N    NbbbbbN    N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"  N     N               N     N  " ,"                                 " ,"                                 ")
-                    .aisle("  N     N     NsNsN     N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbNNNbbbN           NbbbNNNbbbN" ," NNN   NNN             NNN   NNN " ,"   N   N                 N   N   " ," NNN   NNN             NNN   NNN " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN ")
-                    .aisle("  N     N      NbN      N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC             CCC   CCC " ," CbC   CbC             CbC   CbC " ," CCCCCCCCC             CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC             CCCCCCCCC " ," CbC   CbC             CbC   CbC " ," CCC   CCC             CCC   CCC " ,"                                 ")
-                    .aisle("  N     N      NbN      N     N  " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC             CCC   CCC " ," CbC   CbC             CbC   CbC " ," CCCCCCCCC             CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC             CCCCCCCCC " ," CbC   CbC             CbC   CbC " ," CCC   CCC             CCC   CCC " ,"                                 ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," CCC   CCC   N     N   CCC   CCC " ," CbC   CbC   N     N   CbC   CbC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," CCCCCCCCC   N     N   CCCCCCCCC " ," CbC   CbC   N     N   CbC   CbC " ," CCC   CCC   N     N   CCC   CCC " ,"                                 ")
-                    .aisle("NbbbN NbbbN    NbN    NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ,"NbbbN NbbbN           NbbbN NbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbN NbbbN           NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC   N     N   CCC   CCC " ,"NNNN   NNNCCCb     bCCCNNN   NNNN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ," NNN   NNN   N     N   NNN   NNN " ,"   N   N                 N   N   " ," NNN   NNN   N     N   NNN   NNN " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ," NNN   NNN   N     N   NNN   NNN ")
-                    .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"  s     s               s     s  " ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC   N     N   CbC   CbC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"  s     sbbbbbNNsNNbbbbbs     s  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         " ,"                                 " ,"         N   N     N   N         " ,"         bCCCb     bCCCb         " ,"  N     sbbbbbNNsNNbbbbbs     N  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbNNNbbbN           NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         NCCCN     NCCCN         " ,"         NCCCN     NCCCN         " ,"         NCCCN     NCCCN         " ,"         bCCCb     bCCCb         " ,"  N      bCCCb     bCCCb      N  " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NN    N     N    NN   NNN " ,"         N   N     N   N         " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"         NCCCN     NCCCN         " ,"  N      N   N     N   N      N  " ,"         N   N     N   N         " ,"                                 ")
-                    .aisle("   N   N       NbN       N   N   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   N   N                 N   N   " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"   N   N                 N   N   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   N   N                 N   N   " ,"                                 " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"  s      NCCCN     NCCCN      s  " ,"   s                         s   " ,"                                 " ,"                                 ")
-                    .aisle(" NNN   NNN     NbN     NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ,"   C   C                 C   C   " ," NNN   NN    N     N    NN   NNN " ,"         N   N     N   N         " ,"         NCCCN     NCCCN         " ,"                                 " ,"                                 " ,"                                 " ,"  s      NCCCN     NCCCN      s  " ,"   s     N   N     N   N     s   " ,"         N   N     N   N         " ,"                                 ")
-                    .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ,"NbbbNNNbbbN           NbbbNNNbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbNNNbbbN           NbbbNNNbbbN" ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC             CCCCCCCCC " ," CCCCCCCCC   N     N   CCCCCCCCC " ,"NbbbNNNbbNCCCb     bCCCNbbNNNbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         NCCCN     NCCCN         " ,"  s      NCCCN     NCCCN      s  " ,"  s      NCCCN     NCCCN      s  " ,"         bCCCb     bCCCb         " ,"    ss   bCCCb     bCCCb   ss    " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ,"NbbbN NbbbN           NbbbN NbbbN" ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"  s     s               s     s  " ," NNN   NNN             NNN   NNN " ," NNN   NNN             NNN   NNN " ,"NbbbN NbbbN           NbbbN NbbbN" ," CbC   CbC             CbC   CbC " ," CbC   CbC             CbC   CbC " ," CbC   CbC   N     N   CbC   CbC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"  N     sbbbbbNNsNNbbbbbs     N  " ,"  N      bCCCb     bCCCb      N  " ,"  N      N   N     N   N      N  " ,"   s                         s   " ,"   s     N   N     N   N     s   " ,"    ss   bCCCb     bCCCb   ss    " ,"      NNNbbbbbNNsNNbbbbbNNN      " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle("NbbbN NbbbN    N N    NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ,"NbbbN NbbbN           NbbbN NbbbN" ,"  N     N               N     N  " ,"  N     N               N     N  " ,"                                 " ,"  N     N               N     N  " ,"  N     N               N     N  " ,"NbbbN NbbbN           NbbbN NbbbN" ," CCC   CCC             CCC   CCC " ," CCC   CCC             CCC   CCC " ," CCC   CCC   N     N   CCC   CCC " ,"NbbbN NbbNCCCb     bCCCNbbN NbbbN" ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         " ,"                                 " ,"         N   N     N   N         " ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         bCCCb     bCCCb         " ,"         N   N     N   N         ")
-                    .aisle(" NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN             NNN   NNN " ,"                                 " ,"                                 " ,"                                 " ," NNN   NNN   N     N   NNN   NNN " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"                                 " ,"                                 " ,"                                 " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"         N   N     N   N         " ,"                                 ")
-                    .where('~', controller(blocks(definition.get())))
-                    .where('C', heatingCoils())
-                    .where('b', blocks(HIGH_POWER_CASING.get())
-                            .setMinGlobalLimited(1100)
-                            .or(abilities(MAINTENANCE)
-                                    .setExactLimit(1))
-                            .or(abilities(INPUT_ENERGY)
-                                    .setMaxGlobalLimited(3))
-                            .or(abilities(INPUT_LASER)
-                                    .setMaxGlobalLimited(1))
-                            .or(abilities(IMPORT_ITEMS)
-                                    .setMaxGlobalLimited(32)
-                                    .setPreviewCount(1))
-                            .or(abilities(EXPORT_ITEMS)
-                                    .setMaxGlobalLimited(32))
-                            .or(abilities(IMPORT_FLUIDS)
-                                    .setMaxGlobalLimited(32)
-                                    .setPreviewCount(1))
-                            .or(abilities(EXPORT_FLUIDS)
-                                    .setMaxGlobalLimited(32)
-                                    .setPreviewCount(1)))
-                    .where('N', blocks(ULTIMATE_HIGH_ENERGY_CASING.get()))
-                    .where('s', blocks(DIMENSIONAL_BRIDGE_CASING.get()))
-                    .where(' ', any())
+                    .aisle("AAAAA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                    .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                    .aisle("AAAAA", " C C ", " D D ", " D D ", " D D ", " C C ", "AAMAA")
+                    .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                    .aisle("AAEAA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                    .where('E', controller(blocks(definition.get())))
+                    .where('A', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(30)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('B', frames(Steel))
+                    .where('C', fireboxBlock())
+                    .where('D', heatingCoils())
+                    .where('M', abilities(MUFFLER))
+                    .where(' ', air())
                     .build()
             )
             .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                var builder = MultiblockShapeInfo.builder()
-                        .aisle(" NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN   N     N   NNN   NNN ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ", "                                 ", "                                 ", "         N   N     N   N         ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ")
-                        .aisle("NbbbN NbbbN    N N    NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", "NbbbN NbbbN           NbbbN NbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbN NbbbN           NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC   N     N   CCC   CCC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ", "                                 ", "         N   N     N   N         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "  s     s               s     s  ", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC   N     N   CbC   CbC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "  N     sbbbbbNNsNNbbbbbs     N  ", "  N      bCCCb     bCCCb      N  ", "  N      N   N     N   N      N  ", "   s                         s   ", "   s     N   N     N   N     s   ", "    ss   bCCCb     bCCCb   ss    ", "      NNNbbbbbNNsNNbbbbbNNN      ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", "NbbbNNNbbbN           NbbbNNNbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbNNNbbbN           NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         NCCCN     NCCCN         ", "  s      NCCCN     NCCCN      s  ", "  s      NCCCN     NCCCN      s  ", "         bCCCb     bCCCb         ", "    ss   bCCCb     bCCCb   ss    ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle(" NNN   NNN     NbN     NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NN    N     N    NN   NNN ", "         N   N     N   N         ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "  s      NCCCN     NCCCN      s  ", "   s     N   N     N   N     s   ", "         N   N     N   N         ", "                                 ")
-                        .aisle("   N   N       NbN       N   N   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   N   N                 N   N   ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "   N   N                 N   N   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   N   N                 N   N   ", "                                 ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "  s      NCCCN     NCCCN      s  ", "   s                         s   ", "                                 ", "                                 ")
-                        .aisle(" NNN   NNN     NbN     NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NN    N     N    NN   NNN ", "         N   N     N   N         ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "         NCCCN     NCCCN         ", "  N      N   N     N   N      N  ", "         N   N     N   N         ", "                                 ")
-                        .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", "NbbbNNNbbbN           NbbbNNNbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbNNNbbbN           NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         NCCCN     NCCCN         ", "         NCCCN     NCCCN         ", "         NCCCN     NCCCN         ", "         bCCCb     bCCCb         ", "  N      bCCCb     bCCCb      N  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "  s     s               s     s  ", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC   N     N   CbC   CbC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "  s     sbbbbbNNsNNbbbbbs     s  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ", "                                 ", "         N   N     N   N         ", "         bCCCb     bCCCb         ", "  N     sbbbbbNNsNNbbbbbs     N  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbN NbbbN    NbN    NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", "NbbbN NbbbN           NbbbN NbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbN NbbbN           NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC   N     N   CCC   CCC ", "NNNN   NNNCCCb     bCCCNNN   NNNN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", " NNN   NNN   N     N   NNN   NNN ", "   N   N                 N   N   ", " NNN   NNN   N     N   NNN   NNN ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", " NNN   NNN   N     N   NNN   NNN ")
-                        .aisle(" NNN   NNN     NbN     NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " CCC   CCC   N     N   CCC   CCC ", " CbC   CbC   N     N   CbC   CbC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC   N     N   CCCCCCCCC ", " CbC   CbC   N     N   CbC   CbC ", " CCC   CCC   N     N   CCC   CCC ", "                                 ")
-                        .aisle("  N     N      NbN      N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " CCC   CCC             CCC   CCC ", " CbC   CbC             CbC   CbC ", " CCCCCCCCC             CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC             CCCCCCCCC ", " CbC   CbC             CbC   CbC ", " CCC   CCC             CCC   CCC ", "                                 ")
-                        .aisle("  N     N      NbN      N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " CCC   CCC             CCC   CCC ", " CbC   CbC             CbC   CbC ", " CCCCCCCCC             CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC             CCCCCCCCC ", " CbC   CbC             CbC   CbC ", " CCC   CCC             CCC   CCC ", "                                 ")
-                        .aisle("  N     N     NsNsN     N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", "NbbbN NbbbN           NbbbN NbbbN", "NbbbNNNbbbN           NbbbNNNbbbN", " NNN   NNN             NNN   NNN ", "   N   N                 N   N   ", " NNN   NNN             NNN   NNN ", "NbbbNNNbbbN           NbbbNNNbbbN", "NbbbN NbbbN           NbbbN NbbbN", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ")
-                        .aisle("  N     N    NbbbbbN    N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ")
-                        .aisle(" NsNNNNNsNNNNsbbbbbsNNNNsNNNNNsN ", "                N                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ")
-                        .aisle("  NbbbbbNbbbbNbbbbbNbbbbNbbbbbN  ", "               NNN               ", "                ~                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  s     s               s     s  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  s     s               s     s  ", "                                 ", "                                 ")
-                        .aisle(" NsNNNNNsNNNNsbbbbbsNNNNsNNNNNsN ", "                N                ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ")
-                        .aisle("  N     N    NbIXJbN    N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "  N     N               N     N  ", "                                 ", "                                 ")
-                        .aisle("  N     N     NsNsN     N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", "NbbbN NbbbN           NbbbN NbbbN", "NbbbNNNbbbN           NbbbNNNbbbN", " NNN   NNN             NNN   NNN ", "   N   N                 N   N   ", " NNN   NNN             NNN   NNN ", "NbbbNNNbbbN           NbbbNNNbbbN", "NbbbN NbbbN           NbbbN NbbbN", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ")
-                        .aisle("  N     N      NKN      N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " CCC   CCC             CCC   CCC ", " CbC   CbC             CbC   CbC ", " CCCCCCCCC             CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC             CCCCCCCCC ", " CbC   CbC             CbC   CbC ", " CCC   CCC             CCC   CCC ", "                                 ")
-                        .aisle("  N     N      NLN      N     N  ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " CCC   CCC             CCC   CCC ", " CbC   CbC             CbC   CbC ", " CCCCCCCCC             CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC             CCCCCCCCC ", " CbC   CbC             CbC   CbC ", " CCC   CCC             CCC   CCC ", "                                 ")
-                        .aisle(" NNN   NNN     NEN     NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " CCC   CCC   N     N   CCC   CCC ", " CbC   CbC   N     N   CbC   CbC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " CCCCCCCCC   N     N   CCCCCCCCC ", " CbC   CbC   N     N   CbC   CbC ", " CCC   CCC   N     N   CCC   CCC ", "                                 ")
-                        .aisle("NbbbN NbbbN    NbN    NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", "NbbbN NbbbN           NbbbN NbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbN NbbbN           NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC   N     N   CCC   CCC ", "NNNN   NNNCCCb     bCCCNNN   NNNN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", " NNN   NNN   N     N   NNN   NNN ", "   N   N                 N   N   ", " NNN   NNN   N     N   NNN   NNN ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", " NNN   NNN   N     N   NNN   NNN ")
-                        .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "  s     s               s     s  ", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC   N     N   CbC   CbC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "  s     sbbbbbNNsNNbbbbbs     s  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ", "                                 ", "         N   N     N   N         ", "         bCCCb     bCCCb         ", "  N     sbbbbbNNsNNbbbbbs     N  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", "NbbbNNNbbbN           NbbbNNNbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbNNNbbbN           NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         NCCCN     NCCCN         ", "         NCCCN     NCCCN         ", "         NCCCN     NCCCN         ", "         bCCCb     bCCCb         ", "  N      bCCCb     bCCCb      N  ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle(" NNN   NNN     NbN     NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NN    N     N    NN   NNN ", "         N   N     N   N         ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "         NCCCN     NCCCN         ", "  N      N   N     N   N      N  ", "         N   N     N   N         ", "                                 ")
-                        .aisle("   N   N       NbN       N   N   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   N   N                 N   N   ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "   N   N                 N   N   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   N   N                 N   N   ", "                                 ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "  s      NCCCN     NCCCN      s  ", "   s                         s   ", "                                 ", "                                 ")
-                        .aisle(" NNN   NNN     NbN     NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "   C   C                 C   C   ", "   C   C                 C   C   ", "   C   C                 C   C   ", " NNN   NN    N     N    NN   NNN ", "         N   N     N   N         ", "         NCCCN     NCCCN         ", "                                 ", "                                 ", "                                 ", "  s      NCCCN     NCCCN      s  ", "   s     N   N     N   N     s   ", "         N   N     N   N         ", "                                 ")
-                        .aisle("NbbbNNNbbbN    NbN    NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", "NbbbNNNbbbN           NbbbNNNbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbNNNbbbN           NbbbNNNbbbN", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC             CCCCCCCCC ", " CCCCCCCCC   N     N   CCCCCCCCC ", "NbbbNNNbbNCCCb     bCCCNbbNNNbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         NCCCN     NCCCN         ", "  s      NCCCN     NCCCN      s  ", "  s      NCCCN     NCCCN      s  ", "         bCCCb     bCCCb         ", "    ss   bCCCb     bCCCb   ss    ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "  s     s               s     s  ", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC   N     N   CbC   CbC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "  N     sbbbbbNNsNNbbbbbs     N  ", "  N      bCCCb     bCCCb      N  ", "  N      N   N     N   N      N  ", "   s                         s   ", "   s     N   N     N   N     s   ", "    ss   bCCCb     bCCCb   ss    ", "      NNNbbbbbNNsNNbbbbbNNN      ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle("NbbbN NbbbN    N N    NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", "NbbbN NbbbN           NbbbN NbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbN NbbbN           NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC   N     N   CCC   CCC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ", "                                 ", "         N   N     N   N         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
-                        .aisle(" NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN   N     N   NNN   NNN ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ", "                                 ", "                                 ", "         N   N     N   N         ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ")
-                        .where('~', definition, Direction.NORTH)
-                        .where('b', HIGH_POWER_CASING.get())
-                        .where('X', GTMachines.AUTO_MAINTENANCE_HATCH, Direction.UP)
-                        .where('I', ITEM_IMPORT_BUS[UHV], Direction.UP)
-                        .where('J', ITEM_EXPORT_BUS[UHV], Direction.UP)
-                        .where('K', FLUID_IMPORT_HATCH[UHV], Direction.UP)
-                        .where('L', FLUID_EXPORT_HATCH[UHV], Direction.UP)
-                        .where('E', LASER_INPUT_HATCH_256[5], Direction.UP)
-                        .where('N', ULTIMATE_HIGH_ENERGY_CASING.get())
-                        .where('s', DIMENSIONAL_BRIDGE_CASING.get());
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("IOEFK", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                        .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                        .aisle("AAAAA", " C C ", " D D ", " D D ", " D D ", " C C ", "AAMAA")
+                        .aisle("AAAAA", " CCC ", " DDD ", " DDD ", " DDD ", " CCC ", "AAAAA")
+                        .aisle("AAHGA", "B   B", "B   B", "B   B", "B   B", "B   B", "AAAAA")
+                        .where('E', definition, Direction.NORTH)
+                        .where('A', CASING_STEEL_SOLID)
+                        .where('B', ChemicalHelper.getBlock(frameGt, Steel))
+                        .where('I', ITEM_IMPORT_BUS[EV], Direction.NORTH)
+                        .where('O', ITEM_EXPORT_BUS[EV], Direction.NORTH)
+                        .where('F', FLUID_IMPORT_HATCH[EV], Direction.NORTH)
+                        .where('K', FLUID_EXPORT_HATCH[EV], Direction.NORTH)
+                        .where('M', MUFFLER_HATCH[LV], Direction.UP)
+                        .where('G', ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
+                        .where('H', MAINTENANCE_HATCH, Direction.SOUTH)
+                        .where(' ', Blocks.AIR.defaultBlockState());
+                List<Block> listFirebox = ALL_FIREBOXS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
+                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                        .map(entry -> entry.getValue().get())
+                        .toList();
+                int maxLeng = StructureUtil.maxLength(new List[] {
+                        listCoil,
+                        listFirebox
+                });
+
+                for (int i = 0; i < maxLeng; ++i) {
+                    builder.where('C', EPUniverUtil.getOrLast(listFirebox, i));
+                    builder.where('D', EPUniverUtil.getOrLast(listCoil, i));
+                    shapeInfo.add(builder.build());
+                }
+                return shapeInfo;
+            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    Epimorphism.id("block/multiblock/industrial_coke_oven"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition VACUUM_DRYING_FURNACE = EP_REGISTRATE.multiblock("vacuum_drying_furnace", blockEntity -> new ParallelCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
+            .langValue("Vacuum Drying Furnace")
+            .tooltips(Component.translatable("block.epimorphism.vacuum_drying_furnace.desc.0"))
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(VACUUM_DRYING_FURNACE_RECIPES)
+            .appearanceBlock(VACUUM_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
+                    .aisle("XXX", "C#C", "C#C", "C#C", "XMX")
+                    .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(VACUUM_CASING.get())
+                            .setMinGlobalLimited(9)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('M', abilities(MUFFLER))
+                    .where('C', heatingCoils())
+                    .where('#', air())
+                    .build()
+            )
+            .shapeInfos(definition -> {
+                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                        .aisle("EEM", "CCC", "CCC", "CCC", "XXX")
+                        .aisle("FXD", "C#C", "C#C", "C#C", "XHX")
+                        .aisle("ISO", "CCC", "CCC", "CCC", "XXX")
+                        .where('S', definition, Direction.SOUTH)
+                        .where('X', VACUUM_CASING)
+                        .where('E', GTMachines.ENERGY_INPUT_HATCH[6], Direction.NORTH)
+                        .where('I', GTMachines.ITEM_IMPORT_BUS[6], Direction.SOUTH)
+                        .where('O', GTMachines.ITEM_EXPORT_BUS[6], Direction.SOUTH)
+                        .where('F', GTMachines.FLUID_IMPORT_HATCH[6], Direction.WEST)
+                        .where('D', GTMachines.FLUID_EXPORT_HATCH[6], Direction.EAST)
+                        .where('H', GTMachines.MUFFLER_HATCH[1], Direction.UP)
+                        .where('#', Blocks.AIR.defaultBlockState())
+                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
                 ALL_COILS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                         .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
                 return shapeInfo;
             })
-            .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
-            .renderer(() -> new CustomPartRenderer(Epimorphism.id("block/casings/solid/dimensional_bridge_casing"),
-                    Epimorphism.id("block/multiblock/dimensionally_transcendent_plasma_forge"), DTPFMachine::getBaseTexture))
-            .additionalDisplay((controller, components) -> {
-                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
-                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
-                            Component.translatable(FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - MV)) + "K").setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
-                }
-            })
+            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/vacuum_casing"),
+                    Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
             .register();
 
-//    public final static MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR = registerTieredEPMultis("compressed_fusion_reactor", CompressedFusionReactorMachine::new, (tier, builder) -> builder
-//            .rotationState(RotationState.NON_Y_AXIS)
-//            .langValue("Compressed Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier - 5)))
-//            .recipeType(GTRecipeTypes.FUSION_RECIPES)
-//            .recipeModifier(FusionReactorMachine::recipeModifier)
-//            .tooltips(
-//                    Component.translatable("gtceu.machine.fusion_reactor.capacity", FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
-//                    Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-//                    Component.translatable("gtceu.multiblock.fusion_reactor.%s.description".formatted(VN[tier].toLowerCase(Locale.ROOT))))
-//            .appearanceBlock(() -> EPFusionCasingBlock.getCasingState(tier))
-//            .pattern(definition -> FactoryBlockPattern.start()
-//                    .aisle("                                               ", "                                               ", "                    FCCCCCF                    ", "                    FCIBICF                    ", "                    FCCCCCF                    ", "                                               ", "                                               ")
-//                    .aisle("                                               ", "                    FCBBBCF                    ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                    FCBBBCF                    ", "                                               ")
-//                    .aisle("                    FCBBBCF                    ", "                   CC#####CC                   ", "                CCCCC#####CCCCC                ", "                CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "                   CC#####CC                   ", "                    FCBBBCF                    ")
-//                    .aisle("                    FCIBICF                    ", "                CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "              CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "                CCCCC#####CCCCC                ", "                    FCIBICF                    ")
-//                    .aisle("                    FCBBBCF                    ", "              CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "            CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "              CCCCCCC#####CCCCCCC              ", "                    FCBBBCF                    ")
-//                    .aisle("                                               ", "            CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "           CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "            CCCCCCC FCBBBCF CCCCCCC            ", "                                               ")
-//                    .aisle("                                               ", "           CCCCC               CCCCC           ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "          CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "           CCCCC               CCCCC           ", "                                               ")
-//                    .aisle("                                               ", "          CCCC                   CCCC          ", "         CCHCCCC               CCCCHCC         ", "         CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "          CCCC                   CCCC          ", "                                               ")
-//                    .aisle("                                               ", "         CCC                       CCC         ", "        CCHCCC                   CCCHCC        ", "        CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "         CCC                       CCC         ", "                                               ")
-//                    .aisle("                                               ", "        CCC                         CCC        ", "       CCHCE                       ECHCC       ", "       CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "        CCC                         CCC        ", "                                               ")
-//                    .aisle("                                               ", "       CCC                           CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC                         CHHHC      ", "      ECHCC                         CCHCE      ", "       CCC                           CCC       ", "                                               ")
-//                    .aisle("                                               ", "      CCC                             CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC                           CHHHC     ", "     CCHCE                           ECHCC     ", "      CCC                             CCC      ", "                                               ")
-//                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
-//                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
-//                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
-//                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "  CCC                                     CCC  ", " CCHCC                                   CCHCC ", " CHHHC                                   CHHHC ", " CCHCC                                   CCHCC ", "  CCC                                     CCC  ", "                                               ")
-//                    .aisle("  FFF                                     FFF  ", " FCCCF                                   FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF                                 FCHHHCF", "FCCHCCF                                 FCCHCCF", " FCCCF                                   FCCCF ", "  FFF                                     FFF  ")
-//                    .aisle("  CCC                                     CCC  ", " C###C                                   C###C ", "C##H##C                                 C##H##C", "C#HHH#C                                 C#HHH#C", "C##H##C                                 C##H##C", " C###C                                   C###C ", "  CCC                                     CCC  ")
-//                    .aisle("  CIC                                     CIC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "I#HHH#I                                 I#HHH#I", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CIC                                     CIC  ")
-//                    .aisle("  CBC                                     CBC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "B#HHH#B                                 B#HHH#B", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CBC                                     CBC  ")
-//                    .aisle("  CIC                                     CIC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "I#HHH#I                                 I#HHH#I", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CIC                                     CIC  ")
-//                    .aisle("  CCC                                     CCC  ", " C###C                                   C###C ", "C##H##C                                 C##H##C", "C#HHH#C                                 C#HHH#C", "C##H##C                                 C##H##C", " C###C                                   C###C ", "  CCC                                     CCC  ")
-//                    .aisle("  FFF                                     FFF  ", " FCCCF                                   FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF                                 FCHHHCF", "FCCHCCF                                 FCCHCCF", " FCCCF                                   FCCCF ", "  FFF                                     FFF  ")
-//                    .aisle("                                               ", "  CCC                                     CCC  ", " CCHCC                                   CCHCC ", " CHHHC                                   CHHHC ", " CCHCC                                   CCHCC ", "  CCC                                     CCC  ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
-//                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
-//                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
-//                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
-//                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
-//                    .aisle("                                               ", "      CCC                             CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC                           CHHHC     ", "     CCHCE                           ECHCC     ", "      CCC                             CCC      ", "                                               ")
-//                    .aisle("                                               ", "       CCC                           CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC                         CHHHC      ", "      ECHCC                         CCHCE      ", "       CCC                           CCC       ", "                                               ")
-//                    .aisle("                                               ", "        CCC                         CCC        ", "       CCHCE                       ECHCC       ", "       CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "        CCC                         CCC        ", "                                               ")
-//                    .aisle("                                               ", "         CCC                       CCC         ", "        CCHCCC                   CCCHCC        ", "        CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "         CCC                       CCC         ", "                                               ")
-//                    .aisle("                                               ", "          CCCC                   CCCC          ", "         CCHCCCC               CCCCHCC         ", "         CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "          CCCC                   CCCC          ", "                                               ")
-//                    .aisle("                                               ", "           CCCCC               CCCCC           ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "          CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "           CCCCC               CCCCC           ", "                                               ")
-//                    .aisle("                                               ", "            CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "           CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "            CCCCCCC FCBBBCF CCCCCCC            ", "                                               ")
-//                    .aisle("                    FCBBBCF                    ", "              CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "            CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "              CCCCCCC#####CCCCCCC              ", "                    FCBBBCF                    ")
-//                    .aisle("                    FCIBICF                    ", "                CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "              CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "                CCCCC#####CCCCC                ", "                    FCIBICF                    ")
-//                    .aisle("                    FCBBBCF                    ", "                   CC#####CC                   ", "                CCCCC#####CCCCC                ", "                CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "                   CC#####CC                   ", "                    FCBBBCF                    ")
-//                    .aisle("                                               ", "                    FCBBBCF                    ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                    FCBBBCF                    ", "                                               ")
-//                    .aisle("                                               ", "                                               ", "                    FCCCCCF                    ", "                    FCISICF                    ", "                    FCCCCCF                    ", "                                               ", "                                               ")
-//                    .where('S', controller(blocks(definition.get())))
-//                    .where('B', blocks(FUSION_GLASS.get()))
-//                    .where('C', blocks(EPFusionCasingBlock.getCasingState(tier)))
-//                    .where('I', blocks(EPFusionCasingBlock.getCasingState(tier))
-//                            .or(abilities(PartAbility.IMPORT_FLUIDS)
-//                                    .setMinGlobalLimited(2)
-//                                    .setPreviewCount(16))
-//                            .or(abilities(PartAbility.EXPORT_FLUIDS)
-//                                    .setMinGlobalLimited(2)
-//                                    .setPreviewCount(16)))
-//                    .where('F', frames(CompressedFusionReactorMachine.getFrameMaterial(tier)))
-//                    .where('H', blocks(CompressedFusionReactorMachine.getCoilBlock(tier)))
-//                    .where('E', blocks(EPFusionCasingBlock.getCasingState(tier))
-//                            .or(blocks(PartAbility.INPUT_ENERGY.getBlockRange(tier, UEV).toArray(Block[]::new))
-//                                    .setMinGlobalLimited(1)
-//                                    .setPreviewCount(32)))
-//                    .where('#', air())
-//                    .where(' ', any())
-//                    .build())
-//                    .workableCasingRenderer(EPFusionCasingBlock.getCasingType(tier).getTexture(),
-//                            GTCEu.id("block/multiblock/fusion_reactor"), false)
-//                    .register(),
-//            LuV, ZPM, UV, UHV, UEV);
+    public final static MultiblockMachineDefinition ISA_MILL = EP_REGISTRATE.multiblock("isa_mill", IsaMillMachine::new)
+            .langValue("Isa Mill")
+            .tooltips(
+                    Component.translatable("block.epimorphism.isa_mill.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(ISA_MILL_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("CEEEEEE", "CEEEEEE", "CEEEEEE")
+                    .aisle("CEEEEEE", "BGGGGGE", "CEEEEEE")
+                    .aisle("CEEEEEE", "CEESEEE", "CEEEEEE")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('B', abilities(EPPartAbility.GRIND_BALL))
+                    .where('C', blocks(CASING_ISA_MILL_PIPE.get()))
+                    .where('E', blocks(ISA_MILL_CASING.get()).setMinGlobalLimited(31)
+                            .or(abilities(MUFFLER).setExactLimit(1))
+                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1)))
+                    .where('G', blocks(CASING_ISA_MILL_GEARBOX.get()))
+                    .build())
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/isa_mill_casing"),
+                    Epimorphism.id("block/multiblock/isa_mill"), false)
+            .register();
 
     public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = EP_REGISTRATE.multiblock("advanced_electric_blast_furnace", AdvancedEBFMachine::new)
             .langValue("Advanced Electric Blast Furnace")
-            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
-
-            )
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"));
+                    components.add(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.2"));
+                    components.add(Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.3"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(BLAST_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
@@ -1227,9 +1257,23 @@ public class EPMachines {
 
     public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = EP_REGISTRATE.multiblock("industrial_vacuum_freezer", IndustrialFreezerMachine::new)
             .langValue("Industrial Vacuum Freezer")
-            .tooltips(
-                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0")
-            )
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.2"));
+                    components.add(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.3"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(VACUUM_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
@@ -1248,256 +1292,116 @@ public class EPMachines {
                     Epimorphism.id("block/multiblock/industrial_vacuum_freezer"), false)
             .register();
 
-    public final static MultiblockMachineDefinition COKING_TOWER = EP_REGISTRATE.multiblock("coking_tower",
-                    blockEntity -> new ParallelCoilCasingMultiblockMachine(blockEntity, "Firebox", machine -> machine.getCoilTier() * 4))
-            .langValue("Coking Tower")
-            .tooltips(Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"))
+    public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 1))
+            .langValue("Industrial Flotation Cell")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0")
+            )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(PYROLYSE_RECIPES)
-            .appearanceBlock(CASING_STEEL_SOLID)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(EPBlocks.FLOTATION_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("F   F", "FCCCF", "CCCCC", " CCC ", "     ", "     ", "     ", "     ", "     ")
-                    .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-                    .aisle(" DDD ", "CHPHC", "V#P#V", "CHPHC", " cPc ", " cPc ", " cPc ", " cPc ", " cOc ")
-                    .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-                    .aisle("F   F", "FCCCF", "CCSCC", " CCC ", "     ", "     ", "     ", "     ", "     ")
+                    .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
+                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
+                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
+                    .aisle("AAAAAAA", "AAAAAAA", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", "  AAA  ")
+                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
+                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
+                    .aisle("  AAA  ", "  ASA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('C', blocks(EPBlocks.FLOTATION_CELL.get()).setMinGlobalLimited(48))
+                    .where('A', blocks(EPBlocks.FLOTATION_CASING.get()).setMinGlobalLimited(64)
+                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
+                            .or(Predicates.autoAbilities(true, false, false)))
+                    .where('D', Predicates.air())
+                    .build())
+            .workableCasingRenderer(Epimorphism.id("block/casings/solid/flotation_casing"),
+                    Epimorphism.id("block/multiblock/industrial_flotation_cell"), false)
+            .register();
 
+    public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
+            .langValue("Precise Assembler")
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.0"));
+            if (GTUtil.isCtrlDown()) {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.0"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.ctrl_desc.2"));
+            }/* else if(GTUtil.isShiftDown()) {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.shift_desc.0"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.shift_desc.1"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            } */else {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
+            })
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
+            .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("DDDDDDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "DDDDDDDDD")
+                    .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
+                    .aisle("DDDDSDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
                     .where('S', controller(blocks(definition.get())))
-                    .where('C', blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(30)
+                    .where('C', EPPredicates.PACasingBlock())
+                    .where('D', EPPredicates.PACasingBlock().setMinGlobalLimited(42)
                             .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, false)))
-                    .where('c', blocks(CASING_STEEL_SOLID.get()))
-                    .where('F', frames(HSLASteel))
-                    .where('D', fireboxBlock())
-                    .where('V', blocks(HEAT_VENT.get()))
-                    .where('P', blocks(CASING_STEEL_PIPE.get()))
-                    .where('H', heatingCoils())
-                    .where('O', abilities(MUFFLER))
-                    .where('#', air())
-                    .where(' ', any())
+                            .or(autoAbilities(true, true, false)))
+                    .where('F', frames(MARM200Steel))
+                    .where('G', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('M', EPPredicates.PAMachineCasingBlock())
                     .build()
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
                 MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("F   F", "FCCCF", "XYSZW", " CCC ", "     ", "     ", "     ", "     ", "     ")
-                        .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-                        .aisle(" DDD ", "CHPHC", "V#P#V", "CHPHC", " cPc ", " cPc ", " cPc ", " cPc ", " cOc ")
-                        .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-                        .aisle("F   F", "FMEEF", "CCCCC", " CCC ", "     ", "     ", "     ", "     ", "     ")
-                        .where('S', definition, Direction.NORTH)
-                        .where('C', CASING_STEEL_SOLID.get())
-                        .where('c', CASING_STEEL_SOLID.get())
-                        .where('F', ChemicalHelper.getBlock(frameGt, HSLASteel))
-                        .where('P', CASING_STEEL_PIPE.get())
-                        .where('V', HEAT_VENT.get())
-                        .where('O', GTMachines.MUFFLER_HATCH[LV], Direction.UP)
-                        .where('X', GTMachines.ITEM_IMPORT_BUS[EV], Direction.NORTH)
-                        .where('Y', GTMachines.FLUID_IMPORT_HATCH[EV], Direction.NORTH)
-                        .where('Z', GTMachines.ITEM_EXPORT_BUS[EV], Direction.NORTH)
-                        .where('W', GTMachines.FLUID_EXPORT_HATCH[EV], Direction.NORTH)
-                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-                        .where('E', GTMachines.ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
-                        .where('#', Blocks.AIR.defaultBlockState());
-                List<Block> listFirebox = ALL_FIREBOXS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(entry -> entry.getValue().get())
-                        .toList();
-                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-                        .map(entry -> entry.getValue().get())
-                        .toList();
-                int maxLeng = StructureUtil.maxLength(new List[]{
-                        listCoil,
-                        listFirebox
-                });
-
-                for (int i = 0; i < maxLeng; ++i) {
-                    builder.where('D', EPUniverUtil.getOrLast(listFirebox, i));
-                    builder.where('H', EPUniverUtil.getOrLast(listCoil, i));
-                    shapeInfo.add(builder.build());
-                }
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
-                    Epimorphism.id("block/multiblock/coking_tower"), false)
-            .register();
-
-    // Physics
-    public static final MultiblockMachineDefinition[] EP_FUSION_REACTOR = registerTieredEPMultis("fusion_reactor", FusionReactorMachine::new, (tier, builder) -> builder
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .langValue("Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier - 5)))
-                    .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                    .recipeModifier(FusionReactorMachine::recipeModifier)
-                    .tooltips(
-                            Component.translatable("gtceu.machine.fusion_reactor.capacity", FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
-                            Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-                            Component.translatable("gtceu.multiblock.fusion_reactor.%s.description".formatted(VN[tier].toLowerCase(Locale.ROOT))))
-                    .appearanceBlock(() -> EPFusionCasingBlock.getCasingState(tier))
-                    .pattern((definition) -> {
-                        var casing = blocks(EPFusionCasingBlock.getCasingState(tier));
-                        return FactoryBlockPattern.start()
-                                .aisle("###############", "######OGO######", "###############")
-                                .aisle("######ICI######", "####GGAAAGG####", "######ICI######")
-                                .aisle("####CC###CC####", "###EAAOGOAAE###", "####CC###CC####")
-                                .aisle("###C#######C###", "##EKEG###GEKE##", "###C#######C###")
-                                .aisle("##C#########C##", "#GAE#######EAG#", "##C#########C##")
-                                .aisle("##C#########C##", "#GAG#######GAG#", "##C#########C##")
-                                .aisle("#I###########I#", "OAO#########OAO", "#I###########I#")
-                                .aisle("#C###########C#", "GAG#########GAG", "#C###########C#")
-                                .aisle("#I###########I#", "OAO#########OAO", "#I###########I#")
-                                .aisle("##C#########C##", "#GAG#######GAG#", "##C#########C##")
-                                .aisle("##C#########C##", "#GAE#######EAG#", "##C#########C##")
-                                .aisle("###C#######C###", "##EKEG###GEKE##", "###C#######C###")
-                                .aisle("####CC###CC####", "###EAAOGOAAE###", "####CC###CC####")
-                                .aisle("######ICI######", "####GGAAAGG####", "######ICI######")
-                                .aisle("###############", "######OSO######", "###############")
-                                .where('S', controller(blocks(definition.get())))
-                                .where('G', blocks(FUSION_GLASS.get()).or(casing))
-                                .where('E', casing.or(blocks(PartAbility.INPUT_ENERGY.getBlockRange(tier, UEV).toArray(Block[]::new))
-                                        .setMinGlobalLimited(1).setPreviewCount(16)))
-                                .where('C', casing)
-                                .where('K', blocks(FusionReactorMachine.getCoilState(tier)))
-                                .where('O', casing.or(abilities(PartAbility.EXPORT_FLUIDS)))
-                                .where('A', air())
-                                .where('I', casing.or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(2)))
-                                .where('#', any())
-                                .build();
-                    })
-                    .shapeInfos((controller) -> {
-                        List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-
-                        MultiblockShapeInfo.ShapeInfoBuilder baseBuilder = MultiblockShapeInfo.builder()
-                                .aisle("###############", "######WGW######", "###############")
-                                .aisle("######DCD######", "####GG###GG####", "######UCU######")
-                                .aisle("####CC###CC####", "###w##EGE##s###", "####CC###CC####")
-                                .aisle("###C#######C###", "##nKeG###GeKn##", "###C#######C###")
-                                .aisle("##C#########C##", "#G#s#######w#G#", "##C#########C##")
-                                .aisle("##C#########C##", "#G#G#######G#G#", "##C#########C##")
-                                .aisle("#D###########D#", "N#S#########N#S", "#U###########U#")
-                                .aisle("#C###########C#", "G#G#########G#G", "#C###########C#")
-                                .aisle("#D###########D#", "N#S#########N#S", "#U###########U#")
-                                .aisle("##C#########C##", "#G#G#######G#G#", "##C#########C##")
-                                .aisle("##C#########C##", "#G#s#######w#G#", "##C#########C##")
-                                .aisle("###C#######C###", "##eKnG###GnKe##", "###C#######C###")
-                                .aisle("####CC###CC####", "###w##WGW##s###", "####CC###CC####")
-                                .aisle("######DCD######", "####GG###GG####", "######UCU######")
-                                .aisle("###############", "######EME######", "###############")
-                                .where('M', controller, Direction.SOUTH)
-                                .where('C', EPFusionCasingBlock.getCasingState(tier))
-                                .where('G', FUSION_GLASS.get())
-                                .where('K', FusionReactorMachine.getCoilState(tier))
-                                .where('W', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.NORTH)
-                                .where('E', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.SOUTH)
-                                .where('S', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.EAST)
-                                .where('N', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.WEST)
-                                .where('w', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.WEST)
-                                .where('e', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.SOUTH)
-                                .where('s', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.EAST)
-                                .where('n', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.NORTH)
-                                .where('U', GTMachines.FLUID_IMPORT_HATCH[tier], Direction.UP)
-                                .where('D', GTMachines.FLUID_IMPORT_HATCH[tier], Direction.DOWN)
-                                .where('#', Blocks.AIR.defaultBlockState());
-
-                        shapeInfos.add(baseBuilder.shallowCopy()
-                                .where('G', EPFusionCasingBlock.getCasingState(tier))
-                                .build()
-                        );
-                        shapeInfos.add(baseBuilder.build());
-                        return shapeInfos;
-                    })
-                    .workableCasingRenderer(EPFusionCasingBlock.getCasingType(tier).getTexture(),
-                            GTCEu.id("block/multiblock/fusion_reactor"), false)
-                    .register(),
-            UHV, UEV);
-
-    // Chemistry
-    public final static MultiblockMachineDefinition CHEMICAL_PLANT = EP_REGISTRATE.multiblock("chemical_plant", ChemicalPlantMachine::new)
-            .langValue("Chemical Plant")
-            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
-            .rotationState(RotationState.ALL)
-            .recipeTypes(CHEMICAL_PLANT_RECIPES, LARGE_CHEMICAL_RECIPES)
-            .appearanceBlock(CASING_BRONZE_BRICKS)
-            .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
-                            .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
-                            .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
-                            .aisle("EMMMMME", "#MXAXM#", "##TAT##", "##XAX##", "##TAT##", "#MXAXM#", "CCCCCCC")
-                            .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
-                            .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
-                            .aisle("EEESEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
-                            .where('S', controller(blocks(definition.getBlock())))
-                            .where('E', EPPredicates.CPCasingBlock()
-                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                                    .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
-                                    .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1))
-                                    .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
-                                    .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1))
-//                            .or(abilities(PartAbility.CATALYST_MULTIBLOCK_ABILITY).setMaxGlobalLimited(2))
-                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
-                            .where('C', EPPredicates.CPCasingBlock())
-                            .where('X', heatingCoils())
-                            .where('M', EPPredicates.machineCasingBlock())
-                            .where('T', EPPredicates.CPPipeBlock())
-                            .where('#', any())
-                            .where('A', air())
-                            .build()
-            )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("CCCHJCC", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
-                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
-                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
-                        .aisle("CMMMMMC", "#MX#XM#", "##T#T##", "##X#X##", "##T#T##", "#MX#XM#", "CCCCCCC")
-                        .aisle("CMMMMMC", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
-                        .aisle("CMMMMMC", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
-                        .aisle("CVNSKLZ", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
+                        .aisle("ETCCCCCCC", "F       F", "F       F", "F       F", "XYZCCCCCC")
+                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
+                        .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "CCCCOCCCC")
+                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
+                        .aisle("CCCCSCCCC", "F       F", "F       F", "F       F", "CCCCCCCCC")
                         .where('S', definition, Direction.SOUTH)
-                        .where('V', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
-                        .where('N', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
-                        .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
-                        .where('L', GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
-                        .where('Z', /*GTMachines.MULTIPART_CATALYST_HATCH*/GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
-                        .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
-                        .where('#', Blocks.AIR)
-                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
-                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-                        .map(entry -> entry.getValue().get())
-                        .toList();
-                List<Block> listCasing = BlockMaps.ALL_CP_CASINGS.entrySet().stream()
+                        .where('X', ITEM_IMPORT_BUS[LuV], Direction.NORTH)
+                        .where('Y', ITEM_EXPORT_BUS[LuV], Direction.NORTH)
+                        .where('Z', FLUID_IMPORT_HATCH[LuV], Direction.NORTH)
+                        .where('E', ENERGY_INPUT_HATCH[LuV], Direction.NORTH)
+                        .where('T', MAINTENANCE_HATCH, Direction.NORTH)
+                        .where('O', MUFFLER_HATCH[LuV], Direction.UP)
+                        .where('G', CASING_LAMINATED_GLASS.get())
+                        .where('F', ChemicalHelper.getBlock(frameGt, MARM200Steel))
+                        .where(' ', Blocks.AIR.defaultBlockState());
+
+                List<Block> casing = BlockMaps.ALL_PA_CASINGS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(entry -> entry.getValue().get())
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
                         .toList();
-                List<Block> listTube = BlockMaps.ALL_CP_TUBES.entrySet().stream()
+                List<Block> machineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
                         .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(entry -> entry.getValue().get())
+                        .map(Map.Entry::getValue)
+                        .map(Supplier::get)
                         .toList();
-                List<Block> listMachineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(entry -> entry.getValue().get())
-                        .toList();
+
                 int maxLeng = StructureUtil.maxLength(new List[]{
-                        listCoil,
-                        listCasing,
-                        listTube,
-                        listMachineCasing
+                        casing,
+                        machineCasing
                 });
 
                 for (int i = 0; i < maxLeng; ++i) {
-                    builder.where('X', EPUniverUtil.getOrLast(listCoil, i));
-                    builder.where('C', EPUniverUtil.getOrLast(listCasing, i));
-                    builder.where('T', EPUniverUtil.getOrLast(listTube, i));
-                    builder.where('M', EPUniverUtil.getOrLast(listMachineCasing, i));
+                    builder.where('C', EPUniverUtil.getOrLast(casing, i));
+                    builder.where('M', EPUniverUtil.getOrLast(machineCasing, i));
                     shapeInfo.add(builder.build());
                 }
                 return shapeInfo;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .renderer(() -> new WorkableTierCasingMachineRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/chemical_plant"), ChemicalPlantMachine::locationGetter))
+            .renderer(() -> new WorkableTierCasingMachineRenderer(Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"),
+                    Epimorphism.id("block/multiblock/precise_assembler"), PreciseAssemblerMachine::locationGetter))
             .register();
 
     public final static MultiblockMachineDefinition DIGESTER = EP_REGISTRATE.multiblock("digester", DigesterMachine::new)
@@ -1530,6 +1434,154 @@ public class EPMachines {
             .renderer(() -> DigesterRenderer.INSTANCE)
             .register();
 
+    public final static MultiblockMachineDefinition INDUSTRIAL_DRILL = EP_REGISTRATE.multiblock("industrial_drill", IndustrialDrillMachine::new)
+            .langValue("Industrial Drill")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_drill.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DRILLING_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("       ", "XXXXXXX", "X     X", "X     X", "X     X", "X     X", "X     X", "XXXXXXX")
+                    .aisle("       ", "X     X", "       ", " F   F ", "       ", "       ", "       ", "X  F  X")
+                    .aisle("       ", "X     X", "   C   ", "  FCF  ", "   C   ", "  CVC  ", "  CVC  ", "X BBB X")
+                    .aisle("   R   ", "X  D  X", "  CGC  ", "  CGC  ", "  CGC  ", "  VGV  ", "  VGV  ", "XFBBBFX")
+                    .aisle("       ", "X     X", "   C   ", "  FCF  ", "   C   ", "  CSC  ", "  CVC  ", "X BBB X")
+                    .aisle("       ", "X     X", "       ", " F   F ", "       ", "       ", "       ", "X  F  X")
+                    .aisle("       ", "XXXXXXX", "X     X", "X     X", "X     X", "X     X", "X     X", "XXXXXXX")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_ATOMIC.get()))
+                    .where('F', frames(HSLASteel))
+                    .where('C', blocks(CASING_STEEL_SOLID.get()))
+                    .where('G', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                    .where('V', blocks(CASING_GRATE.get()))
+                    .where('B', blocks(CASING_STEEL_SOLID.get())
+                            .setMinGlobalLimited(4)
+                            .or(autoAbilities(definition.getRecipeTypes(), true, true, false, true, true, true))
+                            .or(autoAbilities(true, true, false)))
+                    .where('D', blocks(DRILL_HEAD.get()))
+                    .where('R', EPPredicates.bedrockPredicate())
+                    .where(' ', any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    Epimorphism.id("block/multiblock/industrial_drill"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition FRACKER = EP_REGISTRATE.multiblock("fracker", FrackerMachine::new)
+            .langValue("Fracker")
+            .tooltips(
+                    Component.translatable("block.epimorphism.fracker.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_WATERTIGHT)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("F    F", "F    F", "F  CCC", "F  CCC", "F  CCC", "FFFCCC", "   CCC", "   CCC")
+                    .aisle("    P ", "    P ", "   CPC", "   CPC", "   CPC", "F  CPC", " PPPPC", "   CCC")
+                    .aisle("      ", "      ", "   CCC", "XXXCCC", "XXXCCC", "XXXCCC", " P CCC", "   CCC")
+                    .aisle("      ", "      ", "     F", "XXXX  ", "X##X  ", "XXXX F", " P    ", "      ")
+                    .aisle("      ", "      ", "     F", "XXXX  ", "XP#X  ", "XPXX F", " P    ", "      ")
+                    .aisle("F    F", "F    F", "F    F", "XXXX F", "XSXX F", "XXXXFF", "      ", "      ")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_WATERTIGHT.get()).setMinGlobalLimited(32)
+                            .or(autoAbilities(true, true, false))
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(1))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1)))
+                    .where('C', blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where('F', frames(GTMaterials.HSLASteel))
+                    .where('P', blocks(CASING_STEEL_PIPE.get()))
+                    .where('#', air())
+                    .where(' ', any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/watertight_casing"),
+                    Epimorphism.id("block/multiblock/fracker"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = EP_REGISTRATE.multiblock("infinite_fluid_drilling_rig", IndustrialDrillMachine::new)
+            .langValue("Infinite Fluid Drilling Rig")
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_drill.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(NEUTRONIUM_MINING_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+                    .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+                    .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('X', blocks(NEUTRONIUM_MINING_CASING.get()).setMinGlobalLimited(3)
+                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1)))
+                    .where('C', blocks(NEUTRONIUM_MINING_CASING.get()))
+                    .where('F', frames(Neutronium))
+                    .where('#', any())
+                    .build())
+            .renderer(() -> new LargeMinerRenderer(Epimorphism.id("block/casings/solid/neutronium_mining_casing"),
+                    Epimorphism.id("block/multiblock/infinite_fluid_drilling_rig")))
+            .register();
+
+    public final static MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis("concrete_backfiller", (holder, tier) -> new ConcreteBackfillerMachine(holder, tier, 64 / tier, 2 * tier - 5, 8 - (tier - 5)),
+            (tier, builder) -> builder
+                    .langValue("Concrete Backfiller")
+                    .tooltips(
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.0")
+                    )
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(DUMMY_RECIPES)
+                    .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
+                            .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
+                            .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
+                            .where('S', controller(blocks(definition.get())))
+                            .where('X', blocks(ConcreteBackfillerMachine.getCasingState(tier)).setMinGlobalLimited(3)
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
+                                    .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1)))
+                            .where('C', blocks(ConcreteBackfillerMachine.getCasingState(tier)))
+                            .where('F', frames(ConcreteBackfillerMachine.getMaterial(tier)))
+                            .where('#', any())
+                            .build())
+                    .renderer(() -> new LargeMinerRenderer(MinerRenderer.MATERIALS_TO_CASING_MODELS.get(ConcreteBackfillerMachine.getMaterial(tier)),
+                            Epimorphism.id("block/multiblock/concrete_backfiller")))
+                    .register(),
+            MV, EV);
+
+    public final static MultiblockMachineDefinition[] PROCESSING_ARRAY = EPConfigHolder.INSTANCE.machines.doProcessingArray ? registerTieredEPMultis("ep_processing_array", ProcessingArrayMachine::new,
+            (tier, builder) ->  builder
+                    .langValue(VNF[tier] + " Processing Array")
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .blockProp(p -> p.noOcclusion().isViewBlocking((state, level, pos) -> false))
+                    .shape(Shapes.box(0.001, 0.001, 0.001, 0.999, 0.999, 0.999))
+                    .appearanceBlock(() -> ProcessingArrayMachine.getCasingState(tier))
+                    .recipeType(DUMMY_RECIPES)
+                    .recipeModifier(ProcessingArrayMachine::recipeModifier, true)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("XXX", "CCC", "XXX")
+                            .aisle("XXX", "C#C", "XXX")
+                            .aisle("XSX", "CCC", "XXX")
+                            .where('S', Predicates.controller(blocks(definition.getBlock())))
+                            .where('X', blocks(ProcessingArrayMachine.getCasingState(tier)).setMinGlobalLimited(4)
+                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
+                                    .or(Predicates.abilities(PartAbility.OUTPUT_ENERGY))
+                                    .or(Predicates.autoAbilities(true, false, false)))
+                            .where('C', blocks(CLEANROOM_GLASS.get()))
+                            .where('#', Predicates.air())
+                            .build())
+                    .tooltips(Component.translatable("gtceu.universal.tooltip.parallel", ProcessingArrayMachine.getMachineLimit(tier)))
+                    .renderer(() -> new ProcessingArrayRenderer(tier == IV ?
+                            GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel") :
+                            GTCEu.id("block/casings/solid/machine_casing_sturdy_hsse"),
+                            Epimorphism.id("block/multiblock/processing_array")))
+                    .register(),
+            IV, LuV) : null;
     public final static MultiblockMachineDefinition ROASTER = EP_REGISTRATE.multiblock("roaster", holder -> new TierCasingElectricMultiblockMachine(holder, "Firebox"))
             .langValue("Roaster")
             .tooltips(
@@ -1537,7 +1589,7 @@ public class EPMachines {
                     Component.translatable("block.epimorphism.roaster.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
+            .recipeType(ROASTER_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -1698,573 +1750,155 @@ public class EPMachines {
             })
             .register();
 
-    // Biology
-    public final static MultiblockMachineDefinition BACTERIAL_CULTURE_TANK = EP_REGISTRATE.multiblock("bacterial_culture_tank", BacterialCultureTankMachine::new)
-            .langValue("Bacterial Culture Tank")
-            .tooltips(Component.translatable("block.epimorphism.bacterial_culture_tank.desc.0"))
-            .rotationState(RotationState.ALL)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(CASING_STAINLESS_CLEAN)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "CCCCC", "CCCCC", "AAAAA")
-                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                    .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                    .aisle("AABAA", "CCCCC", "CCCCC", "AAAAA")
-                    .where('B', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(19)
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1))
-                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1))
-                            .or(abilities(EPPartAbility.RADIATION).setExactLimit(1))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where('C', EPPredicates.glass())
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("AHIAA", "CCCCC", "CCCCC", "AAAAA")
-                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-                        .aisle("DEBFG", "CCCCC", "CCCCC", "AAJAA")
-                        .where('B', definition, Direction.SOUTH)
-                        .where('A', CASING_STAINLESS_CLEAN.get())
-                        .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.SOUTH)
-                        .where('E', GTMachines.ITEM_IMPORT_BUS[4], Direction.SOUTH)
-                        .where('F', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
-                        .where('G', GTMachines.FLUID_EXPORT_HATCH[4], Direction.SOUTH)
-                        .where('H', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
-                        .where('I', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
-                        .where('J', EPMachines.RADIATION_HATCH[3], Direction.SOUTH);
-                BlockMaps.SHAPE_GLASSES.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .forEach(blockSupplier -> shapeInfos.add(builder.where('C', blockSupplier.get()).build()));
-                return shapeInfos;
+    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  1))
+            .langValue("Steam Piston Hammer")
+            .tooltipBuilder((itemStack, components) -> {
+                components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"));
+                if (GTUtil.isCtrlDown()) {
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.0"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.1"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.2"));
+                } /*else if(GTUtil.isShiftDown() {
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
+                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
+                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
+            }*/ else {
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"));
+                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"));
+                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
+                }
             })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-                    Epimorphism.id("block/multiblock/bacterial_culture_tank"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition FERMENTATION_TANK = EP_REGISTRATE.multiblock("fermentation_tank", FermentationTankMachine::new)
-            .langValue("Fermentation Tank")
-            .tooltips(Component.translatable("block.epimorphism.fermentation_tank.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(FERMENTATION_TANK_RECIPES)
-            .appearanceBlock(CASING_STAINLESS_CLEAN)
+            .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)
+            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .appearanceBlock(CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("FAAAF", "FXXXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
-                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
-                    .aisle("AXXXA", "XEPEX", "GEPEG", "GEPEG", "GEPEG", "XEPEX", "AXXXA")
-                    .aisle("AXXXA", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "XEEEX", "AXXXA")
-                    .aisle("FAAAF", "FXSXF", "FXGXF", "FXGXF", "FXGXF", "FXXXF", "AAAAA")
-                    .where('S', controller(blocks(definition.getBlock())))
-                    .where('X', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(42).or(autoAbilities(FERMENTATION_TANK_RECIPES)))
-                    .where('G', blocks(OSMIR_BORON_SILICATE_GLASS.get()))
-                    .where('F', frames(GTMaterials.WatertightSteel))
-                    .where('P', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
-                    .where('A', any())
-                    .where('E', air())
-                    .build())
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-                    Epimorphism.id("block/multiblock/fermentation_tank"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition ISA_MILL = EP_REGISTRATE.multiblock("isa_mill", IsaMillMachine::new)
-            .langValue("Isa Mill")
-            .tooltips(
-                    Component.translatable("block.epimorphism.isa_mill.desc.0")
-            )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(ISA_MILL_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("CEEEEEE", "CEEEEEE", "CEEEEEE")
-                    .aisle("CEEEEEE", "BGGGGGE", "CEEEEEE")
-                    .aisle("CEEEEEE", "CEESEEE", "CEEEEEE")
+                    .aisle("AAA", " E ", "   ", "   ", "   ")
+                    .aisle("ABA", "E#E", "EBE", "ECE", "EDE")
+                    .aisle("AAA", " S ", "   ", "   ", "   ")
                     .where('S', controller(blocks(definition.get())))
-                    .where('B', abilities(EPPartAbility.GRIND_BALL))
-                    .where('C', blocks(CASING_ISA_MILL_PIPE.get()))
-                    .where('E', blocks(ISA_MILL_CASING.get()).setMinGlobalLimited(31)
-                            .or(abilities(MUFFLER).setExactLimit(1))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(abilities(PartAbility.EXPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
-                            .or(abilities(PartAbility.IMPORT_ITEMS).setMinGlobalLimited(1).setPreviewCount(1))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2).setPreviewCount(1)))
-                    .where('G', blocks(CASING_ISA_MILL_GEARBOX.get()))
-                    .build())
-            .workableCasingRenderer(Epimorphism.id("block/casings/solid/isa_mill_casing"),
-                    Epimorphism.id("block/multiblock/isa_mill"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition INDUSTRIAL_FLOTATION_CELL = EP_REGISTRATE.multiblock("industrial_flotation_cell", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine -> 1))
-            .langValue("Industrial Flotation Cell")
-            .tooltips(
-                    Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0")
-            )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(EPBlocks.FLOTATION_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("  AAA  ", "  AAA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
-                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
-                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
-                    .aisle("AAAAAAA", "AAAAAAA", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", " CDDDC ", "  AAA  ")
-                    .aisle("AAAAAAA", "AAAAAAA", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "  CDC  ", "   A   ")
-                    .aisle(" AAAAA ", " AAAAA ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "   C   ", "       ")
-                    .aisle("  AAA  ", "  ASA  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('C', blocks(EPBlocks.FLOTATION_CELL.get()).setMinGlobalLimited(48))
-                    .where('A', blocks(EPBlocks.FLOTATION_CASING.get()).setMinGlobalLimited(64)
-                            .or(Predicates.autoAbilities(definition.getRecipeTypes()))
-                            .or(Predicates.autoAbilities(true, false, false)))
-                    .where('D', Predicates.air())
-                    .build())
-            .workableCasingRenderer(Epimorphism.id("block/casings/solid/flotation_casing"),
-                    Epimorphism.id("block/multiblock/industrial_flotation_cell"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition VACUUM_DRYING_FURNACE = EP_REGISTRATE.multiblock("vacuum_drying_furnace", blockEntity -> new ParallelCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
-            .langValue("Vacuum Drying Furnace")
-            .tooltips(Component.translatable("block.epimorphism.vacuum_drying_furnace.desc.0"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(VACUUM_DRYING_FURNACE_RECIPES)
-            .appearanceBlock(VACUUM_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
-                    .aisle("XXX", "C#C", "C#C", "C#C", "XMX")
-                    .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('X', blocks(VACUUM_CASING.get())
-                            .setMinGlobalLimited(9)
+                    .where('A', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(5)
                             .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(autoAbilities(true, false, false)))
-                    .where('M', abilities(MUFFLER))
-                    .where('C', heatingCoils())
-                    .where('#', air())
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("EEM", "CCC", "CCC", "CCC", "XXX")
-                        .aisle("FXD", "C#C", "C#C", "C#C", "XHX")
-                        .aisle("ISO", "CCC", "CCC", "CCC", "XXX")
-                        .where('S', definition, Direction.SOUTH)
-                        .where('X', VACUUM_CASING)
-                        .where('E', GTMachines.ENERGY_INPUT_HATCH[6], Direction.NORTH)
-                        .where('I', GTMachines.ITEM_IMPORT_BUS[6], Direction.SOUTH)
-                        .where('O', GTMachines.ITEM_EXPORT_BUS[6], Direction.SOUTH)
-                        .where('F', GTMachines.FLUID_IMPORT_HATCH[6], Direction.WEST)
-                        .where('D', GTMachines.FLUID_EXPORT_HATCH[6], Direction.EAST)
-                        .where('H', GTMachines.MUFFLER_HATCH[1], Direction.UP)
-                        .where('#', Blocks.AIR.defaultBlockState())
-                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.NORTH);
-                ALL_COILS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(Epimorphism.id("block/casings/solid/vacuum_casing"),
-                    Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
-            .register();
-
-
-    // Bedrock
-    public final static MultiblockMachineDefinition INDUSTRIAL_DRILL = EP_REGISTRATE.multiblock("industrial_drill", IndustrialDrillMachine::new)
-            .langValue("Industrial Drill")
-            .tooltips(
-                    Component.translatable("block.epimorphism.industrial_drill.desc.0")
-            )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DRILLING_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("       ", "XXXXXXX", "X     X", "X     X", "X     X", "X     X", "X     X", "XXXXXXX")
-                    .aisle("       ", "X     X", "       ", " F   F ", "       ", "       ", "       ", "X  F  X")
-                    .aisle("       ", "X     X", "   C   ", "  FCF  ", "   C   ", "  CVC  ", "  CVC  ", "X BBB X")
-                    .aisle("   R   ", "X  D  X", "  CGC  ", "  CGC  ", "  CGC  ", "  VGV  ", "  VGV  ", "XFBBBFX")
-                    .aisle("       ", "X     X", "   C   ", "  FCF  ", "   C   ", "  CSC  ", "  CVC  ", "X BBB X")
-                    .aisle("       ", "X     X", "       ", " F   F ", "       ", "       ", "       ", "X  F  X")
-                    .aisle("       ", "XXXXXXX", "X     X", "X     X", "X     X", "X     X", "X     X", "XXXXXXX")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('X', blocks(CASING_ATOMIC.get()))
-                    .where('F', frames(HSLASteel))
-                    .where('C', blocks(CASING_STEEL_SOLID.get()))
-                    .where('G', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
-                    .where('V', blocks(CASING_GRATE.get()))
-                    .where('B', blocks(CASING_STEEL_SOLID.get())
-                            .setMinGlobalLimited(4)
-                            .or(autoAbilities(definition.getRecipeTypes(), true, true, false, true, true, true))
-                            .or(autoAbilities(true, true, false)))
-                    .where('D', blocks(DRILL_HEAD.get()))
-                    .where('R', EPPredicates.bedrockPredicate())
-                    .where(' ', any())
-                    .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
-                    Epimorphism.id("block/multiblock/industrial_drill"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition FRACKER = EP_REGISTRATE.multiblock("fracker", FrackerMachine::new)
-            .langValue("Fracker")
-            .tooltips(
-                    Component.translatable("block.epimorphism.fracker.desc.0")
-            )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(CASING_WATERTIGHT)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("F    F", "F    F", "F  CCC", "F  CCC", "F  CCC", "FFFCCC", "   CCC", "   CCC")
-                    .aisle("    P ", "    P ", "   CPC", "   CPC", "   CPC", "F  CPC", " PPPPC", "   CCC")
-                    .aisle("      ", "      ", "   CCC", "XXXCCC", "XXXCCC", "XXXCCC", " P CCC", "   CCC")
-                    .aisle("      ", "      ", "     F", "XXXX  ", "X##X  ", "XXXX F", " P    ", "      ")
-                    .aisle("      ", "      ", "     F", "XXXX  ", "XP#X  ", "XPXX F", " P    ", "      ")
-                    .aisle("F    F", "F    F", "F    F", "XXXX F", "XSXX F", "XXXXFF", "      ", "      ")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('X', blocks(CASING_WATERTIGHT.get()).setMinGlobalLimited(32)
-                            .or(autoAbilities(true, true, false))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1)))
-                    .where('C', blocks(CASING_STAINLESS_CLEAN.get()))
-                    .where('F', frames(GTMaterials.HSLASteel))
-                    .where('P', blocks(CASING_STEEL_PIPE.get()))
+                            .or(abilities(PartAbility.STEAM_IMPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
+                            .or(abilities(PartAbility.STEAM))
+                            .or(autoAbilities(false, false, false)))
+                    .where('B', blocks(ChemicalHelper.getBlock(block,Steel)))
+                    .where('C', blocks(Blocks.STICKY_PISTON))
+                    .where('D', abilities(PartAbility.STEAM))
+                    .where('E', blocks(CASING_BRONZE_BRICKS.get()))
                     .where('#', air())
                     .where(' ', any())
                     .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/gcym/watertight_casing"),
-                    Epimorphism.id("block/multiblock/fracker"), false)
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
             .register();
 
-    public final static MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = EP_REGISTRATE.multiblock("infinite_fluid_drilling_rig", IndustrialDrillMachine::new)
-            .langValue("Infinite Fluid Drilling Rig")
+    // Multiblock Parts
+    public final static MachineDefinition INFINITE_WATER_HATCH = EP_REGISTRATE.machine("infinite_water_hatch", InfiniteWaterHatchPartMachine::new)
+            .langValue("Infinite Water Hatch")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(PartAbility.IMPORT_FLUIDS)
+            .overlayTieredHullRenderer("infinite_water_hatch")
             .tooltips(
-                    Component.translatable("block.epimorphism.industrial_drill.desc.0")
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.0"),
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.1"),
+                    Component.translatable("block.epimorphism.infinite_water_hatch.desc.2")
             )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(NEUTRONIUM_MINING_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
-                    .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
-                    .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('X', blocks(NEUTRONIUM_MINING_CASING.get()).setMinGlobalLimited(3)
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(1)))
-                    .where('C', blocks(NEUTRONIUM_MINING_CASING.get()))
-                    .where('F', frames(Neutronium))
-                    .where('#', any())
-                    .build())
-            .renderer(() -> new LargeMinerRenderer(Epimorphism.id("block/casings/solid/neutronium_mining_casing"),
-                    Epimorphism.id("block/multiblock/infinite_fluid_drilling_rig")))
             .register();
 
-    public final static MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis("concrete_backfiller", (holder, tier) -> new ConcreteBackfillerMachine(holder, tier, 64 / tier, 2 * tier - 5, 8 - (tier - 5)),
+    public final static MachineDefinition GRIND_BALL_HATCH = EP_REGISTRATE.machine("grind_ball_hatch", BallHatchMachine::new)
+            .langValue("Grind Ball Hatch")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(EPPartAbility.GRIND_BALL)
+            .renderer(() -> BallHatchRenderer.INSTANCE)
+            .tooltips(
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.0"),
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.1"),
+                    Component.translatable("block.epimorphism.grind_ball_hatch.desc.2")
+            )
+            .register();
+
+    public final static MachineDefinition NEUTRON_SENSOR = EP_REGISTRATE.machine("neutron_sensor", NeutronSensorMachine::new)
+            .langValue("Neutron Sensor")
+            .tier(IV)
+            .rotationState(RotationState.ALL)
+            .abilities(EPPartAbility.NEUTRON_SENSOR)
+            .overlayTieredHullRenderer("neutron_sensor")
+            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc"))
+            .register();
+
+    public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredEPMachines("neutron_accelerator", NeutronAcceleratorMachine::new,
             (tier, builder) -> builder
-                    .langValue("Concrete Backfiller")
+                    .langValue("%s §rNeutron Accelerator".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(EPPartAbility.NEUTRON_ACCELERATOR)
+                    .overlayTieredHullRenderer("neutron_accelerator")
                     .tooltips(
-                            Component.translatable("block.epimorphism.concrete_backfiller.desc.0")
-                    )
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(DUMMY_RECIPES)
-                    .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))
-                    .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
-                            .aisle("XXX", "FCF", "FCF", "FCF", "#F#", "#F#", "#F#")
-                            .aisle("XSX", "#F#", "#F#", "#F#", "###", "###", "###")
-                            .where('S', controller(blocks(definition.get())))
-                            .where('X', blocks(ConcreteBackfillerMachine.getCasingState(tier)).setMinGlobalLimited(3)
-                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
-                                    .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1)))
-                            .where('C', blocks(ConcreteBackfillerMachine.getCasingState(tier)))
-                            .where('F', frames(ConcreteBackfillerMachine.getMaterial(tier)))
-                            .where('#', any())
-                            .build())
-                    .renderer(() -> new LargeMinerRenderer(MinerRenderer.MATERIALS_TO_CASING_MODELS.get(ConcreteBackfillerMachine.getMaterial(tier)),
-                            Epimorphism.id("block/multiblock/concrete_backfiller")))
+                            Component.translatable("block.epimorphism.neutron_accelerator.desc.0"),
+                            Component.translatable("block.epimorphism.neutron_accelerator.desc.1"),
+                            Component.translatable("gtceu.universal.tooltip.max_voltage_in", V[tier], VNF[tier]),
+                            Component.translatable("epimorphism.universal.desc.max_power_consume", Math.round(V[tier] * 0.8)),
+                            Component.translatable("gtceu.universal.tooltip.energy_storage_capacity", V[tier] * 72))
                     .register(),
-            MV, EV);
-
-    // Agriculture
-    public static final MultiblockMachineDefinition EXTREME_INDUSTRIAL_GREENHOUSE = EP_REGISTRATE.multiblock("extreme_industrial_greenhouse", IndustrialGreenhouseMachine::new)
-            .langValue("Extreme Industrial Greenhouse")
-            .tooltips(Component.translatable("block.epimorphism.extreme_industrial_greenhouse.desc.0"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(CASING_STAINLESS_CLEAN)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAAAA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-                    .aisle("AGGGA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                    .aisle("AGGGA", "ADFDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                    .aisle("AGGGA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                    .aisle("AABAA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-                    .where('B', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(61)
-                            .or(abilities(PartAbility.IMPORT_FLUIDS))
-                            .or(abilities(PartAbility.IMPORT_ITEMS))
-                            .or(abilities(PartAbility.INPUT_ENERGY))
-                            .or(abilities(PartAbility.EXPORT_ITEMS))
-                            .or(abilities(PartAbility.MAINTENANCE)))
-                    .where('C', EPPredicates.glass())
-                    .where('D', blocks(FERTILIZED_FARMLAND.get()))
-                    .where('E', blocks(CASING_LAMINATED_GLASS.get()))
-                    .where('F', blocks(Blocks.WATER))
-                    .where('G', blocks(CASING_STAINLESS_CLEAN.get()))
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-                        .aisle("AIBGH", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                        .aisle("AAAAA", "ADFDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-                        .aisle("AAJKA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-                        .where('B', definition, Direction.NORTH)
-                        .where('A', CASING_STAINLESS_CLEAN.get())
-                        .where('D', FERTILIZED_FARMLAND.get())
-                        .where('E', CASING_LAMINATED_GLASS.get())
-                        .where('F', Blocks.WATER.defaultBlockState())
-                        .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.NORTH)
-                        .where('H', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.NORTH)
-                        .where('I', GTMachines.ITEM_EXPORT_BUS[ULV], Direction.NORTH)
-                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-                        .where('K', GTMachines.ENERGY_INPUT_HATCH[IV], Direction.SOUTH);
-                BlockMaps.SHAPE_GLASSES.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .forEach(blockSupplier -> shapeInfo.add(builder.where('C', blockSupplier.get()).build()));
-
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .renderer(() -> new IndustrialGreenhouseRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-                    Epimorphism.id("block/multiblock/extreme_industrial_greenhouse")))
-//            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-//                    Epimorphism.id("block/multiblock/extreme_industrial_greenhouse"), false)
-            .hasTESR(true)
-            .register();
-
-    public final static MultiblockMachineDefinition TREE_GROWTH_SIMULATOR = EP_REGISTRATE.multiblock("tree_growth_simulator", TreeGrowthSimulatorMachine::new)
-            .langValue("Tree Growth Simulator")
-            .tooltips(Component.translatable("block.epimorphism.tree_growth_simulator.desc.0"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(CASING_STAINLESS_CLEAN)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("CCCCCCC", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "   F   ")
-                    .aisle("CDDDDDC", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", " XXFXX ")
-                    .aisle("CDDDDDC", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", " XXFXX ")
-                    .aisle("CDDDDDC", "F#####F", "F#####F", "F#####F", "F#####F", "F#####F", "F#####F", "F#####F", "FFFFFFF")
-                    .aisle("CDDDDDC", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", " XXFXX ")
-                    .aisle("CDDDDDC", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", "X#####X", " XXFXX ")
-                    .aisle("CCCSCCC", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "   F   ")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('X', blocks(GLASS))
-                    .where('F', frames(HSLASteel))
-                    .where('D', blocks(Blocks.DIRT, Blocks.GRASS)
-                            .or(blocks(TreeGrowthSimulatorMachine.GRASSES)))
-                    .where('C', blocks(CASING_STAINLESS_CLEAN.get()).setMinGlobalLimited(10)
-                            .or(abilities(PartAbility.IMPORT_FLUIDS))
-                            .or(abilities(PartAbility.IMPORT_ITEMS))
-                            .or(abilities(PartAbility.INPUT_ENERGY))
-                            .or(abilities(PartAbility.EXPORT_ITEMS))
-                            .or(abilities(PartAbility.MAINTENANCE)))
-                    .where('#', air())
-                    .where(' ', any())
-                    .build())
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
-                    Epimorphism.id("block/multiblock/tree_growth_simulator"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition INDUSTRIAL_FISHING_POND = EP_REGISTRATE.multiblock("industrial_fishing_pond", IndustrialFishingPondMachine::new)
-            .langValue("Industrial Fishing Pond")
+            ELECTRIC_TIERS);
+    public static final MachineDefinition[] RADIATION_HATCH = registerTieredEPMachines("radiation_hatch", RadiationHatchMachine::new,
+            (tier, builder) -> builder
+                    .langValue("%s §rRadiation Hatch".formatted(VNF[tier]))
+                    .rotationState(RotationState.ALL)
+                    .abilities(EPPartAbility.RADIATION)
+                    .recipeType(RADIATION_HATCH_RECIPES)
+                    .overlayTieredHullRenderer("radiation_hatch")
             .tooltips(
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.0"),
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.1"),
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.2"),
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.3"),
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.4"),
-                    Component.translatable("block.epimorphism.industrial_fishing_pond.desc.5")
+                            Component.translatable("block.epimorphism.radiation_hatch.desc.0"),
+                            Component.translatable("epimorphism.universal.desc.kg_capacity", Math.max(1, tier - 2)),
+                            Component.translatable("block.epimorphism.radiation_hatch.desc.1")
             )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(BREEDING_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("EEEEEEEEE", "XXXXXXXXX", "XXXXXXXXX")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EXXXXXXXE", "X#######X", "X#######X")
-                    .aisle("EEEEEEEEE", "XXXXSXXXX", "XXXXXXXXX")
-                    .where('S', controller(blocks(definition.getBlock())))
-                    .where('X', blocks(BREEDING_CASING.get()).setMinGlobalLimited(106)
-                            .or(abilities(PartAbility.EXPORT_ITEMS).setExactLimit(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where('E', blocks(BREEDING_CASING.get())
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3)))
-                    .where('#', any())
-                    .build())
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(Epimorphism.id("block/casings/solid/breeding_casing"),
-                    Epimorphism.id("block/multiblock/industrial_fishing_pond"), false)
+                    .register(),
+            tiersBetween(3, 13));
+
+//    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
+//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),
+//            (tier, builder) -> builder
+//                    .langValue("%s §rWireless Energy Input Hatch".formatted(VNF[tier]))
+//                    .rotationState(RotationState.ALL)
+//                    .abilities(PartAbility.INPUT_ENERGY)
+//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_input_hatch"))
+//                    .tooltips(
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.0"),
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.1"),
+//                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.2")
+//                    )
+//                    .register(),
+//            ELECTRIC_TIERS);
+
+//    public static final MachineDefinition[] WIRELESS_ENERGY_OUTPUT_HATCH = registerTieredEPMachines("wireless_energy_output_hatch",
+//            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.OUT, 2),
+//            (tier, builder) -> builder
+//                    .langValue("%s §rWireless Energy Output Hatch".formatted(VNF[tier]))
+//                    .rotationState(RotationState.ALL)
+//                    .abilities(PartAbility.OUTPUT_ENERGY)
+//                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_output_hatch"))
+//                    .tooltips(
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.0"),
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.1"),
+//                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.2")
+//                    )
+//                    .register(),
+//            ELECTRIC_TIERS);
+
+    // Single Machines
+    public final static MachineDefinition INFINITY_CRATE = EP_REGISTRATE.machine("infinity_crate", holder -> new InfinityCrateMachine(holder, Infinity, 252))
+            .langValue("Infinity Crate")
+            .rotationState(RotationState.NONE)
+            .tooltips(Component.translatable("gtceu.universal.tooltip.item_storage_capacity", 252))
+            .tooltips(Component.translatable("block.epimorphism.infinity_crate.desc"))
+            .renderer(() -> new TextureOverrideRenderer(new ResourceLocation("block/cube_all"), Map.of("all", Epimorphism.id("block/storage/crates/infinity_crate"))))
             .register();
 
-    // Storage
-    public final static MultiblockMachineDefinition YOTTA_FLUID_TANK = EP_REGISTRATE.multiblock("yotta_fluid_tank", YottaFluidTankMachine::new)
-            .langValue("Yotta Fluid Tank")
-            .tooltips(
-                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.0"),
-                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1")
-            )
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(YOTTA_FLUID_TANK_CASING)
-            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
-                    .aisle("     ", " FFF ", " FFF ", " FFF ", "     ")
-                    .aisle("AABAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
-                    .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC").setRepeatable(1, 15)
-                    .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
-                    .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD")
-                    .where('B', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(YOTTA_FLUID_TANK_CASING.get())
-                            .or(abilities(EPPartAbility.TANK_ACCESS).setMaxGlobalLimited(1)))
-                    .where('C', EPPredicates.glass())
-                    .where('D', frames(GTMaterials.Steel))
-                    .where('E', EPPredicates.fluidTankCell())
-                    .where('F', blocks(YOTTA_FLUID_TANK_CASING.get())
-                            .or(abilities(PartAbility.EXPORT_FLUIDS)))
-                    .where('G', blocks(YOTTA_FLUID_TANK_CASING.get())
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)))
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
-                        .aisle("     ", " FFF ", " FFF ", " FFF ", "     ")
-                        .aisle("AABAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
-                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                        .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                        .where('B', definition, Direction.NORTH)
-                        .where('A', YOTTA_FLUID_TANK_CASING.get())
-                        .where('D', ChemicalHelper.getBlock(frameGt, GTMaterials.Steel))
-                        .where('F', GTMachines.FLUID_EXPORT_HATCH[ULV], Direction.DOWN)
-                        .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.UP)
-                        .where(' ', Blocks.AIR.defaultBlockState());
-                var fluidCells = BlockMaps.ALL_FLUID_CELLS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .toList();
-                var glass = BlockMaps.ALL_GLASSES.entrySet().stream()
-                        .collect(Collectors.toMap(entry -> entry.getKey().tier(), Map.Entry::getValue, (a, b) -> a));
-                TreeMap<Integer, Supplier<Block>> glasses = new TreeMap<>(glass);
-                for (int i = 0; i < fluidCells.size(); i++) {
-                    var info = builder
-                            .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                            .where('C', glasses.ceilingEntry(i + 3).getValue())
-                            .where('E', fluidCells.get(i))
-                            .shallowCopy()
-                            .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
-                            .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD").build();
-                    shapeInfo.add(info);
-                }
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .sidedWorkableCasingRenderer("block/casings/yotta_fluid_tank_casing",
-                    Epimorphism.id("block/multiblock/yotta_fluid_tank"), false)
-            .register();
-
-    public final static MultiblockMachineDefinition TFFT = EP_REGISTRATE.multiblock("tfft", TFFTMachine::new)
-            .langValue("T.F.F.T.")
-            .tooltips(Component.translatable("block.epimorphism.tfft.desc.0"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(TFFT_CASING)
-            .pattern(definition -> FactoryBlockPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
-                    .aisle("AADAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
-                    .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB").setRepeatable(1, 15)
-                    .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
-                    .where('D', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(TFFT_CASING.get())
-                            .or(abilities(PartAbility.IMPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
-                            .or(abilities(PartAbility.EXPORT_FLUIDS).setMinGlobalLimited(1).setMaxGlobalLimited(9))
-                            .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3))
-                            .or(abilities(EPPartAbility.TANK_ACCESS).setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
-                    .where('B', blocks(CASING_LAMINATED_GLASS.get()))
-                    .where('C', EPPredicates.storageFieldBlock())
-                    .build()
-            )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                MultiblockShapeInfo.ShapeInfoBuilder builder = LayerShapeInfo.builder()
-                        .aisle("AFDEA", "AAAAA", "AAAAA", "AAAAA", "AAGHA")
-                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                        .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                        .where('D', definition, Direction.NORTH)
-                        .where('A', TFFT_CASING.get())
-                        .where('B', CASING_LAMINATED_GLASS.get())
-                        .where('E', GTMachines.FLUID_EXPORT_HATCH[ULV], Direction.NORTH)
-                        .where('F', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.NORTH)
-                        .where('G', GTMachines.ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
-                        .where('H', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-                        .where(' ', Blocks.AIR.defaultBlockState());
-                var fieldBlocks = BlockMaps.ALL_FIELD_BLOCKS.entrySet().stream()
-                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-                        .map(Map.Entry::getValue)
-                        .toList();
-
-                for (Supplier<Block> fieldBlock : fieldBlocks) {
-                    var info = builder
-                            .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB")
-                            .where('C', fieldBlock)
-                            .shallowCopy()
-                            .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA").build();
-                    shapeInfo.add(info);
-                }
-                return shapeInfo;
-            })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
-            .workableCasingRenderer(Epimorphism.id("block/casings/solid/tfft_casing"),
-                    Epimorphism.id("block/multiblock/tfft"), false)
-            .register();
-
-    //////////////////////////////////////
-    //**********     Misc     **********//
-    //////////////////////////////////////
-
-    public static void init() {
-        if (EPIntegration.isAE2Loaded()) {
-            EPAEMachine.init();
-        }
-
-        if (Platform.isDatagen()) {
-            EPAEMachine.init();
-        }
-    }
+    public static void init() {/**/}
 
     private static MachineDefinition[] registerTieredEPMachines(String name,
                                                                 BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,

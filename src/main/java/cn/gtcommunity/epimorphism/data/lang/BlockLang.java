@@ -158,6 +158,7 @@ public class BlockLang {
         addBlock(provider, FLOTATION_CASING,"Flotation Casing","浮选机械方块");
         addBlock(provider, FLOTATION_CELL,"Flotation Cell","浮选槽");
         addBlock(provider, VACUUM_CASING,"Vacuum Casing","真空机械方块");
+        addBlock(provider, DRILL_HEAD,"Drill Head","钻头");
 
         //  Agriculture
         addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");

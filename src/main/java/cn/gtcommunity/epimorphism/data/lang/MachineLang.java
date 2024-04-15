@@ -40,7 +40,7 @@ public class MachineLang {
         addBlockWithTooltip(provider, NEUTRON_ACTIVATOR::getBlock, "中子活化器",
                 List.of(
                         "§o§7Faster-than-light motion!",
-                        "§6Additional high-speed tubing blocks provide recipe time reduction while reducing the efficiency of the neutron accelerator",
+                        "§6Additional high-speed tubing cn.gtcommunity.epimorphism.data.recipe.blocks provide recipe time reduction while reducing the efficiency of the neutron accelerator",
                         "§6When operating without a neutron accelerator, neutron kinetic energy decreases §e72KeV§6 neutron kinetic energy per second",
                         "§6Input graphite beryllium powder can immediately absorb §e10MeV§6 neutron kinetic energy",
                         "§6Neutron kinetic energy will explode when it exceeds §41200MeV§6!"),
@@ -184,12 +184,29 @@ public class MachineLang {
 
                 ));
 
-        addBlockWithTooltip(provider, ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock, "炽炎高炉",
+        addBlockWithTooltip(provider, ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock, "炽焱高炉",
                 List.of(
-
+                        "§7Blazing power！",
+                        "Available Recipe Types：§9Electric Blast Furnace",
+                        "Need to provide §cBlazing Pyrotheum§b for work.",
+                        "When no §cBlazing Pyrotheum§b are provided, Volcanus will shut down."
                 ),
                 List.of(
-
+                        "§7烈焰之力！",
+                        "可用配方类型：§9电力高炉",
+                        "需要提供§c烈焰之炽焱§f以工作。",
+                        "未提供§c烈焰之炽焱§f时，炽焱高炉将会停机。"
+                ));
+        addBlockWithCtrlTooltip(provider, ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock,
+                List.of(
+                        "§6When running §9Electric Blast Furnace§6 recipes：",
+                        "§6· §bDuration：§6-§f50%",
+                        "§6· §5Parallel：§6+§e2^(Coil tier +4)"
+                ),
+                List.of(
+                        "§6运行§9电力高炉§6配方时：",
+                        "§6· §b耗时：§6-§e50%",
+                        "§6· §5并行：§e2^(线圈等级-1)"
                 ));
         add(provider, "block.epimorphism.advanced_electric_blast_furnace.warning.blazing_pyrotheum",
                 "§4WARNING: Insufficient Blazing Pyrotheum",
@@ -200,10 +217,27 @@ public class MachineLang {
 
         addBlockWithTooltip(provider, INDUSTRIAL_VACUUM_FREEZER::getBlock, "凛冰冷冻机",
                 List.of(
-
+                        "§7Gelid power！",
+                        "Available Recipe Types：§9Vacuum Freezer",
+                        "Need to provide §bGelid Cryotheum§b for work.",
+                        "When no §bGelid Cryotheum§b are provided, Cryogenic Freezer will shut down."
                 ),
                 List.of(
-
+                        "§7极寒之力！",
+                        "可用配方类型：§9真空冷冻机",
+                        "需要提供§b极寒之凛冰§f以工作。",
+                        "未提供§b极寒之凛冰§f时，凛冰冷冻机将会停机。"
+                ));
+        addBlockWithCtrlTooltip(provider, INDUSTRIAL_VACUUM_FREEZER::getBlock,
+                List.of(
+                        "§6When running §9Vacuum Freezer§6 recipes：",
+                        "§6· §bDuration：§6-§f50%",
+                        "§6· §5Parallel：§6+§e3"
+                ),
+                List.of(
+                        "§6运行§9真空冷冻机§6配方时：",
+                        "§6· §b耗时：§6-§e50%",
+                        "§6· §5并行：§e4"
                 ));
         add(provider, "block.epimorphism.industrial_vacuum_freezer.warning.gelid_cryotheum",
                 "§4WARNING: Insufficient Gelid Cryotheum",
@@ -224,15 +258,24 @@ public class MachineLang {
                 List.of(
                         "§7The error does not exceed 7 nm",
                         "Available Recipe Types：§9Assembler§r,§9Precision Assemble",
-                        "Different Machine Housings Are Used To Determine The Machine Class",
-                        "§6When running §9Assembler§6 recipes, §bDuration §6reduction §f50%§e6.",
-                        "§6When running §9Assembler§6 recipes, §5Parallel §6add §e2^(machine enclosure level +4) §6.)"),
+                        "Different Machine Housings Are Used To Determine The Machine Class"
+                ),
                 List.of(
                         "§7误差不超过7nm",
                         "可用配方类型：§9组装机§r，§9组装精密",
-                        "使用不同的机器外壳判定机器等级",
-                        "§6运行§9组装机§6配方时，§b耗时§6减少§e50%§6。",
-                        "§6运行§9组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
+                        "使用不同的机器外壳判定机器等级"
+                ));
+        addBlockWithCtrlTooltip(provider, PRECISE_ASSEMBLER::getBlock,
+                List.of(
+                        "§6When running §9Assembler§6 recipes：",
+                        "§6· §bDuration：§6-§f50%",
+                        "§6· §5Parallel：§e2^(Machine tier +4)"
+                ),
+                List.of(
+                        "§6运行§9组装机§6配方时：",
+                        "§6· §b耗时：§6-§e50%",
+                        "§6· §5并行：§e2^(机器等级+4)"
+                ));
 
         addBlockWithTooltip(provider, DIGESTER::getBlock, "煮解池",
                 List.of(
@@ -301,16 +344,23 @@ public class MachineLang {
                 List.of(
                         "A Multiblock Piston Hammer at the Steam Age. ",
                         "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "Available Recipe Types：§9Piston Hammer§r,§9Ore Milling",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"
+                        "Available Recipe Types：§9Piston Hammer§r,§9Ore Milling"
                 ),
                 List.of(
                         "蒸汽时代的多方块锻造锤。",
                         "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
-                        "可用配方类型：§9锻造锤§r，§9矿石加工",
-                        "§b耗时：§e+50%",
-                        "§d并行：§e8"
+                        "可用配方类型：§9锻造锤§r，§9矿石加工"
+                ));
+        addBlockWithCtrlTooltip(provider, STEAM_PISTON_HAMMER::getBlock,
+                List.of(
+                        "§6When running §9Piston Hammer§6 recipes：",
+                        "§6· §bDuration：§6*§e150%",
+                        "§6· §5Parallel：§e8"
+                ),
+                List.of(
+                        "§6运行§9锻造锤§6配方时：",
+                        "§6· §b耗时：§6*§e150%",
+                        "§6· §5并行：§e8"
                 ));
 
         addCN(provider, "block.epimorphism.uhv_fusion_reactor", "核聚变反应堆控制电脑 MK-IV");
@@ -371,13 +421,13 @@ public class MachineLang {
                         "§f为多方块结构提供研磨球来使用。",
                         "§e允许从输入总线输入研磨球。"));
 
-        addBlockWithTooltip(provider, TANK_ACCESS_HATCH::getBlock, "储罐访问仓",
+        /*addBlockWithTooltip(provider, TANK_ACCESS_HATCH::getBlock, "储罐访问仓",
                 List.of(
 
                         ),
                 List.of(
 
-                        ));
+                        ));*/
 
         addTieredMachineName(provider, "wireless_energy_input_hatch", "无线能源仓", ELECTRIC_TIERS);
         addBlockWithTooltip(provider, "wireless_energy_input_hatch",

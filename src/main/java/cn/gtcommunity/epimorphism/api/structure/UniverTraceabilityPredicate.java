@@ -14,14 +14,14 @@ import java.util.function.Supplier;
 
 public class UniverTraceabilityPredicate {
 //    //  Optional Traceability Predicates
-//    public static TraceabilityPredicate optionalStates(String mark, Block... blocks) {
+//    public static TraceabilityPredicate optionalStates(String mark, Block... cn.gtcommunity.epimorphism.data.recipe.blocks) {
 //        return new TraceabilityPredicate(blockWorldState -> {
 //            Block block = blockWorldState.getBlockState().getBlock();
-//            if (ArrayUtils.contains(blocks, block)) {
+//            if (ArrayUtils.contains(cn.gtcommunity.epimorphism.data.recipe.blocks, block)) {
 //                return (blockWorldState.getMatchContext().getOrPut(mark, true));
 //            }
 //            return blockWorldState.getMatchContext().get(mark) == null;
-//        }, () -> Arrays.stream(blocks).map(BlockInfo::fromBlock).toArray(BlockInfo[]::new));
+//        }, () -> Arrays.stream(cn.gtcommunity.epimorphism.data.recipe.blocks).map(BlockInfo::fromBlock).toArray(BlockInfo[]::new));
 //    }
 //
 //    public static TraceabilityPredicate optionalAbilities(String mark, PartAbility... allowedAbilities) {

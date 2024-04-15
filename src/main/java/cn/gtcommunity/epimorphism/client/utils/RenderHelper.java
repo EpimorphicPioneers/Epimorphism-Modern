@@ -66,7 +66,7 @@ public class RenderHelper {
 
     // Brightness
 
-    // the brighnesses of the surrounding blocks. the first dimension indicates block (1) vs sky (0) light
+    // the brighnesses of the surrounding cn.gtcommunity.epimorphism.data.recipe.blocks. the first dimension indicates block (1) vs sky (0) light
     // These are used to create different light direction vectors depending on the direction of a quads normal vector.
     private static final int[][] neighbourBrightness = new int[2][6];
     // The light vectors created from neighbourBrightness aren't "normalized" (to length 255), the length needs to be divided by this factor to normalize it.

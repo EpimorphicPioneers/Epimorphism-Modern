@@ -107,6 +107,7 @@ public class EPBlocks {
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> EPTagPrefix.crucible.blockProperties().properties().apply(p).noLootTable())
                 .transform(GTBlocks.unificationBlock(EPTagPrefix.crucible, material))
+
                 .addLayer(() -> RenderType::cutout)
                 .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
                 .setData(ProviderType.LANG, NonNullBiConsumer.noop())
