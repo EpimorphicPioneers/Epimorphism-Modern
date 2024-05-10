@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.data.recipe.misc;
 
 import cn.gtcommunity.epimorphism.common.recipe.HeatCapacityCondituon;
-import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
+import cn.gtcommunity.epimorphism.common.recipe.NeutronEnergyCondition;
 import cn.gtcommunity.epimorphism.common.recipe.PACasingCondition;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -28,35 +28,16 @@ public class NeutronActivatorLoader {
                 .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
-                .addCondition(new NeutronKineticEnergyCondition(400 * K, 500 * M))
+                .addCondition(new NeutronEnergyCondition(400 * K, 500 * M))
                 .duration(800).save(provider);
-
-//        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder("test2")
-//                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
-//                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
-//                .inputItems(TagPrefix.plateDouble, GTMaterials.Plutonium241)
-//                .inputItems(TagPrefix.plateDouble, GTMaterials.Osmiridium)
-//                .inputItems(GTItems.FIELD_GENERATOR_IV, 2)
-//                .inputItems(GTItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
-//                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
-//                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
-//                .duration(800).EUt(30).save(provider);
-
-        CHEMICAL_PLANT_RECIPES.recipeBuilder("test3")
-                .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
-                .inputItems(CustomTags.ZPM_CIRCUITS, 4)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
-                .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
-                .duration(800).EUt(30).save(provider);
-
-        PRECISE_ASSEMBLER_RECIPES.recipeBuilder("test4")
+        PRECISE_ASSEMBLER_RECIPES.recipeBuilder("test2")
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))
                 .outputItems(GTMachines.FUSION_REACTOR[GTValues.LuV].asStack())
                 .addCondition(new PACasingCondition(PACasingCondition.MK_3))
                 .duration(800).EUt(30).save(provider);
-        MOLECULAR_BEAM_RECIPES.recipeBuilder("test5")
+        MOLECULAR_BEAM_RECIPES.recipeBuilder("test3")
                 .inputItems(GTBlocks.SUPERCONDUCTING_COIL.asStack())
                 .inputItems(CustomTags.ZPM_CIRCUITS, 4)
                 .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 8))

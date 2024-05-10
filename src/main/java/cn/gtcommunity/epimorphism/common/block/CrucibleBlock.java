@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import com.gregtechceu.gtceu.api.block.MaterialBlock;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;

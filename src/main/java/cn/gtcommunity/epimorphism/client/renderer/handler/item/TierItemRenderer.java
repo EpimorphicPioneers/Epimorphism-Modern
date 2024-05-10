@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
 import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
+import cn.gtcommunity.epimorphism.api.item.IRendererMetaInfo;
 import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.TierRenderItemBehavior;
 import com.lowdragmc.lowdraglib.Platform;
@@ -24,7 +24,7 @@ import org.joml.Matrix4f;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-
+// TODO Maybe use IModelRenderer?
 public class TierItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
     public static final TierItemRenderer INSTANCE = new TierItemRenderer();

@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
-
+// TODO Maybe use IModelRenderer?
 public class StereoscopicItemRenderer implements IRenderer {
 
     public static final StereoscopicItemRenderer INSTANCE = new StereoscopicItemRenderer();
@@ -21,8 +21,7 @@ public class StereoscopicItemRenderer implements IRenderer {
         model = RenderHelper.getVanillaModel(stack, null, null);
         poseStack.pushPose();
         if (transformType == ItemDisplayContext.GUI) {
-            long millis = System.currentTimeMillis();
-            poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0.3f, 0.5f, 0.2f, (millis / 25) % 360));
+            poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0.3f, 0.5f, 0.2f, (System.currentTimeMillis() / 25) % 360));
         }
         RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
         poseStack.popPose();

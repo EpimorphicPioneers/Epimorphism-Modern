@@ -49,7 +49,7 @@ public class DigesterRenderer extends WorkableCasingMachineRenderer {
     @OnlyIn(Dist.CLIENT)
     public void renderMachine(List<BakedQuad> quads, MachineDefinition definition, @Nullable MetaMachine machine, Direction frontFacing, @Nullable Direction side, RandomSource rand, @Nullable Direction modelFacing, ModelState modelState) {
         super.renderMachine(quads, definition, machine, frontFacing, side, rand, modelFacing, modelState);
-        if (machine instanceof IWorkable workable && workable.isActive() && side == null) {
+        if (machine instanceof IWorkable workable /*&& workable.isActive()*/ && side == null) {
             BLOCKS.forEach(aabb -> quads.add(FaceQuad.bakeFace(aabb, Direction.UP, FluidHelper.getStillTexture(STACK), modelState, 2, 5, true, true)));
         }
     }

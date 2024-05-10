@@ -1,10 +1,11 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.IChemicalPlantCasing;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.WrappedTierType;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.TreeGrowthSimulatorMachine;
+import cn.gtcommunity.epimorphism.api.block.tier.IChemicalPlantCasing;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.api.block.tier.WrappedTierType;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.ForestryGreenhouseMachine;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -43,17 +44,24 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ST_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> TA_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
 
+    // Space Elevator
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_ELEVATOR_MOTORS = new Object2ObjectOpenHashMap<>();
+
     // Univer
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FIREBOXS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_COIL_BLOCKS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<String, Supplier<Block>> ALL_DIM_DISPLAY_BLOCKS = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
+        //  ALL_COILS Init
+        GTBlocks.ALL_COILS.forEach((tier, block) -> ALL_COIL_BLOCKS.put((ITierType) tier, block::get));
+
         //  ALL_CP_TUBES Init
         simpleTierTypeAdd(ALL_CP_TUBES, CASING_BRONZE_PIPE, 1);
         simpleTierTypeAdd(ALL_CP_TUBES, CASING_STEEL_PIPE, 2);
-        simpleTierTypeAdd(ALL_CP_TUBES, CASING_TITANIUM_PIPE, 5);
-        simpleTierTypeAdd(ALL_CP_TUBES, CASING_TUNGSTENSTEEL_PIPE, 6);
+        simpleTierTypeAdd(ALL_CP_TUBES, CASING_TITANIUM_PIPE, 3);
+        simpleTierTypeAdd(ALL_CP_TUBES, CASING_TUNGSTENSTEEL_PIPE, 4);
 
         //  ALL_CP_CASINGS Init
         CPTierTypeAdd(CASING_BRONZE_BRICKS, 1, GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"));
@@ -75,7 +83,7 @@ public class BlockMaps {
         simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_TUNGSTENSTEEL::get, 4);
 
         // Misc
-        TreeGrowthSimulatorMachine.addGrasses();
+        ForestryGreenhouseMachine.addGrasses();
     }
 
     private static void simpleTierTypeAdd(Map<ITierType, Supplier<Block>> map, Supplier<Block> blockSupplier, int tier) {

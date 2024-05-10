@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.recipe;
 
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.PreciseAssemblerMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.PreciseAssemblerMachine;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;

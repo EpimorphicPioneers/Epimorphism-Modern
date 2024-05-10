@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "gtceu:block/casings/deployment_unit_magnet/bottom",
+    "side": "gtceu:block/casings/deployment_unit_magnet/side_active",
+    "top": "gtceu:block/casings/deployment_unit_magnet/top"
+  }
+}

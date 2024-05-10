@@ -1,16 +1,16 @@
 package cn.gtcommunity.epimorphism.common.eunetwork;
 
 import cn.gtcommunity.epimorphism.api.eunetwork.AccessLevel;
+import cn.gtcommunity.epimorphism.api.eunetwork.EUNetConstants;
 import cn.gtcommunity.epimorphism.api.eunetwork.NetworkMember;
-import cn.gtcommunity.epimorphism.utils.EPLevelUtil;
 import cn.gtcommunity.epimorphism.utils.EPNetUtil;
 import net.minecraft.Util;
-import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -221,7 +221,7 @@ public class EUNetwork {
                     list.add(subTag);
                 }
             }
-            List<ServerPlayer> players = EPLevelUtil.getCurrentServer().getPlayerList().getPlayers();
+            List<ServerPlayer> players = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers();
             for (ServerPlayer p : players) {
                 if (getMemberByUUID(p.getUUID()) == null) {
                     CompoundTag subTag = new CompoundTag();

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "epimorphism:block/casings/solid/advanced_alloy_casing",
+    "side": "epimorphism:block/generators/reactor_chamber/overlay_side"
+  }
+}

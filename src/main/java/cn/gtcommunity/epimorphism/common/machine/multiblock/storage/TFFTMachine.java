@@ -4,7 +4,7 @@ import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankProvider;
 import cn.gtcommunity.epimorphism.api.machine.trait.ITankTrait;
 import cn.gtcommunity.epimorphism.api.gui.widget.FluidTankMapWidget;
 import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlockContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
+import cn.gtcommunity.epimorphism.api.pattern.utils.containers.IValueContainer;
 import cn.gtcommunity.epimorphism.utils.EPFluidUtil;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;

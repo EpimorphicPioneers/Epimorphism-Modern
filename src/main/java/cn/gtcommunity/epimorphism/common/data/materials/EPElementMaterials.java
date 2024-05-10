@@ -2,7 +2,6 @@ package cn.gtcommunity.epimorphism.common.data.materials;
 
 import cn.gtcommunity.epimorphism.common.data.EPElements;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.ToolProperty;
@@ -12,8 +11,7 @@ import com.gregtechceu.gtceu.common.data.GTElements;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import net.minecraft.world.item.enchantment.Enchantments;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet.*;
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconSet.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;

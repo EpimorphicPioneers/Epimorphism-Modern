@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.item.behaviors;
 
-import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys;
-import cn.gtcommunity.epimorphism.client.renderer.handler.item.GrindBallItemRenderer;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
+import cn.gtcommunity.epimorphism.client.renderer.handler.item.GrindBallRenderer;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
@@ -40,41 +40,6 @@ public class GrindBallBehaviour implements IMaterialPartItem, ICustomRenderer, I
     }
 
     @Override
-    public int getPartMaxDurability(ItemStack itemStack) {
-        var property = getPartMaterial(itemStack).getProperty(EPPropertyKeys.GRIND_BALL);
-        return property == null ? -1 : property.getDurability();
-    }
-
-    public float getYieldMultiplier(ItemStack stack) {
-        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
-        return property == null ? -1 : property.getYieldMultiplier();
-    }
-
-    public float getEnergyConsMultiplier(ItemStack stack) {
-        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
-        return property == null ? -1 : property.getEnergyConsumptionMultiplier();
-    }
-
-    public ICustomRenderer getCustomRenderer(ItemStack stack) {
-        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
-        return property == null ? null : property.getRenderer();
-    }
-
-    public int getBallDurabilityPercent(ItemStack itemStack) {
-        return 100 - 100 * getPartDamage(itemStack) / getPartMaxDurability(itemStack);
-    }
-
-    public void applyBallDamage(ItemStack itemStack, int damageApplied) {
-        int ballDurability = getPartMaxDurability(itemStack);
-        int resultDamage = getPartDamage(itemStack) + damageApplied;
-        if (resultDamage >= ballDurability) {
-            itemStack.shrink(1);
-        } else {
-            setPartDamage(itemStack, resultDamage);
-        }
-    }
-
-    @Override
     public Material getPartMaterial(ItemStack itemStack) {
         CompoundTag compound = this.getPartStatsTag(itemStack);
         Material defaultMaterial = GTMaterials.Neutronium;
@@ -94,11 +59,38 @@ public class GrindBallBehaviour implements IMaterialPartItem, ICustomRenderer, I
     }
 
     @Override
+    public int getPartMaxDurability(ItemStack itemStack) {
+        var property = getPartMaterial(itemStack).getProperty(EPPropertyKeys.GRIND_BALL);
+        return property == null ? -1 : property.getDurability();
+    }
+
+    @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc"));
         IMaterialPartItem.super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
         tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.yield_multiplier", ChatFormatting.YELLOW + "%.1f×".formatted(getYieldMultiplier(stack))));
         tooltipComponents.add(Component.translatable("item.epimorphism.grind_ball.desc.energy_cons_multiplier", ChatFormatting.YELLOW + "%.1f×".formatted(getEnergyConsMultiplier(stack))));
+    }
+
+    public float getYieldMultiplier(ItemStack stack) {
+        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
+        return property == null ? -1 : property.getYieldMultiplier();
+    }
+
+    public float getEnergyConsMultiplier(ItemStack stack) {
+        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
+        return property == null ? -1 : property.getEnergyConsumptionMultiplier();
+    }
+
+    public ICustomRenderer getCustomRenderer(ItemStack stack) {
+        var property = getPartMaterial(stack).getProperty(EPPropertyKeys.GRIND_BALL);
+        return property == null ? null : property.getRenderer();
+    }
+
+    @NotNull
+    @Override
+    public IRenderer getRenderer() {
+        return GrindBallRenderer.INSTANCE;
     }
 
     @Nullable
@@ -111,11 +103,5 @@ public class GrindBallBehaviour implements IMaterialPartItem, ICustomRenderer, I
             }
         }
         return null;
-    }
-
-    @NotNull
-    @Override
-    public IRenderer getRenderer() {
-        return GrindBallItemRenderer.INSTANCE;
     }
 }

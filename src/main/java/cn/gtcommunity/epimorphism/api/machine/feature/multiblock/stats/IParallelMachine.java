@@ -2,6 +2,7 @@ package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats;
 
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -10,7 +11,7 @@ import net.minecraft.util.Mth;
 
 import java.util.function.Function;
 
-public interface IParallelMachine {
+public interface IParallelMachine extends IMachineFeature {
     int getMaxParallel();
 
     int getParallelNumber();

@@ -1,15 +1,19 @@
 package cn.gtcommunity.epimorphism.api.data.tag;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconType;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
+import java.util.function.UnaryOperator;
+
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.*;
@@ -52,11 +56,34 @@ public class EPTagPrefix {
             .generateItem(true)
             .generationCondition(hasGemProperty.and(mat -> mat.hasFlag(GENERATE_BOULE) || (mat.hasFlag(CRYSTALLIZABLE) && !mat.hasFlag(DISABLE_CRYSTALLIZATION))));
 
+    public static final TagPrefix nanites = new TagPrefix("nanites")
+            .defaultTagPath("nanites/%s")
+            .unformattedTagPath("nanites")
+            .materialAmount(-1)
+            .materialIconType(EPMaterialIconType.nanites)
+            .unificationEnabled(true)
+            .generateItem(true)
+            .generationCondition(hasDustProperty.and(mat -> mat.hasFlag(GENERATE_NANITES) && !mat.hasFlag(NO_SMASHING)));
+
     public static final TagPrefix crucible = new TagPrefix("crucible")
+            .defaultTagPath("crucible/%s")
+            .unformattedTagPath("crucible")
             .itemTable(() -> EPBlocks.CRUCIBLE_BLOCKS)
             .miningToolTag(GTToolType.WRENCH.harvestTags.get(0))
             .materialAmount(M * 8)
             .materialIconType(EPMaterialIconType.crucible)
+            .blockProperties(() -> RenderType::cutout, UnaryOperator.identity())
+            .unificationEnabled(true);
+
+    public static final TagPrefix fence = new TagPrefix("fence")
+            .defaultTagPath("fences/%s")
+            .unformattedTagPath("fences")
+            .unformattedTagPath("fences", true)
+            .itemTable(() -> EPBlocks.FENCE_BLOCKS)
+            .miningToolTag(GTToolType.WRENCH.harvestTags.get(0))
+            .materialAmount(M * 6)
+            .materialIconType(EPMaterialIconType.fence)
+            .blockProperties(() -> RenderType::cutout, p -> p.forceSolidOn().instrument(NoteBlockInstrument.BASS))
             .unificationEnabled(true);
 
     public static void init() {/**/}

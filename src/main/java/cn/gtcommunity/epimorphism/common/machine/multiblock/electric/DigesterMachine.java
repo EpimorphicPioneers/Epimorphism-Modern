@@ -7,10 +7,13 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMa
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+
+import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -36,26 +39,13 @@ public class DigesterMachine extends WorkableElectricMultiblockMachine {
             int stepZ = facing.getStepZ();
 
             var randPos = getRandomPointInRectangle(
-                    new float[]{stepX * 1.86F + pos.getX() + 0.5F + (Math.abs(stepX) - 1) * 1.26F, stepZ * 1.86F + pos.getZ() + 0.5F + (Math.abs(stepZ) - 1) * 1.26F},
-                    new float[]{stepX * 3.86F + pos.getX() + 0.5F - (Math.abs(stepX) - 1) * 1.26F, stepZ * 3.86F + pos.getZ() + 0.5F - (Math.abs(stepZ) - 1) * 1.26F});
+                    new Vec2(stepX * 1.86F + pos.getX() + 0.5F + (Math.abs(stepX) - 1) * 1.26F, stepZ * 1.86F + pos.getZ() + 0.5F + (Math.abs(stepZ) - 1) * 1.26F),
+                    new Vec2(stepX * 3.86F + pos.getX() + 0.5F - (Math.abs(stepX) - 1) * 1.26F, stepZ * 3.86F + pos.getZ() + 0.5F - (Math.abs(stepZ) - 1) * 1.26F));
 
             float yPos = facing.getStepY() * 1.26F + pos.getY() + 0.25F;
             float ySpd = facing.getStepY() * 0.1F + 0.2F + 0.1F * GTValues.RNG.nextFloat();
-            getLevel().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, randPos[0], yPos, randPos[1], 0, ySpd, 0);
+            getLevel().addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, randPos.x, yPos, randPos.y, 0, ySpd, 0);
         }
-    }
-
-    private float[] getRandomPointInRectangle(float[] p1, float[] p2) {
-        float minX = Math.min(p1[0], p2[0]);
-        float minY = Math.min(p1[1], p2[1]);
-        float maxX = Math.max(p1[0], p2[0]);
-        float maxY = Math.max(p1[1], p2[1]);
-
-        var rand = GTValues.RNG;
-        float randomX = minX + rand.nextFloat() * (maxX - minX);
-        float randomY = minY + rand.nextFloat() * (maxY - minY);
-
-        return new float[]{randomX, randomY};
     }
 
     @Override

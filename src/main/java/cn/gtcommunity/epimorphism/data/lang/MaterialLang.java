@@ -365,6 +365,8 @@ public class MaterialLang {
         addMaterial(provider, RP1RocketFuel, "RP-1 RocketFuel", "RP-1火箭燃料");
         addMaterial(provider, Methylhydrazine, "Methylhydrazine", "甲肼");
         addMaterial(provider, MethylhydrazineNitrateRocketFuel, "Methylhydrazine Nitrate Rocket Fuel", "硝酸甲肼火箭燃料");
+        addMaterial(provider, UDMHRocketFuel, "UDMH Rocket Fuel", "H8N4C2O4火箭燃料");
+        addMaterial(provider, UDMH, "UDMH", "偏二甲肼");
         addMaterial(provider, LithiumNiobate, "Lithium Niobate", "铌酸锂");
         addMaterial(provider, NiobiumPentachloride, "Niobium Pentachloride", "五氯化铌");
         addMaterial(provider, HighPuritySodiumVanadate, "High Purity Sodium Vanadate", "高纯钒酸钠");
@@ -718,5 +720,6 @@ public class MaterialLang {
         addTagPrefix(provider, EPTagPrefix.crucible, "%s Crucible", "%s坩埚");
         addTagPrefix(provider, EPTagPrefix.seedCrystal, "%s Seed Crystal", "%s晶种");
         addTagPrefix(provider, EPTagPrefix.boule, "%s Boule", "人造%s");
+        addTagPrefix(provider, EPTagPrefix.fence, "%s Fence", "%s栅栏");
     }
 }

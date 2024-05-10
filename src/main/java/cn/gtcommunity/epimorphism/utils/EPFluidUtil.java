@@ -6,16 +6,23 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 
 import javax.annotation.Nullable;
 
+import java.util.function.Predicate;
+
 import static com.lowdragmc.lowdraglib.side.fluid.forge.FluidHelperImpl.toFluidStack;
 
 public class EPFluidUtil {
     private static final Fluid EMPTY = BuiltInRegistries.FLUID.get(BuiltInRegistries.FLUID.getDefaultKey());
+
+    public static final Predicate<Fluid> ANY_FLUID = fluid -> true;
+
+    public static final Predicate<Fluid> NOT_LAVA = fluid -> !fluid.equals(Fluids.LAVA);
 
     @OnlyIn(Dist.CLIENT)
     @Nullable

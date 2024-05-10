@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "epimorphism:y_zr_ceramic_electrolyte_unit"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "epimorphism:blocks/y_zr_ceramic_electrolyte_unit"
+}

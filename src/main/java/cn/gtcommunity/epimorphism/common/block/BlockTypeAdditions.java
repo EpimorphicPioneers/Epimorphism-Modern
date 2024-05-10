@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
 import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.world.level.block.Block;

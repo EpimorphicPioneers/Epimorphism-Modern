@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.gtm.ProcessingArrayMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.ProcessingArrayMachine;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.client.renderer.machine.MachineRenderer;

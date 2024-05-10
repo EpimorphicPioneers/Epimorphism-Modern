@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
+import cn.gtcommunity.epimorphism.api.block.tier.IStorageFieldBlock;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.utils.FormattingUtil;

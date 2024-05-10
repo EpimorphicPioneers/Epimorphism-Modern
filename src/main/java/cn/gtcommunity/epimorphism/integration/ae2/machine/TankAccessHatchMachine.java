@@ -102,6 +102,11 @@ public class TankAccessHatchMachine extends MEPartMachine implements IInWorldGri
     //**********     Data     **********//
     //////////////////////////////////////
     @Override
+    public boolean canShared() {
+        return false;
+    }
+
+    @Override
     public ManagedFieldHolder getFieldHolder() {
         return MANAGED_FIELD_HOLDER;
     }

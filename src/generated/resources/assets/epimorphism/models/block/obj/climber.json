@@ -1,0 +1,5 @@
+{
+  "flip_v": true,
+  "loader": "forge:obj",
+  "model": "epimorphism:models/block/obj/climber.obj"
+}

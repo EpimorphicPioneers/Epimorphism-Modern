@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.api.data.tag;
 
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
+import cn.gtcommunity.epimorphism.api.item.IRendererMetaInfo;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import net.minecraft.world.item.ItemStack;
