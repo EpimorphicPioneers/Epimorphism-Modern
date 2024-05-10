@@ -264,6 +264,98 @@ public class BlockLang {
                 ));
 
 
+        addBlockWithTooltip(provider, ADVANCED_HIGH_ENERGY_CASING, "Advanced High Energy Casing", "进阶高能机械方块",
+                List.of(
+                        "§7Used for Ultrahigh Energy Physics Experiment",
+                        "§b§lThis block can last forever."
+                ),
+                List.of(
+                        "§7用于超高能物理实验器件",
+                        "§b§l这个方块可以持久不衰。"
+                ));
+        addBlockWithTooltip(provider, ULTIMATE_HIGH_ENERGY_CASING, "Ultimate High Energy Casing", "终极高能机械方块",
+                List.of(
+                        "§7Used for Ultrahigh Energy Physics Experiment in Extreme Situations",
+                        "§b§lIt can survive at least one big bang of the universe, maybe even two..."
+                ),
+                List.of(
+                        "§7用于极端情况下的超高能物理实验",
+                        "§b§l至少能在一次宇宙大爆炸中幸存，也许是两次……"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_BRIDGE_CASING, "Dimensional Bridge Casing", "维度桥接机械方块",
+                List.of(
+                        "§7Used to connect Time and Space from Different Dimensions",
+                        "§b§lIt's best not to touch it with your hands."
+                ),
+                List.of(
+                        "§7用于连接不同维度的时间与空间",
+                        "§b§l最好别用手碰它。"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_LINK_CASING, "Dimensional Link Casing", "维度联络机械方块",
+                List.of(
+                        "§7Multidimensional Operation",
+                        "§b§lThe universe or someplace else."
+                ),
+                List.of(
+                        "§7多维运算",
+                        "§b§l宇宙或别的地方。"
+                ));
+        addBlockWithTooltip(provider, CONTAINMENT_FIELD_GENERATOR, "Containment Field Generator", "遏制场发生器",
+                List.of(
+                        "§7Generate a field...",
+                        "§b§lIt can even block high-energy particles."
+                ),
+                List.of(
+                        "§7产生一个场……",
+                        "§b§l甚至可以阻止高能粒子。"
+                ));
+        addBlockWithTooltip(provider, ULTIMATE_CONTAINMENT_FIELD_GENERATOR, "Ultimate Containment Field Generator", "终极遏制场发生器",
+                List.of(
+                        "§7Black hole",
+                        "§b§lHmm..."
+                ),
+                List.of(
+                        "§7黑洞",
+                        "§b§l嗯……"
+                ));
+        addBlockWithTooltip(provider, HOLLOW_CASING, "Hollow Structure Casing", "中空结构方块",
+                List.of(
+                        "§7Enhanced Accelerator Pipe",
+                        "§b§lThe most advanced pipeline ever."
+                ),
+                List.of(
+                        "§7强化加速器通道",
+                        "§b§l有史以来最先进的管道。"
+                ));
+        addBlockWithTooltip(provider, SPACETIME_DISTORTION_CASING, "Spacetime Distortion Casing", "时空扭曲机械方块",
+                List.of(
+                        "§7Speed of Light no longer a Limit",
+                        "§b§lCould potentially trigger temporal and spatial turbulence."
+                ),
+                List.of(
+                        "§7光速不再是限制",
+                        "§b§l可能引发时空乱流。"
+                ));
+        addBlockWithTooltip(provider, DIMENSIONAL_CASING, "Dimensional Casing", "维度机械方块",
+                List.of(
+                        "§7Resist the spacetime shearing caused by the expansion of the universe",
+                        "§b§lProvide a stable barrier between spacetime regions."
+                ),
+                List.of(
+                        "§7抵抗宇宙膨胀带来的时空剪切",
+                        "§b§l在时空区域之间提供一道稳定的屏障。"
+                ));
+        addBlockWithTooltip(provider, HYPERDIMENSIONAL_CASING, "Hyperdimensional Casing", "超维度机械方块",
+                List.of(
+                        "§7Exists in all possible spacetime dimensions",
+                        "§b§lMerely a projection in three-dimensional space..."
+                ),
+                List.of(
+                        "§7存在于所有可能时空",
+                        "§b§l仅仅是三维空间下的投影……"
+                ));
+
+
         //  Agriculture
         addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
         addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
