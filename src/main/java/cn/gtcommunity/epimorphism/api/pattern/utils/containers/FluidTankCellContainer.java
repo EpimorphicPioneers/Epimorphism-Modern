@@ -1,8 +1,7 @@
 package cn.gtcommunity.epimorphism.api.pattern.utils.containers;
 
-import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.api.structure.utils.SimpleValueContainer;
+import cn.gtcommunity.epimorphism.api.block.tier.IFluidTankCell;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
 import lombok.Getter;
 import net.minecraft.world.level.block.Block;
 

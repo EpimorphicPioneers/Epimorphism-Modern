@@ -4,7 +4,10 @@ import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.data.recipe.EPMFusionLoader;
 import cn.gtcommunity.epimorphism.data.recipe.circuits.CosmicCircuits;
 import cn.gtcommunity.epimorphism.data.recipe.generated.BouleRecipeHandler;
-import cn.gtcommunity.epimorphism.data.recipe.generated.RadiationHatchRecipeHandler;
+import cn.gtcommunity.epimorphism.data.recipe.generated.ComponentAsslineRecipeHandler;
+import cn.gtcommunity.epimorphism.data.recipe.misc.FuelRecipes;
+import cn.gtcommunity.epimorphism.data.recipe.misc.LargeNaquadahReactorLoader;
+import cn.gtcommunity.epimorphism.data.recipe.misc.RadiationHatchLoader;
 import cn.gtcommunity.epimorphism.data.recipe.generated.WrapItemRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.misc.NeutronActivatorLoader;
 import cn.gtcommunity.epimorphism.data.recipe.serialized.oreprocessing.NaquadahProcessing;
@@ -15,14 +18,20 @@ import java.util.function.Consumer;
 
 public class EPRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
-        NeutronActivatorLoader.init(provider);
         WrapItemRecipeHandler.init(provider);
-        RadiationHatchRecipeHandler.init(provider);
         BouleRecipeHandler.init(provider);
+
+        FuelRecipes.init(provider);
+
+        NeutronActivatorLoader.init(provider);
+        LargeNaquadahReactorLoader.init(provider);
+        RadiationHatchLoader.init(provider);
+
         CosmicCircuits.init(provider);
         EPMFusionLoader.init(provider);
 
         initOreProcessings(provider);
+        ComponentAsslineRecipeHandler.finish(provider);
         initChains(provider);
     }
 

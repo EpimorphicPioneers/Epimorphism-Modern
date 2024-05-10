@@ -14,15 +14,23 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormatElement;
 import com.mojang.math.Transformation;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.font.FontManager;
 import net.minecraft.client.gui.font.FontSet;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.ModelBlockRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.compress.utils.IOUtils;
 import org.joml.Quaternionf;
 
@@ -32,6 +40,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+@OnlyIn(Dist.CLIENT)
 public class ClientUtil {
     // Render Commonly Used
     public static Minecraft mc() {
@@ -46,6 +55,14 @@ public class ClientUtil {
         return mc().font;
     }
 
+    public static MultiBufferSource bufferSource() {
+        return mc().renderBuffers().bufferSource();
+    }
+
+    public static Camera camera() {
+        return gameRenderer().getMainCamera();
+    }
+
     public static ItemRenderer itemRenderer() {
         return mc().getItemRenderer();
     }
@@ -53,9 +70,24 @@ public class ClientUtil {
     public static BlockRenderDispatcher blockRenderer() {
         return mc().getBlockRenderer();
     }
+    public static ModelBlockRenderer modelRenderer() {
+        return blockRenderer().getModelRenderer();
+    }
+
+    public static GameRenderer gameRenderer() {
+        return mc().gameRenderer;
+    }
 
     public static TextureManager textureManager() {
         return mc().getTextureManager();
+    }
+
+    public static ModelManager modelManager() {
+        return mc().getModelManager();
+    }
+
+    public static BakedModel getBakedModel(ResourceLocation resourceLocation) {
+        return modelManager().getModel(resourceLocation);
     }
 
     public static float partialTicks() {

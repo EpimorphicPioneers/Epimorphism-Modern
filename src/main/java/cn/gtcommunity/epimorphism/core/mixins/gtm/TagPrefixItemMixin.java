@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.core.mixins.gtm;
 
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
+import cn.gtcommunity.epimorphism.api.item.IRendererMetaInfo;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.TagPrefixItem;

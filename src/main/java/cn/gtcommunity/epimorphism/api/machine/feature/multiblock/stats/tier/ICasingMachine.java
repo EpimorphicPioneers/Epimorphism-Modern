@@ -2,12 +2,13 @@ package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier;
 
 import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 
-public interface ICasingMachine {
+public interface ICasingMachine extends IMachineFeature {
     ITierType getTierType();
 
     int getCasingTier();

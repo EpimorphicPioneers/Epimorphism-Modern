@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -35,6 +35,12 @@ public class EPMaterialFlagAddition {
         Spessartine.addFlags(GENERATE_MILLED);
         Platinum.addFlags(GENERATE_MILLED);
         Monazite.addFlags(GENERATE_MILLED);
+
+        // Nanites
+        Carbon.addFlags(GENERATE_NANITES);
+        Gold.addFlags(GENERATE_NANITES);
+        Silver.addFlags(GENERATE_NANITES);
+        Neutronium.addFlags(GENERATE_NANITES);
 
         //////////////////////////////////////
         //*******       GT Flag      *******//

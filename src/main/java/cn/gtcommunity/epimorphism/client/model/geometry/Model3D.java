@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.model.geometry;
 
-import cn.gtcommunity.epimorphism.utils.EPDirectionUtil;
 import cn.gtcommunity.epimorphism.utils.EPFluidUtil;
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -13,6 +13,12 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+/*
+ * Referenced some code from Mekanism
+ *
+ * https://github.com/mekanism/Mekanism/
+ * */
+
 public class Model3D {
     public float minX, minY, minZ;
     public float maxX, maxY, maxZ;
@@ -21,7 +27,7 @@ public class Model3D {
     private final boolean[] renderSides = {true, true, true, true, true, true};
 
     public Model3D setSideRender(Predicate<Direction> shouldRender) {
-        for (Direction direction : EPDirectionUtil.VALUES) {
+        for (Direction direction : GTUtil.DIRECTIONS) {
             setSideRender(direction, shouldRender.test(direction));
         }
         return this;

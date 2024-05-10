@@ -46,7 +46,7 @@ public class FrackerMachine extends WorkableElectricMultiblockMachine {
     //***      Multiblock Traits     ***//
     //////////////////////////////////////
 
-    private class FrackerLogic extends RecipeLogic {
+    protected class FrackerLogic extends RecipeLogic {
 
         public static final int MAX_PROGRESS = 100;
 
@@ -61,13 +61,8 @@ public class FrackerMachine extends WorkableElectricMultiblockMachine {
         public static final FluidStack FRACKING_FLUID = EPMaterials.FracturingFluid.getFluid(FluidHelper.getBucket());
 
         @Override
-        public FrackerMachine getMachine() {
-            return (FrackerMachine)super.getMachine();
-        }
-
-        @Override
         public void findAndHandleRecipe() {
-            if (getMachine().getLevel() instanceof ServerLevel serverLevel) {
+            if (getLevel() instanceof ServerLevel serverLevel) {
                 lastRecipe = null;
                 var data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
                 if (veinFluid == null) {
@@ -98,7 +93,7 @@ public class FrackerMachine extends WorkableElectricMultiblockMachine {
                 lastRecipe.handleRecipeIO(IO.OUT, this.machine);
             }
 
-            if (getMachine().getLevel() instanceof ServerLevel serverLevel && veinFluid != null) {
+            if (getLevel() instanceof ServerLevel serverLevel && veinFluid != null) {
                 var data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
                 replenishVein(data.getFluidVeinWorldEntry(getChunkX(), getChunkZ()), false);
             }
@@ -119,7 +114,7 @@ public class FrackerMachine extends WorkableElectricMultiblockMachine {
 
         @Nullable
         private GTRecipe getFrackingRecipe() {
-            if (getMachine().getLevel() instanceof ServerLevel serverLevel) {
+            if (getLevel() instanceof ServerLevel serverLevel) {
                 var data = BedrockFluidVeinSavedData.getOrCreate(serverLevel);
                 if (replenishVein(data.getFluidVeinWorldEntry(getChunkX(), getChunkZ()), true)) {
                     var recipe = GTRecipeBuilder.ofRaw()
@@ -157,11 +152,11 @@ public class FrackerMachine extends WorkableElectricMultiblockMachine {
         }
 
         private int getChunkX() {
-            return SectionPos.blockToSectionCoord(getMachine().getPos().getX());
+            return SectionPos.blockToSectionCoord(getPos().getX());
         }
 
         private int getChunkZ() {
-            return SectionPos.blockToSectionCoord(getMachine().getPos().getZ());
+            return SectionPos.blockToSectionCoord(getPos().getZ());
         }
     }
 }

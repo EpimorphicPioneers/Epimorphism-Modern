@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
+import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -72,8 +72,8 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         }
 
         // If all else fails, and it's a plant, give it a growth boost now and then!
-        if ((aboveBlock instanceof BonemealableBlock crop && EPMathUtil.RAND.nextFloat() <= 0.5
-                && crop.isValidBonemealTarget(level, pos.above(), aboveState, false))) {
+        if ((aboveBlock instanceof BonemealableBlock crop) && GTValues.RNG.nextFloat() <= 0.5
+                && crop.isValidBonemealTarget(level, pos.above(), aboveState, false)) {
             crop.performBonemeal(level, level.getRandom(), pos.above(), aboveState);
             if (!level.isClientSide()) {
                 level.globalLevelEvent(LevelEvent.PARTICLES_PLANT_GROWTH, pos.above(), 0);

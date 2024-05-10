@@ -1,12 +1,13 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
-import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import net.minecraft.ChatFormatting;
 
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_NANITES;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -451,6 +452,7 @@ public class EPUnknownCompositionMaterials {
                 .ingot()
                 .color(0x000000)
                 .iconSet(EPMaterialIconSet.CUSTOM_TRANSCENDENT_MENTAL)
+                .flags(GENERATE_NANITES)
                 .buildAndRegister();
         //  Low Purity Naquadah Solution
         LowPurityNaquadahSolution = Builder("low_purity_naquadah_solution")
@@ -491,5 +493,12 @@ public class EPUnknownCompositionMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
                 .setFormula("*Nq*?", true);
+
+        //  Combustion Promoter
+        CombustionPromoter = Builder("combustion_promoter")
+                .liquid()
+                .color(0x27B7B5)
+                .iconSet(MaterialIconSet.DULL)
+                .buildAndRegister();
     }
 }

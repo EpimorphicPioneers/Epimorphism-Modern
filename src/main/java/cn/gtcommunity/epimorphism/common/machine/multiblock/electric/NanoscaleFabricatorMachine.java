@@ -16,13 +16,19 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.List;
+
+import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -62,11 +68,8 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
             Block block = blockWorldState.getBlockState().getBlock();
             if (block instanceof CrucibleBlock crucible) {
                 PatternMatchContext context = blockWorldState.getMatchContext();
-                int storedHeatCapacity = context.getOrPut("HeatCapacity", 0);
-                context.set("HeatCapacity", crucible.getHeatCapacity() + storedHeatCapacity);
-
-                int storedCrucibleAmount = context.getOrPut("CrucibleAmount", 0);
-                context.set("CrucibleAmount", 1 + storedCrucibleAmount);
+                context.increment("HeatCapacity", crucible.getHeatCapacity());
+                context.increment("CrucibleAmount", 1);
                 return true;
             }
             return false;
@@ -75,6 +78,15 @@ public class NanoscaleFabricatorMachine extends WorkableElectricMultiblockMachin
                 .sorted(Comparator.comparingInt(CrucibleBlock::getHeatCapacity))
                 .map(BlockInfo::fromBlock)
                 .toArray(BlockInfo[]::new));
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPartAppearance(IMultiPart part, Direction side, BlockState sourceState, BlockPos sourcePos) {
+        if (part instanceof ItemBusPartMachine bus && bus.getInventory().getHandlerIO() == IO.IN) {
+            return CASING_NONCONDUCTING.getDefaultState();
+        }
+        return CASING_LASER_SAFE_ENGRAVING.getDefaultState();
     }
 
     //////////////////////////////////////

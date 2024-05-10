@@ -78,7 +78,7 @@ public class BlockLang {
                 "Storage Field Block T%s"::formatted, "存储立场方块 T%s"::formatted, tiersBetween(1, 10));
 
         //  Component Assembly Line Casings
-        addTieredBlockWithTooltip(provider, tier -> "component_assembly_line_casing_%s".formatted(VN[tier].toLowerCase(Locale.ROOT)),
+        addTieredBlockWithTooltip(provider, tier -> "component_assline_casing_%s".formatted(VN[tier].toLowerCase(Locale.ROOT)),
                 tier -> "Component Assembly Line Casing (%s§r)".formatted(VNF[tier]),
                 tier -> "部件装配线外壳（%s§r）".formatted(VNF[tier]),
                 tier -> "§7%s Assembly Unit".formatted(getCATier(tier, true)),

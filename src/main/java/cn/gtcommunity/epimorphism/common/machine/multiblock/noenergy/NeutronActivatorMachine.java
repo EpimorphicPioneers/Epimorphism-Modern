@@ -2,13 +2,13 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy;
 
 import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
-import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.UniverUtil;
-import cn.gtcommunity.epimorphism.common.data.EPItems;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorMachine;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorMachine;
-import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
+import cn.gtcommunity.epimorphism.api.pattern.utils.containers.IValueContainer;
+import cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorPartMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorPartMachine;
+import cn.gtcommunity.epimorphism.common.recipe.NeutronEnergyCondition;
 import cn.gtcommunity.epimorphism.utils.EPLangUtil;
+import cn.gtcommunity.epimorphism.utils.EPUtil;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -58,9 +58,9 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     protected ConditionalSubscriptionHandler moderateSubs;
     protected ConditionalSubscriptionHandler absorptionSubs;
 
-    private Set<NeutronSensorMachine> sensorMachines;
+    private Set<NeutronSensorPartMachine> sensorMachines;
     private Set<ItemBusPartMachine> busMachines;
-    private Set<NeutronAcceleratorMachine> acceleratorMachines;
+    private Set<NeutronAcceleratorPartMachine> acceleratorMachines;
 
     private final static int MAX_ENERGY = 1200 * M;
 
@@ -85,6 +85,19 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
 
         Map<Long, IO> ioMap = getMultiblockState().getMatchContext().getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
         for (IMultiPart part : getParts()) {
+            if (part instanceof ItemBusPartMachine itemBusPartMachine) {
+                busMachines = EPUtil.getOrDefault(busMachines, HashSet::new);
+                busMachines.add(itemBusPartMachine);
+            }
+            if (part instanceof NeutronSensorPartMachine neutronSensorMachine) {
+                sensorMachines = EPUtil.getOrDefault(sensorMachines, HashSet::new);
+                sensorMachines.add(neutronSensorMachine);
+            }
+            if (part instanceof NeutronAcceleratorPartMachine neutronAccelerator) {
+                acceleratorMachines = EPUtil.getOrDefault(acceleratorMachines, HashSet::new);
+                acceleratorMachines.add(neutronAccelerator);
+            }
+
             IO io = ioMap.getOrDefault(part.self().getPos().asLong(), IO.BOTH);
             if (io == IO.NONE) continue;
             for (var handler : part.getRecipeHandlers()) {
@@ -101,19 +114,6 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
                         traitSubscriptions.add(handler.addChangedListener(absorptionSubs::updateSubscription));
                     }
                 }
-            }
-
-            if (part instanceof ItemBusPartMachine itemBusPartMachine) {
-                busMachines = UniverUtil.getOrDefault(busMachines, HashSet::new);
-                busMachines.add(itemBusPartMachine);
-            }
-            if (part instanceof NeutronSensorMachine neutronSensorMachine) {
-                sensorMachines = UniverUtil.getOrDefault(sensorMachines, HashSet::new);
-                sensorMachines.add(neutronSensorMachine);
-            }
-            if (part instanceof NeutronAcceleratorMachine neutronAccelerator) {
-                acceleratorMachines = UniverUtil.getOrDefault(acceleratorMachines, HashSet::new);
-                acceleratorMachines.add(neutronAccelerator);
             }
         }
 
@@ -146,14 +146,14 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var conditions = recipe.conditions.stream().filter(NeutronKineticEnergyCondition.class::isInstance).toArray(NeutronKineticEnergyCondition[]::new);
+        var conditions = recipe.conditions.stream().filter(NeutronEnergyCondition.class::isInstance).toArray(NeutronEnergyCondition[]::new);
         GTRecipe newRecipe = recipe.copy();
         newRecipe.duration = (int) Math.round(Math.max(newRecipe.duration * getVelocityFactor(), 1));
         if (conditions.length > 0) {
             var condition = conditions[0];
             if (eV > condition.getEvMax() || eV < condition.getEvMin()) {
                 newRecipe.outputs.clear();
-                newRecipe.outputs.put(ItemRecipeCapability.CAP, List.of(EPRecipeHelper.itemStack(EPItems.RADIOACTIVE_WASTE.asStack(), 1, 0)));
+                newRecipe.outputs.put(ItemRecipeCapability.CAP, List.of(EPRecipeHelper.itemStack(EPPhysicsItems.RADIOACTIVE_WASTE.asStack(), 1, 0)));
             }
         }
         return super.getRealRecipe(newRecipe);

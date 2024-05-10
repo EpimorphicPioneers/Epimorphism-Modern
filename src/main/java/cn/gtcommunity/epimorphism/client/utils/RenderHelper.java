@@ -8,8 +8,8 @@ package cn.gtcommunity.epimorphism.client.utils;
 
 import cn.gtcommunity.epimorphism.client.ClientUtil;
 import cn.gtcommunity.epimorphism.client.model.geometry.Model3D;
-import cn.gtcommunity.epimorphism.client.renderer.CubeRenderer;
-import cn.gtcommunity.epimorphism.utils.EPDirectionUtil;
+import cn.gtcommunity.epimorphism.client.renderer.handler.CubeRenderer;
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.lowdragmc.lowdraglib.client.renderer.IItemRendererProvider;
 import com.lowdragmc.lowdraglib.client.utils.RenderBufferUtils;
@@ -33,10 +33,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
@@ -104,7 +101,7 @@ public class RenderHelper {
 
         if (!useCached) {
             // Calculate surrounding brighness and split into block and sky light
-            for (Direction f : EPDirectionUtil.VALUES) {
+            for (Direction f : GTUtil.DIRECTIONS) {
                 int val = LevelRenderer.getLightColor(world, pos.relative(f));
                 neighbourBrightness[0][f.get3DDataValue()] = (val >> 16) & 255;
                 neighbourBrightness[1][f.get3DDataValue()] = val & 255;
@@ -185,9 +182,9 @@ public class RenderHelper {
         float green = 1;
         float blue = 1;
         if(color >= 0) {
-            red = (color >> 16 & 255) / 255F;
-            green = (color >> 8 & 255) / 255F;
-            blue = (color & 255) / 255F;
+            red = ColorHelper.ARGB32.red(color);
+            green = ColorHelper.ARGB32.green(color);
+            blue = ColorHelper.ARGB32.blue(color);
         }
         for(BakedQuad quad : quads)
             renderer.putBulkData(transform.last(), quad, red, green, blue, light, overlay);
@@ -210,24 +207,20 @@ public class RenderHelper {
         IItemRendererProvider.disabled.set(false);
     }
 
-    public static void renderStillFluidInWorld(Fluid fluid, PoseStack poseStack, Camera camera, BlockPos min, BlockPos max) {
+    public static void renderStillFluidInWorld(FluidStack fluid, Model3D model3D, PoseStack poseStack, MultiBufferSource bufferSource, Camera camera, int combinedLight, int combinedOverlay, CubeRenderer.FaceDisplay faceDisplay) {
         CubeRenderer.renderCube(
-                new Model3D().bounds(min.getX(), min.getY(), min.getZ(), max.getX() + 1, max.getY() + 1, max.getZ() + 1)
-                        .prepStill(FluidStack.create(Fluids.WATER, 1)), poseStack,
-                ClientUtil.mc().renderBuffers().bufferSource().getBuffer(Sheets.translucentCullBlockSheet()),
-                FluidHelper.getColor(FluidStack.create(fluid, 1)) | 0xff000000,
-                LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
-                CubeRenderer.FaceDisplay.BOTH, camera, null);
+                model3D.prepStill(fluid), poseStack,
+                bufferSource.getBuffer(Sheets.translucentCullBlockSheet()),
+                FluidHelper.getColor(fluid) | 0xff000000,
+                combinedLight, combinedOverlay, faceDisplay, camera, null);
     }
 
-    public static void renderFlowingFluidInWorld(Fluid fluid, PoseStack poseStack, Camera camera, BlockPos min, BlockPos max) {
+    public static void renderFlowingFluidInWorld(FluidStack fluid, Model3D model3D, PoseStack poseStack, MultiBufferSource bufferSource, Camera camera, int combinedLight, int combinedOverlay, CubeRenderer.FaceDisplay faceDisplay) {
         CubeRenderer.renderCube(
-                new Model3D().bounds(min.getX(), min.getY(), min.getZ(), max.getX() + 1, max.getY() + 1, max.getZ() + 1)
-                        .prepFlowing(FluidStack.create(Fluids.WATER, 1)), poseStack,
-                ClientUtil.mc().renderBuffers().bufferSource().getBuffer(Sheets.translucentCullBlockSheet()),
-                FluidHelper.getColor(FluidStack.create(fluid, 1)) | 0xff000000,
-                LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
-                CubeRenderer.FaceDisplay.BOTH, camera, null);
+                model3D.prepFlowing(fluid), poseStack,
+                bufferSource.getBuffer(Sheets.translucentCullBlockSheet()),
+                FluidHelper.getColor(fluid) | 0xff000000,
+                combinedLight, combinedOverlay, faceDisplay, camera, null);
     }
 
     private static int getLightValue(int[] neighbourBrightness, float[] normalizationFactors, int localBrightness, Vector3f normal) {

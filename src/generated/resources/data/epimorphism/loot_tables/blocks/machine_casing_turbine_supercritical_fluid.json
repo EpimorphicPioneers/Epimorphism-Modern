@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "epimorphism:machine_casing_turbine_supercritical_fluid"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "epimorphism:blocks/machine_casing_turbine_supercritical_fluid"
+}

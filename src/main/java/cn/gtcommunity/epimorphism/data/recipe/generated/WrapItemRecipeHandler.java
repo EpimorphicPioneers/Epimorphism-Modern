@@ -1,9 +1,8 @@
 package cn.gtcommunity.epimorphism.data.recipe.generated;
 
-import cn.gtcommunity.epimorphism.common.data.EPWrapItem;
+import cn.gtcommunity.epimorphism.common.data.items.EPWrapItem;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;

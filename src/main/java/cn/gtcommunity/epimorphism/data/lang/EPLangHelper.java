@@ -214,6 +214,19 @@ public class EPLangHelper {
         }
     }
 
+    public static void addTieredMachineName(LanguageProvider provider, String key, Function<Integer, String> cnNameGetter, int... tiers) {
+        addTieredMachineName(provider, tier -> GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + key, cnNameGetter, tiers);
+    }
+
+    public static void addTieredMachineName(LanguageProvider provider, Function<Integer, String> keyGetter, Function<Integer, String> cnNameGetter, int... tiers) {
+        for (int tier : tiers) {
+            var name = "block.%s.%s".formatted(Epimorphism.MOD_ID, keyGetter.apply(tier));
+            if (provider instanceof RegistrateCNLangProvider cnLangProvider) {
+                cnLangProvider.add(name, cnNameGetter.apply(tier));
+            }
+        }
+    }
+
     public static void addTieredMachineName(LanguageProvider provider, String key, String cnName, int... tiers) {
         for (int tier : tiers) {
             var name = "block.%s.%s".formatted(Epimorphism.MOD_ID, GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + key);
