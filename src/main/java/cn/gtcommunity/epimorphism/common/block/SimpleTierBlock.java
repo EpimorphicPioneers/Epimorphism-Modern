@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;

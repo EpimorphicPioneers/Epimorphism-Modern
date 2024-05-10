@@ -3,12 +3,13 @@ package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
 import com.gregtechceu.gtceu.api.block.ICoilType;
+import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import lombok.Getter;
 
-public interface ICoilMachine {
+public interface ICoilMachine extends IMachineFeature {
     int getCoilTier();
 
     ICoilType getCoilType();

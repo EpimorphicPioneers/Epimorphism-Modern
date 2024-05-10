@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/rod_quad_uranium_depleted"
+  }
+}

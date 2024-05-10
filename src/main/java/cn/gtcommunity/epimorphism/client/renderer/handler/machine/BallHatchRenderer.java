@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.part.BallHatchMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.part.BallHatchPartMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -41,7 +41,7 @@ public class BallHatchRenderer extends TieredHullMachineRenderer {
         super.renderMachine(quads, definition, machine, frontFacing, side, rand, modelFacing, modelState);
         if (side == frontFacing && modelFacing != null) {
             quads.add(FaceQuad.bakeFace(modelFacing, ModelFactory.getBlockSprite(BALL_HATCH_OVERLAY), modelState));
-            if (machine instanceof BallHatchMachine ballHatchMachine) {
+            if (machine instanceof BallHatchPartMachine ballHatchMachine) {
                 if (ballHatchMachine.isFormed()) {
                     if (ballHatchMachine.isWorking()) {
                         quads.add(FaceQuad.bakeFace(AABB, modelFacing, ModelFactory.getBlockSprite(SPINNING), modelState, 2, 0, true, true));

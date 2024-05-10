@@ -2,19 +2,25 @@ package cn.gtcommunity.epimorphism.common.block;
 
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class CasingBlock extends RendererBlock {
-    private final List<Component> tooltips = new ArrayList();
+    private final List<Component> tooltips = new ArrayList<>();
 
     public CasingBlock(BlockBehaviour.Properties properties, IRenderer renderer) {
         super(properties, renderer);
@@ -28,12 +34,11 @@ public class CasingBlock extends RendererBlock {
         this.tooltips.addAll(components);
     }
 
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter level, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         if (!this.tooltips.isEmpty()) {
             tooltip.addAll(this.tooltips);
         }
-
     }
 }
 

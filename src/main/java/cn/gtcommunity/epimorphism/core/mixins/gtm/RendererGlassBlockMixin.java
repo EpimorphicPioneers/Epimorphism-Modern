@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.core.mixins.gtm;
 
-import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.core.ITierBlockType;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;

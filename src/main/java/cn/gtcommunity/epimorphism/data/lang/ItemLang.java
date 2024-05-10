@@ -5,11 +5,11 @@ import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.Locale;
 
-import static cn.gtcommunity.epimorphism.common.data.EPAgricultureItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPBiologyItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPAgricultureItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPBiologyItems.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPPhysicsItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPWrapItem.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPWrapItem.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 
 public class ItemLang {
@@ -417,6 +417,10 @@ public class ItemLang {
                 "§7Laser irradiation should probably be used",
                 "§7或许应使用激光照射"
         );
+
+        add(provider, "item.epimorphism.reactor_component.desc.heat",
+                "§fHeat: §a%d / %d",
+                "§f热量: §a%d / %d");
 
         //////////////////////////////////////
         //*****    Agriculture Items   *****//

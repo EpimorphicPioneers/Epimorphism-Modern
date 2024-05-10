@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -441,6 +440,14 @@ public class EPMachineCasingMaterials {
                 .components(Gold, 1, Silver, 1, Platinum, 1, Palladium, 1, Ruthenium, 1, Rhodium, 1, Iridium, 1, Osmium, 1)
                 .blastTemp(10000, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UV], 1800)
                 .flags(GENERATE_PLATE)
+                .buildAndRegister();
+        //  Stellar Alloy
+        StellarAlloy = Builder("stellar_alloy")
+                .ingot()
+                .fluid()
+                .color(0xFFFFF0)
+                .iconSet(MaterialIconSet.BRIGHT)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME)
                 .buildAndRegister();
     }
 }

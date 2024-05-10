@@ -3,8 +3,10 @@ package cn.gtcommunity.epimorphism.common.data;
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import net.minecraft.Util;
 import net.minecraft.util.Tuple;
 
@@ -24,7 +26,11 @@ public class EPRecipeModifiers {
     public static Tuple<GTRecipe, Integer> EPParallel(MetaMachine machine, @Nonnull GTRecipe recipe, boolean modifyDuration) {
         if (machine instanceof IMultiController controller && controller.isFormed()) {
             if (machine instanceof IParallelMachine parallelMachine) {
-                return accurateParallel(machine, recipe, parallelMachine.getParallelNumber(), modifyDuration);
+                int parallel = parallelMachine.getParallelNumber();
+                if (machine instanceof WorkableElectricMultiblockMachine electricMachine) {
+                    parallel = (int) Math.min(parallel, Math.max(electricMachine.getMaxVoltage() / RecipeHelper.getInputEUt(recipe), 1));
+                }
+                return accurateParallel(machine, recipe, parallel, modifyDuration);
             }
         }
         return new Tuple<>(recipe, 1);

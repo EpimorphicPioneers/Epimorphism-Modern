@@ -1,21 +1,22 @@
 package cn.gtcommunity.epimorphism.api.eunetwork;
 
+import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.ChatFormatting;
 
 import javax.annotation.Nonnull;
 
 public enum AccessLevel {
-    OWNER(/*FluxTranslate.OWNER,*/ ChatFormatting.GOLD),
-    USER(/*FluxTranslate.USER, */ChatFormatting.BLUE),
-    BLOCKED(/*FluxTranslate.BLOCKED, */ChatFormatting.GRAY);
+    OWNER("eunetwork.owner", ChatFormatting.GOLD),
+    USER("eunetwork.user", ChatFormatting.BLUE),
+    BLOCKED("eunetwork.block", ChatFormatting.GRAY);
 
     private static final AccessLevel[] VALUES = values();
 
-//    private final FluxTranslate localization;
+    private final String translationKey;
     private final ChatFormatting formatting;
 
-    AccessLevel(/*FluxTranslate localization, */ChatFormatting formatting) {
-//        this.localization = localization;
+    AccessLevel(String translationKey, ChatFormatting formatting) {
+        this.translationKey = translationKey;
         this.formatting = formatting;
     }
 
@@ -28,10 +29,10 @@ public enum AccessLevel {
         return (byte) ordinal();
     }
 
-//    @Nonnull
-//    public String getFormattedName() {
-//        return formatting + localization.get();
-//    }
+    @Nonnull
+    public String getFormattedName() {
+        return formatting + LocalizationUtils.format(translationKey);
+    }
 
     public boolean canUse() {
         return this != BLOCKED;

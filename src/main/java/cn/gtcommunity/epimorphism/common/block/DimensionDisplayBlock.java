@@ -3,10 +3,12 @@ package cn.gtcommunity.epimorphism.common.block;
 import cn.gtcommunity.epimorphism.api.block.IDimensionDisplay;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import lombok.Getter;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class DimensionDisplayBlock extends RendererBlock {
-    private IDimensionDisplay display;
+    @Getter
+    private final IDimensionDisplay display;
 
     public DimensionDisplayBlock(BlockBehaviour.Properties properties, IRenderer renderer, IDimensionDisplay dimension) {
         super(properties, renderer);
@@ -21,11 +23,8 @@ public class DimensionDisplayBlock extends RendererBlock {
         return this.display.getDimension();
     }
 
-    public IDimensionDisplay getDisplay() {
-        return this.display;
-    }
 
-    public static enum Dimension implements IDimensionDisplay {
+    public enum Dimension implements IDimensionDisplay {
         OVERWORLD(0),
         THE_NETHER(0),
         THE_END(0),
@@ -68,9 +67,10 @@ public class DimensionDisplayBlock extends RendererBlock {
         NEPERI(9),
         DEEP_DARK(10);
 
+        @Getter
         private final int tier;
 
-        private Dimension(int tier) {
+        Dimension(int tier) {
             this.tier = tier;
         }
 
@@ -78,8 +78,5 @@ public class DimensionDisplayBlock extends RendererBlock {
             return this.name().toLowerCase();
         }
 
-        public int getTier() {
-            return this.tier;
-        }
     }
 }

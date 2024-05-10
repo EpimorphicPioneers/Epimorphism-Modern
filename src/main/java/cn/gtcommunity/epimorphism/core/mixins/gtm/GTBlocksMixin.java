@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.core.mixins.gtm;
 
-import cn.gtcommunity.epimorphism.api.structure.block.tier.WrappedTierType;
+import cn.gtcommunity.epimorphism.api.block.tier.WrappedTierType;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.Block;

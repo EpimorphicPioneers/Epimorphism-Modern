@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.core.mixins.gtm;
 
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
+import cn.gtcommunity.epimorphism.api.item.IRendererMetaInfo;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
