@@ -403,10 +403,6 @@ public class EPMaterials {
     public static Material NaquadahBasedLiquidFuel;
     public static Material NaquadahBasedLiquidFuelExcited;
     public static Material NaquadahBasedLiquidFuelDepleted;
-    public static Material AceticAnhydride;
-    public static Material HydrogenCyanide;
-    public static Material SodiumCyanide;
-    public static Material SodiumPerchlorate;
 
     //  Second Degree Materials
     public static Material DragonBreath;

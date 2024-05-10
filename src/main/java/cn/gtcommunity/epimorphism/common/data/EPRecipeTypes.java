@@ -287,31 +287,6 @@ public class EPRecipeTypes {
 
         GTRegistries.register(BuiltInRegistries.RECIPE_SERIALIZER, GTCEu.id("repair_recipe_serializer"), RepairRecipe.SERIALIZER);
     }
-    public final static GTRecipeType DRYER_RECIPES = register("dryer_recipes", MULTIBLOCK).setMaxIOSize(2, 9, 1, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType CVD_RECIPES = register("cvd_recipes", MULTIBLOCK).setMaxIOSize(2, 2, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType PLASMA_CVD_RECIPES = register("plasma_cvd_recipes", MULTIBLOCK).setMaxIOSize(2, 2, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType BURNER_REACTOR_RECIPES = register("burner_reactor_recipes", MULTIBLOCK).setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType CRYOGENIC_REACTOR_RECIPES = register("cryogenic_reactor_recipes", MULTIBLOCK).setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType DISSOLUTION_TANK_RECIPES = register("dissolution_tank_recipes", MULTIBLOCK).setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType ULTRAVIOLET_LAMP_CHAMBER_RECIPES = register("ultraviolet_lamp_chamber_recipes", MULTIBLOCK).setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public final static GTRecipeType VACUUM_CHAMBER_RECIPES = register("vacuum_chamber_recipes", MULTIBLOCK).setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressTexture.FillDirection.LEFT_TO_RIGHT);
-
-    public static void init() {/**/}
 
     private static GTRecipeType registerGeneralRecipeType(String name, String group, GTRecipeType recipe_1, GTRecipeType recipe_2, GTRecipeType recipe_3) {
         GTRecipeType recipeType = new GeneralRecipeType(GTCEu.id(name), group, recipe_1, recipe_2, recipe_3);

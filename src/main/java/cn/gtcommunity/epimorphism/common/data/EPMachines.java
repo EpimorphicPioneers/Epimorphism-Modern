@@ -24,24 +24,15 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTa
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.integration.EPIntegration;
 import cn.gtcommunity.epimorphism.utils.EPMathUtil;
-import cn.gtcommunity.epimorphism.config.EPConfigHolder;
-import cn.gtcommunity.epimorphism.utils.EPUniverUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
-import com.gregtechceu.gtceu.api.block.MaterialBlock;
-import com.gregtechceu.gtceu.api.capability.GTCapabilityHelper;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.*;
-import com.gregtechceu.gtceu.api.item.MaterialBlockItem;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -62,11 +53,8 @@ import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRende
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FluidDrillMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.LargeMinerMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.Platform;
-import com.gregtechceu.gtceu.utils.GTUtil;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import it.unimi.dsi.fastutil.ints.Int2LongFunction;
 import net.minecraft.ChatFormatting;
@@ -78,7 +66,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.phys.shapes.Shapes;
 import org.joml.Math;
 
 import java.util.*;
@@ -318,50 +305,6 @@ public class EPMachines {
     //////////////////////////////////////
 
     // Steam
-    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  1))
-            .langValue("Steam Piston Hammer")
-            .tooltipBuilder((itemStack, components) -> {
-                components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"));
-                if (GTUtil.isCtrlDown()) {
-                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.0"));
-                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.1"));
-                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.ctrl_desc.2"));
-                } /*else if(GTUtil.isShiftDown() {
-                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.1"));
-                components.add(Component.translatable("block.epimorphism.precise_assembler.desc.2"));
-                components.add(Component.translatable("epimorphism.shift_desc_extended_info"));
-            }*/ else {
-                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"));
-                    components.add(Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"));
-                    components.add(Component.translatable("epimorphism.ctrl_desc_extended_info"));
-                }
-            })
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK,GTRecipeModifiers.ELECTRIC_OVERCLOCK))
-            .appearanceBlock(CASING_BRONZE_BRICKS)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("AAA", " E ", "   ", "   ", "   ")
-                    .aisle("ABA", "E#E", "EBE", "ECE", "EDE")
-                    .aisle("AAA", " S ", "   ", "   ", "   ")
-                    .where('S', controller(blocks(definition.get())))
-                    .where('A', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(5)
-                            .or(autoAbilities(definition.getRecipeTypes()))
-                            .or(abilities(PartAbility.STEAM_IMPORT_ITEMS))
-                            .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
-                            .or(abilities(PartAbility.STEAM))
-                            .or(autoAbilities(false, false, false)))
-                    .where('B', blocks(ChemicalHelper.getBlock(block,Steel)))
-                    .where('C', blocks(Blocks.STICKY_PISTON))
-                    .where('D', abilities(PartAbility.STEAM))
-                    .where('E', blocks(CASING_BRONZE_BRICKS.get()))
-                    .where('#', air())
-                    .where(' ', any())
-                    .build())
-            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
-            .register();
-
     public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = EPRegistration.EP_REGISTRATE.multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
             .langValue("Steam Piston Hammer")
             .tooltips(
@@ -955,7 +898,7 @@ public class EPMachines {
                     Component.translatable("block.epimorphism.roaster.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(ROASTER_RECIPES)
+            .recipeType(DUMMY_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()

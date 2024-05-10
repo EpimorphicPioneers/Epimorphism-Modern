@@ -11,14 +11,14 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class EPAEMachines {
 
-    /*public final static MachineDefinition TANK_ACCESS_HATCH = EP_REGISTRATE.machine("tank_access_hatch", TankAccessHatchMachine::new)
-          .langValue("Tank Access Hatch")
-          .tier(UHV)
-          .rotationState(RotationState.ALL)
-          .abilities(EPPartAbility.TANK_ACCESS)
-          .overlayTieredHullRenderer("tank_access_hatch")
-          .tooltips(Component.translatable("block.epimorphism.tank_hatch.desc.0"))
-          .register();*/
+    public final static MachineDefinition TANK_ACCESS_HATCH = EP_REGISTRATE.machine("tank_access_hatch", TankAccessHatchMachine::new)
+            .langValue("Tank Access Hatch")
+            .tier(UHV)
+            .rotationState(RotationState.ALL)
+            .abilities(EPPartAbility.TANK_ACCESS)
+            .overlayTieredHullRenderer("tank_access_hatch")
+            .tooltips(Component.translatable("block.epimorphism.tank_hatch.desc.0"))
+            .register();
 
     public static void init() {
 
