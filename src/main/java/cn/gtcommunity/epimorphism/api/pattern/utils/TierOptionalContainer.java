@@ -1,6 +1,7 @@
-package cn.gtcommunity.epimorphism.api.pattern.utils.containers;
+package cn.gtcommunity.epimorphism.api.pattern.utils;
 
-import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import net.minecraft.world.level.block.Block;
 
@@ -12,7 +13,7 @@ public class TierOptionalContainer implements IValueContainer<Integer> {
     @Override
     public void operate(Block block, Object data) {
         if (data instanceof Integer index) {
-            if (!EPUtil.getStatusType(record, tier)) {
+            if (!MOUtils.getStatusType(record, tier)) {
                 tier++;
             }
             record |= 1 << (index - 1);

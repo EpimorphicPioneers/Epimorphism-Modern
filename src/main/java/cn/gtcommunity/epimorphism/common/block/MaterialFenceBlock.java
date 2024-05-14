@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.IMaterialBlock;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
 import cn.gtcommunity.epimorphism.client.renderer.handler.block.FenceBlockRenderer;
+import com.epimorphismmc.monomorphism.block.IMaterialBlock;
 import com.gregtechceu.gtceu.api.block.IAppearance;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;

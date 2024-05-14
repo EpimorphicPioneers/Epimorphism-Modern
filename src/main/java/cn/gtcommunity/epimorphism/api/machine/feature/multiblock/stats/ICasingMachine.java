@@ -1,8 +1,8 @@
-package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier;
+package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats;
 
-import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.machine.trait.MultiblockStats;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;

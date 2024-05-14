@@ -1,5 +1,5 @@
 {
-  "loader": "epimorphism:item_custom_layers",
+  "loader": "monomorphism:item_custom_layers",
   "gui_light": "front",
   "textures": {
     "layer1": "#layer0",

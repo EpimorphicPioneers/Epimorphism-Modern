@@ -6,15 +6,17 @@ import cn.gtcommunity.epimorphism.api.block.tier.IFluidTankCell;
 import cn.gtcommunity.epimorphism.api.block.tier.IStorageFieldBlock;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
-import cn.gtcommunity.epimorphism.api.item.EPMaterialBlockItem;
 import cn.gtcommunity.epimorphism.common.registry.EPRegistration;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.client.renderer.handler.block.PlanetDisplayRenderer;
 import cn.gtcommunity.epimorphism.common.block.*;
 import cn.gtcommunity.epimorphism.common.block.MaterialFenceBlock;
 import cn.gtcommunity.epimorphism.common.data.items.EPAgricultureItems;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
 import cn.gtcommunity.epimorphism.data.lang.EPLangHelper;
+import com.epimorphismmc.monomorphism.block.CasingBlock;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.block.tier.SimpleTierBlock;
+import com.epimorphismmc.monomorphism.item.MOMaterialBlockItem;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.GTCEu;
@@ -158,9 +160,9 @@ public class EPBlocks {
                 .setData(ProviderType.LANG, NonNullBiConsumer.noop())
                 .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
                 .color(() -> MaterialFenceBlock::tintedColor)
-                .item(EPMaterialBlockItem::create)
+                .item(MOMaterialBlockItem::create)
                 .model(NonNullBiConsumer.noop())
-                .color(() -> EPMaterialBlockItem::tintColor)
+                .color(() -> MOMaterialBlockItem::tintColor)
                 .build()
                 .register();
         FENCE_BLOCKS_BUILDER.put(EPTagPrefix.fence, material, entry);
@@ -418,31 +420,6 @@ public class EPBlocks {
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);
     }
-
-    public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
-            .block("fertilized_dirt", FertilizedDirtBlock::new)
-            .initialProperties(() -> Blocks.DIRT)
-            .lang("Fertilized Dirt")
-            .tag(BlockTags.DIRT)
-            .properties(BlockBehaviour.Properties::randomTicks)
-            .item()
-            .tag(ItemTags.DIRT)
-            .build()
-            .register();
-
-    public static BlockEntry<FertilizedFarmlandBlock> FERTILIZED_FARMLAND = EP_REGISTRATE
-            .block("fertilized_farmland", FertilizedFarmlandBlock::new)
-            .initialProperties(() -> Blocks.FARMLAND)
-            .lang("Fertilized Farmland")
-            .blockstate((ctx, prov) -> GTModels.createModelBlockState(ctx, prov, Epimorphism.id("block/fertilized_farmland")))
-            .loot((table, block) -> table.add(block, LootTable.lootTable()
-                    .withPool(table.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)))
-                            .add(LootItem.lootTableItem(EPBlocks.FERTILIZED_DIRT.asItem())))))
-            .tag(BlockTags.BIG_DRIPLEAF_PLACEABLE)
-            .addLayer(() -> RenderType::cutout)
-            .item()
-            .build()
-            .register();
 
     public static final BlockEntry<SaplingBlock> PINE_SAPLING = EP_REGISTRATE.block("pine_sapling", properties -> new SaplingBlock(new AbstractTreeGrower() {
                 protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource random, boolean largeHive) {

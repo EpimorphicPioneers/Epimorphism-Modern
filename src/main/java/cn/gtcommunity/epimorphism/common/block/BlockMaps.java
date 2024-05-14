@@ -1,11 +1,10 @@
 package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.api.block.tier.IChemicalPlantCasing;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.api.block.tier.WrappedTierType;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.ForestryGreenhouseMachine;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.block.tier.WrappedTierType;
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -36,7 +35,6 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_CP_TUBES = new Object2ObjectOpenHashMap<>();
 
     // Precise Assembler
-    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> PA_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_PA_CASINGS = new Object2ObjectOpenHashMap<>();
 
     // Eye of Harmony
@@ -48,14 +46,10 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_ELEVATOR_MOTORS = new Object2ObjectOpenHashMap<>();
 
     // Univer
-    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_MACHINE_CASINGS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FIREBOXS = new Object2ObjectOpenHashMap<>();
-    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_COIL_BLOCKS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<String, Supplier<Block>> ALL_DIM_DISPLAY_BLOCKS = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
-        //  ALL_COILS Init
-        GTBlocks.ALL_COILS.forEach((tier, block) -> ALL_COIL_BLOCKS.put((ITierType) tier, block::get));
 
         //  ALL_CP_TUBES Init
         simpleTierTypeAdd(ALL_CP_TUBES, CASING_BRONZE_PIPE, 1);

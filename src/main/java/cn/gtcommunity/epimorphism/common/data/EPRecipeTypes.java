@@ -3,7 +3,6 @@ package cn.gtcommunity.epimorphism.common.data;
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.gui.utils.EPWidgetUtil;
 import cn.gtcommunity.epimorphism.api.recipe.GeneralRecipeType;
-import cn.gtcommunity.epimorphism.api.recipe.RepairRecipe;
 import cn.gtcommunity.epimorphism.api.recipe.SlotNames;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.block.ICoilType;

@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.core.mixins.mc;
 
 import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.core.ITierBlockType;
+import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.gregtechceu.gtceu.utils.GTUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.List;
 
 @Mixin({GlassBlock.class, StainedGlassBlock.class, TintedGlassBlock.class})
-public abstract class BlockGlassMixin extends AbstractGlassBlock implements ITierBlockType {
+public abstract class BlockGlassMixin extends AbstractGlassBlock implements ITierBlock {
     public ITierGlassType glassType;
 
     protected BlockGlassMixin(Properties properties) {
@@ -27,7 +27,7 @@ public abstract class BlockGlassMixin extends AbstractGlassBlock implements ITie
     }
 
     @Override
-    public void setType(ITierType type) {
+    public void setTierType(ITierType type) {
         this.glassType = (ITierGlassType) type;
     }
 

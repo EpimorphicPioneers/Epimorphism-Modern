@@ -1,6 +1,8 @@
 package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.common.blockentity.EOHBlockEntity;
+import com.epimorphismmc.monomorphism.block.MOEntityBlockBase;
+import com.epimorphismmc.monomorphism.block.property.MOPropertyConfiguration;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -19,14 +21,21 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import java.util.function.BiFunction;
+
 import static cn.gtcommunity.epimorphism.common.data.EPBlockEntities.*;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.EOH_RENDERER_BLOCK;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class EOHRendererBlock extends Block implements EntityBlock {
+public class EOHRendererBlock extends MOEntityBlockBase<EOHBlockEntity> {
     public EOHRendererBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected MOPropertyConfiguration getPropertyConfiguration() {
+        return null;
     }
 
 //    @Override
@@ -45,17 +54,10 @@ public class EOHRendererBlock extends Block implements EntityBlock {
         return EOH_BLOCK_ENTITY.create(pos, state);
     }
 
-    @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide && blockEntityType == EOH_BLOCK_ENTITY.get()) {
-            return (pLevel, pPos, pState, pTile) -> {
-                if (pTile instanceof EOHBlockEntity blockEntity) {
-                    blockEntity.clientTick();
-                }
-            };
-        }
+    public BiFunction<BlockPos, BlockState, EOHBlockEntity> getTileEntityFactory() {
         return null;
     }
+
 
 }

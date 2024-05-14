@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture;
 
 import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.CustomModeFancyConfigurator;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.common.machine.trait.FishingPondRecipeLogic;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

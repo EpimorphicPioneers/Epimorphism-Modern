@@ -2,8 +2,9 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.generator;
 
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.IReinforcedRotorHolder;
-import cn.gtcommunity.epimorphism.utils.EPTransferUtil;
 import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -94,7 +95,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
         Map<Long, IO> ioMap = getMultiblockState().getMatchContext().getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
         for (IMultiPart part : getParts()) {
             if (part instanceof IReinforcedRotorHolder rotorHolder) {
-                rotorHolders = EPUtil.getOrDefault(rotorHolders, HashSet::new);
+                rotorHolders = MOUtils.getOrDefault(rotorHolders, HashSet::new);
                 rotorHolders.add(rotorHolder);
                 tier = Math.min(tier, rotorHolder.getTier());
             }
@@ -301,7 +302,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
 
                 for (IReinforcedRotorHolder holder : rotorHolders) {
                     if (!holder.hasRotor()) {
-                        var stack = EPTransferUtil.extractItemAccountNotifiableList(inputBuses, index, 1, false);
+                        var stack = MOTransferUtils.extractItemAccountNotifiableList(inputBuses, index, 1, false);
                         holder.setRotorStack(stack);
                         break;
                     }

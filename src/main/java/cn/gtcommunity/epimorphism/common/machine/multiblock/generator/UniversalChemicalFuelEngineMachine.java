@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.generator;
 
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.common.data.EPMaterials;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeTypes;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
-import cn.gtcommunity.epimorphism.utils.EPTransferUtil;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
+import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -41,12 +41,12 @@ public class UniversalChemicalFuelEngineMachine extends WorkableElectricMultiblo
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var list = EPRecipeHelper.getInputFluid(recipe);
+        var list = MORecipeHelper.getInputFluid(recipe);
         if (list.isEmpty()) return recipe;
 
         var inputFluid = list.get(0);
-        var fuel = EPTransferUtil.drainFluid(getCapabilitiesProxy(), inputFluid.copy(Long.MAX_VALUE), true);
-        var promoter = EPTransferUtil.drainFluid(getCapabilitiesProxy(), EPMaterials.CombustionPromoter.getFluid(Long.MAX_VALUE), true);
+        var fuel = MOTransferUtils.drainFluid(getCapabilitiesProxy(), inputFluid.copy(Long.MAX_VALUE), true);
+        var promoter = MOTransferUtils.drainFluid(getCapabilitiesProxy(), EPMaterials.CombustionPromoter.getFluid(Long.MAX_VALUE), true);
 
         if (fuel.isEmpty()) return recipe;
         GTRecipe copied = recipe.copy(ContentModifier.multiplier((double) fuel.getAmount() / inputFluid.getAmount()), false);
@@ -59,7 +59,7 @@ public class UniversalChemicalFuelEngineMachine extends WorkableElectricMultiblo
 
         double efficiency = 1.5 * Math.pow(Math.E, -factor * ((double) fuel.getAmount() / promoter.getAmount()));
         RecipeHelper.setOutputEUt(copied, (long) (RecipeHelper.getOutputEUt(copied) * efficiency / 20));
-        copied.getInputContents(FluidRecipeCapability.CAP).add(EPRecipeHelper.fluidStack(promoter, 1, 0));
+        copied.getInputContents(FluidRecipeCapability.CAP).add(MORecipeHelper.fluidContent(promoter, 1, 0));
         this.efficiency = efficiency;
         return copied;
     }
@@ -95,7 +95,7 @@ public class UniversalChemicalFuelEngineMachine extends WorkableElectricMultiblo
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
-            textList.add(Component.translatable("block.epimorphism.universal_chemical_fuel_engine.efficiency", EPLangUtil.DECIMAL_FORMAT_1F.format(efficiency * 100)));
+            textList.add(Component.translatable("block.epimorphism.universal_chemical_fuel_engine.efficiency", MOFormattingUtils.DECIMAL_FORMAT_1F.format(efficiency * 100)));
         }
     }
 

@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.IParallelMachine;
+import com.epimorphismmc.monomorphism.machine.feature.multiblock.stats.IParallelMachine;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;

@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;

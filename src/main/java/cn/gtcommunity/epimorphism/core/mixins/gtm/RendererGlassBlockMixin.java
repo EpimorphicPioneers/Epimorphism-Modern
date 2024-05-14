@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.core.mixins.gtm;
 
 import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.core.ITierBlockType;
+import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.utils.GTUtil;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.List;
 
 @Mixin(value = RendererGlassBlock.class, remap = false)
-public abstract class RendererGlassBlockMixin extends RendererBlock implements ITierBlockType {
+public abstract class RendererGlassBlockMixin extends RendererBlock implements ITierBlock {
 
     public ITierGlassType glassType;
 
@@ -27,7 +27,7 @@ public abstract class RendererGlassBlockMixin extends RendererBlock implements I
     }
 
     @Override
-    public void setType(ITierType type) {
+    public void setTierType(ITierType type) {
         this.glassType = (ITierGlassType) type;
     }
 

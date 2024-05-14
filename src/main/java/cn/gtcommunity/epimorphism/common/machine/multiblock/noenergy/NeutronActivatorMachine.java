@@ -1,14 +1,15 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy;
 
-import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
-import cn.gtcommunity.epimorphism.api.pattern.utils.containers.IValueContainer;
 import cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorPartMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorPartMachine;
 import cn.gtcommunity.epimorphism.common.recipe.NeutronEnergyCondition;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
 import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.machine.multiblock.NoEnergyMultiblockMachine;
+import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -37,8 +38,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -86,15 +85,15 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
         Map<Long, IO> ioMap = getMultiblockState().getMatchContext().getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
         for (IMultiPart part : getParts()) {
             if (part instanceof ItemBusPartMachine itemBusPartMachine) {
-                busMachines = EPUtil.getOrDefault(busMachines, HashSet::new);
+                busMachines = MOUtils.getOrDefault(busMachines, HashSet::new);
                 busMachines.add(itemBusPartMachine);
             }
             if (part instanceof NeutronSensorPartMachine neutronSensorMachine) {
-                sensorMachines = EPUtil.getOrDefault(sensorMachines, HashSet::new);
+                sensorMachines = MOUtils.getOrDefault(sensorMachines, HashSet::new);
                 sensorMachines.add(neutronSensorMachine);
             }
             if (part instanceof NeutronAcceleratorPartMachine neutronAccelerator) {
-                acceleratorMachines = EPUtil.getOrDefault(acceleratorMachines, HashSet::new);
+                acceleratorMachines = MOUtils.getOrDefault(acceleratorMachines, HashSet::new);
                 acceleratorMachines.add(neutronAccelerator);
             }
 
@@ -153,7 +152,7 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
             var condition = conditions[0];
             if (eV > condition.getEvMax() || eV < condition.getEvMin()) {
                 newRecipe.outputs.clear();
-                newRecipe.outputs.put(ItemRecipeCapability.CAP, List.of(EPRecipeHelper.itemStack(EPPhysicsItems.RADIOACTIVE_WASTE.asStack(), 1, 0)));
+                newRecipe.outputs.put(ItemRecipeCapability.CAP, List.of(MORecipeHelper.itemContent(EPPhysicsItems.RADIOACTIVE_WASTE.asStack(), 1, 0)));
             }
         }
         return super.getRealRecipe(newRecipe);
@@ -232,7 +231,7 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
     }
 
     private String processNumber(int num) {
-        return EPLangUtil.abbreviate1F(num).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
+        return MOFormattingUtils.abbreviate1F(num).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
     }
 
     //////////////////////////////////////

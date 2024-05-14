@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
-import cn.gtcommunity.epimorphism.core.ITierBlockType;
+import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
@@ -15,11 +15,11 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class TierGlassBlock extends RendererGlassBlock implements ITierBlockType {
+public class TierGlassBlock extends RendererGlassBlock implements ITierBlock {
 
     public TierGlassBlock(Properties properties, IRenderer renderer, ITierGlassType glassType) {
         super(properties, renderer);
-        setType(glassType);
+        setTierType(glassType);
     }
 
     @Override

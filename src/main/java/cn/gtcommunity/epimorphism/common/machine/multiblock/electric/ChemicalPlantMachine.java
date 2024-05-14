@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
 import cn.gtcommunity.epimorphism.api.block.tier.IChemicalPlantCasing;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelElectricMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
-import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -71,13 +71,13 @@ public class ChemicalPlantMachine extends ParallelElectricMultiblockMachine {
         Object casingTier = context.get("CPCasing");
         Object tubeTier = context.get("CPPipe");
         Object voltageTier = context.get("MachineCasing");
-        this.coilLevel = EPUtil.getOrDefault(() -> coilType instanceof ICoilType,
+        this.coilLevel = MOUtils.getOrDefault(() -> coilType instanceof ICoilType,
                 () -> ((ICoilType) coilType).getTier(), 0);
-        this.tubeTier = EPUtil.getOrDefault(() -> tubeTier instanceof ITierType,
+        this.tubeTier = MOUtils.getOrDefault(() -> tubeTier instanceof ITierType,
                 () -> ((ITierType) tubeTier).tier(), 0);
-        this.voltageTier = EPUtil.getOrDefault(() -> voltageTier instanceof ITierType,
+        this.voltageTier = MOUtils.getOrDefault(() -> voltageTier instanceof ITierType,
                 () -> ((ITierType) voltageTier).tier(), 0);
-        this.casingTier = EPUtil.getOrDefault(() -> casingTier instanceof IChemicalPlantCasing,
+        this.casingTier = MOUtils.getOrDefault(() -> casingTier instanceof IChemicalPlantCasing,
                 () -> ((IChemicalPlantCasing) casingTier).tier(), 0);
     }
 

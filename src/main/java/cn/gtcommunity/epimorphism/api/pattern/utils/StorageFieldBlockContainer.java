@@ -1,6 +1,7 @@
-package cn.gtcommunity.epimorphism.api.pattern.utils.containers;
+package cn.gtcommunity.epimorphism.api.pattern.utils;
 
 import cn.gtcommunity.epimorphism.api.block.tier.IStorageFieldBlock;
+import com.epimorphismmc.monomorphism.pattern.utils.containers.SimpleValueContainer;
 import lombok.Getter;
 import net.minecraft.world.level.block.Block;
 

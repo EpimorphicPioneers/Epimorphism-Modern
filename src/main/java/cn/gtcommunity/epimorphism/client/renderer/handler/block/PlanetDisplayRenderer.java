@@ -1,14 +1,11 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.block;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.client.ClientUtil;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.gregtechceu.gtceu.client.model.SpriteOverrider;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.mojang.blaze3d.vertex.PoseStack;
-
-import java.util.Map;
-
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Font.DisplayMode;
 import net.minecraft.client.renderer.LightTexture;
@@ -25,6 +22,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
 
 public class PlanetDisplayRenderer extends TextureOverrideRenderer {
     private final int tier;
@@ -63,7 +62,7 @@ public class PlanetDisplayRenderer extends TextureOverrideRenderer {
     public void renderItem(ItemStack stack, ItemDisplayContext transformType, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model) {
         super.renderItem(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
         if (transformType == ItemDisplayContext.GUI) {
-            Font fontRender = ClientUtil.font();
+            Font fontRender = RenderHelper.getFontRenderer();
             float smallTextScale = 0.75F;
             String subscript = "T" + this.tier;
 

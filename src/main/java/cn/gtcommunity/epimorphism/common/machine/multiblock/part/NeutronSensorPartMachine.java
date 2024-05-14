@@ -24,8 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.K;
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.clamp;
+import static com.epimorphismmc.monomorphism.utility.MOMathUtils.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

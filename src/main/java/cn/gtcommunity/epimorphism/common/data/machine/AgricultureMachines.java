@@ -2,9 +2,6 @@ package cn.gtcommunity.epimorphism.common.data.machine;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
-import cn.gtcommunity.epimorphism.api.pattern.EnhanceBlockPattern;
-import cn.gtcommunity.epimorphism.api.pattern.FactoryEnhancePattern;
-import cn.gtcommunity.epimorphism.api.pattern.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.ForestryGreenhouseMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.IndustrialFishingPondMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.IndustrialGreenhouseMachine;
@@ -24,9 +21,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static cn.gtcommunity.epimorphism.api.pattern.EPPredicates.machineCasingBlock;
 import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
-import static cn.gtcommunity.epimorphism.common.block.BlockMaps.ALL_MACHINE_CASINGS;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
@@ -65,26 +60,6 @@ public class AgricultureMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("AIBGH", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-//                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-//                        .aisle("AAAAA", "ADFDA", "C   C", "C   C", "AEEEA", "AAAAA")
-//                        .aisle("AAAAA", "ADDDA", "C   C", "C   C", "AEEEA", "AAAAA")
-//                        .aisle("AAJKA", "AAAAA", "CCCCC", "CCCCC", "AAAAA", "AAAAA")
-//                        .where('B', definition, Direction.NORTH)
-//                        .where('A', CASING_STAINLESS_CLEAN.get())
-//                        .where('D', FERTILIZED_FARMLAND.get())
-//                        .where('E', CASING_LAMINATED_GLASS.get())
-//                        .where('F', Blocks.WATER.defaultBlockState())
-//                        .where('G', GTMachines.FLUID_IMPORT_HATCH[ULV], Direction.NORTH)
-//                        .where('H', GTMachines.ITEM_IMPORT_BUS[ULV], Direction.NORTH)
-//                        .where('I', GTMachines.ITEM_EXPORT_BUS[ULV], Direction.NORTH)
-//                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-//                        .where('K', GTMachines.ENERGY_INPUT_HATCH[IV], Direction.SOUTH);
-//                BlockMaps.SHAPE_GLASSES.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .forEach(blockSupplier -> shapeInfo.add(builder.where('C', blockSupplier.get()).build()));
                 shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size()));
                 return shapeInfos;
             })
@@ -153,24 +128,6 @@ public class AgricultureMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("CCCISECCC", "CCCCCCCCC", "CCCCCCCCC")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CMMMMMMMC", "C#######C", "C#######C")
-//                        .aisle("CCCCCCCCC", "CCCCCCCCC", "CCCCCCCCC")
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('C', FARM_CASING.getDefaultState())
-//                        .where('I', FLUID_IMPORT_HATCH[4], Direction.NORTH)
-//                        .where('E', ITEM_EXPORT_BUS[4], Direction.NORTH)
-//                        .where('#', AIR.defaultBlockState());
-//                ALL_MACHINE_CASINGS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .forEach(entry -> shapeInfo.add(builder.shallowCopy().where('M', entry.getValue().get()).build()));
                 shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), ALL_MACHINE_CASINGS.size()));
                 return shapeInfos;
             })

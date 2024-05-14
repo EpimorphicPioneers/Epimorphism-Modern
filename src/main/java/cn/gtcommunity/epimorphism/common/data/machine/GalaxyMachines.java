@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.common.data.machine;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.api.pattern.EnhanceBlockPattern;
-import cn.gtcommunity.epimorphism.api.pattern.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.galaxy.SpaceElevatorMachine;
+import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
@@ -26,8 +26,8 @@ public class GalaxyMachines {
             .pattern(StructureUtil::emptyPattern)
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) SpaceElevatorMachine.getBlockPattern(0, definition), BlockMaps.ALL_ELEVATOR_MOTORS.size()));
-                shapeInfos.addAll(StructureUtil.getTierMatchingShapes((EnhanceBlockPattern) SpaceElevatorMachine.getBlockPattern(1, definition), BlockMaps.ALL_ELEVATOR_MOTORS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) SpaceElevatorMachine.getBlockPattern(0, definition), BlockMaps.ALL_ELEVATOR_MOTORS.size()));
+                shapeInfos.addAll(StructureUtil.getTierMatchingShapes((MOBlockPattern) SpaceElevatorMachine.getBlockPattern(1, definition), BlockMaps.ALL_ELEVATOR_MOTORS.size()));
                 return shapeInfos;
             })
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/aerospace_casing"),

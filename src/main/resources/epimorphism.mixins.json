@@ -5,37 +5,17 @@
   "plugin": "cn.gtcommunity.epimorphism.core.mixins.EPMixinPlugin",
   "minVersion": "0.8",
   "client": [
-    "accessors.client.FontResourceManagerAccessor",
-    "accessors.client.ItemModelGeneratorAccessor",
-    "accessors.client.LevelRendererAccessor",
-    "accessors.client.MinecraftAccessor",
     "accessors.client.MultiPlayerGameModeAccessor",
-    "mc.ModelManagerMixin",
-    "shimmer.ForgePlatformHelperMixin"
+    "mc.ModelManagerMixin"
   ],
   "mixins": [
-    "accessors.BlockEntityBuilderAccessor",
     "accessors.BlockLootSubProviderAccessor",
     "accessors.BlockModelGeneratorsAccessor",
     "accessors.GTRecipeTypeAccessor",
-    "accessors.ShapedRecipeAccessor",
-    "accessors.ShapelessRecipeAccessor",
-    "accessors.TagPrefixAccessor",
-    "accessors.TagTypeAccessor",
-    "gtm.ComponentItemMixin",
-    "gtm.GTBlocksMixin",
-    "gtm.GTOreVeinWidgetMixin",
     "gtm.GTRecipeBuilderMixin",
-    "gtm.ICoilTypeMixin",
-    "gtm.IMaterialPartItemMixin",
     "gtm.MetaTileEntityLoaderMixin",
     "gtm.RendererGlassBlockMixin",
-    "gtm.TagPrefixItemMixin",
-    "mc.BlockGlassMixin",
-    "mc.CactusBlockMixin",
-    "mc.FeatureMixin",
-    "mc.SugarCaneBlockMixin",
-    "mc.TrunkPlacerMixin"
+    "mc.BlockGlassMixin"
   ],
   "injectors": {
     "defaultRequire": 1

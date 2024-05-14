@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism;
 
-import cn.gtcommunity.epimorphism.api.EPAPI;
 import cn.gtcommunity.epimorphism.client.ClientProxy;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
@@ -19,7 +18,6 @@ public class Epimorphism {
     public static CommonProxy proxy;
 
     public Epimorphism () {
-        EPAPI.instance = this;
         proxy = DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
 

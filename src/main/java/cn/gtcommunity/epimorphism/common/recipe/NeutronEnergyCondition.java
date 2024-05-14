@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.recipe;
 
 import cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy.NeutronActivatorMachine;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -37,8 +37,8 @@ public class NeutronEnergyCondition extends RecipeCondition {
 
     @Override
     public Component getTooltips() {
-        String max = EPLangUtil.abbreviate0F(evMax).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
-        String min = EPLangUtil.abbreviate0F(evMin).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
+        String max = MOFormattingUtils.abbreviate0F(evMax).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
+        String min = MOFormattingUtils.abbreviate0F(evMin).replaceAll("(\\d)([a-zA-Z])", "$1 $2");
         return Component.translatable("recipe.condition.neutron_kinetic_energy.desc", min, max);
     }
 

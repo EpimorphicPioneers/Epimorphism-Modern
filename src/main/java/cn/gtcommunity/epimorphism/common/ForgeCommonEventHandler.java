@@ -7,7 +7,7 @@ import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.network.EPNetworking;
 import cn.gtcommunity.epimorphism.network.s2c.PacketVajraDestroy;
 import cn.gtcommunity.epimorphism.utils.EPBlockUtil;
-import cn.gtcommunity.epimorphism.utils.EPTransferUtil;
+import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
 import com.google.common.collect.ImmutableMap;
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -39,7 +39,7 @@ public class ForgeCommonEventHandler {
                     var list = EPBlockUtil.getBlockDrops((ServerLevel) level, pos, player, ImmutableMap.of(Enchantments.BLOCK_FORTUNE, 5));
                     if (level.destroyBlock(pos, false)) {
                         VajraItem.discharge(event.getItemStack());
-                        EPTransferUtil.fillPlayerInventory(player, list);
+                        MOTransferUtils.fillPlayerInventory(player, list);
                         EPNetworking.NETWORK.sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
                     }
                 }

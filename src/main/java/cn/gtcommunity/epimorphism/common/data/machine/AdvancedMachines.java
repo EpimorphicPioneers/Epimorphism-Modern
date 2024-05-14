@@ -2,22 +2,21 @@ package cn.gtcommunity.epimorphism.common.data.machine;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilCasingMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassCoilMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
-import cn.gtcommunity.epimorphism.api.pattern.EnhanceBlockPattern;
-import cn.gtcommunity.epimorphism.api.pattern.FactoryEnhancePattern;
-import cn.gtcommunity.epimorphism.api.pattern.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.CustomPartRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ProcessingArrayRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.TierCasingMachineRenderer;
-import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.data.EPMachines;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeModifiers;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.*;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
+import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.pattern.MOPredicates;
+import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -51,6 +50,8 @@ import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
+import static com.epimorphismmc.monomorphism.block.MOBlockMaps.*;
+import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
@@ -104,7 +105,7 @@ public class AdvancedMachines {
             .rotationState(RotationState.ALL)
             .recipeType(COMPONENT_ASSEMBLY_LINE_RECIPES)
             .appearanceBlock(IRIDIUM_CASING)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("HHHHHHHHH", "H  KKK  H", "H       H", "H       H", "H       H", "H       H", "HH     HH", " HHHHHHH ", "         ", "         ")
                     .aisle("MHHHHHHHM", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " ELHHHLE ", "         ")
                     .aisle("MHHHHHHHM", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EL   LE ", "   HBH   ")
@@ -176,59 +177,7 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("HHHHHHHHH", "H  N N  H", "H  XXX  H", "H  JJJ  H", "H       H", "H       H", "HH HIH HH", " HHH~HHH ", "   HHH   ", "         ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " ELHHHLE ", "         ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("QHHHHHHHP", "HG     GH", "HG HHH GH", "HG     GH", "HG     GH", "HG  C  GH", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "AG     GA", "AG HHH GA", "AG     GA", "AG     GA", "AG  C  GA", "HGG D GGH", "E GGDGG E", " EH   HE ", "   BBB   ")
-//                        .aisle("HHHHHHHHH", "A  N N  A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A D   D A", "AC     CA", "AC     CA", "HC     CH", "E       E", " EH   HE ", "   HBH   ")
-//                        .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EHHHHHE ", "         ")
-//                        .aisle("HHHHHHHHH", "H  HKH  H", "H       H", "H       H", "H       H", "H       H", "HH     HH", " HHHHHHH ", "         ", "         ")
-//                        .where('~', definition, Direction.NORTH)
-//                        .where('A', OSMIR_BORON_SILICATE_GLASS.get())
-//                        .where('H', IRIDIUM_CASING.get())
-//                        .where('C', CASING_ASSEMBLY_LINE.get())
-//                        .where('D', ChemicalHelper.getBlock(frameGt, MARM200Steel))
-//                        .where('G', CASING_POLYBENZIMIDAZOLE_PIPE.get())
-//                        .where('E', ADVANCED_FILTER_CASING.get())
-//                        .where('J', GTMachines.ITEM_IMPORT_BUS[4], Direction.NORTH)
-//                        .where('X', GTMachines.FLUID_IMPORT_HATCH[4], Direction.NORTH)
-//                        .where('N', ChemicalHelper.getBlock(frameGt, GTMaterials.TungstenSteel))
-//                        .where('K', GTMachines.ITEM_EXPORT_BUS[4], Direction.SOUTH)
-//                        .where('L', GTMachines.ENERGY_INPUT_HATCH[5], Direction.NORTH)
-//                        .where('I', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
-//                        .where('Q', GTMachines.ITEM_IMPORT_BUS[4], Direction.WEST)
-//                        .where('P', GTMachines.FLUID_IMPORT_HATCH[4], Direction.EAST);
-//                BlockMaps.ALL_CA_TIRED_CASINGS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .forEach(entry -> shapeInfo.add(builder.where('B', entry.getValue()).build()));
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), ALL_CA_TIRED_CASINGS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_CA_TIRED_CASINGS.size()));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -247,7 +196,7 @@ public class AdvancedMachines {
             .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("DDDDDDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
                     .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "DDDDDDDDD")
                     .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "DDDDDDDDD")
@@ -260,47 +209,13 @@ public class AdvancedMachines {
                             .or(autoAbilities(true, true, false)))
                     .where('F', frames(MARM200Steel))
                     .where('G', blocks(CASING_LAMINATED_GLASS.get()))
-                    .where('M', EPPredicates.machineCasingBlock())
+                    .where('M', MOPredicates.machineCasingBlock())
                     .build()
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("ETCCCCCCC", "F       F", "F       F", "F       F", "XYZCCCCCC")
-//                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
-//                        .aisle("CMMMMMMMC", "C       C", "C       C", "C       C", "CCCCOCCCC")
-//                        .aisle("CMMMMMMMC", "CGGGGGGGC", "CGGGGGGGC", "CGGGGGGGC", "CCCCCCCCC")
-//                        .aisle("CCCCSCCCC", "F       F", "F       F", "F       F", "CCCCCCCCC")
-//                        .where('S', definition, Direction.SOUTH)
-//                        .where('X', ITEM_IMPORT_BUS[LuV], Direction.NORTH)
-//                        .where('Y', ITEM_EXPORT_BUS[LuV], Direction.NORTH)
-//                        .where('Z', FLUID_IMPORT_HATCH[LuV], Direction.NORTH)
-//                        .where('E', ENERGY_INPUT_HATCH[LuV], Direction.NORTH)
-//                        .where('T', MAINTENANCE_HATCH, Direction.NORTH)
-//                        .where('O', MUFFLER_HATCH[LuV], Direction.UP)
-//                        .where('G', CASING_LAMINATED_GLASS.get())
-//                        .where('F', ChemicalHelper.getBlock(frameGt, MARM200Steel))
-//                        .where(' ', Blocks.AIR.defaultBlockState());
-//
-//                List<Block> casing = BlockMaps.ALL_PA_CASINGS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-//                List<Block> machineCasing = BlockMaps.ALL_MACHINE_CASINGS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-
-                int maxLength = EPMathUtil.max(ALL_PA_CASINGS.size(), ALL_MACHINE_CASINGS.size());
-
-//                for (int i = 0; i < maxLength; ++i) {
-//                    builder.where('C', EPUtil.getOrLast(casing, i));
-//                    builder.where('M', EPUtil.getOrLast(machineCasing, i));
-//                    shapeInfo.add(builder.build());
-//                }
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLength));
+                int maxLength = MOMathUtils.max(ALL_PA_CASINGS.size(), ALL_MACHINE_CASINGS.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLength));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -403,27 +318,7 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("X   X", "MOXUS", "X   X", "XIXLX", "X   X")
-//                        .aisle("XXXXX", "XCCCX", "XCCCX", "XCCCX", "XXXXX")
-//                        .aisle("X   X", "XPPPX", "XHHHX", "XPPPX", "X   X")
-//                        .aisle("XXXXX", "XCCCX", "XCCCX", "XCCCX", "XXXXX")
-//                        .aisle("E   E", "XXXXX", "X   X", "XXXXX", "X   X")
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('P', CASING_POLYTETRAFLUOROETHYLENE_PIPE.get())
-//                        .where('H', HEAT_VENT.get())
-//                        .where('X', CASING_PTFE_INERT.get())
-//                        .where('O', ITEM_EXPORT_BUS[4], Direction.NORTH)
-//                        .where('U', FLUID_EXPORT_HATCH[4], Direction.NORTH)
-//                        .where('I', ITEM_IMPORT_BUS[4], Direction.NORTH)
-//                        .where('L', FLUID_IMPORT_HATCH[4], Direction.NORTH)
-//                        .where('M', MAINTENANCE_HATCH, Direction.NORTH)
-//                        .where('E', ENERGY_INPUT_HATCH[4], Direction.SOUTH);
-//
-//                ALL_COILS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-//                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), BlockMaps.ALL_COIL_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -437,7 +332,7 @@ public class AdvancedMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CRACKING_RECIPES)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("CCCCCCCCCCCCC", " C         C ", " C         C ", " C         C ", " C         C ", " C         C ", " C         C ")
                     .aisle("CCCCCCCCCCCCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC")
                     .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " CGGGGGGGGGC ")
@@ -464,49 +359,8 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("CCCCCCSKCCCCC", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ")
-//                        .aisle("CCCCCCCCCCCCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC")
-//                        .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " CGGGGGGGGGC ")
-//                        .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " CAAAAAAAAAC ", " CALALALALAC ", " CAAAAAAAAAC ", " GALALALALAG ", " CGGGCCCGGGC ")
-//                        .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " CALALALALAC ", " NALALALALAD ", " CALALALALAC ", " GALALALALAG ", " CGGGCVCGGGC ")
-//                        .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " CAAAAAAAAAC ", " CALALALALAC ", " CAAAAAAAAAC ", " GALALALALAG ", " CGGGCCCGGGC ")
-//                        .aisle("CCCCCCCCCCCCC", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " GALALALALAG ", " CGGGGGGGGGC ")
-//                        .aisle("CCCCCCCCCCCCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC", "CCGGGGGGGGGCC")
-//                        .aisle("CCCCCCJHCCCCC", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ", " CAAAAAAAAAC ")
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('C', CASING_STAINLESS_CLEAN)
-//                        .where('V', GTMachines.FLUID_IMPORT_HATCH[4], Direction.UP)
-//                        .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.EAST)
-//                        .where('N', GTMachines.FLUID_EXPORT_HATCH[4], Direction.WEST)
-//                        .where('K', GTMachines.ITEM_IMPORT_BUS[4], Direction.NORTH)
-//                        .where('H', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
-//                        .where('A', Blocks.AIR)
-//                        .where('J', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH);
-//
-//                List<CoilBlock> coils = ALL_COILS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-//                List<Block> glasses = BlockMaps.SHAPE_GLASSES.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-//
-//                int maxLeng = EPUtil.maxLength(new List[]{
-//                        coils,
-//                        glasses
-//                });
-//
-//                for (int i = 0; i < maxLeng; ++i) {
-//                    builder.where('L', EPUtil.getOrLast(coils, i));
-//                    builder.where('G', EPUtil.getOrLast(glasses, i));
-//                    shapeInfo.add(builder.build());
-//                }
-                int maxLeng = EPMathUtil.max(SHAPE_GLASSES.size(), BlockMaps.ALL_COIL_BLOCKS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLeng));
+                int maxLeng = MOMathUtils.max(SHAPE_GLASSES.size(), ALL_COIL_BLOCKS.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -520,7 +374,7 @@ public class AdvancedMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(GCyMRecipeTypes.ALLOY_BLAST_RECIPES)
             .appearanceBlock(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("   BBBBB   ", "   CCCCC   ", "   CCCCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
                     .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
                     .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DWWWWWD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DWWWWWD  ", "  DWWWWWD  ", "   DDDDD   ")
@@ -548,55 +402,8 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("   BBBBB   ", "   ICXCJ   ", "   CCSCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
-//                        .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
-//                        .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DWWWWWD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DWWWWWD  ", "  DWWWWWD  ", "   DDDDD   ")
-//                        .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VWWWV  C", "BDDVDDDVDDB", " DW     WD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DW     WD ", " DW     WD ", "  DDDDDDD  ")
-//                        .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  W   W  C", "BDHD   DHDB", " DW     WD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DW     WD ", " DW     WD ", "  DDDDDDD  ")
-//                        .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  W   W  C", "BDHD   DHDB", " DW     WD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DW     WD ", " DW     WD ", "  DDDMDDD  ")
-//                        .aisle("BDHDDDDDHDB", "C  W   W  C", "C  B   B  C", "C  W   W  C", "BDHD   DHDB", " DW     WD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DW     WD ", " DW     WD ", "  DDDDDDD  ")
-//                        .aisle("BDDDDDDDDDB", "C  VWWWV  C", "C  VBBBV  C", "C  VWWWV  C", "BDDVDDDVDDB", " DW     WD ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " GW     WG ", " DW     WD ", " DW     WD ", "  DDDDDDD  ")
-//                        .aisle(" BDDHHHDDB ", " G       G ", " G       G ", " G       G ", " BDDHHHDDB ", "  DWWWWWD  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  GWWWWWG  ", "  DWWWWWD  ", "  DWWWWWD  ", "   DDDDD   ")
-//                        .aisle("  BDDDDDB  ", "  G     G  ", "  G     G  ", "  G     G  ", "  BDDDDDB  ", "   DDDDD   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   GGGGG   ", "   DDDDD   ", "   DDDDD   ", "           ")
-//                        .aisle("   BBBBB   ", "   CCENC   ", "   CCCCC   ", "   CCCCC   ", "   BBBBB   ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ", "           ")
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('B', GCyMBlocks.HEAT_VENT)
-//                        .where('D', GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-//                        .where('H', GCyMBlocks.HEAT_VENT)
-//                        .where('V', CASING_TUNGSTENSTEEL_PIPE)
-//                        .where('C', GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
-//                        .where('E', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
-//                        .where('N', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-//                        .where('I', GTMachines.FLUID_IMPORT_HATCH[4], Direction.NORTH)
-//                        .where('X', GTMachines.ITEM_IMPORT_BUS[4], Direction.NORTH)
-//                        .where('J', GTMachines.FLUID_EXPORT_HATCH[4], Direction.NORTH)
-//                        .where('M', GTMachines.MUFFLER_HATCH[1], Direction.UP)
-//                        .where(' ', Blocks.AIR);
-//
-//                List<CoilBlock> coils = ALL_COILS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-//                List<Block> glasses = BlockMaps.SHAPE_GLASSES.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .map(Supplier::get)
-//                        .toList();
-//
-//                int maxLeng = EPUtil.maxLength(new List[]{
-//                        coils,
-//                        glasses
-//                });
-//
-//                for (int i = 0; i < maxLeng; ++i) {
-//                    builder.where('W', EPUtil.getOrLast(coils, i));
-//                    builder.where('G', EPUtil.getOrLast(glasses, i));
-//                    shapeInfo.add(builder.build());
-//                }
-                int maxLeng = EPMathUtil.max(BlockMaps.ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLeng));
+                int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -628,24 +435,7 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                var builder = MultiblockShapeInfo.builder()
-//                        .aisle("ISO", "CCC", "CCC", "XMX")
-//                        .aisle("FXD", "C#C", "C#C", "XHX")
-//                        .aisle("EEX", "CCC", "CCC", "XXX")
-//                        .where('X', ADVANCED_INVAR_CASING.getDefaultState())
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('#', Blocks.AIR.defaultBlockState())
-//                        .where('E', ENERGY_INPUT_HATCH[LV], Direction.SOUTH)
-//                        .where('I', ITEM_IMPORT_BUS[LV], Direction.NORTH)
-//                        .where('O', ITEM_EXPORT_BUS[LV], Direction.NORTH)
-//                        .where('F', FLUID_IMPORT_HATCH[LV], Direction.WEST)
-//                        .where('D', FLUID_EXPORT_HATCH[LV], Direction.EAST)
-//                        .where('H', MUFFLER_HATCH[LV], Direction.UP)
-//                        .where('M', MAINTENANCE_HATCH, Direction.NORTH);
-//                ALL_COILS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-//                        .forEach(coil -> shapeInfo.add(builder.shallowCopy().where('C', coil.getValue().get()).build()));
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), BlockMaps.ALL_COIL_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
                 return shapeInfos;
             })
             .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
@@ -711,46 +501,8 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("F   F", "FCCCF", "XYSZW", " CCC ", "     ", "     ", "     ", "     ", "     ")
-//                        .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-//                        .aisle(" DDD ", "CHPHC", "V#P#V", "CHPHC", " cPc ", " cPc ", " cPc ", " cPc ", " cOc ")
-//                        .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
-//                        .aisle("F   F", "FMEEF", "CCCCC", " CCC ", "     ", "     ", "     ", "     ", "     ")
-//                        .where('S', definition, Direction.NORTH)
-//                        .where('C', CASING_STEEL_SOLID.get())
-//                        .where('c', CASING_STEEL_SOLID.get())
-//                        .where('F', ChemicalHelper.getBlock(frameGt, HSLASteel))
-//                        .where('P', CASING_STEEL_PIPE.get())
-//                        .where('V', HEAT_VENT.get())
-//                        .where('O', GTMachines.MUFFLER_HATCH[LV], Direction.UP)
-//                        .where('X', GTMachines.ITEM_IMPORT_BUS[EV], Direction.NORTH)
-//                        .where('Y', GTMachines.FLUID_IMPORT_HATCH[EV], Direction.NORTH)
-//                        .where('Z', GTMachines.ITEM_EXPORT_BUS[EV], Direction.NORTH)
-//                        .where('W', GTMachines.FLUID_EXPORT_HATCH[EV], Direction.NORTH)
-//                        .where('M', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-//                        .where('E', GTMachines.ENERGY_INPUT_HATCH[EV], Direction.SOUTH)
-//                        .where('#', Blocks.AIR.defaultBlockState());
-//                List<Block> listFirebox = ALL_FIREBOXS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(entry -> entry.getValue().get())
-//                        .toList();
-//                List<CoilBlock> listCoil = ALL_COILS.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
-//                        .map(entry -> entry.getValue().get())
-//                        .toList();
-//                int maxLeng = EPUtil.maxLength(new List[]{
-//                        listCoil,
-//                        listFirebox
-//                });
-//
-//                for (int i = 0; i < maxLeng; ++i) {
-//                    builder.where('D', EPUtil.getOrLast(listFirebox, i));
-//                    builder.where('H', EPUtil.getOrLast(listCoil, i));
-//                    shapeInfo.add(builder.build());
-//                }
-                int maxLeng = EPMathUtil.max(ALL_FIREBOXS.size(), BlockMaps.ALL_COIL_BLOCKS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLeng));
+                int maxLeng = MOMathUtils.max(ALL_FIREBOXS.size(), ALL_COIL_BLOCKS.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))

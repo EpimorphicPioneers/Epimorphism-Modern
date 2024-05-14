@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -70,7 +70,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
         for (var condition : recipeBuilder.conditions) {
             if (condition instanceof DimensionCondition dimensionCondition) {
                 var dim = dimensionCondition.getDimension();
-                var fluids = EPRecipeHelper.getOutputFluid(recipeBuilder);
+                var fluids = MORecipeHelper.getOutputFluid(recipeBuilder);
                 if (!fluids.isEmpty()) {
                     AIR_MAP.put(dim, fluids.get(0).getFluid());
                     break;
@@ -129,7 +129,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
             double offset = 2 * GTValues.RNG.nextDouble() + 2;
             var pos = this.getPos().getCenter().add(stepX * 0.5, stepY * 0.5, stepZ * 0.5);
             var center = pos.add(stepX * offset, stepY * offset, stepZ * offset);
-            var point = EPMathUtil.randomCirclePoint(1.5F);
+            var point = MOMathUtils.randomCirclePoint(1.5F);
             var randPos = center.add(stepY * point.y + stepZ * point.x, stepX * point.x + stepZ * point.y, stepX * point.y + stepY * point.x);
             var speed = pos.subtract(randPos).scale(0.055);
             getLevel().addParticle(ParticleTypes.CLOUD, randPos.x, randPos.y, randPos.z, speed.x, speed.y, speed.z);
@@ -155,7 +155,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
     }
 
     public static long getIntakeAmount(int tier) {
-        return FluidHelper.getBucket() * (1L << EPMathUtil.clamp(tier - 5, 0, 9));
+        return FluidHelper.getBucket() * (1L << MOMathUtils.clamp(tier - 5, 0, 9));
     }
 
     private void unsubscribe() {
@@ -176,7 +176,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
 
         group.addWidget(new ImageWidget(4, 4, 81, 55, GuiTextures.DISPLAY))
                 .addWidget(new LabelWidget(8, 8, "gtceu.gui.fluid_amount"))
-                .addWidget(new LabelWidget(8, 18, () -> EPLangUtil.abbreviate(tank.getFluidInTank(0).getAmount()) + " mB").setTextColor(-1).setDropShadow(true))
+                .addWidget(new LabelWidget(8, 18, () -> MOFormattingUtils.abbreviate(tank.getFluidInTank(0).getAmount()) + " mB").setTextColor(-1).setDropShadow(true))
                 .addWidget(new LabelWidget(8, 28, () -> isFrontFaceFree() ? " " : "gui.epimorphism.intake_obstructed").setTextColor(ColorPattern.RED.color))
                 .addWidget(new TankWidget(tank.getStorages()[0], 67, 22, false, false).setBackground(GuiTextures.FLUID_SLOT));
 

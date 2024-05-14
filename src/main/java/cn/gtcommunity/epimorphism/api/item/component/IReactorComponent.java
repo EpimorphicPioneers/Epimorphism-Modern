@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.api.item.component;
 
 import cn.gtcommunity.epimorphism.common.machine.generator.NuclearReactorMachine;
+import com.epimorphismmc.monomorphism.item.component.IDurabilityItem;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.*;
 import net.minecraft.nbt.CompoundTag;

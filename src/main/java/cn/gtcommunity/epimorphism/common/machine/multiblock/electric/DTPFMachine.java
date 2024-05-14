@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
-import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilMultiblockMachine;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;

@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.noenergy;
 
-import cn.gtcommunity.epimorphism.api.machine.multiblock.NoEnergyMultiblockMachine;
+import com.epimorphismmc.monomorphism.machine.multiblock.NoEnergyMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import net.minecraft.MethodsReturnNonnullByDefault;
 

@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.particle;
 
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -48,10 +48,10 @@ public class CropFX extends Particle {
         float z = (float)(Mth.lerp(partialTicks, this.zo, this.z) - vec3.z());
 
         var state = getState(Blocks.WHEAT, cropAge);
-        BakedModel bakedmodel = ClientUtil.blockRenderer().getBlockModel(state);
+        BakedModel bakedmodel = RenderHelper.getBlockRendererDispatcher().getBlockModel(state);
         POSE_STACK.pushPose();
         POSE_STACK.translate(x, y, z);
-        ClientUtil.blockRenderer().getModelRenderer().renderModel(POSE_STACK.last(), buffer, state, bakedmodel, 1, 1, 1, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
+        RenderHelper.getBlockRenderer().renderModel(POSE_STACK.last(), buffer, state, bakedmodel, 1, 1, 1, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
         POSE_STACK.popPose();
     }
 
@@ -68,7 +68,7 @@ public class CropFX extends Particle {
     }
 
     private BlockState getState(Block block, int age) {
-        age = EPMathUtil.clamp(age, 0, 7);
+        age = MOMathUtils.clamp(age, 0, 7);
         return block.defaultBlockState().setValue(CropBlock.AGE, age);
     }
 

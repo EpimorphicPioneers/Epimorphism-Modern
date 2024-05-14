@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric.galaxy;
 
-import cn.gtcommunity.epimorphism.api.block.EPBlockProperties;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
-import cn.gtcommunity.epimorphism.api.pattern.FactoryEnhancePattern;
+import com.epimorphismmc.monomorphism.block.MOBlockProperties;
+import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
@@ -45,13 +45,13 @@ public class SpaceElevatorMachine extends WorkableElectricMultiblockMachine {
     public BlockPattern getPattern() {
         int tier = this.isExtensionEnabled ? 1 : 0;
         if (getLevel() instanceof TrackedDummyWorld) {
-            tier = getBlockState().getValue(EPBlockProperties.MULTIBLOCK_TIER);
+            tier = getBlockState().getValue(MOBlockProperties.STRUCTURE_TIER);
         }
         return getBlockPattern(tier, getDefinition());
     }
 
     public static BlockPattern getBlockPattern(int tier, MachineDefinition definition) {
-        var builder = FactoryEnhancePattern.start()
+        var builder = FactoryMOPattern.start()
                 .where('~', controller(blocks(definition.get())))
                 .where('E', blocks(SUPPORT_STRUCTURE_CASING.get()))
                 .where('X', blocks(AEROSPACE_CASING.get()))

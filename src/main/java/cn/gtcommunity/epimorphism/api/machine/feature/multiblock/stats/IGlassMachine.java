@@ -1,9 +1,8 @@
-package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier;
+package cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats;
 
 import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.machine.multiblock.MultiStatsElectricMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.machine.trait.MultiblockStats;
-import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.machine.trait.MultiblockStats;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
@@ -26,7 +25,7 @@ public interface IGlassMachine extends IMachineFeature {
         @Getter
         private int glassTier;
 
-        public GlassTierStats(MultiStatsElectricMultiblockMachine machine) {
+        public GlassTierStats(com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine machine) {
             super(machine);
             machine.addStats(this);
         }
@@ -34,7 +33,7 @@ public interface IGlassMachine extends IMachineFeature {
         @Override
         public void onStructureFormed(MultiblockState state) {
             var type = state.getMatchContext().get("Glass");
-            this.glassTier = EPUtil.getOrDefault(() -> type instanceof ITierGlassType,
+            this.glassTier = MOUtils.getOrDefault(() -> type instanceof ITierGlassType,
                     () -> ((ITierGlassType)type).tier(), 0);
         }
 

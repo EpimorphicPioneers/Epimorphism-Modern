@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.recipe;
 
-import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.tier.ICasingMachine;
+import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.stats.ICasingMachine;
 import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;

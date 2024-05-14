@@ -4,6 +4,7 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
+import com.epimorphismmc.monomorphism.data.tag.MOTagPrefix;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
@@ -19,7 +20,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.*;
 
 public class EPTagPrefix {
-    public static final TagPrefix singularity = new RenderTagPrefix("singularity",
+    public static final TagPrefix singularity = new MOTagPrefix("singularity",
             new HaloRenderItemBehavior(4, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, false))
             .defaultTagPath("singularity/%s")
             .unformattedTagPath("singularity")

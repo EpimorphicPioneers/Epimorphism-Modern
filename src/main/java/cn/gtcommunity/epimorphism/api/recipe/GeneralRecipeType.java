@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.recipe;
 
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
@@ -63,7 +64,7 @@ public class GeneralRecipeType extends GTRecipeType {
         var stack = IntCircuitBehaviour.stack(configuration);
         return CACHE.computeIfAbsent("%s_%s".formatted(recipe.id.toString(), configuration), key -> {
             var newRecipe = recipe.copy();
-            newRecipe.inputs.computeIfAbsent(ItemRecipeCapability.CAP, capability -> new ArrayList<>()).add(EPRecipeHelper.itemStack(stack, 0, 0));
+            newRecipe.inputs.computeIfAbsent(ItemRecipeCapability.CAP, capability -> new ArrayList<>()).add(MORecipeHelper.itemContent(stack, 0, 0));
             return newRecipe;
         });
     }

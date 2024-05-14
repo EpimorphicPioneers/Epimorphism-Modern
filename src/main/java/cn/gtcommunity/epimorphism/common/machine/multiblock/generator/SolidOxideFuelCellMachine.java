@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.generator;
 
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -66,7 +66,7 @@ public class SolidOxideFuelCellMachine extends TieredWorkableElectricMultiblockM
         RecipeHelper.setOutputEUt(copied, EUt);
 
         var inputContents = copied.getInputContents(FluidRecipeCapability.CAP);
-        var oxygenContent = EPRecipeHelper.fluidStack(getOxygen(getTier()), 1, 0);
+        var oxygenContent = MORecipeHelper.fluidContent(getOxygen(getTier()), 1, 0);
         if (inputContents.isEmpty()) {
             copied.inputs.put(FluidRecipeCapability.CAP, List.of(oxygenContent));
         } else {
@@ -75,7 +75,7 @@ public class SolidOxideFuelCellMachine extends TieredWorkableElectricMultiblockM
 
         if (expectedEfficiency == 1000) {
             var outputContents = copied.getOutputContents(FluidRecipeCapability.CAP);
-            var steamContent = EPRecipeHelper.fluidStack(getSteam(getTier()), 1, 0);
+            var steamContent = MORecipeHelper.fluidContent(getSteam(getTier()), 1, 0);
             if (outputContents.isEmpty()) {
                 copied.outputs.put(FluidRecipeCapability.CAP, List.of(steamContent));
             } else {
@@ -112,7 +112,7 @@ public class SolidOxideFuelCellMachine extends TieredWorkableElectricMultiblockM
     public void addDisplayText(List<Component> textList) {
         super.addDisplayText(textList);
         if (isFormed()) {
-            textList.add(Component.translatable("block.epimorphism.solid_oxide_fuel_cell.efficiency", EPLangUtil.DECIMAL_FORMAT_1F.format((double) efficiency / 10)));
+            textList.add(Component.translatable("block.epimorphism.solid_oxide_fuel_cell.efficiency", MOFormattingUtils.DECIMAL_FORMAT_1F.format((double) efficiency / 10)));
         }
     }
 

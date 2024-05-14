@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.block.tier;
 
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.client.TooltipHelper;
 import net.minecraft.network.chat.Component;

@@ -1,10 +1,11 @@
 package cn.gtcommunity.epimorphism.common.machine.trait;
 
-import cn.gtcommunity.epimorphism.api.misc.SimpleCapabilityHolder;
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.IntegratedOreFactoryMachine;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
 import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.misc.SimpleCapabilityHolder;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -304,13 +305,13 @@ public class OreProcessingRecipeLogic extends RecipeLogic {
             GTRecipe recipe = GTRecipeTypes.CHEMICAL_BATH_RECIPES.getLookup().findRecipe(holder);
             holder.clear();
             if (recipe != null) {
-                var inputFluids = EPRecipeHelper.getInputFluid(recipe);
-                var outputFluids = EPRecipeHelper.getOutputFluid(recipe);
+                var inputFluids = MORecipeHelper.getInputFluid(recipe);
+                var outputFluids = MORecipeHelper.getOutputFluid(recipe);
                 int washed = stack.getCount();
                 if (!inputFluids.isEmpty()) {
                     var inputFluid = inputFluids.get(0);
                     long stored = getFluidAmount(inputFluid);
-                    washed = EPMathUtil.getIntegerNumber(Math.min(stored / inputFluid.getAmount(), stack.getCount()));
+                    washed = MOMathUtils.getIntegerNumber(Math.min(stored / inputFluid.getAmount(), stack.getCount()));
                     fluidInputs.add(inputFluid.copy(washed * inputFluid.getAmount()));
                     if (washed < stack.getCount()) {
                         products.add(stack.copyWithCount(stack.getCount() - washed));
@@ -372,7 +373,7 @@ public class OreProcessingRecipeLogic extends RecipeLogic {
         }
         //  更新midProduct
         midProduct = new ItemStack[products.size()];
-        products.forEach((item, amount) -> EPUtil.add(midProduct, new ItemStack(item, amount)));
+        products.forEach((item, amount) -> MOUtils.add(midProduct, new ItemStack(item, amount)));
     }
 
     // 不要修改返回的ItemStack

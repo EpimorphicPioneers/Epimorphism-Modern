@@ -1,9 +1,9 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric;
 
-import cn.gtcommunity.epimorphism.api.block.EPBlockProperties;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
-import cn.gtcommunity.epimorphism.api.pattern.FactoryEnhancePattern;
-import cn.gtcommunity.epimorphism.api.pattern.utils.StructureUtil;
+import com.epimorphismmc.monomorphism.block.MOBlockProperties;
+import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -13,7 +13,6 @@ import com.gregtechceu.gtceu.api.machine.feature.IMachineModifyDrops;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.pattern.BlockPattern;
-import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockWorldSavedData;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
@@ -108,13 +107,13 @@ public class NanoForgeMachine extends WorkableElectricMultiblockMachine implemen
     public BlockPattern getPattern() {
         int multiblockTier = this.tier;
         if (getLevel() instanceof TrackedDummyWorld) {
-            multiblockTier = getBlockState().getValue(EPBlockProperties.MULTIBLOCK_TIER);
+            multiblockTier = getBlockState().getValue(MOBlockProperties.STRUCTURE_TIER);
         }
         return getBlockPattern(multiblockTier, getDefinition());
     }
 
     public static BlockPattern getBlockPattern(int tier, MachineDefinition definition) {
-        var builder = FactoryEnhancePattern.start()
+        var builder = FactoryMOPattern.start()
                 .where('D', controller(blocks(definition.getBlock())))
                 .where('#', air())
                 .where('A', blocks(CASING_ASSEMBLY_LINE.get()))

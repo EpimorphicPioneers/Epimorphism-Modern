@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.common.blockentity;
 
+import com.epimorphismmc.monomorphism.blockentity.MOBlockEntityBase;
 import com.gregtechceu.gtceu.api.GTValues;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -19,12 +19,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import static cn.gtcommunity.epimorphism.common.block.BlockMaps.ALL_DIM_DISPLAY_BLOCKS;
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
+import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static com.epimorphismmc.monomorphism.utility.MOMathUtils.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class EOHBlockEntity extends BlockEntity {
+public class EOHBlockEntity extends MOBlockEntityBase {
 
     private static final float MAX_ANGLE = 30;
     private static final double EOH_STAR_FIELD_RADIUS = 13;

@@ -2,8 +2,8 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCasingMultiblockMachine;
-import cn.gtcommunity.epimorphism.api.block.tier.ITierType;
-import cn.gtcommunity.epimorphism.utils.EPUtil;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -46,7 +46,7 @@ public class PreciseAssemblerMachine extends ParallelCasingMultiblockMachine {
     public void onStructureFormed() {
         super.onStructureFormed();
         Object data = getMultiblockState().getMatchContext().get("PACasing");
-        this.PACasingTier = EPUtil.getOrDefault(() -> data instanceof ITierType,
+        this.PACasingTier = MOUtils.getOrDefault(() -> data instanceof ITierType,
                 () -> ((ITierType) data).tier(), 0);
     }
 

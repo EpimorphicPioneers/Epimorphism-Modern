@@ -3,7 +3,6 @@ package cn.gtcommunity.epimorphism.client;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.common.data.EPParticleTypes;
 import cn.gtcommunity.epimorphism.client.model.GrindBallModel;
-import cn.gtcommunity.epimorphism.client.model.ItemCustomLayerModel;
 import cn.gtcommunity.epimorphism.client.particle.CropFX;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,11 +26,6 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpecial(EPParticleTypes.CROP, new CropFX.Factory());
-    }
-
-    @SubscribeEvent
-    public void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register("item_custom_layers", ItemCustomLayerModel.Loader.INSTANCE);
     }
 
     @SubscribeEvent

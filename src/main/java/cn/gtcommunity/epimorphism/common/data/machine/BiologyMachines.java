@@ -3,12 +3,12 @@ package cn.gtcommunity.epimorphism.common.data.machine;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.EPPartAbility;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
-import cn.gtcommunity.epimorphism.api.pattern.EnhanceBlockPattern;
-import cn.gtcommunity.epimorphism.api.pattern.FactoryEnhancePattern;
-import cn.gtcommunity.epimorphism.api.pattern.utils.StructureUtil;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.TankMachineRenderer;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.biology.BacterialCultureTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.biology.FermentationTankMachine;
+import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
@@ -41,7 +41,7 @@ public class BiologyMachines {
             .rotationState(RotationState.ALL)
             .recipeType(DUMMY_RECIPES)
             .appearanceBlock(CASING_STAINLESS_CLEAN)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("AAAAA", "CCCCC", "CCCCC", "AAAAA")
                     .aisle("AAAAA", "C   C", "C   C", "AAAAA")
                     .aisle("AAAAA", "C   C", "C   C", "AAAAA")
@@ -60,26 +60,7 @@ public class BiologyMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-//                MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
-//                        .aisle("DEBFG", "CCCCC", "CCCCC", "AAJAA")
-//                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-//                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-//                        .aisle("AAAAA", "C   C", "C   C", "AAAAA")
-//                        .aisle("AHIAA", "CCCCC", "CCCCC", "AAAAA")
-//                        .where('B', definition, Direction.NORTH)
-//                        .where('A', CASING_STAINLESS_CLEAN.get())
-//                        .where('D', GTMachines.FLUID_IMPORT_HATCH[4], Direction.NORTH)
-//                        .where('E', GTMachines.ITEM_IMPORT_BUS[4], Direction.NORTH)
-//                        .where('F', GTMachines.FLUID_EXPORT_HATCH[4], Direction.NORTH)
-//                        .where('G', GTMachines.FLUID_EXPORT_HATCH[4], Direction.NORTH)
-//                        .where('H', GTMachines.MAINTENANCE_HATCH, Direction.SOUTH)
-//                        .where('I', GTMachines.ENERGY_INPUT_HATCH[5], Direction.SOUTH)
-//                        .where('J', EPMachines.RADIATION_HATCH[3], Direction.NORTH);
-//                BlockMaps.SHAPE_GLASSES.entrySet().stream()
-//                        .sorted(Comparator.comparingInt(entry -> entry.getKey().tier()))
-//                        .map(Map.Entry::getValue)
-//                        .forEach(blockSupplier -> shapeInfos.add(builder.where('C', blockSupplier.get()).build()));
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size()));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))

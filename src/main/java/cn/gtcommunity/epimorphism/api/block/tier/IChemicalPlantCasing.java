@@ -1,5 +1,6 @@
 package cn.gtcommunity.epimorphism.api.block.tier;
 
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;

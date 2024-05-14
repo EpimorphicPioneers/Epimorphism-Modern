@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.item.behaviors;
 
-import cn.gtcommunity.epimorphism.api.item.component.IDurabilityItem;
+import com.epimorphismmc.monomorphism.item.component.IDurabilityItem;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IAddInformation;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;

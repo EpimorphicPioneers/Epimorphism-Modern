@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.*;
+import static com.epimorphismmc.monomorphism.utility.MOMathUtils.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
