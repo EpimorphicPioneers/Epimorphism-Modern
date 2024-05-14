@@ -3,9 +3,9 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.storage;
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankProvider;
 import cn.gtcommunity.epimorphism.api.machine.trait.ITankTrait;
 import cn.gtcommunity.epimorphism.api.gui.widget.FluidTankMapWidget;
-import cn.gtcommunity.epimorphism.api.pattern.utils.containers.StorageFieldBlockContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
+import cn.gtcommunity.epimorphism.api.pattern.utils.StorageFieldBlockContainer;
 import cn.gtcommunity.epimorphism.utils.EPFluidUtil;
+import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -38,6 +38,7 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.material.Fluid;
 import org.jetbrains.annotations.NotNull;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +59,7 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
     private FluidTransferList inputHatches;
     private FluidTransferList outputHatches;
 
-//    protected ScheduledSubscriptionHandler tickSubscription;
+    //    protected ScheduledSubscriptionHandler tickSubscription;
     public TFFTMachine(IMachineBlockEntity holder) {
         super(holder);
         this.inventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.BOTH);
@@ -242,7 +243,6 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
     //////////////////////////////////////
 
 
-
     @Override
     public ITankTrait getTank() {
         return fluidTank;
@@ -256,7 +256,8 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(TFFTMachine.TFFTFluidTank.class);
 
-        @Persisted @Getter
+        @Persisted
+        @Getter
         private final TankStorage[] storages;
 
         public TFFTFluidTank(MetaMachine machine, BigInteger capacity, int tanks) {
@@ -386,11 +387,14 @@ public class TFFTMachine extends WorkableMultiblockMachine implements IFancyUIMa
 
     public static class TankStorage extends FluidStorage {
 
-        @Getter @Setter
+        @Getter
+        @Setter
         private boolean isLocked;
-        @Getter @Setter
+        @Getter
+        @Setter
         private boolean isVoiding;
-        @Getter @Setter
+        @Getter
+        @Setter
         private boolean isSelected;
 
         public TankStorage(long capacity) {

@@ -1,9 +1,8 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.TierRenderItemBehavior;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.item.component.IRendererItem;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
@@ -24,7 +23,7 @@ import org.joml.Matrix4f;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-
+// TODO Maybe use IModelRenderer?
 public class TierItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
     public static final TierItemRenderer INSTANCE = new TierItemRenderer();
@@ -50,8 +49,8 @@ public class TierItemRenderer implements IRenderer {
         model = RenderHelper.getVanillaModel(stack, null, null);
 
         if (transformType == ItemDisplayContext.GUI
-                && stack.getItem() instanceof IRendererMetaInfo componentItem
-                && componentItem.getMetaInfo(stack) instanceof TierRenderItemBehavior tri) {
+                && stack.getItem() instanceof IRendererItem rendererItem
+                && rendererItem.getRenderInfo(stack) instanceof TierRenderItemBehavior tri) {
 
             Tesselator tess = Tesselator.getInstance();
 
@@ -67,7 +66,7 @@ public class TierItemRenderer implements IRenderer {
 
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             TextureAtlasSprite sprite = ModelFactory.getBlockSprite(tri.tierTexture());
-            ClientUtil.bindTexture(InventoryMenu.BLOCK_ATLAS);
+            RenderHelper.bindTexture(InventoryMenu.BLOCK_ATLAS);
 
             float minU = sprite.getU0();
             float maxU = sprite.getU1();

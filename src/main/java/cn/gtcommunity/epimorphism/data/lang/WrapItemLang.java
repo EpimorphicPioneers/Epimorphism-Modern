@@ -1,7 +1,8 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
-import cn.gtcommunity.epimorphism.common.data.EPWrapItem;
+import cn.gtcommunity.epimorphism.common.data.items.EPWrapItem;
 import com.gregtechceu.gtceu.api.GTValues;
+import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;

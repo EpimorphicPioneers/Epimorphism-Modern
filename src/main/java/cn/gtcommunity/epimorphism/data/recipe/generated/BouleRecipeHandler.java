@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;

@@ -11,9 +11,10 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import net.minecraft.ChatFormatting;
 
-import static cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialFlags.*;
+import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPFirstDegreeMaterials {
@@ -22,7 +23,7 @@ public class EPFirstDegreeMaterials {
         GrapheneOxide = Builder("graphene_oxide")
                 .dust()
                 .color(0x777777)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Graphene, 1, Oxygen, 1)
                 .buildAndRegister();
@@ -458,7 +459,7 @@ public class EPFirstDegreeMaterials {
         GalliumTrichloride = Builder("gallium_trichloride")
                 .dust()
                 .color(0x6EB4FF)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Gallium, 1, Chlorine, 3)
                 .buildAndRegister();
         //  24062 Aluminium Trichloride
@@ -527,7 +528,7 @@ public class EPFirstDegreeMaterials {
         PotassiumCyanide = Builder("potassium_cyanide")
                 .dust()
                 .color(0x9EF3D0)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Potassium, 1, Carbon, 1, Nitrogen, 1)
                 .buildAndRegister();
         //  24071 Potassium Bromide
@@ -556,7 +557,7 @@ public class EPFirstDegreeMaterials {
         AmmoniumVanadate = Builder("ammonium_vanadate")
                 .dust()
                 .color(0xCC9933)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Nitrogen, 1, Hydrogen, 4, Vanadium, 1, Oxygen, 3)
                 .buildAndRegister();
@@ -595,7 +596,7 @@ public class EPFirstDegreeMaterials {
         SodiumBromide = Builder("sodium_bromide")
                 .dust()
                 .color(0x830B2B)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 1, Bromine, 1)
                 .buildAndRegister();
         //  24080 White Phosphorus
@@ -671,7 +672,7 @@ public class EPFirstDegreeMaterials {
         CopperChloride = Builder("copper_chloride")
                 .dust()
                 .color(0x3FB3B8)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Copper, 1, Chlorine, 2)
                 .buildAndRegister();
         //  24090 Lithium Hydroxide
@@ -892,7 +893,7 @@ public class EPFirstDegreeMaterials {
         WaelzSlag = Builder("waelz_slag")
                 .dust()
                 .color(0xAC8B5C)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Gallium, 1, Zinc, 1, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
@@ -900,7 +901,7 @@ public class EPFirstDegreeMaterials {
         ImpureGermaniumDioxide = Builder("impure_germanium_dioxide")
                 .dust()
                 .color(0x666666)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(GermaniumDioxide, 1)
                 .buildAndRegister()
@@ -916,7 +917,7 @@ public class EPFirstDegreeMaterials {
         MolybdenumTrioxide = Builder("molybdenum_trioxide")
                 .dust()
                 .color(0xCBCFDA)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Molybdenum, 1, Oxygen, 3)
                 .buildAndRegister();
@@ -924,7 +925,7 @@ public class EPFirstDegreeMaterials {
         LeadChloride = Builder("lead_chloride")
                 .dust()
                 .color(0xF3F3F3)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Lead, 1, Chlorine, 2)
                 .buildAndRegister();
         //  24125 Perrhenic Acid
@@ -948,28 +949,28 @@ public class EPFirstDegreeMaterials {
         NiobiumPentoxide = Builder("niobium_pentoxide")
                 .dust()
                 .color(0xBAB0C3)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Niobium, 2, Oxygen, 5)
                 .buildAndRegister();
         //  24128 Tantalum Pentoxide
         TantalumPentoxide = Builder("tantalum_pentoxide")
                 .dust()
                 .color(0x72728A)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Tantalum, 2, Oxygen, 5)
                 .buildAndRegister();
         //  24129 Calcium Difluoride
         CalciumDifluoride = Builder("calcium_difluoride")
                 .dust()
                 .color(0xFFFC9E)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Calcium, 1, Fluorine, 2)
                 .buildAndRegister();
         //  24130 Manganese Difluoride
         ManganeseDifluoride = Builder("manganese_difluoride")
                 .dust()
                 .color(0xEF4B3D)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Manganese, 1, Fluorine, 2)
                 .buildAndRegister();
         //  24131 Calcium Carbide
@@ -983,7 +984,7 @@ public class EPFirstDegreeMaterials {
         CalciumHydroxide = Builder("calcium_hydroxide")
                 .dust()
                 .color(0x5F8764)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
                 .buildAndRegister()
@@ -992,7 +993,7 @@ public class EPFirstDegreeMaterials {
         SodiumTellurite = Builder("sodium_tellurite")
                 .dust()
                 .color(0xC6C9BE)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Sodium, 2, Tellurium, 1, Oxygen, 3)
                 .buildAndRegister();
@@ -1110,14 +1111,14 @@ public class EPFirstDegreeMaterials {
         LithiumFluoride = Builder("lithium_fluoride")
                 .dust()
                 .color(0x9BAFDB)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Lithium, 1, Fluorine, 1)
                 .buildAndRegister();
         //  24147 Barium Carbonate
         BariumCarbonate = Builder("barium_carbonate")
                 .dust()
                 .color(0x425A73)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Barium, 1, Carbon, 1, Oxygen, 3)
                 .buildAndRegister();
         //  24148 Carbon Disulfide
@@ -1130,7 +1131,7 @@ public class EPFirstDegreeMaterials {
         SodiumThiosulfate = Builder("sodium_thiosulfate")
                 .dust()
                 .color(0x1436A7)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 2, Sulfur, 2, Oxygen, 3)
                 .buildAndRegister();
         //  24150 Cadmium Selenide
@@ -1190,7 +1191,7 @@ public class EPFirstDegreeMaterials {
         FerricOxide = Builder("ferric_oxide")
                 .dust()
                 .color(0x915A5A)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Iron, 2, Oxygen, 3)
                 .buildAndRegister();
         //  24157 Bismuth Ferrite
@@ -1306,7 +1307,7 @@ public class EPFirstDegreeMaterials {
         Adamantite = Builder("adamantite")
                 .dust()
                 .color(0xC83C3C)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Adamantium, 3, Oxygen, 4)
                 .buildAndRegister();
         //  24172 Unstable Adamantium
@@ -1328,7 +1329,7 @@ public class EPFirstDegreeMaterials {
         AdamantiumEnriched = Builder("adamantium_enriched")
                 .dust()
                 .color(0x64B4FF)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Vibranium, 1, RareEarth, 1)
                 .buildAndRegister();
@@ -1458,7 +1459,7 @@ public class EPFirstDegreeMaterials {
         ManganeseSulfate = Builder("manganese_sulfate")
                 .dust()
                 .color(0xF0F895)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Manganese, 1, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
         //  24194 Potassium Sulfate
@@ -1479,7 +1480,7 @@ public class EPFirstDegreeMaterials {
         Carbamide = Builder("carbamide")
                 .dust()
                 .color(0x16EF57)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Carbon, 1, Hydrogen, 4, Nitrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         //  24197 Neodymium-Doped Yttrium Oxide
@@ -1564,7 +1565,7 @@ public class EPFirstDegreeMaterials {
         SodiumMolybdate = Builder("sodium_molybdate")
                 .dust()
                 .color(0xCCCC99)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 2, Molybdenum, 1, Oxygen, 4)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -1671,7 +1672,7 @@ public class EPFirstDegreeMaterials {
         SilicaGelBase = Builder("silica_gel_base")
                 .fluid()
                 .color(0x9695FD)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(SiliconDioxide, 1, HydrochloricAcid, 1, SodiumHydroxide, 1, Water, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -1687,7 +1688,7 @@ public class EPFirstDegreeMaterials {
         NitrosoniumTetrafluoroborate = Builder("nitrosonium_tetrafluoroborate")
                 .dust()
                 .color(0xA32A8C)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -1717,7 +1718,7 @@ public class EPFirstDegreeMaterials {
         PotassiumHydroxylaminedisulfonate = Builder("potassium_hydroxylaminedisulfonate")
                 .dust()
                 .color(0x627D25)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Potassium, 2, Nitrogen, 1, Hydrogen, 1, Sulfur, 2, Oxygen, 7)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -1733,7 +1734,7 @@ public class EPFirstDegreeMaterials {
         PotassiumCarbonate = Builder("potassium_carbonate")
                 .dust()
                 .color(0x7C89D9)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Potassium, 2, Carbon, 1, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -1913,7 +1914,7 @@ public class EPFirstDegreeMaterials {
         PotassiumFluoride = Builder("potassium_fluoride")
                 .dust()
                 .color(Potassium.getMaterialRGB() + Fluorine.getMaterialRGB())
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Potassium, 1, Fluorine, 1)
                 .buildAndRegister();
         //  24260 Potassium Fluoniobate
@@ -1972,7 +1973,7 @@ public class EPFirstDegreeMaterials {
         LeachingGold = Builder("leaching_gold")
                 .dust()
                 .color(0xA7650F)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Copper, 3, Gold, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
@@ -2088,7 +2089,7 @@ public class EPFirstDegreeMaterials {
         SodiumPeroxide = Builder("sodium_peroxide")
                 .dust()
                 .color(0xECFF80)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 2, Oxygen, 2)
                 .buildAndRegister();
         //  24282 Rhodium Oxide
@@ -2198,7 +2199,7 @@ public class EPFirstDegreeMaterials {
         CaliforniumNitrite = Builder("californium_nitrite")
                 .dust()
                 .color(0x914626)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Californium, 1, Nitrogen, 3, Oxygen, 6)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
@@ -2243,7 +2244,7 @@ public class EPFirstDegreeMaterials {
         Californium252Dioxide = Builder("californium_252_dioxide")
                 .dust()
                 .color(0x912D01)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Californium252, 1, Oxygen, 2)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -2251,7 +2252,7 @@ public class EPFirstDegreeMaterials {
         ActiniumDraconiumHydroxides = Builder("actinium_draconium_hydroxides")
                 .dust()
                 .color(0xB613BF)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Draconium, 3, Actinium, 2, Oxygen, 12, Hydrogen, 12)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
@@ -2260,7 +2261,7 @@ public class EPFirstDegreeMaterials {
         ActiniumNitrate = Builder("actinium_nitrate")
                 .dust()
                 .color(Actinium.getMaterialRGB() + NitricAcid.getMaterialRGB())
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Actinium, 1, Nitrogen, 3, Oxygen, 9)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister()
@@ -2294,7 +2295,7 @@ public class EPFirstDegreeMaterials {
         CaesiumNitrate = Builder("caesium_nitrate")
                 .dust()
                 .color(Caesium.getMaterialRGB() + NitricAcid.getMaterialRGB())
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Caesium, 1, Nitrogen, 1, Oxygen, 3)
                 .flags(DECOMPOSITION_BY_ELECTROLYZING)
                 .buildAndRegister();
@@ -2325,7 +2326,7 @@ public class EPFirstDegreeMaterials {
         SodiumBorohydride = Builder("sodium_borohydride")
                 .dust()
                 .color(Sodium.getMaterialRGB() + Boron.getMaterialRGB())
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Sodium, 1, Boron, 1, Hydrogen, 4)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -2433,6 +2434,18 @@ public class EPFirstDegreeMaterials {
                 .color(0x607186)
                 .components(Methylhydrazine, 1, Tetranitromethane, 1)
                 .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
+
+        UDMHRocketFuel = Builder("udmh_rocket_fuel")
+                .fluid()
+                .color(0x2AA327)
+                .iconSet(DULL)
+                .buildAndRegister();
+
+        UDMH = Builder("udmh")
+                .fluid()
+                .color(0x050543)
+                .iconSet(DULL)
                 .buildAndRegister();
         //  24328 Lithium Niobate
         LithiumNiobate = Builder("lithium_niobate")
@@ -2560,7 +2573,7 @@ public class EPFirstDegreeMaterials {
         BismuthGermanate = Builder("bismuth_germanate")
                 .dust()
                 .color(Bismuth.getMaterialRGB() + Germanium.getMaterialRGB())
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Bismuth, 12, Germanium, 1, Oxygen, 20)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
@@ -2617,40 +2630,87 @@ public class EPFirstDegreeMaterials {
         ExtractiveNaquadahOxide = Builder("extractive_naquadah_oxide")
                 .dust(0x432937)
                 .color(0x59434F)
-                .iconSet(MaterialIconSet.ROUGH)
+                .iconSet(ROUGH)
                 .components(Naquadah, 2, Oxygen, 3)
                 .buildAndRegister();
 
-        //  Acetic Anhydride
-        AceticAnhydride = Builder("acetic_anhydride")
+        ThoriumBasedLiquidFuel = Builder("thorium_based_liquid_fuel")
                 .fluid()
-                .color(0xffccff)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Carbon, 4,Hydrogen, 6, Oxygen, 3)
-                .buildAndRegister();
-
-        //  Hydrogen Cyanide
-        HydrogenCyanide = Builder("hydrogen_cyanide")
+                .color(0x3b264d)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Th432Li4D2Hg");
+        ThoriumBasedLiquidFuelExcited = Builder("thorium_based_liquid_fuel_excited")
                 .fluid()
-                .color(0xffb3da)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Hydrogen, 1, Carbon, 1,Nitrogen,1)
-                .buildAndRegister();
-
-        //  Sodium Cyanide
-        SodiumCyanide = Builder("sodium_cyanide")
+                .color(0x3f2850)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("*(Th432Li4D2HG)*");
+        ThoriumBasedLiquidFuelDepleted = Builder("thorium_based_liquid_fuel_depleted")
+                .fluid()
+                .color(0x5d5166)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Th?Pr?B?In?");
+        UraniumBasedLiquidFuel = Builder("uranium_based_liquid_fuel")
+                .fluid()
+                .color(0x02ba05)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("U36K8Qt4Rn");
+        UraniumBasedLiquidFuelExcited = Builder("uranium_based_liquid_fuel_excited")
+                .fluid()
+                .color(0x04bc04)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("*(U36K8Qt4Rn)*");
+        UraniumBasedLiquidFuelDepleted = Builder("uranium_based_liquid_fuel_depleted")
+                .fluid()
+                .color(0x576d31)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("PB?Bi?Ba?Xe?");
+        PlutoniumBasedLiquidFuel = Builder("plutonium_based_liquid_fuel")
+                .fluid()
+                .color(0xb71213)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Pu45Nt8Cs16Nq2");
+        PlutoniumBasedLiquidFuelExcited = Builder("plutonium_based_liquid_fuel_excited")
+                .fluid()
+                .color(0xb81312)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("*(Pu45Nt8Cs16Nq2)*");
+        PlutoniumBasedLiquidFuelDepleted = Builder("plutonium_based_liquid_fuel_depleted")
+                .fluid()
+                .color(0x4e1414)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Th?Ce?Au?Kr?");
+        RadiationProtection = Builder("radiation_protection")
                 .dust()
-                .color(0xff80c1)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Sodium, 1, Carbon, 1,Nitrogen,1)
+                .flags(GENERATE_FRAME)
+                .color(0x4C4C4B)
+                .iconSet(METALLIC)
                 .buildAndRegister();
-
-        //  Sodium Perchlorate
-        SodiumPerchlorate = Builder("sodium_perchlorate")
-                .dust()
-                .color(0xff4da6)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Chlorine, 1, Sodium, 1,Oxygen, 4)
-                .buildAndRegister();
+        NaquadahBasedLiquidFuel = Builder("naquadah_based_liquid_fuel")
+                .fluid()
+                .color(0x43b54a)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Nq42Ce16Nd16");
+        NaquadahBasedLiquidFuelExcited = Builder("naquadah_based_liquid_fuel_excited")
+                .fluid()
+                .color(0x41b349)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("*(Nq42Ce16Nd16)*");
+        NaquadahBasedLiquidFuelDepleted = Builder("naquadah_based_liquid_fuel_depleted")
+                .fluid()
+                .color(0x215825)
+                .iconSet(METALLIC)
+                .buildAndRegister()
+                .setFormula("Nq?Ke?Nd?");
     }
 }

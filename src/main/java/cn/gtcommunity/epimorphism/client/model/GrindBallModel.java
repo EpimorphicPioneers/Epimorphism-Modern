@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.client.model;
 
-import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
 import cn.gtcommunity.epimorphism.common.data.EPItems;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
 import com.gregtechceu.gtceu.api.GTCEuAPI;

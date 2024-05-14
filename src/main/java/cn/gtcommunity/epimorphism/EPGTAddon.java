@@ -1,9 +1,9 @@
 package cn.gtcommunity.epimorphism;
 
-import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconSet;
-import cn.gtcommunity.epimorphism.api.chemical.material.info.EPMaterialIconType;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconSet;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
-import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
+import cn.gtcommunity.epimorphism.common.registry.EPRegistration;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
 import cn.gtcommunity.epimorphism.common.block.BlockTypeAdditions;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeConditions;
@@ -34,7 +34,7 @@ public class EPGTAddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
-        return EPRegistries.EP_REGISTRATE;
+        return EPRegistration.EP_REGISTRATE;
     }
 
     public static void postInitializeAddon() {

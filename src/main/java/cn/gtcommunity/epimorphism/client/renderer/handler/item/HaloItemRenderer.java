@@ -1,18 +1,17 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.client.item.IRendererMetaInfo;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.IHaloRenderBehavior;
-import cn.gtcommunity.epimorphism.client.lib.AlphaVertexConsumer;
-import cn.gtcommunity.epimorphism.client.utils.ColorHelper;
-import cn.gtcommunity.epimorphism.utils.EPMathUtil;
+import com.epimorphismmc.monomorphism.client.utils.AlphaVertexConsumer;
+import com.epimorphismmc.monomorphism.client.utils.ColorHelper;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.item.component.IRendererItem;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -31,7 +30,7 @@ import org.joml.Matrix4f;
 
 import java.util.*;
 import java.util.function.Consumer;
-
+// TODO Maybe use IModelRenderer?
 public class HaloItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
     public static final HaloItemRenderer INSTANCE = new HaloItemRenderer();
@@ -55,9 +54,9 @@ public class HaloItemRenderer implements IRenderer {
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
         model = RenderHelper.getVanillaModel(stack, null, null);
-        if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererMetaInfo componentItem) {
+        if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererItem rendererItem) {
 
-            if (componentItem.getMetaInfo(stack) instanceof IHaloRenderBehavior hri) {
+            if (rendererItem.getRenderInfo(stack) instanceof IHaloRenderBehavior hri) {
                 Tesselator tess = Tesselator.getInstance();
                 BufferBuilder buf = tess.getBuilder();
                 buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -79,7 +78,7 @@ public class HaloItemRenderer implements IRenderer {
                     RenderSystem.setShaderColor(r, g, b, a);
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     TextureAtlasSprite sprite = ModelFactory.getBlockSprite(hri.haloTexture());
-                    ClientUtil.bindTexture(InventoryMenu.BLOCK_ATLAS);
+                    RenderHelper.bindTexture(InventoryMenu.BLOCK_ATLAS);
                     float spread = hri.haloSize() / 16F;
                     float min = 0F - spread;
                     float max = 1F + spread;
@@ -105,7 +104,7 @@ public class HaloItemRenderer implements IRenderer {
                 if (hri.shouldDrawPulse()) {
                     poseStack.pushPose();
                     poseStack.translate(-0.5F, -0.5F, -0.5F);
-                    float scale = EPMathUtil.RAND.nextFloat() * 0.15F + 0.95F;
+                    float scale = GTValues.RNG.nextFloat() * 0.15F + 0.95F;
                     double trans = (1 - scale) / 2;
                     poseStack.translate(trans, trans, 0);
                     poseStack.scale(scale, scale, 1.0001F);

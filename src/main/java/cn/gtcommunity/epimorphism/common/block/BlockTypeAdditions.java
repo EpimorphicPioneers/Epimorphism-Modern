@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
-import cn.gtcommunity.epimorphism.core.ITierBlockType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
+import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
 import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StainedGlassBlock;
@@ -40,7 +40,7 @@ public class BlockTypeAdditions {
     }
 
     private static void glassTierTypeAdd(Block block, ITierGlassType type) {
-        ((ITierBlockType) block).setType(type);
+        ((ITierBlock) block).setTierType(type);
         BlockMaps.ALL_GLASSES.put(type, () -> block);
         BlockMaps.SHAPE_GLASSES.put(type, () -> block);
     }
@@ -52,7 +52,7 @@ public class BlockTypeAdditions {
     
     private static void stainedGlassTierTypeAdd(Block block) {
         ITierGlassType type = new ITierGlassType.SimpleTierGlassType(((StainedGlassBlock)block).getColor().getName(), GTValues.LV, false);
-        ((ITierBlockType) block).setType(type);
+        ((ITierBlock) block).setTierType(type);
         BlockMaps.ALL_GLASSES.put(type, () -> block);
     }
 }

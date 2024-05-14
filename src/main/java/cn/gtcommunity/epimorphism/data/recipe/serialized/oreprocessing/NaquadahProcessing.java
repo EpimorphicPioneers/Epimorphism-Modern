@@ -1,6 +1,8 @@
 package cn.gtcommunity.epimorphism.data.recipe.serialized.oreprocessing;
 
-import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
+import cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem;
+import cn.gtcommunity.epimorphism.common.recipe.CPCasingCondition;
+import cn.gtcommunity.epimorphism.data.recipe.EPRecipeUtil;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -8,7 +10,6 @@ import java.util.function.Consumer;
 
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
-import static cn.gtcommunity.epimorphism.utils.EPMathUtil.K;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -120,9 +121,9 @@ public class NaquadahProcessing {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .save(provider);
 
-        //  Step3: AuF3 + XeNq+F6 + HSbF6 + 9H - Pd-C catalyst -> (solutions...) + 8HF
-        CHEMICAL_PLANT_RECIPES.recipeBuilder("enriched_naquadah_solution")
-                .notConsumable(dust, PalladiumOnCarbon)
+        //  Step3: AuF3 + XeNq+F6 + HSbF6 + 9H - Pd-C catalyst -> (solutions...) + 8H
+        EPRecipeUtil.chemicalPlantRecipe("enriched_naquadah_solution", CPCasingCondition.TUNGSTEN_STEEL,
+                        EPChemistryItem.PALLADIUM_CARBON_CATALYST.asItem())
                 .inputItems(dust, GoldTrifluoride, 4)
                 .inputFluids(XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(FluoroantimonicAcid.getFluid(1000))
@@ -132,7 +133,6 @@ public class NaquadahProcessing {
                 .outputFluids(HydrofluoricAcid.getFluid(8000))
                 .EUt(VA[LuV])
                 .duration(1200)
-                //  todo casing tier?
                 .save(provider);
 
         //  Au + 3F -> AuF3

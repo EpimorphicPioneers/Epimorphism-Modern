@@ -1,20 +1,18 @@
 package cn.gtcommunity.epimorphism.client;
 
-import cn.gtcommunity.epimorphism.client.dimension.renderer.PlanetSkyRenderer;
+import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.common.data.EPParticleTypes;
 import cn.gtcommunity.epimorphism.client.model.GrindBallModel;
-import cn.gtcommunity.epimorphism.client.model.ItemCustomLayerModel;
+import cn.gtcommunity.epimorphism.client.particle.CropFX;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy extends CommonProxy {
-    public static List<PlanetSkyRenderer> skyRenderers = new ArrayList<>();
 
     public ClientProxy() {
         super();
@@ -26,17 +24,22 @@ public class ClientProxy extends CommonProxy {
     }
 
     @SubscribeEvent
-    public void onRegisterGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register("item_custom_layers", ItemCustomLayerModel.Loader.INSTANCE);
+    public void registerParticleFactories(RegisterParticleProvidersEvent event) {
+        event.registerSpecial(EPParticleTypes.CROP, new CropFX.Factory());
     }
 
     @SubscribeEvent
-    public void onModelBakingResult(ModelEvent.ModifyBakingResult event) {
+    public void onModelBaking(ModelEvent.ModifyBakingResult event) {
         GrindBallModel.replaceModel(event.getModels());
     }
 
     @SubscribeEvent
-    public void onModelRegistration(ModelEvent.RegisterAdditional event) {
+    public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
         GrindBallModel.registerAdditionalModel(event::register);
+        event.register(Epimorphism.id("block/obj/star_0"));
+        event.register(Epimorphism.id("block/obj/star_1"));
+        event.register(Epimorphism.id("block/obj/star_2"));
+        event.register(Epimorphism.id("block/obj/space"));
+        event.register(Epimorphism.id("block/obj/climber"));
     }
 }

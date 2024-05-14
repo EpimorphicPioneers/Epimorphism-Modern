@@ -1,15 +1,24 @@
 package cn.gtcommunity.epimorphism.api.recipe;
 
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneralRecipeType extends GTRecipeType {
+
+    private static final Map<String, GTRecipe> CACHE = new ConcurrentHashMap<>();
+
     private final GTRecipeType recipe_1;
     private final GTRecipeType recipe_2;
     private final GTRecipeType recipe_3;
@@ -45,9 +54,19 @@ public class GeneralRecipeType extends GTRecipeType {
 
     private Iterator<GTRecipe> matchRecipe(GTRecipeType recipeType, int configuration, IRecipeCapabilityHolder holder) {
         return recipeType.getLookup().getRecipeIterator(holder, recipe -> {
-            var newRecipe = EPRecipeHelper.addCircuitMeta(recipe, configuration);
+            var newRecipe = addCircuitMeta(recipe, configuration);
             return !newRecipe.isFuel
                     && newRecipe.matchRecipe(holder).isSuccess()
                     && newRecipe.matchTickRecipe(holder).isSuccess();});
     }
+
+    public static GTRecipe addCircuitMeta(GTRecipe recipe, int configuration) {
+        var stack = IntCircuitBehaviour.stack(configuration);
+        return CACHE.computeIfAbsent("%s_%s".formatted(recipe.id.toString(), configuration), key -> {
+            var newRecipe = recipe.copy();
+            newRecipe.inputs.computeIfAbsent(ItemRecipeCapability.CAP, capability -> new ArrayList<>()).add(MORecipeHelper.itemContent(stack, 0, 0));
+            return newRecipe;
+        });
+    }
+
 }

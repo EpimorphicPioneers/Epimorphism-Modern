@@ -365,6 +365,8 @@ public class MaterialLang {
         addMaterial(provider, RP1RocketFuel, "RP-1 RocketFuel", "RP-1火箭燃料");
         addMaterial(provider, Methylhydrazine, "Methylhydrazine", "甲肼");
         addMaterial(provider, MethylhydrazineNitrateRocketFuel, "Methylhydrazine Nitrate Rocket Fuel", "硝酸甲肼火箭燃料");
+        addMaterial(provider, UDMHRocketFuel, "UDMH Rocket Fuel", "H8N4C2O4火箭燃料");
+        addMaterial(provider, UDMH, "UDMH", "偏二甲肼");
         addMaterial(provider, LithiumNiobate, "Lithium Niobate", "铌酸锂");
         addMaterial(provider, NiobiumPentachloride, "Niobium Pentachloride", "五氯化铌");
         addMaterial(provider, HighPuritySodiumVanadate, "High Purity Sodium Vanadate", "高纯钒酸钠");
@@ -388,10 +390,10 @@ public class MaterialLang {
         addMaterial(provider, TitaniumNitrate, "Titanium Nitrate", "硝酸钛");
         addMaterial(provider, NaquadahOxideMixture, "Naquadah Oxide Mixture", "氧化硅岩混合物");
         addMaterial(provider, ExtractiveNaquadahOxide, "Extractive Naquadah Oxide", "氧化硅岩浸出物");
-        addMaterial(provider, AceticAnhydride, "Acetic Anhydride", "乙酸酐");
-        addMaterial(provider, HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
-        addMaterial(provider, SodiumCyanide, "Sodium Cyanide", "氰化钠");
-        addMaterial(provider, SodiumPerchlorate, "Sodium Perchlorate", "高氯酸钠");
+//        addMaterial(provider, AceticAnhydride, "Acetic Anhydride", "乙酸酐");
+//        addMaterial(provider, HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
+//        addMaterial(provider, SodiumCyanide, "Sodium Cyanide", "氰化钠");
+//        addMaterial(provider, SodiumPerchlorate, "Sodium Perchlorate", "高氯酸钠");
 
 
         // Second Degree Materials
@@ -723,5 +725,6 @@ public class MaterialLang {
         addTagPrefix(provider, EPTagPrefix.crucible, "%s Crucible", "%s坩埚");
         addTagPrefix(provider, EPTagPrefix.seedCrystal, "%s Seed Crystal", "%s晶种");
         addTagPrefix(provider, EPTagPrefix.boule, "%s Boule", "人造%s");
+        addTagPrefix(provider, EPTagPrefix.fence, "%s Fence", "%s栅栏");
     }
 }

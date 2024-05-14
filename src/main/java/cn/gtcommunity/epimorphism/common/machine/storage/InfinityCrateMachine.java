@@ -2,8 +2,8 @@ package cn.gtcommunity.epimorphism.common.machine.storage;
 
 import cn.gtcommunity.epimorphism.api.gui.utils.EPDrawerHelper;
 import cn.gtcommunity.epimorphism.api.gui.widget.PagedWidgetGroup;
-import cn.gtcommunity.epimorphism.utils.EPLangUtil;
-import cn.gtcommunity.epimorphism.utils.EPNBTUtil;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
+import com.epimorphismmc.monomorphism.utility.MONBTUtils;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -91,7 +91,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                     if (!stacks.get(i).isEmpty()) {
                         CompoundTag itemTag = new CompoundTag();
                         itemTag.putInt("Slot", i);
-                        EPNBTUtil.saveItemStack(stacks.get(i), itemTag);
+                        MONBTUtils.writeItemStack(stacks.get(i), itemTag);
                         nbtTagList.add(itemTag);
                     }
                 }
@@ -110,7 +110,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                     int slot = itemTags.getInt("Slot");
 
                     if (slot >= 0 && slot < stacks.size()) {
-                        stacks.set(slot, EPNBTUtil.loadItemStack(itemTags));
+                        stacks.set(slot, MONBTUtils.readItemStack(itemTags));
                     }
                 }
                 onLoad();
@@ -204,7 +204,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                     if (!itemStack.isEmpty()) {
                         DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1, " ");
                         if (itemStack.getCount() > 1) {
-                            EPDrawerHelper.renderStackCount(graphics, EPLangUtil.abbreviate(itemStack.getCount()), pos.x + 1, pos.y + 1);
+                            EPDrawerHelper.renderStackCount(graphics, MOFormattingUtils.abbreviate(itemStack.getCount()), pos.x + 1, pos.y + 1);
                         }
                     }
                 }
@@ -219,7 +219,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
             }
 
         }.setOnAddedTooltips((widget, components) -> {
-            var slotReference = widget.getHandle();
+            var slotReference = widget.getHandler();
             if (slotReference != null && slotReference.hasItem()) {
                 int amount = slotReference.getItem().getCount();
                 components.add(Component.translatable("epimorphism.universal.desc.amount", FormattingUtil.formatNumbers(amount)));

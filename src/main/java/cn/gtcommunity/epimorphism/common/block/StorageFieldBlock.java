@@ -1,39 +1,29 @@
 package cn.gtcommunity.epimorphism.common.block;
 
-import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
+import cn.gtcommunity.epimorphism.api.block.tier.IStorageFieldBlock;
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.block.AppearanceBlock;
+import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
-import com.lowdragmc.lowdraglib.client.renderer.IBlockRendererProvider;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class StorageFieldBlock extends AppearanceBlock implements IBlockRendererProvider {
-    private final IRenderer renderer;
+public class StorageFieldBlock extends RendererBlock {
 
     @Getter
     private final IStorageFieldBlock data;
 
     public StorageFieldBlock(Properties properties, IStorageFieldBlock data, IRenderer renderer) {
-        super(properties);
+        super(properties, renderer);
         this.data = data;
-        this.renderer = renderer;
-    }
-
-    @Nullable
-    @Override
-    public IRenderer getRenderer(BlockState state) {
-        return renderer;
     }
 
     @Override

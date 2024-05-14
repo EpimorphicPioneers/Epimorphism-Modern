@@ -1,11 +1,14 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.part;
 
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
+import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -39,10 +42,6 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
     //////////////////////////////////////
     //*****     Initialization    ******//
     //////////////////////////////////////
-    @Override
-    public ManagedFieldHolder getFieldHolder() {
-        return MANAGED_FIELD_HOLDER;
-    }
 
     protected NotifiableFluidTank createTank(Object... args) {
         return new NotifiableFluidTank(this, 1, Long.MAX_VALUE, io, IO.NONE);
@@ -82,16 +81,43 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
         else updateTankSubscription();
     }
 
-    @Override
-    public void setWorkingEnabled(boolean workingEnabled) {
-        super.setWorkingEnabled(workingEnabled);
-        updateTankSubscription();
-    }
-
     private void unsubscribe() {
         if (productSubs != null) {
             productSubs.unsubscribe();
             productSubs = null;
         }
     }
+
+    //////////////////////////////////////
+    //**********     GUI     ***********//
+    //////////////////////////////////////
+
+    @Override
+    public Widget createUIWidget() {
+        var group = new WidgetGroup(0, 0, 89, 63);
+
+        group.addWidget(new ImageWidget(4, 4, 81, 55, GuiTextures.DISPLAY))
+                .addWidget(new LabelWidget(8, 8, "gtceu.gui.fluid_amount"))
+                .addWidget(new LabelWidget(8, 18, () -> MOFormattingUtils.abbreviate(tank.getFluidInTank(0).getAmount()) + " mB").setTextColor(-1).setDropShadow(true))
+                .addWidget(new TankWidget(tank.getStorages()[0], 67, 22, false, false).setBackground(GuiTextures.FLUID_SLOT));
+
+        group.setBackground(GuiTextures.BACKGROUND_INVERSE);
+        return group;
+    }
+
+    //////////////////////////////////////
+    //**********     Data     **********//
+    //////////////////////////////////////
+
+    @Override
+    public void setWorkingEnabled(boolean workingEnabled) {
+        super.setWorkingEnabled(workingEnabled);
+        updateTankSubscription();
+    }
+
+    @Override
+    public ManagedFieldHolder getFieldHolder() {
+        return MANAGED_FIELD_HOLDER;
+    }
+
 }

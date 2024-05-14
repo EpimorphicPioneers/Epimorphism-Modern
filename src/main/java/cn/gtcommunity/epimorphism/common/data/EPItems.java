@@ -1,7 +1,9 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.common.item.GrindBall;
+import cn.gtcommunity.epimorphism.common.registry.EPRegistration;
+import cn.gtcommunity.epimorphism.common.data.items.*;
+import cn.gtcommunity.epimorphism.common.item.GrindBallItem;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
 import cn.gtcommunity.epimorphism.common.item.behaviors.OrganismCaptureBehavior;
@@ -33,12 +35,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.*;
-
 public class EPItems {
 
     static {
-        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_ITEM);
+        EPRegistration.EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_ITEM);
     }
 
     //  Boards
@@ -152,11 +152,11 @@ public class EPItems {
     public final static ItemEntry<ComponentItem> OPTICAL_FIBER = registerItemWithTooltip("laser.optical_fiber", ComponentItem::create, 1).lang("Optical Fiber").register();
     public final static ItemEntry<ComponentItem> DIELECTRIC_MIRROR = registerItemWithTooltip("laser.dielectric_mirror", ComponentItem::create, 1).lang("Dielectric Mirror").register();
     public final static ItemEntry<ComponentItem> EMPTY_LASER_ASSEMBLY = registerItemWithTooltip("laser.emitter.empty", ComponentItem::create, 1).lang("Empty Laser Assembly").register();
-    public final static ItemEntry<ComponentItem> HELIUM_LASER = EP_REGISTRATE.item("laser.emitter.helium", ComponentItem::create).lang("Helium Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> NEON_LASER = EP_REGISTRATE.item("laser.emitter.neon", ComponentItem::create).lang("Neon Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> ARGON_LASER = EP_REGISTRATE.item("laser.emitter.argon", ComponentItem::create).lang("Argon Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> KRYPTON_LASER = EP_REGISTRATE.item("laser.emitter.krypton", ComponentItem::create).lang("Krypton Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> XENON_LASER = EP_REGISTRATE.item("laser.emitter.xenon", ComponentItem::create).lang("Xenon Laser Emitter").register();
+    public final static ItemEntry<ComponentItem> HELIUM_LASER = EPRegistration.EP_REGISTRATE.item("laser.emitter.helium", ComponentItem::create).lang("Helium Laser Emitter").register();
+    public final static ItemEntry<ComponentItem> NEON_LASER = EPRegistration.EP_REGISTRATE.item("laser.emitter.neon", ComponentItem::create).lang("Neon Laser Emitter").register();
+    public final static ItemEntry<ComponentItem> ARGON_LASER = EPRegistration.EP_REGISTRATE.item("laser.emitter.argon", ComponentItem::create).lang("Argon Laser Emitter").register();
+    public final static ItemEntry<ComponentItem> KRYPTON_LASER = EPRegistration.EP_REGISTRATE.item("laser.emitter.krypton", ComponentItem::create).lang("Krypton Laser Emitter").register();
+    public final static ItemEntry<ComponentItem> XENON_LASER = EPRegistration.EP_REGISTRATE.item("laser.emitter.xenon", ComponentItem::create).lang("Xenon Laser Emitter").register();
     public final static ItemEntry<ComponentItem> HELIUM_NEON_LASER = registerItemWithTooltip("laser.emitter.helium_neon", ComponentItem::create, 1).lang("Helium-Neon Laser").register();
     public final static ItemEntry<ComponentItem> ND_YAG_LASER = registerItemWithTooltip("laser.emitter.nd_yag", ComponentItem::create, 1).lang("Nd:YAG Laser Emitter")
             .register();
@@ -278,20 +278,19 @@ public class EPItems {
 //    public final static ItemEntry<Item> BORON_NITRIDE_GRINDER;
 //    public final static ItemEntry<Item> VACUUM_TUBE_COMPONENT;
 //    public final static ItemEntry<Item> SEPARATION_ELECTROMAGNET;
-//    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX;
-//    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX;
-    public final static ItemEntry<ComponentItem> RADIOACTIVE_WASTE = registerItemWithTooltip("radioactive_waste", ComponentItem::create, 1).lang("Radioactive Waste").register();
-    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = EP_REGISTRATE.item("metastable_self_healing_adhesive", Item::new).lang("Metastable Self-healing Adhesive").register();
-    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = EP_REGISTRATE.item("hyperdimensional_tachyon_condensed_matter", Item::new).lang("Hyperdimensional Tachyon Condensed Matter").register();
-    public final static ItemEntry<Item> UNSTABLE_STAR = EP_REGISTRATE.item("unstable_star", Item::new).lang("Unstable Star").register();
-    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = EP_REGISTRATE.item("component.cosmic.cladded_optical_fiber_core", Item::new).lang("Cladded Optical Fiber Core").register();
+    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX = EPRegistration.EP_REGISTRATE.item("protonated_fullerene_sieving_matrix", Item::new).lang("Protonated Fullerene Sieving Matrix").register();
+    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX = EPRegistration.EP_REGISTRATE.item("saturated_fullerene_sieving_matrix", Item::new).lang("Saturated Fullerene Sieving Matrix").register();
+    public static ItemEntry<ComponentItem> INVERTER = registerItemWithTooltip("inverter", ComponentItem::create, 1).lang("Inverter").register();
+    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = EPRegistration.EP_REGISTRATE.item("metastable_self_healing_adhesive", Item::new).lang("Metastable Self-healing Adhesive").register();
+    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = EPRegistration.EP_REGISTRATE.item("hyperdimensional_tachyon_condensed_matter", Item::new).lang("Hyperdimensional Tachyon Condensed Matter").register();
+    public final static ItemEntry<Item> UNSTABLE_STAR = EPRegistration.EP_REGISTRATE.item("unstable_star", Item::new).lang("Unstable Star").register();
+    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = EPRegistration.EP_REGISTRATE.item("component.cosmic.cladded_optical_fiber_core", Item::new).lang("Cladded Optical Fiber Core").register();
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT;
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT;
 //    public final static ItemEntry<Item> NUCLEAR_CLOCK;
 //    public final static ItemEntry<Item> MANIFOLD_OSCILLATORY_POWER_CELL;
-//
-//    public final static ItemEntry<Item> SCINTILLATOR;
-//    public final static ItemEntry<Item> SCINTILLATOR_CRYSTAL;
+    public final static ItemEntry<Item> SCINTILLATOR = EPRegistration.EP_REGISTRATE.item("scintillator", Item::new).lang("Scintillator").register();
+    public final static ItemEntry<Item> SCINTILLATOR_CRYSTAL = EPRegistration.EP_REGISTRATE.item("scintillator_crystal", Item::new).lang("Scintillator Crystal").register();
 
     //  Crystal Components
     public final static ItemEntry<ComponentItem> DIAMOND_CHIP = registerItemWithTooltip("crystal.diamond_chip", ComponentItem::create, 1).lang("Engraved Diamond Crystal Chip").register();
@@ -301,12 +300,10 @@ public class EPItems {
 //    public final static ItemEntry<Item> RUBY_MODULATOR;
 //    public final static ItemEntry<Item> SAPPHIRE_MODULATOR;
 //    public final static ItemEntry<Item> CRYSTAL_SOC_SOCKET;
-//
-//
 
 
     //  Covers
-    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = EPRegistration.EP_REGISTRATE.item("max_electric_pump", ComponentItem::create)
             .lang("§c§lMAX§r Electric Pump")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ELECTRIC_PUMP_MAX)))
             .onRegister(attach(new TooltipBehavior(lines -> {
@@ -314,7 +311,7 @@ public class EPItems {
                 lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20));
             })))
             .register();
-    public static ItemEntry<ComponentItem> FLUID_REGULATOR_MAX = EP_REGISTRATE.item("max_fluid_regulator", ComponentItem::create)
+    public static ItemEntry<ComponentItem> FLUID_REGULATOR_MAX = EPRegistration.EP_REGISTRATE.item("max_fluid_regulator", ComponentItem::create)
             .lang("§c§lMAX§r Fluid Regulator")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.FLUID_REGULATORS_MAX)))
             .onRegister(attach(new TooltipBehavior(lines -> {
@@ -322,7 +319,7 @@ public class EPItems {
                 lines.add(Component.translatable("gtceu.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20));
             })))
             .register();
-    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_MAX = EP_REGISTRATE.item("max_conveyor_module", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> CONVEYOR_MODULE_MAX = EPRegistration.EP_REGISTRATE.item("max_conveyor_module", ComponentItem::create)
             .lang("§c§lMAX§r Conveyor Module")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.CONVEYOR_MODULE_MAX)))
             .onRegister(attach(new TooltipBehavior(lines -> {
@@ -330,7 +327,7 @@ public class EPItems {
                 lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate_stacks", 16));
             })))
             .register();
-    public final static ItemEntry<ComponentItem> ROBOT_ARM_MAX = EP_REGISTRATE.item("max_robot_arm", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ROBOT_ARM_MAX = EPRegistration.EP_REGISTRATE.item("max_robot_arm", ComponentItem::create)
             .lang("§c§lMAX§r Robot Arm")
             .onRegister(attach(new CoverPlaceBehavior(EPCovers.ROBOT_ARM_MAX)))
             .onRegister(attach(new TooltipBehavior(lines -> {
@@ -338,18 +335,18 @@ public class EPItems {
                 lines.add(Component.translatable("gtceu.universal.tooltip.item_transfer_rate_stacks", 16));
             })))
             .register();
-    public final static ItemEntry<Item> ELECTRIC_MOTOR_MAX = EP_REGISTRATE.item("max_electric_motor", Item::new).lang("§c§lMAX§r Electric Motor").register();
-    public final static ItemEntry<Item> ELECTRIC_PISTON_MAX = EP_REGISTRATE.item("max_electric_piston", Item::new).lang("§c§lMAX§r Electric Piston").register();
-    public final static ItemEntry<Item> EMITTER_MAX = EP_REGISTRATE.item("max_emitter", Item::new).lang("§c§lMAX§r Emitter").register();
-    public final static ItemEntry<Item> SENSOR_MAX = EP_REGISTRATE.item("max_sensor", Item::new).lang("§c§lMAX§r Sensor").register();
-    public final static ItemEntry<Item> FIELD_GENERATOR_MAX = EP_REGISTRATE.item("max_field_generator", Item::new).lang("§c§lMAX§r Field Generator").register();
+    public final static ItemEntry<Item> ELECTRIC_MOTOR_MAX = EPRegistration.EP_REGISTRATE.item("max_electric_motor", Item::new).lang("§c§lMAX§r Electric Motor").register();
+    public final static ItemEntry<Item> ELECTRIC_PISTON_MAX = EPRegistration.EP_REGISTRATE.item("max_electric_piston", Item::new).lang("§c§lMAX§r Electric Piston").register();
+    public final static ItemEntry<Item> EMITTER_MAX = EPRegistration.EP_REGISTRATE.item("max_emitter", Item::new).lang("§c§lMAX§r Emitter").register();
+    public final static ItemEntry<Item> SENSOR_MAX = EPRegistration.EP_REGISTRATE.item("max_sensor", Item::new).lang("§c§lMAX§r Sensor").register();
+    public final static ItemEntry<Item> FIELD_GENERATOR_MAX = EPRegistration.EP_REGISTRATE.item("max_field_generator", Item::new).lang("§c§lMAX§r Field Generator").register();
 
     //  Debug
     public final static ItemEntry<ComponentItem> DEBUG_STRUCTURE_WRITER = registerItemWithTooltip("debug.structure_writer", ComponentItem::create, 1).lang("Debug Structure Writer").onRegister(attach(StructureWriteBehavior.INSTANCE)).register();
     public final static ItemEntry<ComponentItem> DEBUG_STRUCTURE_BUILDER = registerItemWithTooltip("debug.structure_builder", ComponentItem::create, 1).lang("Debug Structure Builder").onRegister(attach(StructureWriteBehavior.INSTANCE)).register();
 
     //  Tool
-    public final static ItemEntry<ComponentItem> ORGANISM_CAPTURE_TOOL = EP_REGISTRATE.item("organism_capture_tool", ComponentItem::create)
+    public final static ItemEntry<ComponentItem> ORGANISM_CAPTURE_TOOL = EPRegistration.EP_REGISTRATE.item("organism_capture_tool", ComponentItem::create)
             .lang("Organism Capture Tool")
             .model(EPModels::captureToolModel)
             .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.epimorphism.organism_capture_tool.desc"))) {
@@ -363,14 +360,19 @@ public class EPItems {
             .onRegister(GTItems.modelPredicate(Epimorphism.id("organism_capture_tool"), itemStack -> OrganismCaptureBehavior.hasEntity(itemStack) ? 1f : 0f))
             .register();
 
-    public final static ItemEntry<VajraItem> VAJRA = EP_REGISTRATE.item("tool.vajra", VajraItem::new)
+    public final static ItemEntry<VajraItem> VAJRA = EPRegistration.EP_REGISTRATE.item("tool.vajra", VajraItem::new)
             .lang("Vajra")
             .model(EPModels.simpleCustomModel(Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
             .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
             .register();
 
+    public final static ItemEntry<ComponentItem> MITTS = registerItemWithTooltip("tool.mitts", ComponentItem::create, 1)
+            .lang("Mitts")
+            .properties(p -> p.stacksTo(1).durability(2000))
+            .register();
+
     // Grind Ball
-    public static ItemEntry<GrindBall> GRIND_BALL = EP_REGISTRATE.item("grind_ball", GrindBall::new)
+    public static ItemEntry<GrindBallItem> GRIND_BALL = EPRegistration.EP_REGISTRATE.item("grind_ball", GrindBallItem::new)
             .properties(p -> p.stacksTo(1))
             .color(() -> IMaterialPartItem::getItemStackColor)
             .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/grind_ball/base")))
@@ -384,44 +386,45 @@ public class EPItems {
         EPPhysicsItems.init();
         EPAgricultureItems.init();
         EPBiologyItems.init();
+        EPChemistryItem.init();
     }
 
-    protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {
-        return EP_REGISTRATE.item(name, factory)
+    public static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num) {
+        return EPRegistration.EP_REGISTRATE.item(name, factory)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     if (num <= 0) return;
 
                     if (num == 1) {
-                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EP_REGISTRATE.getModid(), name)));
+                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EPRegistration.EP_REGISTRATE.getModid(), name)));
                     } else {
                         for (int i = 0; i < num; i++) {
-                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
+                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EPRegistration.EP_REGISTRATE.getModid(), name, i)));
                         }
                     }
                 })));
     }
 
-    protected static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num, Component... other) {
-        return EP_REGISTRATE.item(name, factory)
+    public static <T extends ComponentItem> ItemBuilder<T, Registrate> registerItemWithTooltip(String name, NonNullFunction<Item.Properties, T> factory, int num, Component... other) {
+        return EPRegistration.EP_REGISTRATE.item(name, factory)
                 .onRegister(attach(new TooltipBehavior(lines -> {
                     if (num <= 0) return;
 
                     if (num == 1) {
-                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EP_REGISTRATE.getModid(), name)));
+                        lines.add(Component.translatable("item.%s.%s.desc".formatted(EPRegistration.EP_REGISTRATE.getModid(), name)));
                         lines.addAll(Arrays.asList(other));
                     } else {
                         for (int i = 0; i < num; i++) {
-                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EP_REGISTRATE.getModid(), name, i)));
+                            lines.add(Component.translatable("item.%s.%s.desc.%s".formatted(EPRegistration.EP_REGISTRATE.getModid(), name, i)));
                         }
                         lines.addAll(Arrays.asList(other));
                     }
                 })));
     }
 
-    protected static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
+    public static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
         return (item) -> item.attachComponents(components);
     }
-    protected static <T extends ComponentItem> NonNullConsumer<T> attachRenderer(ICustomRenderer customRenderer) {
+    public static <T extends ComponentItem> NonNullConsumer<T> attachRenderer(ICustomRenderer customRenderer) {
         return !Platform.isClient() ? NonNullConsumer.noop() : (item) -> item.attachComponents(customRenderer);
     }
 }

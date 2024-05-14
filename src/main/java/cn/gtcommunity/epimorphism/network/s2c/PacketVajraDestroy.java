@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.network.s2c;
 
-import cn.gtcommunity.epimorphism.client.ClientUtil;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.client.MultiPlayerGameModeAccessor;
 import com.lowdragmc.lowdraglib.networking.IHandlerContext;
 import com.lowdragmc.lowdraglib.networking.IPacket;

@@ -365,6 +365,8 @@ public class EPMaterials {
     public static Material RP1RocketFuel;
     public static Material Methylhydrazine;
     public static Material MethylhydrazineNitrateRocketFuel;
+    public static Material UDMHRocketFuel;
+    public static Material UDMH;
     public static Material LithiumNiobate;
     public static Material NiobiumPentachloride;
     public static Material HighPuritySodiumVanadate;
@@ -388,10 +390,19 @@ public class EPMaterials {
     public static Material TitaniumNitrate;
     public static Material NaquadahOxideMixture;
     public static Material ExtractiveNaquadahOxide;
-    public static Material AceticAnhydride;
-    public static Material HydrogenCyanide;
-    public static Material SodiumCyanide;
-    public static Material SodiumPerchlorate;
+    public static Material ThoriumBasedLiquidFuelExcited;
+    public static Material ThoriumBasedLiquidFuelDepleted;
+    public static Material ThoriumBasedLiquidFuel;
+    public static Material UraniumBasedLiquidFuelExcited;
+    public static Material UraniumBasedLiquidFuelDepleted;
+    public static Material UraniumBasedLiquidFuel;
+    public static Material PlutoniumBasedLiquidFuelExcited;
+    public static Material PlutoniumBasedLiquidFuelDepleted;
+    public static Material PlutoniumBasedLiquidFuel;
+    public static Material RadiationProtection;
+    public static Material NaquadahBasedLiquidFuel;
+    public static Material NaquadahBasedLiquidFuelExcited;
+    public static Material NaquadahBasedLiquidFuelDepleted;
 
     //  Second Degree Materials
     public static Material DragonBreath;
@@ -651,6 +662,7 @@ public class EPMaterials {
     public static Material ConcentrateEnrichedNaquadahMixture;
     public static Material ImpureNaquadahMixtureSolution;
     public static Material PureNaquadriaMixtureSolution;
+    public static Material CombustionPromoter;
 
     //  Machine Casing Materials
     public static Material Inconel625;
@@ -695,6 +707,7 @@ public class EPMaterials {
     public static Material SuperheavyHAlloy;
     public static Material SuperheavyLAlloy;
     public static Material PlatinumGroupAlloy;
+    public static Material StellarAlloy;
 
     //  Mod Compatibility Materials
     public static Material Mana;

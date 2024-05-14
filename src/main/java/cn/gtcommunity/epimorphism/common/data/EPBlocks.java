@@ -1,19 +1,27 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
-import cn.gtcommunity.epimorphism.api.block.IFluidTankCell;
-import cn.gtcommunity.epimorphism.api.block.IStorageFieldBlock;
-import cn.gtcommunity.epimorphism.api.chemical.material.properties.EPPropertyKeys;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
+import cn.gtcommunity.epimorphism.api.block.tier.IFluidTankCell;
+import cn.gtcommunity.epimorphism.api.block.tier.IStorageFieldBlock;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
 import cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix;
-import cn.gtcommunity.epimorphism.api.registry.EPRegistries;
-import cn.gtcommunity.epimorphism.api.structure.block.tier.ITierType;
+import cn.gtcommunity.epimorphism.common.registry.EPRegistration;
+import cn.gtcommunity.epimorphism.client.renderer.handler.block.PlanetDisplayRenderer;
 import cn.gtcommunity.epimorphism.common.block.*;
+import cn.gtcommunity.epimorphism.common.block.MaterialFenceBlock;
+import cn.gtcommunity.epimorphism.common.data.items.EPAgricultureItems;
 import cn.gtcommunity.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
+import cn.gtcommunity.epimorphism.data.lang.EPLangHelper;
+import com.epimorphismmc.monomorphism.block.CasingBlock;
+import com.epimorphismmc.monomorphism.block.tier.ITierType;
+import com.epimorphismmc.monomorphism.block.tier.SimpleTierBlock;
+import com.epimorphismmc.monomorphism.item.MOMaterialBlockItem;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.IFusionCasingType;
 import com.gregtechceu.gtceu.api.block.RendererBlock;
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
@@ -24,6 +32,7 @@ import com.gregtechceu.gtceu.api.item.MaterialBlockItem;
 import com.gregtechceu.gtceu.api.item.RendererBlockItem;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import com.gregtechceu.gtceu.client.renderer.block.CTMModelRenderer;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
 import com.gregtechceu.gtceu.common.block.FusionCasingBlock;
 import com.gregtechceu.gtceu.common.data.*;
@@ -63,8 +72,9 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
-import static cn.gtcommunity.epimorphism.api.registry.EPRegistries.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
+import static cn.gtcommunity.epimorphism.common.block.DimensionDisplayBlock.Dimension.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
@@ -76,12 +86,14 @@ public class EPBlocks {
     //*****     Tables Builders    *****//
     //////////////////////////////////////
     private static ImmutableTable.Builder<TagPrefix, Material, BlockEntry<CrucibleBlock>> CRUCIBLE_BLOCKS_BUILDER = ImmutableTable.builder();
+    private static ImmutableTable.Builder<TagPrefix, Material, BlockEntry<MaterialFenceBlock>> FENCE_BLOCKS_BUILDER = ImmutableTable.builder();
 
     //////////////////////////////////////
     //*****    Reference Tables    *****//
     //////////////////////////////////////
 
     public static Table<TagPrefix, Material, BlockEntry<CrucibleBlock>> CRUCIBLE_BLOCKS;
+    public static Table<TagPrefix, Material, BlockEntry<MaterialFenceBlock>> FENCE_BLOCKS;
 
     // Crucible Blocks
     private static void generateCrucibleBlocks() {
@@ -102,13 +114,30 @@ public class EPBlocks {
         return material.hasProperty(EPPropertyKeys.CRUCIBLE);
     }
 
+    private static void generateFenceBlocks() {
+        Epimorphism.LOGGER.debug("Generating Epimorphism Fence Blocks...");
+        for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
+            GTRegistrate registrate = registry.getRegistrate();
+            for (Material material : registry.getAllMaterials()) {
+                if (allowFenceBlock(material)) {
+                    registerFenceBlock(material, registrate);
+                }
+            }
+        }
+        FENCE_BLOCKS = FENCE_BLOCKS_BUILDER.build();
+        Epimorphism.LOGGER.debug("Generating Epimorphism Fence Blocks... Complete!");
+    }
+
+    private static boolean allowFenceBlock(Material material) {
+        return material.hasProperty(EPPropertyKeys.FENCE);
+    }
+
     private static void registerCrucibleBlock(Material material, GTRegistrate registrate) {
         var entry = registrate.block("%s_crucible".formatted(material.getName()), p -> new CrucibleBlock(p, material))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> EPTagPrefix.crucible.blockProperties().properties().apply(p).noLootTable())
                 .transform(GTBlocks.unificationBlock(EPTagPrefix.crucible, material))
-
-                .addLayer(() -> RenderType::cutout)
+                .addLayer(EPTagPrefix.crucible.blockProperties().renderType())
                 .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
                 .setData(ProviderType.LANG, NonNullBiConsumer.noop())
                 .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
@@ -121,6 +150,24 @@ public class EPBlocks {
         CRUCIBLE_BLOCKS_BUILDER.put(EPTagPrefix.crucible, material, entry);
     }
 
+    private static void registerFenceBlock(Material material, GTRegistrate registrate) {
+        var entry = registrate.block("%s_fence".formatted(material.getName()), p -> new MaterialFenceBlock(p, material, true))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .properties(p -> EPTagPrefix.fence.blockProperties().properties().apply(p).noLootTable())
+                .transform(GTBlocks.unificationBlock(EPTagPrefix.fence, material))
+                .addLayer(EPTagPrefix.fence.blockProperties().renderType())
+                .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
+                .setData(ProviderType.LANG, NonNullBiConsumer.noop())
+                .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
+                .color(() -> MaterialFenceBlock::tintedColor)
+                .item(MOMaterialBlockItem::create)
+                .model(NonNullBiConsumer.noop())
+                .color(() -> MOMaterialBlockItem::tintColor)
+                .build()
+                .register();
+        FENCE_BLOCKS_BUILDER.put(EPTagPrefix.fence, material, entry);
+    }
+
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_BLOCK);
     }
@@ -129,48 +176,58 @@ public class EPBlocks {
     //////////////////////////////////////
 
     // Multiblock Machine Casing Blocks
-    public static final BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> NAQUADAH_ALLOY_CASING = createCasingBlock("naquadah_alloy_casing", Epimorphism.id("block/casings/solid/naquadah_alloy_casing"));
+    public static final BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("naquadria_casing", Epimorphism.id("block/casings/solid/naquadria_casing"));
     public static final BlockEntry<Block> HYPER_CASING = createCasingBlock("hyper_casing", Epimorphism.id("block/casings/solid/hyper_casing"));
-    public static final BlockEntry<Block> TALONITE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> TALONITE_CASING = createCasingBlock("talonite_casing", Epimorphism.id("block/casings/solid/talonite_casing"));
     public static final BlockEntry<Block> IRIDIUM_CASING = createCasingBlock("iridium_casing", Epimorphism.id("block/casings/solid/iridium_casing"));
     public static final BlockEntry<Block> BREEDING_CASING = createCasingBlock("breeding_casing", Epimorphism.id("block/casings/solid/breeding_casing"));
-    public static final BlockEntry<Block> TRITANIUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> QUANTUM_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> REFLECTIVE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> FARM_CASING = createCasingBlock("farm_casing", Epimorphism.id("block/casings/solid/farm_casing"));
+    public static final BlockEntry<Block> TRITANIUM_CASING = createCasingBlock("tritanium_casing", Epimorphism.id("block/casings/solid/tritanium_casing"));
+    public static final BlockEntry<Block> QUANTUM_CASING = createCasingBlock("quantum_casing", Epimorphism.id("block/casings/solid/quantum_casing"));
+    public static final BlockEntry<Block> AEROSPACE_CASING = createCasingBlock("aerospace_casing", Epimorphism.id("block/casings/solid/aerospace_casing"));
+    public static final BlockEntry<Block> COIL_CASING = createCasingBlock("coil_casing", Epimorphism.id("block/casings/solid/coil_casing"));
+    public static final BlockEntry<Block> DISH_CASING = createCasingBlock("dish_casing", Epimorphism.id("block/casings/solid/dish_casing"));
+    public static final BlockEntry<Block> CONSTRAINT_CASING = createCasingBlock("constraint_casing", Epimorphism.id("block/casings/solid/constraint_casing"));
+    public static final BlockEntry<Block> RADIATION_PROOF_MACHINE_CASING = createCasingBlock("radiation_proof_machine_casing", Epimorphism.id("block/casings/solid/radiation_proof_machine_casing"));
     public static final BlockEntry<Block> GENERAL_PROCESSING_CASING = createCasingBlock("general_processing_casing", Epimorphism.id("block/casings/solid/general_processing_casing"));
     public static final BlockEntry<Block> MARAGING_STEEL_CASING = createCasingBlock("maraging_steel_250_casing", Epimorphism.id("block/casings/solid/maraging_steel_250_casing"));
-    public static final BlockEntry<Block> BABBITT_ALLOY_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
+    public static final BlockEntry<Block> BABBITT_ALLOY_CASING = createCasingBlock("babbitt_alloy_casing", Epimorphism.id("block/casings/solid/babbitt_alloy_casing"));
     public static final BlockEntry<Block> NEUTRONIUM_MINING_CASING = createCasingBlock("neutronium_mining_casing", Epimorphism.id("block/casings/solid/neutronium_mining_casing"));
-    public static final BlockEntry<Block> ZIRCONIUM_CARBIDE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> SUPERCRITICAL_FLUID_TURBINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> CORROSION_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> HASTELLOYX78_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> HASTELLOYK243_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("precise_assembler_casing_mk1", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("precise_assembler_casing_mk2", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk2"));
-    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("precise_assembler_casing_mk3", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk3"));
-    public static final BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> RADIATION_PROOF_SCAN_FRAMEWORK_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> WATER_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> ULTIMATE_HIGH_ENERGY_CASING = createCasingBlock("ultimate_high_energy_casing", Epimorphism.id("block/casings/solid/ultimate_high_energy_casing"));
-    public static final BlockEntry<Block> ADVANCED_HIGH_ENERGY_CASING = createCasingBlock("advanced_high_energy_casing", Epimorphism.id("block/casings/solid/advanced_high_energy_casing"));
-    public static final BlockEntry<Block> DIMENSIONAL_BRIDGE_CASING = createCasingBlock("dimensional_bridge_casing", Epimorphism.id("block/casings/solid/dimensional_bridge_casing"));
-    public static final BlockEntry<Block> DIMENSIONAL_PRESERVE_CASING = createCasingBlock("dimensional_preserve_casing", Epimorphism.id("block/casings/solid/dimensional_preserve_casing"));
+    public static final BlockEntry<Block> ZIRCONIUM_CARBIDE_CASING = createCasingBlock("zirconium_carbide_casing", Epimorphism.id("block/casings/solid/zirconium_carbide_casing"));
+    public static final BlockEntry<Block> CASING_SUPERCRITICAL_FLUID_TURBINE = createCasingBlock("machine_casing_turbine_supercritical_fluid", Epimorphism.id("block/casings/mechanic/machine_casing_turbine_supercritical_fluid"));
+    public static final BlockEntry<Block> TURBO_ENGINE_CASING = createCasingBlock("turbo_engine_casing", Epimorphism.id("block/casings/solid/turbo_engine_casing"));
+    public static final BlockEntry<Block> CORROSION_CASING = createCasingBlock("corrosion_casing", Epimorphism.id("block/casings/solid/corrosion_casing"));
+    public static final BlockEntry<Block> HASTELLOYX78_CASING = createCasingBlock("hastelloyx78_casing", Epimorphism.id("block/casings/solid/hastelloyx78_casing"));
+    public static final BlockEntry<Block> HASTELLOYK243_CASING = createCasingBlock("hastelloyk243_casing", Epimorphism.id("block/casings/solid/hastelloyk243_casing"));
+    public static final BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_CASING = createCasingBlock("basic_photolithographic_casing", Epimorphism.id("block/casings/solid/basic_photolithographic_casing"));
+    public static final BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_CASING = createCasingBlock("mold_printing_assembly_casing", Epimorphism.id("block/casings/solid/mold_printing_assembly_casing"));
+    public static final BlockEntry<Block> RADIATION_PROOF_PHOTOLITHOGRAPHIC_CASING = createCasingBlock("radiation_proof_photolithographic_casing", Epimorphism.id("block/casings/solid/radiation_proof_photolithographic_casing"));
+    public static final BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("biological_sterile_casing", Epimorphism.id("block/casings/solid/biological_sterile_casing"));
+    public static final BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("infinity_cooled_casing", Epimorphism.id("block/casings/solid/infinity_cooled_casing"));
     public static final BlockEntry<Block> ADVANCED_INVAR_CASING = createCasingBlock("advanced_invar_casing", Epimorphism.id("block/casings/solid/advanced_invar_casing"));
     public static final BlockEntry<Block> ADVANCED_ALUMINIUM_CASING = createCasingBlock("advanced_aluminium_casing", Epimorphism.id("block/casings/solid/advanced_aluminium_casing"));
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock("advanced_filter_casing", Epimorphism.id("block/casings/solid/advanced_filter_casing"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK1 = createCasingBlock("precise_assembler_casing_mk1", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK2 = createCasingBlock("precise_assembler_casing_mk2", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk2"));
+    public static final BlockEntry<Block> PRECISE_ASSEMBLER_CASING_MK3 = createCasingBlock("precise_assembler_casing_mk3", Epimorphism.id("block/casings/solid/precise_assembler_casing_mk3"));
     public static final BlockEntry<Block> TFFT_CASING = createCasingBlock("tfft_casing", Epimorphism.id("block/casings/solid/tfft_casing"));
     public static final BlockEntry<Block> PROCESS_MACHINE_CASING = createCasingBlock("process_machine_casing", Epimorphism.id("block/casings/solid/process_machine_casing"));
+    public static final BlockEntry<Block> HIGH_STRENGTH_FLOOR = createCasingBlock("high_strength_floor", Epimorphism.id("block/casings/misc/high_strength_floor"));
     public static final BlockEntry<Block> YOTTA_FLUID_TANK_CASING = createComplexTextureCasingBlock("yotta_fluid_tank_casing");
+    public static final BlockEntry<Block> DEPLOYMENT_UNIT_CASING = createComplexTextureCasingBlock("deployment_unit_casing");
+    public static final BlockEntry<Block> DEPLOYMENT_UNIT_CORE = createComplexTextureCasingBlock("deployment_unit_core");
+    public static final BlockEntry<Block> RECEIVER_CASING = createComplexTextureCasingBlock("receiver_casing");
+    public static final BlockEntry<Block> SUPPORT_STRUCTURE_CASING = createComplexTextureCasingBlock("support_structure_casing");
+    public static final BlockEntry<Block> INTERNAL_STRUCTURE_CASING = createComplexTextureCasingBlock("internal_structure_casing");
+    public static final BlockEntry<Block> CONTROL_PRIMARY_WINDING = createComplexTextureCasingBlock("control_primary_winding");
+    public static final BlockEntry<Block> CONTROL_SECONDARY_WINDING = createComplexTextureCasingBlock("control_secondary_winding");
+    public static final BlockEntry<ActiveBlock> DEPLOYMENT_UNIT_MAGNET = createActiveCasing("deployment_unit_magnet", "block/variant/deployment_unit_magnet");
 
     // Multiblock Special Casing Blocks
     ////  Isa
     public static final BlockEntry<Block> ISA_MILL_CASING = createCasingBlock("isa_mill_casing", Epimorphism.id("block/casings/solid/isa_mill_casing"));
     public static final BlockEntry<Block> CASING_ISA_MILL_PIPE = createCasingBlock("isa_mill_casing_pipe", Epimorphism.id("block/casings/solid/isa_mill_casing_pipe"));
-    public static final BlockEntry<Block> CASING_ISA_MILL_GEARBOX = createCasingBlock("casing_isa_mill_gearbox", Epimorphism.id("block/casings/gearbox/casing_isa_mill_gearbox"));
     public static final BlockEntry<Block> FLOTATION_CASING = createCasingBlock("flotation_casing", Epimorphism.id("block/casings/solid/flotation_casing"));
     public static final BlockEntry<Block> FLOTATION_CELL = createCasingBlock("flotation_cell", Epimorphism.id("block/casings/solid/flotation_cell"));// industrial_flotation_cell
     public static final BlockEntry<Block> VACUUM_CASING = createCasingBlock("vacuum_casing", Epimorphism.id("block/casings/solid/vacuum_casing"));
@@ -183,10 +240,17 @@ public class EPBlocks {
 
     // Multiblock Machine Pipe Casing Blocks
     public static final BlockEntry<Block> CASING_POLYBENZIMIDAZOLE_PIPE = createCasingBlock("polybenzimidazole_pipe", Epimorphism.id("block/casings/pipe/polybenzimidazole_pipe"));
-    public static final BlockEntry<Block> CASING_FLOTATION_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
-    public static final BlockEntry<Block> CASING_ALLOY_SMELTING_PIPE = createCasingBlock("nonconducting_casing", Epimorphism.id("block/casings/solid/nonconducting_casing"));
 
     // Multiblock Machine Gearbox Casing Blocks
+    public static final BlockEntry<Block> CASING_TURBO_ENGINE_GEARBOX = createCasingBlock("casing_gearbox_turbo_engine", Epimorphism.id("block/casings/gearbox/casing_gearbox_turbo_engine"));
+    public static final BlockEntry<Block> CASING_ISA_MILL_GEARBOX = createCasingBlock("casing_isa_mill_gearbox", Epimorphism.id("block/casings/gearbox/casing_isa_mill_gearbox"));
+    public static final BlockEntry<Block> CASING_SUPERCRITICAL_FLUID_GEARBOX = createCasingBlock("casing_gearbox_supercritical_fluid", Epimorphism.id("block/casings/gearbox/casing_gearbox_supercritical_fluid"));
+
+    public static final BlockEntry<Block> RAW_CYLINDER = createCasingBlock("raw_cylinder", Epimorphism.id("block/casings/unique/raw_cylinder"));
+    public static final BlockEntry<Block> TITANIUM_PLATED_CYLINDER = createCasingBlock("titanium_plated_cylinder", Epimorphism.id("block/casings/unique/titanium_plated_cylinder"));
+
+    public static final BlockEntry<Block> GD_CE_CERAMIC_ELECTROLYTE_UNIT = createCasingBlock("gd_ce_ceramic_electrolyte_unit", Epimorphism.id("block/casings/unique/gd_ce_ceramic_electrolyte_unit"));
+    public static final BlockEntry<Block> Y_ZR_CERAMIC_ELECTROLYTE_UNIT = createCasingBlock("y_zr_ceramic_electrolyte_unit", Epimorphism.id("block/casings/unique/y_zr_ceramic_electrolyte_unit"));
 
     // Transparent Casing Blocks
     public static final BlockEntry<TierGlassBlock> SILICATE_GLASS = createGlassBlock(TierGlassBlock.GlassType.SILICATE_GLASS, SoundType.GLASS, () -> RenderType::translucent);
@@ -246,37 +310,116 @@ public class EPBlocks {
     public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK4 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK4);
     public static final BlockEntry<FusionCasingBlock> FUSION_CASING_MK5 = createFusionCasing(EPFusionCasingBlock.CasingType.FUSION_CASING_MK5);
 
-    //  Misc
+    // Physics
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_PHYSICS);
+    }
 
+    public static final BlockEntry<CasingBlock> ULTIMATE_HIGH_ENERGY_CASING = createCasingBlockWithTooltip("ultimate_high_energy_casing", Epimorphism.id("block/casings/solid/ultimate_high_energy_casing"), 2);
+    public static final BlockEntry<CasingBlock> ADVANCED_HIGH_ENERGY_CASING = createCasingBlockWithTooltip("advanced_high_energy_casing", Epimorphism.id("block/casings/solid/advanced_high_energy_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_BRIDGE_CASING = createCasingBlockWithTooltip("dimensional_bridge_casing", Epimorphism.id("block/casings/solid/dimensional_bridge_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_LINK_CASING = createCasingBlockWithTooltip("dimensional_link_casing", Epimorphism.id("block/casings/solid/dimensional_link_casing"), 2);
+    public static final BlockEntry<CasingBlock> CONTAINMENT_FIELD_GENERATOR = createCasingBlockWithTooltip("containment_field_generator", Epimorphism.id("block/casings/solid/containment_field_generator"), 2);
+    public static final BlockEntry<CasingBlock> ULTIMATE_CONTAINMENT_FIELD_GENERATOR = createCasingBlockWithTooltip("ultimate_containment_field_generator", Epimorphism.id("block/casings/solid/ultimate_containment_field_generator"), 2);
+    public static final BlockEntry<CasingBlock> HOLLOW_CASING = createCasingBlockWithTooltip("hollow_casing", Epimorphism.id("block/casings/solid/hollow_casing"), 2);
+    public static final BlockEntry<CasingBlock> SPACETIME_DISTORTION_CASING = createCasingBlockWithTooltip("spacetime_distortion_casing", Epimorphism.id("block/casings/solid/spacetime_distortion_casing"), 2);
+    public static final BlockEntry<CasingBlock> DIMENSIONAL_CASING = createCasingBlockWithTooltip("dimensional_casing", Epimorphism.id("block/casings/solid/dimensional_casing"), 2);
+    public static final BlockEntry<CasingBlock> HYPERDIMENSIONAL_CASING = createCasingBlockWithTooltip("hyperdimensional_casing", Epimorphism.id("block/casings/solid/hyperdimensional_casing"), 2);
+
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_1 = createSCFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_2 = createSCFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_3 = createSCFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_4 = createSCFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_5 = createSCFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_6 = createSCFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_7 = createSCFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_8 = createSCFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> SC_FIELD_GENERATOR_9 = createSCFieldGenerator(ITierType.TierBlockType.UHV);
+
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_1 = createSTFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_2 = createSTFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_3 = createSTFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_4 = createSTFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_5 = createSTFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_6 = createSTFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_7 = createSTFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_8 = createSTFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> ST_FIELD_GENERATOR_9 = createSTFieldGenerator(ITierType.TierBlockType.UHV);
+
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_1 = createTAFieldGenerator(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_2 = createTAFieldGenerator(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_3 = createTAFieldGenerator(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_4 = createTAFieldGenerator(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_5 = createTAFieldGenerator(ITierType.TierBlockType.IV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_6 = createTAFieldGenerator(ITierType.TierBlockType.LuV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_7 = createTAFieldGenerator(ITierType.TierBlockType.ZPM);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_8 = createTAFieldGenerator(ITierType.TierBlockType.UV);
+    public static final BlockEntry<SimpleTierBlock> TA_FIELD_GENERATOR_9 = createTAFieldGenerator(ITierType.TierBlockType.UHV);
+
+    static {
+        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_GALAXY);
+    }
+
+    public static final BlockEntry<SimpleTierBlock> ELEVATOR_MOTOR_1 = createElevatorMotor(ITierType.TierBlockType.LV);
+    public static final BlockEntry<SimpleTierBlock> ELEVATOR_MOTOR_2 = createElevatorMotor(ITierType.TierBlockType.MV);
+    public static final BlockEntry<SimpleTierBlock> ELEVATOR_MOTOR_3 = createElevatorMotor(ITierType.TierBlockType.HV);
+    public static final BlockEntry<SimpleTierBlock> ELEVATOR_MOTOR_4 = createElevatorMotor(ITierType.TierBlockType.EV);
+    public static final BlockEntry<SimpleTierBlock> ELEVATOR_MOTOR_5 = createElevatorMotor(ITierType.TierBlockType.IV);
+
+    public static final BlockEntry<Block> PLANET_OVERWORLD = createPlanetDimensionDisplay(OVERWORLD);
+    public static final BlockEntry<Block> PLANET_NETHER = createPlanetDimensionDisplay(THE_NETHER);
+    public static final BlockEntry<Block> PLANET_THE_END = createPlanetDimensionDisplay(THE_END);
+    public static final BlockEntry<Block> PLANET_TWILIGHT_FOREST = createPlanetDimensionDisplay(TWILIGHT_FOREST);
+    public static final BlockEntry<Block> PLANET_MOON = createPlanetDimensionDisplay(MOON);
+    public static final BlockEntry<Block> PLANET_DEIMOS = createPlanetDimensionDisplay(DEIMOS);
+    public static final BlockEntry<Block> PLANET_MARS = createPlanetDimensionDisplay(MARS);
+    public static final BlockEntry<Block> PLANET_PHOBOS = createPlanetDimensionDisplay(PHOBOS);
+    public static final BlockEntry<Block> PLANET_CALLISTO = createPlanetDimensionDisplay(CALLISTO);
+    public static final BlockEntry<Block> PLANET_CERES = createPlanetDimensionDisplay(CERES);
+    public static final BlockEntry<Block> PLANET_EUROPA = createPlanetDimensionDisplay(EUROPA);
+    public static final BlockEntry<Block> PLANET_GANYMEDE = createPlanetDimensionDisplay(GANYMEDE);
+    public static final BlockEntry<Block> PLANET_ROSS_128_B = createPlanetDimensionDisplay(ROSS_128_B);
+    public static final BlockEntry<Block> PLANET_ASTEROID_BELT = createPlanetDimensionDisplay(ASTEROID_BELT);
+    public static final BlockEntry<Block> PLANET_IO = createPlanetDimensionDisplay(IO);
+    public static final BlockEntry<Block> PLANET_VENUS = createPlanetDimensionDisplay(VENUS);
+    public static final BlockEntry<Block> PLANET_MERCURY = createPlanetDimensionDisplay(MERCURY);
+    public static final BlockEntry<Block> PLANET_MIRANDA = createPlanetDimensionDisplay(MIRANDA);
+    public static final BlockEntry<Block> PLANET_OBERON = createPlanetDimensionDisplay(OBERON);
+    public static final BlockEntry<Block> PLANET_ENCELADUS = createPlanetDimensionDisplay(ENCELADUS);
+    public static final BlockEntry<Block> PLANET_ROSS_128_BA = createPlanetDimensionDisplay(ROSS_128_BA);
+    public static final BlockEntry<Block> PLANET_TITAN = createPlanetDimensionDisplay(TITAN);
+    public static final BlockEntry<Block> PLANET_PROTEUS = createPlanetDimensionDisplay(PROTEUS);
+    public static final BlockEntry<Block> PLANET_TRITON = createPlanetDimensionDisplay(TRITON);
+    public static final BlockEntry<Block> PLANET_HAUMEA = createPlanetDimensionDisplay(HAUMEA);
+    public static final BlockEntry<Block> PLANET_KUIPER_BELT = createPlanetDimensionDisplay(KUIPER_BELT);
+    public static final BlockEntry<Block> PLANET_MAKEMAKE = createPlanetDimensionDisplay(MAKEMAKE);
+    public static final BlockEntry<Block> PLANET_PLUTO = createPlanetDimensionDisplay(PLUTO);
+    public static final BlockEntry<Block> PLANET_BARNARDA_C = createPlanetDimensionDisplay(BARNARDA_C);
+    public static final BlockEntry<Block> PLANET_BARNARDA_E = createPlanetDimensionDisplay(BARNARDA_E);
+    public static final BlockEntry<Block> PLANET_BARNARDA_F = createPlanetDimensionDisplay(BARNARDA_F);
+    public static final BlockEntry<Block> PLANET_TAU_CETI_E = createPlanetDimensionDisplay(TAU_CETI_E);
+    public static final BlockEntry<Block> PLANET_VEGA_B = createPlanetDimensionDisplay(VEGA_B);
+    public static final BlockEntry<Block> PLANET_CENTAURI_BB = createPlanetDimensionDisplay(CENTAURI_BB);
+    public static final BlockEntry<Block> PLANET_SET = createPlanetDimensionDisplay(SET);
+    public static final BlockEntry<Block> PLANET_ANUBIS = createPlanetDimensionDisplay(ANUBIS);
+    public static final BlockEntry<Block> PLANET_HORUS = createPlanetDimensionDisplay(HORUS);
+    public static final BlockEntry<Block> PLANET_MAAHES = createPlanetDimensionDisplay(MAAHES);
+    public static final BlockEntry<Block> PLANET_MEHEN_BELT = createPlanetDimensionDisplay(MEHEN_BELT);
+    public static final BlockEntry<Block> PLANET_NEPERI = createPlanetDimensionDisplay(NEPERI);
+    public static final BlockEntry<Block> PLANET_DEEP_DARK = createPlanetDimensionDisplay(DEEP_DARK);
+
+    //  Misc
+//    public static final BlockEntry<EOHRendererBlock> EOH_RENDERER_BLOCK = EP_REGISTRATE
+//            .block("eoh_render_block", EOHRendererBlock::new)
+//            .properties(properties -> properties.noCollission().noOcclusion().noLootTable().strength(-1))
+//            .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
+//            .setData(ProviderType.LANG, NonNullBiConsumer.noop())
+//            .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
+//            .register();
 
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);
     }
-
-    public static BlockEntry<FertilizedDirtBlock> FERTILIZED_DIRT = EP_REGISTRATE
-            .block("fertilized_dirt", FertilizedDirtBlock::new)
-            .initialProperties(() -> Blocks.DIRT)
-            .lang("Fertilized Dirt")
-            .tag(BlockTags.DIRT)
-            .properties(BlockBehaviour.Properties::randomTicks)
-            .item()
-            .tag(ItemTags.DIRT)
-            .build()
-            .register();
-
-    public static BlockEntry<FertilizedFarmlandBlock> FERTILIZED_FARMLAND = EP_REGISTRATE
-            .block("fertilized_farmland", FertilizedFarmlandBlock::new)
-            .initialProperties(() -> Blocks.FARMLAND)
-            .lang("Fertilized Farmland")
-            .blockstate((ctx, prov) -> GTModels.createModelBlockState(ctx, prov, Epimorphism.id("block/fertilized_farmland")))
-            .loot((table, block) -> table.add(block, LootTable.lootTable()
-                    .withPool(table.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)))
-                            .add(LootItem.lootTableItem(EPBlocks.FERTILIZED_DIRT.asItem())))))
-            .tag(BlockTags.BIG_DRIPLEAF_PLACEABLE)
-            .addLayer(() -> RenderType::cutout)
-            .item()
-            .build()
-            .register();
 
     public static final BlockEntry<SaplingBlock> PINE_SAPLING = EP_REGISTRATE.block("pine_sapling", properties -> new SaplingBlock(new AbstractTreeGrower() {
                 protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@Nonnull RandomSource random, boolean largeHive) {
@@ -294,7 +437,6 @@ public class EPBlocks {
             .build()
             .register();
 
-
     public static final BlockEntry<RotatedPillarBlock> PINE_LOG = EP_REGISTRATE.block("pine_log", RotatedPillarBlock::new)
             .properties(p -> p.strength(2.0F).sound(SoundType.WOOD))
             .lang("Pine Log")
@@ -304,6 +446,11 @@ public class EPBlocks {
             .tag(ItemTags.LOGS)
             .build()
             .register();
+
+//    public static final BlockEntry<EPCropBlock> CROP = EP_REGISTRATE.block("crop", EPCropBlock::new)
+//            .addLayer(() -> RenderType::cutout)
+//            .blockstate(EPBlockStates::cropBlockState)
+//            .register();
 
     // Fortune Level
     public static final float[] PINE_LEAVES_DROPPING_CHANCE = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
@@ -345,6 +492,7 @@ public class EPBlocks {
     public static void init() {
         REGISTRATE.creativeModeTab(() -> GTCreativeModeTabs.MATERIAL_BLOCK);
         generateCrucibleBlocks();
+        generateFenceBlocks();
     }
 
     protected static BlockEntry<Block> createCasingBlock(String name, ResourceLocation texture) {
@@ -357,6 +505,21 @@ public class EPBlocks {
 
     private static BlockEntry<Block> createGlassCasingBlock(String name, ResourceLocation texture, Supplier<Supplier<RenderType>> type) {
         return createCasingBlock(name, RendererGlassBlock::new, texture, () -> Blocks.GLASS, type);
+    }
+
+    protected static BlockEntry<CasingBlock> createCasingBlockWithTooltip(String name, ResourceLocation texture, int tooltips) {
+        return EPRegistration.EP_REGISTRATE.block(name, p -> new CasingBlock(p,
+                        Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", texture)) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(block -> block.addTooltip(EPLangHelper.getBlockTooltips(name, tooltips)))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
     }
 
     private static BlockEntry<TierGlassBlock> createGlassBlock(ITierGlassType glassType, SoundType soundType, Supplier<Supplier<RenderType>> type) {
@@ -424,10 +587,96 @@ public class EPBlocks {
         return fieldBlock;
     }
 
+    private static BlockEntry<SimpleTierBlock> createSCFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> SCFieldGenerator = EP_REGISTRATE.block("spacetime_compression_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/spacetime_compression/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        SC_FIELD_GENERATORS.put(blockData, SCFieldGenerator::get);
+        return SCFieldGenerator;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createSTFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> STFieldGenerator = EP_REGISTRATE.block("stabilisation_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/stabilisation/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ST_FIELD_GENERATORS.put(blockData, STFieldGenerator::get);
+        return STFieldGenerator;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createTAFieldGenerator(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> TAFieldGenerator = EP_REGISTRATE.block("time_acceleration_field_generator_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
+                                Map.of("all", Epimorphism.id("block/casings/field_generator/time_acceleration/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        TA_FIELD_GENERATORS.put(blockData, TAFieldGenerator::get);
+        return TAFieldGenerator;
+    }
+
+    private static BlockEntry<SimpleTierBlock> createElevatorMotor(ITierType blockData) {
+        BlockEntry<SimpleTierBlock> elevatorMotor = EP_REGISTRATE.block("elevator_motor_%s".formatted(blockData.tier()),
+                        p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_bottom_top"),
+                                Map.of("top", Epimorphism.id("block/casings/elevator_motor/motor"),
+                                        "bottom", Epimorphism.id("block/casings/elevator_motor/motor"),
+                                        "side", Epimorphism.id("block/casings/elevator_motor/%s".formatted(blockData.tier())))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .onRegister(simpleTierBlock -> simpleTierBlock.setUseNumberTier(true).addTooltip(Component.translatable(simpleTierBlock.getDescriptionId() + ".desc")))
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_ELEVATOR_MOTORS.put(blockData, elevatorMotor::get);
+        return elevatorMotor;
+    }
+
+    private static BlockEntry<Block> createPlanetDimensionDisplay(DimensionDisplayBlock.Dimension dimension) {
+        var dim = dimension.getDimension();
+        BlockEntry<Block> planetBlock = EP_REGISTRATE.block("dimension_display_%s".formatted(dim),
+                        p -> (Block) new DimensionDisplayBlock(p, Platform.isClient() ? new PlanetDisplayRenderer(dim, dimension.getTier()) : null, dimension))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_DIM_DISPLAY_BLOCKS.put(dim, planetBlock);
+        return planetBlock;
+    }
+
     private static BlockEntry<SimpleTierBlock> createComponentAssemblyBlock(ITierType blockData) {
-        BlockEntry<SimpleTierBlock> componentAssemblyBlock = EP_REGISTRATE.block("component_assembly_line_casing_%s".formatted(blockData.typeName()),
+        BlockEntry<SimpleTierBlock> componentAssemblyBlock = EP_REGISTRATE.block("component_assline_casing_%s".formatted(blockData.typeName()),
                         p -> new SimpleTierBlock(p, blockData, Platform.isClient() ? new TextureOverrideRenderer(GTCEu.id("block/cube_2_layer_all"),
-                                Map.of("top_all", Epimorphism.id("block/casings/component_assembly_line_casing/%s".formatted(blockData.typeName().toLowerCase())),
+                                Map.of("top_all", Epimorphism.id("block/casings/component_assline_casing/%s".formatted(blockData.typeName().toLowerCase())),
                                         "bot_all", Epimorphism.id("block/casings/solid/iridium_casing"))) : null))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -443,7 +692,7 @@ public class EPBlocks {
     }
 
     protected static BlockEntry<Block> createCasingBlock(String name, BiFunction<BlockBehaviour.Properties, IRenderer, ? extends RendererBlock> blockSupplier, ResourceLocation texture, NonNullSupplier<? extends Block> properties, Supplier<Supplier<RenderType>> type) {
-        return EPRegistries.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
+        return EPRegistration.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
                         Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_all"),
                                 Map.of("all", texture)) : null))
                 .initialProperties(properties)
@@ -457,7 +706,7 @@ public class EPBlocks {
     }
 
     private static BlockEntry<Block> createComplexTextureCasingBlock(String name, BiFunction<BlockBehaviour.Properties, IRenderer, ? extends RendererBlock> blockSupplier, NonNullSupplier<? extends Block> properties, Supplier<Supplier<RenderType>> type) {
-        return EPRegistries.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
+        return EPRegistration.EP_REGISTRATE.block(name, p -> (Block) blockSupplier.apply(p,
                         Platform.isClient() ? new TextureOverrideRenderer(new ResourceLocation("block/cube_bottom_top"),
                                 Map.of("bottom", GTCEu.id("block/casings/" + name + "/bottom"),
                                         "top", GTCEu.id("block/casings/" + name + "/top"),
@@ -465,6 +714,21 @@ public class EPBlocks {
                                 null))
                 .initialProperties(properties)
                 .addLayer(type)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+    }
+
+    private static BlockEntry<ActiveBlock> createActiveCasing(String name, String baseModelPath) {
+        String finalName = "%s".formatted(name);
+        return EP_REGISTRATE.block(finalName, p -> new ActiveBlock(p,
+                        Platform.isClient() ? new CTMModelRenderer(Epimorphism.id(baseModelPath)) : null,
+                        Platform.isClient() ? new CTMModelRenderer(Epimorphism.id("%s_active".formatted(baseModelPath))) : null))
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate(NonNullBiConsumer.noop())
                 .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
                 .item(RendererBlockItem::new)

@@ -1,0 +1,14 @@
+{
+  "loader": "forge:composite",
+  "textures":  {
+    "particle": "minecraft:block/iron_block"
+  },
+  "parts": {
+    "crop_sticks": {
+      "parent": "agricraft:block/crop/iron"
+    },
+    "plant": {
+      "loader": "agricraft:plant_model_loader"
+    }
+  }
+}

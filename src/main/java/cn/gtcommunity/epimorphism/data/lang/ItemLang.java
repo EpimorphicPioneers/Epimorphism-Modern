@@ -1,12 +1,15 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraftforge.common.data.LanguageProvider;
 
-import static cn.gtcommunity.epimorphism.common.data.EPAgricultureItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPBiologyItems.*;
+import java.util.Locale;
+
+import static cn.gtcommunity.epimorphism.common.data.items.EPAgricultureItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPBiologyItems.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPPhysicsItems.*;
-import static cn.gtcommunity.epimorphism.common.data.EPWrapItem.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPWrapItem.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 
 public class ItemLang {
@@ -17,30 +20,9 @@ public class ItemLang {
         //////////////////////////////////////
 
         //  Circuit Tier
-        add(provider, "item.epimorphism.circuit.zpm.desc",
-                "§cZPM-Tier Circuit",
-                "§cZPM级电路");
-        add(provider, "item.epimorphism.circuit.uv.desc",
-                "§3UV-Tier Circuit",
-                "§3UV级电路");
-        add(provider, "item.epimorphism.circuit.uhv.desc",
-                "§4UHV-Tier Circuit",
-                "§4UHV级电路");
-        add(provider, "item.epimorphism.circuit.uev.desc",
-                "§aUEV-Tier Circuit",
-                "§aUEV级电路");
-        add(provider, "item.epimorphism.circuit.uiv.desc",
-                "§2UIV-Tier Circuit",
-                "§2UIV级电路");
-        add(provider, "item.epimorphism.circuit.uxv.desc",
-                "§eUXV-Tier Circuit",
-                "§eUXV级电路");
-        add(provider, "item.epimorphism.circuit.opv.desc",
-                "§9OpV-Tier Circuit",
-                "§9OpV级电路");
-        add(provider, "item.epimorphism.circuit.max.desc",
-                "§c§lMAX-Tier Circuit",
-                "§c§lMAX级电路");
+        addMultiLang(provider, tier -> "item.epimorphism.circuit.%s.desc".formatted(GTValues.VN[tier].toLowerCase(Locale.ROOT)),
+                tier -> "%s-Tier Circuit".formatted(GTValues.VNF[tier]),
+                tier -> "%s级电路".formatted(GTValues.VNF[tier]), GTValues.tiersBetween(GTValues.ZPM, GTValues.MAX));
 
         //  Gooware Circuits
         addItemWithTooltip(provider, GOOWARE_PROCESSOR, "生物活性处理器",
@@ -435,6 +417,10 @@ public class ItemLang {
                 "§7Laser irradiation should probably be used",
                 "§7或许应使用激光照射"
         );
+
+        add(provider, "item.epimorphism.reactor_component.desc.heat",
+                "§fHeat: §a%d / %d",
+                "§f热量: §a%d / %d");
 
         //////////////////////////////////////
         //*****    Agriculture Items   *****//

@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.machine.trait;
 
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.IndustrialFishingPondMachine;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.IndustrialFishingPondMachine;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.feature.IRecipeLogicMachine;
@@ -120,7 +120,7 @@ public class FishingPondRecipeLogic extends RecipeLogic {
 
         var tuple = GTRecipeModifiers.accurateParallel(machine,
                 GTRecipeBuilder.ofRaw().copyFrom(builder).outputItems(Items.BARRIER.getDefaultInstance()).buildRawRecipe(),
-                (int) Math.min(machine.getParallelNumber(), machine.getMaxHatchVoltage() / ENERGY), false);
+                (int) Math.min(machine.getParallelNumber(), machine.getMaxVoltage() / ENERGY), false);
         int parallel = tuple.getB();
         NonNullList<ItemStack> generatedLoot = NonNullList.create();
         for (int i = 0; i < parallel; i++) {

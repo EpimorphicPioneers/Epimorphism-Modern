@@ -22,6 +22,6 @@ public class Epimorphism {
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation("epimorphism", FormattingUtil.toLowerCaseUnder(path));
+        return new ResourceLocation(MOD_ID, FormattingUtil.toLowerCaseUnder(path));
     }
 }

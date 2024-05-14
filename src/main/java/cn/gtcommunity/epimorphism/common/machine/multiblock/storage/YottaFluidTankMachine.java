@@ -1,14 +1,16 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.storage;
 
-import cn.gtcommunity.epimorphism.api.block.ITierGlassType;
+import cn.gtcommunity.epimorphism.api.block.tier.ITierGlassType;
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.machine.ScheduledSubscriptionHandler;
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankProvider;
 import cn.gtcommunity.epimorphism.api.machine.trait.ITankTrait;
-import cn.gtcommunity.epimorphism.api.pattern.utils.containers.FluidTankCellContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.IValueContainer;
-import cn.gtcommunity.epimorphism.api.structure.utils.UniverUtil;
+import cn.gtcommunity.epimorphism.api.pattern.utils.FluidTankCellContainer;
 import cn.gtcommunity.epimorphism.utils.*;
+import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
+import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
@@ -83,9 +85,9 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
         // Determine if the glass tier is greater than the maximum cell tier
         Object data = getMultiblockState().getMatchContext().get("Glass");
         IValueContainer<?> container = getMultiblockState().getMatchContext().getOrCreate("FluidTankCellValue", IValueContainer::noop);
-        int glassTier = EPUniverUtil.getOrDefault(() -> data instanceof ITierGlassType,
+        int glassTier = MOUtils.getOrDefault(() -> data instanceof ITierGlassType,
                 () -> ((ITierGlassType) data).tier(), 0);
-        int maxTier = EPUniverUtil.getOrDefault(() -> container instanceof FluidTankCellContainer,
+        int maxTier = MOUtils.getOrDefault(() -> container instanceof FluidTankCellContainer,
                 () -> ((FluidTankCellContainer) container).getMaxTier(), 0);
         if (glassTier < maxTier) return;
 
@@ -202,10 +204,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
                 BigInteger fluidStored = fluidTank.getCurrentStorage();
                 BigInteger fluidCapacity = fluidTank.getMaxStorage();
                 textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.fluid", getFluid()));
-                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.stored", EPLangUtil.abbreviate(fluidStored))
+                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.stored", MOFormattingUtils.abbreviate(fluidStored))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(getStored() + " L")))));
-                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.capacity", EPLangUtil.abbreviate(fluidCapacity))
+                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.capacity", MOFormattingUtils.abbreviate(fluidCapacity))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(getCapacity() + " L")))));
             }
@@ -296,12 +298,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             // Bank from Fluid Input Hatches
             FluidStack inputFluidStack;
             if (fluidTank.hasFluid()) {
-                var free = isVoiding ? EPMathUtil.LONG_MAX_VALUE : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
-                inputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), free.min(EPMathUtil.LONG_MAX_VALUE).longValue());
-                List<IRecipeHandler<?>> handlers = UniverUtil.getOrDefault(capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
+                var free = isVoiding ? MOMathUtils.LONG_MAX_VALUE : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
+                inputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), free.min(MOMathUtils.LONG_MAX_VALUE).longValue());
+                List<IRecipeHandler<?>> handlers = MOUtils.getOrDefault(capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 List<?> list = List.of(FluidIngredient.of(inputFluidStack));
                 for (var handler : handlers) {
-                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.IN, null, list, null, false), Collections::emptyList);
+                    list = MOUtils.getOrDefault(handler.handleRecipe(IO.IN, null, list, null, false), Collections::emptyList);
                 }
 
                 if (!list.isEmpty()) {
@@ -321,12 +323,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             }
 
             // Debank to Fluid Output Hatches
-            FluidStack outputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), fluidTank.getCurrentStorage().min(EPMathUtil.LONG_MAX_VALUE).longValue());
+            FluidStack outputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), fluidTank.getCurrentStorage().min(MOMathUtils.LONG_MAX_VALUE).longValue());
             if (!EPFluidUtil.isDefaultFluid(outputFluidStack) && outputFluidStack.getAmount() >= 0) {
                 List<?> list = List.of(FluidIngredient.of(outputFluidStack));
-                List<IRecipeHandler<?>> handlers = UniverUtil.getOrDefault(capabilitiesProxy.get(IO.OUT, GTRecipeCapabilities.FLUID), Collections::emptyList);
+                List<IRecipeHandler<?>> handlers = MOUtils.getOrDefault(capabilitiesProxy.get(IO.OUT, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 for (var handler : handlers) {
-                    list = UniverUtil.getOrDefault(handler.handleRecipe(IO.OUT, null, list, null, false), Collections::emptyList);
+                    list = MOUtils.getOrDefault(handler.handleRecipe(IO.OUT, null, list, null, false), Collections::emptyList);
                 }
                 if (!list.isEmpty()) {
                     outputFluidStack.shrink(((FluidIngredient) list.get(0)).getAmount());
@@ -441,12 +443,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
 
         @Override
         public long getFluidAmountInTank(int tank) {
-            return EPMathUtil.getLongNumber(currentStorage);
+            return MOMathUtils.getLongNumber(currentStorage);
         }
 
         @Override
         public long getTankCapacity(int tank) {
-            return EPMathUtil.getLongNumber(maxStorage);
+            return MOMathUtils.getLongNumber(maxStorage);
         }
 
         @Override
