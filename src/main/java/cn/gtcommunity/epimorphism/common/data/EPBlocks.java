@@ -409,13 +409,13 @@ public class EPBlocks {
     public static final BlockEntry<Block> PLANET_DEEP_DARK = createPlanetDimensionDisplay(DEEP_DARK);
 
     //  Misc
-    public static final BlockEntry<EOHRendererBlock> EOH_RENDERER_BLOCK = EP_REGISTRATE
-            .block("eoh_render_block", EOHRendererBlock::new)
-            .properties(properties -> properties.noCollission().noOcclusion().noLootTable().strength(-1))
-            .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
-            .setData(ProviderType.LANG, NonNullBiConsumer.noop())
-            .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
-            .register();
+//    public static final BlockEntry<EOHRendererBlock> EOH_RENDERER_BLOCK = EP_REGISTRATE
+//            .block("eoh_render_block", EOHRendererBlock::new)
+//            .properties(properties -> properties.noCollission().noOcclusion().noLootTable().strength(-1))
+//            .setData(ProviderType.BLOCKSTATE, NonNullBiConsumer.noop())
+//            .setData(ProviderType.LANG, NonNullBiConsumer.noop())
+//            .setData(ProviderType.LOOT, NonNullBiConsumer.noop())
+//            .register();
 
     static {
         EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_AGRICULTURE);

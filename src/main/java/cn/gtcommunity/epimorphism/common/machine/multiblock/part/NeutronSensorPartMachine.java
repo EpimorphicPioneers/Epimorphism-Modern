@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+import static com.epimorphismmc.monomorphism.MOValues.*;
 import static com.epimorphismmc.monomorphism.utility.MOMathUtils.*;
 
 @ParametersAreNonnullByDefault

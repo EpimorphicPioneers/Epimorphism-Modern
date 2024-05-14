@@ -219,7 +219,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
             }
 
         }.setOnAddedTooltips((widget, components) -> {
-            var slotReference = widget.getHandle();
+            var slotReference = widget.getHandler();
             if (slotReference != null && slotReference.hasItem()) {
                 int amount = slotReference.getItem().getCount();
                 components.add(Component.translatable("epimorphism.universal.desc.amount", FormattingUtil.formatNumbers(amount)));

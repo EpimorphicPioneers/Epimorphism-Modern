@@ -84,15 +84,16 @@ public class EPRecipeTypes {
             .setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setUiBuilder((recipe, widgetGroup) -> {
                 var contents = recipe.getInputContents(ItemRecipeCapability.CAP);
-                var widgets = WidgetUtils.getWidgetsById(widgetGroup, "^%s_[0-9]+$".formatted(ItemRecipeCapability.CAP.slotName(IO.IN)));
+                var widgets = WidgetUtils.getWidgetsById(widgetGroup, "^%s_[0-9]+$".formatted(ItemRecipeCapability.CAP.slotName(IO.OUT)));
                 for (int i = 0; i < contents.size(); i++) {
                     var content = contents.get(i);
                     var name = content.slotName;
                     if (name != null && name.equals(SlotNames.CATALYST)) {
-                        widgets.get(i).setHoverTooltips(
-                                Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED),
-                                Component.translatable("gui.epimorphism.catalyst.desc.1")
-                        ).setOverlay(EPWidgetUtil.createCatalystOverlay());
+                        widgets.get(i).setOverlay(EPWidgetUtil.createCatalystOverlay())
+                                .setHoverTooltips(
+                                        Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED),
+                                        Component.translatable("gui.epimorphism.catalyst.desc.1")
+                                );
                     }
                 }
             })
@@ -161,7 +162,7 @@ public class EPRecipeTypes {
                     var content = contents.get(i);
                     var name = content.slotName;
                     if (name != null && name.equals(SlotNames.CATALYST)) {
-                        ((SlotWidget) widgets.get(i)).setOverlay(EPWidgetUtil.createCatalystOverlay())
+                        widgets.get(i).setOverlay(EPWidgetUtil.createCatalystOverlay())
                                 .setHoverTooltips(
                                         Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED),
                                         Component.translatable("gui.epimorphism.catalyst.desc.1")
@@ -284,7 +285,7 @@ public class EPRecipeTypes {
         // FIXME The recipe is shown incorrectly, it's GTM's fault, not mine
         UNIVERSAL_CHEMICAL_FUELS.getRecipeUI().setJEIVisible(false);
 
-        GTRegistries.register(BuiltInRegistries.RECIPE_SERIALIZER, GTCEu.id("repair_recipe_serializer"), RepairRecipe.SERIALIZER);
+//        GTRegistries.register(BuiltInRegistries.RECIPE_SERIALIZER, GTCEu.id("repair_recipe_serializer"), RepairRecipe.SERIALIZER);
     }
 
     private static GTRecipeType registerGeneralRecipeType(String name, String group, GTRecipeType recipe_1, GTRecipeType recipe_2, GTRecipeType recipe_3) {

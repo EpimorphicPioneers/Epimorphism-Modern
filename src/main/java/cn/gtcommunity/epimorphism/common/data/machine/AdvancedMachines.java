@@ -3,6 +3,7 @@ package cn.gtcommunity.epimorphism.common.data.machine;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilCasingMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassCoilMultiblockMachine;
+import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.CustomPartRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ProcessingArrayRenderer;

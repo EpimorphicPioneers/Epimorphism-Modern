@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.data.recipe.generated;
 
-import cn.gtcommunity.epimorphism.api.recipe.EPRecipeHelper;
 import cn.gtcommunity.epimorphism.common.data.items.EPWrapItem;
 import cn.gtcommunity.epimorphism.common.recipe.TierCasingCondition;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -56,7 +56,7 @@ public class ComponentAsslineRecipeHandler {
 
     public static void init(GTRecipeBuilder recipeBuilder) {
         initializeGTItems();
-        var outputItems = EPRecipeHelper.getOutputItem(recipeBuilder);
+        var outputItems = MORecipeHelper.getOutputItem(recipeBuilder);
         if (outputItems.isEmpty()) return;
 
         var item = outputItems.get(0).getItem();

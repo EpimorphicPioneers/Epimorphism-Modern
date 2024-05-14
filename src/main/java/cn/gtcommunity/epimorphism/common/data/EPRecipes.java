@@ -7,7 +7,6 @@ import cn.gtcommunity.epimorphism.data.recipe.misc.FuelRecipes;
 import cn.gtcommunity.epimorphism.data.recipe.misc.LargeNaquadahReactorLoader;
 import cn.gtcommunity.epimorphism.data.recipe.misc.RadiationHatchLoader;
 import cn.gtcommunity.epimorphism.data.recipe.generated.WrapItemRecipeHandler;
-import cn.gtcommunity.epimorphism.data.recipe.misc.NeutronActivatorLoader;
 import cn.gtcommunity.epimorphism.data.recipe.serialized.oreprocessing.NaquadahProcessing;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -20,7 +19,6 @@ public class EPRecipes {
 
         FuelRecipes.init(provider);
 
-        NeutronActivatorLoader.init(provider);
         LargeNaquadahReactorLoader.init(provider);
         RadiationHatchLoader.init(provider);
 

@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;

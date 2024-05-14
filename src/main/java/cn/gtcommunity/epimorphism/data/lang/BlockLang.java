@@ -357,8 +357,8 @@ public class BlockLang {
 
 
         //  Agriculture
-        addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
-        addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
+//        addBlock(provider, FERTILIZED_DIRT,"Fertilized Dirt","肥沃土");
+//        addBlock(provider, FERTILIZED_FARMLAND,"Fertilized Farmland","肥沃耕地");
         addBlock(provider, PINE_SAPLING,"Pine Sapling","松树树苗");
         addBlock(provider, PINE_LOG,"Pine Log","松树原木");
         addBlock(provider, PINE_LEAVES,"Pine Leaves","松树树叶");

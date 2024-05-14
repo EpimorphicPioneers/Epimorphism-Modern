@@ -53,13 +53,13 @@ public class EPCreativeModeTabs {
     public final static RegistryEntry<CreativeModeTab> EP_AGRICULTURE = EPRegistration.EP_REGISTRATE.defaultCreativeTab("agriculture",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("agriculture", EPRegistration.EP_REGISTRATE))
                             .title(EPRegistration.EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("agriculture"), Epimorphism.NAME + " | Agriculture"))
-                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
+                            .icon(EPChemistryItem.CATALYST_CARRIER::asStack)
                             .build())
             .register();
     public final static RegistryEntry<CreativeModeTab> EP_GALAXY = EPRegistration.EP_REGISTRATE.defaultCreativeTab("galaxy",
                     builder -> builder.displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("galaxy", EPRegistration.EP_REGISTRATE))
                             .title(EPRegistration.EP_REGISTRATE.addLang("itemGroup", Epimorphism.id("galaxy"), Epimorphism.NAME + " | Galaxy"))
-                            .icon(EPBlocks.FERTILIZED_DIRT::asStack)
+                            .icon(EPChemistryItem.CATALYST_CARRIER::asStack)
                             .build())
             .register();
     public static void init() {/**/}

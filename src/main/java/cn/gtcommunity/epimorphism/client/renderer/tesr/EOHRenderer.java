@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.client.renderer.tesr;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.client.utils.AlphaVertexConsumer;
 import cn.gtcommunity.epimorphism.common.block.DimensionDisplayBlock;
 import cn.gtcommunity.epimorphism.common.blockentity.EOHBlockEntity;
+import com.epimorphismmc.monomorphism.client.utils.AlphaVertexConsumer;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.LightTexture;
@@ -28,10 +28,10 @@ import static com.lowdragmc.lowdraglib.client.model.forge.LDLRendererModel.Rende
 @MethodsReturnNonnullByDefault
 public class EOHRenderer implements BlockEntityRenderer<EOHBlockEntity> {
 
-    private static final BakedModel STAR_MODEL_0 = ClientUtil.getBakedModel(Epimorphism.id("block/obj/star_0"));;
-    private static final BakedModel STAR_MODEL_1 = ClientUtil.getBakedModel(Epimorphism.id("block/obj/star_1"));
-    private static final BakedModel STAR_MODEL_2 = ClientUtil.getBakedModel(Epimorphism.id("block/obj/star_2"));
-    private static final BakedModel SPACE_MODEL = ClientUtil.getBakedModel(Epimorphism.id("block/obj/space"));
+    private static final BakedModel STAR_MODEL_0 = RenderHelper.getBakedModel(Epimorphism.id("block/obj/star_0"));;
+    private static final BakedModel STAR_MODEL_1 = RenderHelper.getBakedModel(Epimorphism.id("block/obj/star_1"));
+    private static final BakedModel STAR_MODEL_2 = RenderHelper.getBakedModel(Epimorphism.id("block/obj/star_2"));
+    private static final BakedModel SPACE_MODEL = RenderHelper.getBakedModel(Epimorphism.id("block/obj/space"));
 
     private static final float STAR_RESCALE = 0.2f;
 
@@ -73,7 +73,7 @@ public class EOHRenderer implements BlockEntityRenderer<EOHBlockEntity> {
         poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0F, 1F, 0F, (orbitingObject.orbitSpeed() * (EOHRenderTile.angle + partialTick)) % 360F));
         poseStack.scale(scale, scale, scale);
 
-        ClientUtil.blockRenderer().renderSingleBlock(orbitingObject.block().defaultBlockState(),
+        RenderHelper.getBlockRendererDispatcher().renderSingleBlock(orbitingObject.block().defaultBlockState(),
                 poseStack, buffer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
                 ModelData.builder().with(IRENDERER, ((DimensionDisplayBlock)orbitingObject.block()).renderer).build(),
                 RenderType.solid());
@@ -104,7 +104,7 @@ public class EOHRenderer implements BlockEntityRenderer<EOHBlockEntity> {
             case 2 -> poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(1F, 0F, 1F, 67F + ((angle + partialTick) * 0.8F) % 360F));
         }
 
-        ClientUtil.modelRenderer().renderModel(poseStack.last(),
+        RenderHelper.getBlockRenderer().renderModel(poseStack.last(),
                 new AlphaVertexConsumer(buffer.getBuffer(renderType), alpha),
                 null, model,
                 1.0F, 0.4F, 0.05F,
@@ -119,7 +119,7 @@ public class EOHRenderer implements BlockEntityRenderer<EOHBlockEntity> {
         poseStack.pushPose();
         poseStack.scale(scale, scale, scale);
 
-        ClientUtil.modelRenderer().renderModel(poseStack.last(),
+        RenderHelper.getBlockRenderer().renderModel(poseStack.last(),
                 buffer.getBuffer(RenderType.solid()),
                 null, SPACE_MODEL,
                 1.0F,1.0F,1.0F,

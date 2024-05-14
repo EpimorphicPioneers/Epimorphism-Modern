@@ -1,10 +1,9 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankMachine;
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.client.model.geometry.Model3D;
-import cn.gtcommunity.epimorphism.client.renderer.handler.CubeRenderer;
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.client.render.CubeRenderer;
+import com.epimorphismmc.monomorphism.client.utils.Model3D;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
 import com.gregtechceu.gtceu.client.renderer.machine.WorkableCasingMachineRenderer;
@@ -45,7 +44,7 @@ public class TankMachineRenderer extends WorkableCasingMachineRenderer {
                 poseStack.translate(0.5, 0, 0.5);
                 RenderUtils.rotateToFace(poseStack, frontFacing, null);
                 poseStack.translate(-0.5, 0, -0.5);
-                RenderHelper.renderStillFluidInWorld(fluid, new Model3D().bounds(-1, -3, -3, 2, -1, 0), poseStack, buffer, ClientUtil.camera(), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, CubeRenderer.FaceDisplay.BACK);
+                RenderHelper.renderStillFluidInWorld(fluid, new Model3D().bounds(-1, -3, -3, 2, -1, 0), poseStack, buffer, RenderHelper.getMainCamera(), LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, CubeRenderer.FaceDisplay.BACK);
                 poseStack.popPose();
             }
         }

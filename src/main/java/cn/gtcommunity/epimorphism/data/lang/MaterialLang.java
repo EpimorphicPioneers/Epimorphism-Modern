@@ -390,10 +390,10 @@ public class MaterialLang {
         addMaterial(provider, TitaniumNitrate, "Titanium Nitrate", "硝酸钛");
         addMaterial(provider, NaquadahOxideMixture, "Naquadah Oxide Mixture", "氧化硅岩混合物");
         addMaterial(provider, ExtractiveNaquadahOxide, "Extractive Naquadah Oxide", "氧化硅岩浸出物");
-        addMaterial(provider, AceticAnhydride, "Acetic Anhydride", "乙酸酐");
-        addMaterial(provider, HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
-        addMaterial(provider, SodiumCyanide, "Sodium Cyanide", "氰化钠");
-        addMaterial(provider, SodiumPerchlorate, "Sodium Perchlorate", "高氯酸钠");
+//        addMaterial(provider, AceticAnhydride, "Acetic Anhydride", "乙酸酐");
+//        addMaterial(provider, HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
+//        addMaterial(provider, SodiumCyanide, "Sodium Cyanide", "氰化钠");
+//        addMaterial(provider, SodiumPerchlorate, "Sodium Perchlorate", "高氯酸钠");
 
 
         // Second Degree Materials

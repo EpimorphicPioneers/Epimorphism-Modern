@@ -4,6 +4,7 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.machine.EfficiencyGeneratorMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.*;
 import cn.gtcommunity.epimorphism.api.pattern.*;
+import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.registry.EPRegistration;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.*;
 import cn.gtcommunity.epimorphism.common.block.BlockMaps;
@@ -21,6 +22,13 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.part.*;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.integration.EPIntegration;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
+import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.pattern.LayerShapeInfo;
+import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
+import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -75,6 +83,8 @@ import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
+import static com.epimorphismmc.monomorphism.block.MOBlockMaps.*;
+import static com.epimorphismmc.monomorphism.pattern.MOPredicates.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
@@ -382,7 +392,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.IMPORT_ITEMS)))
                     .where('D', blocks(PROCESS_MACHINE_CASING.get()))
                     .where('E', blocks(CASING_LAMINATED_GLASS.get()))
-                    .where('F', EPPredicates.countBlock("SpeedPipe", SPEEDING_PIPE.get()))
+                    .where('F', countBlock("SpeedPipe", SPEEDING_PIPE.get()))
                     .build())
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
@@ -487,7 +497,7 @@ public class EPMachines {
             .recipeType(BLAST_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
             .appearanceBlock(ADVANCED_INVAR_CASING)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle(" NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", " NNN   NNN             NNN   NNN ", "                                 ", "                                 ", "                                 ", " NNN   NNN   N     N   NNN   NNN ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ", "                                 ", "                                 ", "         N   N     N   N         ", "         N   N     N   N         ", "         N   N     N   N         ", "                                 ")
                     .aisle("NbbbN NbbbN    N N    NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", "NbbbN NbbbN           NbbbN NbbbN", "  N     N               N     N  ", "  N     N               N     N  ", "                                 ", "  N     N               N     N  ", "  N     N               N     N  ", "NbbbN NbbbN           NbbbN NbbbN", " CCC   CCC             CCC   CCC ", " CCC   CCC             CCC   CCC ", " CCC   CCC   N     N   CCC   CCC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ", "                                 ", "         N   N     N   N         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
                     .aisle("NbbbN NbbbNNNNNsNsNNNNNbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", "NbbbN NbbbN           NbbbN NbbbN", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "  s     s               s     s  ", " NNN   NNN             NNN   NNN ", " NNN   NNN             NNN   NNN ", "NbbbN NbbbN           NbbbN NbbbN", " CbC   CbC             CbC   CbC ", " CbC   CbC             CbC   CbC ", " CbC   CbC   N     N   CbC   CbC ", "NbbbN NbbNCCCb     bCCCNbbN NbbbN", "  N     sbbbbbNNsNNbbbbbs     N  ", "  N      bCCCb     bCCCb      N  ", "  N      N   N     N   N      N  ", "   s                         s   ", "   s     N   N     N   N     s   ", "    ss   bCCCb     bCCCb   ss    ", "      NNNbbbbbNNsNNbbbbbNNN      ", "         bCCCb     bCCCb         ", "         N   N     N   N         ")
@@ -549,7 +559,7 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), BlockMaps.ALL_COIL_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
                 return shapeInfos;
             })
             .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
@@ -569,7 +579,7 @@ public class EPMachines {
             .recipeType(EYE_OF_HARMONY_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, (oc) -> AdvancedEBFMachine::advEBFOverclock))
             .appearanceBlock(EPBlocks.HYPERDIMENSIONAL_CASING)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               A A               ", "               A A               ", "               A A               ", "            AAAAAAAAA            ", "               A A               ", "            AAAAAAAAA            ", "               A A               ", "               A A               ", "               A A               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
                     .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               A A               ", "               A A               ", "               A A               ", "               A A               ", "              DDDDD              ", "             DDADADD             ", "         AAAADAADAADAAAA         ", "             DDDDDDD             ", "         AAAADAADAADAAAA         ", "             DDADADD             ", "              DDDDD              ", "               A A               ", "               A A               ", "               A A               ", "               A A               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
                     .aisle("                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "               A A               ", "               A A               ", "               A A               ", "                D                ", "                D                ", "             DDDDDDD             ", "            DD     DD            ", "            D  EEE  D            ", "       AAA  D EFFFE D  AAA       ", "          DDD EFFFE DDD          ", "       AAA  D EFFFE D  AAA       ", "            D  EEE  D            ", "            DD     DD            ", "             DDDDDDD             ", "                D                ", "                D                ", "               A A               ", "               A A               ", "               A A               ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
@@ -620,8 +630,8 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLeng = EPMathUtil.max(TA_FIELD_GENERATORS.size(), SC_FIELD_GENERATORS.size(), ST_FIELD_GENERATORS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLeng));
+                int maxLeng = MOMathUtils.max(TA_FIELD_GENERATORS.size(), SC_FIELD_GENERATORS.size(), ST_FIELD_GENERATORS.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
             .renderer(() -> new CustomPartRenderer(Epimorphism.id("block/casings/solid/hyperdimensional_casing"),
@@ -636,7 +646,7 @@ public class EPMachines {
             .recipeTypes(CHEMICAL_PLANT_RECIPES)
             .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
             .appearanceBlock(CASING_BRONZE_BRICKS)
-            .pattern(definition -> FactoryEnhancePattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
                     .aisle("EMMMMME", "#MMMMM#", "#######", "#######", "#######", "#MMMMM#", "CCCCCCC")
                     .aisle("EMMMMME", "#MXXXM#", "##TTT##", "##XXX##", "##TTT##", "#MXXXM#", "CCCCCCC")
@@ -655,7 +665,7 @@ public class EPMachines {
                             .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
                     .where('C', EPPredicates.CPCasingBlock())
                     .where('X', coilBlock())
-                    .where('M', EPPredicates.machineCasingBlock())
+                    .where('M', machineCasingBlock())
                     .where('T', EPPredicates.CPPipeBlock())
                     .where('#', any())
                     .where('A', air())
@@ -663,8 +673,8 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLeng = EPMathUtil.max(BlockMaps.ALL_COIL_BLOCKS.size(), ALL_CP_CASINGS.size(), ALL_CP_TUBES.size(), ALL_MACHINE_CASINGS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), maxLeng));
+                int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), ALL_CP_CASINGS.size(), ALL_CP_TUBES.size(), ALL_MACHINE_CASINGS.size());
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -886,7 +896,7 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), BlockMaps.ALL_COIL_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
                 return shapeInfos;
             })
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
@@ -977,7 +987,7 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), BlockMaps.ALL_COIL_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -1152,7 +1162,7 @@ public class EPMachines {
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .appearanceBlock(TFFT_CASING)
-            .pattern(definition -> FactoryEnhancePattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
+            .pattern(definition -> FactoryMOPattern.start(RelativeDirection.RIGHT, RelativeDirection.BACK, RelativeDirection.UP)
                     .aisle("AADAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
                     .aisle("BBBBB", "BCCCB", "BCCCB", "BCCCB", "BBBBB").setRepeatable(1, 15)
                     .aisle("AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA")
@@ -1169,7 +1179,7 @@ public class EPMachines {
             )
             .shapeInfos(definition -> {
                 List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((EnhanceBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size()));
+                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size()));
                 return shapeInfos;
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))

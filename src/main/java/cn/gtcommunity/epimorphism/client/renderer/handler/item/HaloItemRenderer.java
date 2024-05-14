@@ -1,10 +1,10 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import cn.gtcommunity.epimorphism.client.ClientUtil;
-import cn.gtcommunity.epimorphism.api.item.IRendererMetaInfo;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.IHaloRenderBehavior;
-import cn.gtcommunity.epimorphism.client.utils.AlphaVertexConsumer;
-import cn.gtcommunity.epimorphism.client.utils.ColorHelper;
+import com.epimorphismmc.monomorphism.client.utils.AlphaVertexConsumer;
+import com.epimorphismmc.monomorphism.client.utils.ColorHelper;
+import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
+import com.epimorphismmc.monomorphism.item.component.IRendererItem;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
@@ -12,7 +12,6 @@ import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import cn.gtcommunity.epimorphism.client.utils.RenderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -21,7 +20,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -56,9 +54,9 @@ public class HaloItemRenderer implements IRenderer {
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
         model = RenderHelper.getVanillaModel(stack, null, null);
-        if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererMetaInfo componentItem) {
+        if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererItem rendererItem) {
 
-            if (componentItem.getMetaInfo(stack) instanceof IHaloRenderBehavior hri) {
+            if (rendererItem.getRenderInfo(stack) instanceof IHaloRenderBehavior hri) {
                 Tesselator tess = Tesselator.getInstance();
                 BufferBuilder buf = tess.getBuilder();
                 buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
@@ -80,7 +78,7 @@ public class HaloItemRenderer implements IRenderer {
                     RenderSystem.setShaderColor(r, g, b, a);
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     TextureAtlasSprite sprite = ModelFactory.getBlockSprite(hri.haloTexture());
-                    ClientUtil.bindTexture(InventoryMenu.BLOCK_ATLAS);
+                    RenderHelper.bindTexture(InventoryMenu.BLOCK_ATLAS);
                     float spread = hri.haloSize() / 16F;
                     float min = 0F - spread;
                     float max = 1F + spread;

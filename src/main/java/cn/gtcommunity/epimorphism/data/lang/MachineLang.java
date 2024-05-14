@@ -14,6 +14,7 @@ import static cn.gtcommunity.epimorphism.common.data.EPMachines.*;
 import static cn.gtcommunity.epimorphism.common.data.machine.AdvancedMachines.*;
 import static cn.gtcommunity.epimorphism.data.lang.EPLangHelper.*;
 import static cn.gtcommunity.epimorphism.common.data.machine.EPAEMachines.*;
+import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
@@ -89,13 +90,13 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-        addBlockWithTooltip(provider, AgricultureMachines.EXTREME_INDUSTRIAL_GREENHOUSE::getBlock, "极限工业温室",
-                List.of(
-
-                ),
-                List.of(
-
-                ));
+//        addBlockWithTooltip(provider, AgricultureMachines.EXTREME_INDUSTRIAL_GREENHOUSE::getBlock, "极限工业温室",
+//                List.of(
+//
+//                ),
+//                List.of(
+//
+//                ));
 
         addBlockWithTooltip(provider, BiologyMachines.BACTERIAL_CULTURE_TANK::getBlock, "细菌培养缸",
                 List.of(

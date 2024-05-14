@@ -4,7 +4,6 @@ import cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronAcceleratorPartMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.part.NeutronSensorPartMachine;
 import cn.gtcommunity.epimorphism.common.recipe.NeutronEnergyCondition;
-import cn.gtcommunity.epimorphism.utils.EPUtil;
 import com.epimorphismmc.monomorphism.machine.multiblock.NoEnergyMultiblockMachine;
 import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
 import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
@@ -38,6 +37,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static com.epimorphismmc.monomorphism.MOValues.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
