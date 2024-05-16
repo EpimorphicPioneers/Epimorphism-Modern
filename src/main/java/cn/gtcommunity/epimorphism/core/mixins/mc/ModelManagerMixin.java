@@ -24,6 +24,6 @@ public abstract class ModelManagerMixin {
         long startTime = System.currentTimeMillis();
         // turns out these do have to be init in here after all, as they check for asset existence. whoops.
         FenceBlockRenderer.reinitModels();
-        Epimorphism.LOGGER.info("Epimorphism Model loading took {}ms", System.currentTimeMillis() - startTime);
+        Epimorphism.logger().info("Epimorphism Model loading took {}ms", System.currentTimeMillis() - startTime);
     }
 }

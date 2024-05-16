@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,7 +12,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Optional;
-// TODO Maybe use IModelRenderer?
+
+import static com.epimorphismmc.monomorphism.client.utils.MORenderUtils.*;
+
 public class GrindBallRenderer implements IRenderer {
 
     public static final GrindBallRenderer INSTANCE = new GrindBallRenderer();
@@ -21,11 +22,11 @@ public class GrindBallRenderer implements IRenderer {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void renderItem(ItemStack stack, ItemDisplayContext transformType, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model) {
-        var tModel = RenderHelper.getVanillaModel(stack, null, null);
+        var tModel = getVanillaModel(stack, null, null);
         Optional.ofNullable(GrindBallBehaviour.getBehaviour(stack))
                 .map(b -> b.getCustomRenderer(stack))
                 .map(ICustomRenderer::getRenderer)
                 .ifPresentOrElse(r -> r.renderItem(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model),
-                        () -> RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, tModel));
+                        () -> vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, tModel));
     }
 }

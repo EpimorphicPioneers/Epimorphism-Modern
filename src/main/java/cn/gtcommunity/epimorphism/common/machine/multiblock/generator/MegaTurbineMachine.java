@@ -151,8 +151,8 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
                 //this is necessary to prevent over-consumption of fuel
                 excessVoltage += (long) (maxParallel * EUt * holderEfficiency - turbineMaxVoltage);
                 var parallelResult = GTRecipeModifiers.fastParallel(this, recipe, Math.max(1, maxParallel), false);
-                recipe = parallelResult.getA() == recipe ? recipe.copy() : parallelResult.getA();
-                long eut = boostProduction((long) (EUt * holderEfficiency * parallelResult.getB()));
+                recipe = parallelResult.getFirst() == recipe ? recipe.copy() : parallelResult.getFirst();
+                long eut = boostProduction((long) (EUt * holderEfficiency * parallelResult.getSecond()));
                 recipe.tickOutputs.put(EURecipeCapability.CAP, List.of(new Content(eut, 1.0f, 0.0f, null, null)));
                 return recipe;
             }
@@ -176,8 +176,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
     }
 
     @Override
-    public void onWorking() {
-        super.onWorking();
+    public boolean onWorking() {
         if (getRotorSpeed() < getMaxRotorHolderSpeed()) {
             setRotorSpeed(getRotorSpeed() + SPEED_INCREMENT);
             updateRotorSubscription();
@@ -192,6 +191,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
                     .orElse(0);
             rotorHolders.forEach(holder -> holder.damageRotor((isHighSpeedMode() ? 12 : 1) * (1 + numMaintenanceProblems)));
         }
+        return super.onWorking();
     }
 
     @Override

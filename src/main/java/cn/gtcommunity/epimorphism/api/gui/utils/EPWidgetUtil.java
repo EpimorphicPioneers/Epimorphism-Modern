@@ -1,12 +1,13 @@
 package cn.gtcommunity.epimorphism.api.gui.utils;
 
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.lowdragmc.lowdraglib.gui.texture.IGuiTexture;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
 
 public class EPWidgetUtil {
     public static IGuiTexture createCatalystOverlay() {
@@ -18,7 +19,7 @@ public class EPWidgetUtil {
                 graphics.pose().translate(0, 0, 400);
                 graphics.pose().scale(0.5f, 0.5f, 1);
                 String s = LocalizationUtils.format("gui.epimorphism.content.catalyst");
-                Font fontRenderer = RenderHelper.getFontRenderer();
+                Font fontRenderer = getFontRenderer();
                 graphics.drawString(fontRenderer, s, (int) ((x + (width / 3f)) * 2 - fontRenderer.width(s) + 23), (int) ((y + (height / 3f) + 6) * 2 - height), 0xff0000, true);
                 graphics.pose().popPose();
             }

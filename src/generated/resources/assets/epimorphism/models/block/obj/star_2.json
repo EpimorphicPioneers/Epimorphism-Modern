@@ -1,6 +1,0 @@
-{
-  "flip_v": true,
-  "loader": "forge:obj",
-  "model": "epimorphism:models/block/obj/star.obj",
-  "mtl_override": "epimorphism:models/block/obj/star_2.mtl"
-}

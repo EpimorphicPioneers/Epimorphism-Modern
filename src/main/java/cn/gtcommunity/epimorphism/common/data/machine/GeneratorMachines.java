@@ -30,24 +30,19 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
-import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
-import static cn.gtcommunity.epimorphism.common.data.EPMaterials.BlackPlutonium;
-import static cn.gtcommunity.epimorphism.common.data.EPMaterials.Orichalcum;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.frames;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HSSS;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 
 public class GeneratorMachines {
 
-
-    public static final MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR = EP_REGISTRATE.multiblock("large_naquadah_reactor", LargeNaquadahReactorMachine::new)
+    public static final MultiblockMachineDefinition LARGE_NAQUADAH_REACTOR = registrate().multiblock("large_naquadah_reactor", LargeNaquadahReactorMachine::new)
             .langValue("Large Naquadah Reactor")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(LARGE_NAQUADAH_REACTOR_FUELS, LARGE_NAQUADAH_COOLANT_LIST, LARGE_NAQUADAH_EXCITED_FLUID_LIST)
@@ -75,7 +70,7 @@ public class GeneratorMachines {
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/radiation_proof_machine_casing"),
                     Epimorphism.id("block/multiblock/generator/large_naquadah_reactor"), false)
             .register();
-    public static final MultiblockMachineDefinition UNIVERSAL_CHEMICAL_FUEL_ENGINE = EP_REGISTRATE.multiblock("universal_chemical_fuel_engine", UniversalChemicalFuelEngineMachine::new)
+    public static final MultiblockMachineDefinition UNIVERSAL_CHEMICAL_FUEL_ENGINE = registrate().multiblock("universal_chemical_fuel_engine", UniversalChemicalFuelEngineMachine::new)
             .langValue("Universal Chemica Fuel Engine")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(COMBUSTION_GENERATOR_FUELS, GAS_TURBINE_FUELS, ROCKET_ENGINE_FUELS)
@@ -105,7 +100,7 @@ public class GeneratorMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     Epimorphism.id("block/multiblock/generator/universal_chemical_fuel_engine"), false)
             .register();
-    public static final MultiblockMachineDefinition ROCKET_ENGINE_F1A = EP_REGISTRATE.multiblock("rocket_engine_f1a", RocketEngineMachine::new)
+    public static final MultiblockMachineDefinition ROCKET_ENGINE_F1A = registrate().multiblock("rocket_engine_f1a", RocketEngineMachine::new)
             .langValue("Rocket Engine F-1A")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ROCKET_ENGINE_FUELS)
@@ -157,64 +152,6 @@ public class GeneratorMachines {
             .workableCasingRenderer(SolidOxideFuelCellMachine.getTexture(tier),
                     Epimorphism.id("block/multiblock/generator/solid_oxide_fuel_cell"), false)
             .register(), HV, IV);
-    public static final MultiblockMachineDefinition DYSON_SWARM = EP_REGISTRATE.multiblock("dyson_swarm", DysonSwarmMachine::new)
-            .langValue("Dyson Swarm")
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(DUMMY_RECIPES)
-            .appearanceBlock(RECEIVER_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "  XXX       FZF ", "            FZF ", "            FZF ", "  RRR       FZF ", "            FZF ", "  RRR       FZF ", "            FZF ", "  RRR       FZF ", "             F  ", "  RRR        F  ", "             F  ", "             F  ", "  RRR        F  ", "  RRR        F  ", "  RRR        F  ", "             F  ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "CCXXXCC    BBOBB", " X   X      Z Z ", "            Z Z ", "            Z Z ", " R f R      Z Z ", "            Z Z ", " R f R      Z Z ", "            Z Z ", " R f R      Z Z ", "            F F ", " R f R      F F ", "            F F ", "  RRR       F F ", " RRRRR      F F ", " RRRRR      F F ", " RRRRR      F F ", "  RRR       F F ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "CCXCXCC    BBBBB", " X Y X      FZF ", "   Y        FZF ", "   Y        FZF ", " RfYfR      FZF ", "   Y        FZF ", " RfYfR      FZF ", "   Y        FZF ", " RfYfR      FZF ", "   Y         F  ", " RfYfR       F  ", "   Y         F  ", "  RRR        F  ", " RRRRR       F  ", " RRRRR       F  ", " RRRRR       F  ", "  RRR        F  ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC    BBBBB", "CCCCCCC    BBBBB", "CCXXXCC    BBBBB", " X   X          ", "                ", "                ", " R f R          ", "                ", " R f R          ", "                ", " R f R          ", "                ", " R f R          ", "                ", "  RRR           ", " RRRRR          ", " RRRRR          ", " RRRRR          ", "  RRR           ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC         ", "CCCCCCC         ", "CCCCCCC         ", "  XXX           ", "                ", "                ", "  RRR           ", "                ", "  RRR           ", "                ", "  RRR    yyy    ", "                ", "  RRR           ", "                ", "                ", "  RRR           ", "  RRR           ", "  RRR           ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "CCCCCCC         ", "CCCCCCC         ", "CCCCCCC         ", "                ", "                ", "                ", "                ", "                ", "                ", "         yyy    ", "        y   y   ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "        yyyyy   ", "       y     y  ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "        ccccc   ", "        ccccc   ", "        ccccc   ", "                ", "                ", "                ", "                ", "                ", "         yyy    ", "       yy   yy  ", "      y       y ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "        ccccc   ", "        coooc   ", "        ccccc   ", "         x x    ", "         x x    ", "         x x    ", "         x x    ", "         x x    ", "        yyyyy   ", "      yy     yy ", "     y         y", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "        ccccc   ", "        coooc   ", "        ccccc   ", "                ", "                ", "                ", "                ", "                ", "        yyyyy   ", "      yy  g  yy ", "     y    g    y", "          r     ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "        ccccc   ", "        coooc   ", "        ccccc   ", "         x x    ", "         x x    ", "         x x    ", "         x x    ", "         x x    ", "        yyyyy   ", "      yy     yy ", "     y         y", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "        ccScc   ", "        ccccc   ", "        ccccc   ", "                ", "                ", "                ", "                ", "                ", "         yyy    ", "       yy   yy  ", "      y       y ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "        yyyyy   ", "       y     y  ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "         yyy    ", "        y   y   ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .aisle("DDDDDDDDDDDDDDDD", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "         yyy    ", "                ", "                ", "                ", "                ", "                ", "                ", "                ", "                ")
-                    .where('S', controller(blocks(definition.getBlock())))
-                    .where('B', blocks(DEPLOYMENT_UNIT_CASING.get()))
-                    .where('C', blocks(AEROSPACE_CASING.get()))
-                    .where('D', blocks(HIGH_STRENGTH_FLOOR.get()))
-                    .where('Z', blocks(DEPLOYMENT_UNIT_MAGNET.get()))
-                    .where('R', blocks(COIL_CASING.get()))
-                    .where('c', blocks(RECEIVER_CASING.get())
-                            .setMinGlobalLimited(50)
-                            .or(abilities(MAINTENANCE)
-                                    .setExactLimit(1))
-                            .or(abilities(PartAbility.IMPORT_ITEMS)
-                                    .setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.EXPORT_ITEMS)
-                                    .setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.IMPORT_FLUIDS)
-                                    .setMaxGlobalLimited(1))
-                            .or(abilities(PartAbility.OUTPUT_ENERGY)
-                                    .setMaxGlobalLimited(1)
-                                    .setPreviewCount(1))
-                            .or(abilities(PartAbility.OUTPUT_LASER)
-                                    .setMaxGlobalLimited(1)
-                                    .setPreviewCount(1)))
-                    .where('O', blocks(DEPLOYMENT_UNIT_CORE.get()))
-                    .where('y', blocks(DISH_CASING.get()))
-                    .where('r', blocks(COIL_CASING.get()))
-                    .where('X', blocks(CONTROL_PRIMARY_WINDING.get()))
-                    .where('o', blocks(COIL_CASING.get()))
-                    .where('Y', blocks(CONTROL_SECONDARY_WINDING.get()))
-                    .where('F', frames(Orichalcum))
-                    .where('f', frames(Orichalcum))
-                    .where('x', frames(HSSS))
-                    .where('g', frames(BlackPlutonium))
-                    .build())
-            .sidedWorkableCasingRenderer("block/casings/receiver_casing",
-                    Epimorphism.id("block/multiblock/generator/dyson_swarm"), false)
-            .register();
     public static final MultiblockMachineDefinition HIGH_PRESSURE_STEAM_TURBINE = registerEPLargeTurbine("high_pressure_steam_turbine", EV,
             HIGH_PRESSURE_STEAM_TURBINE_FUELS,
             CASING_TITANIUM_TURBINE, CASING_TITANIUM_GEARBOX,
@@ -256,7 +193,7 @@ public class GeneratorMachines {
     }
 
     public static MultiblockMachineDefinition registerEPLargeTurbine(String name, int tier, GTRecipeType recipeType, Supplier<? extends Block> casing, Supplier<? extends Block> gear, ResourceLocation casingTexture, ResourceLocation overlayModel) {
-        return EP_REGISTRATE.multiblock(name, holder -> new LargeTurbineMachine(holder, tier))
+        return registrate().multiblock(name, holder -> new LargeTurbineMachine(holder, tier))
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(recipeType)
                 .recipeModifier(LargeTurbineMachine::recipeModifier, true)
@@ -288,7 +225,7 @@ public class GeneratorMachines {
     }
 
     public static MultiblockMachineDefinition registerMegaTurbine(String name, int tier, GTRecipeType recipeType, Supplier<? extends Block> casing, Supplier<? extends Block> gear, ResourceLocation casingTexture, ResourceLocation overlayModel) {
-        return EP_REGISTRATE.multiblock(name, holder -> new MegaTurbineMachine(holder, tier))
+        return registrate().multiblock(name, holder -> new MegaTurbineMachine(holder, tier))
                 .rotationState(RotationState.NON_Y_AXIS)
                 .recipeType(recipeType)
                 .appearanceBlock(casing)

@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.common.data.EPParticleTypes;
 import cn.gtcommunity.epimorphism.client.model.GrindBallModel;
 import cn.gtcommunity.epimorphism.client.particle.CropFX;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
+import com.epimorphismmc.monomorphism.proxy.base.IClientProxyBase;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelEvent;
@@ -12,15 +13,10 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @OnlyIn(Dist.CLIENT)
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends CommonProxy implements IClientProxyBase {
 
     public ClientProxy() {
         super();
-    }
-
-    @Override
-    public void init() {
-        super.init();
     }
 
     @SubscribeEvent
@@ -36,10 +32,5 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
         GrindBallModel.registerAdditionalModel(event::register);
-        event.register(Epimorphism.id("block/obj/star_0"));
-        event.register(Epimorphism.id("block/obj/star_1"));
-        event.register(Epimorphism.id("block/obj/star_2"));
-        event.register(Epimorphism.id("block/obj/space"));
-        event.register(Epimorphism.id("block/obj/climber"));
     }
 }

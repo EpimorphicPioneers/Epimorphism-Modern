@@ -39,18 +39,19 @@ public class IndustrialFreezerMachine extends ParallelElectricMultiblockMachine 
     }
 
     @Override
-    public void onWorking() {
-        super.onWorking();
+    public boolean onWorking() {
         long totalContinuousRunningTime = recipeLogic.getTotalContinuousRunningTime();
         if ((totalContinuousRunningTime == 1 || totalContinuousRunningTime % 2 == 0)) {
             var recipe = getCryotheumRecipe();
             if (!(recipe.matchRecipe(this).isSuccess() && recipe.handleRecipeIO(IO.IN, this))) {
                 this.insufficient = true;
-                recipeLogic.interruptRecipe();
+                return false;
             } else {
                 this.insufficient = false;
+                return true;
             }
         }
+        return super.onWorking();
     }
 
     @Override

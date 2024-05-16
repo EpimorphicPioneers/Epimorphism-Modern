@@ -12,25 +12,25 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.resources.ResourceLocation;
 
-import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 
 public class EPChemistryItem {
 
     static {
-        EP_REGISTRATE.creativeModeTab(() -> EPCreativeModeTabs.EP_CHEMISTRY);
+        registrate().creativeModeTab(() -> EPCreativeModeTabs.EP_CHEMISTRY);
     }
 
     // Catalysts
-    public final static ItemEntry<ComponentItem> CATALYST_CARRIER = registerItemWithTooltip("catalyst_carrier", ComponentItem::create, 1).lang("Catalyst Carrier").register();
+    public final static ItemEntry<ComponentItem> CATALYST_CARRIER = registerItemWithTooltip("catalyst_carrier", 1).lang("Catalyst Carrier").register();
     public final static ItemEntry<ComponentItem> TI_AL_CATALYST = registerCatalyst("ti_al", TiAlCatalyst.getMaterialRGB()).lang("Titanium-Aluminum Combined Catalyst").register();
     public final static ItemEntry<ComponentItem> PALLADIUM_CARBON_CATALYST = registerCatalyst("palladium_carbon", PalladiumOnCarbon.getMaterialRGB()).lang("Palladium on Carbon").register();
 
 
 
     private static ItemBuilder<ComponentItem, Registrate> registerCatalyst(String name, int color) {
-        return EP_REGISTRATE.item("catalyst." + name, ComponentItem::create)
+        return registrate().item("catalyst." + name, ComponentItem::create)
                 .lang(FormattingUtil.toEnglishName(name) + "Catalyst")
                 .color(() -> CatalystBehavior.getItemStackColor(color))
                 .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/catalyst/base"), Epimorphism.id("item/catalyst/overlay")))
@@ -38,7 +38,7 @@ public class EPChemistryItem {
     }
 
     private static ItemBuilder<ComponentItem, Registrate> registerCatalyst(String name, int color, int maxDurability) {
-        return EP_REGISTRATE.item("catalyst." + name, ComponentItem::create)
+        return registrate().item("catalyst." + name, ComponentItem::create)
                 .lang(FormattingUtil.toEnglishName(name) + "Catalyst")
                 .color(() -> CatalystBehavior.getItemStackColor(color))
                 .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/catalyst/base"), Epimorphism.id("item/catalyst/overlay")))

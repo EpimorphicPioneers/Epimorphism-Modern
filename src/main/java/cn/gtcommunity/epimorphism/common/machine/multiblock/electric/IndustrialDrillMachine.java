@@ -80,7 +80,7 @@ public class IndustrialDrillMachine extends WorkableElectricMultiblockMachine {
         @Override
         public void setupRecipe(GTRecipe recipe) {
             if (this.handleFuelRecipe()) {
-                this.machine.beforeWorking();
+                this.machine.beforeWorking(recipe);
                 recipe.preWorking(this.machine);
                 if (handleRecipeInput(recipe)) {
                     this.recipeDirty = false;

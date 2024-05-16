@@ -121,7 +121,7 @@ public class FishingPondRecipeLogic extends RecipeLogic {
         var tuple = GTRecipeModifiers.accurateParallel(machine,
                 GTRecipeBuilder.ofRaw().copyFrom(builder).outputItems(Items.BARRIER.getDefaultInstance()).buildRawRecipe(),
                 (int) Math.min(machine.getParallelNumber(), machine.getMaxVoltage() / ENERGY), false);
-        int parallel = tuple.getB();
+        int parallel = tuple.getSecond();
         NonNullList<ItemStack> generatedLoot = NonNullList.create();
         for (int i = 0; i < parallel; i++) {
             generatedLoot.addAll(lootTable.getRandomItems(lootContext));

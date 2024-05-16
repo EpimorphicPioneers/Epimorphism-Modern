@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.TierRenderItemBehavior;
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.epimorphismmc.monomorphism.item.component.IRendererItem;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.model.ModelFactory;
@@ -23,7 +22,10 @@ import org.joml.Matrix4f;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-// TODO Maybe use IModelRenderer?
+
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+import static com.epimorphismmc.monomorphism.client.utils.MORenderUtils.*;
+
 public class TierItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
     public static final TierItemRenderer INSTANCE = new TierItemRenderer();
@@ -46,7 +48,7 @@ public class TierItemRenderer implements IRenderer {
                            boolean leftHand, PoseStack poseStack,
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
-        model = RenderHelper.getVanillaModel(stack, null, null);
+        model = getVanillaModel(stack, null, null);
 
         if (transformType == ItemDisplayContext.GUI
                 && stack.getItem() instanceof IRendererItem rendererItem
@@ -55,7 +57,7 @@ public class TierItemRenderer implements IRenderer {
             Tesselator tess = Tesselator.getInstance();
 
             var buffers = MultiBufferSource.immediate(tess.getBuilder());
-            RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffers, combinedLight, combinedOverlay, model);
+            vanillaRender(stack, transformType, leftHand, poseStack, buffers, combinedLight, combinedOverlay, model);
             buffers.endBatch();
 
             BufferBuilder buf = tess.getBuilder();
@@ -66,7 +68,7 @@ public class TierItemRenderer implements IRenderer {
 
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             TextureAtlasSprite sprite = ModelFactory.getBlockSprite(tri.tierTexture());
-            RenderHelper.bindTexture(InventoryMenu.BLOCK_ATLAS);
+            bindTexture(InventoryMenu.BLOCK_ATLAS);
 
             float minU = sprite.getU0();
             float maxU = sprite.getU1();
@@ -82,7 +84,7 @@ public class TierItemRenderer implements IRenderer {
 
             poseStack.popPose();
         } else {
-            RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
+            vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
         }
     }
 

@@ -30,7 +30,7 @@ public class GeneralRecipeType extends GTRecipeType {
     }
 
     @Override
-    public Iterator<GTRecipe> searchRecipe(RecipeManager recipeManager, IRecipeCapabilityHolder holder) {
+    public Iterator<GTRecipe> searchRecipe(IRecipeCapabilityHolder holder) {
         if (!holder.hasProxies()) return null;
 
         if (checkCircuit(holder, 20)) {

@@ -6,12 +6,12 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import net.minecraft.network.chat.Component;
 
-import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class EPAEMachines {
 
-    public final static MachineDefinition TANK_ACCESS_HATCH = EP_REGISTRATE.machine("tank_access_hatch", TankAccessHatchMachine::new)
+    public final static MachineDefinition TANK_ACCESS_HATCH = registrate().machine("tank_access_hatch", TankAccessHatchMachine::new)
             .langValue("Tank Access Hatch")
             .tier(UHV)
             .rotationState(RotationState.ALL)

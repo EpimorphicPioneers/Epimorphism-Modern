@@ -185,14 +185,14 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
         protected GTRecipe doModifyRecipe(GTRecipe recipe) {
             var maxParallel = handleExcitedFluid();
             var parallelResult = GTRecipeModifiers.fastParallel(getMachine(), recipe, maxParallel, false);
-            this.parallel = parallelResult.getB();
-            var modified = parallelResult.getA();
+            this.parallel = parallelResult.getSecond();
+            var modified = parallelResult.getFirst();
             RecipeHelper.setOutputEUt(modified, RecipeHelper.getOutputEUt(recipe));
             return modified;
         }
 
         private int handleExcitedFluid() {
-            var matches = LARGE_NAQUADAH_EXCITED_FLUID_LIST.searchRecipe(getRecipeManager(), machine);
+            var matches = LARGE_NAQUADAH_EXCITED_FLUID_LIST.searchRecipe(machine);
             if (matches != null) {
                 Map<GTRecipe, Integer> map = new HashMap<>();
                 while (matches.hasNext()) {
@@ -216,7 +216,7 @@ public class LargeNaquadahReactorMachine extends WorkableElectricMultiblockMachi
 
 
         private int handleCoolant() {
-            var matches = LARGE_NAQUADAH_COOLANT_LIST.searchRecipe(getRecipeManager(), machine);
+            var matches = LARGE_NAQUADAH_COOLANT_LIST.searchRecipe(machine);
             if (matches != null) {
                 Map<GTRecipe, Integer> map = new HashMap<>();
                 while (matches.hasNext()) {

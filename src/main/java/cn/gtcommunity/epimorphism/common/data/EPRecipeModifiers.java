@@ -5,25 +5,19 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import net.minecraft.Util;
-import net.minecraft.util.Tuple;
+import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
+import com.mojang.datafixers.util.Pair;
 
 import javax.annotation.Nonnull;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.accurateParallel;
 
 public class EPRecipeModifiers {
 
-    public static final BiFunction<OverclockingLogic, Function<OverclockingLogic, BiFunction<MetaMachine, GTRecipe, GTRecipe>>, BiFunction<MetaMachine, GTRecipe, GTRecipe>> EP_PARALLEL = Util.memoize((overclockingLogic, function) -> ((machine, recipe) -> {
-        var paralleledRecipe = EPParallel(machine, recipe, false);
-        return function.apply(overclockingLogic).apply(machine, paralleledRecipe.getA());
-    }));
+    public static final RecipeModifier EP_PARALLEL = (machine, recipe) -> EPParallel(machine, recipe, false).getFirst();
 
-    public static Tuple<GTRecipe, Integer> EPParallel(MetaMachine machine, @Nonnull GTRecipe recipe, boolean modifyDuration) {
+    public static Pair<GTRecipe, Integer> EPParallel(MetaMachine machine, @Nonnull GTRecipe recipe, boolean modifyDuration) {
         if (machine instanceof IMultiController controller && controller.isFormed()) {
             if (machine instanceof IParallelMachine parallelMachine) {
                 int parallel = parallelMachine.getParallelNumber();
@@ -33,6 +27,6 @@ public class EPRecipeModifiers {
                 return accurateParallel(machine, recipe, parallel, modifyDuration);
             }
         }
-        return new Tuple<>(recipe, 1);
+        return new Pair<>(recipe, 1);
     }
 }

@@ -107,13 +107,6 @@ public class EPPredicates {
                 .build();
     }
 
-    public static TraceabilityPredicate elevatorMotor() {
-        return TierPredicateFactory.create("ElevatorMotor")
-                .map(BlockMaps.ALL_ELEVATOR_MOTORS)
-                .strict(true)
-                .build();
-    }
-
     public static TraceabilityPredicate tierReinforcedRotorBlock() {
         return new TraceabilityPredicate(new PredicateBlocks(EPPartAbility.REINFORCED_ROTOR_HOLDER.getAllBlocks().toArray(Block[]::new)) {
             @Override

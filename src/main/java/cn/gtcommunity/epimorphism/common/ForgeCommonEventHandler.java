@@ -4,7 +4,6 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
 import cn.gtcommunity.epimorphism.common.data.EPRecipes;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
-import cn.gtcommunity.epimorphism.network.EPNetworking;
 import cn.gtcommunity.epimorphism.network.s2c.PacketVajraDestroy;
 import cn.gtcommunity.epimorphism.utils.EPBlockUtil;
 import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
@@ -40,7 +39,7 @@ public class ForgeCommonEventHandler {
                     if (level.destroyBlock(pos, false)) {
                         VajraItem.discharge(event.getItemStack());
                         MOTransferUtils.fillPlayerInventory(player, list);
-                        EPNetworking.NETWORK.sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
+                        Epimorphism.network().sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
                     }
                 }
             }

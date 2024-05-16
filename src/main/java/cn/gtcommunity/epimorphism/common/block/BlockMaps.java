@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.common.block;
 
 import cn.gtcommunity.epimorphism.api.block.tier.IChemicalPlantCasing;
-import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture.ForestryGreenhouseMachine;
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.epimorphismmc.monomorphism.block.tier.WrappedTierType;
 import com.gregtechceu.gtceu.GTCEu;
@@ -42,12 +41,8 @@ public class BlockMaps {
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ST_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> TA_FIELD_GENERATORS = new Object2ObjectOpenHashMap<>();
 
-    // Space Elevator
-    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_ELEVATOR_MOTORS = new Object2ObjectOpenHashMap<>();
-
     // Univer
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FIREBOXS = new Object2ObjectOpenHashMap<>();
-    public static final Object2ObjectOpenHashMap<String, Supplier<Block>> ALL_DIM_DISPLAY_BLOCKS = new Object2ObjectOpenHashMap<>();
 
     public static void init() {
 
@@ -75,9 +70,6 @@ public class BlockMaps {
         simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_STEEL::get, 2);
         simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_TITANIUM::get, 3);
         simpleTierTypeAdd(ALL_FIREBOXS, FIREBOX_TUNGSTENSTEEL::get, 4);
-
-        // Misc
-        ForestryGreenhouseMachine.addGrasses();
     }
 
     private static void simpleTierTypeAdd(Map<ITierType, Supplier<Block>> map, Supplier<Block> blockSupplier, int tier) {

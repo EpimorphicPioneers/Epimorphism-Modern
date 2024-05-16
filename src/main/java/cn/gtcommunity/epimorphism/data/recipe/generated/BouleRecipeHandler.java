@@ -30,7 +30,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class BouleRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
-        gem.executeHandler(PropertyKey.GEM, (tagPrefix, material, property) -> processCrystallization(tagPrefix, material, property, provider));
+        gem.executeHandler(provider, PropertyKey.GEM, BouleRecipeHandler::processCrystallization);
     }
 
     private static void processCrystallization(TagPrefix gem, @Nonnull Material material, GemProperty property, Consumer<FinishedRecipe> provider) {

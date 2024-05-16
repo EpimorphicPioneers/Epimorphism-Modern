@@ -94,15 +94,15 @@ public class BallHatchPartMachine extends TieredPartMachine implements IMachineM
     //////////////////////////////////////
 
     @Override
-    public void beforeWorking(IWorkableMultiController controller) {
-        super.beforeWorking(controller);
+    public boolean beforeWorking(IWorkableMultiController controller) {
         this.isWorking = true;
+        return super.beforeWorking(controller);
     }
 
     @Override
-    public void afterWorking(IWorkableMultiController controller) {
-        super.afterWorking(controller);
+    public boolean afterWorking(IWorkableMultiController controller) {
         this.isWorking = false;
+        return super.afterWorking(controller);
     }
 
     @Override

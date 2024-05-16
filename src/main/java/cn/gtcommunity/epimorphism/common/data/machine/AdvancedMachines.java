@@ -45,8 +45,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static cn.gtcommunity.epimorphism.api.pattern.EPPredicates.*;
-import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
 import static cn.gtcommunity.epimorphism.common.block.BlockMaps.*;
 import static cn.gtcommunity.epimorphism.common.data.EPBlocks.*;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
@@ -95,7 +95,7 @@ public class AdvancedMachines {
                             Epimorphism.id("block/multiblock/processing_array")))
                     .register(),
             IV, LuV) : null;
-    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = EP_REGISTRATE.multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
+    public final static MultiblockMachineDefinition COMPONENT_ASSEMBLY_LINE = registrate().multiblock("component_assembly_line", holder -> new TierCasingElectricMultiblockMachine(holder, "CACasing"))
             .langValue("Component Assembly Line")
             .tooltips(
                     Component.translatable("block.epimorphism.component_assembly_line.desc.0"),
@@ -185,7 +185,7 @@ public class AdvancedMachines {
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/iridium_casing"),
                     Epimorphism.id("block/multiblock/component_assembly_line"), false)
             .register();
-    public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = EP_REGISTRATE.multiblock("precise_assembler", PreciseAssemblerMachine::new)
+    public final static MultiblockMachineDefinition PRECISE_ASSEMBLER = registrate().multiblock("precise_assembler", PreciseAssemblerMachine::new)
             .langValue("Precise Assembler")
             .tooltips(
                     Component.translatable("block.epimorphism.precise_assembler.desc.0"),
@@ -195,7 +195,7 @@ public class AdvancedMachines {
                     Component.translatable("block.epimorphism.precise_assembler.desc.4"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ASSEMBLER_RECIPES, PRECISE_ASSEMBLER_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(PRECISE_ASSEMBLER_CASING_MK1)
             .pattern(definition -> FactoryMOPattern.start()
                     .aisle("DDDDDDDDD", "F       F", "F       F", "F       F", "DDDDDDDDD")
@@ -223,7 +223,7 @@ public class AdvancedMachines {
             .renderer(() -> new TierCasingMachineRenderer(Epimorphism.id("block/casings/solid/precise_assembler_casing_mk1"),
                     Epimorphism.id("block/multiblock/precise_assembler"), PreciseAssemblerMachine::locationGetter))
             .register();
-    public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = EP_REGISTRATE.multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
+    public final static MultiblockMachineDefinition GENERAL_PROCESSING_PLANT = registrate().multiblock("general_processing_plant", GeneralProcessingPlantMachine::new)
             .langValue("General Processing Plant")
             .tooltipBuilder((itemStack, components) -> {
                 components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.0"));
@@ -241,7 +241,7 @@ public class AdvancedMachines {
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(GeneralProcessingPlantMachine.RECIPE_MAP)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(MARAGING_STEEL_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGEGGG")
@@ -294,14 +294,14 @@ public class AdvancedMachines {
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/maraging_steel_250_casing"),
                     Epimorphism.id("block/multiblock/general_processing_plant"), false)
             .register();
-    public final static MultiblockMachineDefinition MEGA_CHEMICAL_REACTOR = EP_REGISTRATE.multiblock("mega_chemical_reactor",
+    public final static MultiblockMachineDefinition MEGA_CHEMICAL_REACTOR = registrate().multiblock("mega_chemical_reactor",
                     blockEntity -> new ParallelCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Chemical Reactor")
             .tooltips(Component.translatable("block.epimorphism.mega_chemical_reactor.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(LARGE_CHEMICAL_RECIPES)
             .appearanceBlock(CASING_PTFE_INERT)
-            .pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("X   X", "XXXXX", "X   X", "XXXXX", "X   X")
                     .aisle("XXXXX", "XCCCX", "XCCCX", "XCCCX", "XXXXX")
                     .aisle("X   X", "XPPPX", "XHHHX", "XPPPX", "X   X")
@@ -326,7 +326,7 @@ public class AdvancedMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     Epimorphism.id("block/multiblock/mega_chemical_reactor"), false)
             .register();
-    public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = EP_REGISTRATE.multiblock("mega_cracking_unit",
+    public final static MultiblockMachineDefinition MEGA_CRACKING_UNIT = registrate().multiblock("mega_cracking_unit",
                     blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Oil Cracking Unit")
             .tooltips(Component.translatable("block.epimorphism.mega_cracking_unit.desc.0"))
@@ -368,7 +368,7 @@ public class AdvancedMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/mega_cracking_unit"), false)
             .register();
-    public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = EP_REGISTRATE.multiblock("mega_alloy_blast_smelter",
+    public final static MultiblockMachineDefinition MEGA_ALLOY_BLAST_SMELTER = registrate().multiblock("mega_alloy_blast_smelter",
                     blockEntity -> new ParallelGlassCoilMultiblockMachine(blockEntity, machine -> machine.getCoilTier() * 4))
             .langValue("Mega Alloy Blast Smelter")
             .tooltips(Component.translatable("block.epimorphism.mega_alloy_blast_smelter.desc.0"))
@@ -411,7 +411,7 @@ public class AdvancedMachines {
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
                     Epimorphism.id("block/multiblock/mega_alloy_blast_smelter"), false)
             .register();
-    public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = EP_REGISTRATE.multiblock("advanced_electric_blast_furnace", AdvancedEBFMachine::new)
+    public final static MultiblockMachineDefinition ADVANCED_ELECTRIC_BLAST_FURNACE = registrate().multiblock("advanced_electric_blast_furnace", AdvancedEBFMachine::new)
             .langValue("Advanced Electric Blast Furnace")
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
@@ -419,9 +419,9 @@ public class AdvancedMachines {
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(BLAST_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.PERFECT_OVERCLOCK, oc -> AdvancedEBFMachine::advEBFOverclock))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, AdvancedEBFMachine::advEBFOverclock)
             .appearanceBlock(ADVANCED_INVAR_CASING)
-            .pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("XXX", "CCC", "CCC", "XXX")
                     .aisle("XXX", "C#C", "C#C", "XMX")
                     .aisle("XSX", "CCC", "CCC", "XXX")
@@ -449,14 +449,14 @@ public class AdvancedMachines {
                 }
             })
             .register();
-    public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = EP_REGISTRATE.multiblock("industrial_vacuum_freezer", IndustrialFreezerMachine::new)
+    public final static MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = registrate().multiblock("industrial_vacuum_freezer", IndustrialFreezerMachine::new)
             .langValue("Industrial Vacuum Freezer")
             .tooltips(
                     Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0")
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(VACUUM_RECIPES)
-            .recipeModifier(EPRecipeModifiers.EP_PARALLEL.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK, GTRecipeModifiers.ELECTRIC_OVERCLOCK))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(ADVANCED_ALUMINIUM_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXX", "XXX", "XXX")
@@ -471,14 +471,14 @@ public class AdvancedMachines {
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/advanced_aluminium_casing"),
                     Epimorphism.id("block/multiblock/industrial_vacuum_freezer"), false)
             .register();
-    public final static MultiblockMachineDefinition COKING_TOWER = EP_REGISTRATE.multiblock("coking_tower",
+    public final static MultiblockMachineDefinition COKING_TOWER = registrate().multiblock("coking_tower",
                     blockEntity -> new ParallelCoilCasingMultiblockMachine(blockEntity, "Firebox", machine -> machine.getCoilTier() * 4))
             .langValue("Coking Tower")
             .tooltips(Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(PYROLYSE_RECIPES)
             .appearanceBlock(CASING_STEEL_SOLID)
-            .pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("F   F", "FCCCF", "CCCCC", " CCC ", "     ", "     ", "     ", "     ", "     ")
                     .aisle(" DDD ", "CHHHC", "C###C", "CHHHC", " ccc ", "  c  ", "  c  ", "  c  ", "  c  ")
                     .aisle(" DDD ", "CHPHC", "V#P#V", "CHPHC", " cPc ", " cPc ", " cPc ", " cPc ", " cOc ")
@@ -511,7 +511,7 @@ public class AdvancedMachines {
                     Epimorphism.id("block/multiblock/coking_tower"), false)
             .register();
 
-    public final static MultiblockMachineDefinition INTEGRATED_ORE_FACTORY = EP_REGISTRATE.multiblock("integrated_ore_factory", IntegratedOreFactoryMachine::new)
+    public final static MultiblockMachineDefinition INTEGRATED_ORE_FACTORY = registrate().multiblock("integrated_ore_factory", IntegratedOreFactoryMachine::new)
             .langValue("Integrated Ore Factory")
             .tooltips(
                     Component.translatable("block.epimorphism.integrated_ore_factory.desc.0")
@@ -633,7 +633,7 @@ public class AdvancedMachines {
 //            LuV, ZPM, UV, UHV, UEV);
 
     // Bedrock
-    public final static MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = EP_REGISTRATE.multiblock("infinite_fluid_drilling_rig", InfiniteFluidDrillingRigMachine::new)
+    public final static MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = registrate().multiblock("infinite_fluid_drilling_rig", InfiniteFluidDrillingRigMachine::new)
             .langValue("Infinite Fluid Drilling Rig")
             .tooltips(
                     Component.translatable("block.epimorphism.industrial_drill.desc.0")

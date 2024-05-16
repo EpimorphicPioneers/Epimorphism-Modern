@@ -81,7 +81,7 @@ public class StructureWriteBehavior implements IItemUIFactory {
                 String[] strings = blockPattern.pattern[i];
                 builder.append(".aisle(\"%s\")\n".formatted(Joiner.on("\", \"").join(strings)));
             }
-            Epimorphism.LOGGER.info(builder.toString());
+            Epimorphism.logger().info(builder.toString());
         }
     }
 

@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.client.particle;
 
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -26,6 +25,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+
 @OnlyIn(Dist.CLIENT)
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -48,10 +49,10 @@ public class CropFX extends Particle {
         float z = (float)(Mth.lerp(partialTicks, this.zo, this.z) - vec3.z());
 
         var state = getState(Blocks.WHEAT, cropAge);
-        BakedModel bakedmodel = RenderHelper.getBlockRendererDispatcher().getBlockModel(state);
+        BakedModel bakedmodel = getBlockRendererDispatcher().getBlockModel(state);
         POSE_STACK.pushPose();
         POSE_STACK.translate(x, y, z);
-        RenderHelper.getBlockRenderer().renderModel(POSE_STACK.last(), buffer, state, bakedmodel, 1, 1, 1, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
+        getBlockRenderer().renderModel(POSE_STACK.last(), buffer, state, bakedmodel, 1, 1, 1, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutout());
         POSE_STACK.popPose();
     }
 

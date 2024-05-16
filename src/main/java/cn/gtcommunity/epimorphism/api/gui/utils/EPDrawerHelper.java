@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.api.gui.utils;
 
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,10 +7,12 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+
 @OnlyIn(Dist.CLIENT)
 public class EPDrawerHelper {
     public static void renderStackCount(GuiGraphics guiGraphics, String count, int x, int y) {
-        var font = RenderHelper.getFontRenderer();
+        var font = getFontRenderer();
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate(0.0F, 0.0F, 200.0F);

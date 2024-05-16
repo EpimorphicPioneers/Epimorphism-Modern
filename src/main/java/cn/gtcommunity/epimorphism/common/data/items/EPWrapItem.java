@@ -13,7 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 
-import static cn.gtcommunity.epimorphism.common.registry.EPRegistration.EP_REGISTRATE;
+import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static cn.gtcommunity.epimorphism.common.data.EPCreativeModeTabs.*;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 import static com.gregtechceu.gtceu.common.data.GTItems.*;
@@ -24,7 +24,7 @@ public class EPWrapItem {
     public final static Object2ObjectOpenHashMap<TagKey<Item>, ItemLike> WRAP_CIRCUIT_MAP = new Object2ObjectOpenHashMap<>();
 
     static {
-        EP_REGISTRATE.creativeModeTab(() -> EP_CIRCUIT_REFORM);
+        registrate().creativeModeTab(() -> EP_CIRCUIT_REFORM);
     }
     //  Wrap Circuits
     public final static ItemEntry<ComponentItem> WRAP_CIRCUIT_ULV = registerWrapCircuit("wrap.circuit.ulv", GTCEu.id("item/nand_chip"), ULV_CIRCUITS);
@@ -94,7 +94,7 @@ public class EPWrapItem {
     public static void init() {/**/}
 
     private static ItemEntry<Item> registerWrapItem(String id, ResourceLocation wrappedTexture, ItemEntry<?> wrappedItem) {
-        var itemEntry = EP_REGISTRATE.item(id, Item::new)
+        var itemEntry = registrate().item(id, Item::new)
                 .model(EPModels.wrapItemModel(wrappedTexture))
                 .register();
         WRAP_ITEM_MAP.put(wrappedItem, itemEntry);
@@ -102,7 +102,7 @@ public class EPWrapItem {
     }
 
     private static ItemEntry<ComponentItem> registerWrapCircuitBoard(String id, ResourceLocation wrappedTexture, ItemEntry<?> wrappedItem, int number) {
-        var itemEntry = EP_REGISTRATE.item(id, ComponentItem::create)
+        var itemEntry = registrate().item(id, ComponentItem::create)
                 .model(EPModels.wrapItemModel(wrappedTexture))
                 .onRegister(EPItems.attachRenderer(new TierRenderItemBehavior(Epimorphism.id("item/number_overlay/roman/%s".formatted(number)))))
                 .register();
@@ -112,7 +112,7 @@ public class EPWrapItem {
 
     private static ItemEntry<ComponentItem> registerWrapCircuit(String id, ResourceLocation wrappedTexture, TagKey<Item> wrappedCircuit) {
         String key = wrappedCircuit.location().getPath().split("/")[1];
-        var itemEntry = EP_REGISTRATE.item(id, ComponentItem::create)
+        var itemEntry = registrate().item(id, ComponentItem::create)
                 .model(EPModels.wrapItemModel(wrappedTexture))
                 .onRegister(EPItems.attachRenderer(new TierRenderItemBehavior(Epimorphism.id("item/voltage_overlay/%s".formatted(key)))))
                 .register();

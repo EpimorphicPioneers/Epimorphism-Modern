@@ -3,7 +3,6 @@ package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.IHaloRenderBehavior;
 import com.epimorphismmc.monomorphism.client.utils.AlphaVertexConsumer;
 import com.epimorphismmc.monomorphism.client.utils.ColorHelper;
-import com.epimorphismmc.monomorphism.client.utils.RenderHelper;
 import com.epimorphismmc.monomorphism.item.component.IRendererItem;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.lowdragmc.lowdraglib.Platform;
@@ -30,7 +29,10 @@ import org.joml.Matrix4f;
 
 import java.util.*;
 import java.util.function.Consumer;
-// TODO Maybe use IModelRenderer?
+
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+import static com.epimorphismmc.monomorphism.client.utils.MORenderUtils.*;
+
 public class HaloItemRenderer implements IRenderer {
     private static final Set<ResourceLocation> TEXTURES = new HashSet<>();
     public static final HaloItemRenderer INSTANCE = new HaloItemRenderer();
@@ -53,7 +55,7 @@ public class HaloItemRenderer implements IRenderer {
                            boolean leftHand, PoseStack poseStack,
                            MultiBufferSource buffer, int combinedLight,
                            int combinedOverlay, BakedModel model) {
-        model = RenderHelper.getVanillaModel(stack, null, null);
+        model = getVanillaModel(stack, null, null);
         if (transformType == ItemDisplayContext.GUI && stack.getItem() instanceof IRendererItem rendererItem) {
 
             if (rendererItem.getRenderInfo(stack) instanceof IHaloRenderBehavior hri) {
@@ -78,7 +80,7 @@ public class HaloItemRenderer implements IRenderer {
                     RenderSystem.setShaderColor(r, g, b, a);
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     TextureAtlasSprite sprite = ModelFactory.getBlockSprite(hri.haloTexture());
-                    RenderHelper.bindTexture(InventoryMenu.BLOCK_ATLAS);
+                    bindTexture(InventoryMenu.BLOCK_ATLAS);
                     float spread = hri.haloSize() / 16F;
                     float min = 0F - spread;
                     float max = 1F + spread;
@@ -99,7 +101,7 @@ public class HaloItemRenderer implements IRenderer {
                     poseStack.popPose();
                 }
 
-                RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
+                vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
 
                 if (hri.shouldDrawPulse()) {
                     poseStack.pushPose();
@@ -117,11 +119,11 @@ public class HaloItemRenderer implements IRenderer {
                 RenderSystem.disableBlend();
 
             }else {
-                RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
+                vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
             }
 
         }else {
-            RenderHelper.vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
+            vanillaRender(stack, transformType, leftHand, poseStack, buffer, combinedLight, combinedOverlay, model);
         }
     }
 

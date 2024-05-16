@@ -13,7 +13,6 @@ import com.gregtechceu.gtceu.api.gui.WidgetUtils;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
@@ -29,8 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.GeneralProcessingPlantMachine.RECIPE_MAP;
+import static com.gregtechceu.gtceu.api.GTCEuAPI.HEATING_COILS;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.*;
+import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 public class EPRecipeTypes {
     public static final String LIST = "list";
@@ -75,7 +75,7 @@ public class EPRecipeTypes {
             .setUiBuilder((recipe, widgetGroup) -> {
                 int temp = recipe.data.getInt("ebf_temp");
                 List<List<ItemStack>> items = new ArrayList<>();
-                items.add(GTBlocks.ALL_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                items.add(HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             })
             .setSound(GTSoundEntries.FURNACE);
@@ -148,30 +148,10 @@ public class EPRecipeTypes {
             .setUiBuilder((recipe, widgetGroup) -> {
                 int temp = recipe.data.getInt("ebf_temp");
                 List<List<ItemStack>> items = new ArrayList<>();
-                items.add(GTBlocks.ALL_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                items.add(HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             })
             .setSound(GTSoundEntries.FURNACE);
-
-    public final static GTRecipeType EYE_OF_HARMONY_RECIPES = register("eye_of_harmony", MULTIBLOCK)
-            .setMaxIOSize(1, 4, 0, 0).setEUIO(IO.IN)
-            .setUiBuilder((recipe, widgetGroup) -> {
-                var contents = recipe.getInputContents(ItemRecipeCapability.CAP);
-                var widgets = WidgetUtils.getWidgetsById(widgetGroup, "^%s_[0-9]+$".formatted(ItemRecipeCapability.CAP.slotName(IO.OUT)));
-                for (int i = 0; i < contents.size(); i++) {
-                    var content = contents.get(i);
-                    var name = content.slotName;
-                    if (name != null && name.equals(SlotNames.CATALYST)) {
-                        widgets.get(i).setOverlay(EPWidgetUtil.createCatalystOverlay())
-                                .setHoverTooltips(
-                                        Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED),
-                                        Component.translatable("gui.epimorphism.catalyst.desc.1")
-                                );
-                    }
-                }
-            })
-            .setMaxTooltips(4)
-            .setSound(GTSoundEntries.CHEMICAL);
 
     //  Universal Processing Plant Recipemaps (Pseudo Recipemap)
     public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);

@@ -1,7 +1,0 @@
-{
-  "parent": "agricraft:block/crop/wood_cross",
-  "textures":  {
-    "crop_sticks": "agricraft:block/crop_sticks_iron",
-    "particle": "minecraft:block/iron_block"
-  }
-}

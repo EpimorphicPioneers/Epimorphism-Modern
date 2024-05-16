@@ -1,11 +1,11 @@
 package cn.gtcommunity.epimorphism.data.lang;
 
-import com.tterrag.registrate.providers.RegistrateLangProvider;
+import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
 
 public class EPLangHandler {
-    public EPLangHandler() {/**/}
+    private EPLangHandler() {/**/}
 
-    public static void init(RegistrateLangProvider provider) {
+    public static void init(MOLangProvider provider) {
         ItemLang.init(provider);
         BlockLang.init(provider);
         MaterialLang.init(provider);
@@ -14,12 +14,4 @@ public class EPLangHandler {
         MiscLang.init(provider);
     }
 
-    public static void init(RegistrateCNLangProvider provider) {
-        ItemLang.init(provider);
-        BlockLang.init(provider);
-        MaterialLang.init(provider);
-        RecipeLang.init(provider);
-        MachineLang.init(provider);
-        MiscLang.init(provider);
-    }
 }

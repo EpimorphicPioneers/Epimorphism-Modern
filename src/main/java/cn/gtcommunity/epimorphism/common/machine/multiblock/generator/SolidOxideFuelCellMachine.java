@@ -86,9 +86,9 @@ public class SolidOxideFuelCellMachine extends TieredWorkableElectricMultiblockM
     }
 
     @Override
-    public void beforeWorking() {
-        super.beforeWorking();
+    public boolean beforeWorking(@Nullable GTRecipe recipe) {
         this.efficiency = Math.min(1000, efficiency + 4);
+        return super.beforeWorking(recipe);
     }
 
     @Override

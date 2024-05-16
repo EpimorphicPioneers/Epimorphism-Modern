@@ -61,7 +61,7 @@ public class ReactorChamberMachine extends MetaMachine implements IUIMachine, IM
 
     @Override
     public @Nullable ModularUI createUI(Player entityPlayer) {
-        Epimorphism.LOGGER.warn("'createUI' of the Reactor Chamber was incorrectly called!");
+        Epimorphism.logger().warn("'createUI' of the Reactor Chamber was incorrectly called!");
         return null;
     }
 

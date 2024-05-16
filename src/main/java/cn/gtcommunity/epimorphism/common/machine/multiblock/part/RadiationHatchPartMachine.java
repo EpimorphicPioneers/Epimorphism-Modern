@@ -103,7 +103,7 @@ public class RadiationHatchPartMachine extends TieredIOPartMachine implements IR
         if (recipeTypes != null && !isRemote()) {
             if (recipeTypes.length == 0) return;
             var recipeType = recipeTypes[0];
-            var recipes = recipeType.searchRecipe(Platform.getMinecraftServer().getRecipeManager(), this);
+            var recipes = recipeType.searchRecipe(this);
             if (recipes == null || !recipes.hasNext()) return;
             var recipe = recipes.next();
             if (recipe != null && recipe.handleRecipeIO(IO.IN, this)) {
