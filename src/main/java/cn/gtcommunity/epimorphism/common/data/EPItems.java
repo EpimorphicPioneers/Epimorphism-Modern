@@ -148,19 +148,34 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.component.supracausal.light_cone_module.tooltip"));
 //            })))
 //            .register();
+    public final static ItemEntry<ComponentItem> MANIFOLD_OSCILLATORY_POWER_CELL = registerItemWithTooltip("manifold_oscillatory_power_cell", 1).register();
+
+    //  Halide Lamps
+    public final static ItemEntry<ComponentItem> GREEN_LAMP_CORE = registerComponentItem("lamp_core.green").register();
+    public final static ItemEntry<ComponentItem> GREEN_HALIDE_LAMP = registerComponentItem("halide_lamp.green").register();
+    public final static ItemEntry<ComponentItem> RED_LAMP_CORE = registerComponentItem("lamp_core.red").register();
+    public final static ItemEntry<ComponentItem> RED_HALIDE_LAMP = registerComponentItem("halide_lamp.red").register();
+    public final static ItemEntry<ComponentItem> BLUE_LAMP_CORE = registerComponentItem("lamp_core.blue").register();
+    public final static ItemEntry<ComponentItem> BLUE_HALIDE_LAMP = registerComponentItem("halide_lamp.blue").register();
+    public final static ItemEntry<ComponentItem> WHITE_LAMP_CORE = registerComponentItem("lamp_core.white").register();
+    public final static ItemEntry<ComponentItem> WHITE_HALIDE_LAMP = registerComponentItem("halide_lamp.white").register();
+    public final static ItemEntry<ComponentItem> UVA_LAMP_CORE = registerComponentItem("lamp_core.uva").register();
 
     //  Lasers
-    public final static ItemEntry<ComponentItem> OPTICAL_FIBER = registerItemWithTooltip("laser.optical_fiber", 1).lang("Optical Fiber").register();
-    public final static ItemEntry<ComponentItem> DIELECTRIC_MIRROR = registerItemWithTooltip("laser.dielectric_mirror", 1).lang("Dielectric Mirror").register();
-    public final static ItemEntry<ComponentItem> EMPTY_LASER_ASSEMBLY = registerItemWithTooltip("laser.emitter.empty", 1).lang("Empty Laser Assembly").register();
-    public final static ItemEntry<ComponentItem> HELIUM_LASER = registerComponentItem("laser.emitter.helium").lang("Helium Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> NEON_LASER = registerComponentItem("laser.emitter.neon").lang("Neon Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> ARGON_LASER = registerComponentItem("laser.emitter.argon").lang("Argon Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> KRYPTON_LASER = registerComponentItem("laser.emitter.krypton").lang("Krypton Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> XENON_LASER = registerComponentItem("laser.emitter.xenon").lang("Xenon Laser Emitter").register();
-    public final static ItemEntry<ComponentItem> HELIUM_NEON_LASER = registerItemWithTooltip("laser.emitter.helium_neon", 1).lang("Helium-Neon Laser").register();
-    public final static ItemEntry<ComponentItem> ND_YAG_LASER = registerItemWithTooltip("laser.emitter.nd_yag", 1).lang("Nd:YAG Laser Emitter")
-            .register();
+    public final static ItemEntry<ComponentItem> DIELECTRIC_MIRROR = registerItemWithTooltip("laser.dielectric_mirror", 1).register();
+    public final static ItemEntry<ComponentItem> EMPTY_LASER_ASSEMBLY = registerItemWithTooltip("laser.emitter.empty", 1).register();
+    public final static ItemEntry<ComponentItem> HELIUM_LASER = registerComponentItem("laser.emitter.helium").register();
+    public final static ItemEntry<ComponentItem> NEON_LASER = registerComponentItem("laser.emitter.neon").register();
+    public final static ItemEntry<ComponentItem> ARGON_LASER = registerComponentItem("laser.emitter.argon").register();
+    public final static ItemEntry<ComponentItem> KRYPTON_LASER = registerComponentItem("laser.emitter.krypton").register();
+    public final static ItemEntry<ComponentItem> XENON_LASER = registerComponentItem("laser.emitter.xenon").register();
+    public final static ItemEntry<ComponentItem> HELIUM_NEON_LASER = registerItemWithTooltip("laser.emitter.helium_neon", 1).register();
+    public final static ItemEntry<ComponentItem> ND_YAG_LASER = registerItemWithTooltip("laser.emitter.nd_yag", 1).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_FIBER = registerItemWithTooltip("laser.optical_fiber", 1).register();
+    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = registerItem("component.cosmic.cladded_optical_fiber_core").register();
+
+    public final static ItemEntry<ComponentItem> PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE = registerItemWithTooltip("boule.lithium_niobate.periodically_poled", 1).register();
+    public final static ItemEntry<ComponentItem> NON_LINEAR_OPTICAL_LENS = registerItemWithTooltip("non_linear_optical_lens", 1).register();
 
     //  Condenser Components
 //    public final static ItemEntry<ComponentItem> TOPOLOGICAL_INSULATOR_TUBE = registerItemWithTooltip("tube.topological_insulator", ComponentItem::create)
@@ -169,8 +184,8 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.tube.topological_insulator.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT = registerItemWithTooltip("containment_unit.bose_einstein_condensate", 1).lang("Bose-Einstein Condensate Containment Unit").register();
-    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE = registerItemWithTooltip("bose_einstein_condensate", 1).lang("Bose-Einstein Condensate").register();
+    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT = registerItemWithTooltip("containment_unit.bose_einstein_condensate", 1).register();
+    public final static ItemEntry<ComponentItem> BOSE_EINSTEIN_CONDENSATE = registerItemWithTooltip("bose_einstein_condensate", 1).register();
 
     //  Wafers
 //    public final static ItemEntry<ComponentItem> PHASE_CHANGE_MEMORY = registerItemWithTooltip("wafer.chip.phase_change_memory", ComponentItem::create)
@@ -197,10 +212,10 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.wafer.chip.spintronic_nand_memory_chip.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> NANO_PIC_WAFER = registerItemWithTooltip("wafer.nano_pic", 1).lang("NPIC Wafer").register();
-    public final static ItemEntry<ComponentItem> NANO_PIC_CHIP = registerItemWithTooltip("wafer.chip.nano_pic", 1).lang("NPIC").register();
-    public final static ItemEntry<ComponentItem> PICO_PIC_WAFER = registerItemWithTooltip("wafer.pico_pic", 1).lang("PPIC Wafer").register();
-    public final static ItemEntry<ComponentItem> PICO_PIC_CHIP = registerItemWithTooltip("wafer.chip.pico_pic", 1).lang("PPIC").register();
+    public final static ItemEntry<ComponentItem> NANO_PIC_WAFER = registerItemWithTooltip("wafer.nano_pic", 1).register();
+    public final static ItemEntry<ComponentItem> NANO_PIC_CHIP = registerItemWithTooltip("wafer.chip.nano_pic", 1).register();
+    public final static ItemEntry<ComponentItem> PICO_PIC_WAFER = registerItemWithTooltip("wafer.pico_pic", 1).register();
+    public final static ItemEntry<ComponentItem> PICO_PIC_CHIP = registerItemWithTooltip("wafer.chip.pico_pic", 1).register();
 //    public final static ItemEntry<ComponentItem> FEMTO_PIC_WAFER = registerItemWithTooltip("wafer.femto_pic", ComponentItem::create)
 //            .lang("FPIC Wafer")
 //            .onRegister(attach(new TooltipBehavior(lines -> {
@@ -237,11 +252,11 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.wafer.chip.zepto_pic.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> DUBNIUM_BOULE = registerItemWithTooltip("boule.dubnium", 1).lang("Dubnium-doped Monocrystalline Silicon Boule").register();
-    public final static ItemEntry<ComponentItem> DUBNIUM_WAFER = registerItemWithTooltip("wafer.dubnium", 1).lang("Dubnium-doped Wafer").register();
-    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_BOULE = registerItemWithTooltip("boule.cubic_zirconia.europium", 1).lang("Europium-doped Monocrystalline Cubic Zirconia Boule").register();
-    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_WAFER = registerItemWithTooltip("wafer.cubic_zirconia.europium", 1).lang("Europium-doped Cubic Zirconia Wafer").register();
-    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_WAFER = registerItemWithTooltip("wafer.crystal_interface", 1).lang("Crystal Interface Wafer").register();
+    public final static ItemEntry<ComponentItem> DUBNIUM_BOULE = registerItemWithTooltip("boule.dubnium", 1).register();
+    public final static ItemEntry<ComponentItem> DUBNIUM_WAFER = registerItemWithTooltip("wafer.dubnium", 1).register();
+    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_BOULE = registerItemWithTooltip("boule.cubic_zirconia.europium", 1).register();
+    public final static ItemEntry<ComponentItem> CUBIC_ZIRCONIA_EUROPIUM_WAFER = registerItemWithTooltip("wafer.cubic_zirconia.europium", 1).register();
+    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_WAFER = registerItemWithTooltip("wafer.crystal_interface", 1).register();
 //    public final static ItemEntry<ComponentItem> CRYSTAL_INTERFACE_CHIP = registerItemWithTooltip("wafer.chip.crystal_interface", ComponentItem::create)
 //            .lang("Infinite Circuit Board")
 //            .onRegister(attach(new TooltipBehavior(lines -> {
@@ -260,48 +275,54 @@ public class EPItems {
 //                lines.add(Component.translatable("item.epimorphism.wafer.chip.uhasoc.tooltip"));
 //            })))
 //            .register();
-    public final static ItemEntry<ComponentItem> INTRAVITAL_SOC = registerItemWithTooltip("component.gooware.intravital_soc", 1).lang("Intravital SoC").register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_BOULE = registerItemWithTooltip("boule.strontium_carbonate.bohrium", 1).lang("Bohrium-doped Monocrystalline Strontium Carbonate Boule").register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_WAFER = registerItemWithTooltip("wafer.strontium_carbonate.bohrium", 1).lang("Bohrium-doped Strontium Carbonate Wafer").register();
-    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_OPTICAL_WAFER = registerItemWithTooltip("component.optical.strontium_carbonate_wafer", 1).lang("Coated Strontium Carbonate Wafer").register();
-    public final static ItemEntry<ComponentItem> OPTICAL_IMC_BOARD = registerItemWithTooltip("component.optical.optical_imc_board", 1).lang("Preassembled Photoelectric Circuit Board").register();
-    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = registerItemWithTooltip("component.optical.photoelectron_soc", 1).lang("Photoelectric SoC").register();
+    public final static ItemEntry<ComponentItem> INTRAVITAL_SOC = registerItemWithTooltip("component.gooware.intravital_soc", 1).register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_BOULE = registerItemWithTooltip("boule.strontium_carbonate.bohrium", 1).register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_BOHRIUM_WAFER = registerItemWithTooltip("wafer.strontium_carbonate.bohrium", 1).register();
+    public final static ItemEntry<ComponentItem> STRONTIUM_CARBONATE_OPTICAL_WAFER = registerItemWithTooltip("component.optical.strontium_carbonate_wafer", 1).register();
+    public final static ItemEntry<ComponentItem> OPTICAL_IMC_BOARD = registerItemWithTooltip("component.optical.optical_imc_board", 1).register();
+    public final static ItemEntry<ComponentItem> PHOTOELECTRON_SOC = registerItemWithTooltip("component.optical.photoelectron_soc", 1).register();
     //  Others
 //    public final static ItemEntry<Item> MAGNETRON;
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = registerItemWithTooltip("uhv_voltage_coil", 1).lang("Ultra High Voltage Coil").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UEV = registerItemWithTooltip("uev_voltage_coil", 1).lang("Ultra Excessive Voltage Coil").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UIV = registerItemWithTooltip("uiv_voltage_coil", 1).lang("Ultra Immense Voltage Coil").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UXV = registerItemWithTooltip("uxv_voltage_coil", 1).lang("Ultra Extreme Voltage Coil").register();
-    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_OPV = registerItemWithTooltip("opv_voltage_coil", 1).lang("Overpowered Voltage Coil").register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UHV = registerItemWithTooltip("uhv_voltage_coil", 1).register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UEV = registerItemWithTooltip("uev_voltage_coil", 1).register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UIV = registerItemWithTooltip("uiv_voltage_coil", 1).register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_UXV = registerItemWithTooltip("uxv_voltage_coil", 1).register();
+    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_OPV = registerItemWithTooltip("opv_voltage_coil", 1).register();
     //    public final static ItemEntry<ComponentItem> VOLTAGE_COIL_MAX;
 //    public final static ItemEntry<Item> CARBON_ALLOTROPE;
 //    public final static ItemEntry<Item> GRAPHENE_ALIGNED;
 //    public final static ItemEntry<Item> BORON_NITRIDE_GRINDER;
 //    public final static ItemEntry<Item> VACUUM_TUBE_COMPONENT;
 //    public final static ItemEntry<Item> SEPARATION_ELECTROMAGNET;
-    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX = registerItem("protonated_fullerene_sieving_matrix").lang("Protonated Fullerene Sieving Matrix").register();
-    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX = registerItem("saturated_fullerene_sieving_matrix").lang("Saturated Fullerene Sieving Matrix").register();
+    public final static ItemEntry<Item> PROTONATED_FULLERENE_SIEVING_MATRIX = registerItem("protonated_fullerene_sieving_matrix").register();
+    public final static ItemEntry<Item> SATURATED_FULLERENE_SIEVING_MATRIX = registerItem("saturated_fullerene_sieving_matrix").register();
     public static ItemEntry<ComponentItem> INVERTER = registerItemWithTooltip("inverter", 1).lang("Inverter").register();
-    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = registerItem("metastable_self_healing_adhesive").lang("Metastable Self-healing Adhesive").register();
-    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = registerItem("hyperdimensional_tachyon_condensed_matter").lang("Hyperdimensional Tachyon Condensed Matter").register();
-    public final static ItemEntry<Item> UNSTABLE_STAR = registerItem("unstable_star").lang("Unstable Star").register();
-    public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = registerItem("component.cosmic.cladded_optical_fiber_core").lang("Cladded Optical Fiber Core").register();
+    public final static ItemEntry<Item> METASTABLE_SELF_HEALING_ADHESIVE = registerItem("metastable_self_healing_adhesive").register();
+    public final static ItemEntry<Item> HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER = registerItem("hyperdimensional_tachyon_condensed_matter").register();
+    public final static ItemEntry<ComponentItem> LEPTON_TRAP_CRYSTAL = registerItemWithTooltip("lepton_trap_crystal", 1).register();
+    public final static ItemEntry<ComponentItem> CHARGED_LEPTON_TRAP_CRYSTAL = registerItemWithTooltip("charged_lepton_trap_crystal", 1).register();
+    public final static ItemEntry<ComponentItem> UNSTABLE_STAR = registerItemWithTooltip("unstable_star", 1).register();
+    public final static ItemEntry<ComponentItem> ZENITH_STAR = registerItemWithTooltip("zenith_star", 1).register();
+
+    public final static ItemEntry<ComponentItem> NEUTRONIUM_SPHERET = registerItemWithTooltip("neutronium_spheret", 1).register();
+    public final static ItemEntry<ComponentItem> TRIPLET_NEUTRONIUM_SPHERET = registerItemWithTooltip("triplet_neutronium_spheret", 1).register();
+    public final static ItemEntry<ComponentItem> CHARGED_TRIPLET_NEUTRONIUM_SPHERE = registerItemWithTooltip("charged_triplet_neutronium_sphere", 1).register();
+
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT;
 //    public final static ItemEntry<Item> CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT;
 //    public final static ItemEntry<Item> NUCLEAR_CLOCK;
 //    public final static ItemEntry<Item> MANIFOLD_OSCILLATORY_POWER_CELL;
 //    public final static ItemEntry<Item> SCINTILLATOR = registerItem("scintillator", Item::new).lang("Scintillator").register();
-    public final static ItemEntry<Item> SCINTILLATOR_CRYSTAL = registerItem("scintillator_crystal").lang("Scintillator Crystal").register();
+    public final static ItemEntry<ComponentItem> SCINTILLATOR_CRYSTAL = registerItemWithTooltip("scintillator_crystal", 1).register();
 
     //  Crystal Components
-    public final static ItemEntry<ComponentItem> DIAMOND_CHIP = registerItemWithTooltip("crystal.diamond_chip", 1).lang("Engraved Diamond Crystal Chip").register();
-    public final static ItemEntry<ComponentItem> RUBY_CHIP = registerItemWithTooltip("crystal.ruby_chip", 1).lang("Engraved Ruby Crystal Chip").register();
-    public final static ItemEntry<ComponentItem> SAPPHIRE_CHIP = registerItemWithTooltip("crystal.sapphire_chip", 1).lang("Engraved Sapphire Crystal Chip").register();
-//    public final static ItemEntry<Item> DIAMOND_MODULATOR;
-//    public final static ItemEntry<Item> RUBY_MODULATOR;
-//    public final static ItemEntry<Item> SAPPHIRE_MODULATOR;
+    public final static ItemEntry<ComponentItem> DIAMOND_CHIP = registerItemWithTooltip("crystal.diamond_chip", 1).register();
+    public final static ItemEntry<ComponentItem> RUBY_CHIP = registerItemWithTooltip("crystal.ruby_chip", 1).register();
+    public final static ItemEntry<ComponentItem> SAPPHIRE_CHIP = registerItemWithTooltip("crystal.sapphire_chip", 1).register();
+    public final static ItemEntry<ComponentItem> DIAMOND_MODULATOR = registerItemWithTooltip("crystal.diamond_modulator", 1).register();
+    public final static ItemEntry<ComponentItem> RUBY_MODULATOR = registerItemWithTooltip("crystal.ruby_modulator", 1).register();
+    public final static ItemEntry<ComponentItem> SAPPHIRE_MODULATOR = registerItemWithTooltip("crystal.sapphire_modulator", 1).register();
 //    public final static ItemEntry<Item> CRYSTAL_SOC_SOCKET;
-
 
     //  Covers
     public final static ItemEntry<ComponentItem> ELECTRIC_PUMP_MAX = registerComponentItem("max_electric_pump")
@@ -339,11 +360,11 @@ public class EPItems {
     public final static ItemEntry<Item> FIELD_GENERATOR_MAX = registerItem("max_field_generator").register();
 
     //  Debug
-    public final static ItemEntry<ComponentItem> DEBUG_STRUCTURE_WRITER = registerItemWithTooltip("debug.structure_writer", 1).lang("Debug Structure Writer").onRegister(attach(StructureWriteBehavior.INSTANCE)).register();
+    public final static ItemEntry<ComponentItem> DEBUG_STRUCTURE_WRITER = registerItemWithTooltip("debug.structure_writer", 1).onRegister(attach(StructureWriteBehavior.INSTANCE)).register();
 
     //  Tool
     public final static ItemEntry<ComponentItem> ORGANISM_CAPTURE_TOOL = registerComponentItem("organism_capture_tool")
-            .lang("Organism Capture Tool")
+
             .model(EPModels::captureToolModel)
             .onRegister(attach(new TooltipBehavior(lines -> lines.add(Component.translatable("item.epimorphism.organism_capture_tool.desc"))) {
                 @Override
@@ -357,7 +378,7 @@ public class EPItems {
             .register();
 
     public final static ItemEntry<VajraItem> VAJRA = registrate().item("tool.vajra", VajraItem::new)
-            .lang("Vajra")
+
             .model(EPModels.simpleCustomModel(Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
             .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
             .register();

@@ -176,7 +176,6 @@ public class EPBlocks {
     public static final BlockEntry<Block> NAQUADAH_ALLOY_CASING = createCasingBlock("naquadah_alloy_casing", Epimorphism.id("block/casings/solid/naquadah_alloy_casing"));
     public static final BlockEntry<Block> NAQUADRIA_CASING = createCasingBlock("naquadria_casing", Epimorphism.id("block/casings/solid/naquadria_casing"));
     public static final BlockEntry<Block> HYPER_CASING = createCasingBlock("hyper_casing", Epimorphism.id("block/casings/solid/hyper_casing"));
-    public static final BlockEntry<Block> TALONITE_CASING = createCasingBlock("talonite_casing", Epimorphism.id("block/casings/solid/talonite_casing"));
     public static final BlockEntry<Block> IRIDIUM_CASING = createCasingBlock("iridium_casing", Epimorphism.id("block/casings/solid/iridium_casing"));
     public static final BlockEntry<Block> BREEDING_CASING = createCasingBlock("breeding_casing", Epimorphism.id("block/casings/solid/breeding_casing"));
     public static final BlockEntry<Block> FARM_CASING = createCasingBlock("farm_casing", Epimorphism.id("block/casings/solid/farm_casing"));
@@ -200,8 +199,6 @@ public class EPBlocks {
     public static final BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_CASING = createCasingBlock("basic_photolithographic_casing", Epimorphism.id("block/casings/solid/basic_photolithographic_casing"));
     public static final BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_CASING = createCasingBlock("mold_printing_assembly_casing", Epimorphism.id("block/casings/solid/mold_printing_assembly_casing"));
     public static final BlockEntry<Block> RADIATION_PROOF_PHOTOLITHOGRAPHIC_CASING = createCasingBlock("radiation_proof_photolithographic_casing", Epimorphism.id("block/casings/solid/radiation_proof_photolithographic_casing"));
-    public static final BlockEntry<Block> BIOLOGICAL_STERILE_MACHINE_CASING = createCasingBlock("biological_sterile_casing", Epimorphism.id("block/casings/solid/biological_sterile_casing"));
-    public static final BlockEntry<Block> INFINITY_COOLED_MACHINE_CASING = createCasingBlock("infinity_cooled_casing", Epimorphism.id("block/casings/solid/infinity_cooled_casing"));
     public static final BlockEntry<Block> ADVANCED_INVAR_CASING = createCasingBlock("advanced_invar_casing", Epimorphism.id("block/casings/solid/advanced_invar_casing"));
     public static final BlockEntry<Block> ADVANCED_ALUMINIUM_CASING = createCasingBlock("advanced_aluminium_casing", Epimorphism.id("block/casings/solid/advanced_aluminium_casing"));
     public static final BlockEntry<Block> ADVANCED_FILTER_CASING = createCasingBlock("advanced_filter_casing", Epimorphism.id("block/casings/solid/advanced_filter_casing"));

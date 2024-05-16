@@ -57,7 +57,7 @@ public class WrapItemLang {
                 provider.addItem(() -> item, "Wrap %s".formatted(text));
             }
             if (textCN != null) {
-                provider.addItemCNName(() -> item, "封装%s".formatted(textCN));
+                providerCN.addItem(() -> item, "封装%s".formatted(textCN));
             }
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException("Error generating entry in datagen.", e);

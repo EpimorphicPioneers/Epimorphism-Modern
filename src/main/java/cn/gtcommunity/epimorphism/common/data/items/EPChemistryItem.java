@@ -23,15 +23,14 @@ public class EPChemistryItem {
     }
 
     // Catalysts
-    public final static ItemEntry<ComponentItem> CATALYST_CARRIER = registerItemWithTooltip("catalyst_carrier", 1).lang("Catalyst Carrier").register();
-    public final static ItemEntry<ComponentItem> TI_AL_CATALYST = registerCatalyst("ti_al", TiAlCatalyst.getMaterialRGB()).lang("Titanium-Aluminum Combined Catalyst").register();
-    public final static ItemEntry<ComponentItem> PALLADIUM_CARBON_CATALYST = registerCatalyst("palladium_carbon", PalladiumOnCarbon.getMaterialRGB()).lang("Palladium on Carbon").register();
+    public final static ItemEntry<ComponentItem> CATALYST_CARRIER = registerItemWithTooltip("catalyst_carrier", 1).register();
+    public final static ItemEntry<ComponentItem> TI_AL_CATALYST = registerCatalyst("ti_al", TiAlCatalyst.getMaterialRGB()).register();
+    public final static ItemEntry<ComponentItem> PALLADIUM_CARBON_CATALYST = registerCatalyst("palladium_carbon", PalladiumOnCarbon.getMaterialRGB()).register();
 
 
 
     private static ItemBuilder<ComponentItem, Registrate> registerCatalyst(String name, int color) {
         return registrate().item("catalyst." + name, ComponentItem::create)
-                .lang(FormattingUtil.toEnglishName(name) + "Catalyst")
                 .color(() -> CatalystBehavior.getItemStackColor(color))
                 .model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/catalyst/base"), Epimorphism.id("item/catalyst/overlay")))
                 .onRegister(EPItems.attach(new CatalystBehavior(50)));

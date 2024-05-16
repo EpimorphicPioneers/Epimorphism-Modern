@@ -24,15 +24,15 @@ public class EPPhysicsItems {
     }
 
     //  High Energy Physics Items
-    public final static ItemEntry<ComponentItem> PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("plasma_containment_cell", 1).lang("Plasma Containment Cell").register();
-    public final static ItemEntry<ComponentItem> RHENIUM_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("rhenium_plasma_containment_cell", 1).lang("Rhenium Plasma Containment Cell").register();
-    public final static ItemEntry<ComponentItem> NEUTRON_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("neutron_plasma_containment_cell", 1).lang("Neutron Plasma Containment Cell").register();
-    public final static ItemEntry<ComponentItem> HYPOGEN_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("hypogen_plasma_containment_cell", 1).lang("Hypogen Plasma Containment Cell ").register();
-    public final static ItemEntry<ComponentItem> ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("actinium_superhydride_plasma_containment_cell", 1).lang("Actinium Superhydride Plasma Containment Cell").register();
-    public final static ItemEntry<ComponentItem> QUANTUM_ANOMALY = registerItemWithTooltip("quantum_anomaly", 1).lang("Quantum Anomaly").register();
+    public final static ItemEntry<ComponentItem> PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("plasma_containment_cell", 1).register();
+    public final static ItemEntry<ComponentItem> RHENIUM_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("rhenium_plasma_containment_cell", 1).register();
+    public final static ItemEntry<ComponentItem> NEUTRON_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("neutron_plasma_containment_cell", 1).register();
+    public final static ItemEntry<ComponentItem> HYPOGEN_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("hypogen_plasma_containment_cell", 1).register();
+    public final static ItemEntry<ComponentItem> ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL = registerItemWithTooltip("actinium_superhydride_plasma_containment_cell", 1).register();
+    public final static ItemEntry<ComponentItem> QUANTUM_ANOMALY = registerItemWithTooltip("quantum_anomaly", 1).register();
 
     //  Particle Capsule
-    public final static ItemEntry<ComponentItem> EMPTY_PARTICLE_CAPSULE = registerItemWithTooltip("particle_capsule.empty", 1).lang("Empty Particle Capsule").model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/particle_capsule/capsule_base"))).register();
+    public final static ItemEntry<ComponentItem> EMPTY_PARTICLE_CAPSULE = registerItemWithTooltip("particle_capsule.empty", 1).model(EPModels.simpleCustomModel(new ResourceLocation("item/generated"), Epimorphism.id("item/particle_capsule/capsule_base"))).register();
     public final static ItemEntry<ComponentItem> TOP_QUARK_PARTICLE_CAPSULE = registerParticleCapsule("top_quark", ParticleType.QUARK).lang("Top Quark Capsule").register();
     public final static ItemEntry<ComponentItem> BOTTOM_QUARK_PARTICLE_CAPSULE = registerParticleCapsule("bottom_quark", ParticleType.QUARK).lang("Bottom Quark Capsule").register();
     public final static ItemEntry<ComponentItem> UP_QUARK_PARTICLE_CAPSULE = registerParticleCapsule("up_quark", ParticleType.QUARK).lang("Up Quark Capsule").register();
@@ -309,7 +309,7 @@ public class EPPhysicsItems {
     public static ItemEntry<Item> ROD_DUAL_LIQUID_PLUTONIUM_DEPLETED = registerItem("rod_dual_liquid_plutonium_depleted").lang("Rod Dual Liquid Plutonium Depleted").register();
     public static ItemEntry<Item> ROD_QUAD_LIQUID_PLUTONIUM_DEPLETED = registerItem("rod_quad_liquid_plutonium_depleted").lang("Rod Quad Liquid Plutonium Depleted").register();
 
-    public final static ItemEntry<ComponentItem> RADIOACTIVE_WASTE = registerItemWithTooltip("radioactive_waste", 1).lang("Radioactive Waste").register();
+    public final static ItemEntry<ComponentItem> RADIOACTIVE_WASTE = registerItemWithTooltip("radioactive_waste", 1).register();
 
     private EPPhysicsItems() {/**/}
 

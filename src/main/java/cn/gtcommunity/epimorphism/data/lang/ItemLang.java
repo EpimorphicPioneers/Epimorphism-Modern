@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
 import static cn.gtcommunity.epimorphism.common.data.items.EPBiologyItems.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem.*;
 import static cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems.*;
 
 public class ItemLang {
@@ -271,12 +272,12 @@ public class ItemLang {
 
         //  SoC
         provider.addItemWithTooltip(INTRAVITAL_SOC,
-                ,
+                "Intravital SoC",
                 "活体SoC",
                 "§7A wriggling Circuits",
                 "§7蠕动着的电路");
         provider.addItemWithTooltip(PHOTOELECTRON_SOC,
-                ,
+                "Photoelectric SoC",
                 "光电子SoC",
                 "§7Luminous Circuits",
                 "§7荧光电路");
@@ -286,7 +287,7 @@ public class ItemLang {
 
         //  Optical Components
         provider.addItemWithTooltip(OPTICAL_IMC_BOARD,
-                ,
+                "Preassembled Photoelectric Circuit Board",
                 "光学控制电路基板",
                 "§7The Basis Point Of The Integration Of Storage And Computing",
                 "§7存算一体的基点");
@@ -298,23 +299,41 @@ public class ItemLang {
 
 
         //  Supracausal Components
+        provider.addItemName(MANIFOLD_OSCILLATORY_POWER_CELL,
+                "Manifold Oscillatory Power Cell",
+                "流形震荡能量单元");
 
         //  Crystal Components
         provider.addItemWithTooltip(DIAMOND_CHIP,
-                ,
+                "Engraved Diamond Crystal Chip",
                 "刻蚀钻石晶片",
                 "§7Raw Crystal Logic Circuit",
                 "§7晶体逻辑电路原料");
         provider.addItemWithTooltip(RUBY_CHIP,
-                ,
+                "Engraved Ruby Crystal Chip",
                 "刻蚀红宝石晶片",
                 "§7Raw Crystal Control Circuit",
                 "§7晶体控制电路原料");
         provider.addItemWithTooltip(SAPPHIRE_CHIP,
-                ,
+                "Engraved Sapphire Crystal Chip",
                 "刻蚀蓝宝石晶片",
                 "§7Raw Crystal Conversion Circuit",
                 "§7晶体转换电路原料");
+        provider.addItemWithTooltip(DIAMOND_MODULATOR,
+                "Diamond Crystal Modulator",
+                "钻石晶体调节器",
+                "§7Logic Processing Circuit",
+                "§7逻辑处理电路");
+        provider.addItemWithTooltip(RUBY_MODULATOR,
+                "Ruby Crystal Modulator",
+                "红宝石晶体调节器",
+                "§7Control Processing Circuit",
+                "§7控制处理电路");
+        provider.addItemWithTooltip(SAPPHIRE_MODULATOR,
+                "Sapphire Crystal Modulator",
+                "蓝宝石晶体调节器",
+                "§7Conversion Processing Circuit",
+                "§7转换处理电路");
 
         //////////////////////////////////////
         //*******     Wafer Items    *******//
@@ -322,62 +341,62 @@ public class ItemLang {
 
         //  Wafers
         provider.addItemWithTooltip(NANO_PIC_WAFER,
-                ,
+                "NPIC Wafer",
                 "NPIC晶圆",
                 "§7Raw Nano Power Circuit",
                 "§7纳米功率集成电路原料");
         provider.addItemWithTooltip(NANO_PIC_CHIP,
-                ,
+                "NPIC",
                 "NPIC芯片",
                 "§7Nano Power Integrated Circuit",
                 "§7纳米功率集成电路");
         provider.addItemWithTooltip(PICO_PIC_WAFER,
-                ,
+                "PPIC Wafer",
                 "PPIC晶圆",
                 "§7Raw Pico Power Circuit",
                 "§7皮米功率集成电路原料");
         provider.addItemWithTooltip(PICO_PIC_CHIP,
-                ,
+                "PPIC",
                 "PPIC芯片",
                 "§7Pico Power Integrated Circuit",
                 "§7皮米功率集成电路");
         provider.addItemWithTooltip(DUBNIUM_BOULE,
-                ,
+                "Dubnium-doped Monocrystalline Silicon Boule",
                 "𬭊掺杂的单晶硅",
                 "§7Raw Circuit",
                 "§7电路原料");
         provider.addItemWithTooltip(DUBNIUM_WAFER,
-                ,
+                "Dubnium-doped Wafer",
                 "𬭊掺杂的晶圆",
                 "§7Raw Circuit",
                 "§7电路原料");
         provider.addItemWithTooltip(CUBIC_ZIRCONIA_EUROPIUM_BOULE,
-                ,
+                "Europium-doped Monocrystalline Cubic Zirconia Boule",
                 "铕掺杂的单晶立方氧化锆",
                 "§7Raw Crystal",
                 "§7晶体原料");
         provider.addItemWithTooltip(CUBIC_ZIRCONIA_EUROPIUM_WAFER,
-                ,
+                "Europium-doped Cubic Zirconia Wafer",
                 "铕掺杂的立方氧化锆晶圆",
                 "§7Raw Crystal",
                 "§7晶体原料");
         provider.addItemWithTooltip(CRYSTAL_INTERFACE_WAFER,
-                ,
+                "Crystal Interface Wafer",
                 "晶体接口晶圆",
                 "§7Raw Crystal",
                 "§7晶体原料");
         provider.addItemWithTooltip(STRONTIUM_CARBONATE_BOHRIUM_BOULE,
-                ,
+                "Bohrium-doped Monocrystalline Strontium Carbonate Boule",
                 "𬭛掺杂的单晶碳酸锶",
                 "§7Raw Optical Crystal",
                 "§7光学晶体原料");
         provider.addItemWithTooltip(STRONTIUM_CARBONATE_BOHRIUM_WAFER,
-                ,
+                "Bohrium-doped Strontium Carbonate Wafer",
                 "𬭛掺杂的碳酸锶晶圆",
                 "§7Raw Optical Crystal",
                 "§7光学晶体原料");
         provider.addItemWithTooltip(STRONTIUM_CARBONATE_OPTICAL_WAFER,
-                ,
+                "Coated Strontium Carbonate Wafer",
                 "光聚合液涂覆的碳酸锶晶圆",
                 "§7Pre-treatment Of Dielectric Reflective Wafer",
                 "§7预处理电介质反射晶圆");
@@ -388,7 +407,7 @@ public class ItemLang {
 
         //  Tool
         provider.addItemWithTooltip(ORGANISM_CAPTURE_TOOL,
-                ,
+                "Organism Capture Tool",
                 "生物捕捉工具",
                 "§7It's really not a Poké Ball!",
                 "§7这真的不是精灵球！");
@@ -396,14 +415,14 @@ public class ItemLang {
                 "§7Creatures: §r%s",
                 "§7生物：§r%s");
         provider.addItemWithTooltip(VAJRA,
-                ,
+                "Vajra",
                 "金刚杵",
                 "",
                 "");
 
         // Grind Ball
         provider.addItemWithTooltip(GRIND_BALL,
-                ,
+                "Grind Ball",
                 "研磨球",
                 "§7Put it in an Isa grinder to process the minerals",
                 "§7放入艾萨研磨机以处理矿物");
@@ -416,7 +435,7 @@ public class ItemLang {
 
         //  Debug
         provider.addItemWithTooltip(DEBUG_STRUCTURE_WRITER,
-                ,
+                "Debug Structure Writer",
                 "多方块导出工具",
                 "§7Because I need one...",
                 "§7因为我需要一个...");
@@ -445,27 +464,27 @@ public class ItemLang {
 
         //  Coil
         provider.addItemWithTooltip(VOLTAGE_COIL_UHV,
-                ,
+                "Ultra High Voltage Coil",
                 "极高压线圈",
                 "Ultra Coil",
                 "极致线圈");
         provider.addItemWithTooltip(VOLTAGE_COIL_UEV,
-                ,
+                "Ultra Excessive Voltage Coil",
                 "极超压线圈",
                 "Unreal Coil",
                 "超凡线圈");
         provider.addItemWithTooltip(VOLTAGE_COIL_UIV,
-                ,
+                "Ultra Immense Voltage Coil",
                 "极巨压线圈",
                 "Insane Coil",
                 "疯狂线圈");
         provider.addItemWithTooltip(VOLTAGE_COIL_UXV,
-                ,
+                "Ultra Extreme Voltage Coil",
                 "极顶压线圈",
                 "Epic Coil",
                 "史诗线圈");
         provider.addItemWithTooltip(VOLTAGE_COIL_OPV,
-                ,
+                "Overpowered Voltage Coil",
                 "过载压线圈",
                 "Legendary Coil",
                 "传奇线圈");
@@ -501,78 +520,160 @@ public class ItemLang {
 
         //  Lasers
         provider.addItemWithTooltip(OPTICAL_FIBER,
-                ,
+                "Optical Fiber",
                 "光纤",
                 "§7Light-transmitting Glass",
                 "§7透光玻璃");
         provider.addItemWithTooltip(DIELECTRIC_MIRROR,
-                ,
+                "Dielectric Mirror",
                 "介电镜",
                 "§7Bragg Mirror",
                 "§7布氏镜");
         provider.addItemWithTooltip(EMPTY_LASER_ASSEMBLY,
-                ,
+                "Empty Laser Assembly",
                 "空激光组件",
                 "§7Fill this with some Laser Medium",
                 "§7需要导光介质填充");
         provider.addItemName(HELIUM_LASER,
-                ,
+                "Helium Laser Emitter",
                 "氦激光镭射器");
         provider.addItemName(NEON_LASER,
-                ,
+                "Neon Laser Emitter",
                 "氖激光镭射器");
         provider.addItemName(ARGON_LASER,
-                ,
+                "Argon Laser Emitter",
                 "氩激光镭射器");
         provider.addItemName(KRYPTON_LASER,
-                ,
+                "Krypton Laser Emitter",
                 "氪激光镭射器");
         provider.addItemName(XENON_LASER,
-                ,
+                "Xenon Laser Emitter",
                 "氙激光镭射器");
         provider.addItemWithTooltip(HELIUM_NEON_LASER,
-                ,
+                "Helium-Neon Laser",
                 "氦-氖混合气激光镭射器",
                 "§7Purpose: Weak Optical Appliances",
                 "§7用于弱光学设备");
         provider.addItemWithTooltip(ND_YAG_LASER,
-                ,
+                "Nd:YAG Laser Emitter",
                 "钕掺杂的钇铝榴石激光镭射器",
                 "§7Purpose: Strong Optical Appliances",
                 "§7用于强光学设备");
 
+        //  Halide Lamps
+        provider.addItemName(GREEN_LAMP_CORE,
+                "Green Halide Lamp Core",
+                "绿光卤素灯核心");
+        provider.addItemName(GREEN_HALIDE_LAMP,
+                "Green Halide Lamp",
+                "绿光卤素灯");
+        provider.addItemName(RED_LAMP_CORE,
+                "Red Halide Lamp Core",
+                "红光卤素灯核心");
+        provider.addItemName(RED_HALIDE_LAMP,
+                "Red Halide Lamp",
+                "红光卤素灯");
+        provider.addItemName(BLUE_LAMP_CORE,
+                "Blue Halide Lamp Core",
+                "蓝光卤素灯核心");
+        provider.addItemName(BLUE_HALIDE_LAMP,
+                "Blue Halide Lamp",
+                "蓝光卤素灯");
+        provider.addItemName(WHITE_LAMP_CORE,
+                "White Halide Lamp Core",
+                "白光卤素灯核心");
+        provider.addItemName(WHITE_HALIDE_LAMP,
+                "White Halide Lamp Core",
+                "白光卤素灯");
+        provider.addItemName(UVA_LAMP_CORE,
+                "UVA Laser Emitter",
+                "UVA卤素灯核心");
+
+        provider.addItemWithTooltip(PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE,
+                "Periodically Poled Lithium Niobate Boule",
+                "周期性极化铌酸锂晶体",
+                "§7Optical Superlattice Crystal",
+                "§7光学超晶格晶体");
+        provider.addItemWithTooltip(NON_LINEAR_OPTICAL_LENS,
+                "Non-Linear Optical Lens",
+                "非线性光学透镜",
+                "§7Nonlinear Optical Frequency Conversion",
+                "§7非线性光学频率转换");
+
         //  Condenser Components
         provider.addItemWithTooltip(BOSE_EINSTEIN_CONDENSATE_CONTAINMENT_UNIT,
-                ,
+                "Bose-Einstein Condensate Containment Unit",
                 "凝聚态物质遏制装置",
                 "§7Magnetic Evaporative Cooling",
                 "§7电磁蒸发冷却");
         provider.addItemWithTooltip(BOSE_EINSTEIN_CONDENSATE,
-                ,
+                "Bose-Einstein Condensate",
                 "玻色-爱因斯坦凝聚态物质遏制装置",
                 "§72,000 §cRb-87§7 Atoms at §b170nK§7!",
                 "§7在 §b170nK§7 下有整整 2,000 个 §cRb-87§7 原子！");
 
-        //  QFT Item
+        provider.addItemName(PROTONATED_FULLERENE_SIEVING_MATRIX,
+                "Protonated Fullerene Sieving Matrix",
+                "质子化富勒烯筛分基质");
+        provider.addItemName(SATURATED_FULLERENE_SIEVING_MATRIX,
+                "Saturated Fullerene Sieving Matrix",
+                "饱和富勒烯筛分基质");
         provider.addItemName(METASTABLE_SELF_HEALING_ADHESIVE,
-                ,
+                "Metastable Self-healing Adhesive",
                 "超稳态自修复粘合剂");
         provider.addItemName(HYPERDIMENSIONAL_TACHYON_CONDENSED_MATTER,
-                ,
+                "Hyperdimensional Tachyon Condensed Matter",
                 "超维度快子凝聚物质");
 
         //  Item
+        provider.addItemName(LEPTON_TRAP_CRYSTAL,
+                "Lepton Trap Crystal",
+                "轻子阱晶体");
+        provider.addItemName(CHARGED_LEPTON_TRAP_CRYSTAL,
+                "Charged Lepton Trap Crystal",
+                "带电轻子阱晶体");
         provider.addItemName(UNSTABLE_STAR,
-                ,
+                "Unstable Star",
                 "易变之星");
+        provider.addItemName(ZENITH_STAR,
+                "Zenith Star",
+                "天穹辉星");
         provider.addItemName(CLADDED_OPTICAL_FIBER_CORE,
-                ,
+                "Cladded Optical Fiber Core",
                 "包层光导纤维内芯");
         provider.addItemWithTooltip(RADIOACTIVE_WASTE,
-                ,
+                "Radioactive Waste",
                 "放射性废物",
                 "§7Do not throw it away",
                 "§7请勿随意丢弃");
+
+        provider.addItemWithTooltip(NEUTRONIUM_SPHERET,
+                "Neutronium Spheret",
+                "中子素球体",
+                "§7Extremely Heavy",
+                "§7亿斤沉重");
+        provider.addItemName(TRIPLET_NEUTRONIUM_SPHERET,
+                "Triplet Neutronium Spheret",
+                "三重态中子素球体");
+        provider.addItemWithTooltip(CHARGED_TRIPLET_NEUTRONIUM_SPHERE,
+                "Charged Triplet Neutronium Sphere",
+                "带电三重态中子素球体",
+                "§7Living Neutron Star",
+                "§7活体中子星");
+
+        provider.addItemName(SCINTILLATOR_CRYSTAL,
+                "Scintillator Crystal",
+                "闪烁晶体");
+
+        provider.addItemName(CATALYST_CARRIER,
+                "Catalyst Carrier",
+                "催化剂载体");
+        provider.addItemName(TI_AL_CATALYST,
+                "Titanium-Aluminum Combined Catalyst",
+                "钛-铝联合催化剂");
+        provider.addItemName(PALLADIUM_CARBON_CATALYST,
+                "Palladium on Carbon",
+                "钯碳催化剂");
 
         //////////////////////////////////////
         //*******    Physics Items   *******//
@@ -580,7 +681,7 @@ public class ItemLang {
 
         //  Particle Capsule
         provider.addItemWithTooltip(EMPTY_PARTICLE_CAPSULE,
-                ,
+                "Empty Particle Capsule",
                 "空粒子胶囊",
                 "§7A particle container constrained by a force field",
                 "§7力场约束粒子容器"
@@ -588,44 +689,43 @@ public class ItemLang {
 
         //  High Energy Physics Items
         provider.addItemWithTooltip(PLASMA_CONTAINMENT_CELL,
-                ,
+                "Plasma Containment Cell",
                 "等离子体遏制装置",
                 "§7It is used to encapsulate plasma",
                 "§7用于封装等离子体"
         );
         provider.addItemWithTooltip(RHENIUM_PLASMA_CONTAINMENT_CELL,
-                ,
+                "Rhenium Plasma Containment Cell",
                 "铼等离子遏制装置",
                 "§7Cooling is performed using §6Plasma Condenser",
                 "§7使用§6等离子冷凝器§7进行冷却"
         );
         provider.addItemWithTooltip(NEUTRON_PLASMA_CONTAINMENT_CELL,
-                ,
+                "Neutron Plasma Containment Cell",
                 "中子等离子遏制装置",
                 "§7Cooling is performed using §6Plasma Condenser",
                 "§7使用§6等离子冷凝器§7进行冷却"
         );
         provider.addItemWithTooltip(HYPOGEN_PLASMA_CONTAINMENT_CELL,
-                ,
+                "Hypogen Plasma Containment Cell",
                 "海珀珍等离子遏制装置",
                 "§7Cooling is performed using §6Plasma Condenser",
                 "§7使用§6等离子冷凝器§7进行冷却"
         );
         provider.addItemWithTooltip(ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL,
-                ,
+                "Actinium Superhydride Plasma Containment Cell",
                 "超氢化锕等离子遏制装置",
                 "§7Cooling is performed using §6Plasma Condenser",
                 "§7使用§6等离子冷凝器§7进行冷却"
         );
         provider.addItemWithTooltip(QUANTUM_ANOMALY,
-                ,
+                "Quantum Anomaly",
                 "量子反常",
                 "§7Laser irradiation should probably be used",
                 "§7或许应使用激光照射"
         );
 
         provider.add("item.epimorphism.reactor_component.desc.heat",
-                ,
                 "§fHeat: §a%d / %d",
                 "§f热量: §a%d / %d");
 
