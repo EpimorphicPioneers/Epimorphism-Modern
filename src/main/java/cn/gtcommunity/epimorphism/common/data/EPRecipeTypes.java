@@ -5,6 +5,7 @@ import cn.gtcommunity.epimorphism.api.gui.utils.EPWidgetUtil;
 import cn.gtcommunity.epimorphism.api.recipe.GeneralRecipeType;
 import cn.gtcommunity.epimorphism.api.recipe.SlotNames;
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -28,9 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.GeneralProcessingPlantMachine.RECIPE_MAP;
-import static com.gregtechceu.gtceu.api.GTCEuAPI.HEATING_COILS;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
+import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.*;
 
 public class EPRecipeTypes {
     public static final String LIST = "list";
@@ -79,18 +79,21 @@ public class EPRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION, LEFT_TO_RIGHT)
             .addDataInfo(data -> {
                 int temp = data.getInt("ebf_temp");
+                return LocalizationUtils.format("gtceu.recipe.temperature", temp);
+            })
+            .addDataInfo(data -> {
+                int temp = data.getInt("ebf_temp");
                 ICoilType requiredCoil = ICoilType.getMinRequiredType(temp);
 
-                if (requiredCoil == null || requiredCoil.getMaterial() == null) {
-                    return LocalizationUtils.format("gtceu.recipe.temperature", temp);
-                } else {
-                    return LocalizationUtils.format("gtceu.recipe.temperature_and_coil", temp, I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                if (requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
                 }
+                return "";
             })
             .setUiBuilder((recipe, widgetGroup) -> {
                 int temp = recipe.data.getInt("ebf_temp");
                 List<List<ItemStack>> items = new ArrayList<>();
-                items.add(HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             })
             .setSound(GTSoundEntries.FURNACE);
@@ -170,18 +173,21 @@ public class EPRecipeTypes {
             .setMaxIOSize(1, 9, 2, 3).setEUIO(IO.IN)
             .addDataInfo(data -> {
                 int temp = data.getInt("ebf_temp");
+                return LocalizationUtils.format("gtceu.recipe.temperature", temp);
+            })
+            .addDataInfo(data -> {
+                int temp = data.getInt("ebf_temp");
                 ICoilType requiredCoil = ICoilType.getMinRequiredType(temp);
 
-                if (requiredCoil == null || requiredCoil.getMaterial() == null) {
-                    return LocalizationUtils.format("gtceu.recipe.temperature", temp);
-                } else {
-                    return LocalizationUtils.format("gtceu.recipe.temperature_and_coil", temp, I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
+                if (requiredCoil != null && requiredCoil.getMaterial() != null) {
+                    return LocalizationUtils.format("gtceu.recipe.coil.tier", I18n.get(requiredCoil.getMaterial().getUnlocalizedName()));
                 }
+                return "";
             })
             .setUiBuilder((recipe, widgetGroup) -> {
                 int temp = recipe.data.getInt("ebf_temp");
                 List<List<ItemStack>> items = new ArrayList<>();
-                items.add(HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
+                items.add(GTCEuAPI.HEATING_COILS.entrySet().stream().filter(coil -> coil.getKey().getCoilTemperature() >= temp).map(coil -> new ItemStack(coil.getValue().get())).toList());
                 widgetGroup.addWidget(new SlotWidget(new CycleItemStackHandler(items), 0, widgetGroup.getSize().width - 25, widgetGroup.getSize().height - 32, false, false));
             })
             .setSound(GTSoundEntries.FURNACE);
