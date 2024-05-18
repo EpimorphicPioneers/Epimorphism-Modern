@@ -176,11 +176,7 @@ public class AdvancedMachines {
                     .where('n', frames(GTMaterials.TungstenSteel))
                     .build()
             )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_CA_TIRED_CASINGS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_CA_TIRED_CASINGS.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/iridium_casing"),
                     Epimorphism.id("block/multiblock/component_assembly_line"), false)
@@ -317,11 +313,7 @@ public class AdvancedMachines {
                             .or(autoAbilities(true, false, false)))
                     .build()
             )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                     Epimorphism.id("block/multiblock/mega_chemical_reactor"), false)
@@ -402,10 +394,8 @@ public class AdvancedMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
                 int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
-                return shapeInfos;
+                return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/gcym/high_temperature_smelting_casing"),
@@ -501,10 +491,8 @@ public class AdvancedMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
                 int maxLeng = MOMathUtils.max(ALL_FIREBOXS.size(), ALL_COIL_BLOCKS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
-                return shapeInfos;
+                return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),

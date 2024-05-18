@@ -1,14 +1,9 @@
 //package cn.gtcommunity.epimorphism.data.recipe.circuits;
 //
-//import cn.gtcommunity.epimorphism.common.recipe.NeutronKineticEnergyCondition;
 //import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
-//import net.minecraft.data.recipes.FinishedRecipe;
-//
-//import java.util.function.Consumer;
 //
 //import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 //import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
-//import static cn.gtcommunity.epimorphism.utils.EPMathUtil.K;
 //import static com.gregtechceu.gtceu.api.GTValues.*;
 //import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 //import static com.gregtechceu.gtceu.common.data.GTMaterials.*;

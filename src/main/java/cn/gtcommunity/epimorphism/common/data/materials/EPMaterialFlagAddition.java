@@ -60,6 +60,9 @@ public class EPMaterialFlagAddition {
         Rutherfordium.addFlags(GENERATE_ROD, GENERATE_BOLT_SCREW);
         Livermorium.addFlags(GENERATE_ROD, GENERATE_BOLT_SCREW);
 //        Trinaquadalloy.addFlags(GENERATE_FRAME);
+        TinAlloy.addFlags(GENERATE_RING, GENERATE_ROTOR);
+        Brass.addFlags(GENERATE_GEAR);
+        Cupronickel.addFlags(GENERATE_GEAR);
         CobaltBrass.addFlags(GENERATE_FRAME);
         Trinium.addFlags(GENERATE_SPRING);
         Tritanium.addFlags(GENERATE_SPRING, GENERATE_ROTOR);

@@ -29,4 +29,5 @@ public class EPRecipeModifiers {
         }
         return new Pair<>(recipe, 1);
     }
+
 }

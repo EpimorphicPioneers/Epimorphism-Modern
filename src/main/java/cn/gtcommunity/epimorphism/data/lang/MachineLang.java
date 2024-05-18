@@ -91,16 +91,35 @@ public class MachineLang {
                 "Time-consuming: %s%%",
                 "耗时: %s%%");
 
-//        provider.addBlockWithTooltip(AgricultureMachines.EXTREME_INDUSTRIAL_GREENHOUSE::getBlock, "极限工业温室",
-//                List.of(
-//
-//                ),
-//                List.of(
-//
-//                ));
-
         provider.addBlockWithTooltip(BiologyMachines.BACTERIAL_CULTURE_TANK::getBlock,
                 "细菌培养缸",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        provider.addBlockWithTooltip(CATALYTIC_REFORMER::getBlock,
+                "催化重整炉",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        provider.addBlockWithTooltip(CRYOGENIC_REACTOR::getBlock,
+                "低温反应室",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
+        provider.addBlockWithTooltip(BURNER_REACTOR::getBlock,
+                "燃烧反应室",
                 List.of(
 
                 ),
@@ -355,6 +374,24 @@ public class MachineLang {
                         "每超过配方所需燃烧室等级1级，§b耗时§r乘以§e50%§r。"
                 ));
 
+        provider.addBlockWithTooltip(CVD_UNIT::getBlock, "化学气相沉积单元",
+                List.of(
+                ),
+                List.of(
+                ));
+
+        provider.addBlockWithTooltip(PLASMA_CVD::getBlock, "等离子体增强化学气相沉积单元",
+                List.of(
+                ),
+                List.of(
+                ));
+
+        provider.addBlockWithTooltip(LASER_CVD::getBlock, "激光诱导化学气相沉积单元",
+                List.of(
+                ),
+                List.of(
+                ));
+
         provider.addBlockWithTooltip(NANOSCALE_FABRICATOR::getBlock, "纳米制造室",
                 List.of(
                 ),
@@ -371,14 +408,54 @@ public class MachineLang {
                 List.of(
                         "A Multiblock Piston Hammer at the Steam Age. ",
                         "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "Available Recipe Types：§9Piston Hammer§r,§9Ore Milling",
                         "§bDuration：§e+50%",
                         "§dParallel：§e8"
                 ),
                 List.of(
                         "蒸汽时代的多方块锻造锤。",
                         "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
-                        "可用配方类型：§9锻造锤§r，§9矿石加工",
+                        "§b耗时：§e+50%",
+                        "§d并行：§e8"
+                ));
+
+        provider.addBlockWithTooltip(STEAM_PRESSOR::getBlock, "蒸汽压缩机",
+                List.of(
+                        "A Multiblock Compressor at the Steam Age. ",
+                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
+                        "§bDuration：§e+50%",
+                        "§dParallel：§e8"
+                ),
+                List.of(
+                        "蒸汽时代的多方块压缩机。",
+                        "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
+                        "§b耗时：§e+50%",
+                        "§d并行：§e8"
+                ));
+
+        provider.addBlockWithTooltip(STEAM_SEPARATOR::getBlock, "蒸汽离心机",
+                List.of(
+                        "A Multiblock Centrifuge at the Steam Age. ",
+                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
+                        "§bDuration：§e+50%",
+                        "§dParallel：§e8"
+                ),
+                List.of(
+                        "蒸汽时代的多方块离心机。",
+                        "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
+                        "§b耗时：§e+50%",
+                        "§d并行：§e8"
+                ));
+
+        provider.addBlockWithTooltip(STEAM_FOUNDRY::getBlock, "蒸汽合金炉",
+                List.of(
+                        "A Multiblock Alloy Smelter at the Steam Age. ",
+                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
+                        "§bDuration：§e+50%",
+                        "§dParallel：§e8"
+                ),
+                List.of(
+                        "蒸汽时代的多方块合金炉。",
+                        "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。",
                         "§b耗时：§e+50%",
                         "§d并行：§e8"
                 ));

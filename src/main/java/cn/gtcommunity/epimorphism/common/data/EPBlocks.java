@@ -194,7 +194,6 @@ public class EPBlocks {
     public static final BlockEntry<Block> CASING_SUPERCRITICAL_FLUID_TURBINE = createCasingBlock("machine_casing_turbine_supercritical_fluid", Epimorphism.id("block/casings/mechanic/machine_casing_turbine_supercritical_fluid"));
     public static final BlockEntry<Block> TURBO_ENGINE_CASING = createCasingBlock("turbo_engine_casing", Epimorphism.id("block/casings/solid/turbo_engine_casing"));
     public static final BlockEntry<Block> CORROSION_CASING = createCasingBlock("corrosion_casing", Epimorphism.id("block/casings/solid/corrosion_casing"));
-    public static final BlockEntry<Block> HASTELLOYX78_CASING = createCasingBlock("hastelloyx78_casing", Epimorphism.id("block/casings/solid/hastelloyx78_casing"));
     public static final BlockEntry<Block> HASTELLOYK243_CASING = createCasingBlock("hastelloyk243_casing", Epimorphism.id("block/casings/solid/hastelloyk243_casing"));
     public static final BlockEntry<Block> BASIC_PHOTOLITHOGRAPHIC_CASING = createCasingBlock("basic_photolithographic_casing", Epimorphism.id("block/casings/solid/basic_photolithographic_casing"));
     public static final BlockEntry<Block> MOLD_PRINTING_ASSEMBLY_CASING = createCasingBlock("mold_printing_assembly_casing", Epimorphism.id("block/casings/solid/mold_printing_assembly_casing"));

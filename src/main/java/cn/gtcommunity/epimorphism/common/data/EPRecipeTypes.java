@@ -47,6 +47,21 @@ public class EPRecipeTypes {
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.ASSEMBLER);
 
+    public final static GTRecipeType CVD_RECIPES = register("cvd", MULTIBLOCK)
+            .setMaxIOSize(2, 2, 3, 3).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
+
+    public final static GTRecipeType PLASMA_CVD_RECIPES = register("plasma_cvd", MULTIBLOCK)
+            .setMaxIOSize(2, 2, 3, 3).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
+
+    public final static GTRecipeType LASER_CVD_RECIPES = register("laser_cvd", MULTIBLOCK)
+            .setMaxIOSize(2, 2, 3, 3).setEUIO(IO.IN)
+            .setProgressBar(EPGuiTextures.PROGRESS_BAR_NANOSCALE, LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.COOLING);
+
     public final static GTRecipeType MOLECULAR_BEAM_RECIPES = register("molecular_beam", MULTIBLOCK)
             .setMaxIOSize(5, 1, 2, 1).setEUIO(IO.IN)
             .setSlotOverlay(false, false, false, EPGuiTextures.NANOSCALE_OVERLAY_1)
@@ -84,21 +99,39 @@ public class EPRecipeTypes {
             .setMaxIOSize(4, 4, 4, 2).setEUIO(IO.IN)
             .setUiBuilder((recipe, widgetGroup) -> {
                 var contents = recipe.getInputContents(ItemRecipeCapability.CAP);
-                var widgets = WidgetUtils.getWidgetsById(widgetGroup, "^%s_[0-9]+$".formatted(ItemRecipeCapability.CAP.slotName(IO.OUT)));
+                var widgets = WidgetUtils.getWidgetsById(widgetGroup, "^%s_[0-9]+$".formatted(ItemRecipeCapability.CAP.slotName(IO.IN)));
                 for (int i = 0; i < contents.size(); i++) {
                     var content = contents.get(i);
                     var name = content.slotName;
-                    if (name != null && name.equals(SlotNames.CATALYST)) {
-                        widgets.get(i).setOverlay(EPWidgetUtil.createCatalystOverlay())
-                                .setHoverTooltips(
-                                        Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED),
-                                        Component.translatable("gui.epimorphism.catalyst.desc.1")
-                                );
+                    if (widgets.get(i) instanceof SlotWidget slot
+                            && name != null && name.equals(SlotNames.CATALYST)) {
+                        slot.addTooltipCallback(components -> {
+                                    components.add(Component.translatable("gui.epimorphism.catalyst.desc.0").withStyle(ChatFormatting.RED));
+                                    components.add(Component.translatable("gui.epimorphism.catalyst.desc.1"));
+                                }
+                        );
+                        slot.setOverlay(EPWidgetUtil.createCatalystOverlay());
                     }
                 }
             })
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.CHEMICAL);
+
+    public final static GTRecipeType CATALYTIC_REFORMER_RECIPES = register("catalytic_reformer", MULTIBLOCK)
+            .setMaxIOSize(1, 0, 1, 4).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_CRACKING, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.FURNACE);
+
+    public final static GTRecipeType CRYOGENIC_REACTOR_RECIPES = register("cryogenic_reactor", MULTIBLOCK)
+            .setMaxIOSize(3, 2, 2, 2).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.COOLING);
+
+    public final static GTRecipeType BURNER_REACTOR_RECIPES = register("burner_reactor", MULTIBLOCK)
+            .setMaxIOSize(3, 3, 3, 3).setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARC_FURNACE, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.ARC);
+
     public final static GTRecipeType FERMENTATION_TANK_RECIPES = register("fermentation_tank", MULTIBLOCK)
             .setMaxIOSize(3, 2, 3, 2).setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
@@ -153,7 +186,7 @@ public class EPRecipeTypes {
             })
             .setSound(GTSoundEntries.FURNACE);
 
-    //  Universal Processing Plant Recipemaps (Pseudo Recipemap)
+    //  Universal Processing Plant Recipemaps (Fake Recipemap)
     public final static GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType("general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2]).setMaxIOSize(1, 2, 1, 1).setEUIO(IO.IN);
     public final static GTRecipeType GENERAL_RECIPES_B = registerGeneralRecipeType("general_recipes_b", MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);
     public final static GTRecipeType GENERAL_RECIPES_C = registerGeneralRecipeType("general_recipes_c", MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8]).setMaxIOSize(2, 2, 1, 1).setEUIO(IO.IN);

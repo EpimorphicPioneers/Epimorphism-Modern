@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
+import cn.gtcommunity.epimorphism.data.recipe.configurable.RecipeAddition;
 import cn.gtcommunity.epimorphism.data.recipe.generated.BouleRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.ComponentAsslineRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.misc.FuelRecipes;
@@ -14,6 +15,8 @@ import java.util.function.Consumer;
 
 public class EPRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
+        RecipeAddition.init(provider);
+
         WrapItemRecipeHandler.init(provider);
         BouleRecipeHandler.init(provider);
 

@@ -67,11 +67,7 @@ public class BiologyMachines {
                     .where('#', any())
                     .build()
             )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_MACHINE_CASINGS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_MACHINE_CASINGS.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/farm_casing"),
                     Epimorphism.id("block/multiblock/algae_farm"), false)
@@ -137,11 +133,7 @@ public class BiologyMachines {
                     .where('C', EPPredicates.glass())
                     .build()
             )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .renderer(() -> new TankMachineRenderer(GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     Epimorphism.id("block/multiblock/bacterial_culture_tank")))

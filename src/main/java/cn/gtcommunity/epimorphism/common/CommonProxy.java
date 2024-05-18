@@ -55,7 +55,7 @@ public class CommonProxy implements ICommonProxyBase {
     }
 
     @Override
-    public void registerElements(GTCEuAPI.RegisterEvent<ResourceLocation, Element> event) {
+    public void registerElements(GTCEuAPI.RegisterEvent<String, Element> event) {
         EPElements.init();
     }
 
@@ -77,7 +77,7 @@ public class CommonProxy implements ICommonProxyBase {
     }
 
     @Override
-    public void registerRecipeConditions(GTCEuAPI.RegisterEvent<ResourceLocation, RecipeCondition> event) {
+    public void registerRecipeConditions(GTCEuAPI.RegisterEvent<String, Class<? extends RecipeCondition>> event) {
         EPRecipeConditions.init();
     }
 

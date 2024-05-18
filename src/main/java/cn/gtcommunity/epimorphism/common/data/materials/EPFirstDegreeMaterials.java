@@ -1627,32 +1627,32 @@ public class EPFirstDegreeMaterials {
         HeavyLeptonMixture = Builder("heavy_lepton_mixture")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(524288))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§e(t2)u" + ChatFormatting.OBFUSCATED  + "a", true);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§e(t2)u" + ChatFormatting.OBFUSCATED + "a", true);
         //  24218 Heavy Quarks
         HeavyQuarks = Builder("heavy_quarks")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(131072))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED + "a"  + ChatFormatting.RESET + "§e(u2)ds" + ChatFormatting.OBFUSCATED + "a" , true);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§e(u2)ds" + ChatFormatting.OBFUSCATED + "a", true);
         //  24219 Gluons
         Gluons = Builder("gluons")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(2097152))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§eg" + ChatFormatting.OBFUSCATED  + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§eg" + ChatFormatting.OBFUSCATED + "a", false);
         //  24220 Instantons
         Instantons = Builder("instantons")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(8388608))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§ei" + ChatFormatting.OBFUSCATED  + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§ei" + ChatFormatting.OBFUSCATED + "a", false);
         //  24221 Temporal Fluid
         TemporalFluid = Builder("temporal_fluid")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(134217728))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a"  + ChatFormatting.RESET + "§et" + ChatFormatting.OBFUSCATED  + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§et" + ChatFormatting.OBFUSCATED + "a", false);
         //  24222 Higgs Bosons
         HiggsBosons = Builder("higgs_bosons")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(/*0*/1))
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§eh" + ChatFormatting.OBFUSCATED + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§eh" + ChatFormatting.OBFUSCATED + "a", false);
         //  24223 Cosmic Computing Mixture
         CosmicComputingMixture = Builder("cosmic_computing_mixture")
                 .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(536870912))
@@ -1761,7 +1761,7 @@ public class EPFirstDegreeMaterials {
         HydroxylamineHydrochloride = Builder("hydroxylamine_hydrochloride")
                 .fluid()
                 .color(0x893E28)
-                .components(Hydrogen, 4, Oxygen, 1, Nitrogen, 1, Chlorine,1 )
+                .components(Hydrogen, 4, Oxygen, 1, Nitrogen, 1, Chlorine, 1)
                 .buildAndRegister()
                 .setFormula("HONH2HCl", true);
         //  24238 Barium Sulfate Suspension
@@ -1790,19 +1790,19 @@ public class EPFirstDegreeMaterials {
                 .gas()
                 .color(0x507BB3)
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§ee" + ChatFormatting.OBFUSCATED + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§ee" + ChatFormatting.OBFUSCATED + "a", false);
         //  24242 Quark Gluon Plasma
         QuarkGluonPlasma = Builder("quark_gluon_plasma")
-                .fluid(FluidStorageKeys.PLASMA, new FluidBuilder().temperature((int) (GTValues.V[GTValues.ZPM] + GTValues.V[GTValues.UHV])/2))
+                .fluid(FluidStorageKeys.PLASMA, new FluidBuilder().temperature((int) (GTValues.V[GTValues.ZPM] + GTValues.V[GTValues.UHV]) / 2))
                 .color(HeavyQuarks.getMaterialRGB() + Gluons.getMaterialRGB())
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§e(u2)d(c2)s(t2)bg" + ChatFormatting.OBFUSCATED + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§e(u2)d(c2)s(t2)bg" + ChatFormatting.OBFUSCATED + "a", false);
         //  24243 Light Quarks
         LightQuarks = Builder("light_quarks")
-                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((GTValues.VA[GTValues.ZPM] + GTValues.VA[GTValues.UHV])/2))
+                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature((GTValues.VA[GTValues.ZPM] + GTValues.VA[GTValues.UHV]) / 2))
                 .color(QuarkGluonPlasma.getMaterialRGB() - HeavyQuarks.getMaterialRGB())
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "§e(c2)(t2)b" + ChatFormatting.OBFUSCATED + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§e(c2)(t2)b" + ChatFormatting.OBFUSCATED + "a", false);
         //  24244 Ferric Catalyst
         FerricCatalyst = Builder("ferric_catalyst")
                 .dust()
@@ -1814,7 +1814,7 @@ public class EPFirstDegreeMaterials {
                 .fluid(FluidStorageKeys.PLASMA, new FluidBuilder().temperature((int) GTValues.V[GTValues.UXV]))
                 .color(0xFCFCFC)
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a" + ChatFormatting.RESET + "n§e" + ChatFormatting.OBFUSCATED + "a", false);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "n§e" + ChatFormatting.OBFUSCATED + "a", false);
         //  24246 Helium-Neon Gas
         HeliumNeon = Builder("helium_neon")
                 .gas()
@@ -2504,7 +2504,7 @@ public class EPFirstDegreeMaterials {
                 .components(LightQuarks, 1, HeavyQuarks, 3)
                 .flags(DECOMPOSITION_BY_CENTRIFUGING)
                 .buildAndRegister()
-                .setFormula(ChatFormatting.OBFUSCATED  + "a"  + ChatFormatting.RESET + "§e(u2)d(c2)s(t2)b" + ChatFormatting.OBFUSCATED  + "a" , true);
+                .setFormula(ChatFormatting.OBFUSCATED + "a" + ChatFormatting.RESET + "§e(u2)d(c2)s(t2)b" + ChatFormatting.OBFUSCATED + "a", true);
         //  24335 Deuterium-Superheavy Mixture
         DeuteriumSuperHeavyMixture = Builder("deuterium_superheavy_mixture")
                 .fluid()

@@ -43,6 +43,7 @@ import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
@@ -53,15 +54,14 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.RotorHolderMachineRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.*;
+import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.Platform;
@@ -321,18 +321,17 @@ public class EPMachines {
     //////////////////////////////////////
 
     // Steam
-    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = registrate().multiblock("steam_piston_hammer", blockEntity -> new ParallelElectricMultiblockMachine(blockEntity, machine ->  /*Math.min((Math.max((machine.getTier()-EV+1) * 4, 1)),16)*/ /*备用并行方案，更改时需删除后方的 1 */1))
+    public final static MultiblockMachineDefinition STEAM_PISTON_HAMMER = registrate().multiblock("steam_piston_hammer", SteamParallelMultiblockMachine::new)
             .langValue("Steam Piston Hammer")
             .tooltips(
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.4")
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3")
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(FORGE_HAMMER_RECIPES, ORE_MILLING_RECIPES)
-            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("AAA", " E ", "   ", "   ", "   ")
@@ -367,7 +366,91 @@ public class EPMachines {
                     .build()
             )
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_piston_hammer"), false)
+                    GTCEu.id("block/machines/forge_hammer"), false)
+            .register();
+
+    public static final MachineDefinition STEAM_PRESSOR = registrate().multiblock("steam_pressor", SteamParallelMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.steam_pressor.desc.0"),
+                    Component.translatable("block.epimorphism.steam_pressor.desc.1"),
+                    Component.translatable("block.epimorphism.steam_pressor.desc.2"),
+                    Component.translatable("block.epimorphism.steam_pressor.desc.3")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
+            .recipeType(COMPRESSOR_RECIPES)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "XXX", "XXX")
+                    .aisle("XXX", "X#X", "XXX")
+                    .aisle("XXX", "X#X", "XXX")
+                    .aisle("XXX", "XSX", "XXX")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(6)
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1)))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/steam_compressor"), false)
+            .register();
+
+    public static final MachineDefinition STEAM_SEPARATOR = registrate().multiblock("steam_separator", SteamParallelMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.steam_separator.desc.0"),
+                    Component.translatable("block.epimorphism.steam_separator.desc.1"),
+                    Component.translatable("block.epimorphism.steam_separator.desc.2"),
+                    Component.translatable("block.epimorphism.steam_separator.desc.3")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
+            .recipeType(CENTRIFUGE_RECIPES)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .addOutputLimit(ItemRecipeCapability.CAP, 2)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "XXX", " X ")
+                    .aisle("XXX", "X#X", "XXX")
+                    .aisle("XXX", "XSX", " X ")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('X', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(6)
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1)))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    Epimorphism.id("block/multiblock/steam_separator"), false)
+            .register();
+
+    public static final MachineDefinition STEAM_FOUNDRY = registrate().multiblock("steam_foundry", SteamParallelMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.steam_foundry.desc.0"),
+                    Component.translatable("block.epimorphism.steam_foundry.desc.1"),
+                    Component.translatable("block.epimorphism.steam_foundry.desc.2"),
+                    Component.translatable("block.epimorphism.steam_foundry.desc.3")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
+            .recipeType(ALLOY_SMELTER_RECIPES)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("FFF", "XXX", "XXX")
+                    .aisle("FFF", "X#X", "XXX")
+                    .aisle("FFF", "XSX", "XXX")
+                    .where('S', Predicates.controller(blocks(definition.getBlock())))
+                    .where('F', blocks(FIREBOX_BRONZE.get())
+                            .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1)))
+                    .where('#', Predicates.air())
+                    .where(' ', Predicates.any())
+                    .where('X', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(6)
+                            .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
+                            .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1)))
+                    .build())
+            .renderer(() -> new LargeBoilerRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"), BoilerFireboxType.BRONZE_FIREBOX,
+                    GTCEu.id("block/machines/alloy_smelter")))
             .register();
 
     // No Energy
@@ -566,11 +649,7 @@ public class EPMachines {
                     .where(' ', any())
                     .build()
             )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size())))
             .recoveryItems(() -> new ItemLike[]{GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()})
             .renderer(() -> new CustomPartRenderer(Epimorphism.id("block/casings/solid/dimensional_bridge_casing"),
                     Epimorphism.id("block/multiblock/dimensionally_transcendent_plasma_forge"), DTPFMachine::getBaseTexture))
@@ -616,14 +695,103 @@ public class EPMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
                 int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), ALL_CP_CASINGS.size(), ALL_CP_TUBES.size(), ALL_MACHINE_CASINGS.size());
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
-                return shapeInfos;
+                return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .renderer(() -> new TierCasingMachineRenderer(GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
                     Epimorphism.id("block/multiblock/chemical_plant"), ChemicalPlantMachine::locationGetter))
+            .register();
+
+    public final static MultiblockMachineDefinition CATALYTIC_REFORMER = registrate().multiblock("catalytic_reformer", WorkableElectricMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.catalytic_reformer.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CATALYTIC_REFORMER_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_TITANIUM_STABLE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("F   F", "XXXPX", "XXXPX", "XXXPX")
+                    .aisle("     ", "XXXPX", "X###M", "XXXPX")
+                    .aisle("F   F", "XXXPX", "XSXPX", "XXXPX")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_TITANIUM_STABLE.get())
+                            .setMinGlobalLimited(24)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, true, false)))
+                    .where('P', blocks(CASING_TITANIUM_PIPE.get()))
+                    .where('F', frames(Titanium))
+                    .where('M', abilities(MUFFLER))
+                    .where(' ', any())
+                    .where('#', air())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    Epimorphism.id("block/multiblock/catalytic_reformer"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition CRYOGENIC_REACTOR = registrate().multiblock("cryogenic_reactor", WorkableElectricMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.cryogenic_reactor.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CRYOGENIC_REACTOR_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("    RR", "    TV", "    VV", "    TV", "    TT")
+                    .aisle("F   RR", "F X TT", "FXPPPV", "F X TT", "F   TT")
+                    .aisle("  X   ", " XCX  ", "XCKCP ", " XCX  ", "  X   ")
+                    .aisle(" XXX  ", "XCCCX ", "XC#KP ", "XCCCX ", " XXX  ")
+                    .aisle("  X   ", " XCX  ", "XCCCX ", " XCX  ", "  X   ")
+                    .aisle("F   F ", "F X F ", "FXSXF ", "F X F ", "F   F ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_ALUMINIUM_FROSTPROOF.get())
+                            .setMinGlobalLimited(20)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, false, false)))
+                    .where('F', frames(Aluminium))
+                    .where('R', frames(Steel))
+                    .where('C', blocks(CASING_PTFE_INERT.get()))
+                    .where('K', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
+                    .where('P', blocks(CASING_STEEL_PIPE.get()))
+                    .where('V', blocks(HEAT_VENT.get()))
+                    .where('T', blocks(CASING_STEEL_SOLID.get()))
+                    .where(' ', any())
+                    .where('#', air())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_frost_proof"),
+                    Epimorphism.id("block/multiblock/cryogenic_reactor"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition BURNER_REACTOR = registrate().multiblock("burner_reactor", WorkableElectricMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.burner_reactor.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(BURNER_REACTOR_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_INVAR_HEATPROOF)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("F   F", "F X F", "FXXXF", "F X F", "F   F", "     ")
+                    .aisle("  X  ", " XCX ", "XCCCX", " XCX ", "  X  ", "  X  ")
+                    .aisle(" XXX ", "XCCCX", "XK#KX", "XC#CX", " XCX ", " XMX ")
+                    .aisle("  X  ", " XCX ", "XCCCX", " XCX ", "  X  ", "  X  ")
+                    .aisle("F   F", "F X F", "FXSXF", "F X F", "F   F", "     ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_INVAR_HEATPROOF.get())
+                            .setMinGlobalLimited(25)
+                            .or(autoAbilities(definition.getRecipeTypes()))
+                            .or(autoAbilities(true, true, false)))
+                    .where('F', frames(MaragingSteel300))
+                    .where('C', blocks(CASING_STAINLESS_CLEAN.get()))
+                    .where('K', blocks(COIL_CUPRONICKEL.get()))
+                    .where('M', abilities(MUFFLER))
+                    .where(' ', any())
+                    .where('#', air())
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_heatproof"),
+                    Epimorphism.id("block/multiblock/burner_reactor"), false)
             .register();
 
     public final static MultiblockMachineDefinition DISSOLUTION_TANK = registrate().multiblock("dissolution_tank", DissolutionTankMachine::new)
@@ -685,17 +853,17 @@ public class EPMachines {
             .renderer(() -> DigesterRenderer.INSTANCE)
             .register();
 
-    public final static MultiblockMachineDefinition ROASTER = registrate().multiblock("roaster", holder -> new TierCasingElectricMultiblockMachine(holder, "Firebox"))
+    public final static MultiblockMachineDefinition ROASTER = registrate().multiblock("roaster", WorkableElectricMultiblockMachine::new)
             .langValue("Roaster")
             .tooltips(
                     Component.translatable("block.epimorphism.roaster.desc.0"),
                     Component.translatable("block.epimorphism.roaster.desc.1")
             )
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
+            .recipeType(ROASTER_RECIPES)
             .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
             .appearanceBlock(CASING_INVAR_HEATPROOF)
-            .pattern(definition -> FactoryBlockPattern.start()
+            .pattern(definition -> FactoryMOPattern.start()
                     .aisle("     ", "     ", " D D ", " D D ", " D D ")
                     .aisle("A   A", "ACCCA", "BDBDB", "BBBBB", " D D ")
                     .aisle("     ", "BCCCB", "BD#DB", "BDEDB", " D D ")
@@ -717,8 +885,84 @@ public class EPMachines {
                     .where(' ', Predicates.any())
                     .build()
             )
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_FIREBOXS.size())))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_heatproof"),
                     Epimorphism.id("block/multiblock/roaster"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition CVD_UNIT = registrate().multiblock("cvd_unit", WorkableElectricMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.cvd_unit.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(CVD_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_NONCONDUCTING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXXXX", "XGGGX", "XGGGX")
+                    .aisle("XXXXX", "XCCCX", "XGGGX").setRepeatable(3)
+                    .aisle("XXXXX", "SGGGX", "XGGGX")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_NONCONDUCTING.get())
+                            .setMinGlobalLimited(35)
+                            .or(autoAbilities()))
+                    .where('G', blocks(SILICATE_GLASS.get()))
+                    .where('C', blocks(SUBSTRATE_CASING.get()))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/nonconducting_casing"),
+                    Epimorphism.id("block/multiblock/cvd_unit"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition PLASMA_CVD = registrate().multiblock("plasma_cvd", WorkableElectricMultiblockMachine::new)
+            .tooltips(
+                    Component.translatable("block.epimorphism.plasma_cvd.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CVD_RECIPES, PLASMA_CVD_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_ATOMIC)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXXXXXX", " XGGGX ", " XGGGX ", "       ")
+                    .aisle("XXXXXXX", "XCCCCCX", "X     X", " XGGGX ")
+                    .aisle("VXXXXXV", "VCCCCCV", "X     X", " XGGGX ")
+                    .aisle("XXXXXXX", "XCCCCCX", "X     X", " XGGGX ")
+                    .aisle("XXXXXXX", " SGGGX ", " XGGGX ", "       ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_ATOMIC.get())
+                            .setMinGlobalLimited(40)
+                            .or(autoAbilities()))
+                    .where('G', blocks(FUSION_GLASS.get()))
+                    .where('C', blocks(ADVANCED_SUBSTRATE_CASING.get()))
+                    .where('V', blocks(HEAT_VENT.get()))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/atomic_casing"),
+                    Epimorphism.id("block/multiblock/plasma_cvd"), false)
+            .register();
+
+    public final static MultiblockMachineDefinition LASER_CVD = registrate().multiblock("laser_cvd", holder -> new TierCasingElectricMultiblockMachine(holder, "Firebox"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.laser_cvd.desc.0")
+            )
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeTypes(CVD_RECIPES, LASER_CVD_RECIPES)
+            .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_REACTION_SAFE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("   XXXXX", "   XGGGX", "   XGGGX", "   XGGGX", "    XXX ")
+                    .aisle("XXXXXXXX", "XXXFCCCF", "XXXF   F", "XXXF   F", "    FFF ")
+                    .aisle("XXXXXXXX", "X XFCCCF", "X G    X", "XXXF   F", "    FFF ")
+                    .aisle("XXXXXXXX", "XXXFCCCF", "XSXF   F", "XXXF   F", "    FFF ")
+                    .aisle("   XXXXX", "   XGGGX", "   XGGGX", "   XGGGX", "    XXX ")
+                    .where('S', controller(blocks(definition.getBlock())))
+                    .where('X', blocks(CASING_REACTION_SAFE.get())
+                            .setMinGlobalLimited(60)
+                            .or(autoAbilities()))
+                    .where('G', blocks(FUSION_GLASS.get()))
+                    .where('C', blocks(ADVANCED_SUBSTRATE_CASING.get()))
+                    .where('F', frames(HastelloyX))
+                    .build())
+            .workableCasingRenderer(GTCEu.id("block/casings/gcym/reaction_safe_mixing_casing"),
+                    Epimorphism.id("block/multiblock/laser_cvd"), false)
             .register();
 
     public final static MultiblockMachineDefinition NANOSCALE_FABRICATOR = registrate().multiblock("nanoscale_fabricator", NanoscaleFabricatorMachine::new)
@@ -838,11 +1082,7 @@ public class EPMachines {
                     .where('#', any())
                     .build()
             )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size())))
             .workableCasingRenderer(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     Epimorphism.id("block/multiblock/crystallization_crucible"), false)
             .additionalDisplay((controller, components) -> {
@@ -929,11 +1169,7 @@ public class EPMachines {
                     .where('#', air())
                     .build()
             )
-            .shapeInfos(definition -> {
-                ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/vacuum_casing"),
                     Epimorphism.id("block/multiblock/vacuum_drying_furnace"), false)
@@ -1121,11 +1357,7 @@ public class EPMachines {
                     .where('C', EPPredicates.storageFieldBlock())
                     .build()
             )
-            .shapeInfos(definition -> {
-                List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size()));
-                return shapeInfos;
-            })
+            .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(Epimorphism.id("block/casings/solid/tfft_casing"),
                     Epimorphism.id("block/multiblock/tfft"), false)
