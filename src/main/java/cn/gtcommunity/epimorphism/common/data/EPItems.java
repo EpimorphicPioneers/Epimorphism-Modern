@@ -163,17 +163,11 @@ public class EPItems {
 
     //  Lasers
     public final static ItemEntry<ComponentItem> DIELECTRIC_MIRROR = registerItemWithTooltip("laser.dielectric_mirror", 1).register();
-    public final static ItemEntry<ComponentItem> EMPTY_LASER_ASSEMBLY = registerItemWithTooltip("laser.emitter.empty", 1).register();
-    public final static ItemEntry<ComponentItem> HELIUM_LASER = registerComponentItem("laser.emitter.helium").register();
-    public final static ItemEntry<ComponentItem> NEON_LASER = registerComponentItem("laser.emitter.neon").register();
-    public final static ItemEntry<ComponentItem> ARGON_LASER = registerComponentItem("laser.emitter.argon").register();
-    public final static ItemEntry<ComponentItem> KRYPTON_LASER = registerComponentItem("laser.emitter.krypton").register();
-    public final static ItemEntry<ComponentItem> XENON_LASER = registerComponentItem("laser.emitter.xenon").register();
-    public final static ItemEntry<ComponentItem> HELIUM_NEON_LASER = registerItemWithTooltip("laser.emitter.helium_neon", 1).register();
-    public final static ItemEntry<ComponentItem> ND_YAG_LASER = registerItemWithTooltip("laser.emitter.nd_yag", 1).register();
+    public final static ItemEntry<ComponentItem> EMPTY_GAS_LASER_EMITTER = registerItemWithTooltip("gas_laser_emitter.empty", 1).register();
     public final static ItemEntry<ComponentItem> OPTICAL_FIBER = registerItemWithTooltip("laser.optical_fiber", 1).register();
     public final static ItemEntry<Item> CLADDED_OPTICAL_FIBER_CORE = registerItem("component.cosmic.cladded_optical_fiber_core").register();
 
+    public final static ItemEntry<ComponentItem> ROTATING_TRANSPARENT_SURFACE = registerItemWithTooltip("rotating_transparent_surface", 1).register();
     public final static ItemEntry<ComponentItem> PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE = registerItemWithTooltip("boule.lithium_niobate.periodically_poled", 1).register();
     public final static ItemEntry<ComponentItem> NON_LINEAR_OPTICAL_LENS = registerItemWithTooltip("non_linear_optical_lens", 1).register();
 

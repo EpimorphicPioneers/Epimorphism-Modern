@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "epimorphism:item/laser.emitter.neon"
+    "layer0": "epimorphism:item/gas_laser_emitter.empty"
   }
 }

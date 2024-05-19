@@ -1,9 +1,11 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.api.event.GTRecipeEvent;
+import cn.gtcommunity.epimorphism.data.recipe.circuits.OpticalCircuits;
 import cn.gtcommunity.epimorphism.data.recipe.configurable.RecipeAddition;
 import cn.gtcommunity.epimorphism.data.recipe.generated.BouleRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.generated.ComponentAsslineRecipeHandler;
+import cn.gtcommunity.epimorphism.data.recipe.generated.PartsRecipeHandler;
 import cn.gtcommunity.epimorphism.data.recipe.misc.FuelRecipes;
 import cn.gtcommunity.epimorphism.data.recipe.misc.LargeNaquadahReactorLoader;
 import cn.gtcommunity.epimorphism.data.recipe.misc.RadiationHatchLoader;
@@ -17,8 +19,11 @@ public class EPRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         RecipeAddition.init(provider);
 
+        OpticalCircuits.init(provider);
+
         WrapItemRecipeHandler.init(provider);
         BouleRecipeHandler.init(provider);
+        PartsRecipeHandler.init(provider);
 
         FuelRecipes.init(provider);
 

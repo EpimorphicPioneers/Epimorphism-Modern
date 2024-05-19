@@ -529,36 +529,11 @@ public class ItemLang {
                 "介电镜",
                 "§7Bragg Mirror",
                 "§7布氏镜");
-        provider.addItemWithTooltip(EMPTY_LASER_ASSEMBLY,
-                "Empty Laser Assembly",
-                "空激光组件",
+        provider.addItemWithTooltip(EMPTY_GAS_LASER_EMITTER,
+                "Empty Gas Laser Emitter",
+                "空的气体-激光镭射器",
                 "§7Fill this with some Laser Medium",
                 "§7需要导光介质填充");
-        provider.addItemName(HELIUM_LASER,
-                "Helium Laser Emitter",
-                "氦激光镭射器");
-        provider.addItemName(NEON_LASER,
-                "Neon Laser Emitter",
-                "氖激光镭射器");
-        provider.addItemName(ARGON_LASER,
-                "Argon Laser Emitter",
-                "氩激光镭射器");
-        provider.addItemName(KRYPTON_LASER,
-                "Krypton Laser Emitter",
-                "氪激光镭射器");
-        provider.addItemName(XENON_LASER,
-                "Xenon Laser Emitter",
-                "氙激光镭射器");
-        provider.addItemWithTooltip(HELIUM_NEON_LASER,
-                "Helium-Neon Laser",
-                "氦-氖混合气激光镭射器",
-                "§7Purpose: Weak Optical Appliances",
-                "§7用于弱光学设备");
-        provider.addItemWithTooltip(ND_YAG_LASER,
-                "Nd:YAG Laser Emitter",
-                "钕掺杂的钇铝榴石激光镭射器",
-                "§7Purpose: Strong Optical Appliances",
-                "§7用于强光学设备");
 
         //  Halide Lamps
         provider.addItemName(GREEN_LAMP_CORE,
@@ -589,6 +564,9 @@ public class ItemLang {
                 "UVA Laser Emitter",
                 "UVA卤素灯核心");
 
+        provider.addItemName(ROTATING_TRANSPARENT_SURFACE,
+                "Rotating Transparent Surface",
+                "旋转透明层");
         provider.addItemWithTooltip(PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE,
                 "Periodically Poled Lithium Niobate Boule",
                 "周期性极化铌酸锂晶体",
@@ -686,6 +664,12 @@ public class ItemLang {
                 "§7A particle container constrained by a force field",
                 "§7力场约束粒子容器"
         );
+
+        provider.addItemWithTooltip(ELECTRON_SOURCE,
+                "Electron Source",
+                "电子源",
+                "§7Just need a tiny Radium",
+                "§7只需要一点点镭");
 
         //  High Energy Physics Items
         provider.addItemWithTooltip(PLASMA_CONTAINMENT_CELL,
