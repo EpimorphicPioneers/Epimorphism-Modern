@@ -1,7 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "gtceu:item/material_sets/dull/rod_long",
-    "layer1": "gtceu:item/material_sets/dull/rod_long_secondary"
+    "layer0": "gtceu:item/material_sets/infinity/rod_long"
   }
 }
