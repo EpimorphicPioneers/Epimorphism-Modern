@@ -2449,13 +2449,11 @@ public class EPFirstDegreeMaterials {
                 .buildAndRegister();
         //  24328 Lithium Niobate
         LithiumNiobate = Builder("lithium_niobate")
-                .ingot()
-                .color(0xD27700)
-                .iconSet(MaterialIconSet.SHINY)
-                .components(Lithium, 1, Niobium, 1, Oxygen, 4)
-                .blastTemp(6700)
+                .dust()
+                .color(0xFFF838)
+                .iconSet(DULL)
+                .components(Lithium, 1, Niobium, 1, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
-                .flags(GENERATE_PLATE, GENERATE_LENS)
                 .buildAndRegister();
         //  24329 Niobium Pentachloride
         NiobiumPentachloride = Builder("niobium_pentachloride")
@@ -2712,5 +2710,12 @@ public class EPFirstDegreeMaterials {
                 .iconSet(METALLIC)
                 .buildAndRegister()
                 .setFormula("Nq?Ke?Nd?");
+        LithiumCarbonate = Builder("lithium_carbonate")
+                .dust()
+                .color(0xB1D0FE)
+                .iconSet(FINE)
+                .components(Lithium, 2, Carbon, 1, Oxygen, 3)
+                .buildAndRegister();
+
     }
 }

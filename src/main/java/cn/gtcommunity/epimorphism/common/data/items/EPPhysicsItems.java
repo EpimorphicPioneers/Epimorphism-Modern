@@ -61,6 +61,7 @@ public class EPPhysicsItems {
 
     //  Nuclear Physics items
     public static ItemEntry<Item> NEUTRON_SOURCE = registrate().item("neutron_source", Item::new).lang("Neutron Source").register();
+    public static ItemEntry<ComponentItem> ELECTRON_SOURCE = registerItemWithTooltip("electron_source", 1).register();
     public static ItemEntry<Item> PLATE_RADIATION_PROTECTION = registrate().item("plate_radiation_protection", Item::new).lang("Radiation Protection Plate").register();
     public static ItemEntry<Item> ADV_PLATE_RADIATION_PROTECTION = registrate().item("advanced_plate_radiation_protection", Item::new).lang("Advanced Radiation Protection Plate").register();
     public static ItemEntry<Item> ENCAPSULATED_URANIUM = registrate().item("encapsulated_uranium", Item::new).lang("Encapsulated Uranium").register();

@@ -1,6 +1,7 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
+import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -14,6 +15,7 @@ public class EPMaterialFlagAddition {
 
         //  Disable Crystallization
         Monazite.addFlags(DISABLE_CRYSTALLIZATION);
+//        LithiumNiobate.addFlags(DISABLE_CRYSTALLIZATION);
 
         //  Crystallizable
         Sapphire.addFlags(CRYSTALLIZABLE);
@@ -22,6 +24,7 @@ public class EPMaterialFlagAddition {
         Olivine.addFlags(CRYSTALLIZABLE);
         Amethyst.addFlags(CRYSTALLIZABLE);
         Opal.addFlags(CRYSTALLIZABLE);
+//        LithiumNiobate.addFlags(CRYSTALLIZABLE);
 
         // Milled
         Pyrope.addFlags(GENERATE_MILLED);
@@ -41,6 +44,15 @@ public class EPMaterialFlagAddition {
         Gold.addFlags(GENERATE_NANITES);
         Silver.addFlags(GENERATE_NANITES);
         Neutronium.addFlags(GENERATE_NANITES);
+
+        // Laser Emitters
+        Helium.addFlags(GENERATE_LASER_EMITTER);
+        Neon.addFlags(GENERATE_LASER_EMITTER);
+        Argon.addFlags(GENERATE_LASER_EMITTER);
+        Krypton.addFlags(GENERATE_LASER_EMITTER);
+        Xenon.addFlags(GENERATE_LASER_EMITTER);
+        HeliumNeon.addFlags(GENERATE_LASER_EMITTER);
+        CarbonDioxide.addFlags(GENERATE_LASER_EMITTER);
 
         //////////////////////////////////////
         //*******       GT Flag      *******//
