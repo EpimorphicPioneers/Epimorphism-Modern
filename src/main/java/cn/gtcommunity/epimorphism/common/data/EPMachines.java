@@ -273,35 +273,7 @@ public class EPMachines {
                     .register(),
             tiersBetween(3, 13));
 
-    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
-            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),
-            (tier, builder) -> builder
-                    .langValue("%s §rWireless Energy Input Hatch".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(PartAbility.INPUT_ENERGY)
-                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_input_hatch"))
-                    .tooltips(
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.0"),
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.1"),
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.2")
-                    )
-                    .register(),
-            ELECTRIC_TIERS);
 
-    public static final MachineDefinition[] WIRELESS_ENERGY_OUTPUT_HATCH = registerTieredEPMachines("wireless_energy_output_hatch",
-            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.OUT, 2),
-            (tier, builder) -> builder
-                    .langValue("%s §rWireless Energy Output Hatch".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(PartAbility.OUTPUT_ENERGY)
-                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_output_hatch"))
-                    .tooltips(
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.0"),
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.1"),
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.2")
-                    )
-                    .register(),
-            ELECTRIC_TIERS);
 
     public static final MachineDefinition[] REINFORCED_ROTOR_HOLDER = registerTieredEPMachines("reinforced_rotor_holder",
             ReinforcedRotorHolderPartMachine::new,

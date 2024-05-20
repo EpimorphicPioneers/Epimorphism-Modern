@@ -1,10 +1,9 @@
 package cn.gtcommunity.epimorphism.client;
 
-import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.common.data.EPParticleTypes;
 import cn.gtcommunity.epimorphism.client.model.GrindBallModel;
 import cn.gtcommunity.epimorphism.client.particle.CropFX;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
+import cn.gtcommunity.epimorphism.common.data.EPParticleTypes;
 import com.epimorphismmc.monomorphism.proxy.base.IClientProxyBase;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
