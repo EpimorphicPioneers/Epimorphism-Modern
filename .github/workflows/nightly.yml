@@ -50,6 +50,6 @@ jobs:
           github-generate-changelog: true
           github-prerelease: true
 
-          files: "${{ steps.artifact.outputs.download-path }}/*.jar"
+          files: "${{ steps.artifact.outputs.download-path }}/**"
 
 
