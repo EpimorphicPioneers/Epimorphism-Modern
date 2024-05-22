@@ -8,6 +8,8 @@ on:
       - build.gradle
       - gradle.properties
       - settings.gradle
+    branches-ignore:
+      - main
   pull_request:
   workflow_call:
 
