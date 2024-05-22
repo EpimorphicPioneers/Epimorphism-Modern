@@ -26,18 +26,21 @@ jobs:
 
       - uses: actions/download-artifact@v4.1.7
         id: 'artifact'
+
+      - name: Read Properties
+        id: 'properties'
+        uses: christian-draeger/read-properties@1.1.1
         with:
-          name: ${{ steps.properties.outputs.mod_name }}
+          path: gradle.properties
+          properties: 'mod_id mod_name mod_version'
 
       - uses: Kir-Antipov/mc-publish@v3.3
         with:
           name: "Epimorphism-Modern Nightly Build.${{ vars.GITHUB_RUN_NUMBER }}"
 
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-tag: ${{ steps.var.outputs.version }}
+          github-tag: "${{ steps.var.properties.mod_version }}_build_${{ vars.GITHUB_RUN_NUMBER }}"
           github-generate-changelog: true
           github-prerelease: true
 
-          files: "${{ steps.artifact.outputs.download-path }}/**/*.jar"
-
-
+          files: "${{ steps.artifact.outputs.download-path }}/**/${{ steps.var.properties.mod_id }}-*.jar"
