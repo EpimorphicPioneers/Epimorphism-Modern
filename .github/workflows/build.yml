@@ -10,11 +10,11 @@ on:
       - settings.gradle
     branches:
       - main
-  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: write-all
     env:
       GITHUB_ACTION_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
     steps:
