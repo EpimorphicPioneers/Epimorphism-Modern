@@ -9,6 +9,7 @@ on:
       - gradle.properties
       - settings.gradle
   pull_request:
+  workflow_call:
 
 jobs:
   build:

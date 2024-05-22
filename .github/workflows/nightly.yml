@@ -1,0 +1,50 @@
+name: Nightly Build For Epimorphism-Modern
+on:
+  push:
+    paths:
+      - .github/workflows/**
+      - src/**
+      - gradle/scripts/**
+      - build.gradle
+      - gradle.properties
+      - settings.gradle
+    branches:
+      - main
+
+jobs:
+  build:
+    secrets: inherit
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4.1.7
+        id: 'artifact'
+
+      - name: Read Properties
+        id: 'properties'
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: gradle.properties
+          properties: 'mod_id mod_name'
+
+      - name: Get Version
+        id: var
+        run: |
+          MESSAGE=$(ls ${{ steps.artifact.outputs.download-path }} | grep sources.jar -v | grep shadow.jar -v | grep slim.jar -v | awk -F '${{ steps.properties.outputs.mod_id }}-|.jar' '{print $2}')
+          echo version=$MESSAGE >> $GITHUB_OUTPUT
+
+      - uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-tag: ${{ steps.var.outputs.version }}
+          github-generate-changelog: true
+          github-prerelease: true
+
+          files: ${{ steps.artifact.outputs.download-path }}
+
+
