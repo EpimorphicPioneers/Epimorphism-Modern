@@ -43,11 +43,13 @@ jobs:
 
       - uses: Kir-Antipov/mc-publish@v3.3
         with:
+          name: ${{ steps.var.outputs.version }}
+
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-tag: ${{ steps.var.outputs.version }}
           github-generate-changelog: true
           github-prerelease: true
 
-          files: ${{ steps.artifact.outputs.download-path }}
+          files: "${{ steps.artifact.outputs.download-path }}/*.jar"
 
 
