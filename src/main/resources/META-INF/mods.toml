@@ -29,8 +29,12 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.epimorphism]]
-modId = "gtceu"
+modId = "monomorphism"
 mandatory = true
 versionRange = "[1.0.0,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[mc-publish]
+curseforge=112233
+modrinth="aabbcc"

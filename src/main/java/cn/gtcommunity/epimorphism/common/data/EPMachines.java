@@ -24,6 +24,8 @@ import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.TFFTMachine;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.storage.YottaFluidTankMachine;
 import cn.gtcommunity.epimorphism.common.machine.storage.InfinityCrateMachine;
 import cn.gtcommunity.epimorphism.integration.EPIntegration;
+import com.epimorphismmc.monomorphism.client.renderer.machine.CustomPartRenderer;
+import com.epimorphismmc.monomorphism.client.renderer.machine.TierCasingMachineRenderer;
 import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
 import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
@@ -34,7 +36,6 @@ import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -273,35 +274,7 @@ public class EPMachines {
                     .register(),
             tiersBetween(3, 13));
 
-    public static final MachineDefinition[] WIRELESS_ENERGY_INPUT_HATCH = registerTieredEPMachines("wireless_energy_input_hatch",
-            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.IN, 2),
-            (tier, builder) -> builder
-                    .langValue("%s §rWireless Energy Input Hatch".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(PartAbility.INPUT_ENERGY)
-                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_input_hatch"))
-                    .tooltips(
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.0"),
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.1"),
-                            Component.translatable("block.epimorphism.wireless_energy_input_hatch.desc.2")
-                    )
-                    .register(),
-            ELECTRIC_TIERS);
 
-    public static final MachineDefinition[] WIRELESS_ENERGY_OUTPUT_HATCH = registerTieredEPMachines("wireless_energy_output_hatch",
-            (holder, tier) -> new WirelessEnergyHatchPartMachine(holder, tier, IO.OUT, 2),
-            (tier, builder) -> builder
-                    .langValue("%s §rWireless Energy Output Hatch".formatted(VNF[tier]))
-                    .rotationState(RotationState.ALL)
-                    .abilities(PartAbility.OUTPUT_ENERGY)
-                    .workableTieredHullRenderer(Epimorphism.id("block/multiblock/part/wireless_energy_output_hatch"))
-                    .tooltips(
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.0"),
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.1"),
-                            Component.translatable("block.epimorphism.wireless_energy_output_hatch.desc.2")
-                    )
-                    .register(),
-            ELECTRIC_TIERS);
 
     public static final MachineDefinition[] REINFORCED_ROTOR_HOLDER = registerTieredEPMachines("reinforced_rotor_holder",
             ReinforcedRotorHolderPartMachine::new,

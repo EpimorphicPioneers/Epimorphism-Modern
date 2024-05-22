@@ -5,13 +5,13 @@ import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelCoilCasingMulti
 import cn.gtcommunity.epimorphism.api.machine.multiblock.ParallelGlassCoilMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import cn.gtcommunity.epimorphism.api.pattern.EPPredicates;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.CustomPartRenderer;
 import cn.gtcommunity.epimorphism.client.renderer.handler.machine.ProcessingArrayRenderer;
-import cn.gtcommunity.epimorphism.client.renderer.handler.machine.TierCasingMachineRenderer;
 import cn.gtcommunity.epimorphism.common.data.EPMachines;
 import cn.gtcommunity.epimorphism.common.data.EPRecipeModifiers;
 import cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced.*;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
+import com.epimorphismmc.monomorphism.client.renderer.machine.CustomPartRenderer;
+import com.epimorphismmc.monomorphism.client.renderer.machine.TierCasingMachineRenderer;
 import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
 import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
 import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;

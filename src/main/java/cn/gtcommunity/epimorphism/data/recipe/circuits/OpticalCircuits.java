@@ -1,15 +1,54 @@
-//package cn.gtcommunity.epimorphism.data.recipe.circuits;
-//
-//import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
-//
-//import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
-//import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
-//import static com.gregtechceu.gtceu.api.GTValues.*;
-//import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-//import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-//import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-//public class OpticalCircuits {
-//    public static void init() {
+package cn.gtcommunity.epimorphism.data.recipe.circuits;
+
+import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import java.util.function.Consumer;
+
+import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
+import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
+import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
+import static cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems.*;
+import static cn.gtcommunity.epimorphism.data.recipe.EPRecipeUtil.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+public class OpticalCircuits {
+    public static void init(Consumer<FinishedRecipe> provider) {
+
+        // Nb2O5 + Li2CO3 -> 2LiNbO3 + CO2
+        BLAST_RECIPES.recipeBuilder("lithium_niobate_dust")
+                .inputItems(dust, NiobiumPentoxide)
+                .inputItems(dust, LithiumCarbonate)
+                .outputItems(dust, LithiumNiobate, 2)
+                .outputFluids(CarbonDioxide.getFluid(1000))
+                .blastFurnaceTemp(4500)
+                .duration(second(5))
+                .EUt(VA[HV])
+                .save(provider);
+
+        CRYSTALLIZATION_RECIPES.recipeBuilder("lithium_niobate_boule")
+                .inputItems(dust, LithiumNiobate, 8)
+                .notConsumable(ROTATING_TRANSPARENT_SURFACE)
+                .notConsumable(ELECTRON_SOURCE)
+                .inputFluids(Xenon.getFluid(1000))
+                .outputItems(PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE)
+                .blastFurnaceTemp(6800)
+                .duration(second(16))
+                .EUt(VA[IV])
+                .save(provider);
+
+        LATHE_RECIPES.recipeBuilder("non_linear_optical_lens")
+                .inputItems(PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE)
+                .outputItems(NON_LINEAR_OPTICAL_LENS)
+                .outputItems(dust, LithiumNiobate, 2)
+                .duration(second(30))
+                .EUt(VA[HV])
+                .save(provider);
+
+
+
 //        //  Optical Board
 //        CVD_RECIPES.recipeBuilder("")
 //                .inputItems(plate, GalliumNitride)
@@ -128,66 +167,6 @@
 //                .EUt(VA[IV])
 //                .save(provider);
 //
-//        //  Helium Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(Helium.getFluid(1000))
-//                .outputItems(HELIUM_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        //  Neon Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(Neon.getFluid(1000))
-//                .outputItems(NEON_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        //  Argon Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(Argon.getFluid(1000))
-//                .outputItems(ARGON_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        //  Krypton Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(Krypton.getFluid(1000))
-//                .outputItems(KRYPTON_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        //  Xenon Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(Xenon.getFluid(1000))
-//                .outputItems(XENON_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        //  Helium-Neon Laser
-//        CANNER_RECIPES.recipeBuilder("")
-//                .inputItems(EMPTY_LASER_ASSEMBLY)
-//                .inputFluids(HeliumNeon.getFluid(1000))
-//                .outputItems(HELIUM_NEON_LASER)
-//                .EUt(VA[HV])
-//                .duration(120)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
 //        //  Nd:YAG Laser
 //        CANNER_RECIPES.recipeBuilder("")
 //                .inputItems(EMPTY_LASER_ASSEMBLY)
@@ -197,50 +176,50 @@
 //                .duration(120)
 //                .cleanroom(CleanroomType.CLEANROOM)
 //                .save(provider);
-//
-//        //  Optical SMDs
-//        ASSEMBLER_RECIPES.recipeBuilder("")
-//                .inputItems(wireFine, Naquadah, 4)
-//                .inputItems(dust, CadmiumSulfide)
-//                .outputItems(OPTICAL_RESISTOR, 16)
-//                .inputFluids(KaptonE.getFluid(L * 2))
-//                .duration(160)
-//                .EUt(VA[UV])
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        ASSEMBLER_RECIPES.recipeBuilder("")
-//                .inputItems(wireFine, Iridium, 8)
-//                .inputItems(foil, Germanium)
-//                .inputFluids(KaptonE.getFluid(L))
-//                .outputItems(OPTICAL_TRANSISTOR, 16)
-//                .duration(160)
-//                .EUt(VA[UV])
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        LASER_CVD_RECIPES.recipeBuilder("")
-//                .inputItems(OPTICAL_FIBER, 2)
-//                .inputItems(plate, ErbiumDopedZBLANGlass)
-//                .inputFluids(KaptonE.getFluid(L / 4))
-//                .outputItems(OPTICAL_CAPACITOR, 16)
-//                .duration(160)
-//                .EUt(VA[UV])
+
+        //  Optical SMDs
+        ASSEMBLER_RECIPES.recipeBuilder("optical_resistor")
+                .inputItems(wireFine, Naquadah, 4)
+                .inputItems(dust, CadmiumSulfide)
+                .outputItems(OPTICAL_RESISTOR, 16)
+                .inputFluids(KaptonE.getFluid(L * 2))
+                .duration(160)
+                .EUt(VA[UV])
+                .cleanroom(CleanroomType.CLEANROOM)
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("optical_transistor")
+                .inputItems(wireFine, Iridium, 8)
+                .inputItems(foil, Germanium)
+                .inputFluids(KaptonE.getFluid(L))
+                .outputItems(OPTICAL_TRANSISTOR, 16)
+                .duration(160)
+                .EUt(VA[UV])
+                .cleanroom(CleanroomType.CLEANROOM)
+                .save(provider);
+
+        LASER_CVD_RECIPES.recipeBuilder("optical_capacitor")
+                .inputItems(OPTICAL_FIBER, 2)
+                .inputItems(plate, ErbiumDopedZBLANGlass)
+                .inputFluids(KaptonE.getFluid(L / 4))
+                .outputItems(OPTICAL_CAPACITOR, 16)
+                .duration(160)
+                .EUt(VA[UV])
 //                .temperature(487)
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        ASSEMBLER_RECIPES.recipeBuilder("")
-//                .inputItems(dust, Terbium)
-//                .inputItems(wireFine, BorosilicateGlass, 4)
-//                .inputFluids(KaptonE.getFluid(L / 2))
-//                .outputItems(OPTICAL_DIODE, 16)
-//                .duration(160)
-//                .EUt(VA[UV])
-//                .cleanroom(CleanroomType.CLEANROOM)
-//                .save(provider);
-//
-//        ION_IMPLANTATER_RECIPES.recipeBuilder("")
+                .cleanroom(CleanroomType.CLEANROOM)
+                .save(provider);
+
+        ASSEMBLER_RECIPES.recipeBuilder("optical_diode")
+                .inputItems(dust, Terbium)
+                .inputItems(wireFine, BorosilicateGlass, 4)
+                .inputFluids(KaptonE.getFluid(L / 2))
+                .outputItems(OPTICAL_DIODE, 16)
+                .duration(160)
+                .EUt(VA[UV])
+                .cleanroom(CleanroomType.CLEANROOM)
+                .save(provider);
+
+//        ION_IMPLANTATER_RECIPES.recipeBuilder("OPTICAL_INDUCTOR")
 //                .inputItems(dust, Silver, 4)
 //                .inputItems(plate, PMMA)
 //                .inputFluids(KaptonE.getFluid(L))
@@ -249,7 +228,7 @@
 //                .EUt(VA[UV])
 //                .cleanroom(CleanroomType.CLEANROOM)
 //                .save(provider);
-//
+
 //        //  Optical Laser Control Unit
 //        ASSEMBLER_RECIPES.recipeBuilder("")
 //                .inputItems(OPTICAL_CIRCUIT_BOARD)
@@ -436,5 +415,5 @@
 //                        .CWUt(384)
 //                        .EUt(VA[UEV]))
 //                .save(provider);
-//    }
-//}
+    }
+}

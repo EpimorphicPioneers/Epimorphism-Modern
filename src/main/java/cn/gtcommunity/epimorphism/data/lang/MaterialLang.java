@@ -389,6 +389,7 @@ public class MaterialLang {
         provider.addMaterial(TitaniumNitrate, "Titanium Nitrate", "硝酸钛");
         provider.addMaterial(NaquadahOxideMixture, "Naquadah Oxide Mixture", "氧化硅岩混合物");
         provider.addMaterial(ExtractiveNaquadahOxide, "Extractive Naquadah Oxide", "氧化硅岩浸出物");
+        provider.addMaterial(LithiumCarbonate, "Lithium Carbonate", "碳酸锂");
 //        provider.addMaterial(AceticAnhydride, "Acetic Anhydride", "乙酸酐");
 //        provider.addMaterial(HydrogenCyanide, "Hydrogen Cyanide", "氰化氢");
 //        provider.addMaterial(SodiumCyanide, "Sodium Cyanide", "氰化钠");
@@ -723,6 +724,8 @@ public class MaterialLang {
         provider.addTagPrefix(milled, "Milled %s", "研磨%s粉");
         provider.addTagPrefix(crucible, "%s Crucible", "%s坩埚");
         provider.addTagPrefix(seedCrystal, "%s Seed Crystal", "%s晶种");
+        provider.addTagPrefix(nanites, "%s Nanites", "%s纳米蜂群");
+        provider.addTagPrefix(laserEmitter, "%s Laser Emitter", "%s激光镭射器");
         provider.addTagPrefix(boule, "%s Boule", "人造%s");
         provider.addTagPrefix(fence, "%s Fence", "%s栅栏");
     }

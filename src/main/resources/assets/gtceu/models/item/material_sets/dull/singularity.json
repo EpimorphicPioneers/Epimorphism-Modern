@@ -2,6 +2,6 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "gtceu:item/material_sets/dull/singularity",
-    "layer1": "gtceu:item/material_sets/dull/singularity_overlay"
+    "layer1": "gtceu:item/material_sets/dull/singularity_secondary"
   }
 }

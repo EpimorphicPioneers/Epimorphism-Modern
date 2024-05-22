@@ -18,4 +18,7 @@ public class EPMaterialFlags {
     public static final MaterialFlag GENERATE_NANITES = new MaterialFlag.Builder("generate_nanites")
             .requireProps(PropertyKey.DUST)
             .build();
+    public static final MaterialFlag GENERATE_LASER_EMITTER = new MaterialFlag.Builder("generate_laser_emitter")
+            .requireProps(PropertyKey.FLUID)
+            .build();
 }

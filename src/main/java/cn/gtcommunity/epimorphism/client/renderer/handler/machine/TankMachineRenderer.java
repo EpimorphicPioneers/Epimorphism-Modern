@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.machine;
 
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankMachine;
-import com.epimorphismmc.monomorphism.client.render.CubeRenderer;
+import com.epimorphismmc.monomorphism.client.renderer.CubeRenderer;
 import com.epimorphismmc.monomorphism.client.utils.MORenderUtils;
 import com.epimorphismmc.monomorphism.client.utils.Model3D;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

@@ -21,7 +21,7 @@ public class EPConfigHolder {
     public MachineConfigs machines = new MachineConfigs();
 
     @Configurable
-    public EUNetworkConfigs EUNetworks = new EUNetworkConfigs();
+    public ItemConfigs items = new ItemConfigs();
 
     public static class MachineConfigs {
         @Configurable
@@ -29,9 +29,10 @@ public class EPConfigHolder {
         public boolean doProcessingArray = true;
     }
 
-    public static class EUNetworkConfigs {
+    public static class ItemConfigs {
         @Configurable
-        @Configurable.Comment({"", "Default: 1"})
-        public int maximumPerPlayer = 1;
+        @Configurable.Comment({"The subscript used to warp items", "When true, use like \"I\" to subscript", "Default: true"})
+        public boolean perfRomanSubscript = true;
     }
+
 }

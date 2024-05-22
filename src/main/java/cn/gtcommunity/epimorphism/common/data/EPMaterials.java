@@ -403,6 +403,7 @@ public class EPMaterials {
     public static Material NaquadahBasedLiquidFuel;
     public static Material NaquadahBasedLiquidFuelExcited;
     public static Material NaquadahBasedLiquidFuelDepleted;
+    public static Material LithiumCarbonate;
 
     //  Second Degree Materials
     public static Material DragonBreath;

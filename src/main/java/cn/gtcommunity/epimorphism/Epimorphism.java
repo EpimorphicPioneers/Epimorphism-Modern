@@ -4,14 +4,12 @@ import cn.gtcommunity.epimorphism.client.ClientProxy;
 import cn.gtcommunity.epimorphism.common.CommonProxy;
 import cn.gtcommunity.epimorphism.config.EPConfigHolder;
 import cn.gtcommunity.epimorphism.data.lang.EPLangHandler;
-import cn.gtcommunity.epimorphism.data.lang.WrapItemLang;
 import cn.gtcommunity.epimorphism.network.s2c.PacketVajraDestroy;
 import com.epimorphismmc.monomorphism.MOMod;
 import com.epimorphismmc.monomorphism.datagen.MOProviderTypes;
 import com.epimorphismmc.monomorphism.registry.registrate.MORegistrate;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.lowdragmc.lowdraglib.networking.INetworking;
-import com.tterrag.registrate.providers.ProviderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
@@ -59,7 +57,7 @@ public class Epimorphism extends MOMod<CommonProxy> {
     }
 
     @Override
-    public void registerMessages(INetworking network) {
+    public void registerPackets(INetworking network) {
         network.registerS2C(PacketVajraDestroy.class);
     }
 
