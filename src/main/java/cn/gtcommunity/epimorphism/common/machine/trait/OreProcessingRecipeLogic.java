@@ -6,6 +6,7 @@ import com.epimorphismmc.monomorphism.misc.SimpleCapabilityHolder;
 import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
+import com.google.common.primitives.Ints;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -311,7 +312,7 @@ public class OreProcessingRecipeLogic extends RecipeLogic {
                 if (!inputFluids.isEmpty()) {
                     var inputFluid = inputFluids.get(0);
                     long stored = getFluidAmount(inputFluid);
-                    washed = MOMathUtils.getIntegerNumber(Math.min(stored / inputFluid.getAmount(), stack.getCount()));
+                    washed = Ints.saturatedCast(Math.min(stored / inputFluid.getAmount(), stack.getCount()));
                     fluidInputs.add(inputFluid.copy(washed * inputFluid.getAmount()));
                     if (washed < stack.getCount()) {
                         products.add(stack.copyWithCount(stack.getCount() - washed));

@@ -95,7 +95,7 @@ public class MegaTurbineMachine extends WorkableElectricMultiblockMachine implem
         Map<Long, IO> ioMap = getMultiblockState().getMatchContext().getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
         for (IMultiPart part : getParts()) {
             if (part instanceof IReinforcedRotorHolder rotorHolder) {
-                rotorHolders = MOUtils.getOrDefault(rotorHolders, HashSet::new);
+                rotorHolders = Objects.requireNonNullElseGet(rotorHolders, HashSet::new);
                 rotorHolders.add(rotorHolder);
                 tier = Math.min(tier, rotorHolder.getTier());
             }

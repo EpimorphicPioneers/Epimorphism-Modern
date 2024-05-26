@@ -3,11 +3,13 @@ package cn.gtcommunity.epimorphism.data.recipe.serialized.oreprocessing;
 import cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem;
 import cn.gtcommunity.epimorphism.common.recipe.CPCasingCondition;
 import cn.gtcommunity.epimorphism.data.recipe.EPRecipeUtil;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
+import static cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix.catalyst;
 import static cn.gtcommunity.epimorphism.common.data.EPMaterials.*;
 import static cn.gtcommunity.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -123,7 +125,7 @@ public class NaquadahProcessing {
 
         //  Step3: AuF3 + XeNq+F6 + HSbF6 + 9H - Pd-C catalyst -> (solutions...) + 8H
         EPRecipeUtil.chemicalPlantRecipe("enriched_naquadah_solution", CPCasingCondition.TUNGSTEN_STEEL,
-                        EPChemistryItem.PALLADIUM_CARBON_CATALYST.asItem())
+                        ChemicalHelper.get(catalyst, PalladiumOnCarbon).getItem())
                 .inputItems(dust, GoldTrifluoride, 4)
                 .inputFluids(XenonHexafluoroEnrichedNaquadate.getFluid(1000))
                 .inputFluids(FluoroantimonicAcid.getFluid(1000))

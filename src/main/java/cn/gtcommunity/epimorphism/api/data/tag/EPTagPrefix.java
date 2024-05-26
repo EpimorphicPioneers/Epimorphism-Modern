@@ -3,7 +3,7 @@ package cn.gtcommunity.epimorphism.api.data.tag;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialIconType;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
-import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
+import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloItemBehavior;
 import com.epimorphismmc.monomorphism.data.tag.MOTagPrefix;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
@@ -19,6 +19,7 @@ import java.util.function.UnaryOperator;
 
 import static cn.gtcommunity.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static cn.gtcommunity.epimorphism.api.data.tag.EPTagPrefix.Conditions.hasGas;
+import static cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem.CATALYST_ITEMS;
 import static com.gregtechceu.gtceu.api.GTValues.M;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.CRYSTALLIZABLE;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.NO_SMASHING;
@@ -26,7 +27,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.*;
 
 public class EPTagPrefix {
     public static final TagPrefix singularity = new MOTagPrefix("singularity",
-            new HaloRenderItemBehavior(4, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, false))
+            new HaloItemBehavior(4, 0xFF000000, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo"), true, false))
             .defaultTagPath("singularity/%s")
             .unformattedTagPath("singularity")
             .materialAmount(-1)
@@ -79,6 +80,14 @@ public class EPTagPrefix {
             .unificationEnabled(true)
             .generateItem(true)
             .generationCondition(hasGas.and(mat -> mat.hasFlag(GENERATE_LASER_EMITTER)));
+
+    public static final TagPrefix catalyst = new TagPrefix("catalyst")
+            .defaultTagPath("catalyst/%s")
+            .unformattedTagPath("catalyst")
+            .itemTable(() -> CATALYST_ITEMS)
+            .materialAmount(-1)
+            .materialIconType(EPMaterialIconType.catalyst)
+            .unificationEnabled(true);
 
     public static final TagPrefix crucible = new TagPrefix("crucible")
             .defaultTagPath("crucible/%s")

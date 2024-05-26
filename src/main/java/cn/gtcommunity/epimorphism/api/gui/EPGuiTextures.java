@@ -2,6 +2,7 @@ package cn.gtcommunity.epimorphism.api.gui;
 
 import com.lowdragmc.lowdraglib.gui.texture.ResourceBorderTexture;
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
+import net.minecraft.resources.ResourceLocation;
 
 public class EPGuiTextures {
     public static final ResourceTexture PROGRESS_BAR_RADIATION_HATCH = createTexture("progress_bar/progress_bar_radiation_hatch.png");
@@ -29,6 +30,7 @@ public class EPGuiTextures {
     public static final ResourceTexture SLOT_DISABLE_OVERLAY = createTexture("overlay/slot_disable_overlay.png");
     public static final ResourceTexture SLOT_LOCK_OVERLAY = createTexture("overlay/slot_lock_overlay.png");
     public static final ResourceTexture BALL_OVERLAY = createTexture("overlay/ball_overlay.png");
+    public static final ResourceTexture PATTERN_OVERLAY = createTexture("overlay/pattern_overlay.png");
     public static final ResourceTexture NANOSCALE_OVERLAY_1 = createTexture("overlay/nanoscale_overlay_1.png");
     public static final ResourceTexture NANOSCALE_OVERLAY_2 = createTexture("overlay/nanoscale_overlay_2.png");
 

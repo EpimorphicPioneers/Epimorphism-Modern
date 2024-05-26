@@ -31,7 +31,7 @@ import java.util.Set;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class TankAccessHatchMachine extends MEPartMachine implements IInWorldGridNodeHost, IGridConnectedBlockEntity, IStorageProvider {
+public class TankAccessHatchMachine extends MEPartMachine implements IStorageProvider {
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(TankAccessHatchMachine.class, MEPartMachine.MANAGED_FIELD_HOLDER);
 

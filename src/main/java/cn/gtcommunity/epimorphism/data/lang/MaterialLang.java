@@ -728,5 +728,6 @@ public class MaterialLang {
         provider.addTagPrefix(laserEmitter, "%s Laser Emitter", "%s激光镭射器");
         provider.addTagPrefix(boule, "%s Boule", "人造%s");
         provider.addTagPrefix(fence, "%s Fence", "%s栅栏");
+        provider.addTagPrefix(catalyst, "%s", "%s");
     }
 }

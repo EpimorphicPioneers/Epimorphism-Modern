@@ -204,7 +204,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                     if (!itemStack.isEmpty()) {
                         DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1, " ");
                         if (itemStack.getCount() > 1) {
-                            EPDrawerHelper.renderStackCount(graphics, MOFormattingUtils.abbreviate(itemStack.getCount()), pos.x + 1, pos.y + 1);
+                            EPDrawerHelper.renderStackCount(graphics, MOFormattingUtils.abbreviate2F(itemStack.getCount()), pos.x + 1, pos.y + 1);
                         }
                     }
                 }

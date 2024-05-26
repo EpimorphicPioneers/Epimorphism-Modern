@@ -1,10 +1,11 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
+import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.CatalystProperty;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.CrucibleProperty;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.FenceProperty;
 import cn.gtcommunity.epimorphism.api.data.chemical.material.properties.GrindBallProperty;
-import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloRenderItemBehavior;
+import cn.gtcommunity.epimorphism.common.item.behaviors.renderer.HaloItemBehavior;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
@@ -143,7 +144,7 @@ public class EPMaterialPropertyAddition {
         CosmicNeutronium.setProperty(GRIND_BALL,
                 new GrindBallProperty(3F, 0.5F, 20000)
                 .model(Epimorphism.id("item/grind_ball/neutronium"))
-                .renderer(new HaloRenderItemBehavior(8, 0x99FFFFFF, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo_noise"), true, false)));
+                .renderer(new HaloItemBehavior(8, 0x99FFFFFF, new ResourceLocation(Epimorphism.MOD_ID, "sprite/halo_noise"), true, false)));
 
         //  Crucible Properties
         Bronze.setProperty(CRUCIBLE, new CrucibleProperty(1696));
@@ -163,6 +164,8 @@ public class EPMaterialPropertyAddition {
         Iron.setProperty(FENCE, new FenceProperty());
         Gold.setProperty(FENCE, new FenceProperty());
         Steel.setProperty(FENCE, new FenceProperty());
+
+        PalladiumOnCarbon.setProperty(CATALYST, new CatalystProperty(50));
 
         //  IconSets
         Bromine.setMaterialIconSet(MaterialIconSet.FLUID);

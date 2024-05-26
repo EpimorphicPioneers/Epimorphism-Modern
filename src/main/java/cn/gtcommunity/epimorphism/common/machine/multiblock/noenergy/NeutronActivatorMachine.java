@@ -33,10 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.epimorphismmc.monomorphism.MOValues.*;
 
@@ -86,15 +83,15 @@ public class NeutronActivatorMachine extends NoEnergyMultiblockMachine implement
         Map<Long, IO> ioMap = getMultiblockState().getMatchContext().getOrCreate("ioMap", Long2ObjectMaps::emptyMap);
         for (IMultiPart part : getParts()) {
             if (part instanceof ItemBusPartMachine itemBusPartMachine) {
-                busMachines = MOUtils.getOrDefault(busMachines, HashSet::new);
+                busMachines = Objects.requireNonNullElseGet(busMachines, HashSet::new);
                 busMachines.add(itemBusPartMachine);
             }
             if (part instanceof NeutronSensorPartMachine neutronSensorMachine) {
-                sensorMachines = MOUtils.getOrDefault(sensorMachines, HashSet::new);
+                sensorMachines = Objects.requireNonNullElseGet(sensorMachines, HashSet::new);
                 sensorMachines.add(neutronSensorMachine);
             }
             if (part instanceof NeutronAcceleratorPartMachine neutronAccelerator) {
-                acceleratorMachines = MOUtils.getOrDefault(acceleratorMachines, HashSet::new);
+                acceleratorMachines = Objects.requireNonNullElseGet(acceleratorMachines, HashSet::new);
                 acceleratorMachines.add(neutronAccelerator);
             }
 

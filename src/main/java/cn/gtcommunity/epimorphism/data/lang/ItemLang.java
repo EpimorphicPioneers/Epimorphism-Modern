@@ -646,12 +646,6 @@ public class ItemLang {
         provider.addItemName(CATALYST_CARRIER,
                 "Catalyst Carrier",
                 "催化剂载体");
-        provider.addItemName(TI_AL_CATALYST,
-                "Titanium-Aluminum Combined Catalyst",
-                "钛-铝联合催化剂");
-        provider.addItemName(PALLADIUM_CARBON_CATALYST,
-                "Palladium on Carbon",
-                "钯碳催化剂");
 
         //////////////////////////////////////
         //*******    Physics Items   *******//

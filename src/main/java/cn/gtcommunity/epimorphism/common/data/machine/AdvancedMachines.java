@@ -18,6 +18,7 @@ import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
 import com.epimorphismmc.monomorphism.pattern.MOPredicates;
 import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
 import com.epimorphismmc.monomorphism.utility.MOMathUtils;
+import com.google.common.primitives.Ints;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -211,7 +212,7 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLength = MOMathUtils.max(ALL_PA_CASINGS.size(), ALL_MACHINE_CASINGS.size());
+                int maxLength = Ints.max(ALL_PA_CASINGS.size(), ALL_MACHINE_CASINGS.size());
                 shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLength));
                 return shapeInfos;
             })
@@ -352,7 +353,7 @@ public class AdvancedMachines {
             )
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLeng = MOMathUtils.max(SHAPE_GLASSES.size(), ALL_COIL_BLOCKS.size());
+                int maxLeng = Ints.max(SHAPE_GLASSES.size(), ALL_COIL_BLOCKS.size());
                 shapeInfos.addAll(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
             })
@@ -394,7 +395,7 @@ public class AdvancedMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
+                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
                 return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
@@ -491,7 +492,7 @@ public class AdvancedMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                int maxLeng = MOMathUtils.max(ALL_FIREBOXS.size(), ALL_COIL_BLOCKS.size());
+                int maxLeng = Ints.max(ALL_FIREBOXS.size(), ALL_COIL_BLOCKS.size());
                 return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))

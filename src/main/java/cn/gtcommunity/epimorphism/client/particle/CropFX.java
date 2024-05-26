@@ -1,13 +1,14 @@
 package cn.gtcommunity.epimorphism.client.particle;
 
-import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -25,7 +26,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.getBlockRenderer;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.getBlockRendererDispatcher;
 
 @OnlyIn(Dist.CLIENT)
 @ParametersAreNonnullByDefault
@@ -69,7 +71,7 @@ public class CropFX extends Particle {
     }
 
     private BlockState getState(Block block, int age) {
-        age = MOMathUtils.clamp(age, 0, 7);
+        age = Mth.clamp(age, 0, 7);
         return block.defaultBlockState().setValue(CropBlock.AGE, age);
     }
 

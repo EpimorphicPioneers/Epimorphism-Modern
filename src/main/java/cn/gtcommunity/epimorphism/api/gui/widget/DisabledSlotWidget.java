@@ -24,7 +24,7 @@ public class DisabledSlotWidget extends SlotWidget {
 
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
-        boolean newValue = (Boolean)this.isDisable.get();
+        boolean newValue = this.isDisable.get();
         if (newValue != this.isDisabled) {
             this.isDisabled = newValue;
             this.writeUpdateInfo(0, (buf) -> {
@@ -39,9 +39,9 @@ public class DisabledSlotWidget extends SlotWidget {
         super.readUpdateInfo(id, buffer);
         if (id == 0) {
             if (buffer.readBoolean()) {
-                this.setBackground(new IGuiTexture[]{GuiTextures.SLOT, EPGuiTextures.SLOT_DISABLE_OVERLAY});
+                this.setBackground(GuiTextures.SLOT, EPGuiTextures.SLOT_DISABLE_OVERLAY);
             } else {
-                this.setBackground(new IGuiTexture[]{GuiTextures.SLOT});
+                this.setBackground(GuiTextures.SLOT);
             }
         }
 
@@ -49,15 +49,15 @@ public class DisabledSlotWidget extends SlotWidget {
 
     public void writeInitialData(FriendlyByteBuf buffer) {
         super.writeInitialData(buffer);
-        buffer.writeBoolean((Boolean)this.isDisable.get());
+        buffer.writeBoolean(this.isDisable.get());
     }
 
     @OnlyIn(Dist.CLIENT)
     public void readInitialData(FriendlyByteBuf buffer) {
         super.readInitialData(buffer);
         this.setDisable.accept(buffer.readBoolean());
-        if ((Boolean)this.isDisable.get()) {
-            this.setBackground(new IGuiTexture[]{GuiTextures.SLOT, EPGuiTextures.SLOT_LOCK_OVERLAY});
+        if (this.isDisable.get()) {
+            this.setBackground(GuiTextures.SLOT, EPGuiTextures.SLOT_LOCK_OVERLAY);
         }
 
     }
