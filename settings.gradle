@@ -47,6 +47,7 @@ dependencyResolutionManagement {
         def ldLibVersion = "1.0.25.j"
         def mixinextrasVersion = "0.2.0"
         def shimmerVersion = "0.2.2"
+        def monomorphismLibVersion = "1.0.10-build.16"
 
         forge {
             version("forgeShortVersion", forgeVersion)
@@ -107,6 +108,9 @@ dependencyResolutionManagement {
 
             def gtm = version("gtm", gtmVersion)
             library("gtm", "com.gregtechceu.gtceu", "gtceu-${minecraftVersion}").versionRef(gtm)
+
+            def monomorphismLib = version("monomorphism", monomorphismLibVersion)
+            library("monomorphism", "com.epimorphismmc.monomorphism", "monomorphism-${minecraftVersion}").versionRef(monomorphismLib)
         }
 
         libs {

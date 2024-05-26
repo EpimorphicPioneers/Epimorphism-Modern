@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
-import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
+import com.epimorphismmc.monomorphism.client.renderer.item.WrappedItemRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
@@ -10,9 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Quaternionf;
 
-import static com.epimorphismmc.monomorphism.client.utils.MORenderUtils.*;
-
-public class StereoscopicItemRenderer implements IRenderer {
+public class StereoscopicItemRenderer extends WrappedItemRenderer {
 
     public static final StereoscopicItemRenderer INSTANCE = new StereoscopicItemRenderer();
 

@@ -1,6 +1,6 @@
 package cn.gtcommunity.epimorphism.common.item.behaviors;
 
-import com.epimorphismmc.monomorphism.item.component.IDurabilityItem;
+import com.epimorphismmc.monomorphism.item.component.IMODurabilityBar;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.IAddInformation;
 import com.gregtechceu.gtceu.api.item.component.IItemComponent;
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class CatalystBehavior implements IItemComponent, IDurabilityItem, IAddInformation {
+public class CatalystBehavior implements IItemComponent, IMODurabilityBar, IAddInformation {
 
     protected final int maxDurability;
 

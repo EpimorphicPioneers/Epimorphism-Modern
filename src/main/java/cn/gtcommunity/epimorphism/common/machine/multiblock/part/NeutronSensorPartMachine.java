@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -60,7 +61,7 @@ public class NeutronSensorPartMachine extends TieredPartMachine {
 
         group.addWidget(new TextFieldWidget(80, 35, 85, 18, () ->
                 toText(min),
-                stringValue -> setMin(clamp(fromText(stringValue), 0, max))) {
+                stringValue -> setMin(Mth.clamp(fromText(stringValue), 0, max))) {
             private int maxValue;
             @Override
             public void updateScreen() {
@@ -74,7 +75,7 @@ public class NeutronSensorPartMachine extends TieredPartMachine {
 
         group.addWidget(new TextFieldWidget(80, 80, 85, 18, () ->
                 toText(max),
-                stringValue -> setMax(clamp(fromText(stringValue), min, 1200000))) {
+                stringValue -> setMax(Mth.clamp(fromText(stringValue), min, 1200000))) {
             private int minValue;
             @Override
             public void updateScreen() {

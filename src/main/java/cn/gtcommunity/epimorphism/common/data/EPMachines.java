@@ -32,7 +32,7 @@ import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
 import com.epimorphismmc.monomorphism.pattern.LayerShapeInfo;
 import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
 import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
-import com.epimorphismmc.monomorphism.utility.MOMathUtils;
+import com.google.common.primitives.Ints;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -668,7 +668,7 @@ public class EPMachines {
                     .build()
             )
             .shapeInfos(definition -> {
-                int maxLeng = MOMathUtils.max(ALL_COIL_BLOCKS.size(), ALL_CP_CASINGS.size(), ALL_CP_TUBES.size(), ALL_MACHINE_CASINGS.size());
+                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), ALL_CP_CASINGS.size(), ALL_CP_TUBES.size(), ALL_MACHINE_CASINGS.size());
                 return new ArrayList<>(StructureUtil.getMatchingShapes((MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))

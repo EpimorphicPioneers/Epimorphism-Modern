@@ -1,7 +1,10 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
-import cn.gtcommunity.epimorphism.common.data.items.*;
+import cn.gtcommunity.epimorphism.common.data.items.EPBiologyItems;
+import cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem;
+import cn.gtcommunity.epimorphism.common.data.items.EPPhysicsItems;
+import cn.gtcommunity.epimorphism.common.data.items.EPWrapItem;
 import cn.gtcommunity.epimorphism.common.item.GrindBallItem;
 import cn.gtcommunity.epimorphism.common.item.VajraItem;
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
@@ -11,7 +14,6 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.ElectricStats;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
-import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 import com.gregtechceu.gtceu.api.item.component.IMaterialPartItem;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior;
@@ -35,6 +37,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
+import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 
 public class EPItems {
 
@@ -446,11 +449,7 @@ public class EPItems {
                     }
                 })));
     }
-
-    public static <T extends ComponentItem> NonNullConsumer<T> attach(IItemComponent... components) {
-        return (item) -> item.attachComponents(components);
-    }
     public static <T extends ComponentItem> NonNullConsumer<T> attachRenderer(ICustomRenderer customRenderer) {
-        return !Platform.isClient() ? NonNullConsumer.noop() : (item) -> item.attachComponents(customRenderer);
+        return !Platform.isClient() ? NonNullConsumer.noop() : item -> item.attachComponents(customRenderer);
     }
 }

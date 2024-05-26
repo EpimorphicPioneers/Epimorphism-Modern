@@ -6,10 +6,9 @@ import cn.gtcommunity.epimorphism.api.machine.ScheduledSubscriptionHandler;
 import cn.gtcommunity.epimorphism.api.machine.feature.multiblock.ITankProvider;
 import cn.gtcommunity.epimorphism.api.machine.trait.ITankTrait;
 import cn.gtcommunity.epimorphism.api.pattern.utils.FluidTankCellContainer;
-import cn.gtcommunity.epimorphism.utils.*;
+import cn.gtcommunity.epimorphism.utils.EPFluidUtil;
 import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
 import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
-import com.epimorphismmc.monomorphism.utility.MOMathUtils;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -51,6 +50,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.math.BigInteger;
 import java.util.*;
+
+import static com.epimorphismmc.monomorphism.utility.BigIntMath.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -204,10 +205,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
                 BigInteger fluidStored = fluidTank.getCurrentStorage();
                 BigInteger fluidCapacity = fluidTank.getMaxStorage();
                 textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.fluid", getFluid()));
-                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.stored", MOFormattingUtils.abbreviate(fluidStored))
+                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.stored", MOFormattingUtils.abbreviate2F(fluidStored))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(getStored() + " L")))));
-                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.capacity", MOFormattingUtils.abbreviate(fluidCapacity))
+                textList.add(Component.translatable("block.epimorphism.yotta_fluid_tank.capacity", MOFormattingUtils.abbreviate2F(fluidCapacity))
                         .setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                                 Component.literal(getCapacity() + " L")))));
             }
@@ -298,12 +299,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             // Bank from Fluid Input Hatches
             FluidStack inputFluidStack;
             if (fluidTank.hasFluid()) {
-                var free = isVoiding ? MOMathUtils.LONG_MAX_VALUE : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
-                inputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), free.min(MOMathUtils.LONG_MAX_VALUE).longValue());
-                List<IRecipeHandler<?>> handlers = MOUtils.getOrDefault(capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
+                var free = isVoiding ? LONG_MAX_VALUE : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
+                inputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), free.min(LONG_MAX_VALUE).longValue());
+                List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 List<?> list = List.of(FluidIngredient.of(inputFluidStack));
                 for (var handler : handlers) {
-                    list = MOUtils.getOrDefault(handler.handleRecipe(IO.IN, null, list, null, false), Collections::emptyList);
+                    list = Objects.requireNonNullElseGet(handler.handleRecipe(IO.IN, null, list, null, false), Collections::emptyList);
                 }
 
                 if (!list.isEmpty()) {
@@ -323,12 +324,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
             }
 
             // Debank to Fluid Output Hatches
-            FluidStack outputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), fluidTank.getCurrentStorage().min(MOMathUtils.LONG_MAX_VALUE).longValue());
+            FluidStack outputFluidStack = FluidStack.create(fluidTank.getCurrentFluid(), fluidTank.getCurrentStorage().min(LONG_MAX_VALUE).longValue());
             if (!EPFluidUtil.isDefaultFluid(outputFluidStack) && outputFluidStack.getAmount() >= 0) {
                 List<?> list = List.of(FluidIngredient.of(outputFluidStack));
-                List<IRecipeHandler<?>> handlers = MOUtils.getOrDefault(capabilitiesProxy.get(IO.OUT, GTRecipeCapabilities.FLUID), Collections::emptyList);
+                List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(capabilitiesProxy.get(IO.OUT, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 for (var handler : handlers) {
-                    list = MOUtils.getOrDefault(handler.handleRecipe(IO.OUT, null, list, null, false), Collections::emptyList);
+                    list = Objects.requireNonNullElseGet(handler.handleRecipe(IO.OUT, null, list, null, false), Collections::emptyList);
                 }
                 if (!list.isEmpty()) {
                     outputFluidStack.shrink(((FluidIngredient) list.get(0)).getAmount());
@@ -443,12 +444,12 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine implements 
 
         @Override
         public long getFluidAmountInTank(int tank) {
-            return MOMathUtils.getLongNumber(currentStorage);
+            return getLongValue(currentStorage);
         }
 
         @Override
         public long getTankCapacity(int tank) {
-            return MOMathUtils.getLongNumber(maxStorage);
+            return getLongValue(maxStorage);
         }
 
         @Override

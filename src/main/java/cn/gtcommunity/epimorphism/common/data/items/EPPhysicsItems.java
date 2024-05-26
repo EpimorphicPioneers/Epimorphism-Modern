@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 
 import static cn.gtcommunity.epimorphism.Epimorphism.registrate;
 import static cn.gtcommunity.epimorphism.common.data.EPItems.*;
+import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 
 public class EPPhysicsItems {
 

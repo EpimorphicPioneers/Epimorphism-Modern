@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.api.item.component;
 
 import cn.gtcommunity.epimorphism.common.machine.generator.NuclearReactorMachine;
-import com.epimorphismmc.monomorphism.item.component.IDurabilityItem;
+import com.epimorphismmc.monomorphism.item.component.IMODurabilityBar;
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 import com.gregtechceu.gtceu.api.item.component.*;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface IReactorComponent extends IItemComponent, IAddInformation, IDurabilityItem {
+public interface IReactorComponent extends IItemComponent, IAddInformation, IMODurabilityBar {
 
     int getComponentMaxHeat(ItemStack itemStack);
 

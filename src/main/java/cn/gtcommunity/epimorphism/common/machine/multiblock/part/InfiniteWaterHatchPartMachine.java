@@ -98,7 +98,7 @@ public class InfiniteWaterHatchPartMachine extends TieredIOPartMachine {
 
         group.addWidget(new ImageWidget(4, 4, 81, 55, GuiTextures.DISPLAY))
                 .addWidget(new LabelWidget(8, 8, "gtceu.gui.fluid_amount"))
-                .addWidget(new LabelWidget(8, 18, () -> MOFormattingUtils.abbreviate(tank.getFluidInTank(0).getAmount()) + " mB").setTextColor(-1).setDropShadow(true))
+                .addWidget(new LabelWidget(8, 18, () -> MOFormattingUtils.abbreviate2F(tank.getFluidInTank(0).getAmount()) + " mB").setTextColor(-1).setDropShadow(true))
                 .addWidget(new TankWidget(tank.getStorages()[0], 67, 22, false, false).setBackground(GuiTextures.FLUID_SLOT));
 
         group.setBackground(GuiTextures.BACKGROUND_INVERSE);

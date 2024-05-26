@@ -1,8 +1,8 @@
 package cn.gtcommunity.epimorphism.client.renderer.handler.item;
 
 import cn.gtcommunity.epimorphism.common.item.behaviors.GrindBallBehaviour;
+import com.epimorphismmc.monomorphism.client.renderer.item.WrappedItemRenderer;
 import com.gregtechceu.gtceu.api.item.component.ICustomRenderer;
-import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
@@ -13,9 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Optional;
 
-import static com.epimorphismmc.monomorphism.client.utils.MORenderUtils.*;
-
-public class GrindBallRenderer implements IRenderer {
+public class GrindBallRenderer extends WrappedItemRenderer {
 
     public static final GrindBallRenderer INSTANCE = new GrindBallRenderer();
 
