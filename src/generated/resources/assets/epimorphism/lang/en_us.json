@@ -411,6 +411,8 @@
   "gui.epimorphism.ore_processing_mode.desc": "Adjust the processing mode",
   "gui.epimorphism.ore_processing_mode.title": "Current processing mode",
   "gui.epimorphism.refund_all.desc": "Refund raw materials in full",
+  "gui.epimorphism.tank.desc": "Open Commingled Tank",
+  "gui.epimorphism.tank.title": "Tank",
   "gui.epimorphism.voiding_stone.desc.disabled": "Stone dust destruction is disabled",
   "gui.epimorphism.voiding_stone.desc.enabled": "Stone dust destruction is on",
   "item.epimorphism.actinium_superhydride_plasma_containment_cell": "Actinium Superhydride Plasma Containment Cell",

@@ -12,6 +12,7 @@ import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
 import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.ButtonConfigurator;
 import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.InventoryFancyConfigurator;
+import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.TankFancyConfigurator;
 import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MONBTUtils;
 import com.google.common.collect.BiMap;
@@ -27,18 +28,19 @@ import com.gregtechceu.gtceu.api.machine.fancyconfigurator.CircuitFancyConfigura
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
 import com.gregtechceu.gtceu.api.machine.trait.IRecipeHandlerTrait;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
 import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
-import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
+import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.IContentChangeAware;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;
@@ -79,6 +81,9 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
     @Getter
     @Persisted
     protected final NotifiableItemStackHandler shareInventory;
+    @Getter
+    @Persisted
+    protected final NotifiableFluidTank shareTank;
     @Persisted
     private final InternalSlot[] internalInventory = new InternalSlot[MAX_PATTERN_COUNT];
     private final BiMap<IPatternDetails, InternalSlot> patternDetailsPatternSlotMap = HashBiMap.create(MAX_PATTERN_COUNT);
@@ -102,6 +107,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
         getMainNode().addService(ICraftingProvider.class, this);
         this.circuitInventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.NONE).setFilter(IntCircuitBehaviour::isIntegratedCircuit);
         this.shareInventory = new NotifiableItemStackHandler(this, 9, IO.IN, IO.NONE);
+        this.shareTank = new NotifiableFluidTank(this, 9, 8 * FluidHelper.getBucket(), IO.IN, IO.NONE);
     }
 
     @Override
@@ -321,11 +327,11 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 
     @Override
     public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        super.attachConfigurators(configuratorPanel);
         configuratorPanel.attachConfigurators(new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, EPGuiTextures.REFUND_OVERLAY),
                 this::refundAll, List.of(Component.translatable("gui.epimorphism.refund_all.desc"))));
         configuratorPanel.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
         configuratorPanel.attachConfigurators(new InventoryFancyConfigurator(shareInventory.storage));
+        configuratorPanel.attachConfigurators(new TankFancyConfigurator(shareTank.getStorages()));
     }
 
     private void onPatternChange(int index) {

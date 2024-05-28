@@ -25,6 +25,7 @@ public class EPGuiTextures {
     public static final ResourceTexture TOGGLE_BUTTON_HIGH_SPEED = createTexture("widget/button_high_speed_mode.png");
 
     public static final ResourceTexture OVERLAY_INVENTORY_CONFIGURATOR = createTexture("overlay/inventory_configurator.png");
+    public static final ResourceTexture OVERLAY_TANK_CONFIGURATOR = createTexture("overlay/tank_configurator.png");
 
     public static final ResourceTexture SMALL_ARROW_OVERLAY = createTexture("overlay/small_arrow_overlay.png");
     public static final ResourceTexture SLOT_DISABLE_OVERLAY = createTexture("overlay/slot_disable_overlay.png");

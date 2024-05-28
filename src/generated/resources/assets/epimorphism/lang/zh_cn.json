@@ -382,6 +382,8 @@
   "gui.epimorphism.ore_processing_mode.desc": "调整处理模式",
   "gui.epimorphism.ore_processing_mode.title": "当前处理模式",
   "gui.epimorphism.refund_all.desc": "退回所有材料",
+  "gui.epimorphism.tank.desc": "打开共享储罐",
+  "gui.epimorphism.tank.title": "储罐",
   "gui.epimorphism.voiding_stone.desc.disabled": "石粉销毁已禁用",
   "gui.epimorphism.voiding_stone.desc.enabled": "石粉销毁已开启",
   "item.epimorphism.actinium_superhydride_plasma_containment_cell": "超氢化锕等离子遏制装置",

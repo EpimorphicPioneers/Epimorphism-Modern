@@ -117,6 +117,13 @@ public class MiscLang {
                 "Open Commingled Inventory",
                 "打开共享库存");
 
+        provider.add("gui.epimorphism.tank.title",
+                "Tank",
+                "储罐");
+        provider.add("gui.epimorphism.tank.desc",
+                "Open Commingled Tank",
+                "打开共享储罐");
+
         provider.add("gui.epimorphism.refund_all.desc",
                 "Refund raw materials in full",
                 "退回所有材料");
