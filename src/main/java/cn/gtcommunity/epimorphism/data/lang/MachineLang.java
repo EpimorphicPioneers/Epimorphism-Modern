@@ -540,5 +540,15 @@ public class MachineLang {
 
                         ));
 
+        provider.addBlockWithTooltip(CRAFTING_INPUT_BUFFER::getBlock,
+                "ME Crafting Input Buffer",
+                "ME样板输入总成",
+                List.of(
+
+                ),
+                List.of(
+
+                ));
+
     }
 }

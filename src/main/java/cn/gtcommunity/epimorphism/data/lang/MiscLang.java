@@ -110,6 +110,17 @@ public class MiscLang {
                 "Adjust the number of machine parallels",
                 "调整机器并行数");
 
+        provider.add("gui.epimorphism.inventory.title",
+                "Inventory",
+                "库存");
+        provider.add("gui.epimorphism.inventory.desc",
+                "Open Commingled Inventory",
+                "打开共享库存");
+
+        provider.add("gui.epimorphism.refund_all.desc",
+                "Refund raw materials in full",
+                "退回所有材料");
+
         provider.add("gui.epimorphism.fishing_mode.title",
                 "Current Fishing Mode",
                 "当前捕捞模式");

@@ -10,6 +10,9 @@ import appeng.crafting.pattern.EncodedPatternItem;
 import appeng.crafting.pattern.ProcessingPatternItem;
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
+import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.ButtonConfigurator;
+import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.InventoryFancyConfigurator;
+import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MONBTUtils;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -18,10 +21,20 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.RecipeCapability;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.fancyconfigurator.CircuitFancyConfigurator;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
 import com.gregtechceu.gtceu.api.machine.trait.IRecipeHandlerTrait;
+import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
+import com.gregtechceu.gtceu.common.item.IntCircuitBehaviour;
+import com.lowdragmc.lowdraglib.gui.texture.GuiTextureGroup;
+import com.lowdragmc.lowdraglib.gui.texture.TextTexture;
+import com.lowdragmc.lowdraglib.gui.util.ClickData;
+import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.gui.widget.Widget;
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
@@ -32,11 +45,14 @@ import com.lowdragmc.lowdraglib.syncdata.ISubscription;
 import com.lowdragmc.lowdraglib.syncdata.ITagSerializable;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
@@ -57,6 +73,12 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
     @Getter
     @Persisted
     private final ItemStackTransfer patternInventory = new ItemStackTransfer(MAX_PATTERN_COUNT);
+    @Getter
+    @Persisted
+    protected final NotifiableItemStackHandler circuitInventory;
+    @Getter
+    @Persisted
+    protected final NotifiableItemStackHandler shareInventory;
     @Persisted
     private final InternalSlot[] internalInventory = new InternalSlot[MAX_PATTERN_COUNT];
     private final BiMap<IPatternDetails, InternalSlot> patternDetailsPatternSlotMap = HashBiMap.create(MAX_PATTERN_COUNT);
@@ -64,15 +86,28 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
     private ResourceLocation lockedRecipeId;
     @Persisted
     private int lockedSlot;
+    private boolean isOutputting;
     private boolean needPatternSync = true;
+    protected List<Runnable> listeners = new ArrayList<>();
+    protected Object2LongOpenHashMap<AEFluidKey> returnFluidMap = new Object2LongOpenHashMap<>();
+    protected Object2LongOpenHashMap<AEItemKey> returnItemMap = new Object2LongOpenHashMap<>();
+    protected Object2LongOpenHashMap<AEKey> returnBuffer = new Object2LongOpenHashMap<>();
 
     public CraftingInputBufferMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, IO.BOTH, args);
         this.patternInventory.setFilter(stack -> stack.getItem() instanceof ProcessingPatternItem);
         for (int i = 0; i < this.internalInventory.length; i++) {
-            this.internalInventory[i] = new InternalSlot(null);
+            this.internalInventory[i] = new InternalSlot();
         }
         getMainNode().addService(ICraftingProvider.class, this);
+        this.circuitInventory = new NotifiableItemStackHandler(this, 1, IO.IN, IO.NONE).setFilter(IntCircuitBehaviour::isIntegratedCircuit);
+        this.shareInventory = new NotifiableItemStackHandler(this, 9, IO.IN, IO.NONE);
+    }
+
+    @Override
+    public boolean afterWorking(IWorkableMultiController controller) {
+        this.isOutputting = true;
+        return super.afterWorking(controller);
     }
 
     @Override
@@ -98,9 +133,35 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
             ICraftingProvider.requestUpdate(getMainNode());
             this.needPatternSync = false;
         }
+
+        if (!shouldSyncME()) return;
+
+        if (updateMEStatus() && !this.returnBuffer.isEmpty()) {
+            MEStorage aeNetwork = this.getMainNode().getGrid().getStorageService().getInventory();
+            for (var entry : returnBuffer.object2LongEntrySet()) {
+                var key = entry.getKey();
+                var amount = entry.getLongValue();
+                long inserted = StorageHelper.poweredInsert(
+                        getMainNode().getGrid().getEnergyService(), aeNetwork,
+                        key, amount,
+                        actionSource);
+                if (inserted >= amount) {
+                    returnBuffer.removeLong(key);
+                } else {
+                    returnBuffer.put(key, amount - inserted);
+                }
+            }
+        }
     }
 
-//    protected void autoIO() {
+    @Override
+    public void removedFromController(IMultiController controller) {
+        super.removedFromController(controller);
+        returnFluidMap.clear();
+        returnItemMap.clear();
+    }
+
+//        protected void autoIO() {
 //        if (getLevel().isClientSide) return;
 //        if (!this.isWorkingEnabled()) return;
 //        if (!this.shouldSyncME()) return;
@@ -121,7 +182,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 //            this.updateTankSubscription();
 //        }
 //    }
-
+//
 //    @Override
 //    protected void updateTankSubscription() {
 //        if (isWorkingEnabled() && !internalBuffer.isEmpty() && this.getLevel() != null
@@ -134,14 +195,19 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 //    }
 
     public List<Ingredient> handleItemInner(GTRecipe recipe, List<Ingredient> left, boolean simulate) {
-        if (recipe.id.equals(lockedRecipeId)) {
-            return internalInventory[lockedSlot].handleItemInternal(left, simulate);
+        if (recipe.id.equals(lockedRecipeId) && lockedSlot >= 0) {
+            left = internalInventory[lockedSlot].handleItemInternal(left, simulate);
+            if (left == null && !simulate) {
+                cacheItemOutput(recipe);
+            }
+            return left;
         } else {
             this.lockedRecipeId = recipe.id;
             List<Ingredient> contents = copyIngredients(left);
             for (int i = 0; i < internalInventory.length; i++) {
-                contents = internalInventory[lockedSlot].handleItemInternal(contents, simulate);
+                contents = internalInventory[i].handleItemInternal(contents, simulate);
                 if (contents == null) {
+                    if (!simulate) cacheItemOutput(recipe);
                     this.lockedSlot = i;
                     return contents;
                 }
@@ -151,16 +217,30 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
             return left;
         }
     }
-// TODO 配方检测跳过空Slot
+
+    private void cacheItemOutput(GTRecipe recipe) {
+        this.returnItemMap.clear();
+        for (ItemStack stack : MORecipeHelper.getOutputItem(recipe)) {
+            var key = AEItemKey.of(stack.getItem(), stack.getTag());
+            returnItemMap.mergeLong(key, stack.getCount(), Long::sum);
+        }
+    }
+
+    // TODO 配方检测跳过空Slot
     public List<FluidIngredient> handleFluidInner(GTRecipe recipe, List<FluidIngredient> left, boolean simulate) {
         if (recipe.id.equals(lockedRecipeId) && lockedSlot >= 0) {
-            return internalInventory[lockedSlot].handleFluidInternal(left, simulate);
+            left = internalInventory[lockedSlot].handleFluidInternal(left, simulate);
+            if (left == null && !simulate) {
+                cacheFluidOutput(recipe);
+            }
+            return left;
         } else {
             this.lockedRecipeId = recipe.id;
             List<FluidIngredient> contents = copyFluidIngredients(left);
             for (int i = 0; i < internalInventory.length; i++) {
                 contents = internalInventory[i].handleFluidInternal(contents, simulate);
                 if (contents == null) {
+                    if (!simulate) cacheFluidOutput(recipe);
                     this.lockedSlot = i;
                     return contents;
                 }
@@ -168,6 +248,14 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
             }
             this.lockedSlot = -1;
             return left;
+        }
+    }
+
+    private void cacheFluidOutput(GTRecipe recipe) {
+        this.returnFluidMap.clear();
+        for (FluidStack stack : MORecipeHelper.getOutputFluid(recipe)) {
+            var key = AEFluidKey.of(stack.getFluid(), stack.getTag());
+            returnFluidMap.mergeLong(key, stack.getAmount(), Long::sum);
         }
     }
 
@@ -187,16 +275,28 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
         return result;
     }
 
+    private void refundAll(ClickData clickData) {
+        if (!clickData.isCtrlClick) {
+            for (InternalSlot internalSlot : internalInventory) {
+                internalSlot.refund();
+            }
+        }
+    }
+
+    //////////////////////////////////////
+    //**********     GUI     ***********//
+    //////////////////////////////////////
+
     @Override
     public Widget createUIWidget() {
         int rowSize = 9;
         int colSize = 4;
         var group = new WidgetGroup(0, 0, 18 * rowSize + 16, 18 * colSize + 16);
         int index = 0;
-        for(int y = 0; y < colSize; ++y) {
+        for (int y = 0; y < colSize; ++y) {
             for (int x = 0; x < rowSize; ++x) {
                 int finalI = index;
-                var slot = new SlotWidget(patternInventory, index++, 4 + x * 18, 4 + y * 18)
+                var slot = new SlotWidget(patternInventory, index++, 8 + x * 18, 14 + y * 18)
                         .setItemHook(stack -> {
                             if (!stack.isEmpty() && stack.getItem() instanceof EncodedPatternItem iep) {
                                 final ItemStack out = iep.getOutput(stack);
@@ -211,8 +311,21 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                 group.addWidget(slot);
             }
         }
+        // ME Network status
+        group.addWidget(new LabelWidget(8, 2, () -> this.isOnline ?
+                "gtceu.gui.me_network.online" :
+                "gtceu.gui.me_network.offline"));
 
         return group;
+    }
+
+    @Override
+    public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
+        super.attachConfigurators(configuratorPanel);
+        configuratorPanel.attachConfigurators(new ButtonConfigurator(new GuiTextureGroup(GuiTextures.BUTTON, EPGuiTextures.REFUND_OVERLAY),
+                this::refundAll, List.of(Component.translatable("gui.epimorphism.refund_all.desc"))));
+        configuratorPanel.attachConfigurators(new CircuitFancyConfigurator(circuitInventory.storage));
+        configuratorPanel.attachConfigurators(new InventoryFancyConfigurator(shareInventory.storage));
     }
 
     private void onPatternChange(int index) {
@@ -249,6 +362,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
         var slot = patternDetailsPatternSlotMap.get(patternDetails);
         if (slot != null) {
             slot.pushPattern(patternDetails, inputHolder);
+            listeners.forEach(Runnable::run);
             return true;
         }
         return false;
@@ -278,26 +392,39 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
     @Override
     public List<IRecipeHandlerTrait> getRecipeHandlers() {
         var handlers = new ArrayList<>(super.getRecipeHandlers());
-        handlers.add(new ItemRecipeHandler());
-        handlers.add(new FluidRecipeHandler());
+        handlers.add(new ItemInputHandler());
+        handlers.add(new FluidInputHandler());
+        handlers.add(new ItemOutputHandler());
+        handlers.add(new FluidOutputHandler());
         return handlers;
+    }
+
+    @Override
+    public void loadCustomPersistedData(CompoundTag tag) {
+        super.loadCustomPersistedData(tag);
+
+    }
+
+    @Override
+    public void saveCustomPersistedData(CompoundTag tag, boolean forDrop) {
+        super.saveCustomPersistedData(tag, forDrop);
+        if (!forDrop) {
+
+        }
     }
 
     protected class InternalSlot implements ITagSerializable<CompoundTag>, IContentChangeAware {
 
-        public interface SharedItemGetter {
-
-            ItemStack[] getSharedItem();
-        }
+        @Getter
+        @Setter
+        protected Runnable onContentsChanged = () -> {/**/};
 
         private final List<ItemStack> itemInventory; //TODO 合并相同的Item
         private final List<FluidStack> fluidInventory; //TODO 合并相同的Fluid
-        private final SharedItemGetter sharedItemGetter;
 
-        public InternalSlot(SharedItemGetter getter) {
+        public InternalSlot() {
             this.itemInventory = new ArrayList<>();
             this.fluidInventory = new ArrayList<>();
-            this.sharedItemGetter = getter;
         }
 
         private boolean isEmpty() {
@@ -354,6 +481,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                         stack.shrink(inserted);
                     }
                 }
+                onContentsChanged.run();
             }
         }
 
@@ -367,6 +495,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                     itemInventory.addAll(List.of(AEUtils.toItemStack(key, amount)));
                 }
             });
+            onContentsChanged.run();
         }
 
         List<Ingredient> handleItemInternal(List<Ingredient> left, boolean simulate) {
@@ -382,6 +511,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                                 int extracted = Math.min(ingredientStack.getCount(), stack.getCount());
                                 if (!simulate) {
                                     stack.shrink(extracted); // TODO 把空的ItemStack移除
+                                    onContentsChanged.run();
                                 }
                                 ingredientStack.shrink(extracted);
                                 if (ingredientStack.isEmpty()) {
@@ -418,6 +548,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                 long drained = Math.min(foundStack.getAmount(), fluidStack.getAmount());
                 if (!simulate) {
                     foundStack.shrink(drained); // TODO 把空的FluidStack移除
+                    onContentsChanged.run();
                 }
 
                 fluidStack.setAmount(fluidStack.getAmount() - drained);
@@ -426,16 +557,6 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                 }
             }
             return left.isEmpty() ? null : left;
-        }
-
-        @Override
-        public void setOnContentsChanged(Runnable onContentChanged) {
-
-        }
-
-        @Override
-        public Runnable getOnContentsChanged() {
-            return () -> {};
         }
 
         @Override
@@ -486,7 +607,11 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
         }
     }
 
-    public class ItemRecipeHandler implements IRecipeHandlerTrait<Ingredient> {
+    //////////////////////////////////////
+    //*******   Recipe Handlers  *******//
+    //////////////////////////////////////
+
+    public class ItemInputHandler implements IRecipeHandlerTrait<Ingredient> {
         @Override
         public IO getHandlerIO() {
             return IO.IN;
@@ -494,13 +619,18 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 
         @Override
         public ISubscription addChangedListener(Runnable listener) {
-            return () -> {};
+            listeners.add(listener);
+            return () -> listeners.remove(listener);
         }
 
         @Override
         public List<Ingredient> handleRecipeInner(IO io, GTRecipe recipe, List<Ingredient> left, @Nullable String slotName, boolean simulate) {
             if (io != IO.IN) return left;
-            return handleItemInner(recipe, copyIngredients(left), simulate);
+            isOutputting = false;
+            circuitInventory.handleRecipeInner(io, recipe, left, slotName, simulate);
+            shareInventory.handleRecipeInner(io, recipe, left, slotName, simulate);
+            left = handleItemInner(recipe, left, simulate);
+            return left;
         }
 
         @Override
@@ -536,7 +666,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
         }
     }
 
-    public class FluidRecipeHandler implements IRecipeHandlerTrait<FluidIngredient> {
+    public class FluidInputHandler implements IRecipeHandlerTrait<FluidIngredient> {
         @Override
         public IO getHandlerIO() {
             return IO.IN;
@@ -544,13 +674,15 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 
         @Override
         public ISubscription addChangedListener(Runnable listener) {
-            return () -> {};
+            listeners.add(listener);
+            return () -> listeners.remove(listener);
         }
 
         @Override
         public List<FluidIngredient> handleRecipeInner(IO io, GTRecipe recipe, List<FluidIngredient> left, @Nullable String slotName, boolean simulate) {
             if (io != IO.IN) return left;
-            return handleFluidInner(recipe, copyFluidIngredients(left), simulate);
+            isOutputting = false;
+            return handleFluidInner(recipe, left, simulate);
         }
 
         @Override
@@ -568,6 +700,138 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                     .flatMap(Arrays::stream)
                     .mapToLong(FluidStack::getAmount)
                     .sum();
+        }
+
+        @Override
+        public int getPriority() {
+            return Integer.MAX_VALUE;
+        }
+
+        @Override
+        public boolean isDistinct() {
+            return true;
+        }
+
+        @Override
+        public RecipeCapability<FluidIngredient> getCapability() {
+            return FluidRecipeCapability.CAP;
+        }
+    }
+
+    public class ItemOutputHandler implements IRecipeHandlerTrait<Ingredient> {
+        @Override
+        public IO getHandlerIO() {
+            return IO.OUT;
+        }
+
+        @Override
+        public ISubscription addChangedListener(Runnable listener) {
+            listeners.add(listener);
+            return () -> listeners.remove(listener);
+        }
+
+        @Override
+        public List<Ingredient> handleRecipeInner(IO io, GTRecipe recipe, List<Ingredient> left, @Nullable String slotName, boolean simulate) {
+            if (io != IO.OUT) return left;
+            if (!isOutputting) return null;
+            Iterator<Ingredient> iterator = left.iterator();
+            while (iterator.hasNext()) {
+                Ingredient ingredient = iterator.next();
+                ItemStack[] ingredientStacks = ingredient.getItems();
+                SLOT_LOOKUP:
+                for (ItemStack ingredientStack : ingredientStacks) {
+                    for (var entry : returnItemMap.object2LongEntrySet()) {
+                        var key = entry.getKey();
+                        long amount = entry.getLongValue();
+                        int count = ingredientStack.getCount();
+                        if (key.matches(ingredientStack) && count == amount) {
+                            if (!simulate) {
+                                returnBuffer.mergeLong(key, amount, Long::sum);
+                                returnItemMap.removeLong(key);
+                            }
+                            iterator.remove();
+                            break SLOT_LOOKUP;
+                        }
+                    }
+                }
+            }
+            return left.isEmpty() ? null : left;
+        }
+
+        @Override
+        public List<Object> getContents() {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public double getTotalContentAmount() {
+            return 0D;
+        }
+
+        @Override
+        public int getPriority() {
+            return Integer.MAX_VALUE;
+        }
+
+        @Override
+        public boolean isDistinct() {
+            return true;
+        }
+
+        @Override
+        public RecipeCapability<Ingredient> getCapability() {
+            return ItemRecipeCapability.CAP;
+        }
+    }
+
+    public class FluidOutputHandler implements IRecipeHandlerTrait<FluidIngredient> {
+        @Override
+        public IO getHandlerIO() {
+            return IO.OUT;
+        }
+
+        @Override
+        public ISubscription addChangedListener(Runnable listener) {
+            listeners.add(listener);
+            return () -> listeners.remove(listener);
+        }
+
+        @Override
+        public List<FluidIngredient> handleRecipeInner(IO io, GTRecipe recipe, List<FluidIngredient> left, @Nullable String slotName, boolean simulate) {
+            if (io != IO.OUT) return left;
+            if (!isOutputting) return null;
+            Iterator<FluidIngredient> iterator = left.iterator();
+            while (iterator.hasNext()) {
+                FluidIngredient ingredient = iterator.next();
+                FluidStack[] ingredientStacks = ingredient.getStacks();
+                SLOT_LOOKUP:
+                for (FluidStack ingredientStack : ingredientStacks) {
+                    for (var entry : returnFluidMap.object2LongEntrySet()) {
+                        var key = entry.getKey();
+                        long amount = entry.getLongValue();
+                        long count = ingredientStack.getAmount();
+                        if (AEUtils.matches(key, ingredientStack) && count == amount) {
+                            if (!simulate) {
+                                returnBuffer.mergeLong(key, amount, Long::sum);
+                                returnFluidMap.removeLong(key);
+                            }
+                            iterator.remove();
+                            break SLOT_LOOKUP;
+                        }
+                    }
+                }
+            }
+            return left.isEmpty() ? null : left;
+        }
+
+        @Override
+        public List<Object> getContents() {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public double getTotalContentAmount() {
+            return 0D;
         }
 
         @Override

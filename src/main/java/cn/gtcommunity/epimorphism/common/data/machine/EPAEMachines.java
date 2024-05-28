@@ -23,8 +23,7 @@ public class EPAEMachines {
             .register();
 
     public final static MachineDefinition CRAFTING_INPUT_BUFFER = registrate().machine("crafting_input_buffer", CraftingInputBufferMachine::new)
-            .langValue("Tank Access Hatch")
-            .tier(UHV)
+            .tier(UV)
             .rotationState(RotationState.ALL)
             .abilities(PartAbility.IMPORT_ITEMS, PartAbility.IMPORT_FLUIDS, PartAbility.EXPORT_ITEMS, PartAbility.EXPORT_FLUIDS)
             .overlayTieredHullRenderer("crafting_input_buffer")

@@ -24,11 +24,12 @@ public class EPGuiTextures {
     public static final ResourceTexture TOGGLE_BUTTON_SELECTED = createTexture("widget/button_selected.png");
     public static final ResourceTexture TOGGLE_BUTTON_HIGH_SPEED = createTexture("widget/button_high_speed_mode.png");
 
-    public static final ResourceTexture OVERLAY_PARALLEL_CONFIGURATOR = createTexture("overlay/parallel_configurator.png");
+    public static final ResourceTexture OVERLAY_INVENTORY_CONFIGURATOR = createTexture("overlay/inventory_configurator.png");
 
     public static final ResourceTexture SMALL_ARROW_OVERLAY = createTexture("overlay/small_arrow_overlay.png");
     public static final ResourceTexture SLOT_DISABLE_OVERLAY = createTexture("overlay/slot_disable_overlay.png");
     public static final ResourceTexture SLOT_LOCK_OVERLAY = createTexture("overlay/slot_lock_overlay.png");
+    public static final ResourceTexture REFUND_OVERLAY = createTexture("overlay/refund_overlay.png");
     public static final ResourceTexture BALL_OVERLAY = createTexture("overlay/ball_overlay.png");
     public static final ResourceTexture PATTERN_OVERLAY = createTexture("overlay/pattern_overlay.png");
     public static final ResourceTexture NANOSCALE_OVERLAY_1 = createTexture("overlay/nanoscale_overlay_1.png");

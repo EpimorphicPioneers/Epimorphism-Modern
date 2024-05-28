@@ -8,6 +8,8 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class AEUtils {
 
     @Nullable
@@ -38,6 +40,10 @@ public class AEUtils {
             value -= intValue;
         }
         return result.toIntArray();
+    }
+
+    public static boolean matches(AEFluidKey key, FluidStack stack) {
+        return !stack.isEmpty() && key.getFluid().isSame(stack.getFluid()) && Objects.equals(key.getTag(), stack.getTag());
     }
 
 }
