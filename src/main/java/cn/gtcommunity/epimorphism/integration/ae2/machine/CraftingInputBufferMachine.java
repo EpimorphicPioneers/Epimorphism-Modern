@@ -97,6 +97,10 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
     protected Object2LongOpenHashMap<AEFluidKey> returnFluidMap = new Object2LongOpenHashMap<>();
     protected Object2LongOpenHashMap<AEItemKey> returnItemMap = new Object2LongOpenHashMap<>();
     protected Object2LongOpenHashMap<AEKey> returnBuffer = new Object2LongOpenHashMap<>();
+    private List<FluidIngredient> cacheFluidInput=null;
+    private List<Ingredient> cacheItemInput=null;
+    private HashSet<Ingredient> returnItemCache=null;
+    private HashSet<FluidIngredient> returnFluidCache=null;
 
     public CraftingInputBufferMachine(IMachineBlockEntity holder, Object... args) {
         super(holder, IO.BOTH, args);
@@ -201,6 +205,31 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 //    }
 
     public List<Ingredient> handleItemInner(GTRecipe recipe, List<Ingredient> left, boolean simulate) {
+        if(simulate)this.cacheItemInput=copyIngredients(left);
+        else{
+            HashSet<Ingredient> returnCache=new HashSet<>();
+            var iter0=left.iterator();
+            var iter1=cacheItemInput.iterator();
+            while (iter0.hasNext()){
+                var tmp0=iter0.next();
+                var tmp1=iter1.next();
+                while (!(tmp0.getItems()[0].equals(tmp1.getItems()[0],true)) && iter1.hasNext()){
+                    returnCache.add(tmp1);
+                    tmp1=iter1.next();
+                }
+                if(!(tmp0.getItems()[0].equals(tmp1.getItems()[0],true))){
+                    returnCache=null;
+                    break;
+                }
+                if(!iter0.hasNext() && iter1.hasNext()){
+                    while (iter1.hasNext()){
+                        returnCache.add(iter1.next());
+                    }
+                }
+            }
+            this.returnItemCache=returnCache;
+            this.cacheItemInput=null;
+        }
         if (recipe.id.equals(lockedRecipeId) && lockedSlot >= 0) {
             left = internalInventory[lockedSlot].handleItemInternal(left, simulate);
             if (left == null && !simulate) {
@@ -234,6 +263,31 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
 
     // TODO 配方检测跳过空Slot
     public List<FluidIngredient> handleFluidInner(GTRecipe recipe, List<FluidIngredient> left, boolean simulate) {
+        if(simulate)this.cacheFluidInput=copyFluidIngredients(left);
+        else{
+            HashSet<FluidIngredient> returnCache=new HashSet<>();
+            var iter0=left.iterator();
+            var iter1=cacheFluidInput.iterator();
+            while (iter0.hasNext()){
+                var tmp0=iter0.next();
+                var tmp1=iter1.next();
+                while (!(tmp0.getStacks()[0].isFluidEqual(tmp1.getStacks()[0])) && iter1.hasNext()){
+                    returnCache.add(tmp1);
+                    tmp1=iter1.next();
+                }
+                if(!(tmp0.getStacks()[0].isFluidEqual(tmp1.getStacks()[0]))){
+                    returnCache=null;
+                    break;
+                }
+                if(!iter0.hasNext() && iter1.hasNext()){
+                    while (iter1.hasNext()){
+                        returnCache.add(iter1.next());
+                    }
+                }
+            }
+            this.returnFluidCache=returnCache;
+            this.cacheItemInput=null;
+        }
         if (recipe.id.equals(lockedRecipeId) && lockedSlot >= 0) {
             left = internalInventory[lockedSlot].handleFluidInternal(left, simulate);
             if (left == null && !simulate) {
@@ -491,6 +545,43 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
             }
         }
 
+        public void advanceRefund(){
+            var network = getMainNode().getGrid();
+            if (network != null) {
+                if(returnItemCache!=null){
+                    for(var i:returnItemCache){
+                        for (ItemStack stack : itemInventory) {
+                            if(!i.test(stack))continue;
+                            if (stack == null) continue;
+
+                            var key = AEItemKey.of(stack);
+                            if (key == null) continue;
+                            returnBuffer.mergeLong(key,Math.min(stack.getCount(),i.getItems()[0].getCount()),Long::sum);
+                            stack.shrink(Math.min(stack.getCount(),i.getItems()[0].getCount()));
+                            break;
+                        }
+                    }
+                    returnItemCache=null;
+                }
+
+                if(returnFluidCache!=null){
+                    for(var i:returnFluidCache){
+                        for (FluidStack stack : fluidInventory) {
+                            if(!i.test(stack))continue;
+                            if (stack == null || stack.isEmpty()) continue;
+                            var key=AEFluidKey.of(stack.getFluid(), stack.getTag());
+                            returnBuffer.mergeLong(key,Math.min(stack.getAmount(),i.getAmount()),Long::sum);
+                            stack.shrink(Math.min(stack.getAmount(),i.getAmount()));
+                        }
+
+                    }
+                }
+
+                onContentsChanged.run();
+            }
+
+        }
+
         public void pushPattern(IPatternDetails patternDetails, KeyCounter[] inputHolder) {
             patternDetails.pushInputsToExternalInventory(inputHolder, (what, amount) -> {
                 if (what instanceof AEFluidKey key) {
@@ -529,6 +620,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                     }
                 }
             }
+            advanceRefund();
             return left.isEmpty() ? null : left;
         }
         // TODO 是否要提前结束循环
@@ -562,6 +654,7 @@ public class CraftingInputBufferMachine extends MEPartMachine implements ICrafti
                     iterator.remove();
                 }
             }
+            advanceRefund();
             return left.isEmpty() ? null : left;
         }
 
