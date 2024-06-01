@@ -20,8 +20,6 @@ dependencies {
     testImplementation 'io.javalin:javalin:5.4.2'
     testImplementation 'org.mockito:mockito-core:5.2.0'
 
-    // From Forge
-
     // LDLib
     modApi(forge.ldlib.forge) { transitive = false }
 
