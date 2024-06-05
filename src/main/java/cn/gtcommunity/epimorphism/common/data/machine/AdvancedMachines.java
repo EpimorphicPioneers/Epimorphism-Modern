@@ -233,7 +233,7 @@ public class AdvancedMachines {
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.1"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
-                    components.add(Component.translatable("epimorphism.desc_extended_info"));
+                    components.add(Component.translatable("monomorphism.shift_desc_extended_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
