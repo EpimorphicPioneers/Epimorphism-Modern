@@ -2,9 +2,9 @@ package cn.gtcommunity.epimorphism.common.machine.multiblock.electric.advanced;
 
 import cn.gtcommunity.epimorphism.Epimorphism;
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
-import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.CustomModeFancyConfigurator;
 import cn.gtcommunity.epimorphism.common.data.EPBlocks;
 import cn.gtcommunity.epimorphism.common.machine.trait.OreProcessingRecipeLogic;
+import com.epimorphismmc.monomorphism.machine.fancyconfigurator.CustomModeFancyConfigurator;
 import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -51,10 +51,12 @@ public class IntegratedOreFactoryMachine extends ParallelElectricMultiblockMachi
     private static final int MAX_PARA = 1024;
 
     @Persisted
-    @Getter @Setter
+    @Getter
+    @Setter
     private int mode;
     @Persisted
-    @Getter @Setter
+    @Getter
+    @Setter
     private boolean isVoidStone;
 
     @Getter
@@ -104,8 +106,8 @@ public class IntegratedOreFactoryMachine extends ParallelElectricMultiblockMachi
     @Override
     public BlockState getPartAppearance(IMultiPart part, Direction side, BlockState sourceState, BlockPos sourcePos) {
         if ((part instanceof ItemBusPartMachine bus && bus.getInventory().getHandlerIO() == IO.IN)
-                || part instanceof IMaintenanceMachine
-                || part instanceof EnergyHatchPartMachine) {
+            || part instanceof IMaintenanceMachine
+            || part instanceof EnergyHatchPartMachine) {
             return EPBlocks.IRIDIUM_CASING.getDefaultState();
         }
         return GTBlocks.CASING_STAINLESS_CLEAN.getDefaultState();
@@ -126,14 +128,19 @@ public class IntegratedOreFactoryMachine extends ParallelElectricMultiblockMachi
 
     @Override
     public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator("ore_processing_mode",
-                new ResourceTexture("minecraft:textures/item/fishing_rod.png"), 5, true,
-                "block.epimorphism.integrated_ore_factory.ore_processing_mode.%s"::formatted, this::getMode, this::setMode));
+        configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator(
+            Component.translatable("gui.epimorphism.ore_processing_mode.title"),
+            new ResourceTexture("minecraft:textures/item/fishing_rod.png"),
+            5,
+            "block.epimorphism.integrated_ore_factory.ore_processing_mode.%d"::formatted, this::getMode, this::setMode));
         configuratorPanel.attachConfigurators((new IFancyConfiguratorButton.Toggle(
-                EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.0, 1.0, 0.5),
-                EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.5, 1.0, 0.5),
-                this::isVoidStone, (clickData, pressed) -> this.setVoidStone(pressed)))
-                .setTooltipsSupplier(pressed -> List.of(Component.translatable(pressed ? "gui.epimorphism.voiding_stone.desc.enabled" : "gui.epimorphism.voiding_stone.desc.disabled"))));
+            EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.0, 1.0, 0.5),
+            EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.5, 1.0, 0.5),
+            this::isVoidStone, (clickData, pressed) -> this.setVoidStone(pressed)))
+            .setTooltipsSupplier(pressed -> List.of(Component.translatable(pressed
+                ? "gui.epimorphism.voiding_stone.desc.enabled"
+                : "gui.epimorphism.voiding_stone.desc.disabled"))
+            ));
         super.attachConfigurators(configuratorPanel);
     }
 
@@ -143,8 +150,8 @@ public class IntegratedOreFactoryMachine extends ParallelElectricMultiblockMachi
 
     public static ResourceLocation getBaseTexture(IMultiPart iMultiPart) {
         if ((iMultiPart instanceof ItemBusPartMachine bus && bus.getInventory().getHandlerIO() == IO.IN)
-                || iMultiPart instanceof IMaintenanceMachine
-                || iMultiPart instanceof EnergyHatchPartMachine) {
+            || iMultiPart instanceof IMaintenanceMachine
+            || iMultiPart instanceof EnergyHatchPartMachine) {
             return Epimorphism.id("block/casings/solid/iridium_casing");
         }
         return GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel");
