@@ -129,10 +129,12 @@ public class IntegratedOreFactoryMachine extends ParallelElectricMultiblockMachi
     @Override
     public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
         configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator(
-            Component.translatable("gui.epimorphism.ore_processing_mode.title"),
+            "gui.epimorphism.ore_processing_mode",
             new ResourceTexture("minecraft:textures/item/fishing_rod.png"),
             5,
-            "block.epimorphism.integrated_ore_factory.ore_processing_mode.%d"::formatted, this::getMode, this::setMode));
+            "block.epimorphism.integrated_ore_factory.ore_processing_mode.%d"::formatted, this::getMode, this::setMode)
+            .setHasTooltips(true)
+            .setHasModeTooltips(true));
         configuratorPanel.attachConfigurators((new IFancyConfiguratorButton.Toggle(
             EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.0, 1.0, 0.5),
             EPGuiTextures.TOGGLE_BUTTON_STONE.getSubTexture(0.0, 0.5, 1.0, 0.5),

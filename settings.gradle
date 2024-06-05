@@ -47,7 +47,7 @@ dependencyResolutionManagement {
         def ldLibVersion = "1.0.25.j"
         def mixinextrasVersion = "0.2.0"
         def shimmerVersion = "0.2.2"
-        def monomorphismLibVersion = "1.0.10-build.19"
+        def monomorphismLibVersion = "1.1.0-build.22"
 
         forge {
             version("forgeShortVersion", forgeVersion)

@@ -68,9 +68,11 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
     @Override
     public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
         configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator(
-            Component.translatable("gui.epimorphism.fishing_mode.title"),
-            new ResourceTexture("minecraft:textures/item/fishing_rod.png"), 3,
-            "block.epimorphism.industrial_fishing_pond.fishing_mode.%s"::formatted, this::getMode, this::setMode));
+            "gui.epimorphism.fishing_mode",
+            new ResourceTexture("minecraft:textures/item/fishing_rod.png"),
+            3, "block.epimorphism.industrial_fishing_pond.fishing_mode.%s"::formatted,
+            this::getMode, this::setMode)
+            .setHasTooltips(true));
         super.attachConfigurators(configuratorPanel);
     }
 
