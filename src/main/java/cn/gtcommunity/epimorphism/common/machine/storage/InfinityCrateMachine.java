@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.machine.storage;
 
-import cn.gtcommunity.epimorphism.api.gui.utils.EPDrawerHelper;
-import cn.gtcommunity.epimorphism.api.gui.widget.PagedWidgetGroup;
+import com.epimorphismmc.monomorphism.gui.utils.MODrawerHelper;
+import com.epimorphismmc.monomorphism.gui.widget.PagedWidget;
 import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 import com.epimorphismmc.monomorphism.utility.MONBTUtils;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -128,13 +128,13 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
         int xOffset = size >= 90 ? 162 : 0;
         int yOverflow = xOffset > 0 ? 18 : 9;
         int yOffset = size > 3 * yOverflow ? (size - 3 * yOverflow - (size - 3 * yOverflow) % yOverflow) / yOverflow * 18 : 0;
-        var pagedGroup = new PagedWidgetGroup(Position.ORIGIN, new Size(176 + xOffset, 166 + yOffset));
+        var pagedGroup = new PagedWidget(Position.ORIGIN, new Size(176 + xOffset, 166 + yOffset));
         var modularUI = new ModularUI(pagedGroup, this, entityPlayer)
-                .background(GuiTextures.BACKGROUND)
-                .widget(new LabelWidget(5, 5, () -> String.format("%s#%s", LocalizationUtils.format(getBlockState().getBlock().getDescriptionId()), pagedGroup.getPageIndex() + 1)))
-                .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(), GuiTextures.SLOT, 7 + xOffset / 2, 82 + yOffset, true))
-                .widget(new ButtonWidget(64, 154, 20, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("<")), clickData -> pagedGroup.pageUp()))
-                .widget(new ButtonWidget(254, 154, 20, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture(">")), clickData -> pagedGroup.pageDown()));
+            .background(GuiTextures.BACKGROUND)
+            .widget(new LabelWidget(5, 5, () -> String.format("%s#%s", LocalizationUtils.format(getBlockState().getBlock().getDescriptionId()), pagedGroup.getPageIndex() + 1)))
+            .widget(UITemplate.bindPlayerInventory(entityPlayer.getInventory(), GuiTextures.SLOT, 7 + xOffset / 2, 82 + yOffset, true))
+            .widget(new ButtonWidget(64, 154, 20, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture("<")), clickData -> pagedGroup.pageUp()))
+            .widget(new ButtonWidget(254, 154, 20, 20, new GuiTextureGroup(GuiTextures.BUTTON, new TextTexture(">")), clickData -> pagedGroup.pageDown()));
 
         var page1 = new WidgetGroup(Position.ORIGIN, new Size(176 + xOffset, 166 + yOffset));
         var page2 = new WidgetGroup(Position.ORIGIN, new Size(176 + xOffset, 166 + yOffset));
@@ -204,7 +204,7 @@ public class InfinityCrateMachine extends MetaMachine implements IUIMachine, IMa
                     if (!itemStack.isEmpty()) {
                         DrawerHelper.drawItemStack(graphics, itemStack, pos.x + 1, pos.y + 1, -1, " ");
                         if (itemStack.getCount() > 1) {
-                            EPDrawerHelper.renderStackCount(graphics, MOFormattingUtils.abbreviate2F(itemStack.getCount()), pos.x + 1, pos.y + 1);
+                            MODrawerHelper.renderStackCount(graphics, MOFormattingUtils.abbreviate2F(itemStack.getCount()), pos.x + 1, pos.y + 1);
                         }
                     }
                 }

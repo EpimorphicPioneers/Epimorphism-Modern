@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "epimorphism:item/catalyst/base",
-    "layer1": "epimorphism:item/catalyst/overlay"
-  }
-}

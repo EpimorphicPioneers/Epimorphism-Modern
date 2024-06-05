@@ -1,7 +1,7 @@
 package cn.gtcommunity.epimorphism.common.machine.multiblock.electric.agriculture;
 
-import cn.gtcommunity.epimorphism.api.machine.fancyconfigurator.CustomModeFancyConfigurator;
 import cn.gtcommunity.epimorphism.common.machine.trait.FishingPondRecipeLogic;
+import com.epimorphismmc.monomorphism.machine.fancyconfigurator.CustomModeFancyConfigurator;
 import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
@@ -32,11 +32,14 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMachine {
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(IndustrialFishingPondMachine.class, ParallelElectricMultiblockMachine.MANAGED_FIELD_HOLDER);
-    @Persisted @DescSynced
-    @Getter @Setter
+    @Persisted
+    @DescSynced
+    @Getter
+    @Setter
     private int mode = 0;
     @Persisted
-    @Getter @Setter
+    @Getter
+    @Setter
     private boolean filledWater;
 
     public IndustrialFishingPondMachine(IMachineBlockEntity holder, Object... args) {
@@ -64,9 +67,12 @@ public class IndustrialFishingPondMachine extends ParallelElectricMultiblockMach
 
     @Override
     public void attachConfigurators(ConfiguratorPanel configuratorPanel) {
-        configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator("fishing_mode",
-                new ResourceTexture("minecraft:textures/item/fishing_rod.png"), 3, false,
-                "block.epimorphism.industrial_fishing_pond.fishing_mode.%s"::formatted, this::getMode, this::setMode));
+        configuratorPanel.attachConfigurators(new CustomModeFancyConfigurator(
+            "gui.epimorphism.fishing_mode",
+            new ResourceTexture("minecraft:textures/item/fishing_rod.png"),
+            3, "block.epimorphism.industrial_fishing_pond.fishing_mode.%s"::formatted,
+            this::getMode, this::setMode)
+            .setHasTooltips(true));
         super.attachConfigurators(configuratorPanel);
     }
 

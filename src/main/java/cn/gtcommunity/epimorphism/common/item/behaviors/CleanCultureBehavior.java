@@ -27,8 +27,8 @@ public class CleanCultureBehavior implements ISubItemHandler, IAddInformation, I
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return null;
+    public @Nullable Component getItemName(ItemStack stack) {
+        return ICustomDescriptionId.super.getItemName(stack);
     }
 
     private CompoundTag getCultureStatsTag(ItemStack itemStack) {

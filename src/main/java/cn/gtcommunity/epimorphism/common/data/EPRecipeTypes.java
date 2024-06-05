@@ -1,9 +1,9 @@
 package cn.gtcommunity.epimorphism.common.data;
 
 import cn.gtcommunity.epimorphism.api.gui.EPGuiTextures;
-import cn.gtcommunity.epimorphism.api.gui.utils.EPWidgetUtil;
 import cn.gtcommunity.epimorphism.api.recipe.GeneralRecipeType;
 import cn.gtcommunity.epimorphism.api.recipe.SlotNames;
+import com.epimorphismmc.monomorphism.gui.utils.MOWidgetUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ICoilType;
@@ -113,7 +113,7 @@ public class EPRecipeTypes {
                                     components.add(Component.translatable("gui.epimorphism.catalyst.desc.1"));
                                 }
                         );
-                        slot.setOverlay(EPWidgetUtil.createCatalystOverlay());
+                        slot.setOverlay(MOWidgetUtil.createTextOverlay("gui.epimorphism.content.catalyst"));
                     }
                 }
             })
