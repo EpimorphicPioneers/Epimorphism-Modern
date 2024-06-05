@@ -17,8 +17,8 @@ public class MiscLang {
 
         // Tooltip
         provider.add("epimorphism.shift_desc_extended_info",
-                "§7Hold down §6SHIFT§7 to show formed hatch",
-                "§7按住§6SHIFT§7以显示成型需求仓室");
+                "§7Hold down §6SHIFT§7 to show more information",
+                "§7按住§6SHIFT§7以显示更多信息");
 
         provider.add("epimorphism.ctrl_desc_extended_info",
                 "§7Hold down §6CTRL§7 to show more information",
