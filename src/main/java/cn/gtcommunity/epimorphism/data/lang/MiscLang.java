@@ -21,8 +21,8 @@ public class MiscLang {
                 "§7等级：%s");
 
         provider.add("epimorphism.universal.desc.intake_rate",
-                "§6Air intake rate: §r%d L/t",
-                "§6进气速率：§r%d L/t");
+                "§6Air intake rate: §r%d mB/t",
+                "§6进气速率：§r%d mB/t");
 
         provider.add("epimorphism.universal.desc.max_power_in",
                 "§6Max power input: §r%d EU",
@@ -38,8 +38,8 @@ public class MiscLang {
                 "§6Capacity: §r%d kg",
                 "§6容量：§r%d kg");
         provider.add("epimorphism.universal.desc.fluid_capacity",
-                "§7Capacity: %s L",
-                "§7容量：%s L");
+                "§7Capacity: %s mB",
+                "§7容量：%s mB");
 
         provider.add("epimorphism.universal.desc.amount",
                 "§7Amount: %s",

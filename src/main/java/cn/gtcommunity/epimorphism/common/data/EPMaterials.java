@@ -93,7 +93,6 @@ public class EPMaterials {
     public static Material SilverOxide;
     public static Material SodiumFluoride;
     public static Material ZnFeAlClCatalyst;
-    public static Material SodiumNitrite;
     public static Material SodiumNitrate;
     public static Material FluoroboricAcid;
     public static Material BenzenediazoniumTetrafluoroborate;

@@ -94,7 +94,6 @@ public class MaterialLang {
         provider.addMaterial(SilverOxide, "Silver Oxide", "氧化银");
         provider.addMaterial(SodiumFluoride, "Sodium Fluoride", "氟化钠");
         provider.addMaterial(ZnFeAlClCatalyst, "Zinc-Iron-Aluminum-Chlorine Combined Catalyst", "锌-铁-铝-氯联合催化剂");
-        provider.addMaterial(SodiumNitrite, "Sodium Nitrite", "亚硝酸钠");
         provider.addMaterial(SodiumNitrate, "Sodium Nitrate", "硝酸钠");
         provider.addMaterial(FluoroboricAcid, "Fluoroboric Acid", "氟硼酸");
         provider.addMaterial(BenzenediazoniumTetrafluoroborate, "Benzenediazonium Tetrafluoroborate", "四氟硼酸重氮苯");
