@@ -1,0 +1,1 @@
+cn.gtcommunity.epimorphism.integration.kjs.EPKubejsPlugin
