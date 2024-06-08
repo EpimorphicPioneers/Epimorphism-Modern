@@ -428,13 +428,6 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .components(Zinc, 1, Iron, 1, Aluminium, 1, Chlorine, 1)
                 .buildAndRegister();
-        //  24057 Sodium Nitrite
-        SodiumNitrite = Builder("sodium_nitrite")
-                .dust()
-                .color(0x205CA4)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Sodium, 1, Nitrogen, 1, Oxygen, 2)
-                .buildAndRegister();
         //  24058 Sodium Nitrate
         SodiumNitrate = Builder("sodium_nitrate")
                 .dust()
