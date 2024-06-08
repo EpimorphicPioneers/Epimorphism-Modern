@@ -35,8 +35,8 @@ public class RecipeLang {
                 "Radiation Dose: %s Sv",
                 "辐射剂量：%s Sv");
         provider.add("epimorphism.recipe.consumption_rate",
-                "Consumption Rate: %s",
-                "消耗速率：%s L/s");
+                "Consumption Rate: %s mB/s",
+                "消耗速率：%s mB/s");
         provider.add("epimorphism.recipe.parallel",
                 "Parallel: %s",
                 "并行：× %s");

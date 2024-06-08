@@ -55,11 +55,11 @@ public class MachineLang {
                 "Fluid: %s",
                 "液体：%s");
         provider.add("block.epimorphism.yotta_fluid_tank.stored",
-                "Stored: %s L",
-                "存储：%s L");
+                "Stored: %s mB",
+                "存储：%s mB");
         provider.add("block.epimorphism.yotta_fluid_tank.capacity",
-                "Capacity: %s L",
-                "容量：%s L");
+                "Capacity: %s mB",
+                "容量：%s mB");
 
         provider.addBlockWithTooltip(TFFT::getBlock, "T.F.F.T",
                 List.of(
