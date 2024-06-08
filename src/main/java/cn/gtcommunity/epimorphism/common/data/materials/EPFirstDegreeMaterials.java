@@ -517,13 +517,6 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .components(Titanium, 1, Aluminium, 1)
                 .buildAndRegister();
-        //  24070 Potassium Cyanide
-        PotassiumCyanide = Builder("potassium_cyanide")
-                .dust()
-                .color(0x9EF3D0)
-                .iconSet(ROUGH)
-                .components(Potassium, 1, Carbon, 1, Nitrogen, 1)
-                .buildAndRegister();
         //  24071 Potassium Bromide
         PotassiumBromide = Builder("potassium_bromide")
                 .dust()
@@ -973,15 +966,6 @@ public class EPFirstDegreeMaterials {
                 .iconSet(MaterialIconSet.DULL)
                 .components(Calcium, 1, Carbon, 2)
                 .buildAndRegister();
-        //  24132 Calcium Hydroxide
-        CalciumHydroxide = Builder("calcium_hydroxide")
-                .dust()
-                .color(0x5F8764)
-                .iconSet(ROUGH)
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
-                .buildAndRegister()
-                .setFormula("Ca(OH)2", true);
         //  24133 Sodium Tellurite
         SodiumTellurite = Builder("sodium_tellurite")
                 .dust()
@@ -1455,13 +1439,6 @@ public class EPFirstDegreeMaterials {
                 .iconSet(ROUGH)
                 .components(Manganese, 1, Sulfur, 1, Oxygen, 4)
                 .buildAndRegister();
-        //  24194 Potassium Sulfate
-        PotassiumSulfate = Builder("potassium_sulfate")
-                .dust()
-                .color(0xF4FBB0)
-                .iconSet(MaterialIconSet.DULL)
-                .components(Potassium, 2, Sulfur, 1, Oxygen, 4)
-                .buildAndRegister();
         //  24195 Ammonium Cyanate
         AmmoniumCyanate = Builder("ammonium_cyanate")
                 .fluid()
@@ -1721,14 +1698,6 @@ public class EPFirstDegreeMaterials {
                 .color(344314)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Potassium, 1, Hydrogen, 1, Sulfur, 1, Oxygen, 3)
-                .flags(DISABLE_DECOMPOSITION)
-                .buildAndRegister();
-        //  24233 Potassium Carbonate
-        PotassiumCarbonate = Builder("potassium_carbonate")
-                .dust()
-                .color(0x7C89D9)
-                .iconSet(ROUGH)
-                .components(Potassium, 2, Carbon, 1, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
         //  24234 Nitrous Acid

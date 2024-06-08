@@ -106,7 +106,6 @@ public class MaterialLang {
         provider.addMaterial(Fullerene, "Fullerene", "富勒烯");
         provider.addMaterial(GeodesicPolyarene, "Geodesic Polyarene", "拱形芳烃聚合物");
         provider.addMaterial(TiAlCatalyst, "Titanium-Aluminum Combined Catalyst", "钛-铝联合催化剂");
-        provider.addMaterial(PotassiumCyanide, "Potassium Cyanide", "氰化钾");
         provider.addMaterial(PotassiumBromide, "Potassium Bromide", "溴化钾");
         provider.addMaterial(BismuthVanadate, "Bismuth Vanadate", "钒酸铋");
         provider.addMaterial(BismuthVanadateSolution, "Bismuth Vanadate Solution", "钒酸铋溶液");
@@ -168,7 +167,6 @@ public class MaterialLang {
         provider.addMaterial(CalciumDifluoride, "Calcium Difluoride", "二氟化钙");
         provider.addMaterial(ManganeseDifluoride, "Manganese Difluoride", "二氟化锰");
         provider.addMaterial(CalciumCarbide, "Calcium Carbide", "碳化钙");
-        provider.addMaterial(CalciumHydroxide, "Calcium Hydroxide", "氢氧化钙");
         provider.addMaterial(SodiumTellurite, "Sodium Tellurite", "亚碲酸钠");
         provider.addMaterial(SeleniumDioxide, "Selenium Dioxide", "二氧化硒");
         provider.addMaterial(TelluriumDioxide, "Tellurium Dioxide", "二氧化碲");
@@ -229,7 +227,6 @@ public class MaterialLang {
         provider.addMaterial(YtterbiumOxide, "Ytterbium Oxide", "氧化镱");
         provider.addMaterial(LutetiumOxide, "Lutetium Oxide", "氧化镥");
         provider.addMaterial(ManganeseSulfate, "Manganese Sulfate", "硫酸锰");
-        provider.addMaterial(PotassiumSulfate, "Potassium Sulfate", "硫酸钾");
         provider.addMaterial(AmmoniumCyanate, "Ammonium Cyanate", "氰酸铵");
         provider.addMaterial(Carbamide, "Carbamide", "碳酰胺");
         provider.addMaterial(NeodymiumDopedYttriumOxide, "Neodymium Doped Yttrium Oxide", "钕掺杂的氧化钇");
@@ -268,7 +265,6 @@ public class MaterialLang {
         provider.addMaterial(HydroxylammoniumSulfate, "Hydroxylammonium Sulfate", "硫酸羟铵");
         provider.addMaterial(PotassiumHydroxylaminedisulfonate, "Potassium Hydroxylaminedisulfonate", "羟胺二磺酸钾");
         provider.addMaterial(PotassiumBisulfite, "Potassium Bisulfite", "亚硫酸氢钾");
-        provider.addMaterial(PotassiumCarbonate, "Potassium Carbonate", "碳酸钾");
         provider.addMaterial(NitrousAcid, "Nitrous Acid", "亚硝酸");
         provider.addMaterial(PotassiumNitrite, "Potassium Nitrite", "亚硝酸钾");
         provider.addMaterial(BariumDichloride, "Barium Dichloride", "三氯化钡");
@@ -411,12 +407,10 @@ public class MaterialLang {
         provider.addMaterial(PMMA, "Polymethylmethacrylate (PMMA)", "聚甲基丙烯酸甲酯（PMMA）");
         provider.addMaterial(PedotTMA, "PEDOT-TMA", "PEDOT-TMA");
         provider.addMaterial(TetramethylammoniumHydroxide, "Tetramethylammonium Hydroxide (TMAH)", "四甲基氢氧化铵（TMAH）");
-        provider.addMaterial(PotassiumHydroxide, "Potassium Hydroxide", "氢氧化钾");
         provider.addMaterial(PotassiumBromate, "Potassium Bromate", "溴酸钾");
         provider.addMaterial(MalonicAcid, "Malonic Acid", "丙二酸");
         provider.addMaterial(ChloroaceticAcid, "Chloroacetic Acid", "氯乙酸");
         provider.addMaterial(Trichloroethylene, "Trichloroethylene", "三氯乙烯");
-        provider.addMaterial(Dichloroethane, "1,2-Dichloroethane", "1,2-二氯乙烷");
         provider.addMaterial(HydrobromicAcid, "Hydrobromic Acid", "氢溴酸");
         provider.addMaterial(Butanediol, "Butanediol", "1,4-丁二醇");
         provider.addMaterial(Diacetyl, "Diacetyl", "丁二酮");
@@ -433,7 +427,6 @@ public class MaterialLang {
         provider.addMaterial(Acetylene, "Acetylene", "乙炔");
         provider.addMaterial(Cyclooctadiene, "Cyclooctadiene", "环辛二烯");
         provider.addMaterial(Pyridine, "Pyridine", "吡啶");
-        provider.addMaterial(Formaldehyde, "Formaldehyde", "甲醛");
         provider.addMaterial(Dibenzylideneacetone, "Dibenzylideneacetone", "二苄基丙酮");
         provider.addMaterial(Benzaldehyde, "Benzaldehyde", "苯甲醛");
         provider.addMaterial(BenzoylChloride, "Benzoyl Chloride", "苯甲酰氯");
@@ -499,7 +492,6 @@ public class MaterialLang {
         provider.addMaterial(Bromodihydrothiine, "Bromodihydrothiine", "溴二氢硫醚");
         provider.addMaterial(Chloroethane, "Chloroethane", "氯乙烷");
         provider.addMaterial(Dibromoacrolein, "Dibromoacrolein", "二溴丙烯醛");
-        provider.addMaterial(FormicAcid, "Formic Acid", "甲酸");
         provider.addMaterial(SodiumFormate, "Sodium Formate", "甲酸钠");
         provider.addMaterial(Ethylhexanol, "2-Ethylhexanol", "2-乙基己醇");
         provider.addMaterial(DiethylhexylPhosphoricAcid, "Di-(2-ethylhexyl)phosphoric Acid", "二-(2-乙基己基)磷酸");

@@ -167,14 +167,15 @@ public class FuelRecipes {
                 .EUt(-V[LV])
                 .save(provider);
 
-        ACIDIC_FUEL_CELL_FUELS.recipeBuilder(FormicAcid.getName())
-                .inputFluids(FormicAcid.getFluid(1))
-                .inputFluids(Hydrogen.getFluid(8))
-                .inputFluids(Oxygen.getFluid(4))
-                .outputFluids(Water.getFluid(4))
-                .duration(10)
-                .EUt(-V[LV])
-                .save(provider);
+        // TODO: 等待GTM更新后添加回来
+//        ACIDIC_FUEL_CELL_FUELS.recipeBuilder(FormicAcid.getName())
+//                .inputFluids(FormicAcid.getFluid(1))
+//                .inputFluids(Hydrogen.getFluid(8))
+//                .inputFluids(Oxygen.getFluid(4))
+//                .outputFluids(Water.getFluid(4))
+//                .duration(10)
+//                .EUt(-V[LV])
+//                .save(provider);
 
         ACIDIC_FUEL_CELL_FUELS.recipeBuilder(AceticAcid.getName())
                 .inputFluids(AceticAcid.getFluid(4))
