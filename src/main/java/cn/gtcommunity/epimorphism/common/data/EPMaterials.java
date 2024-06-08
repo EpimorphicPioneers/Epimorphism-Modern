@@ -106,7 +106,6 @@ public class EPMaterials {
     public static Material Fullerene;
     public static Material GeodesicPolyarene;
     public static Material TiAlCatalyst;
-    public static Material PotassiumCyanide;
     public static Material PotassiumBromide;
     public static Material BismuthVanadate;
     public static Material BismuthVanadateSolution;
@@ -168,7 +167,6 @@ public class EPMaterials {
     public static Material CalciumDifluoride;
     public static Material ManganeseDifluoride;
     public static Material CalciumCarbide;
-    public static Material CalciumHydroxide;
     public static Material SodiumTellurite;
     public static Material SeleniumDioxide;
     public static Material TelluriumDioxide;
@@ -230,7 +228,6 @@ public class EPMaterials {
     public static Material YtterbiumOxide;
     public static Material LutetiumOxide;
     public static Material ManganeseSulfate;
-    public static Material PotassiumSulfate;
     public static Material AmmoniumCyanate;
     public static Material Carbamide;
     public static Material NeodymiumDopedYttriumOxide;
@@ -269,7 +266,6 @@ public class EPMaterials {
     public static Material HydroxylammoniumSulfate;
     public static Material PotassiumHydroxylaminedisulfonate;
     public static Material PotassiumBisulfite;
-    public static Material PotassiumCarbonate;
     public static Material NitrousAcid;
     public static Material PotassiumNitrite;
     public static Material BariumDichloride;
@@ -420,12 +416,10 @@ public class EPMaterials {
     public static Material PMMA;
     public static Material PedotTMA;
     public static Material TetramethylammoniumHydroxide;
-    public static Material PotassiumHydroxide;
     public static Material PotassiumBromate;
     public static Material MalonicAcid;
     public static Material ChloroaceticAcid;
     public static Material Trichloroethylene;
-    public static Material Dichloroethane;
     public static Material HydrobromicAcid;
     public static Material Butanediol;
     public static Material Diacetyl;
@@ -442,7 +436,6 @@ public class EPMaterials {
     public static Material Acetylene;
     public static Material Cyclooctadiene;
     public static Material Pyridine;
-    public static Material Formaldehyde;
     public static Material Dibenzylideneacetone;
     public static Material Benzaldehyde;
     public static Material BenzoylChloride;
@@ -507,7 +500,6 @@ public class EPMaterials {
     public static Material Bromodihydrothiine;
     public static Material Chloroethane;
     public static Material Dibromoacrolein;
-    public static Material FormicAcid;
     public static Material SodiumFormate;
     public static Material Ethylhexanol;
     public static Material DiethylhexylPhosphoricAcid;

@@ -27,7 +27,6 @@ public class EPMaterialPropertyAddition {
         PalladiumRaw.setFormula("PdCl2?");
 
         //  GT Properties
-        Iodine.setProperty(DUST, new DustProperty());
         Iodine.setProperty(FLUID, getFluidProperty());
 
         Germanium.setProperty(INGOT, new IngotProperty());
@@ -119,7 +118,6 @@ public class EPMaterialPropertyAddition {
         Protactinium.setProperty(DUST, new DustProperty());
         Praseodymium.setProperty(DUST, new DustProperty());
 
-        Bromine.setProperty(FLUID, getFluidProperty());
         SodiumHydroxide.setProperty(FLUID, getFluidProperty());
         AmmoniumChloride.setProperty(FLUID, getFluidProperty());
         Calcium.setProperty(FLUID, getFluidProperty());

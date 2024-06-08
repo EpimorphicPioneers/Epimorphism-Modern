@@ -1,6 +1,5 @@
 package cn.gtcommunity.epimorphism.data.recipe.serialized.oreprocessing;
 
-import cn.gtcommunity.epimorphism.common.data.items.EPChemistryItem;
 import cn.gtcommunity.epimorphism.common.recipe.CPCasingCondition;
 import cn.gtcommunity.epimorphism.data.recipe.EPRecipeUtil;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -305,15 +304,16 @@ public class NaquadahProcessing {
                 .save(provider);
 
         //  PdCl2 + C + CH2O + HCl -> Pd-C catalyst
-        CHEMICAL_RECIPES.recipeBuilder("palladium_on_carbon")
-                .inputItems(dust, PalladiumChloride)
-                .inputItems(dust, Carbon)
-                .inputFluids(Formaldehyde.getFluid(1000))
-                .inputFluids(HydrochloricAcid.getFluid(1000))
-                .outputItems(dust, PalladiumOnCarbon)
-                .EUt(VH[EV])
-                .duration(100)
-                .save(provider);
+        // TODO: 等待GTM更新后添加回来
+//        CHEMICAL_RECIPES.recipeBuilder("palladium_on_carbon")
+//                .inputItems(dust, PalladiumChloride)
+//                .inputItems(dust, Carbon)
+//                .inputFluids(Formaldehyde.getFluid(1000))
+//                .inputFluids(HydrochloricAcid.getFluid(1000))
+//                .outputItems(dust, PalladiumOnCarbon)
+//                .EUt(VH[EV])
+//                .duration(100)
+//                .save(provider);
     }
 
     private static void NaquadriaResidueSolutionCycle(Consumer<FinishedRecipe> provider) {

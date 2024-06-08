@@ -1,7 +1,6 @@
 package cn.gtcommunity.epimorphism.common.data.materials;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
@@ -86,14 +85,6 @@ public class EPOrganicChemistryMaterials {
                 .components(Nitrogen, 1, Carbon, 4, Hydrogen, 12, Oxygen, 1, Hydrogen, 1)
                 .buildAndRegister()
                 .setFormula("N(CH3)4OH", true);
-        //  25009 Potassium Hydroxide
-        PotassiumHydroxide = Builder("potassium_hydroxide")
-                .dust()
-                .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(633))
-                .color(0xFA9849)
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
-                .buildAndRegister();
         //  25010 Potassium Bromate
         PotassiumBromate = Builder("potassium_bromate")
                 .dust()
@@ -124,13 +115,6 @@ public class EPOrganicChemistryMaterials {
                 .color(0xB685B1)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 2, Hydrogen, 1, Chlorine, 3)
-                .buildAndRegister();
-        //  25014 Dichloroethane
-        Dichloroethane = Builder("dichloroethane")
-                .fluid()
-                .color(0xDAAED3)
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Carbon, 2, Hydrogen, 4, Chlorine, 2)
                 .buildAndRegister();
         //  25015 Hydrobromic Acid
         HydrobromicAcid = Builder("hydrobromic_acid")
@@ -246,12 +230,6 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x716449)
                 .components(Carbon, 10, Hydrogen, 8, Nitrogen, 2)
-                .buildAndRegister();
-        //  25031 Formaldehyde
-        Formaldehyde = Builder("formaldehyde")
-                .fluid()
-                .color(0x858F40)
-                .components(Carbon, 1, Hydrogen, 2, Oxygen, 1)
                 .buildAndRegister();
         //  25032 Dibenzylideneacetone
         Dibenzylideneacetone = Builder("dibenzylideneacetone")
@@ -726,12 +704,6 @@ public class EPOrganicChemistryMaterials {
                 .fluid()
                 .color(0x7C4660)
                 .components(Carbon, 2, Hydrogen, 2, Bromine, 2, Oxygen, 2)
-                .buildAndRegister();
-        //  25097 Formic Acid
-        FormicAcid = Builder("formic_acid")
-                .fluid()
-                .color(0xFFAA77)
-                .components(Carbon, 1, Hydrogen, 2, Oxygen, 2)
                 .buildAndRegister();
         //  25098 Sodium Formate
         SodiumFormate = Builder("sodium_formate")
