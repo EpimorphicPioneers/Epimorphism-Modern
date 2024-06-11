@@ -1,21 +1,21 @@
 {
   "required": true,
-  "package": "cn.gtcommunity.epimorphism.core.mixins",
+  "package": "com.epimorphismmc.epimorphism.core.mixins",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "cn.gtcommunity.epimorphism.core.mixins.EPMixinPlugin",
+  "plugin": "com.epimorphismmc.epimorphism.core.mixins.EPMixinPlugin",
   "minVersion": "0.8",
   "client": [
-    "accessors.client.MultiPlayerGameModeAccessor",
-    "mc.ModelManagerMixin"
+      "accessors.client.MultiPlayerGameModeAccessor",
+      "mc.ModelManagerMixin"
   ],
   "mixins": [
-    "accessors.BlockLootSubProviderAccessor",
-    "accessors.BlockModelGeneratorsAccessor",
-    "accessors.GTRecipeTypeAccessor",
-    "gtm.GTRecipeBuilderMixin",
-    "gtm.MetaTileEntityLoaderMixin",
-    "gtm.RendererGlassBlockMixin",
-    "mc.BlockGlassMixin"
+      "accessors.BlockLootSubProviderAccessor",
+      "accessors.BlockModelGeneratorsAccessor",
+      "accessors.GTRecipeTypeAccessor",
+      "gtm.GTRecipeBuilderMixin",
+      "gtm.MetaTileEntityLoaderMixin",
+      "gtm.RendererGlassBlockMixin",
+      "mc.BlockGlassMixin"
   ],
   "injectors": {
     "defaultRequire": 1

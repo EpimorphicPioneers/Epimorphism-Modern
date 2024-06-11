@@ -1,1 +1,1 @@
-cn.gtcommunity.epimorphism.integration.kjs.EPKubejsPlugin
+kjs.integration.com.epimorphismmc.epimorphism.EPKubejsPlugin
