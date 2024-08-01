@@ -69,25 +69,25 @@ public class ItemLang {
         provider.addItemWithTooltip(
                 GOOWARE_PROCESSOR,
                 "Gooware Processor",
-                "生物活性处理器",
+                "化学扩散处理器",
                 "Viscous organic slurry adheres the board",
                 "§7粘稠的有机浆液附着于表面");
         provider.addItemWithTooltip(
                 GOOWARE_ASSEMBLY,
                 "Gooware Assembly",
-                "生物活性处理器集群",
+                "化学扩散处理器集群",
                 "Seems to be able to hear whispers",
                 "§7似乎能听到窃窃私语");
         provider.addItemWithTooltip(
                 GOOWARE_COMPUTER,
                 "Gooware Supercomputer",
-                "生物活性超级计算机",
+                "化学扩散超级计算机",
                 "Slime mold covered in metal",
                 "§7金属之间布满了黏菌");
         provider.addItemWithTooltip(
                 GOOWARE_MAINFRAME,
                 "Gooware Mainframe",
-                "生物活性主机",
+                "化学扩散主机",
                 "Microbial Awareness Network",
                 "§7菌群意识网络");
 

@@ -322,6 +322,45 @@ public class MachineLang {
                 "核聚变反应堆 MK5是一台大型多方块结构，用于融合元素形成更重的元素。它只能使用§aUEV§r等级的能源仓。每个能源仓可增加160M EU的能量缓存，最大能量缓存为2560M。");
 
         provider.addBlockWithTooltip(
+                DISSOLUTION_TANK::getBlock,
+                "溶解罐",
+                List.of(),
+                List.of()
+        );
+
+        provider.addBlockWithTooltip(
+                DIMENSIONALLY_TRANSCENDENT_PLASMA_FORGE::getBlock,
+                "超维度等离子锻炉",
+                List.of(),
+                List.of()
+        );
+
+        provider.addBlockWithTooltip(
+                NANO_FORGE::getBlock,
+                "纳米锻炉",
+                List.of(),
+                List.of()
+        );
+
+        provider.addBlockWithTooltip(
+                MEGA_CHEMICAL_REACTOR::getBlock,
+                "巨型化学反应釜",
+                List.of(),
+                List.of()
+        );
+
+        provider.addBlockWithTooltip(
+                COKING_TOWER::getBlock,
+                "焦化塔",
+                List.of(),
+                List.of()
+        );
+
+
+
+        // ############################################################################################################
+        //
+        provider.addBlockWithTooltip(
                 INFINITY_CRATE::getBlock,
                 "无尽板条箱",
                 "§7Can Hold §R 2^31 1§7 Items Per Slot, And Cannot Store Items With §eNBT",
@@ -334,8 +373,53 @@ public class MachineLang {
                 tier -> "%s避雷针 %s".formatted(CVLVH[tier], VLVT[tier]),
                 tiersBetween(LuV, UV));
 
+        provider.addTieredMachineName("nuclear_reactor", "核反应堆", tiersBetween(EV, UV));
+        provider.addBlockWithTooltip(
+                "nuclear_reactor",
+                List.of(),
+                List.of());
+
+        provider.addTieredMachineName("reactor_chamber", "核反应仓", tiersBetween(EV, UV));
+        provider.addBlockWithTooltip(
+                "reactor_chamber",
+                List.of(),
+                List.of());
+
+        provider.addTieredMachineName("naquadah_reactor", "硅岩反应堆", tiersBetween(EV, UV));
+        provider.addBlockWithTooltip(
+                "naquadah_reactor",
+                List.of(),
+                List.of(
+                        "",
+                        ""));
+
+        provider.addTieredMachineName("rocket_engine", "火箭引擎", tiersBetween(EV, LuV));
+        provider.addBlockWithTooltip(
+                "rocket_engine",
+                List.of(),
+                List.of());
+
+        provider.addTieredMachineName("semiliquid_generator", "半流质发电机", tiersBetween(LV, HV));
+        provider.addBlockWithTooltip(
+                "semiliquid_generator",
+                List.of(),
+                List.of());
+
+        provider.addTieredMachineName("acid_fuel_cell", "酸性燃料电池", tiersBetween(LV, HV));
+        provider.addBlockWithTooltip(
+                "acid_fuel_cell",
+                List.of(),
+                List.of());
+
+        provider.addTieredMachineName("dehydrator", "脱水机", tiersBetween(MV, ZPM));
+        provider.addBlockWithTooltip(
+                "dehydrator",
+                List.of(),
+                List.of());
+
         // ############################################################################################################
         // Hatch
+        // No Tiers
         provider.addBlockWithTooltip(
                 INFINITE_WATER_HATCH::getBlock,
                 "无限水仓",
@@ -343,35 +427,18 @@ public class MachineLang {
                         "§7Minecraft Exclusive!",
                         "§bUnlimited Water For Multiblocks!",
                         "§4WARNING: Water In This Hatch Cannot Be Pumped Out!"),
-                List.of("§7Minecraft 独家技术！", "§b为多方块结构提供无穷无尽的水！", "§4警告：该仓室中的水无法被抽出！"));
-
-        provider.addTieredMachineName("intake_hatch", "进气仓", tiersBetween(IV, UHV));
-        provider.addBlockWithTooltip(
-                "intake_hatch",
-                List.of("§7Inhale air from your surroundings.", "§lDo not block the air intake!"),
-                List.of("§7从周围环境吸入空气。", "§c§l切 勿 阻 隔 进 气 口！"));
-
-        provider.addTieredMachineName("neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
-        provider.addBlockWithTooltip(
-                "neutron_accelerator",
                 List.of(
-                        "§7Input The Eu And Accelerate The Neutron!",
-                        "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"),
-                List.of("§7输入EU，加速中子！", "每点EU都会转化为10～20eV中子动能"));
+                        "§7Minecraft 独家技术！",
+                        "§b为多方块结构提供无穷无尽的水！",
+                        "§4警告：该仓室中的水无法被抽出！"));
 
         provider.addBlockWithTooltip(
                 NEUTRON_SENSOR::getBlock,
                 "中子传感器",
-                "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It.",
-                "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。");
-
-        provider.addTieredMachineName("radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
-        provider.addBlockWithTooltip(
-                "radiation_hatch",
                 List.of(
-                        "Input Radioactive Materials For Multiblock",
-                        "§7Use A Screwdriver To Set The Suppression Level"),
-                List.of("为多方块结构输入放射性物品", "§7使用螺丝刀设置抑制等级"));
+                        "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It."),
+                List.of(
+                        "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。"));
 
         provider.addBlockWithTooltip(
                 GRIND_BALL_HATCH::getBlock,
@@ -380,8 +447,57 @@ public class MachineLang {
                         "§7Watch Your Fingers!",
                         "§fGrind Balls Are Provided To Use For Multiblocks。",
                         "§eAllows The Input Of Grinding Balls From The Input Bus。"),
-                List.of("§7小心你的手指！", "§f为多方块结构提供研磨球来使用。", "§e允许从输入总线输入研磨球。"));
+                List.of("§7小心你的手指！",
+                        "§f为多方块结构提供研磨球来使用",
+                        "§e允许从输入总线输入研磨球"));
 
-        provider.addBlockWithTooltip(TANK_ACCESS_HATCH::getBlock, "储罐访问仓", List.of(), List.of());
+        provider.addBlockWithTooltip(
+                TANK_ACCESS_HATCH::getBlock,
+                "储罐访问仓",
+                List.of(
+                        "§fME Network Fluid Access and I/O for Multiblocks"
+                ),
+                List.of(
+                        "§f为多方块结构提供ME网络流体交互支持"
+                ));
+        //Tiers
+        provider.addTieredMachineName("neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
+        provider.addBlockWithTooltip(
+                "neutron_accelerator",
+                List.of(
+                        "§7Input The Eu And Accelerate The Neutron!",
+                        "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"),
+                List.of(
+                        "§7输入EU，加速中子！",
+                        "每点EU都会转化为10～20eV中子动能"));
+
+        provider.addTieredMachineName("intake_hatch", "进气仓", tiersBetween(IV, UHV));
+        provider.addBlockWithTooltip(
+                "intake_hatch",
+                List.of(
+                        "§7Inhale air from your surroundings.",
+                        "§lDo not block the air intake!"),
+                List.of(
+                        "§7从周围环境吸入空气。",
+                        "§c§l切 勿 阻 隔 进 气 口！"));
+
+
+        provider.addTieredMachineName("radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
+        provider.addBlockWithTooltip(
+                "radiation_hatch",
+                List.of(
+                        "Input Radioactive Materials For Multiblock",
+                        "§7Use A Screwdriver To Set The Suppression Level"),
+                List.of(
+                        "为多方块结构输入放射性物品",
+                        "§7使用螺丝刀设置抑制等级"));
+
+        provider.addTieredMachineName("reinforced_rotor_holder", "强化转子支架", tiersBetween(IV, UEV));
+        provider.addBlockWithTooltip(
+                "reinforced_rotor_holder",
+                List.of(),
+                List.of());
+
+
     }
 }

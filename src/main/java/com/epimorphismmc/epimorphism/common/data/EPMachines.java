@@ -298,7 +298,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.NEUTRON_SENSOR)
             .overlayTieredHullRenderer("neutron_sensor")
-            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc"))
+            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc.0"))
             .register();
 
     public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredEPMachines(
