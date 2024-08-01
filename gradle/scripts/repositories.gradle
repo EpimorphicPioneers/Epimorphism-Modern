@@ -1,4 +1,7 @@
 repositories {
+    flatDir {
+        dir "libs"
+    }
     mavenLocal()
     mavenCentral()
     maven { url = "https://api.modrinth.com/maven" } // LazyDFU, Jade
@@ -45,4 +48,8 @@ repositories {
     maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
     maven { url 'https://jitpack.io' } // Mixin Extras, Fabric ASM
     maven { url = "https://server.cjsah.net:1002/maven/" }
+    maven { // ModernUI
+        name 'IzzelAliz Maven'
+        url 'https://maven.izzel.io/releases/'
+    }
 }
