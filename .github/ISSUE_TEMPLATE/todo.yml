@@ -1,0 +1,23 @@
+name: TODO
+description: Add a to-do list for a project
+title: "[TODO] "
+labels:
+  - todo
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is an internal `issue` template for a project, please do not use this template!
+
+  - type: input
+    attributes:
+      label: Matters to be added to TODO
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe what this TODO will do
+    validations:
+      required: false

@@ -1,0 +1,67 @@
+name: Bug Report
+description: Create a report to help us improve.
+title: "[Bug] "
+labels:
+  - bug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filling in this `issue`, please make sure that there are no similar or duplicate `issues` that have been opened.
+
+  - type: dropdown
+    id: system
+    attributes:
+      label: OS Version
+      options:
+        - Linux
+        - Windows
+        - MacOS
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version Details - 版本信息
+      description: |
+        What version of Epimorphism-Modern do you use?
+      placeholder: Epimorphism-Modern version
+    validations:
+      required: true
+
+  - type: textarea
+    id: exist
+    attributes:
+      label: Existing behavior
+      description: |
+        Please describe the problem you have encountered carefully
+    validations:
+      required: true
+
+  - type: textarea
+    id: expect
+    attributes:
+      label: Expected behavior
+      description: |
+        Please describe in detail the results you wish to achieve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: |
+        How do you trigger this bug? Please walk us through it step by step.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: know
+    attributes:
+      label: This issue is unique
+      options:
+        - label: I have searched the issue tracker and did not find an issue describing my bug.
+          required: true
