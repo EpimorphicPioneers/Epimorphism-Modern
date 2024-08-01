@@ -1,8 +1,5 @@
 package com.epimorphismmc.epimorphism.core.mixins;
 
-import com.lowdragmc.lowdraglib.Platform;
-import com.lowdragmc.lowdraglib.core.mixins.MixinPluginShared;
-
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -21,10 +18,6 @@ public class EPMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.contains(
-                "com.epimorphismmc.epimorphism.core.mixins.shimmer.ForgePlatformHelperMixin")) {
-            return Platform.isDevEnv() && MixinPluginShared.isClassFound("com.lowdragmc.shimmer.Utils");
-        }
         return true;
     }
 
