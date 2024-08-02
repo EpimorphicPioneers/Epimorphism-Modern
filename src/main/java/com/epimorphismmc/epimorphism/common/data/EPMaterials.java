@@ -12,9 +12,7 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPOrganicChemistryMat
 import com.epimorphismmc.epimorphism.common.data.materials.EPSecondDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPUnknownCompositionMaterials;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 
 public class EPMaterials {
     public EPMaterials() {}

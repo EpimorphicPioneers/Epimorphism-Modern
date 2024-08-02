@@ -11,14 +11,14 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.api.item.tool.ToolHelper;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
-
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.pipelike.cable.Insulation;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.world.item.ItemStack;
 
 import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
 
@@ -97,35 +97,52 @@ public class EPCreativeModeTabs {
             .register();
     public static final RegistryEntry<CreativeModeTab> EP_MATERIAL_BLOCK = registrate()
             .defaultCreativeTab("material_block", builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_block", registrate()))
-                    .title(registrate().addLang("itemGroup", Epimorphism.id("material_block"), Epimorphism.NAME + " | Material Block"))
+                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(
+                            "material_block", registrate()))
+                    .title(registrate()
+                            .addLang(
+                                    "itemGroup",
+                                    Epimorphism.id("material_block"),
+                                    Epimorphism.NAME + " | Material Block"))
                     .icon(() -> ChemicalHelper.get(TagPrefix.block, EPMaterials.PedotTMA))
                     .withTabsBefore(EP_CHEMISTRY.getKey())
-                    .build()
-            )
+                    .build())
             .register();
     public static final RegistryEntry<CreativeModeTab> EP_MATERIAL_ITEM = registrate()
             .defaultCreativeTab("material_item", builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_item", registrate()))
-                    .title(registrate().addLang("itemGroup", Epimorphism.id("material_item"), Epimorphism.NAME + " | Material Item"))
+                    .displayItems(
+                            new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_item", registrate()))
+                    .title(registrate()
+                            .addLang(
+                                    "itemGroup",
+                                    Epimorphism.id("material_item"),
+                                    Epimorphism.NAME + " | Material Item"))
                     .icon(() -> ChemicalHelper.get(TagPrefix.ingot, EPMaterials.PedotPSS))
                     .withTabsBefore(EP_MATERIAL_BLOCK.getKey())
-                    .build()
-            )
+                    .build())
             .register();
     public static final RegistryEntry<CreativeModeTab> EP_MATERIAL_PIPE = registrate()
             .defaultCreativeTab("material_pipe", builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_pipe", registrate()))
-                    .title(registrate().addLang("itemGroup", Epimorphism.id("material_pipe"), Epimorphism.NAME + " | Material Pipe"))
+                    .displayItems(
+                            new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_pipe", registrate()))
+                    .title(registrate()
+                            .addLang(
+                                    "itemGroup",
+                                    Epimorphism.id("material_pipe"),
+                                    Epimorphism.NAME + " | Material Pipe"))
                     .icon(() -> ChemicalHelper.get(Insulation.WIRE_DOUBLE.tagPrefix, EPMaterials.PedotTMA))
                     .withTabsBefore(EP_MATERIAL_ITEM.getKey())
-                    .build()
-            )
+                    .build())
             .register();
     public static final RegistryEntry<CreativeModeTab> EP_MATERIAL_FLUID = registrate()
             .defaultCreativeTab("material_fluid", builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("material_fluid", registrate()))
-                    .title(registrate().addLang("itemGroup", Epimorphism.id("material_fluid"), Epimorphism.NAME + " | Material Fluid"))
+                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(
+                            "material_fluid", registrate()))
+                    .title(registrate()
+                            .addLang(
+                                    "itemGroup",
+                                    Epimorphism.id("material_fluid"),
+                                    Epimorphism.NAME + " | Material Fluid"))
                     .icon(() -> {
                         ItemStack stack = GTItems.FLUID_CELL.asStack();
                         CompoundTag tag = stack.getOrCreateTag();
@@ -136,20 +153,19 @@ public class EPCreativeModeTabs {
                         return stack;
                     })
                     .withTabsBefore(EP_MATERIAL_PIPE.getKey())
-                    .build()
-            )
+                    .build())
             .register();
 
     public static final RegistryEntry<CreativeModeTab> EP_TOOL = registrate()
             .defaultCreativeTab("tool", builder -> builder
-                    .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("tool", registrate()))
-                    .title(registrate().addLang("itemGroup", Epimorphism.id("tool"), Epimorphism.NAME + " | Tool"))
+                    .displayItems(
+                            new GTCreativeModeTabs.RegistrateDisplayItemsGenerator("tool", registrate()))
+                    .title(registrate()
+                            .addLang("itemGroup", Epimorphism.id("tool"), Epimorphism.NAME + " | Tool"))
                     .icon(() -> ToolHelper.get(GTToolType.WRENCH, EPMaterials.Draconium))
                     .withTabsBefore(EP_MATERIAL_PIPE.getKey())
-                    .build()
-            )
+                    .build())
             .register();
-
 
     public static void init() {
         /**/

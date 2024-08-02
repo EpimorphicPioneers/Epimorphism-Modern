@@ -632,6 +632,7 @@ public class EPItems {
     static {
         registrate().creativeModeTab(EPCreativeModeTabs.EP_TOOL);
     }
+
     public static final ItemEntry<VajraItem> VAJRA = registrate()
             .item("tool.vajra", VajraItem::new)
             .properties(p -> p.stacksTo(1))
