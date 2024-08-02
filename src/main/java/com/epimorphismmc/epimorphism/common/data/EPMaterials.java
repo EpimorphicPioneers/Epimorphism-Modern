@@ -1,5 +1,6 @@
 package com.epimorphismmc.epimorphism.common.data;
 
+import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.materials.EPBiologicalMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPElementMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPFirstDegreeMaterials;
@@ -13,6 +14,7 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPUnknownCompositionM
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 
 public class EPMaterials {
     public EPMaterials() {}
@@ -748,6 +750,6 @@ public class EPMaterials {
     }
 
     public static Material.Builder Builder(String name) {
-        return new Material.Builder(GTCEu.id(name));
+        return new Material.Builder(Epimorphism.id(name));
     }
 }

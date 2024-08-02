@@ -26,10 +26,13 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.data.chemical.Element;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 
+import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
+import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -97,6 +100,12 @@ public class CommonProxy implements ICommonProxyBase {
     @Override
     public void registerMaterials(MaterialEvent event) {
         EPMaterials.init();
+    }
+
+    @Override
+    public void registerMaterialRegistry(MaterialRegistryEvent event) {
+        Epimorphism.registrate().creativeModeTab(GTCreativeModeTabs.MATERIAL_ITEM);
+        MaterialRegistryManager.getInstance().createRegistry(Epimorphism.MOD_ID);
     }
 
     @SubscribeEvent

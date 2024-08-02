@@ -618,18 +618,6 @@ public class EPItems {
                     itemStack -> OrganismCaptureBehavior.hasEntity(itemStack) ? 1f : 0f))
             .register();
 
-    public static final ItemEntry<VajraItem> VAJRA = registrate()
-            .item("tool.vajra", VajraItem::new)
-            .model(EPModels.simpleCustomModel(
-                    Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
-            .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
-            .register();
-
-    public static final ItemEntry<ComponentItem> MITTS = registerItemWithTooltip("tool.mitts", 1)
-            .lang("Mitts")
-            .properties(p -> p.stacksTo(1).durability(2000))
-            .register();
-
     // Grind Ball
     public static ItemEntry<GrindBallItem> GRIND_BALL = registrate()
             .item("grind_ball", GrindBallItem::new)
@@ -638,6 +626,23 @@ public class EPItems {
             .model(EPModels.simpleCustomModel(
                     new ResourceLocation("item/generated"), Epimorphism.id("item/grind_ball/base")))
             .onRegister(GTItems.attach(new GrindBallBehaviour()))
+            .register();
+
+    // Tools
+    static {
+        registrate().creativeModeTab(EPCreativeModeTabs.EP_TOOL);
+    }
+    public static final ItemEntry<VajraItem> VAJRA = registrate()
+            .item("tool.vajra", VajraItem::new)
+            .properties(p -> p.stacksTo(1))
+            .model(EPModels.simpleCustomModel(
+                    Epimorphism.id("item/tool_vajra"), Epimorphism.id("item/tool.vajra")))
+            .onRegister(attach(ElectricStats.createElectricItem(20_000_000_000L, GTValues.UV)))
+            .register();
+
+    public static final ItemEntry<ComponentItem> MITTS = registerItemWithTooltip("tool.mitts", 1)
+            .lang("Mitts")
+            .properties(p -> p.stacksTo(1).durability(2000))
             .register();
 
     private EPItems() {
