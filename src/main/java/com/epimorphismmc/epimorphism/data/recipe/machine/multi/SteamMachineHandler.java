@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.configurable;
+package com.epimorphismmc.epimorphism.data.recipe.machine.multi;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 
@@ -16,12 +16,13 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class RecipeAddition {
+public class SteamMachineHandler {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         steelSteamMultiblocks(provider);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private static void steelSteamMultiblocks(Consumer<FinishedRecipe> provider) {
         if (ConfigHolder.INSTANCE.machines.steelSteamMultiblocks) {
             VanillaRecipeHelper.addShapedRecipe(

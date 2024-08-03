@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
@@ -9,6 +9,9 @@ import java.util.function.Consumer;
 
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 
+/**
+ * 通用化学燃料相关配方
+ */
 public class UniversalChemicalFuelHandler {
 
     public static void init(GTRecipeBuilder recipeBuilder, Consumer<FinishedRecipe> provider) {

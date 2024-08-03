@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 import com.epimorphismmc.epimorphism.common.recipe.TierCasingCondition;
@@ -25,7 +25,6 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -33,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import it.unimi.dsi.fastutil.objects.*;
 import lombok.Data;
@@ -48,6 +48,9 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
 
+/**
+ * 部件装配线相关配方
+ */
 public class ComponentAsslineRecipeHandler {
     public static CraftingComponent.Component[] craftComponents;
     private static final Object2IntLinkedOpenHashMap<Item> componentItems =
@@ -305,7 +308,7 @@ public class ComponentAsslineRecipeHandler {
 
     private static void addFluidToList(List<FluidIngredient> list, FluidStack fluidStack) {
         var fluid = fluidStack.getFluid();
-        var tag = TagUtil.createFluidTag(BuiltInRegistries.FLUID.getKey(fluid).getPath());
+        var tag = TagUtil.createFluidTag(ForgeRegistries.FLUIDS.getKey(fluid).getPath());
         boolean isWater = fluid == Fluids.WATER;
         for (var ingredient : list) {
             if (isWater && ingredient.test(fluidStack)) {
