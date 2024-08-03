@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.part.IntakeHatchPartMachine;

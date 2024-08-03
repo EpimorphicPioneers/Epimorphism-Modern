@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -32,6 +32,9 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
+/**
+ * 人造宝石相关配方
+ */
 public class BouleRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
         gem.executeHandler(provider, PropertyKey.GEM, BouleRecipeHandler::processCrystallization);
@@ -86,7 +89,7 @@ public class BouleRecipeHandler {
                 }
 
                 //  If okay, load its fluid components into recipe.
-                fluidInputs.add(componentMaterial.getFluid(amount * 1000));
+                fluidInputs.add(componentMaterial.getFluid(amount * 1000L));
             }
 
             //  If materials with no blast temperature property, then set it blast temperature to 1200K.

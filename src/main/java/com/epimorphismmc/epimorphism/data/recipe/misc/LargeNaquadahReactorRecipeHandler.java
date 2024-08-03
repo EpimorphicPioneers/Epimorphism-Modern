@@ -12,7 +12,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.Locale;
 import java.util.function.Consumer;
 
-public class LargeNaquadahReactorLoader {
+public class LargeNaquadahReactorRecipeHandler {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         coolant(provider);

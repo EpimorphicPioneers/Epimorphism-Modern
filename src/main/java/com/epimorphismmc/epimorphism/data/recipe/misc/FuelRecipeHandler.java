@@ -12,7 +12,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class FuelRecipes {
+public class FuelRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
         semiLiquidFuels(provider);
         rocketFuels(provider);

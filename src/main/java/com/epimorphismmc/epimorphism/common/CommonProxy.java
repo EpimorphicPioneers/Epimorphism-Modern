@@ -18,7 +18,7 @@ import com.epimorphismmc.epimorphism.common.data.EPRecipeConditions;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 import com.epimorphismmc.epimorphism.common.data.EPRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
-import com.epimorphismmc.epimorphism.data.recipe.generated.GTRecipeHandlerManager;
+import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
 
 import com.epimorphismmc.monomorphism.proxy.base.ICommonProxyBase;
 
