@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.circuits;
+package com.epimorphismmc.epimorphism.data.recipe.chains.circuits;
 
 import com.epimorphismmc.epimorphism.data.recipe.EPRecipeUtil;
 
@@ -17,7 +17,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
-public class OpticalCircuits {
+public class OpticalCircuitRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
 
         // Nb2O5 + Li2CO3 -> 2LiNbO3 + CO2

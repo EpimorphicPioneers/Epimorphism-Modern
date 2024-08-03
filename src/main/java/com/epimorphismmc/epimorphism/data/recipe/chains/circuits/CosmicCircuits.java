@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.circuits;
+package com.epimorphismmc.epimorphism.data.recipe.chains.circuits;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 

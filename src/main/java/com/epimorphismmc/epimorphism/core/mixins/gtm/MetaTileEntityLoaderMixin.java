@@ -1,6 +1,6 @@
 package com.epimorphismmc.epimorphism.core.mixins.gtm;
 
-import com.epimorphismmc.epimorphism.data.recipe.generated.ComponentAsslineRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAsslineRecipeHandler;
 
 import com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader;
 

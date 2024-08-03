@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.DustProperty;
@@ -19,6 +19,9 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
+/**
+ * 零件相关配方
+ */
 public class PartsRecipeHandler {
 
     private PartsRecipeHandler() {
@@ -26,8 +29,7 @@ public class PartsRecipeHandler {
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        laserEmitter.executeHandler(
-                provider, PropertyKey.FLUID, PartsRecipeHandler::processLaserEmitter);
+        laserEmitter.executeHandler(provider, PropertyKey.FLUID, PartsRecipeHandler::processLaserEmitter);
         catalyst.executeHandler(provider, PropertyKey.DUST, PartsRecipeHandler::processCatalyst);
     }
 

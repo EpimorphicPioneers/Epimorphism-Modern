@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.serialized.oreprocessing;
+package com.epimorphismmc.epimorphism.data.recipe.chains.oreprocessing;
 
 import com.epimorphismmc.epimorphism.common.recipe.CPCasingCondition;
 import com.epimorphismmc.epimorphism.data.recipe.EPRecipeUtil;

@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 import com.epimorphismmc.epimorphism.common.recipe.TierCasingCondition;
@@ -48,6 +48,9 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
 
+/**
+ * 部件装配线相关配方
+ */
 public class ComponentAsslineRecipeHandler {
     public static CraftingComponent.Component[] craftComponents;
     private static final Object2IntLinkedOpenHashMap<Item> componentItems =
@@ -59,8 +62,8 @@ public class ComponentAsslineRecipeHandler {
 
     static {
         CraftingComponent.initializeComponents();
-        craftComponents = new CraftingComponent.Component[] {
-            PUMP, MOTOR, FIELD_GENERATOR, SENSOR, PISTON, EMITTER, CONVEYOR, ROBOT_ARM
+        craftComponents = new CraftingComponent.Component[]{
+                PUMP, MOTOR, FIELD_GENERATOR, SENSOR, PISTON, EMITTER, CONVEYOR, ROBOT_ARM
         };
     }
 
@@ -344,7 +347,8 @@ public class ComponentAsslineRecipeHandler {
         return false;
     }
 
-    @Nullable private static FluidStack getFluidStack(UnificationEntry entry, int count) {
+    @Nullable
+    private static FluidStack getFluidStack(UnificationEntry entry, int count) {
         var stack = ChemicalHelper.getMaterial(entry);
         if (stack != null) {
             var material = stack.material();

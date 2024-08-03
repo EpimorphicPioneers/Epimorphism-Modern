@@ -1,4 +1,4 @@
-package com.epimorphismmc.epimorphism.data.recipe.generated;
+package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 
@@ -11,6 +11,9 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
+/**
+ * 封装物品相关配方
+ */
 public class WrapItemRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
         EPWrapItem.WRAP_CIRCUIT_MAP.object2ObjectEntrySet().fastForEach(entry -> {
