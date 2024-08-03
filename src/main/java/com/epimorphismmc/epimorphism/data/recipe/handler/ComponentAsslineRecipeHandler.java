@@ -25,7 +25,6 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -33,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import it.unimi.dsi.fastutil.objects.*;
 import lombok.Data;
@@ -62,8 +62,8 @@ public class ComponentAsslineRecipeHandler {
 
     static {
         CraftingComponent.initializeComponents();
-        craftComponents = new CraftingComponent.Component[]{
-                PUMP, MOTOR, FIELD_GENERATOR, SENSOR, PISTON, EMITTER, CONVEYOR, ROBOT_ARM
+        craftComponents = new CraftingComponent.Component[] {
+            PUMP, MOTOR, FIELD_GENERATOR, SENSOR, PISTON, EMITTER, CONVEYOR, ROBOT_ARM
         };
     }
 
@@ -308,7 +308,7 @@ public class ComponentAsslineRecipeHandler {
 
     private static void addFluidToList(List<FluidIngredient> list, FluidStack fluidStack) {
         var fluid = fluidStack.getFluid();
-        var tag = TagUtil.createFluidTag(BuiltInRegistries.FLUID.getKey(fluid).getPath());
+        var tag = TagUtil.createFluidTag(ForgeRegistries.FLUIDS.getKey(fluid).getPath());
         boolean isWater = fluid == Fluids.WATER;
         for (var ingredient : list) {
             if (isWater && ingredient.test(fluidStack)) {
@@ -347,8 +347,7 @@ public class ComponentAsslineRecipeHandler {
         return false;
     }
 
-    @Nullable
-    private static FluidStack getFluidStack(UnificationEntry entry, int count) {
+    @Nullable private static FluidStack getFluidStack(UnificationEntry entry, int count) {
         var stack = ChemicalHelper.getMaterial(entry);
         if (stack != null) {
             var material = stack.material();

@@ -25,59 +25,95 @@ public class SteamMachineHandler {
     @SuppressWarnings("DuplicatedCode")
     private static void steelSteamMultiblocks(Consumer<FinishedRecipe> provider) {
         if (ConfigHolder.INSTANCE.machines.steelSteamMultiblocks) {
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_separator"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_separator"),
                     STEAM_SEPARATOR.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_STEEL_SOLID,
-                    'G', new UnificationEntry(gear, Steel),
-                    'T', new UnificationEntry(rotor, TinAlloy));
+                    'P',
+                    CASING_STEEL_SOLID,
+                    'G',
+                    new UnificationEntry(gear, Steel),
+                    'T',
+                    new UnificationEntry(rotor, TinAlloy));
 
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_foundry"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_foundry"),
                     STEAM_FOUNDRY.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_STEEL_SOLID,
-                    'G', new UnificationEntry(gear, Cupronickel),
-                    'T', GTMachines.STEAM_ALLOY_SMELTER.left().asStack());
+                    'P',
+                    CASING_STEEL_SOLID,
+                    'G',
+                    new UnificationEntry(gear, Cupronickel),
+                    'T',
+                    GTMachines.STEAM_ALLOY_SMELTER.left().asStack());
 
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_pressor"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_pressor"),
                     STEAM_PRESSOR.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_STEEL_SOLID,
-                    'G', new UnificationEntry(gear, Brass),
-                    'T', GTMachines.STEAM_COMPRESSOR.left().asStack());
+                    'P',
+                    CASING_STEEL_SOLID,
+                    'G',
+                    new UnificationEntry(gear, Brass),
+                    'T',
+                    GTMachines.STEAM_COMPRESSOR.left().asStack());
         } else {
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_separator"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_separator"),
                     STEAM_SEPARATOR.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_BRONZE_BRICKS,
-                    'G', new UnificationEntry(gear, Steel),
-                    'T', new UnificationEntry(rotor, TinAlloy));
+                    'P',
+                    CASING_BRONZE_BRICKS,
+                    'G',
+                    new UnificationEntry(gear, Steel),
+                    'T',
+                    new UnificationEntry(rotor, TinAlloy));
 
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_foundry"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_foundry"),
                     STEAM_FOUNDRY.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_BRONZE_BRICKS,
-                    'G', new UnificationEntry(gear, Cupronickel),
-                    'T', GTMachines.STEAM_ALLOY_SMELTER.left().asStack());
+                    'P',
+                    CASING_BRONZE_BRICKS,
+                    'G',
+                    new UnificationEntry(gear, Cupronickel),
+                    'T',
+                    GTMachines.STEAM_ALLOY_SMELTER.left().asStack());
 
-            VanillaRecipeHelper.addShapedRecipe(provider, true, Epimorphism.id("steam_pressor"),
+            VanillaRecipeHelper.addShapedRecipe(
+                    provider,
+                    true,
+                    Epimorphism.id("steam_pressor"),
                     STEAM_PRESSOR.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
-                    'P', CASING_BRONZE_BRICKS,
-                    'G', new UnificationEntry(gear, Brass),
-                    'T', GTMachines.STEAM_COMPRESSOR.left().asStack());
+                    'P',
+                    CASING_BRONZE_BRICKS,
+                    'G',
+                    new UnificationEntry(gear, Brass),
+                    'T',
+                    GTMachines.STEAM_COMPRESSOR.left().asStack());
         }
     }
 }

@@ -29,7 +29,8 @@ public class PartsRecipeHandler {
     }
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        laserEmitter.executeHandler(provider, PropertyKey.FLUID, PartsRecipeHandler::processLaserEmitter);
+        laserEmitter.executeHandler(
+                provider, PropertyKey.FLUID, PartsRecipeHandler::processLaserEmitter);
         catalyst.executeHandler(provider, PropertyKey.DUST, PartsRecipeHandler::processCatalyst);
     }
 

@@ -89,7 +89,7 @@ public class BouleRecipeHandler {
                 }
 
                 //  If okay, load its fluid components into recipe.
-                fluidInputs.add(componentMaterial.getFluid(amount * 1000));
+                fluidInputs.add(componentMaterial.getFluid(amount * 1000L));
             }
 
             //  If materials with no blast temperature property, then set it blast temperature to 1200K.
