@@ -10,6 +10,11 @@ public class MiscLang {
         provider.addCN("itemGroup.epimorphism.physics", "Epimorphism丨物理学");
         provider.addCN("itemGroup.epimorphism.biology", "Epimorphism丨生物学");
         provider.addCN("itemGroup.epimorphism.circuit_reform", "Epimorphism丨电路板改革");
+        provider.addCN("itemGroup.epimorphism.material_block", "Epimorphism丨材料-方块");
+        provider.addCN("itemGroup.epimorphism.material_item", "Epimorphism丨材料-物品");
+        provider.addCN("itemGroup.epimorphism.material_pipe", "Epimorphism丨材料-管道");
+        provider.addCN("itemGroup.epimorphism.material_fluid", "Epimorphism丨材料-流体");
+        provider.addCN("itemGroup.epimorphism.tool", "Epimorphism丨工具");
 
         provider.add("epimorphism.universal.none", "None", "无");
 

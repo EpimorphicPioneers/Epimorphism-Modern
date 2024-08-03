@@ -356,7 +356,47 @@ public class MachineLang {
                 List.of()
         );
 
+        provider.add(
+                "block.epimorphism.high_pressure_steam_turbine",
+                "High Pressure Steam Turbine",
+                "高压蒸汽涡轮"
+        );
 
+        provider.add(
+                "block.epimorphism.supercritical_steam_turbine",
+                "Supercritical Steam Turbine",
+                "超临界蒸汽涡轮"
+        );
+
+        provider.add(
+                "block.epimorphism.steam_mega_turbine",
+                "Mega Steam Turbine",
+                "特大蒸汽涡轮"
+        );
+
+        provider.add(
+                "block.epimorphism.high_pressure_steam_mega_turbine",
+                "Mega High Pressure Steam Turbine",
+                "特大高压蒸汽涡轮"
+        );
+
+        provider.add(
+                "block.epimorphism.gas_mega_turbine",
+                "Mega Gas Turbine",
+                "特大燃气涡轮"
+        );
+
+        provider.add(
+                "block.epimorphism.plasma_mega_turbine",
+                "Mega Plasma Turbine",
+                "特大等离子涡轮"
+        );
+
+        provider.add(
+                "block.epimorphism.supercritical_steam_mega_turbine",
+                "Mega Supercritical Steam Turbine",
+                "特大超临界蒸汽涡轮"
+        );
 
         // ############################################################################################################
         //
@@ -373,13 +413,13 @@ public class MachineLang {
                 tier -> "%s避雷针 %s".formatted(CVLVH[tier], VLVT[tier]),
                 tiersBetween(LuV, UV));
 
-        provider.addTieredMachineName("nuclear_reactor", "核反应堆", tiersBetween(EV, UV));
+        provider.addTieredMachineName("nuclear_reactor", "核反应堆");
         provider.addBlockWithTooltip(
                 "nuclear_reactor",
                 List.of(),
                 List.of());
 
-        provider.addTieredMachineName("reactor_chamber", "核反应仓", tiersBetween(EV, UV));
+        provider.addTieredMachineName("reactor_chamber", "核反应仓");
         provider.addBlockWithTooltip(
                 "reactor_chamber",
                 List.of(),
@@ -389,9 +429,7 @@ public class MachineLang {
         provider.addBlockWithTooltip(
                 "naquadah_reactor",
                 List.of(),
-                List.of(
-                        "",
-                        ""));
+                List.of());
 
         provider.addTieredMachineName("rocket_engine", "火箭引擎", tiersBetween(EV, LuV));
         provider.addBlockWithTooltip(
