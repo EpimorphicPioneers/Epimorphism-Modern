@@ -1,6 +1,6 @@
 package com.epimorphismmc.epimorphism.core.mixins.gtm;
 
-import com.epimorphismmc.epimorphism.Epimorphism;
+import com.epimorphismmc.epimorphism.EpimorphismCommon;
 import com.epimorphismmc.epimorphism.common.data.EPCreativeModeTabs;
 
 import com.gregtechceu.gtceu.common.data.GTFluids;
@@ -22,6 +22,6 @@ public class GTFluidsMixin {
                                     "Lcom/gregtechceu/gtceu/api/registry/registrate/GTRegistrate;creativeModeTab(Ljava/util/function/Supplier;)V",
                             ordinal = 0))
     private static void setFluidCreativeModeTab(CallbackInfo ci) {
-        Epimorphism.registrate().creativeModeTab(() -> EPCreativeModeTabs.EP_MATERIAL_FLUID);
+        EpimorphismCommon.registrate().creativeModeTab(() -> EPCreativeModeTabs.EP_MATERIAL_FLUID);
     }
 }

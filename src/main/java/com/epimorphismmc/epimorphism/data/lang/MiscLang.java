@@ -1,6 +1,6 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 public class MiscLang {
     public static void init(MOLangProvider provider) {

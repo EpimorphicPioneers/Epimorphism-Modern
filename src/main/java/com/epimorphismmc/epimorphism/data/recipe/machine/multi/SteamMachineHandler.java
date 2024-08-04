@@ -11,10 +11,17 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_SEPARATOR;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rotor;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Brass;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Cupronickel;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.TinAlloy;
 
 public class SteamMachineHandler {
 

@@ -1,10 +1,27 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.COMPONENT_ASSEMBLY_LINE_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.CRYSTALLIZATION_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.DIGESTER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.DRILLING_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.FERMENTATION_TANK_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_A;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_B;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_C;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQUADAH_COOLANT_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQUADAH_EXCITED_FLUID_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.MOLECULAR_BEAM_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.NEUTRON_ACTIVATOR_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ORE_MILLING_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.RADIATION_HATCH_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ROASTER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.UNIVERSAL_CHEMICAL_FUELS;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.VACUUM_DRYING_FURNACE_RECIPES;
 
 public class RecipeLang {
     public static void init(MOLangProvider provider) {

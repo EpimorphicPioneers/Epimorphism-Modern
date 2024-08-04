@@ -11,13 +11,16 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.*;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.catalyst;
+import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.laserEmitter;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.EMPTY_GAS_LASER_EMITTER;
 import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.CATALYST_CARRIER;
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.api.GTValues.HV;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.GAS;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CANNER_RECIPES;
 
 /**
  * 零件相关配方

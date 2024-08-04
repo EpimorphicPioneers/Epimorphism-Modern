@@ -8,8 +8,9 @@ import net.minecraft.world.item.Item;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItem;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItemWithTooltip;
 
 public class EPBiologyItems {
 

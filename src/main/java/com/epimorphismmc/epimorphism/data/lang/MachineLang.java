@@ -4,18 +4,53 @@ import com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.BiologyMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
 import java.util.List;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.*;
-import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines.*;
-import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.*;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.BURNER_REACTOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.CATALYTIC_REFORMER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.CHEMICAL_PLANT;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.CRYOGENIC_REACTOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.CRYSTALLIZATION_CRUCIBLE;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.CVD_UNIT;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.DIGESTER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.FRACKER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.GRIND_BALL_HATCH;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.INDUSTRIAL_DRILL;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.INDUSTRIAL_FLOTATION_CELL;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.INFINITE_WATER_HATCH;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.INFINITY_CRATE;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.ISA_MILL;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.LASER_CVD;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.NANOSCALE_FABRICATOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.NEUTRON_ACTIVATOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.NEUTRON_SENSOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.PLASMA_CVD;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.ROASTER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_SEPARATOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.TFFT;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.VACUUM_DRYING_FURNACE;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.YOTTA_FLUID_TANK;
+import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines.INFINITE_FLUID_DRILLING_RIG;
+import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines.INTEGRATED_ORE_FACTORY;
+import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.TANK_ACCESS_HATCH;
 import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+import static com.gregtechceu.gtceu.api.GTValues.EV;
+import static com.gregtechceu.gtceu.api.GTValues.HV;
+import static com.gregtechceu.gtceu.api.GTValues.IV;
+import static com.gregtechceu.gtceu.api.GTValues.LuV;
+import static com.gregtechceu.gtceu.api.GTValues.MV;
+import static com.gregtechceu.gtceu.api.GTValues.UHV;
+import static com.gregtechceu.gtceu.api.GTValues.UV;
+import static com.gregtechceu.gtceu.api.GTValues.VLVT;
+import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
+import static com.gregtechceu.gtceu.common.data.GTMachines.ELECTRIC_TIERS;
 
 public class MachineLang {
     public static void init(MOLangProvider provider) {

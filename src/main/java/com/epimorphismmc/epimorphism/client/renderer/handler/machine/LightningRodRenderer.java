@@ -7,6 +7,7 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IWorkable;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.client.model.WorkableOverlayModel;
 import com.gregtechceu.gtceu.client.renderer.machine.MachineRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.TransformerRenderer;
@@ -74,12 +75,15 @@ public class LightningRodRenderer extends MachineRenderer {
                     modelState,
                     2));
         }
-
+        Direction upwardsFacing = Direction.NORTH;
+        if (machine instanceof IMultiController multi) {
+            upwardsFacing = multi.self().getUpwardsFacing();
+        }
         if (machine instanceof IWorkable workable) {
             quads.addAll(this.overlayModel.bakeQuads(
-                    side, frontFacing, workable.isActive(), workable.isWorkingEnabled()));
+                    side, frontFacing, upwardsFacing, workable.isActive(), workable.isWorkingEnabled()));
         } else {
-            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, false, false));
+            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, upwardsFacing, false, false));
         }
     }
 

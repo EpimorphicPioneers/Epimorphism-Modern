@@ -16,7 +16,19 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_ALUMINIUM_FROSTPROOF;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STAINLESS_CLEAN;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TITANIUM_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TITANIUM_STABLE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_ROBUST;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_BRONZE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_STEEL;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_TITANIUM;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_TUNGSTENSTEEL;
 
 public class BlockMaps {

@@ -81,7 +81,7 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nonnull;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.*;
@@ -107,7 +107,7 @@ public class EPBlocks {
 
     // Crucible Blocks
     private static void generateCrucibleBlocks() {
-        Epimorphism.logger().debug("Generating Epimorphism Crucible Blocks...");
+        Epimorphism.LOGGER.debug("Generating Epimorphism Crucible Blocks...");
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
             GTRegistrate registrate = registry.getRegistrate();
             for (Material material : registry.getAllMaterials()) {
@@ -117,7 +117,7 @@ public class EPBlocks {
             }
         }
         CRUCIBLE_BLOCKS = CRUCIBLE_BLOCKS_BUILDER.build();
-        Epimorphism.logger().debug("Generating Epimorphism Crucible Blocks... Complete!");
+        Epimorphism.LOGGER.debug("Generating Epimorphism Crucible Blocks... Complete!");
     }
 
     private static boolean allowCrucibleBlock(Material material) {
@@ -125,7 +125,7 @@ public class EPBlocks {
     }
 
     private static void generateFenceBlocks() {
-        Epimorphism.logger().debug("Generating Epimorphism Fence Blocks...");
+        Epimorphism.LOGGER.debug("Generating Epimorphism Fence Blocks...");
         for (MaterialRegistry registry : GTCEuAPI.materialManager.getRegistries()) {
             GTRegistrate registrate = registry.getRegistrate();
             for (Material material : registry.getAllMaterials()) {
@@ -135,7 +135,7 @@ public class EPBlocks {
             }
         }
         FENCE_BLOCKS = FENCE_BLOCKS_BUILDER.build();
-        Epimorphism.logger().debug("Generating Epimorphism Fence Blocks... Complete!");
+        Epimorphism.LOGGER.debug("Generating Epimorphism Fence Blocks... Complete!");
     }
 
     private static boolean allowFenceBlock(Material material) {

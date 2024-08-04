@@ -44,12 +44,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine.*;
+import static com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine.SPEED_DECREMENT;
+import static com.gregtechceu.gtceu.api.machine.feature.multiblock.IRotorHolderMachine.SPEED_INCREMENT;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
