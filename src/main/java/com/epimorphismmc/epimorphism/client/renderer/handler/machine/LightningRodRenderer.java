@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IWorkable;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiController;
 import com.gregtechceu.gtceu.client.model.WorkableOverlayModel;
 import com.gregtechceu.gtceu.client.renderer.machine.MachineRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.TransformerRenderer;
@@ -18,7 +17,6 @@ import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.core.Direction;
@@ -75,15 +73,10 @@ public class LightningRodRenderer extends MachineRenderer {
                     modelState,
                     2));
         }
-        Direction upwardsFacing = Direction.NORTH;
-        if (machine instanceof IMultiController multi) {
-            upwardsFacing = multi.self().getUpwardsFacing();
-        }
+
         if (machine instanceof IWorkable workable) {
             quads.addAll(this.overlayModel.bakeQuads(
-                    side, frontFacing, upwardsFacing, workable.isActive(), workable.isWorkingEnabled()));
-        } else {
-            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, upwardsFacing, false, false));
+                    side, frontFacing, Direction.NORTH, workable.isActive(), workable.isWorkingEnabled()));
         }
     }
 
@@ -100,7 +93,7 @@ public class LightningRodRenderer extends MachineRenderer {
     public void onPrepareTextureAtlas(
             ResourceLocation atlasName, Consumer<ResourceLocation> register) {
         super.onPrepareTextureAtlas(atlasName, register);
-        if (atlasName.equals(TextureAtlas.LOCATION_BLOCKS)) {
+        if (atlasName.equals(InventoryMenu.BLOCK_ATLAS)) {
             this.overlayModel.registerTextureAtlas(register);
         }
     }

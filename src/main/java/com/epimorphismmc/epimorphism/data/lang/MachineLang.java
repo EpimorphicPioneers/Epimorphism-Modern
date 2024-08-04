@@ -33,7 +33,6 @@ import static com.epimorphismmc.epimorphism.common.data.EPMachines.ROASTER;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_SEPARATOR;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.TFFT;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.VACUUM_DRYING_FURNACE;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.YOTTA_FLUID_TANK;
@@ -323,16 +322,6 @@ public class MachineLang {
                         "§bDuration：§e+50%",
                         "§dParallel：§e8"),
                 List.of("蒸汽时代的多方块压缩机。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
-
-        provider.addBlockWithTooltip(
-                STEAM_SEPARATOR::getBlock,
-                "蒸汽离心机",
-                List.of(
-                        "A Multiblock Centrifuge at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块离心机。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
 
         provider.addBlockWithTooltip(
                 STEAM_FOUNDRY::getBlock,

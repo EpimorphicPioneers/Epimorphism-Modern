@@ -13,15 +13,11 @@ import java.util.function.Consumer;
 
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_SEPARATOR;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rotor;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Brass;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Cupronickel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.TinAlloy;
 
 public class SteamMachineHandler {
 
@@ -32,21 +28,6 @@ public class SteamMachineHandler {
     @SuppressWarnings("DuplicatedCode")
     private static void steelSteamMultiblocks(Consumer<FinishedRecipe> provider) {
         if (ConfigHolder.INSTANCE.machines.steelSteamMultiblocks) {
-            VanillaRecipeHelper.addShapedRecipe(
-                    provider,
-                    true,
-                    Epimorphism.id("steam_separator"),
-                    STEAM_SEPARATOR.asStack(1),
-                    "PGP",
-                    "PTP",
-                    "PGP",
-                    'P',
-                    CASING_STEEL_SOLID,
-                    'G',
-                    new UnificationEntry(gear, Steel),
-                    'T',
-                    new UnificationEntry(rotor, TinAlloy));
-
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,
@@ -77,21 +58,6 @@ public class SteamMachineHandler {
                     'T',
                     GTMachines.STEAM_COMPRESSOR.left().asStack());
         } else {
-            VanillaRecipeHelper.addShapedRecipe(
-                    provider,
-                    true,
-                    Epimorphism.id("steam_separator"),
-                    STEAM_SEPARATOR.asStack(1),
-                    "PGP",
-                    "PTP",
-                    "PGP",
-                    'P',
-                    CASING_BRONZE_BRICKS,
-                    'G',
-                    new UnificationEntry(gear, Steel),
-                    'T',
-                    new UnificationEntry(rotor, TinAlloy));
-
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,

@@ -448,39 +448,6 @@ public class EPMachines {
                     false)
             .register();
 
-    public static final MachineDefinition STEAM_SEPARATOR = registrate()
-            .multiblock("steam_separator", SteamParallelMultiblockMachine::new)
-            .tooltips(
-                    Component.translatable("block.epimorphism.steam_separator.desc.0"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.1"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.2"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .appearanceBlock(CASING_BRONZE_BRICKS)
-            .recipeType(CENTRIFUGE_RECIPES)
-            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
-            .addOutputLimit(ItemRecipeCapability.CAP, 2)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("XXX", "XXX", " X ")
-                    .aisle("XXX", "X#X", "XXX")
-                    .aisle("XXX", "XSX", " X ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('#', Predicates.air())
-                    .where(' ', Predicates.any())
-                    .where(
-                            'X',
-                            blocks(CASING_BRONZE_BRICKS.get())
-                                    .setMinGlobalLimited(6)
-                                    .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
-                                    .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1)))
-                    .build())
-            .workableCasingRenderer(
-                    GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_separator"),
-                    false)
-            .register();
-
     public static final MachineDefinition STEAM_FOUNDRY = registrate()
             .multiblock("steam_foundry", SteamParallelMultiblockMachine::new)
             .tooltips(
