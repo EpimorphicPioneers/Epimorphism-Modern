@@ -4,11 +4,11 @@ import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced
 import com.epimorphismmc.epimorphism.utils.EPUtil;
 
 import com.epimorphismmc.monomorphism.misc.SimpleCapabilityHolder;
-import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.capability.recipe.*;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
@@ -32,11 +32,20 @@ import net.minecraft.world.item.ItemStack;
 import com.google.common.primitives.Ints;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushed;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushedPurified;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushedRefined;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustImpure;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustPure;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.ore;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rawOre;
 
 public class OreProcessingRecipeLogic extends RecipeLogic {
 

@@ -1,14 +1,78 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-
-
 import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import java.util.List;
 import java.util.Locale;
 
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
-import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_ALUMINIUM_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_FILTER_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_HIGH_ENERGY_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_INVAR_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_SUBSTRATE_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BPA_POLYCARBONATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BREEDING_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_GEARBOX;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_PIPE;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_POLYBENZIMIDAZOLE_PIPE;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CBDO_POLYCARBONATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CONTAINMENT_FIELD_GENERATOR;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_BRIDGE_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_LINK_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DRILL_HEAD;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CELL;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.GENERAL_PROCESSING_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HOLLOW_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPERDIMENSIONAL_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPER_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.INFINITY_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.IRIDIUM_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ISA_MILL_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.MARAGING_STEEL_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NAQ_BORON_SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NEUTRONIUM_MINING_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NEU_PMMA_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.OSMIR_BORON_SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LEAVES;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LOG;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_PLANK;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_SAPLING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PMMA_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK1;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK2;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK3;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PROCESS_MACHINE_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPACETIME_DISTORTION_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPEEDING_PIPE;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SUBSTRATE_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TFFT_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.THY_BORON_SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TI_BORON_SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_CONTAINMENT_FIELD_GENERATOR;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_HIGH_ENERGY_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.VACUUM_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.W_BORON_SILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.YOTTA_FLUID_TANK_CASING;
+import static com.gregtechceu.gtceu.api.GTValues.EV;
+import static com.gregtechceu.gtceu.api.GTValues.HV;
+import static com.gregtechceu.gtceu.api.GTValues.IV;
+import static com.gregtechceu.gtceu.api.GTValues.LV;
+import static com.gregtechceu.gtceu.api.GTValues.LuV;
+import static com.gregtechceu.gtceu.api.GTValues.MAX;
+import static com.gregtechceu.gtceu.api.GTValues.MV;
+import static com.gregtechceu.gtceu.api.GTValues.OpV;
+import static com.gregtechceu.gtceu.api.GTValues.UEV;
+import static com.gregtechceu.gtceu.api.GTValues.UHV;
+import static com.gregtechceu.gtceu.api.GTValues.UIV;
+import static com.gregtechceu.gtceu.api.GTValues.UV;
+import static com.gregtechceu.gtceu.api.GTValues.UXV;
+import static com.gregtechceu.gtceu.api.GTValues.VN;
+import static com.gregtechceu.gtceu.api.GTValues.VNF;
+import static com.gregtechceu.gtceu.api.GTValues.ZPM;
+import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 
 public class BlockLang {
     public static void init(MOLangProvider provider) {

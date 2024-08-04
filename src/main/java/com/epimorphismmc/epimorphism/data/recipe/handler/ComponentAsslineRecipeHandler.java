@@ -3,8 +3,6 @@ package com.epimorphismmc.epimorphism.data.recipe.handler;
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 import com.epimorphismmc.epimorphism.common.recipe.TierCasingCondition;
 
-import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -35,19 +33,42 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import it.unimi.dsi.fastutil.objects.*;
+import it.unimi.dsi.fastutil.objects.AbstractObject2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.COMPONENT_ASSEMBLY_LINE_RECIPES;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_DENSE;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_GEAR;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_LONG_ROD;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.IS_MAGNETIC;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.cableGtHex;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gearSmall;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.plate;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.plateDense;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rod;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rodLong;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.wireGtHex;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.CONVEYOR;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.EMITTER;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.FIELD_GENERATOR;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.MOTOR;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.PISTON;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.PUMP;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.ROBOT_ARM;
+import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.SENSOR;
 
 /**
  * 部件装配线相关配方

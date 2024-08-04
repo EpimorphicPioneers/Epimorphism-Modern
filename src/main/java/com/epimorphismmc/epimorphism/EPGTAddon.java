@@ -8,11 +8,10 @@ import com.epimorphismmc.epimorphism.common.data.EPItems;
 import com.epimorphismmc.epimorphism.common.data.EPParticleTypes;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 
-
 import com.gregtechceu.gtceu.api.addon.GTAddon;
-
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 

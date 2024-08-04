@@ -2,11 +2,9 @@ package com.epimorphismmc.epimorphism.client.renderer.handler.machine;
 
 import com.epimorphismmc.epimorphism.api.machine.feature.multiblock.ITankMachine;
 
-
 import com.epimorphismmc.monomorphism.client.utils.Cuboid;
 import com.epimorphismmc.monomorphism.client.utils.CuboidRenderer;
 import com.epimorphismmc.monomorphism.client.utils.MORenderUtils;
-
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
@@ -24,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.mainCamera;
 
 public class TankMachineRenderer extends WorkableCasingMachineRenderer {
     public TankMachineRenderer(ResourceLocation baseCasing, ResourceLocation workableModel) {

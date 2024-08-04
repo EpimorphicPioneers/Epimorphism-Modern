@@ -1,6 +1,5 @@
 package com.epimorphismmc.epimorphism.core.mixins.gtm;
 
-import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.EpimorphismCommon;
 import com.epimorphismmc.epimorphism.common.data.EPCreativeModeTabs;
 

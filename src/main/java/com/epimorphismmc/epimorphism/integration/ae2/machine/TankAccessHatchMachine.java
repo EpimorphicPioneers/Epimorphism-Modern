@@ -5,7 +5,11 @@ import com.epimorphismmc.epimorphism.api.machine.trait.ITankTrait;
 import com.epimorphismmc.epimorphism.utils.EPFluidUtil;
 
 import appeng.api.config.Actionable;
-import appeng.api.stacks.*;
+import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.AEKey;
+import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.GenericStack;
+import appeng.api.stacks.KeyCounter;
 import appeng.api.storage.IStorageMounts;
 import appeng.api.storage.IStorageProvider;
 import appeng.me.storage.ExternalStorageFacade;

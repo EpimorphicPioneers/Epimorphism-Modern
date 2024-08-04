@@ -8,19 +8,15 @@ import com.epimorphismmc.epimorphism.common.item.VajraItem;
 import com.epimorphismmc.epimorphism.network.s2c.PacketVajraDestroy;
 import com.epimorphismmc.epimorphism.utils.EPBlockUtil;
 
-import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
-
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
 
-import com.gregtechceu.gtceu.utils.GTTransferUtils;
-import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,7 +24,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import com.google.common.collect.ImmutableMap;
 
-import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.MITTS;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.VAJRA;
 
 @Mod.EventBusSubscriber(modid = Epimorphism.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeCommonEventHandler {
@@ -50,7 +47,8 @@ public class ForgeCommonEventHandler {
                         VajraItem.discharge(event.getItemStack());
                         list.forEach(s -> ItemTransferHelper.giveItemToPlayer(player, s));
 
-                        EpimorphismCommon.network().sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
+                        EpimorphismCommon.network()
+                                .sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
                     }
                 }
             }

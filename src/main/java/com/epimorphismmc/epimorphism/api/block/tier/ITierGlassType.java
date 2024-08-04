@@ -3,8 +3,8 @@ package com.epimorphismmc.epimorphism.api.block.tier;
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
 
 import com.gregtechceu.gtceu.api.GTValues;
-
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
+
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nonnull;

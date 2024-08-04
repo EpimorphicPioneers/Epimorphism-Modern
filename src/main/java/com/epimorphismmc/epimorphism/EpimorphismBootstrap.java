@@ -1,6 +1,7 @@
 package com.epimorphismmc.epimorphism;
 
 import com.epimorphismmc.epimorphism.client.EpimorphismClient;
+
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 

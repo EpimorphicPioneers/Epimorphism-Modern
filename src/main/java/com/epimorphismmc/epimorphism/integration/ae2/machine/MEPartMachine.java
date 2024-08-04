@@ -1,6 +1,9 @@
 package com.epimorphismmc.epimorphism.integration.ae2.machine;
 
-import appeng.api.networking.*;
+import appeng.api.networking.GridFlags;
+import appeng.api.networking.IGrid;
+import appeng.api.networking.IInWorldGridNodeHost;
+import appeng.api.networking.IManagedGridNode;
 import appeng.api.networking.security.IActionSource;
 import appeng.me.helpers.BlockEntityNodeListener;
 import appeng.me.helpers.IGridConnectedBlockEntity;

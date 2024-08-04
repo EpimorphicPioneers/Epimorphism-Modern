@@ -50,9 +50,13 @@ import java.util.Map;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.air;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.autoAbilities;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_ASSEMBLY_LINE;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Carbon;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

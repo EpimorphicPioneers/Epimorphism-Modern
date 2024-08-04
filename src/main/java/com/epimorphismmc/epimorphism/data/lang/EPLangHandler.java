@@ -1,6 +1,5 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-
 import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 public class EPLangHandler {

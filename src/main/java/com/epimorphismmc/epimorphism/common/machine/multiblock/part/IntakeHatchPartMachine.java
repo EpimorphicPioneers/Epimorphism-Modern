@@ -1,8 +1,7 @@
 package com.epimorphismmc.epimorphism.common.machine.multiblock.part;
 
-import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
-import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 import com.epimorphismmc.monomorphism.math.MOMath;
+import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -15,10 +14,14 @@ import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.recipe.DimensionCondition;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-
 import com.gregtechceu.gtceu.utils.GTMath;
+
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
-import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.gui.widget.ImageWidget;
+import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
+import com.lowdragmc.lowdraglib.gui.widget.TankWidget;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.syncdata.ISubscription;

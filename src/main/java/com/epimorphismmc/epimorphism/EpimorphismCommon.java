@@ -6,9 +6,7 @@ import com.epimorphismmc.epimorphism.common.block.BlockTypeAdditions;
 import com.epimorphismmc.epimorphism.common.data.EPBlocks;
 import com.epimorphismmc.epimorphism.common.data.EPCovers;
 import com.epimorphismmc.epimorphism.common.data.EPCreativeModeTabs;
-import com.epimorphismmc.epimorphism.common.data.EPDimensionTypes;
 import com.epimorphismmc.epimorphism.common.data.EPElements;
-import com.epimorphismmc.epimorphism.common.data.EPItems;
 import com.epimorphismmc.epimorphism.common.data.EPMachines;
 import com.epimorphismmc.epimorphism.common.data.EPMaterials;
 import com.epimorphismmc.epimorphism.common.data.EPParticleTypes;
@@ -20,8 +18,10 @@ import com.epimorphismmc.epimorphism.data.lang.EPLangHandler;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
 import com.epimorphismmc.epimorphism.network.s2c.PacketVajraDestroy;
+
 import com.epimorphismmc.monomorphism.registry.registrate.MORegistrate;
 import com.epimorphismmc.monomorphism.registry.registrate.providers.MOProviderTypes;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.data.chemical.Element;
@@ -31,8 +31,10 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
+
 import com.lowdragmc.lowdraglib.networking.INetworking;
 import com.lowdragmc.lowdraglib.networking.LDLNetworking;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,7 +45,8 @@ public class EpimorphismCommon implements Epimorphism {
 
     private static EpimorphismCommon instance;
     private static final MORegistrate REGISTRATE = MORegistrate.create(MOD_ID);
-    private static final INetworking NETWORK = LDLNetworking.createNetworking(new ResourceLocation(MOD_ID, "networking"), "0.0.1");
+    private static final INetworking NETWORK =
+            LDLNetworking.createNetworking(new ResourceLocation(MOD_ID, "networking"), "0.0.1");
 
     public EpimorphismCommon() {
         instance = this;
@@ -77,7 +80,6 @@ public class EpimorphismCommon implements Epimorphism {
                 this::registerRecipeConditions);
         eventBus.addGenericListener(MachineDefinition.class, this::registerMachineDefinitions);
         eventBus.addGenericListener(CoverDefinition.class, this::registerCoverDefinitions);
-
     }
 
     public static EpimorphismCommon instance() {
@@ -92,29 +94,25 @@ public class EpimorphismCommon implements Epimorphism {
         return NETWORK;
     }
 
-
     public void registerElements(GTCEuAPI.RegisterEvent<String, Element> event) {
         EPElements.init();
     }
-
 
     public void registerCoverDefinitions(
             GTCEuAPI.RegisterEvent<ResourceLocation, CoverDefinition> event) {
         EPCovers.init();
     }
 
-
-    public void registerMachineDefinitions(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
+    public void registerMachineDefinitions(
+            GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         EPCreativeModeTabs.init();
         EPBlocks.init();
         EPMachines.init();
     }
 
-
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
         EPRecipeTypes.init();
     }
-
 
     public void registerRecipeConditions(
             GTCEuAPI.RegisterEvent<String, Class<? extends RecipeCondition>> event) {
