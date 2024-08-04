@@ -110,6 +110,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
+import static com.epimorphismmc.epimorphism.api.pattern.EPPredicates.direction;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
@@ -361,11 +362,10 @@ public class EPMachines {
             .langValue("Steam Piston Hammer")
             .tooltips(
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(FORGE_HAMMER_RECIPES, EPRecipeTypes.ORE_MILLING_RECIPES)
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
+            .recipeTypes(FORGE_HAMMER_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -381,11 +381,7 @@ public class EPMachines {
                                     .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
                                     .or(abilities(PartAbility.STEAM)))
                     .where('B', blocks(ChemicalHelper.getBlock(block, Steel)))
-                    .where(
-                            'C',
-                            states(Blocks.STICKY_PISTON
-                                    .defaultBlockState()
-                                    .setValue(DirectionalBlock.FACING, Direction.DOWN)))
+                    .where('C', direction(Blocks.STICKY_PISTON, RelativeDirection.DOWN))
                     .where('D', abilities(PartAbility.STEAM))
                     .where('E', blocks(CASING_BRONZE_BRICKS.get()))
                     .where('#', air())
@@ -411,18 +407,16 @@ public class EPMachines {
                     .build())
             .workableCasingRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    GTCEu.id("block/machines/forge_hammer"),
-                    false)
+                    GTCEu.id("block/machines/forge_hammer"))
             .register();
 
     public static final MachineDefinition STEAM_PRESSOR = registrate()
             .multiblock("steam_pressor", SteamParallelMultiblockMachine::new)
             .tooltips(
                     Component.translatable("block.epimorphism.steam_pressor.desc.0"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.1"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.2"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .recipeType(COMPRESSOR_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
@@ -444,18 +438,16 @@ public class EPMachines {
                     .build())
             .workableCasingRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_compressor"),
-                    false)
+                    Epimorphism.id("block/multiblock/steam_compressor"))
             .register();
 
     public static final MachineDefinition STEAM_FOUNDRY = registrate()
             .multiblock("steam_foundry", SteamParallelMultiblockMachine::new)
             .tooltips(
                     Component.translatable("block.epimorphism.steam_foundry.desc.0"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.1"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.2"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .recipeType(ALLOY_SMELTER_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
@@ -1762,7 +1754,7 @@ public class EPMachines {
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
                                     .or(Predicates.autoAbilities(true, false, false)))
-                    .where('C', EPPredicates.fireboxBlock())
+                    .where('C', EPPredicates.firebox())
                     .where('D', blocks(CASING_TITANIUM_PIPE.get()))
                     .where('E', abilities(MUFFLER))
                     .where('#', Predicates.air())

@@ -305,33 +305,24 @@ public class MachineLang {
 
         provider.addBlockWithTooltip(
                 STEAM_PISTON_HAMMER::getBlock,
-                "蒸汽锻造锤",
+                "蒸汽活塞锤",
                 List.of(
-                        "A Multiblock Piston Hammer at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块锻造锤。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                        "§7A Multiblock Piston Hammer at the Steam Age. "),
+                List.of("§7蒸汽时代的多方块锻造锤。"));
 
         provider.addBlockWithTooltip(
                 STEAM_PRESSOR::getBlock,
                 "蒸汽压缩机",
                 List.of(
-                        "A Multiblock Compressor at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块压缩机。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                        "§7A Multiblock Compressor at the Steam Age. "),
+                List.of("§7蒸汽时代的多方块压缩机。"));
 
         provider.addBlockWithTooltip(
                 STEAM_FOUNDRY::getBlock,
                 "蒸汽合金炉",
                 List.of(
-                        "A Multiblock Alloy Smelter at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块合金炉。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                        "§7A Multiblock Alloy Smelter at the Steam Age. "),
+                List.of("§7蒸汽时代的多方块合金炉。"));
 
         provider.addCN("block.epimorphism.uhv_fusion_reactor", "核聚变反应堆控制电脑 MK-IV");
         provider.add(

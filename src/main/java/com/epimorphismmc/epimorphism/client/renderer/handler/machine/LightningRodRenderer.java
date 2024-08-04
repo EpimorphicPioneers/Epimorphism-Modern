@@ -77,6 +77,8 @@ public class LightningRodRenderer extends MachineRenderer {
         if (machine instanceof IWorkable workable) {
             quads.addAll(this.overlayModel.bakeQuads(
                     side, frontFacing, Direction.NORTH, workable.isActive(), workable.isWorkingEnabled()));
+        } else {
+            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, Direction.NORTH, false, false));
         }
     }
 
