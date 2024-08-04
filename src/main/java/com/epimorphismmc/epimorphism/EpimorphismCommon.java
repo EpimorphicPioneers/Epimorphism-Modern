@@ -1,7 +1,5 @@
-package com.epimorphismmc.epimorphism.common;
+package com.epimorphismmc.epimorphism;
 
-import com.epimorphismmc.epimorphism.Epimorphism;
-import com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix;
 import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.common.block.BlockMaps;
 import com.epimorphismmc.epimorphism.common.block.BlockTypeAdditions;
@@ -17,11 +15,13 @@ import com.epimorphismmc.epimorphism.common.data.EPParticleTypes;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeConditions;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 import com.epimorphismmc.epimorphism.common.data.EPRecipes;
+import com.epimorphismmc.epimorphism.config.EPConfigHolder;
+import com.epimorphismmc.epimorphism.data.lang.EPLangHandler;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
-
-import com.epimorphismmc.monomorphism.proxy.base.ICommonProxyBase;
-
+import com.epimorphismmc.epimorphism.network.s2c.PacketVajraDestroy;
+import com.epimorphismmc.monomorphism.registry.registrate.MORegistrate;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOProviderTypes;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.data.chemical.Element;
@@ -30,81 +30,104 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
-import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
-
+import com.lowdragmc.lowdraglib.networking.INetworking;
+import com.lowdragmc.lowdraglib.networking.LDLNetworking;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class CommonProxy implements ICommonProxyBase {
+public class EpimorphismCommon implements Epimorphism {
 
-    public CommonProxy() {
+    private static EpimorphismCommon instance;
+    private static final MORegistrate REGISTRATE = MORegistrate.create(MOD_ID);
+    private static final INetworking NETWORK = LDLNetworking.createNetworking(new ResourceLocation(MOD_ID, "networking"), "0.0.1");
+
+    public EpimorphismCommon() {
+        instance = this;
+
+        EPConfigHolder.init();
+
+        registerPackets(NETWORK);
+        registerEventHandlers();
+
+        REGISTRATE.addDataGenerator(MOProviderTypes.MO_LANG, EPLangHandler::init);
+
+        Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
+    }
+
+    public void registerPackets(INetworking network) {
+        network.registerS2C(PacketVajraDestroy.class);
+    }
+
+    public void registerEventHandlers() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.register(this);
+
+        REGISTRATE.registerEventListeners(eventBus);
+
         EPParticleTypes.register(eventBus);
-        Epimorphism.logger().info("Epimorphism's Initialization Completed!");
+
+        eventBus.addGenericListener(Element.class, this::registerElements);
+        eventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
+        eventBus.addGenericListener(
+                (Class<Class<? extends RecipeCondition>>) RecipeCondition.class.getClass(),
+                this::registerRecipeConditions);
+        eventBus.addGenericListener(MachineDefinition.class, this::registerMachineDefinitions);
+        eventBus.addGenericListener(CoverDefinition.class, this::registerCoverDefinitions);
+
     }
 
-    public void init() {
-        EPItems.init();
-        EPDimensionTypes.init();
-        EPParticleTypes.init();
+    public static EpimorphismCommon instance() {
+        return instance;
     }
 
-    /* -------------------------------------------------- Registration Methods -------------------------------------------------- */
-
-    @Override
-    public void registerEventHandlers() {}
-
-    @Override
-    public void registerCapabilities() {}
-
-    @Override
-    public void registerTagPrefixes() {
-        EPTagPrefix.init();
+    public static MORegistrate registrate() {
+        return REGISTRATE;
     }
 
-    @Override
+    public static INetworking network() {
+        return NETWORK;
+    }
+
+
     public void registerElements(GTCEuAPI.RegisterEvent<String, Element> event) {
         EPElements.init();
     }
 
-    @Override
+
     public void registerCoverDefinitions(
             GTCEuAPI.RegisterEvent<ResourceLocation, CoverDefinition> event) {
         EPCovers.init();
     }
 
-    @Override
-    public void registerMachineDefinitions(
-            GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
+
+    public void registerMachineDefinitions(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         EPCreativeModeTabs.init();
         EPBlocks.init();
         EPMachines.init();
     }
 
-    @Override
+
     public void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
         EPRecipeTypes.init();
     }
 
-    @Override
+
     public void registerRecipeConditions(
             GTCEuAPI.RegisterEvent<String, Class<? extends RecipeCondition>> event) {
         EPRecipeConditions.init();
     }
 
-    @Override
+    @SubscribeEvent
     public void registerMaterials(MaterialEvent event) {
         EPMaterials.init();
     }
 
-    @Override
+    @SubscribeEvent
     public void registerMaterialRegistry(MaterialRegistryEvent event) {
-        Epimorphism.registrate().creativeModeTab(GTCreativeModeTabs.MATERIAL_ITEM);
         MaterialRegistryManager.getInstance().createRegistry(Epimorphism.MOD_ID);
     }
 

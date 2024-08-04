@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.api.item.MaterialPipeBlockItem;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.IntCircuitIngredient;
@@ -69,7 +70,7 @@ public class ComponentAsslineRecipeHandler {
 
     public static void init(GTRecipeBuilder recipeBuilder) {
         initializeGTItems();
-        var outputItems = MORecipeHelper.getOutputItem(recipeBuilder);
+        var outputItems = RecipeHelper.getOutputItems(recipeBuilder);
         if (outputItems.isEmpty()) return;
 
         var item = outputItems.get(0).getItem();

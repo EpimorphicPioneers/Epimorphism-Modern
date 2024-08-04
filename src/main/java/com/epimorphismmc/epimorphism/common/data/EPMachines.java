@@ -109,7 +109,7 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;

@@ -2,7 +2,7 @@ package com.epimorphismmc.epimorphism.common.machine.multiblock.part;
 
 import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
-import com.epimorphismmc.monomorphism.utility.MOMathUtils;
+import com.epimorphismmc.monomorphism.math.MOMath;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -11,10 +11,12 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.recipe.DimensionCondition;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
+import com.gregtechceu.gtceu.utils.GTMath;
 import com.lowdragmc.lowdraglib.gui.editor.ColorPattern;
 import com.lowdragmc.lowdraglib.gui.widget.*;
 import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
@@ -76,7 +78,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
         for (var condition : recipeBuilder.conditions) {
             if (condition instanceof DimensionCondition dimensionCondition) {
                 var dim = dimensionCondition.getDimension();
-                var fluids = MORecipeHelper.getOutputFluid(recipeBuilder);
+                var fluids = RecipeHelper.getOutputFluids(recipeBuilder);
                 if (!fluids.isEmpty()) {
                     AIR_MAP.put(dim, fluids.get(0).getFluid());
                     break;
@@ -135,7 +137,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
             double offset = 2 * GTValues.RNG.nextDouble() + 2;
             var pos = this.getPos().getCenter().add(stepX * 0.5, stepY * 0.5, stepZ * 0.5);
             var center = pos.add(stepX * offset, stepY * offset, stepZ * offset);
-            var point = MOMathUtils.randomCirclePoint(1.5F);
+            var point = MOMath.randomCirclePoint(1.5F);
             var randPos = center.add(
                     stepY * point.y + stepZ * point.x,
                     stepX * point.x + stepZ * point.y,
@@ -167,7 +169,7 @@ public class IntakeHatchPartMachine extends TieredIOPartMachine {
     }
 
     public static long getIntakeAmount(int tier) {
-        return FluidHelper.getBucket() * (1L << MOMathUtils.clamp(tier - 5, 0, 9));
+        return FluidHelper.getBucket() * (1L << GTMath.clamp(tier - 5, 0, 9));
     }
 
     private void unsubscribe() {

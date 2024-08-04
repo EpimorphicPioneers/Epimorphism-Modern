@@ -1,6 +1,7 @@
 package com.epimorphismmc.epimorphism.common;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
+import com.epimorphismmc.epimorphism.EpimorphismCommon;
 import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.common.data.EPRecipes;
 import com.epimorphismmc.epimorphism.common.item.VajraItem;
@@ -11,11 +12,15 @@ import com.epimorphismmc.monomorphism.utility.MOTransferUtils;
 
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
 
+import com.gregtechceu.gtceu.utils.GTTransferUtils;
+import com.gregtechceu.gtceu.utils.GTUtil;
+import com.lowdragmc.lowdraglib.side.item.ItemTransferHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -43,8 +48,9 @@ public class ForgeCommonEventHandler {
                             (ServerLevel) level, pos, player, ImmutableMap.of(Enchantments.BLOCK_FORTUNE, 5));
                     if (level.destroyBlock(pos, false)) {
                         VajraItem.discharge(event.getItemStack());
-                        MOTransferUtils.fillPlayerInventory(player, list);
-                        Epimorphism.network().sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
+                        list.forEach(s -> ItemTransferHelper.giveItemToPlayer(player, s));
+
+                        EpimorphismCommon.network().sendToPlayer(new PacketVajraDestroy(true), (ServerPlayer) player);
                     }
                 }
             }

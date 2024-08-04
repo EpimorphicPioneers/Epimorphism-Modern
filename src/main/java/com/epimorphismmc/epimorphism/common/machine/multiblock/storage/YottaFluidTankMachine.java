@@ -57,7 +57,7 @@ import java.util.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.utility.BigIntMath.*;
+import static com.epimorphismmc.monomorphism.math.BigIntMath.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -338,10 +338,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine
             FluidStack inputFluidStack;
             if (fluidTank.hasFluid()) {
                 var free = isVoiding
-                        ? LONG_MAX_VALUE
+                        ? LONG_MAX
                         : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
                 inputFluidStack = FluidStack.create(
-                        fluidTank.getCurrentFluid(), free.min(LONG_MAX_VALUE).longValue());
+                        fluidTank.getCurrentFluid(), free.min(LONG_MAX).longValue());
                 List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(
                         capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 List<?> list = List.of(FluidIngredient.of(inputFluidStack));
@@ -373,7 +373,7 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine
             // Debank to Fluid Output Hatches
             FluidStack outputFluidStack = FluidStack.create(
                     fluidTank.getCurrentFluid(),
-                    fluidTank.getCurrentStorage().min(LONG_MAX_VALUE).longValue());
+                    fluidTank.getCurrentStorage().min(LONG_MAX).longValue());
             if (!EPFluidUtil.isDefaultFluid(outputFluidStack) && outputFluidStack.getAmount() >= 0) {
                 List<?> list = List.of(FluidIngredient.of(outputFluidStack));
                 List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(

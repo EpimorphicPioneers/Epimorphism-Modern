@@ -26,7 +26,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.catalyst;
 import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItemWithTooltip;
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;

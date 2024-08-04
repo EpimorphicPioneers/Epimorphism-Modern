@@ -1,7 +1,8 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
 
+
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.*;

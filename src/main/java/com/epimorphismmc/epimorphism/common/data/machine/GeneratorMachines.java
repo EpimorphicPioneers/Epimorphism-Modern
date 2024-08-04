@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;

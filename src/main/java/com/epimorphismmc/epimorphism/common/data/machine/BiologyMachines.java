@@ -30,7 +30,7 @@ import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.machineCasingBlock;

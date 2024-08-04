@@ -58,7 +58,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.*;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;

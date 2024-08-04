@@ -4,8 +4,8 @@ import com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.BiologyMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
 
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 import com.gregtechceu.gtceu.api.GTValues;
 
 import java.util.List;

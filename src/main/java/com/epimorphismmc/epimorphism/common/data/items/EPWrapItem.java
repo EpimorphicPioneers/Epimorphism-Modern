@@ -18,7 +18,7 @@ import net.minecraft.world.level.ItemLike;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.data.EPCreativeModeTabs.EP_CIRCUIT_REFORM;
 import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;

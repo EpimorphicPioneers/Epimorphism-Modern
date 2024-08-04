@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;
 
+import com.gregtechceu.gtceu.utils.GTUtil;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
@@ -49,7 +50,7 @@ public class UniversalChemicalFuelEngineMachine extends WorkableElectricMultiblo
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var list = MORecipeHelper.getInputFluid(recipe);
+        var list = RecipeHelper.getInputFluids(recipe);
         if (list.isEmpty()) return recipe;
 
         var inputFluid = list.get(0);

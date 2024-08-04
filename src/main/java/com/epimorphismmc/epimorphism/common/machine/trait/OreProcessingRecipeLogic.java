@@ -14,6 +14,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.data.tag.TagUtil;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
@@ -317,8 +318,8 @@ public class OreProcessingRecipeLogic extends RecipeLogic {
             GTRecipe recipe = GTRecipeTypes.CHEMICAL_BATH_RECIPES.getLookup().findRecipe(holder);
             holder.clear();
             if (recipe != null) {
-                var inputFluids = MORecipeHelper.getInputFluid(recipe);
-                var outputFluids = MORecipeHelper.getOutputFluid(recipe);
+                var inputFluids = RecipeHelper.getInputFluids(recipe);
+                var outputFluids = RecipeHelper.getOutputFluids(recipe);
                 int washed = stack.getCount();
                 if (!inputFluids.isEmpty()) {
                     var inputFluid = inputFluids.get(0);

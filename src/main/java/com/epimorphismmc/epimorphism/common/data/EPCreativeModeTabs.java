@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 
 public class EPCreativeModeTabs {
     public static final RegistryEntry<CreativeModeTab> EP_ITEM = registrate()
@@ -163,7 +163,7 @@ public class EPCreativeModeTabs {
                     .title(registrate()
                             .addLang("itemGroup", Epimorphism.id("tool"), Epimorphism.NAME + " | Tool"))
                     .icon(() -> ToolHelper.get(GTToolType.WRENCH, EPMaterials.Draconium))
-                    .withTabsBefore(EP_MATERIAL_PIPE.getKey())
+                    .withTabsBefore(EP_MATERIAL_FLUID.getKey())
                     .build())
             .register();
 
