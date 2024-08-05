@@ -130,7 +130,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
                     }
 
                     // has place to fill
-                    if (!checkStateCanFill(blockState)) {
+                    if (checkStateCanFill(blockState)) {
                         fillAndDrainFluid(pos, level);
                         posesToFill.removeFirst();
                     }
@@ -161,7 +161,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
     private void fillAndDrainFluid(BlockPos pos, ServerLevel level) {
         filler.drainFluid(1, false);
-        level.setBlock(pos, GTBlocks.DARK_CONCRETE.getDefaultState(), Block.UPDATE_NEIGHBORS);
+        level.setBlockAndUpdate(pos, GTBlocks.DARK_CONCRETE.getDefaultState());
         fillX = pos.getX();
         fillY = pos.getY();
         fillZ = pos.getZ();
@@ -205,7 +205,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
         int calculated = 0;
         while (calculated < calcAmount) {
-            if (y < minBuildHeight) {
+            if (y > minBuildHeight) {
                 if (z <= startZ + currentRadius * 2) {
                     if (x <= startX + currentRadius * 2) {
                         BlockPos pos = new BlockPos(x, y, z);
