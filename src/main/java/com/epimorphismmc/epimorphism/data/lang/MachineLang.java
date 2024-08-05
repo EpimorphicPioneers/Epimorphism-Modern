@@ -12,7 +12,9 @@ import java.util.List;
 
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.*;
 import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines.*;
+import static com.epimorphismmc.epimorphism.common.data.machine.BiologyMachines.*;
 import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.*;
+import static com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines.*;
 import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
@@ -356,6 +358,20 @@ public class MachineLang {
                 List.of()
         );
 
+        provider.addBlockWithTooltip(
+                ROCKET_ENGINE_F1A::getBlock,
+                "火箭引擎 F-1A",
+                List.of(),
+                List.of()
+        );
+
+        provider.addBlockWithTooltip(
+                ALGAE_FARM::getBlock,
+                "藻类农场",
+                List.of(),
+                List.of()
+        );
+
         provider.add(
                 "block.epimorphism.high_pressure_steam_turbine",
                 "High Pressure Steam Turbine",
@@ -413,17 +429,19 @@ public class MachineLang {
                 tier -> "%s避雷针 %s".formatted(CVLVH[tier], VLVT[tier]),
                 tiersBetween(LuV, UV));
 
-        provider.addTieredMachineName("nuclear_reactor", "核反应堆");
         provider.addBlockWithTooltip(
-                "nuclear_reactor",
+                NUCLEAR_REACTOR::getBlock,
+                "核反应堆",
                 List.of(),
-                List.of());
+                List.of()
+        );
 
-        provider.addTieredMachineName("reactor_chamber", "核反应仓");
         provider.addBlockWithTooltip(
-                "reactor_chamber",
+                REACTOR_CHAMBER::getBlock,
+                "核反应仓",
                 List.of(),
-                List.of());
+                List.of()
+        );
 
         provider.addTieredMachineName("naquadah_reactor", "硅岩反应堆", tiersBetween(EV, UV));
         provider.addBlockWithTooltip(
@@ -483,27 +501,37 @@ public class MachineLang {
                 "研磨球仓",
                 List.of(
                         "§7Watch Your Fingers!",
-                        "§fGrind Balls Are Provided To Use For Multiblocks。",
+                        "Grind Balls Are Provided To Use For Multiblocks。",
                         "§eAllows The Input Of Grinding Balls From The Input Bus。"),
                 List.of("§7小心你的手指！",
-                        "§f为多方块结构提供研磨球来使用",
+                        "为多方块结构提供研磨球来使用",
                         "§e允许从输入总线输入研磨球"));
+
+        provider.addBlockWithTooltip(
+                CATALYST_HATCH::getBlock,
+                "催化剂仓",
+                List.of(
+                        "Catalyst Input for Multiblocks"
+                ),
+                List.of(
+                        "为多方块结构输入催化剂"
+                ));
 
         provider.addBlockWithTooltip(
                 TANK_ACCESS_HATCH::getBlock,
                 "储罐访问仓",
                 List.of(
-                        "§fME Network Fluid Access and I/O for Multiblocks"
+                        "ME Network Fluid Access and I/O for Multiblocks"
                 ),
                 List.of(
-                        "§f为多方块结构提供ME网络流体交互支持"
+                        "为多方块结构提供ME网络流体交互支持"
                 ));
         //Tiers
         provider.addTieredMachineName("neutron_accelerator", "中子加速器", ELECTRIC_TIERS);
         provider.addBlockWithTooltip(
                 "neutron_accelerator",
                 List.of(
-                        "§7Input The Eu And Accelerate The Neutron!",
+                        "§7Input the EU and accelerate the neutron!",
                         "Each Point Of Eu Is Converted Into 10~20eV Neutron Kinetic Energy"),
                 List.of(
                         "§7输入EU，加速中子！",
@@ -513,19 +541,19 @@ public class MachineLang {
         provider.addBlockWithTooltip(
                 "intake_hatch",
                 List.of(
-                        "§7Inhale air from your surroundings.",
+                        "Automatic air input for Multiblock",
                         "§lDo not block the air intake!"),
                 List.of(
-                        "§7从周围环境吸入空气。",
+                        "为多方块结构自动输入空气",
                         "§c§l切 勿 阻 隔 进 气 口！"));
 
 
-        provider.addTieredMachineName("radiation_hatch", "放射仓", GTValues.tiersBetween(3, 13));
+        provider.addTieredMachineName("radiation_hatch", "放射仓", tiersBetween(HV, OpV));
         provider.addBlockWithTooltip(
                 "radiation_hatch",
                 List.of(
-                        "Input Radioactive Materials For Multiblock",
-                        "§7Use A Screwdriver To Set The Suppression Level"),
+                        "Input radioactive materials for Multiblock",
+                        "§7Use a screwdriver to set the suppression level"),
                 List.of(
                         "为多方块结构输入放射性物品",
                         "§7使用螺丝刀设置抑制等级"));

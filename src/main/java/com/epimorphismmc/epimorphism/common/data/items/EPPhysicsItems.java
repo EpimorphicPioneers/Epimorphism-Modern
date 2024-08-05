@@ -25,6 +25,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 
 import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
 import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItemWithTooltip;
 import static com.gregtechceu.gtceu.common.data.GTItems.attach;
 
 public class EPPhysicsItems {
@@ -151,80 +152,71 @@ public class EPPhysicsItems {
             registerParticleCapsule("kerr_black_hole").lang("Kerr Black Hole Capsule").register();
 
     //  Nuclear Physics items
-    public static ItemEntry<Item> NEUTRON_SOURCE =
-            registrate().item("neutron_source", Item::new).lang("Neutron Source").register();
-    public static ItemEntry<ComponentItem> ELECTRON_SOURCE =
-            registerItemWithTooltip("electron_source", 1).register();
-    public static ItemEntry<Item> PLATE_RADIATION_PROTECTION = registrate()
-            .item("plate_radiation_protection", Item::new)
-            .lang("Radiation Protection Plate")
+    public static ItemEntry<ComponentItem> NEUTRON_SOURCE = registerItemWithTooltip
+            ("neutron_source", 1)
             .register();
-    public static ItemEntry<Item> ADV_PLATE_RADIATION_PROTECTION = registrate()
-            .item("advanced_plate_radiation_protection", Item::new)
-            .lang("Advanced Radiation Protection Plate")
+    public static ItemEntry<ComponentItem> ELECTRON_SOURCE = registerItemWithTooltip
+            ("electron_source", 1)
             .register();
-    public static ItemEntry<Item> ENCAPSULATED_URANIUM = registrate()
-            .item("encapsulated_uranium", Item::new)
-            .lang("Encapsulated Uranium")
+    public static ItemEntry<ComponentItem> PLATE_RADIATION_PROTECTION = registerItemWithTooltip
+            ("plate_radiation_protection",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_URANIUM_NUGGET = registrate()
-            .item("enriched_uranium_nugget", Item::new)
-            .lang("Enriched Uranium Nugget")
+    public static ItemEntry<ComponentItem> ADV_PLATE_RADIATION_PROTECTION = registerItemWithTooltip
+            ("advanced_plate_radiation_protection",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_URANIUM =
-            registrate().item("enriched_uranium", Item::new).lang("Enriched Uranium").register();
-    public static ItemEntry<Item> ENCAPSULATED_THORIUM = registrate()
-            .item("encapsulated_thorium", Item::new)
-            .lang("Encapsulated Thorium")
+    public static ItemEntry<ComponentItem> ENCAPSULATED_URANIUM = registerItemWithTooltip
+            ("encapsulated_uranium",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_THORIUM_NUGGET = registrate()
-            .item("enriched_thorium_nugget", Item::new)
-            .lang("Enriched Thorium Nugget")
+    public static ItemEntry<ComponentItem> ENRICHED_URANIUM_NUGGET = registerItemWithTooltip
+            ("enriched_uranium_nugget",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_THORIUM =
-            registrate().item("enriched_thorium", Item::new).lang("Enriched Thorium").register();
-    public static ItemEntry<Item> ENCAPSULATED_PLUTONIUM = registrate()
-            .item("encapsulated_plutonium", Item::new)
-            .lang("Encapsulated Plutonium")
+    public static ItemEntry<ComponentItem> ENRICHED_URANIUM = registerItemWithTooltip
+            ("enriched_uranium",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_PLUTONIUM_NUGGET = registrate()
-            .item("enriched_plutonium_nugget", Item::new)
-            .lang("Enriched Plutonium Nugget")
+    public static ItemEntry<ComponentItem> ENCAPSULATED_THORIUM = registerItemWithTooltip
+            ("encapsulated_thorium",1)
             .register();
-    public static ItemEntry<Item> ENRICHED_PLUTONIUM = registrate()
-            .item("enriched_plutonium", Item::new)
-            .lang("Enriched Plutonium")
+    public static ItemEntry<ComponentItem> ENRICHED_THORIUM_NUGGET = registerItemWithTooltip
+            ("enriched_thorium_nugget",1)
             .register();
-
-    public static ItemEntry<ComponentItem> NEUTRON_REFLECTOR = registerReactorComponent(
-                    "neutron_reflector")
-            .lang("Neutron Reflector")
+    public static ItemEntry<ComponentItem> ENRICHED_THORIUM = registerItemWithTooltip
+            ("enriched_thorium",1)
+            .register();
+    public static ItemEntry<ComponentItem> ENCAPSULATED_PLUTONIUM = registerItemWithTooltip
+            ("encapsulated_plutonium",1)
+            .register();
+    public static ItemEntry<ComponentItem> ENRICHED_PLUTONIUM_NUGGET = registerItemWithTooltip
+            ("enriched_plutonium_nugget",1)
+            .register();
+    public static ItemEntry<ComponentItem> ENRICHED_PLUTONIUM = registerItemWithTooltip
+            ("enriched_plutonium",1)
+            .register();
+    public static ItemEntry<ComponentItem> NEUTRON_REFLECTOR = registerReactorComponent
+            ("neutron_reflector")
             .onRegister(attach(new ReflectorBehavior(3000)))
             .register();
-    public static ItemEntry<ComponentItem> THICK_NEUTRON_REFLECTOR = registerReactorComponent(
-                    "thick_neutron_reflector")
-            .lang("Thick Neutron Reflector")
+    public static ItemEntry<ComponentItem> THICK_NEUTRON_REFLECTOR = registerReactorComponent
+            ("thick_neutron_reflector")
             .onRegister(attach(new ReflectorBehavior(12000)))
             .register();
-    public static ItemEntry<ComponentItem> IRIDIUM_REFLECTOR = registerReactorComponent(
-                    "iridium_reflector")
-            .lang("Iridium Reflector")
+    public static ItemEntry<ComponentItem> IRIDIUM_REFLECTOR = registerReactorComponent
+            ("iridium_reflector")
             .onRegister(attach(new ReflectorBehavior(-1)))
             .register();
-    public static ItemEntry<ComponentItem> PLATING = registerReactorComponent("plating")
-            .lang("Plating")
+    public static ItemEntry<ComponentItem> PLATING = registerReactorComponent
+            ("plating")
             .onRegister(attach(new PlatingBehavior(1000, 0.95F)))
             .register();
-    public static ItemEntry<ComponentItem> CONTAINMENT_PLATING = registerReactorComponent(
-                    "containment_plating")
-            .lang("Containment Plating")
+    public static ItemEntry<ComponentItem> CONTAINMENT_PLATING = registerReactorComponent
+            ("containment_plating")
             .onRegister(attach(new PlatingBehavior(500, 0.9F)))
             .register();
-    public static ItemEntry<ComponentItem> HEAT_PLATING = registerReactorComponent("heat_plating")
-            .lang("Heat Plating")
+    public static ItemEntry<ComponentItem> HEAT_PLATING = registerReactorComponent
+            ("heat_plating")
             .onRegister(attach(new PlatingBehavior(1700, 0.99F)))
             .register();
-    public static ItemEntry<ComponentItem> HEAT_EXCHANGER = registerReactorComponent("heat_exchanger")
+    public static ItemEntry<ComponentItem> HEAT_EXCHANGER = registerReactorComponent
+            ("heat_exchanger")
             .lang("Heat Exchanger")
             .onRegister(attach(new ExchangerBehavior(2500, 12, 4)))
             .register();

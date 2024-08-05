@@ -527,17 +527,22 @@ public class ItemLang {
                 "超维度快子凝聚物质");
 
         //  Item
-        provider.addItemName(LEPTON_TRAP_CRYSTAL, "Lepton Trap Crystal", "轻子阱晶体");
-        provider.addItemName(CHARGED_LEPTON_TRAP_CRYSTAL, "Charged Lepton Trap Crystal", "带电轻子阱晶体");
-        provider.addItemName(UNSTABLE_STAR, "Unstable Star", "易变之星");
-        provider.addItemName(ZENITH_STAR, "Zenith Star", "天穹辉星");
-        provider.addItemName(CLADDED_OPTICAL_FIBER_CORE, "Cladded Optical Fiber Core", "包层光导纤维内芯");
+        provider.addItemName(
+                LEPTON_TRAP_CRYSTAL, "Lepton Trap Crystal", "轻子阱晶体");
+        provider.addItemName(
+                CHARGED_LEPTON_TRAP_CRYSTAL, "Charged Lepton Trap Crystal", "带电轻子阱晶体");
+        provider.addItemName(
+                UNSTABLE_STAR, "Unstable Star", "易变之星");
+        provider.addItemName(
+                ZENITH_STAR, "Zenith Star", "天穹辉星");
+        provider.addItemName(
+                CLADDED_OPTICAL_FIBER_CORE, "Cladded Optical Fiber Core", "包层光导纤维内芯");
         provider.addItemWithTooltip(
                 RADIOACTIVE_WASTE, "Radioactive Waste", "放射性废物", "§7Do not throw it away", "§7请勿随意丢弃");
-
         provider.addItemWithTooltip(
                 NEUTRONIUM_SPHERET, "Neutronium Spheret", "中子素球体", "§7Extremely Heavy", "§7亿斤沉重");
-        provider.addItemName(TRIPLET_NEUTRONIUM_SPHERET, "Triplet Neutronium Spheret", "三重态中子素球体");
+        provider.addItemName(
+                TRIPLET_NEUTRONIUM_SPHERET, "Triplet Neutronium Spheret", "三重态中子素球体");
         provider.addItemWithTooltip(
                 CHARGED_TRIPLET_NEUTRONIUM_SPHERE,
                 "Charged Triplet Neutronium Sphere",
@@ -548,6 +553,12 @@ public class ItemLang {
         provider.addItemName(SCINTILLATOR_CRYSTAL, "Scintillator Crystal", "闪烁晶体");
 
         provider.addItemName(CATALYST_CARRIER, "Catalyst Carrier", "催化剂载体");
+
+        provider.addItemWithTooltip(
+                MITTS,
+                "手套",
+                "",
+                "");
 
         //////////////////////////////////////
         // *******    Physics Items   *******//
@@ -562,7 +573,18 @@ public class ItemLang {
                 "§7力场约束粒子容器");
 
         provider.addItemWithTooltip(
-                ELECTRON_SOURCE, "Electron Source", "电子源", "§7Just need a tiny Radium", "§7只需要一点点镭");
+                NEUTRON_SOURCE,
+                "Neutron Source",
+                "中子源",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ELECTRON_SOURCE,
+                "Electron Source",
+                "电子源",
+                "§7Just need a tiny Radium",
+                "§7只需要一点点镭");
 
         //  High Energy Physics Items
         provider.addItemWithTooltip(
@@ -602,8 +624,144 @@ public class ItemLang {
                 "§7Laser irradiation should probably be used",
                 "§7或许应使用激光照射");
 
+        provider.addItemWithTooltip(
+                PLATE_RADIATION_PROTECTION,
+                "Radiation Protection Plate",
+                "防辐射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ADV_PLATE_RADIATION_PROTECTION,
+                "Advanced Radiation Protection Plate",
+                "高级防辐射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENCAPSULATED_URANIUM,
+                "Encapsulated Uranium",
+                "封装铀",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_URANIUM_NUGGET,
+                "Enriched Uranium Nugget",
+                "浓缩铀粒",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_URANIUM,
+                "Enriched Uranium",
+                "浓缩铀",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENCAPSULATED_THORIUM,
+                "Encapsulated Thorium",
+                "封装钍",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_THORIUM_NUGGET,
+                "Enriched Thorium Nugget",
+                "浓缩钍粒",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_THORIUM,
+                "Enriched Thorium",
+                "浓缩钍",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENCAPSULATED_PLUTONIUM,
+                "Encapsulated Plutonium",
+                "封装钚",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_PLUTONIUM_NUGGET,
+                "Enriched Plutonium Nugget",
+                "浓缩钚粒",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                ENRICHED_PLUTONIUM,
+                "Enriched Plutonium",
+                "浓缩钚",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                NEUTRON_REFLECTOR,
+                "Neutron Reflector",
+                "中子反射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                THICK_NEUTRON_REFLECTOR,
+                "Thick Neutron Reflector",
+                "加厚中子反射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                IRIDIUM_REFLECTOR,
+                "Iridium Neutron Reflector",
+                "铱中子反射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                PLATING,
+                "Reactor Plating",
+                "反应堆隔板",
+                "",
+                "用于在核反应堆中填充空白槽\n反应堆热容：+1000\n反应堆爆炸范围：x95%\n叠加上限：36\n警告：请勿在取出隔板后热量会大于核反应堆上限时取出隔板！！！"
+        );
+
+        provider.addItemWithTooltip(
+                CONTAINMENT_PLATING,
+                "Containment Reactor Plating",
+                "密封反应堆隔板",
+                "",
+                "用于在核反应堆中填充空白槽\n反应堆热容：+500\n反应堆爆炸范围：x90%\n叠加上限：36\n警告：请勿在取出隔板后热量会大于核反应堆上限时取出隔板！！！");
+
+        provider.addItemWithTooltip(
+                HEAT_PLATING,
+                "Heat-Capacity Reactor Plating",
+                "高热容反应堆隔板",
+                "",
+                "用于在核反应堆中填充空白槽\n反应堆热容：+1700\n反应堆爆炸范围：x99%\n叠加上限：36\n警告：请勿在取出隔板后热量会大于核反应堆上限时取出隔板！！！");
+/*
+        provider.addItemWithTooltip(
+                PLATE_RADIATION_PROTECTION,
+                "Radiation Protection Plate",
+                "防辐射板",
+                "",
+                "");
+
+        provider.addItemWithTooltip(
+                PLATE_RADIATION_PROTECTION,
+                "Radiation Protection Plate",
+                "防辐射板",
+                "",
+                "");
+*/
         provider.add(
-                "item.epimorphism.reactor_component.desc.heat", "§fHeat: §a%d / %d", "§f热量: §a%d / %d");
+                "item.epimorphism.reactor_component.desc.heat",
+                "§fHeat: §a%d / %d",
+                "§f热量: §a%d / %d");
 
         //////////////////////////////////////
         // *****    Agriculture Items   *****//

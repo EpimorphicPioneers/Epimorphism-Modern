@@ -288,7 +288,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.CATALYST)
             .overlayTieredHullRenderer("catalyst_hatch")
-            .tooltips()
+            .tooltips(Component.translatable("block.epimorphism.catalyst_hatch.desc.0"))
             .register();
 
     public static final MachineDefinition NEUTRON_SENSOR = registrate()
@@ -345,8 +345,8 @@ public class EPMachines {
                     .abilities(EPPartAbility.REINFORCED_ROTOR_HOLDER)
                     .renderer(() -> new RotorHolderMachineRenderer(tier))
                     .tooltips(
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 0),
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 1),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 0),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
             tiersBetween(IV, UEV));
