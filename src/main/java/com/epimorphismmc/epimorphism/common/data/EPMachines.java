@@ -359,7 +359,6 @@ public class EPMachines {
     // Steam
     public static final MultiblockMachineDefinition STEAM_PISTON_HAMMER = registrate()
             .multiblock("steam_piston_hammer", SteamParallelMultiblockMachine::new)
-            .langValue("Steam Piston Hammer")
             .tooltips(
                     Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
                     Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
