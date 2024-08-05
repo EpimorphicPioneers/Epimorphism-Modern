@@ -32,7 +32,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPMachines.PLASMA_CVD;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.ROASTER;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESS;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.TFFT;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.VACUUM_DRYING_FURNACE;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.YOTTA_FLUID_TANK;
@@ -311,16 +311,16 @@ public class MachineLang {
                 "§7蒸汽时代的多方块锻造锤");
 
         provider.addBlockWithTooltip(
-                STEAM_PRESSOR::getBlock,
-                "Steam Pressor",
-                "蒸汽压缩机",
+                STEAM_PRESS::getBlock,
+                "Steam Press",
+                "蒸汽挤压机",
                 "§7A Multiblock Compressor at the Steam Age",
                 "§7蒸汽时代的多方块压缩机");
 
         provider.addBlockWithTooltip(
                 STEAM_FOUNDRY::getBlock,
                 "Steam Foundry",
-                "蒸汽合金炉",
+                "蒸汽铸造厂",
                 "§7A Multiblock Alloy Smelter at the Steam Age",
                 "§7蒸汽时代的多方块合金炉");
 

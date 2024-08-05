@@ -360,7 +360,7 @@ public class EPMachines {
     public static final MultiblockMachineDefinition STEAM_PISTON_HAMMER = registrate()
             .multiblock("steam_piston_hammer", SteamParallelMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc"),
                     Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
                     Component.translatable("epimorphism.universal.desc.parallel", 8))
             .rotationState(RotationState.ALL)
@@ -409,10 +409,10 @@ public class EPMachines {
                     GTCEu.id("block/machines/forge_hammer"))
             .register();
 
-    public static final MachineDefinition STEAM_PRESSOR = registrate()
-            .multiblock("steam_pressor", SteamParallelMultiblockMachine::new)
+    public static final MachineDefinition STEAM_PRESS = registrate()
+            .multiblock("steam_press", SteamParallelMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_pressor.desc.0"),
+                    Component.translatable("block.epimorphism.steam_press.desc"),
                     Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
                     Component.translatable("epimorphism.universal.desc.parallel", 8))
             .rotationState(RotationState.ALL)
@@ -443,7 +443,7 @@ public class EPMachines {
     public static final MachineDefinition STEAM_FOUNDRY = registrate()
             .multiblock("steam_foundry", SteamParallelMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_foundry.desc.0"),
+                    Component.translatable("block.epimorphism.steam_foundry.desc"),
                     Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
                     Component.translatable("epimorphism.universal.desc.parallel", 8))
             .rotationState(RotationState.ALL)

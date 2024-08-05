@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESSOR;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESS;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
@@ -68,7 +68,7 @@ public class SteamMachineHandler {
                     provider,
                     true,
                     Epimorphism.id("steam_pressor"),
-                    STEAM_PRESSOR.asStack(1),
+                    STEAM_PRESS.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
@@ -115,7 +115,7 @@ public class SteamMachineHandler {
                     provider,
                     true,
                     Epimorphism.id("steam_pressor"),
-                    STEAM_PRESSOR.asStack(1),
+                    STEAM_PRESS.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
