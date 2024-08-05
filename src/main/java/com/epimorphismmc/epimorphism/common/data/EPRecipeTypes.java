@@ -202,12 +202,6 @@ public class EPRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
 
-    public static final GTRecipeType ORE_MILLING_RECIPES = register("ore_milling", MULTIBLOCK)
-            .setMaxIOSize(1, 1, 0, 0)
-            .setEUIO(IO.IN)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.FORGE_HAMMER);
-
     public static final GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = register(
                     "vacuum_drying_furnace", MULTIBLOCK)
             .setMaxIOSize(1, 9, 2, 3)

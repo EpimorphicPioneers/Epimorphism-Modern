@@ -390,7 +390,7 @@ public class GeneratorMachines {
                         .where('S', controller(blocks(definition.get())))
                         .where('A', blocks(casing.get()))
                         .where('D', blocks(gear.get()))
-                        .where('B', EPPredicates.tierReinforcedRotorBlock())
+                        .where('B', EPPredicates.tierReinforcedRotor())
                         .where('E', blocks(casing.get()).or(abilities(MUFFLER).setMinGlobalLimited(1)))
                         .where(
                                 'C',

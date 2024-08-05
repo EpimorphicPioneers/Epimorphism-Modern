@@ -51,6 +51,14 @@ public class MiscLang {
         provider.add("particleType.epimorphism.lepton", "§aLepton", "§a轻子");
         provider.add("particleType.epimorphism.meson", "§rMeson", "§r介子");
 
+        provider.add(
+                "epimorphism.multiblock.pattern.direction",
+                "§cThe direction the block is facing must be consistent",
+                "§c方块朝向必须一致");
+
+        provider.add("epimorphism.universal.desc.duration", "§bDuration: §f%s", "§b耗时：§f%s");
+        provider.add("epimorphism.universal.desc.parallel", "§dMax Parallel: §f%s", "§d最大并行: §f%s");
+
         // GUI
         provider.add("epimorphism.universal.desc.mass", "Mass: %s", "质量：%s");
 

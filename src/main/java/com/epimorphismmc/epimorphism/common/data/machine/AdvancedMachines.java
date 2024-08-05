@@ -1229,7 +1229,7 @@ public class AdvancedMachines {
                                     .or(autoAbilities(true, false, false)))
                     .where('c', blocks(CASING_STEEL_SOLID.get()))
                     .where('F', frames(HSLASteel))
-                    .where('D', EPPredicates.fireboxBlock())
+                    .where('D', EPPredicates.firebox())
                     .where('V', blocks(HEAT_VENT.get()))
                     .where('P', blocks(CASING_STEEL_PIPE.get()))
                     .where('H', coilBlock())

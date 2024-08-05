@@ -16,7 +16,6 @@ import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQU
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQUADAH_EXCITED_FLUID_LIST;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.MOLECULAR_BEAM_RECIPES;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.NEUTRON_ACTIVATOR_RECIPES;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ORE_MILLING_RECIPES;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.RADIATION_HATCH_LIST;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ROASTER_RECIPES;
@@ -39,7 +38,6 @@ public class RecipeLang {
         provider.addRecipeType(ROASTER_RECIPES, "Roasting", "焙烧");
         provider.addRecipeType(DRILLING_RECIPES, "Drilling", "钻取");
         provider.addRecipeType(DIGESTER_RECIPES, "Digestion", "煮解");
-        provider.addRecipeType(ORE_MILLING_RECIPES, "Ore Milling", "矿石加工");
         provider.addRecipeType(VACUUM_DRYING_FURNACE_RECIPES, "Vacuum Drying", "真空干燥");
         provider.addRecipeType(PRECISE_ASSEMBLER_RECIPES, "Precise Assembler", "精密组装");
         provider.addRecipeType(FERMENTATION_TANK_RECIPES, "Biological Fermentation", "生物发酵");

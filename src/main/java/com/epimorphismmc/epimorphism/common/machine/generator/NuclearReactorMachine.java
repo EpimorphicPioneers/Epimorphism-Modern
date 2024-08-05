@@ -101,9 +101,7 @@ public class NuclearReactorMachine extends MetaMachine
                                 4 + x * 18,
                                 4 + y * 18,
                                 () -> handler.isLock(slot),
-                                (b) -> {
-                                    handler.setLock(slot, b);
-                                }))
+                                b -> handler.setLock(slot, b)))
                         .setBackground(GuiTextures.SLOT));
             }
         }

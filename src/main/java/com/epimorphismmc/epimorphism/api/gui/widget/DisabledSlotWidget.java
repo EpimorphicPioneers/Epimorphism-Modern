@@ -36,9 +36,7 @@ public class DisabledSlotWidget extends SlotWidget {
         boolean newValue = this.isDisable.get();
         if (newValue != this.isDisabled) {
             this.isDisabled = newValue;
-            this.writeUpdateInfo(0, (buf) -> {
-                buf.writeBoolean(this.isDisabled);
-            });
+            this.writeUpdateInfo(0, buf -> buf.writeBoolean(this.isDisabled));
         }
     }
 
