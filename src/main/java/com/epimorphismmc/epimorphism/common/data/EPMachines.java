@@ -1550,9 +1550,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CHEMICAL_PLANT_RECIPES)
-            .recipeModifiers(
-                    EPRecipeModifiers.EP_PARALLEL,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryMOPattern.start()
                     .aisle("EEEEEEE", "C#####C", "C#####C", "C#####C", "C#####C", "C#####C", "CCCCCCC")
@@ -1603,8 +1601,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.catalytic_reformer.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.CATALYTIC_REFORMER_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("F   F", "XXXPX", "XXXPX", "XXXPX")
@@ -1634,8 +1631,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.cryogenic_reactor.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.CRYOGENIC_REACTOR_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_ALUMINIUM_FROSTPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("    RR", "    TV", "    VV", "    TV", "    TT")
@@ -1672,8 +1668,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.burner_reactor.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.BURNER_REACTOR_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("F   F", "F X F", "FXXXF", "F X F", "F   F", "     ")
@@ -1773,9 +1768,7 @@ public class EPMachines {
                     Component.translatable("block.epimorphism.roaster.desc.1"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.ROASTER_RECIPES)
-            .recipeModifiers(
-                    EPRecipeModifiers.EP_PARALLEL,
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_INVAR_HEATPROOF)
             .pattern(definition -> FactoryMOPattern.start()
                     .aisle("     ", "     ", " D D ", " D D ", " D D ")
@@ -1814,8 +1807,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.cvd_unit.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.CVD_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_NONCONDUCTING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXX", "XGGGX", "XGGGX")
@@ -1839,8 +1831,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.plasma_cvd.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(EPRecipeTypes.CVD_RECIPES, EPRecipeTypes.PLASMA_CVD_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_ATOMIC)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXXXX", " XGGGX ", " XGGGX ", "       ")
@@ -1865,8 +1856,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.laser_cvd.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(EPRecipeTypes.CVD_RECIPES, EPRecipeTypes.LASER_CVD_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_REACTION_SAFE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("   XXXXX", "   XGGGX", "   XGGGX", "   XGGGX", "    XXX ")
@@ -2037,8 +2027,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.isa_mill.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(EPBlocks.ISA_MILL_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("CEEEEEE", "CEEEEEE", "CEEEEEE")
@@ -2075,8 +2064,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.industrial_flotation_cell.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(EPBlocks.FLOTATION_CASING)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(
@@ -2157,8 +2145,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.industrial_drill.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(EPRecipeTypes.DRILLING_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(
@@ -2211,8 +2198,7 @@ public class EPMachines {
             .tooltips(Component.translatable("block.epimorphism.fracker.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
-            .recipeModifier(
-                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+            .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
             .appearanceBlock(CASING_WATERTIGHT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("F    F", "F    F", "F  CCC", "F  CCC", "F  CCC", "FFFCCC", "   CCC", "   CCC")
@@ -2425,8 +2411,7 @@ public class EPMachines {
                         .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))
                         .rotationState(RotationState.NON_Y_AXIS)
                         .recipeType(recipeType)
-                        .recipeModifier(
-                                GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+                        .recipeModifier(EPRecipeModifiers.NON_PERFECT_OC)
                         .workableTieredHullRenderer(Epimorphism.id("block/machines/" + name))
                         .tooltips(GTMachines.explosion())
                         .tooltips(GTMachines.workableTiered(
