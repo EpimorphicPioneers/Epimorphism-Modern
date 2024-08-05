@@ -306,20 +306,20 @@ public class MachineLang {
         provider.addBlockWithTooltip(
                 STEAM_PISTON_HAMMER::getBlock,
                 "蒸汽活塞锤",
-                List.of("§7A Multiblock Piston Hammer at the Steam Age. "),
-                List.of("§7蒸汽时代的多方块锻造锤。"));
+                List.of("§7A Multiblock Piston Hammer at the Steam Age"),
+                List.of("§7蒸汽时代的多方块锻造锤"));
 
         provider.addBlockWithTooltip(
                 STEAM_PRESSOR::getBlock,
                 "蒸汽压缩机",
-                List.of("§7A Multiblock Compressor at the Steam Age. "),
-                List.of("§7蒸汽时代的多方块压缩机。"));
+                List.of("§7A Multiblock Compressor at the Steam Age"),
+                List.of("§7蒸汽时代的多方块压缩机"));
 
         provider.addBlockWithTooltip(
                 STEAM_FOUNDRY::getBlock,
                 "蒸汽合金炉",
-                List.of("§7A Multiblock Alloy Smelter at the Steam Age. "),
-                List.of("§7蒸汽时代的多方块合金炉。"));
+                List.of("§7A Multiblock Alloy Smelter at the Steam Age"),
+                List.of("§7蒸汽时代的多方块合金炉"));
 
         provider.addCN("block.epimorphism.uhv_fusion_reactor", "核聚变反应堆控制电脑 MK-IV");
         provider.add(

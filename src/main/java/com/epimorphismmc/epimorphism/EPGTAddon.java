@@ -3,7 +3,6 @@ package com.epimorphismmc.epimorphism;
 import com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialIconSet;
 import com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialIconType;
 import com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix;
-import com.epimorphismmc.epimorphism.common.data.EPDimensionTypes;
 import com.epimorphismmc.epimorphism.common.data.EPItems;
 import com.epimorphismmc.epimorphism.common.data.EPParticleTypes;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
@@ -41,7 +40,6 @@ public class EPGTAddon implements IGTAddon {
         EPMaterialIconType.init();
         GTRecipeManager.onGTPostInitialization();
         EPItems.init();
-        EPDimensionTypes.init();
         EPParticleTypes.init();
         Epimorphism.LOGGER.info("Epimorphism's GT Addon Loaded!");
     }
