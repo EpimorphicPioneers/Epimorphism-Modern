@@ -16,7 +16,11 @@ import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
-import com.gregtechceu.gtceu.api.gui.fancy.*;
+import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
+import com.gregtechceu.gtceu.api.gui.fancy.FancyMachineUIWidget;
+import com.gregtechceu.gtceu.api.gui.fancy.IFancyConfiguratorButton;
+import com.gregtechceu.gtceu.api.gui.fancy.IFancyUIProvider;
+import com.gregtechceu.gtceu.api.gui.fancy.TooltipsPanel;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
@@ -31,7 +35,11 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
-import com.lowdragmc.lowdraglib.gui.widget.*;
+import com.lowdragmc.lowdraglib.gui.widget.ComponentPanelWidget;
+import com.lowdragmc.lowdraglib.gui.widget.DraggableScrollableWidgetGroup;
+import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
+import com.lowdragmc.lowdraglib.gui.widget.Widget;
+import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup;
 import com.lowdragmc.lowdraglib.misc.FluidTransferList;
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 import com.lowdragmc.lowdraglib.side.fluid.IFluidTransfer;
@@ -53,11 +61,16 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.utility.BigIntMath.*;
+import static com.epimorphismmc.monomorphism.math.BigIntMath.LONG_MAX;
+import static com.epimorphismmc.monomorphism.math.BigIntMath.getLongValue;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -338,10 +351,10 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine
             FluidStack inputFluidStack;
             if (fluidTank.hasFluid()) {
                 var free = isVoiding
-                        ? LONG_MAX_VALUE
+                        ? LONG_MAX
                         : fluidTank.getMaxStorage().subtract(fluidTank.getCurrentStorage());
-                inputFluidStack = FluidStack.create(
-                        fluidTank.getCurrentFluid(), free.min(LONG_MAX_VALUE).longValue());
+                inputFluidStack =
+                        FluidStack.create(fluidTank.getCurrentFluid(), free.min(LONG_MAX).longValue());
                 List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(
                         capabilitiesProxy.get(IO.IN, GTRecipeCapabilities.FLUID), Collections::emptyList);
                 List<?> list = List.of(FluidIngredient.of(inputFluidStack));
@@ -373,7 +386,7 @@ public class YottaFluidTankMachine extends WorkableMultiblockMachine
             // Debank to Fluid Output Hatches
             FluidStack outputFluidStack = FluidStack.create(
                     fluidTank.getCurrentFluid(),
-                    fluidTank.getCurrentStorage().min(LONG_MAX_VALUE).longValue());
+                    fluidTank.getCurrentStorage().min(LONG_MAX).longValue());
             if (!EPFluidUtil.isDefaultFluid(outputFluidStack) && outputFluidStack.getAmount() >= 0) {
                 List<?> list = List.of(FluidIngredient.of(outputFluidStack));
                 List<IRecipeHandler<?>> handlers = Objects.requireNonNullElseGet(

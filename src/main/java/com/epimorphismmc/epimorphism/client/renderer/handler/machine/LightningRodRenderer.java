@@ -17,7 +17,6 @@ import com.lowdragmc.lowdraglib.client.model.ModelFactory;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.core.Direction;
@@ -77,9 +76,9 @@ public class LightningRodRenderer extends MachineRenderer {
 
         if (machine instanceof IWorkable workable) {
             quads.addAll(this.overlayModel.bakeQuads(
-                    side, frontFacing, workable.isActive(), workable.isWorkingEnabled()));
+                    side, frontFacing, Direction.NORTH, workable.isActive(), workable.isWorkingEnabled()));
         } else {
-            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, false, false));
+            quads.addAll(this.overlayModel.bakeQuads(side, frontFacing, Direction.NORTH, false, false));
         }
     }
 
@@ -96,7 +95,7 @@ public class LightningRodRenderer extends MachineRenderer {
     public void onPrepareTextureAtlas(
             ResourceLocation atlasName, Consumer<ResourceLocation> register) {
         super.onPrepareTextureAtlas(atlasName, register);
-        if (atlasName.equals(TextureAtlas.LOCATION_BLOCKS)) {
+        if (atlasName.equals(InventoryMenu.BLOCK_ATLAS)) {
             this.overlayModel.registerTextureAtlas(register);
         }
     }

@@ -1,10 +1,26 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.COMPONENT_ASSEMBLY_LINE_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.CRYSTALLIZATION_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.DIGESTER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.DRILLING_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.FERMENTATION_TANK_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_A;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_B;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.GENERAL_RECIPES_C;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQUADAH_COOLANT_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LARGE_NAQUADAH_EXCITED_FLUID_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.MOLECULAR_BEAM_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.NEUTRON_ACTIVATOR_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.RADIATION_HATCH_LIST;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ROASTER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.UNIVERSAL_CHEMICAL_FUELS;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.VACUUM_DRYING_FURNACE_RECIPES;
 
 public class RecipeLang {
     public static void init(MOLangProvider provider) {
@@ -22,7 +38,6 @@ public class RecipeLang {
         provider.addRecipeType(ROASTER_RECIPES, "Roasting", "焙烧");
         provider.addRecipeType(DRILLING_RECIPES, "Drilling", "钻取");
         provider.addRecipeType(DIGESTER_RECIPES, "Digestion", "煮解");
-        provider.addRecipeType(ORE_MILLING_RECIPES, "Ore Milling", "矿石加工");
         provider.addRecipeType(VACUUM_DRYING_FURNACE_RECIPES, "Vacuum Drying", "真空干燥");
         provider.addRecipeType(PRECISE_ASSEMBLER_RECIPES, "Precise Assembler", "精密组装");
         provider.addRecipeType(FERMENTATION_TANK_RECIPES, "Biological Fermentation", "生物发酵");

@@ -5,7 +5,8 @@ import com.epimorphismmc.epimorphism.common.machine.generator.NuclearReactorMach
 import com.epimorphismmc.monomorphism.item.component.IMODurabilityBar;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
-import com.gregtechceu.gtceu.api.item.component.*;
+import com.gregtechceu.gtceu.api.item.component.IAddInformation;
+import com.gregtechceu.gtceu.api.item.component.IItemComponent;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -175,7 +176,7 @@ public interface IReactorComponent extends IItemComponent, IAddInformation, IMOD
      * @return the multiplier value for explosion power caused by this component,
      * or 1 if this component doesn't affect the multiplication part of the explosion calculation.
      */
-    default float getExplosionPowerMultiplier() {
+    default float explosionPowerMultiplier() {
         return 1;
     }
 
@@ -184,7 +185,7 @@ public interface IReactorComponent extends IItemComponent, IAddInformation, IMOD
      * @return the multiplier value for explosion power caused by this component,
      * or 1 if this component doesn't affect the multiplication part of the explosion calculation.
      */
-    default int getHeatAdjustment() {
+    default int heatAdjustment() {
         return 0;
     }
 

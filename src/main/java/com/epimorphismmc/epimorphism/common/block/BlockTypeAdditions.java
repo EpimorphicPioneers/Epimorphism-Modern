@@ -11,8 +11,28 @@ import net.minecraft.world.level.block.StainedGlassBlock;
 
 import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static net.minecraft.world.level.block.Blocks.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_LAMINATED_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CLEANROOM_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FUSION_GLASS;
+import static net.minecraft.world.level.block.Blocks.BLACK_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.BLUE_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.BROWN_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.CYAN_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.GLASS;
+import static net.minecraft.world.level.block.Blocks.GRAY_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.GREEN_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.LIGHT_BLUE_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.LIGHT_GRAY_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.LIME_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.MAGENTA_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.ORANGE_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.PINK_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.PURPLE_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.RED_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.TINTED_GLASS;
+import static net.minecraft.world.level.block.Blocks.WHITE_STAINED_GLASS;
+import static net.minecraft.world.level.block.Blocks.YELLOW_STAINED_GLASS;
 
 public class BlockTypeAdditions {
     public static void init() {

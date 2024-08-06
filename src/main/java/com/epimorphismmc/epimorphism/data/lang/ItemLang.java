@@ -1,15 +1,35 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
 import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.*;
-import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.*;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.*;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.BROWN_ALGA;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.CHRYSOPHYCEAE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ELECTROCHEMICAL_GRADIENT_RECORDER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.GREEN_ALGA;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.HYPERRIBOSOME;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.NEUTRON_ABSORBING_PROTEIN;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ORDINARY_ALGAE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.PINECONE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.QUANTUM_TUNNELING_MICROTUBULE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.RED_ALGA;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.STERILIZED_PETRI_DISH;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.SUPEREXCITED_CONDUCTIVE_POLYMER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ULTRA_MICRO_PHASE_SEPARATOR;
+import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.CATALYST_CARRIER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.ELECTRON_SOURCE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.EMPTY_PARTICLE_CAPSULE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.HYPOGEN_PLASMA_CONTAINMENT_CELL;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.NEUTRON_PLASMA_CONTAINMENT_CELL;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.PLASMA_CONTAINMENT_CELL;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.QUANTUM_ANOMALY;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.RADIOACTIVE_WASTE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.RHENIUM_PLASMA_CONTAINMENT_CELL;
 
 public class ItemLang {
     public static void init(MOLangProvider provider) {

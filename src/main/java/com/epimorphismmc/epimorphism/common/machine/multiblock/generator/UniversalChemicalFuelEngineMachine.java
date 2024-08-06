@@ -49,7 +49,7 @@ public class UniversalChemicalFuelEngineMachine extends WorkableElectricMultiblo
 
     @Override
     protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
-        var list = MORecipeHelper.getInputFluid(recipe);
+        var list = RecipeHelper.getInputFluids(recipe);
         if (list.isEmpty()) return recipe;
 
         var inputFluid = list.get(0);

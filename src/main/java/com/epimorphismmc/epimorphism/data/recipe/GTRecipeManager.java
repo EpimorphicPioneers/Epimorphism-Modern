@@ -13,7 +13,9 @@ import net.minecraftforge.fml.ModLoader;
 import com.google.common.collect.ImmutableMap;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Predicate;

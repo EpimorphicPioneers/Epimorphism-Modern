@@ -1,6 +1,7 @@
 package com.epimorphismmc.epimorphism.api.pattern;
 
 import com.epimorphismmc.epimorphism.api.machine.multiblock.EPPartAbility;
+import com.epimorphismmc.epimorphism.api.pattern.predicates.PredicateDirections;
 import com.epimorphismmc.epimorphism.api.pattern.utils.FluidTankCellContainer;
 import com.epimorphismmc.epimorphism.api.pattern.utils.StorageFieldBlockContainer;
 import com.epimorphismmc.epimorphism.common.block.BlockMaps;
@@ -12,6 +13,7 @@ import com.gregtechceu.gtceu.api.machine.feature.ITieredMachine;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
 import com.gregtechceu.gtceu.api.pattern.predicates.PredicateBlocks;
+import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
@@ -113,7 +115,7 @@ public class EPPredicates {
                 .build();
     }
 
-    public static TraceabilityPredicate tierReinforcedRotorBlock() {
+    public static TraceabilityPredicate tierReinforcedRotor() {
         return new TraceabilityPredicate(
                 new PredicateBlocks(
                         EPPartAbility.REINFORCED_ROTOR_HOLDER.getAllBlocks().toArray(Block[]::new)) {
@@ -141,11 +143,14 @@ public class EPPredicates {
     }
 
     // Univer
-
-    public static TraceabilityPredicate fireboxBlock() {
+    public static TraceabilityPredicate firebox() {
         return TierPredicateFactory.create("Firebox")
                 .map(BlockMaps.ALL_FIREBOXS)
                 .strict(true)
                 .build();
+    }
+
+    public static TraceabilityPredicate direction(Block block, RelativeDirection... directions) {
+        return new TraceabilityPredicate(new PredicateDirections(block, directions));
     }
 }

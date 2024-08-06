@@ -1,6 +1,6 @@
 package com.epimorphismmc.epimorphism.data.lang;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 public class MiscLang {
     public static void init(MOLangProvider provider) {
@@ -51,6 +51,14 @@ public class MiscLang {
         provider.add("particleType.epimorphism.lepton", "§aLepton", "§a轻子");
         provider.add("particleType.epimorphism.meson", "§rMeson", "§r介子");
 
+        provider.add(
+                "epimorphism.multiblock.pattern.direction",
+                "§cThe direction the block is facing must be consistent",
+                "§c方块朝向必须一致");
+
+        provider.add("epimorphism.universal.desc.duration", "§bDuration: §f%s", "§b耗时：§f%s");
+        provider.add("epimorphism.universal.desc.parallel", "§dMax Parallel: §f%s", "§d最大并行: §f%s");
+
         // GUI
         provider.add("epimorphism.universal.desc.mass", "Mass: %s", "质量：%s");
 
@@ -99,6 +107,16 @@ public class MiscLang {
                 "gui.epimorphism.voiding_stone.desc.disabled",
                 "Stone dust destruction is disabled",
                 "石粉销毁已禁用");
+
+        provider.add(
+                "gui.epimorphism.backfiller.start",
+                "Start Position: X: %d, Y: %d, Z: %d",
+                "开始位置: X: %d, Y: %d, Z: %d");
+        provider.add(
+                "gui.epimorphism.backfiller.filling",
+                "Filling Position: X: %d, Y: %d, Z: %d",
+                "正在填充: X: %d, Y: %d, Z: %d");
+        provider.add("gui.epimorphism.backfiller.done", "Done!", "完成！");
 
         provider.addMultilineLang(
                 "gui.epimorphism.neutron_sensor.invert.enabled",

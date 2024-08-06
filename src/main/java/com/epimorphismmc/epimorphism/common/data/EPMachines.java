@@ -102,14 +102,19 @@ import net.minecraft.world.level.block.DirectionalBlock;
 import com.google.common.primitives.Ints;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import it.unimi.dsi.fastutil.ints.Int2LongFunction;
-import org.joml.Math;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
+import static com.epimorphismmc.epimorphism.api.pattern.EPPredicates.direction;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
@@ -358,14 +363,12 @@ public class EPMachines {
     // Steam
     public static final MultiblockMachineDefinition STEAM_PISTON_HAMMER = registrate()
             .multiblock("steam_piston_hammer", SteamParallelMultiblockMachine::new)
-            .langValue("Steam Piston Hammer")
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.0"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.1"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.2"),
-                    Component.translatable("block.epimorphism.steam_piston_hammer.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .recipeTypes(FORGE_HAMMER_RECIPES, EPRecipeTypes.ORE_MILLING_RECIPES)
+                    Component.translatable("block.epimorphism.steam_piston_hammer.desc"),
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
+            .recipeTypes(FORGE_HAMMER_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .pattern(definition -> FactoryBlockPattern.start()
@@ -381,11 +384,7 @@ public class EPMachines {
                                     .or(abilities(PartAbility.STEAM_EXPORT_ITEMS))
                                     .or(abilities(PartAbility.STEAM)))
                     .where('B', blocks(ChemicalHelper.getBlock(block, Steel)))
-                    .where(
-                            'C',
-                            states(Blocks.STICKY_PISTON
-                                    .defaultBlockState()
-                                    .setValue(DirectionalBlock.FACING, Direction.DOWN)))
+                    .where('C', direction(Blocks.STICKY_PISTON, RelativeDirection.DOWN))
                     .where('D', abilities(PartAbility.STEAM))
                     .where('E', blocks(CASING_BRONZE_BRICKS.get()))
                     .where('#', air())
@@ -411,18 +410,16 @@ public class EPMachines {
                     .build())
             .workableCasingRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    GTCEu.id("block/machines/forge_hammer"),
-                    false)
+                    GTCEu.id("block/machines/forge_hammer"))
             .register();
 
-    public static final MachineDefinition STEAM_PRESSOR = registrate()
-            .multiblock("steam_pressor", SteamParallelMultiblockMachine::new)
+    public static final MachineDefinition STEAM_PRESS = registrate()
+            .multiblock("steam_press", SteamParallelMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_pressor.desc.0"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.1"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.2"),
-                    Component.translatable("block.epimorphism.steam_pressor.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
+                    Component.translatable("block.epimorphism.steam_press.desc"),
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .recipeType(COMPRESSOR_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
@@ -444,51 +441,16 @@ public class EPMachines {
                     .build())
             .workableCasingRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_compressor"),
-                    false)
-            .register();
-
-    public static final MachineDefinition STEAM_SEPARATOR = registrate()
-            .multiblock("steam_separator", SteamParallelMultiblockMachine::new)
-            .tooltips(
-                    Component.translatable("block.epimorphism.steam_separator.desc.0"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.1"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.2"),
-                    Component.translatable("block.epimorphism.steam_separator.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
-            .appearanceBlock(CASING_BRONZE_BRICKS)
-            .recipeType(CENTRIFUGE_RECIPES)
-            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
-            .addOutputLimit(ItemRecipeCapability.CAP, 2)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("XXX", "XXX", " X ")
-                    .aisle("XXX", "X#X", "XXX")
-                    .aisle("XXX", "XSX", " X ")
-                    .where('S', Predicates.controller(blocks(definition.getBlock())))
-                    .where('#', Predicates.air())
-                    .where(' ', Predicates.any())
-                    .where(
-                            'X',
-                            blocks(CASING_BRONZE_BRICKS.get())
-                                    .setMinGlobalLimited(6)
-                                    .or(Predicates.abilities(PartAbility.STEAM_IMPORT_ITEMS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.STEAM).setExactLimit(1))
-                                    .or(Predicates.abilities(PartAbility.STEAM_EXPORT_ITEMS).setPreviewCount(1)))
-                    .build())
-            .workableCasingRenderer(
-                    GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
-                    Epimorphism.id("block/multiblock/steam_separator"),
-                    false)
+                    Epimorphism.id("block/multiblock/steam_compressor"))
             .register();
 
     public static final MachineDefinition STEAM_FOUNDRY = registrate()
             .multiblock("steam_foundry", SteamParallelMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("block.epimorphism.steam_foundry.desc.0"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.1"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.2"),
-                    Component.translatable("block.epimorphism.steam_foundry.desc.3"))
-            .rotationState(RotationState.NON_Y_AXIS)
+                    Component.translatable("block.epimorphism.steam_foundry.desc"),
+                    Component.translatable("epimorphism.universal.desc.duration", "1.5×"),
+                    Component.translatable("epimorphism.universal.desc.parallel", 8))
+            .rotationState(RotationState.ALL)
             .appearanceBlock(CASING_BRONZE_BRICKS)
             .recipeType(ALLOY_SMELTER_RECIPES)
             .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
@@ -1795,7 +1757,7 @@ public class EPMachines {
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY))
                                     .or(Predicates.autoAbilities(true, false, false)))
-                    .where('C', EPPredicates.fireboxBlock())
+                    .where('C', EPPredicates.firebox())
                     .where('D', blocks(CASING_TITANIUM_PIPE.get()))
                     .where('E', abilities(MUFFLER))
                     .where('#', Predicates.air())
@@ -2246,10 +2208,17 @@ public class EPMachines {
     public static final MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis(
             "concrete_backfiller",
             (holder, tier) ->
-                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, 2 * tier - 5, 8 - (tier - 5)),
+                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, (int) Math.pow(2, tier - 1)),
             (tier, builder) -> builder
                     .langValue("Concrete Backfiller")
-                    .tooltips(Component.translatable("block.epimorphism.concrete_backfiller.desc.0"))
+                    .tooltips(
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.0"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.1"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.2"),
+                            Component.translatable(
+                                    "gtceu.universal.tooltip.working_area_max",
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1,
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))

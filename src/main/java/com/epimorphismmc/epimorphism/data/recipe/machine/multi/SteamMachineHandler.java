@@ -11,10 +11,17 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMachines.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESS;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_BRONZE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_STEEL;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Brass;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Cupronickel;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
 
 public class SteamMachineHandler {
 
@@ -28,8 +35,8 @@ public class SteamMachineHandler {
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,
-                    Epimorphism.id("steam_separator"),
-                    STEAM_SEPARATOR.asStack(1),
+                    Epimorphism.id("steam_piston_hammer"),
+                    STEAM_PISTON_HAMMER.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
@@ -38,7 +45,7 @@ public class SteamMachineHandler {
                     'G',
                     new UnificationEntry(gear, Steel),
                     'T',
-                    new UnificationEntry(rotor, TinAlloy));
+                    GTMachines.STEAM_HAMMER.right().asStack());
 
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
@@ -46,20 +53,22 @@ public class SteamMachineHandler {
                     Epimorphism.id("steam_foundry"),
                     STEAM_FOUNDRY.asStack(1),
                     "PGP",
-                    "PTP",
+                    "BTB",
                     "PGP",
                     'P',
                     CASING_STEEL_SOLID,
+                    'B',
+                    FIREBOX_STEEL,
                     'G',
                     new UnificationEntry(gear, Cupronickel),
                     'T',
-                    GTMachines.STEAM_ALLOY_SMELTER.left().asStack());
+                    GTMachines.STEAM_ALLOY_SMELTER.right().asStack());
 
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,
                     Epimorphism.id("steam_pressor"),
-                    STEAM_PRESSOR.asStack(1),
+                    STEAM_PRESS.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
@@ -68,13 +77,13 @@ public class SteamMachineHandler {
                     'G',
                     new UnificationEntry(gear, Brass),
                     'T',
-                    GTMachines.STEAM_COMPRESSOR.left().asStack());
+                    GTMachines.STEAM_COMPRESSOR.right().asStack());
         } else {
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
                     true,
-                    Epimorphism.id("steam_separator"),
-                    STEAM_SEPARATOR.asStack(1),
+                    Epimorphism.id("steam_piston_hammer"),
+                    STEAM_PISTON_HAMMER.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",
@@ -83,7 +92,7 @@ public class SteamMachineHandler {
                     'G',
                     new UnificationEntry(gear, Steel),
                     'T',
-                    new UnificationEntry(rotor, TinAlloy));
+                    GTMachines.STEAM_HAMMER.left().asStack());
 
             VanillaRecipeHelper.addShapedRecipe(
                     provider,
@@ -91,10 +100,12 @@ public class SteamMachineHandler {
                     Epimorphism.id("steam_foundry"),
                     STEAM_FOUNDRY.asStack(1),
                     "PGP",
-                    "PTP",
+                    "BTB",
                     "PGP",
                     'P',
                     CASING_BRONZE_BRICKS,
+                    'B',
+                    FIREBOX_BRONZE,
                     'G',
                     new UnificationEntry(gear, Cupronickel),
                     'T',
@@ -104,7 +115,7 @@ public class SteamMachineHandler {
                     provider,
                     true,
                     Epimorphism.id("steam_pressor"),
-                    STEAM_PRESSOR.asStack(1),
+                    STEAM_PRESS.asStack(1),
                     "PGP",
                     "PTP",
                     "PGP",

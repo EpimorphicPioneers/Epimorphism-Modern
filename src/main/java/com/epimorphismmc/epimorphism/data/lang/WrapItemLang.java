@@ -2,7 +2,7 @@ package com.epimorphismmc.epimorphism.data.lang;
 
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
@@ -13,7 +13,30 @@ import net.minecraftforge.common.data.LanguageProvider;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.*;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_COATED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_EPOXY;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_FIBER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_MULTILAYER_FIBER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PHENOLIC;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PLASTIC;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_WETWARE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_BASIC;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ELITE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_EXTREME;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_GOOD;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_PLASTIC;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_WETWARE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR_ADVANCED;
 
 public class WrapItemLang {
     public static void init(MOLangProvider provider) {

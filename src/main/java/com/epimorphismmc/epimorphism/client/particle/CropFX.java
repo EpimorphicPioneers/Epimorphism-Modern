@@ -28,8 +28,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.getBlockRenderer;
-import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.getBlockRendererDispatcher;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.blockRenderer;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.blockRendererDispatcher;
 
 @OnlyIn(Dist.CLIENT)
 @ParametersAreNonnullByDefault
@@ -53,10 +53,10 @@ public class CropFX extends Particle {
         float z = (float) (Mth.lerp(partialTicks, this.zo, this.z) - vec3.z());
 
         var state = getState(Blocks.WHEAT, cropAge);
-        BakedModel bakedmodel = getBlockRendererDispatcher().getBlockModel(state);
+        BakedModel bakedmodel = blockRendererDispatcher().getBlockModel(state);
         POSE_STACK.pushPose();
         POSE_STACK.translate(x, y, z);
-        getBlockRenderer()
+        blockRenderer()
                 .renderModel(
                         POSE_STACK.last(),
                         buffer,

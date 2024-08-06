@@ -3,7 +3,6 @@ package com.epimorphismmc.epimorphism.api.data.chemical.material.info;
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.client.renderer.handler.item.StereoscopicItemRenderer;
 import com.epimorphismmc.epimorphism.common.item.behaviors.renderer.HaloItemBehavior;
-import com.epimorphismmc.epimorphism.common.item.behaviors.renderer.SimpleRenderItemBehavior;
 
 import com.epimorphismmc.monomorphism.data.chemical.material.info.MOMaterialIconSet;
 
@@ -31,10 +30,7 @@ public class EPMaterialIconSet {
                     false));
 
     public static final MOMaterialIconSet CUSTOM_TRANSCENDENT_MENTAL = new MOMaterialIconSet(
-            "transcendent_mental",
-            MaterialIconSet.DULL,
-            false,
-            new SimpleRenderItemBehavior(StereoscopicItemRenderer.INSTANCE));
+            "transcendent_mental", MaterialIconSet.DULL, false, () -> StereoscopicItemRenderer.INSTANCE);
 
     public static void init() {
         /**/

@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.utility.MOMathUtils.*;
+import static com.epimorphismmc.monomorphism.math.MOMath.randomRectanglePoint;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -41,7 +41,7 @@ public class DigesterMachine extends WorkableElectricMultiblockMachine {
             int stepX = facing.getStepX();
             int stepZ = facing.getStepZ();
 
-            var randPos = getRandomPointInRectangle(
+            var randPos = randomRectanglePoint(
                     new Vec2(
                             stepX * 1.86F + pos.getX() + 0.5F + (Math.abs(stepX) - 1) * 1.26F,
                             stepZ * 1.86F + pos.getZ() + 0.5F + (Math.abs(stepZ) - 1) * 1.26F),

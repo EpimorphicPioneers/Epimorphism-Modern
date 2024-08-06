@@ -2,9 +2,9 @@ package com.epimorphismmc.epimorphism.client.renderer.handler.machine;
 
 import com.epimorphismmc.epimorphism.api.machine.feature.multiblock.ITankMachine;
 
-import com.epimorphismmc.monomorphism.client.renderer.CubeRenderer;
+import com.epimorphismmc.monomorphism.client.utils.Cuboid;
+import com.epimorphismmc.monomorphism.client.utils.CuboidRenderer;
 import com.epimorphismmc.monomorphism.client.utils.MORenderUtils;
-import com.epimorphismmc.monomorphism.client.utils.Model3D;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IWorkableMultiController;
@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.*;
+import static com.epimorphismmc.monomorphism.client.utils.ClientUtils.mainCamera;
 
 public class TankMachineRenderer extends WorkableCasingMachineRenderer {
     public TankMachineRenderer(ResourceLocation baseCasing, ResourceLocation workableModel) {
@@ -59,13 +59,13 @@ public class TankMachineRenderer extends WorkableCasingMachineRenderer {
                 poseStack.translate(-0.5, 0, -0.5);
                 MORenderUtils.renderStillFluidInWorld(
                         fluid,
-                        new Model3D().bounds(-1, -3, -3, 2, -1, 0),
+                        new Cuboid(-1, -3, -3, 2, -1, 0),
                         poseStack,
                         buffer,
-                        getMainCamera(),
+                        mainCamera(),
                         LightTexture.FULL_BRIGHT,
                         OverlayTexture.NO_OVERLAY,
-                        CubeRenderer.FaceDisplay.BACK);
+                        CuboidRenderer.FaceDisplay.BACK);
                 poseStack.popPose();
             }
         }

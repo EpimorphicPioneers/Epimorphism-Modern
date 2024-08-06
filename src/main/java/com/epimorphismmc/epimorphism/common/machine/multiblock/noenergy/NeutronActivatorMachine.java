@@ -11,7 +11,9 @@ import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
 import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
 
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
-import com.gregtechceu.gtceu.api.capability.recipe.*;
+import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.IO;
+import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.ConditionalSubscriptionHandler;
@@ -36,11 +38,16 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.epimorphismmc.monomorphism.MOValues.*;
+import static com.epimorphismmc.monomorphism.MOValues.K;
+import static com.epimorphismmc.monomorphism.MOValues.M;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

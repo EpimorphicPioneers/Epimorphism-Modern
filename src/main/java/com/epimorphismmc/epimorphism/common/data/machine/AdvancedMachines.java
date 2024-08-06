@@ -40,7 +40,12 @@ import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
-import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.data.GCyMBlocks;
+import com.gregtechceu.gtceu.common.data.GCyMRecipeTypes;
+import com.gregtechceu.gtceu.common.data.GTItems;
+import com.gregtechceu.gtceu.common.data.GTMachines;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -58,18 +63,49 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.epimorphismmc.epimorphism.Epimorphism.registrate;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
-import static com.epimorphismmc.monomorphism.block.MOBlockMaps.*;
+import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_CASINGS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_PA_CASINGS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
+import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
+import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
-import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.api.GTValues.IV;
+import static com.gregtechceu.gtceu.api.GTValues.LuV;
+import static com.gregtechceu.gtceu.api.GTValues.MV;
+import static com.gregtechceu.gtceu.api.GTValues.VNF;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.MAINTENANCE;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.MUFFLER;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.air;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.any;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.autoAbilities;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.frames;
+import static com.gregtechceu.gtceu.common.data.GCyMBlocks.HEAT_VENT;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_ASSEMBLY_LINE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_LAMINATED_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_PTFE_INERT;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STAINLESS_CLEAN;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_GEARBOX;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_PIPE;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.CLEANROOM_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.HSLASteel;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.TungstenSteel;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.BLAST_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CRACKING_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.LARGE_CHEMICAL_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.PYROLYSE_RECIPES;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.VACUUM_RECIPES;
 
 public class AdvancedMachines {
     public static final MultiblockMachineDefinition[] PROCESSING_ARRAY =
@@ -1193,7 +1229,7 @@ public class AdvancedMachines {
                                     .or(autoAbilities(true, false, false)))
                     .where('c', blocks(CASING_STEEL_SOLID.get()))
                     .where('F', frames(HSLASteel))
-                    .where('D', EPPredicates.fireboxBlock())
+                    .where('D', EPPredicates.firebox())
                     .where('V', blocks(HEAT_VENT.get()))
                     .where('P', blocks(CASING_STEEL_PIPE.get()))
                     .where('H', coilBlock())
