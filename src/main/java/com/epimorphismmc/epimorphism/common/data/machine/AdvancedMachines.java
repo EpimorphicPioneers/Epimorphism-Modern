@@ -530,7 +530,7 @@ public class AdvancedMachines {
                             "   III   ",
                             "         ")
                     .where('~', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(EPBlocks.IRIDIUM_BOROSILICATE_GLASS.get()))
+                    .where('A', blocks(EPBlocks.OSMIUM_BOROSILICATE_GLASS.get()))
                     .where('H', Predicates.blocks(EPBlocks.IRIDIUM_CASING.get()))
                     .where('C', blocks(CASING_ASSEMBLY_LINE.get()))
                     .where('D', Predicates.frames(EPMaterials.MARM200Steel))

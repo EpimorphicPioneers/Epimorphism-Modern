@@ -10,6 +10,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_FILTER
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_HIGH_ENERGY_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_INVAR_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_SUBSTRATE_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BREEDING_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_GEARBOX;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_PIPE;
@@ -20,6 +21,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_BRI
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_LINK_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DRILL_HEAD;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DURANIUM_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CELL;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.GENERAL_PROCESSING_CASING;
@@ -27,12 +29,12 @@ import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HOLLOW_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPERDIMENSIONAL_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPER_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.INFINITY_BOROSILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.IRIDIUM_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.IRIDIUM_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ISA_MILL_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.MARAGING_STEEL_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.OSMIUM_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NEUTRONIUM_MINING_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.IRIDIUM_BOROSILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.OSMIUM_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LEAVES;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LOG;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_PLANK;
@@ -42,17 +44,15 @@ import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBL
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK2;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK3;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PROCESS_MACHINE_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPACETIME_DISTORTION_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPEEDING_PIPE;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SUBSTRATE_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TFFT_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DURANIUM_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TITANIUM_BOROSILICATE_GLASS;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TUNGSTEN_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_CONTAINMENT_FIELD_GENERATOR;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_HIGH_ENERGY_CASING;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.VACUUM_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TUNGSTEN_BOROSILICATE_GLASS;
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.YOTTA_FLUID_TANK_CASING;
 import static com.gregtechceu.gtceu.api.GTValues.EV;
 import static com.gregtechceu.gtceu.api.GTValues.HV;
@@ -112,7 +112,11 @@ public class BlockLang {
                 "§7Glossy and Green",
                 "§7绿油油");
         provider.addBlockWithTooltip(
-                INFINITY_BOROSILICATE_GLASS, "Infinity Glass", "无尽玻璃", "§7Force field Constrained Glass", "§7力场约束玻璃");
+                INFINITY_BOROSILICATE_GLASS,
+                "Infinity Glass",
+                "无尽玻璃",
+                "§7Force field Constrained Glass",
+                "§7力场约束玻璃");
         provider.addBlockWithTooltip(PMMA_GLASS, "PMMA Glass", "PMMA玻璃", "§7Acrylic Glassr", "§7亚克力玻璃");
         provider.addBlockWithTooltip(
                 CBDO_POLYCARBONATE_GLASS,

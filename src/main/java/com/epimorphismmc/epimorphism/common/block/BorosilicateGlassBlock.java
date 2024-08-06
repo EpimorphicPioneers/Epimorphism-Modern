@@ -2,22 +2,28 @@ package com.epimorphismmc.epimorphism.common.block;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.api.block.tier.ITierGlassType;
+
 import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
+
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
+
 import com.lowdragmc.lowdraglib.Platform;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
 
 import static com.gregtechceu.gtceu.api.GTValues.EV;
 import static com.gregtechceu.gtceu.api.GTValues.HV;
@@ -31,14 +37,15 @@ import static com.gregtechceu.gtceu.api.GTValues.ZPM;
 public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierBlock {
 
     public BorosilicateGlassBlock(Properties properties, Type glassType) {
-        super(properties, Platform.isClient()
-                ? new TextureOverrideRenderer(
-                new ResourceLocation("block/cube_all"),
-                Map.of(
-                        "all",
-                        Epimorphism.id(
-                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
-                : null);
+        super(
+                properties,
+                Platform.isClient()
+                        ? new TextureOverrideRenderer(
+                                new ResourceLocation("block/cube_all"),
+                                Map.of(
+                                        "all",
+                                        Epimorphism.id("block/casings/transparent/%s".formatted(glassType.typeName()))))
+                        : null);
         setTierType(glassType);
     }
 
@@ -54,7 +61,6 @@ public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierB
     }
 
     public enum Type implements ITierGlassType {
-
         BOROSILICATE(HV),
         TITANIUM_BOROSILICATE(EV),
         TUNGSTEN_BOROSILICATE(IV),

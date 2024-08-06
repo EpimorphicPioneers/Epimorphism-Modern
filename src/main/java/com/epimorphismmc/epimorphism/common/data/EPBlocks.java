@@ -330,14 +330,22 @@ public class EPBlocks {
             Epimorphism.id("block/casings/unique/y_zr_ceramic_electrolyte_unit"));
 
     // Transparent Casing Blocks
-    public static final BlockEntry<BorosilicateGlassBlock> BOROSILICATE_GLASS = createBorosilicateGlass(BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TITANIUM_BOROSILICATE_GLASS = createBorosilicateGlass(TITANIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TUNGSTEN_BOROSILICATE_GLASS = createBorosilicateGlass(TUNGSTEN_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> IRIDIUM_BOROSILICATE_GLASS = createBorosilicateGlass(IRIDIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> OSMIUM_BOROSILICATE_GLASS = createBorosilicateGlass(OSMIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> DURANIUM_BOROSILICATE_GLASS = createBorosilicateGlass(DURANIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS = createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS = createBorosilicateGlass(INFINITY_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> BOROSILICATE_GLASS =
+            createBorosilicateGlass(BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TITANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TITANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TUNGSTEN_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TUNGSTEN_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> IRIDIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(IRIDIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> OSMIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(OSMIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> DURANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(DURANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
+            createBorosilicateGlass(INFINITY_BOROSILICATE);
     public static final BlockEntry<TierGlassBlock> PMMA_GLASS = createGlassBlock(
             TierGlassBlock.GlassType.PMMA_GLASS, SoundType.STONE, () -> RenderType::translucent);
 
@@ -598,7 +606,8 @@ public class EPBlocks {
                 .register();
     }
 
-    private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(BorosilicateGlassBlock.Type glassType) {
+    private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(
+            BorosilicateGlassBlock.Type glassType) {
         BlockEntry<BorosilicateGlassBlock> glassBlock = registrate()
                 .block(glassType.typeName(), p -> new BorosilicateGlassBlock(p, glassType))
                 .initialProperties(() -> Blocks.GLASS)

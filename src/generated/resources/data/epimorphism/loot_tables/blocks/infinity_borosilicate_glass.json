@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "epimorphism:osmir_boron_silicate_glass_block"
+          "name": "epimorphism:infinity_borosilicate_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "epimorphism:blocks/osmir_boron_silicate_glass_block"
+  "random_sequence": "epimorphism:blocks/infinity_borosilicate_glass"
 }

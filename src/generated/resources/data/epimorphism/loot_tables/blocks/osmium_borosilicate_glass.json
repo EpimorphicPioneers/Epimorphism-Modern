@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "epimorphism:bpa_polycarbonate_glass_block"
+          "name": "epimorphism:osmium_borosilicate_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "epimorphism:blocks/bpa_polycarbonate_glass_block"
+  "random_sequence": "epimorphism:blocks/osmium_borosilicate_glass"
 }

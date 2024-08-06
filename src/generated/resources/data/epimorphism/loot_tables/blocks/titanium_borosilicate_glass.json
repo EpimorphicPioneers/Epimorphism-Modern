@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "epimorphism:naq_boron_silicate_glass_block"
+          "name": "epimorphism:titanium_borosilicate_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "epimorphism:blocks/naq_boron_silicate_glass_block"
+  "random_sequence": "epimorphism:blocks/titanium_borosilicate_glass"
 }
