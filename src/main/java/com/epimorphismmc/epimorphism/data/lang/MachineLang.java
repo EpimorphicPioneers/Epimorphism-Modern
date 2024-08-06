@@ -4,7 +4,7 @@ import com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.BiologyMachines;
 import com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines;
 
-import com.epimorphismmc.monomorphism.datagen.lang.MOLangProvider;
+import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvider;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
@@ -17,7 +17,9 @@ import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.*;
 import static com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines.*;
 import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+import static com.gregtechceu.gtceu.api.GTValues.VLVT;
+import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
+import static com.gregtechceu.gtceu.common.data.GTMachines.ELECTRIC_TIERS;
 
 public class MachineLang {
     public static void init(MOLangProvider provider) {
@@ -159,6 +161,19 @@ public class MachineLang {
                 "WARNING: Water Sources Are Insufficient.",
                 "警告：水源不足");
 
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.0",
+                "Controller Block for the Concrete Backfiller",
+                "混凝土回填机的控制器方块");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.1",
+                "Will fill in areas below it with light concrete. This goes through walls",
+                "将在其下方填充浅色混凝土，可穿墙");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.2",
+                "Can place (Tier - Base Tier + 1) light concrete one times",
+                "并行 = 电压等级 - 基础电压等级 + 1");
+
         provider.addBlockWithTooltip(BiologyMachines.FERMENTATION_TANK::getBlock, "发酵罐", "", "");
 
         provider.addBlockWithTooltip(
@@ -273,43 +288,24 @@ public class MachineLang {
 
         provider.addBlockWithTooltip(
                 STEAM_PISTON_HAMMER::getBlock,
-                "蒸汽锻造锤",
-                List.of(
-                        "A Multiblock Piston Hammer at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块锻造锤。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                "Steam Piston Hammer",
+                "蒸汽活塞锤",
+                "§7A Multiblock Piston Hammer at the Steam Age",
+                "§7蒸汽时代的多方块锻造锤");
 
         provider.addBlockWithTooltip(
-                STEAM_PRESSOR::getBlock,
-                "蒸汽压缩机",
-                List.of(
-                        "A Multiblock Compressor at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块压缩机。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
-
-        provider.addBlockWithTooltip(
-                STEAM_SEPARATOR::getBlock,
-                "蒸汽离心机",
-                List.of(
-                        "A Multiblock Centrifuge at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块离心机。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                STEAM_PRESS::getBlock,
+                "Steam Press",
+                "蒸汽挤压机",
+                "§7A Multiblock Compressor at the Steam Age",
+                "§7蒸汽时代的多方块压缩机");
 
         provider.addBlockWithTooltip(
                 STEAM_FOUNDRY::getBlock,
-                "蒸汽合金炉",
-                List.of(
-                        "A Multiblock Alloy Smelter at the Steam Age. ",
-                        "Only use Steam Input/Output busses, And that only use Steam Hatch.",
-                        "§bDuration：§e+50%",
-                        "§dParallel：§e8"),
-                List.of("蒸汽时代的多方块合金炉。", "仅可使用输入/输出总线（蒸汽），并且只能用蒸汽仓供给蒸汽。", "§b耗时：§e+50%", "§d并行：§e8"));
+                "Steam Foundry",
+                "蒸汽铸造厂",
+                "§7A Multiblock Alloy Smelter at the Steam Age",
+                "§7蒸汽时代的多方块合金炉");
 
         provider.addCN("block.epimorphism.uhv_fusion_reactor", "核聚变反应堆控制电脑 MK-IV");
         provider.add(

@@ -6,22 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.LV;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.MAX;
-import static com.gregtechceu.gtceu.api.GTValues.MV;
-import static com.gregtechceu.gtceu.api.GTValues.OpV;
-import static com.gregtechceu.gtceu.api.GTValues.UEV;
-import static com.gregtechceu.gtceu.api.GTValues.UHV;
-import static com.gregtechceu.gtceu.api.GTValues.UIV;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.UXV;
-import static com.gregtechceu.gtceu.api.GTValues.VN;
-import static com.gregtechceu.gtceu.api.GTValues.VNF;
-import static com.gregtechceu.gtceu.api.GTValues.ZPM;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 
 public class BlockLang {
@@ -94,7 +79,13 @@ public class BlockLang {
                 "",
                 "");
 
-        provider.addBlockWithTooltip(PMMA_GLASS, "PMMA Glass", "PMMA玻璃", "§7Acrylic Glassr", "§7亚克力玻璃");
+        provider.addBlockWithTooltip(
+                PMMA_GLASS,
+                "PMMA Glass",
+                "PMMA玻璃",
+                "§7Acrylic Glassr",
+                "§7亚克力玻璃");
+
         provider.addBlockWithTooltip(
                 CBDO_POLYCARBONATE_GLASS,
                 "CBDO Polycarbonate Glass",

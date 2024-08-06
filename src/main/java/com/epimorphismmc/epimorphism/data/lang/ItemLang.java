@@ -21,15 +21,7 @@ import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.STE
 import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.SUPEREXCITED_CONDUCTIVE_POLYMER;
 import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ULTRA_MICRO_PHASE_SEPARATOR;
 import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.CATALYST_CARRIER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.ACTINIUM_SUPERHYDRIDE_PLASMA_CONTAINMENT_CELL;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.ELECTRON_SOURCE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.EMPTY_PARTICLE_CAPSULE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.HYPOGEN_PLASMA_CONTAINMENT_CELL;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.NEUTRON_PLASMA_CONTAINMENT_CELL;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.PLASMA_CONTAINMENT_CELL;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.QUANTUM_ANOMALY;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.RADIOACTIVE_WASTE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.RHENIUM_PLASMA_CONTAINMENT_CELL;
+import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.*;
 
 public class ItemLang {
     public static void init(MOLangProvider provider) {
@@ -89,25 +81,25 @@ public class ItemLang {
         provider.addItemWithTooltip(
                 GOOWARE_PROCESSOR,
                 "Gooware Processor",
-                "化学扩散处理器",
+                "反应扩散处理器",
                 "Viscous organic slurry adheres the board",
                 "§7粘稠的有机浆液附着于表面");
         provider.addItemWithTooltip(
                 GOOWARE_ASSEMBLY,
                 "Gooware Assembly",
-                "化学扩散处理器集群",
+                "反应扩散处理器集群",
                 "Seems to be able to hear whispers",
                 "§7似乎能听到窃窃私语");
         provider.addItemWithTooltip(
                 GOOWARE_COMPUTER,
                 "Gooware Supercomputer",
-                "化学扩散超级计算机",
+                "反应扩散超级计算机",
                 "Slime mold covered in metal",
                 "§7金属之间布满了黏菌");
         provider.addItemWithTooltip(
                 GOOWARE_MAINFRAME,
                 "Gooware Mainframe",
-                "化学扩散主机",
+                "反应扩散主机",
                 "Microbial Awareness Network",
                 "§7菌群意识网络");
 
