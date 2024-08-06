@@ -2,18 +2,21 @@ package com.epimorphismmc.epimorphism.common.machine.trait;
 
 import com.epimorphismmc.epimorphism.common.data.EPTags;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.ConcreteBackfillerMachine;
-import com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator;
+
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.common.block.SurfaceRockBlock;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
-import lombok.Getter;
-import lombok.Setter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
@@ -21,7 +24,8 @@ import java.util.Objects;
 
 public class ConcreteBackfillerLogic extends RecipeLogic {
 
-    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(ConcreteBackfillerLogic.class, RecipeLogic.MANAGED_FIELD_HOLDER);
+    public static final ManagedFieldHolder MANAGED_FIELD_HOLDER =
+            new ManagedFieldHolder(ConcreteBackfillerLogic.class, RecipeLogic.MANAGED_FIELD_HOLDER);
 
     private static final short MAX_SPEED = Short.MAX_VALUE;
     private static final byte POWER = 5;
@@ -32,15 +36,20 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
     @Getter
     private final int speed;
+
     @Getter
     private final int maximumRadius;
+
     @Setter
     @Getter
     private int voltageTier;
+
     @Getter
     @Setter
     private int overclockAmount = 0;
+
     private final LinkedList<BlockPos> posesToFill = new LinkedList<>();
+
     @Getter
     private int minBuildHeight = Integer.MAX_VALUE;
 
@@ -53,9 +62,11 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Getter
     @Persisted
     protected int x = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int y = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int z = Integer.MAX_VALUE;
@@ -64,9 +75,11 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Getter
     @Persisted
     protected int startX = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int startY = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int startZ = Integer.MAX_VALUE;
@@ -75,9 +88,11 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Getter
     @Persisted
     protected int fillX = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int fillZ = Integer.MAX_VALUE;
+
     @Getter
     @Persisted
     protected int fillY = Integer.MAX_VALUE;
@@ -202,7 +217,10 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     }
 
     private static boolean checkStateCanFill(BlockState state) {
-        return state.isAir() || state.canBeReplaced() || state.is(EPTags.Blocks.FILLER_REPLACEABLE) || state.getBlock() instanceof SurfaceRockBlock;
+        return state.isAir()
+                || state.canBeReplaced()
+                || state.is(EPTags.Blocks.FILLER_REPLACEABLE)
+                || state.getBlock() instanceof SurfaceRockBlock;
     }
 
     private LinkedList<BlockPos> getPosesToFill() {
@@ -265,12 +283,10 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
      * @return the mean value
      */
     private static long mean(long[] values) {
-        if (values.length == 0L)
-            return 0L;
+        if (values.length == 0L) return 0L;
 
         long sum = 0L;
-        for (long v : values)
-            sum += v;
+        for (long v : values) sum += v;
         return sum / values.length;
     }
 

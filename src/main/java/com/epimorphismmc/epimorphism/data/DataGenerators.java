@@ -2,11 +2,11 @@ package com.epimorphismmc.epimorphism.data;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.EPConfiguredFeatures;
-
 import com.epimorphismmc.epimorphism.data.lang.EPLangHandler;
 import com.epimorphismmc.epimorphism.data.tag.EPTagHandler;
+
 import com.epimorphismmc.monomorphism.registry.registrate.providers.MOProviderTypes;
-import com.tterrag.registrate.providers.ProviderType;
+
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -16,6 +16,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import com.tterrag.registrate.providers.ProviderType;
 
 import java.util.Set;
 

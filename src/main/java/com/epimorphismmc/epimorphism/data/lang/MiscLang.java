@@ -108,15 +108,15 @@ public class MiscLang {
                 "Stone dust destruction is disabled",
                 "石粉销毁已禁用");
 
-        provider.add("gui.epimorphism.backfiller.start",
+        provider.add(
+                "gui.epimorphism.backfiller.start",
                 "Start Position: X: %d, Y: %d, Z: %d",
                 "开始位置: X: %d, Y: %d, Z: %d");
-        provider.add("gui.epimorphism.backfiller.filling",
+        provider.add(
+                "gui.epimorphism.backfiller.filling",
                 "Filling Position: X: %d, Y: %d, Z: %d",
                 "正在填充: X: %d, Y: %d, Z: %d");
-        provider.add("gui.epimorphism.backfiller.done",
-                "Done!",
-                "完成！");
+        provider.add("gui.epimorphism.backfiller.done", "Done!", "完成！");
 
         provider.addMultilineLang(
                 "gui.epimorphism.neutron_sensor.invert.enabled",

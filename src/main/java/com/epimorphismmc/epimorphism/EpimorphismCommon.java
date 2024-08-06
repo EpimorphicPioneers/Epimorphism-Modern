@@ -15,13 +15,11 @@ import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 import com.epimorphismmc.epimorphism.common.data.EPRecipes;
 import com.epimorphismmc.epimorphism.config.EPConfigHolder;
 import com.epimorphismmc.epimorphism.data.DataGenerators;
-import com.epimorphismmc.epimorphism.data.lang.EPLangHandler;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
 import com.epimorphismmc.epimorphism.network.s2c.PacketVajraDestroy;
 
 import com.epimorphismmc.monomorphism.registry.registrate.MORegistrate;
-import com.epimorphismmc.monomorphism.registry.registrate.providers.MOProviderTypes;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
