@@ -6,6 +6,7 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPElementMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPFirstDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPMachineCasingMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialFlagAddition;
+import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialIgnoreAddition;
 import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialPropertyAddition;
 import com.epimorphismmc.epimorphism.common.data.materials.EPModCompatibilityMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPOrganicChemistryMaterials;
@@ -745,6 +746,7 @@ public class EPMaterials {
 
         EPMaterialPropertyAddition.init();
         EPMaterialFlagAddition.init();
+        EPMaterialIgnoreAddition.init();
     }
 
     public static Material.Builder Builder(String name) {

@@ -84,14 +84,7 @@ import javax.annotation.Nonnull;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.DURANIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.INFINITY_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.IRIDIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.NEUTRONIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.OSMIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TITANIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TUNGSTEN_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.*;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.*;
@@ -344,8 +337,15 @@ public class EPBlocks {
             createBorosilicateGlass(DURANIUM_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS =
             createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> COSMIC_NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
             createBorosilicateGlass(INFINITY_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS =
+            createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
+
     public static final BlockEntry<TierGlassBlock> PMMA_GLASS = createGlassBlock(
             TierGlassBlock.GlassType.PMMA_GLASS, SoundType.STONE, () -> RenderType::translucent);
 
