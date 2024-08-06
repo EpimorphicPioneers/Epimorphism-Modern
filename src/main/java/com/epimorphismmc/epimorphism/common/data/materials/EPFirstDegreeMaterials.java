@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
+
 import net.minecraft.ChatFormatting;
 
 import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
