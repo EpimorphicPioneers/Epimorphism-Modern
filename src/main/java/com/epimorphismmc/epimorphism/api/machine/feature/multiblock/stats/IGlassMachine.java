@@ -2,7 +2,7 @@ package com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats;
 
 import com.epimorphismmc.epimorphism.api.block.tier.ITierGlassType;
 
-import com.epimorphismmc.monomorphism.machine.trait.MultiblockStats;
+import com.epimorphismmc.monomorphism.machine.trait.MultiblockTrait;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -26,9 +26,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public interface IGlassMachine extends IMachineFeature {
     int getGlassTier();
 
-    class GlassTierStats extends MultiblockStats implements IGlassMachine {
+    class GlassTierStats extends MultiblockTrait implements IGlassMachine {
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER =
-                new ManagedFieldHolder(GlassTierStats.class, MultiblockStats.MANAGED_FIELD_HOLDER);
+                new ManagedFieldHolder(GlassTierStats.class, MultiblockTrait.MANAGED_FIELD_HOLDER);
 
         @Getter
         private int glassTier;
