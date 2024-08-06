@@ -323,17 +323,28 @@ public class EPBlocks {
             Epimorphism.id("block/casings/unique/y_zr_ceramic_electrolyte_unit"));
 
     // Transparent Casing Blocks
-    public static final BlockEntry<BorosilicateGlassBlock> BOROSILICATE_GLASS = createBorosilicateGlass(BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TITANIUM_BOROSILICATE_GLASS = createBorosilicateGlass(TITANIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TUNGSTEN_BOROSILICATE_GLASS = createBorosilicateGlass(TUNGSTEN_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> IRIDIUM_BOROSILICATE_GLASS = createBorosilicateGlass(IRIDIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> OSMIUM_BOROSILICATE_GLASS = createBorosilicateGlass(OSMIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> DURANIUM_BOROSILICATE_GLASS = createBorosilicateGlass(DURANIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS = createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> COSMIC_NEUTRONIUM_BOROSILICATE_GLASS = createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS = createBorosilicateGlass(INFINITY_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS = createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS = createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> BOROSILICATE_GLASS =
+            createBorosilicateGlass(BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TITANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TITANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TUNGSTEN_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TUNGSTEN_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> IRIDIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(IRIDIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> OSMIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(OSMIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> DURANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(DURANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> COSMIC_NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
+            createBorosilicateGlass(INFINITY_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS =
+            createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
 
     public static final BlockEntry<TierGlassBlock> PMMA_GLASS = createGlassBlock(
             TierGlassBlock.GlassType.PMMA_GLASS, SoundType.STONE, () -> RenderType::translucent);
@@ -510,7 +521,7 @@ public class EPBlocks {
 
     // Fortune Level
     public static final float[] PINE_LEAVES_DROPPING_CHANCE =
-            new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
+            new float[] {0.05F, 0.0625F, 0.083333336F, 0.1F};
 
     public static final BlockEntry<LeavesBlock> PINE_LEAVES = registrate()
             .block("pine_leaves", LeavesBlock::new)
@@ -529,7 +540,7 @@ public class EPBlocks {
                                                     block, LootItem.lootTableItem(EPBiologyItems.PINECONE))
                                             .when(BonusLevelTableCondition.bonusLevelFlatChance(
                                                     Enchantments.BLOCK_FORTUNE,
-                                                    new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F}))))))
+                                                    new float[] {0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F}))))))
             .tag(BlockTags.LEAVES)
             .color(() -> EPBlocks::pineLeavesBlockColor)
             .item()
@@ -582,7 +593,7 @@ public class EPBlocks {
                                 p,
                                 Platform.isClient()
                                         ? new TextureOverrideRenderer(
-                                        new ResourceLocation("block/cube_all"), Map.of("all", texture))
+                                                new ResourceLocation("block/cube_all"), Map.of("all", texture))
                                         : null))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -621,11 +632,11 @@ public class EPBlocks {
                                 p,
                                 Platform.isClient()
                                         ? new TextureOverrideRenderer(
-                                        new ResourceLocation("block/cube_all"),
-                                        Map.of(
-                                                "all",
-                                                Epimorphism.id(
-                                                        "block/casings/transparent/%s".formatted(glassType.typeName()))))
+                                                new ResourceLocation("block/cube_all"),
+                                                Map.of(
+                                                        "all",
+                                                        Epimorphism.id(
+                                                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
                                         : null,
                                 glassType))
                 .initialProperties(() -> Blocks.GLASS)
@@ -670,11 +681,11 @@ public class EPBlocks {
                                 cellData,
                                 Platform.isClient()
                                         ? new TextureOverrideRenderer(
-                                        new ResourceLocation("block/cube_all"),
-                                        Map.of(
-                                                "all",
-                                                Epimorphism.id(
-                                                        "block/casings/fluid_tank_cell/%s".formatted(cellData.typeName()))))
+                                                new ResourceLocation("block/cube_all"),
+                                                Map.of(
+                                                        "all",
+                                                        Epimorphism.id(
+                                                                "block/casings/fluid_tank_cell/%s".formatted(cellData.typeName()))))
                                         : null))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -698,11 +709,11 @@ public class EPBlocks {
                                 blockData,
                                 Platform.isClient()
                                         ? new TextureOverrideRenderer(
-                                        new ResourceLocation("block/cube_all"),
-                                        Map.of(
-                                                "all",
-                                                Epimorphism.id("block/casings/storage_field_block/%s"
-                                                        .formatted(blockData.typeName()))))
+                                                new ResourceLocation("block/cube_all"),
+                                                Map.of(
+                                                        "all",
+                                                        Epimorphism.id("block/casings/storage_field_block/%s"
+                                                                .formatted(blockData.typeName()))))
                                         : null))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -725,13 +736,13 @@ public class EPBlocks {
                                 blockData,
                                 Platform.isClient()
                                         ? new TextureOverrideRenderer(
-                                        GTCEu.id("block/cube_2_layer_all"),
-                                        Map.of(
-                                                "top_all",
-                                                Epimorphism.id("block/casings/component_assline_casing/%s"
-                                                        .formatted(blockData.typeName().toLowerCase())),
-                                                "bot_all",
-                                                Epimorphism.id("block/casings/solid/iridium_casing")))
+                                                GTCEu.id("block/cube_2_layer_all"),
+                                                Map.of(
+                                                        "top_all",
+                                                        Epimorphism.id("block/casings/component_assline_casing/%s"
+                                                                .formatted(blockData.typeName().toLowerCase())),
+                                                        "bot_all",
+                                                        Epimorphism.id("block/casings/solid/iridium_casing")))
                                         : null))
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
@@ -758,7 +769,7 @@ public class EPBlocks {
                         p,
                         Platform.isClient()
                                 ? new TextureOverrideRenderer(
-                                new ResourceLocation("block/cube_all"), Map.of("all", texture))
+                                        new ResourceLocation("block/cube_all"), Map.of("all", texture))
                                 : null))
                 .initialProperties(properties)
                 .addLayer(type)
@@ -780,14 +791,14 @@ public class EPBlocks {
                         p,
                         Platform.isClient()
                                 ? new TextureOverrideRenderer(
-                                new ResourceLocation("block/cube_bottom_top"),
-                                Map.of(
-                                        "bottom",
-                                        GTCEu.id("block/casings/" + name + "/bottom"),
-                                        "top",
-                                        GTCEu.id("block/casings/" + name + "/top"),
-                                        "side",
-                                        GTCEu.id("block/casings/" + name + "/side")))
+                                        new ResourceLocation("block/cube_bottom_top"),
+                                        Map.of(
+                                                "bottom",
+                                                GTCEu.id("block/casings/" + name + "/bottom"),
+                                                "top",
+                                                GTCEu.id("block/casings/" + name + "/top"),
+                                                "side",
+                                                GTCEu.id("block/casings/" + name + "/side")))
                                 : null))
                 .initialProperties(properties)
                 .addLayer(type)

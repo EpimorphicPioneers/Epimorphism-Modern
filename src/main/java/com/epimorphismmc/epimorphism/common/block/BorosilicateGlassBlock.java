@@ -2,22 +2,28 @@ package com.epimorphismmc.epimorphism.common.block;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.api.block.tier.ITierGlassType;
+
 import com.epimorphismmc.monomorphism.block.tier.ITierBlock;
+
 import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
+
 import com.lowdragmc.lowdraglib.Platform;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 

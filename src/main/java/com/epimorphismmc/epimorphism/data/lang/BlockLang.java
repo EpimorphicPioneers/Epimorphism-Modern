@@ -68,15 +68,13 @@ public class BlockLang {
                 "Neutrouium-reinforced Boron Silicate Glass",
                 "中子素强化硼硅酸盐玻璃",
                 "",
-                ""
-        );
+                "");
         provider.addBlockWithTooltip(
                 COSMIC_NEUTRONIUM_BOROSILICATE_GLASS,
                 "Cosmic Neutrouium-reinforced Boron Silicate Glass",
                 "宇宙中子素强化硼硅酸盐玻璃",
                 "",
-                ""
-        );
+                "");
         provider.addBlockWithTooltip(
                 INFINITY_BOROSILICATE_GLASS,
                 "Infinity-reinforced Boron Silicate Glass",
@@ -88,15 +86,13 @@ public class BlockLang {
                 "Transcendent Mental-reinforced Boron Silicate Glass",
                 "超时空金属强化硼硅酸盐玻璃",
                 "",
-                ""
-        );
+                "");
         provider.addBlockWithTooltip(
                 WHITE_DWARF_MATTER_BOROSILICATE_GLASS,
                 "White Dwarf Matter-reinforced Boron Silicate Glass",
                 "白矮星物质强化硼硅酸盐玻璃",
                 "",
-                ""
-        );
+                "");
 
         provider.addBlockWithTooltip(PMMA_GLASS, "PMMA Glass", "PMMA玻璃", "§7Acrylic Glassr", "§7亚克力玻璃");
         provider.addBlockWithTooltip(
