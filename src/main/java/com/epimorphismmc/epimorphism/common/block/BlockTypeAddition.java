@@ -11,10 +11,7 @@ import net.minecraft.world.level.block.StainedGlassBlock;
 
 import java.util.function.Supplier;
 
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_LAMINATED_GLASS;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TEMPERED_GLASS;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CLEANROOM_GLASS;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FUSION_GLASS;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static net.minecraft.world.level.block.Blocks.BLACK_STAINED_GLASS;
 import static net.minecraft.world.level.block.Blocks.BLUE_STAINED_GLASS;
 import static net.minecraft.world.level.block.Blocks.BROWN_STAINED_GLASS;
@@ -34,7 +31,7 @@ import static net.minecraft.world.level.block.Blocks.TINTED_GLASS;
 import static net.minecraft.world.level.block.Blocks.WHITE_STAINED_GLASS;
 import static net.minecraft.world.level.block.Blocks.YELLOW_STAINED_GLASS;
 
-public class BlockTypeAdditions {
+public class BlockTypeAddition {
     public static void init() {
         //  Stained Glass
         stainedGlassTierTypeAdd(WHITE_STAINED_GLASS);

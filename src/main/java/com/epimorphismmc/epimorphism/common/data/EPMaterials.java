@@ -5,13 +5,13 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPBiologicalMaterials
 import com.epimorphismmc.epimorphism.common.data.materials.EPElementMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPFirstDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPMachineCasingMaterials;
-import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialFlagAddition;
-import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialIgnoreAddition;
-import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialPropertyAddition;
 import com.epimorphismmc.epimorphism.common.data.materials.EPModCompatibilityMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPOrganicChemistryMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPSecondDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPUnknownCompositionMaterials;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialFlagAddition;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialIgnoreAddition;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialPropertyAddition;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
@@ -744,9 +744,9 @@ public class EPMaterials {
         EPMachineCasingMaterials.register();
         EPModCompatibilityMaterials.register();
 
-        EPMaterialPropertyAddition.init();
-        EPMaterialFlagAddition.init();
-        EPMaterialIgnoreAddition.init();
+        MaterialPropertyAddition.init();
+        MaterialFlagAddition.init();
+        MaterialIgnoreAddition.init();
     }
 
     public static Material.Builder Builder(String name) {

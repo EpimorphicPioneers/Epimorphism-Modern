@@ -5,7 +5,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class EPMaterialFlagAddition {
+public class MaterialFlagAddition {
 
     public static void init() {
 

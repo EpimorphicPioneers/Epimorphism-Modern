@@ -7,8 +7,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ROCKET_ENGINE_FUELS;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.UNIVERSAL_CHEMICAL_FUELS;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 
 /**
  * 通用化学燃料相关配方

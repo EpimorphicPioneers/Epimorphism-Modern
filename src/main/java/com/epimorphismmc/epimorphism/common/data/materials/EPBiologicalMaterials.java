@@ -1,14 +1,6 @@
 package com.epimorphismmc.epimorphism.common.data.materials;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.BrownAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.Builder;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DryBrownAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DryGoldenAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DryGreenAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DryRedAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.GoldenAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.GreenAlgae;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.RedAlgae;
+import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 
 public class EPBiologicalMaterials {
     public static void register() {

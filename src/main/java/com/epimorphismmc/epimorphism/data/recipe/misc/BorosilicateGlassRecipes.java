@@ -16,7 +16,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class BorosilicateGlassRecipe {
+public class BorosilicateGlassRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         addGlassRecipe(provider, TITANIUM_BOROSILICATE_GLASS, Titanium);
         addGlassRecipe(provider, TUNGSTEN_BOROSILICATE_GLASS, Tungsten);

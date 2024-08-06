@@ -4,15 +4,7 @@ import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvid
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.boule;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.catalyst;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.crucible;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.fence;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.laserEmitter;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.milled;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.nanites;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.seedCrystal;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.singularity;
+import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.*;
 import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 
 public class MaterialLang {

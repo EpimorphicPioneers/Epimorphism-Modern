@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.CHEMICAL_PLANT_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 
 @SuppressWarnings("all")
 public class EPRecipeUtil {

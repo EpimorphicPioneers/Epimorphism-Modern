@@ -9,10 +9,10 @@ import com.epimorphismmc.epimorphism.data.recipe.handler.PartsRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.WrapItemRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineHandler;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.BorosilicateGlassRecipe;
-import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.RadiationHatchRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.misc.BorosilicateGlassRecipes;
+import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipes;
+import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipes;
+import com.epimorphismmc.epimorphism.data.recipe.misc.RadiationHatchRecipes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -43,10 +43,10 @@ public class EPRecipes {
         /////////////////////////////////////////
         // *****       Misc Recipes      ***** //
         /////////////////////////////////////////
-        FuelRecipeHandler.init(provider);
-        LargeNaquadahReactorRecipeHandler.init(provider);
-        RadiationHatchRecipeHandler.init(provider);
-        BorosilicateGlassRecipe.init(provider);
+        FuelRecipes.init(provider);
+        LargeNaquadahReactorRecipes.init(provider);
+        RadiationHatchRecipes.init(provider);
+        BorosilicateGlassRecipes.init(provider);
     }
 
     public static void remove(GTRecipeEvent.RemoveRecipe event) {}

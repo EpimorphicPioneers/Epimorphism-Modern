@@ -4,12 +4,10 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.ChlorinatedSolvents;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Chlorine;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Methane;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MIXER_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class ChlorineChain {
     public static void init(Consumer<FinishedRecipe> provider) {

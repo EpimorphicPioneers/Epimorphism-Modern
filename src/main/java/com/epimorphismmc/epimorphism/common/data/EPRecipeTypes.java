@@ -34,7 +34,7 @@ import java.util.List;
 
 import static com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.GeneralProcessingPlantMachine.RECIPE_MAP;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.*;
+import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 public class EPRecipeTypes {
     public static final String LIST = "list";

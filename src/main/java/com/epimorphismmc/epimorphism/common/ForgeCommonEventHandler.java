@@ -24,8 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import com.google.common.collect.ImmutableMap;
 
-import static com.epimorphismmc.epimorphism.common.data.EPItems.MITTS;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.VAJRA;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
 
 @Mod.EventBusSubscriber(modid = Epimorphism.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeCommonEventHandler {

@@ -39,13 +39,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushed;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushedPurified;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.crushedRefined;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustImpure;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dustPure;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.ore;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.rawOre;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
 public class OreProcessingRecipeLogic extends RecipeLogic {
 

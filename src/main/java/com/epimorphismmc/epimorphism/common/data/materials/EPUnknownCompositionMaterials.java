@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
 import net.minecraft.ChatFormatting;
 
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_NANITES;
+import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
