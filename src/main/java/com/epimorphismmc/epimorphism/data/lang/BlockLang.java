@@ -5,57 +5,7 @@ import com.epimorphismmc.monomorphism.registry.registrate.providers.MOLangProvid
 import java.util.List;
 import java.util.Locale;
 
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_ALUMINIUM_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_FILTER_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_HIGH_ENERGY_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_INVAR_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ADVANCED_SUBSTRATE_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BPA_POLYCARBONATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.BREEDING_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_GEARBOX;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_ISA_MILL_PIPE;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CASING_POLYBENZIMIDAZOLE_PIPE;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CBDO_POLYCARBONATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.CONTAINMENT_FIELD_GENERATOR;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_BRIDGE_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DIMENSIONAL_LINK_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.DRILL_HEAD;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.FLOTATION_CELL;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.GENERAL_PROCESSING_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HOLLOW_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPERDIMENSIONAL_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.HYPER_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.INFINITY_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.IRIDIUM_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ISA_MILL_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.MARAGING_STEEL_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NAQ_BORON_SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NEUTRONIUM_MINING_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.NEU_PMMA_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.OSMIR_BORON_SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LEAVES;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_LOG;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_PLANK;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PINE_SAPLING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PMMA_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK1;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK2;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PRECISE_ASSEMBLER_CASING_MK3;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.PROCESS_MACHINE_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPACETIME_DISTORTION_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SPEEDING_PIPE;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.SUBSTRATE_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TFFT_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.THY_BORON_SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.TI_BORON_SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_CONTAINMENT_FIELD_GENERATOR;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.ULTIMATE_HIGH_ENERGY_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.VACUUM_CASING;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.W_BORON_SILICATE_GLASS;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.YOTTA_FLUID_TANK_CASING;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.EV;
 import static com.gregtechceu.gtceu.api.GTValues.HV;
 import static com.gregtechceu.gtceu.api.GTValues.IV;
@@ -78,48 +28,73 @@ public class BlockLang {
     public static void init(MOLangProvider provider) {
         //  Glass
         provider.addBlockWithTooltip(
-                SILICATE_GLASS,
+                BOROSILICATE_GLASS,
                 "Boron Silicate Glass",
                 "硼硅酸盐玻璃",
                 "§7Better than Reinforced Glass",
                 "§7比钢化玻璃更好");
         provider.addBlockWithTooltip(
-                TI_BORON_SILICATE_GLASS,
+                TITANIUM_BOROSILICATE_GLASS,
                 "Titanium-reinforced Boron Silicate Glass",
                 "钛强化硼硅酸盐玻璃",
                 "§7Pink Crystal",
                 "§7粉红水晶");
         provider.addBlockWithTooltip(
-                W_BORON_SILICATE_GLASS,
+                TUNGSTEN_BOROSILICATE_GLASS,
                 "Tungsten-reinforced Boron Silicate Glass",
                 "钨强化硼硅酸盐玻璃",
                 "§7High-strength Glass",
                 "§7高强玻璃");
         provider.addBlockWithTooltip(
-                OSMIR_BORON_SILICATE_GLASS,
-                "Osmiridium-reinforced Boron Silicate Glass",
-                "铱锇合金强化硼硅酸盐玻璃",
+                IRIDIUM_BOROSILICATE_GLASS,
+                "Iridium-reinforced Boron Silicate Glass",
+                "铱强化硼硅酸盐玻璃",
                 "§7Industrial Star",
                 "§7工业之星");
         provider.addBlockWithTooltip(
-                NAQ_BORON_SILICATE_GLASS,
-                "Naquadah-reinforced Boron Silicate Glass",
-                "硅岩强化硼硅酸盐玻璃",
+                OSMIUM_BOROSILICATE_GLASS,
+                "Osmium-reinforced Boron Silicate Glass",
+                "锇强化硼硅酸盐玻璃",
                 "§7Impact Resistance",
                 "§7无惧冲击");
         provider.addBlockWithTooltip(
-                THY_BORON_SILICATE_GLASS,
-                "Thorium-reinforced Boron Silicate Glass",
-                "钍强化的硼硅酸盐玻璃",
+                DURANIUM_BOROSILICATE_GLASS,
+                "Duranium-reinforced Boron Silicate Glass",
+                "铿铀化的硼硅酸盐玻璃",
                 "§7Glossy and Green",
                 "§7绿油油");
         provider.addBlockWithTooltip(
-                INFINITY_GLASS, "Infinity Glass", "无尽玻璃", "§7Force field Constrained Glass", "§7力场约束玻璃");
+                NEUTRONIUM_BOROSILICATE_GLASS,
+                "Neutrouium-reinforced Boron Silicate Glass",
+                "中子素强化硼硅酸盐玻璃",
+                "",
+                "");
+        provider.addBlockWithTooltip(
+                COSMIC_NEUTRONIUM_BOROSILICATE_GLASS,
+                "Cosmic Neutrouium-reinforced Boron Silicate Glass",
+                "宇宙中子素强化硼硅酸盐玻璃",
+                "",
+                "");
+        provider.addBlockWithTooltip(
+                INFINITY_BOROSILICATE_GLASS,
+                "Infinity-reinforced Boron Silicate Glass",
+                "无尽强化硼硅酸盐玻璃",
+                "§7Force field Constrained Glass",
+                "§7力场约束玻璃");
+        provider.addBlockWithTooltip(
+                TRANSCENDENT_MENTAL_BOROSILICATE_GLASS,
+                "Transcendent Mental-reinforced Boron Silicate Glass",
+                "超时空金属强化硼硅酸盐玻璃",
+                "",
+                "");
+        provider.addBlockWithTooltip(
+                WHITE_DWARF_MATTER_BOROSILICATE_GLASS,
+                "White Dwarf Matter-reinforced Boron Silicate Glass",
+                "白矮星物质强化硼硅酸盐玻璃",
+                "",
+                "");
+
         provider.addBlockWithTooltip(PMMA_GLASS, "PMMA Glass", "PMMA玻璃", "§7Acrylic Glassr", "§7亚克力玻璃");
-        provider.addBlockWithTooltip(
-                NEU_PMMA_GLASS, "Neutronium-reinforced PMMA Glass", "中子素强化PMMA玻璃", "§7AT Field", "§7心之壁");
-        provider.addBlockWithTooltip(
-                BPA_POLYCARBONATE_GLASS, "BPA Polycarbonate Glass", "BPA聚碳酸酯玻璃", "§7Gray Quartz", "§7灰色石英");
         provider.addBlockWithTooltip(
                 CBDO_POLYCARBONATE_GLASS,
                 "CBDO Polycarbonate Glass",

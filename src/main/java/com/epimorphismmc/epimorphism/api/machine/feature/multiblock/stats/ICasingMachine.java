@@ -2,8 +2,8 @@ package com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats;
 
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine;
-
 import com.epimorphismmc.monomorphism.machine.trait.MultiblockTrait;
+
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 

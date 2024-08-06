@@ -530,7 +530,7 @@ public class AdvancedMachines {
                             "   III   ",
                             "         ")
                     .where('~', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('A', blocks(EPBlocks.OSMIUM_BOROSILICATE_GLASS.get()))
                     .where('H', Predicates.blocks(EPBlocks.IRIDIUM_CASING.get()))
                     .where('C', blocks(CASING_ASSEMBLY_LINE.get()))
                     .where('D', Predicates.frames(EPMaterials.MARM200Steel))
@@ -643,7 +643,7 @@ public class AdvancedMachines {
                             Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(
                             Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
-                    components.add(Component.translatable("monomorphism.shift_desc_extended_info"));
+                    components.add(Component.translatable("monomorphism.shift_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
