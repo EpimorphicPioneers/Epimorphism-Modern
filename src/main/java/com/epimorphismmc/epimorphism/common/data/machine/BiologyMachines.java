@@ -185,7 +185,7 @@ public class BiologyMachines {
                             blocks(CASING_STAINLESS_CLEAN.get())
                                     .setMinGlobalLimited(42)
                                     .or(Predicates.autoAbilities(EPRecipeTypes.FERMENTATION_TANK_RECIPES)))
-                    .where('G', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.IRIDIUM_BOROSILICATE_GLASS.get()))
                     .where('F', frames(GTMaterials.WatertightSteel))
                     .where('P', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
                     .where('A', any())

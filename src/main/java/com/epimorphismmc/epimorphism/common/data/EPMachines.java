@@ -1684,7 +1684,7 @@ public class EPMachines {
                             blocks(CASING_STAINLESS_CLEAN.get())
                                     .or(autoAbilities(definition.getRecipeTypes()))
                                     .or(autoAbilities(true, false, false)))
-                    .where('G', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.IRIDIUM_BOROSILICATE_GLASS.get()))
                     .where('N', blocks(CASING_INVAR_HEATPROOF.get()))
                     .where('#', air())
                     .where(' ', any())
@@ -1787,7 +1787,7 @@ public class EPMachines {
                     .where('S', controller(blocks(definition.getBlock())))
                     .where(
                             'X', blocks(CASING_NONCONDUCTING.get()).setMinGlobalLimited(35).or(autoAbilities()))
-                    .where('G', blocks(EPBlocks.SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.BOROSILICATE_GLASS.get()))
                     .where('C', Predicates.blocks(EPBlocks.SUBSTRATE_CASING.get()))
                     .build())
             .workableCasingRenderer(
