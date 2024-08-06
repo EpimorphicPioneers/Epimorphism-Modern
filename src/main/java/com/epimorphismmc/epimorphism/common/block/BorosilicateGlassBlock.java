@@ -24,14 +24,15 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierBlock {
 
     public BorosilicateGlassBlock(Properties properties, Type glassType) {
-        super(properties, Platform.isClient()
-                ? new TextureOverrideRenderer(
-                new ResourceLocation("block/cube_all"),
-                Map.of(
-                        "all",
-                        Epimorphism.id(
-                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
-                : null);
+        super(
+                properties,
+                Platform.isClient()
+                        ? new TextureOverrideRenderer(
+                                new ResourceLocation("block/cube_all"),
+                                Map.of(
+                                        "all",
+                                        Epimorphism.id("block/casings/transparent/%s".formatted(glassType.typeName()))))
+                        : null);
         setTierType(glassType);
     }
 
@@ -47,7 +48,6 @@ public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierB
     }
 
     public enum Type implements ITierGlassType {
-
         BOROSILICATE(HV),
         TITANIUM_BOROSILICATE(EV),
         TUNGSTEN_BOROSILICATE(IV),

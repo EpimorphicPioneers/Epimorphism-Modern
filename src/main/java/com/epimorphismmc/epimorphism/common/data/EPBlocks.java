@@ -595,7 +595,8 @@ public class EPBlocks {
                 .register();
     }
 
-    private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(BorosilicateGlassBlock.Type glassType) {
+    private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(
+            BorosilicateGlassBlock.Type glassType) {
         BlockEntry<BorosilicateGlassBlock> glassBlock = registrate()
                 .block(glassType.typeName(), p -> new BorosilicateGlassBlock(p, glassType))
                 .initialProperties(() -> Blocks.GLASS)
