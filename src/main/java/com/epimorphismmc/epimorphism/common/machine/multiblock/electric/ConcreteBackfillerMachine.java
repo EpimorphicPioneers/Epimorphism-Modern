@@ -140,7 +140,7 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
     }
 
     public boolean drainInput(boolean simulate) {
-        return !drainEnergy(simulate) || !drainFluid(getRecipeLogic().getOverclockAmount(), simulate);
+        return drainEnergy(simulate) && drainFluid(getRecipeLogic().getOverclockAmount(), simulate);
     }
 
     public boolean drainEnergy(boolean simulate) {
