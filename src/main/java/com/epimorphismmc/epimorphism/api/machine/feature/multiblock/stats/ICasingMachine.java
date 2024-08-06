@@ -2,8 +2,8 @@ package com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats;
 
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine;
-import com.epimorphismmc.monomorphism.machine.trait.MultiblockStats;
 
+import com.epimorphismmc.monomorphism.machine.trait.MultiblockTrait;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
 
@@ -16,9 +16,9 @@ public interface ICasingMachine extends IMachineFeature {
 
     int getCasingTier();
 
-    class CasingTierStats extends MultiblockStats implements ICasingMachine {
+    class CasingTierStats extends MultiblockTrait implements ICasingMachine {
         protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER =
-                new ManagedFieldHolder(CasingTierStats.class, MultiblockStats.MANAGED_FIELD_HOLDER);
+                new ManagedFieldHolder(CasingTierStats.class, MultiblockTrait.MANAGED_FIELD_HOLDER);
 
         @Getter
         private ITierType tierType = ITierType.TierBlockType.ULV;
