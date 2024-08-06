@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "epimorphism:infinity_glass_block"
+          "name": "epimorphism:neutronium_borosilicate_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "epimorphism:blocks/infinity_glass_block"
+  "random_sequence": "epimorphism:blocks/neutronium_borosilicate_glass"
 }

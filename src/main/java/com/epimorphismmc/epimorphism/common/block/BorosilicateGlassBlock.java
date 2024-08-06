@@ -19,14 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.UHV;
-import static com.gregtechceu.gtceu.api.GTValues.UIV;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.ZPM;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierBlock {
 
@@ -62,7 +55,10 @@ public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierB
         OSMIUM_BOROSILICATE(ZPM),
         DURANIUM_BOROSILICATE(UV),
         NEUTRONIUM_BOROSILICATE(UHV),
-        INFINITY_BOROSILICATE(UIV);
+        COSMIC_NEUTRONIUM_BOROSILICATE(UEV),
+        INFINITY_BOROSILICATE(UIV),
+        TRANSCENDENT_MENTAL_BOROSILICATE(UXV),
+        WHITE_DWARF_MATTER_BOROSILICATE(OpV);
 
         private final int tier;
 

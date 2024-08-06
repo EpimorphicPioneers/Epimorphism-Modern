@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "epimorphism:neu_pmma_glass_block"
+          "name": "epimorphism:transcendent_mental_borosilicate_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "epimorphism:blocks/neu_pmma_glass_block"
+  "random_sequence": "epimorphism:blocks/transcendent_mental_borosilicate_glass"
 }
