@@ -7,6 +7,7 @@ import com.epimorphismmc.epimorphism.data.recipe.handler.BouleRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAsslineRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.PartsRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.WrapItemRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineHandler;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineHandler;
 import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipeHandler;
@@ -22,6 +23,7 @@ public class EPRecipes {
         // *****     Machine Recipes     ***** //
         /////////////////////////////////////////
         SteamMachineHandler.init(provider);
+        ConcreteBackfillerMachineHandler.init(provider);
 
         /////////////////////////////////////////
         // *****      Chain Recipes      ***** //

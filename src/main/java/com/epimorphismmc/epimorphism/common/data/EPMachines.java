@@ -102,9 +102,13 @@ import net.minecraft.world.level.block.DirectionalBlock;
 import com.google.common.primitives.Ints;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import it.unimi.dsi.fastutil.ints.Int2LongFunction;
-import org.joml.Math;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -2204,10 +2208,17 @@ public class EPMachines {
     public static final MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis(
             "concrete_backfiller",
             (holder, tier) ->
-                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, 2 * tier - 5, 8 - (tier - 5)),
+                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, (int) Math.pow(2, tier - 1)),
             (tier, builder) -> builder
                     .langValue("Concrete Backfiller")
-                    .tooltips(Component.translatable("block.epimorphism.concrete_backfiller.desc.0"))
+                    .tooltips(
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.0"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.1"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.2"),
+                            Component.translatable(
+                                    "gtceu.universal.tooltip.working_area_max",
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1,
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))

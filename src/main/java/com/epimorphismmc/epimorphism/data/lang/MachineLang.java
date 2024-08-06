@@ -191,6 +191,19 @@ public class MachineLang {
                 "WARNING: Water Sources Are Insufficient.",
                 "警告：水源不足");
 
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.0",
+                "Controller Block for the Concrete Backfiller",
+                "混凝土回填机的控制器方块");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.1",
+                "Will fill in areas below it with light concrete. This goes through walls",
+                "将在其下方填充浅色混凝土，可穿墙");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.2",
+                "Can place (Tier - Base Tier + 1) light concrete one times",
+                "并行 = 电压等级 - 基础电压等级 + 1");
+
         provider.addBlockWithTooltip(BiologyMachines.FERMENTATION_TANK::getBlock, "发酵罐", "", "");
 
         provider.addBlockWithTooltip(
