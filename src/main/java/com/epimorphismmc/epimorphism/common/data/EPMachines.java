@@ -566,7 +566,7 @@ public class EPMachines {
                                 .where(
                                         'E',
                                         casing.or(blocks(
-                                                        PartAbility.INPUT_ENERGY.getBlockRange(tier, UEV).toArray(Block[]::new))
+                                                PartAbility.INPUT_ENERGY.getBlockRange(tier, UEV).toArray(Block[]::new))
                                                 .setMinGlobalLimited(1)
                                                 .setPreviewCount(16)))
                                 .where('C', casing)
@@ -1485,8 +1485,8 @@ public class EPMachines {
                             .build())
                     .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes(
                             (MOBlockPattern) definition.getPatternFactory().get(), ALL_COIL_BLOCKS.size())))
-                    .recoveryItems(() -> new ItemLike[] {
-                        GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()
+                    .recoveryItems(() -> new ItemLike[]{
+                            GTItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash).get()
                     })
                     .renderer(() -> new CustomPartRenderer(
                             Epimorphism.id("block/casings/solid/dimensional_bridge_casing"),
@@ -1498,8 +1498,8 @@ public class EPMachines {
                             components.add(Component.translatable(
                                     "gtceu.multiblock.blast_furnace.max_temperature",
                                     Component.translatable(FormattingUtil.formatNumbers(
-                                                            coilMachine.getCoilType().getCoilTemperature()
-                                                                    + 100L * Math.max(0, coilMachine.getTier() - MV))
+                                                    coilMachine.getCoilType().getCoilTemperature()
+                                                            + 100L * Math.max(0, coilMachine.getTier() - MV))
                                                     + "K")
                                             .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
                         }
@@ -1987,7 +1987,7 @@ public class EPMachines {
                             "gtceu.multiblock.blast_furnace.max_temperature",
                             Component.translatable(
                                             FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature()
-                                                            + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV))
+                                                    + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV))
                                                     + "K")
                                     .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
                 }
@@ -2212,7 +2212,14 @@ public class EPMachines {
                     new ConcreteBackfillerMachine(holder, tier, 64 / tier, (int) Math.pow(2, tier - 1)),
             (tier, builder) -> builder
                     .langValue("Concrete Backfiller")
-                    .tooltips(Component.translatable("block.epimorphism.concrete_backfiller.desc.0"))
+                    .tooltips(
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.0"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.1"),
+                            Component.translatable("block.epimorphism.concrete_backfiller.desc.2"),
+                            Component.translatable("gtceu.universal.tooltip.working_area_max",
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1,
+                                    ((int) Math.pow(2, tier - 1)) * 16 + 1)
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))

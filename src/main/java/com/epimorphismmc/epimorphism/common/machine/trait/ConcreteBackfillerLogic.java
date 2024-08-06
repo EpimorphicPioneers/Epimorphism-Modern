@@ -1,7 +1,10 @@
 package com.epimorphismmc.epimorphism.common.machine.trait;
 
+import com.epimorphismmc.epimorphism.common.data.EPTags;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.ConcreteBackfillerMachine;
+import com.gregtechceu.gtceu.api.data.worldgen.generator.indicators.SurfaceIndicatorGenerator;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.common.block.SurfaceRockBlock;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -9,9 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
@@ -89,6 +90,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
         super(machine);
         this.filler = machine;
         this.speed = speed;
+        this.duration = speed;
         this.maximumRadius = maximumRadius;
         this.currentRadius = maximumRadius;
         this.isDone = false;
@@ -102,6 +104,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Override
     public void resetRecipeLogic() {
         super.resetRecipeLogic();
+        duration = speed;
         resetArea();
     }
 
@@ -115,8 +118,11 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
             checkPosToFill();
 
-            if (filler.getOffsetTimer() % speed == 0 && !posesToFill.isEmpty()) {
+            if (progress >= duration && !posesToFill.isEmpty()) {
                 for (int i = 0; i < getOverclockAmount(); i++) {
+                    if (posesToFill.isEmpty()) {
+                        break;
+                    }
                     BlockPos pos = posesToFill.getFirst();
                     BlockState blockState = level.getBlockState(pos);
                     // check make sure here still can fill
@@ -135,8 +141,10 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
                         posesToFill.removeFirst();
                     }
                 }
-
+                progress = 0;
             }
+            progress++;
+            totalContinuousRunningTime++;
 
             if (posesToFill.isEmpty()) {
                 x = fillX;
@@ -161,15 +169,18 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
     private void fillAndDrainFluid(BlockPos pos, ServerLevel level) {
         filler.drainFluid(1, false);
-        level.setBlockAndUpdate(pos, GTBlocks.DARK_CONCRETE.getDefaultState());
+        level.setBlockAndUpdate(pos, GTBlocks.LIGHT_CONCRETE.getDefaultState());
         fillX = pos.getX();
         fillY = pos.getY();
         fillZ = pos.getZ();
     }
 
     public void initPos(@NotNull BlockPos pos, int currentRadius) {
+        if (this.minBuildHeight == Integer.MAX_VALUE) {
+            this.minBuildHeight = this.getMachine().getLevel().getMinBuildHeight();
+        }
         x = pos.getX() - currentRadius;
-        y = pos.getY() - 1;
+        y = minBuildHeight;
         z = pos.getZ() - currentRadius;
         fillX = x;
         fillY = y;
@@ -177,6 +188,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
         startX = x;
         startY = y;
         startZ = z;
+        posesToFill.clear();
     }
 
     public BlockPos getCenterPos() {
@@ -190,7 +202,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     }
 
     private static boolean checkStateCanFill(BlockState state) {
-        return state.isAir() || state.is(BlockTags.REPLACEABLE);
+        return state.isAir() || state.canBeReplaced() || state.is(EPTags.Blocks.FILLER_REPLACEABLE) || state.getBlock() instanceof SurfaceRockBlock;
     }
 
     private LinkedList<BlockPos> getPosesToFill() {
@@ -199,13 +211,9 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
         double quotient = getQuotient(getMeanTickTime(getMachine().getLevel()));
         int calcAmount = quotient < 1 ? 1 : (int) (Math.min(quotient, Short.MAX_VALUE));
 
-        if (this.minBuildHeight == Integer.MAX_VALUE) {
-            this.minBuildHeight = this.getMachine().getLevel().getMinBuildHeight();
-        }
-
         int calculated = 0;
         while (calculated < calcAmount) {
-            if (y > minBuildHeight) {
+            if (y < getCenterPos().getY() - 1) {
                 if (z <= startZ + currentRadius * 2) {
                     if (x <= startX + currentRadius * 2) {
                         BlockPos pos = new BlockPos(x, y, z);
@@ -223,7 +231,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
                 } else {
                     // reset z and move to the next y layer
                     z = startZ;
-                    --y;
+                    ++y;
                 }
             } else {
                 return poses;

@@ -14,6 +14,7 @@ import com.epimorphismmc.epimorphism.common.data.EPRecipeConditions;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 import com.epimorphismmc.epimorphism.common.data.EPRecipes;
 import com.epimorphismmc.epimorphism.config.EPConfigHolder;
+import com.epimorphismmc.epimorphism.data.DataGenerators;
 import com.epimorphismmc.epimorphism.data.lang.EPLangHandler;
 import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
@@ -56,7 +57,7 @@ public class EpimorphismCommon implements Epimorphism {
         registerPackets(NETWORK);
         registerEventHandlers();
 
-        REGISTRATE.addDataGenerator(MOProviderTypes.MO_LANG, EPLangHandler::init);
+        DataGenerators.init();
 
         Epimorphism.LOGGER.info("Epimorphism's Initialization Completed!");
     }

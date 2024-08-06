@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
@@ -24,9 +25,15 @@ import com.lowdragmc.lowdraglib.side.fluid.IFluidTransfer;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import lombok.Getter;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -182,9 +189,62 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
     //////////////////////////////////////
     @Override
     public void addDisplayText(List<Component> textList) {
-        super.addDisplayText(textList);
+        MultiblockDisplayText.builder(textList, isFormed())
+                .setWorkingStatus(getRecipeLogic().isWorkingEnabled(), getRecipeLogic().isActive())
+                .addEnergyUsageLine(energyContainer)
+                .addParallelsLine(getRecipeLogic().getOverclockAmount())
+                .addWorkingStatusLine()
+                .addProgressLine(getRecipeLogic().getProgressPercent());
+        getDefinition().getAdditionalDisplay().accept(this, textList);
         if (isFormed()) {
-            // TODO: display text
+            textList.add(Component.translatable(
+                    "gui.epimorphism.backfiller.start",
+                    getRecipeLogic().getStartX() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getStartX(),
+                    getRecipeLogic().getStartY() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getStartY(),
+                    getRecipeLogic().getStartZ() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getStartZ()
+            ));
+            textList.add(Component.translatable(
+                    "gui.epimorphism.backfiller.filling",
+                    getRecipeLogic().getFillX() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getFillX(),
+                    getRecipeLogic().getFillY() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getFillY(),
+                    getRecipeLogic().getFillZ() == Integer.MAX_VALUE ? 0 : getRecipeLogic().getFillZ()
+            ));
+            int workingArea = getRecipeLogic().getCurrentRadius() * 2 + 1;
+            int maxWorkingArea = getRecipeLogic().getMaximumRadius() * 2 + 1;
+            textList.add(Component.translatable("gtceu.universal.tooltip.working_area", workingArea, workingArea));
+            textList.add(Component.translatable("gtceu.universal.tooltip.working_area_max", maxWorkingArea, maxWorkingArea));
+            if (getRecipeLogic().isDone()) {
+                textList.add(Component.translatable("gui.epimorphism.backfiller.done").withStyle(ChatFormatting.GREEN));
+            }
         }
     }
+
+    //////////////////////////////////////
+    // ******     Interaction    ****** //
+    //////////////////////////////////////
+    @Override
+    protected InteractionResult onScrewdriverClick(Player playerIn, InteractionHand hand, Direction gridSide, BlockHitResult hitResult) {
+        if (isRemote() || !this.isFormed())
+            return InteractionResult.SUCCESS;
+
+        if (!isActive()) {
+            int currentRadius = getRecipeLogic().getCurrentRadius();
+            int maximumRadius = getRecipeLogic().getMaximumRadius();
+            if (currentRadius + 8 > maximumRadius) {
+                currentRadius = 8;
+            } else {
+                currentRadius += 8;
+            }
+            getRecipeLogic().setCurrentRadius(currentRadius);
+            int workingArea = currentRadius * 2 + 1;
+            playerIn.sendSystemMessage(Component.translatable("gtceu.universal.tooltip.working_area", workingArea, workingArea));
+            getRecipeLogic().resetArea();
+        } else {
+            playerIn.sendSystemMessage(Component.translatable("gtceu.multiblock.large_miner.errorradius").withStyle(ChatFormatting.RED));
+        }
+
+        return InteractionResult.SUCCESS;
+    }
+
+
 }
