@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.machineCasingBlock;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
@@ -153,7 +153,7 @@ public class BiologyMachines {
                     .where('C', EPPredicates.glass())
                     .build())
             .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes(
-                    (MOBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size())))
+                    (MOBlockPattern) definition.getPatternFactory().get(), ALL_GLASSES.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .renderer(() -> new TankMachineRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),

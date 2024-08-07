@@ -22,8 +22,6 @@ public class BlockMaps {
     // Glasses
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_GLASSES =
             new Object2ObjectOpenHashMap<>();
-    public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> SHAPE_GLASSES =
-            new Object2ObjectOpenHashMap<>();
 
     // Yotta Fluid Tank
     public static final Object2ObjectOpenHashMap<ITierType, Supplier<Block>> ALL_FLUID_CELLS =

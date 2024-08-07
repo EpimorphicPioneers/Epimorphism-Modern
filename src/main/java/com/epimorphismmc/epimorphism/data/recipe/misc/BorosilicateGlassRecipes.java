@@ -39,7 +39,7 @@ public class BorosilicateGlassRecipes {
                 .inputItems(BOROSILICATE_GLASS.asStack(1))
                 .inputFluids(material.getFluid(8 * 144))
                 .outputItems(glass.asStack(1))
-                .EUt(GTValues.VA[glass.get().getTierType().tier() - 1])
+//                .EUt(GTValues.VA[glass.get().getTierType().tier() - 1])
                 .duration(40 * 20)
                 .save(provider);
     }

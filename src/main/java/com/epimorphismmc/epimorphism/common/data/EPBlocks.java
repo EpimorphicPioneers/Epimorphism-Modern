@@ -92,7 +92,6 @@ import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIELD_BLOCKS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FLUID_CELLS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.COSMIC_NEUTRONIUM_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.DURANIUM_BOROSILICATE;
@@ -638,7 +637,6 @@ public class EPBlocks {
                 .build()
                 .register();
         ALL_GLASSES.put(glassType, glassBlock::get);
-        SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 
@@ -667,8 +665,6 @@ public class EPBlocks {
                 .model(NonNullBiConsumer.noop())
                 .build()
                 .register();
-        ALL_GLASSES.put(glassType, glassBlock::get);
-        SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 

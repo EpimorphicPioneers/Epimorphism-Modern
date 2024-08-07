@@ -39,7 +39,6 @@ public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierB
                                         "all",
                                         Epimorphism.id("block/casings/transparent/%s".formatted(glassType.typeName()))))
                         : null);
-        setTierType(glassType);
     }
 
     @Override

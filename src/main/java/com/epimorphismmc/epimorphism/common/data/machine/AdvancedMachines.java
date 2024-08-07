@@ -66,8 +66,8 @@ import java.util.List;
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_CASINGS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_PA_CASINGS;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
@@ -818,7 +818,7 @@ public class AdvancedMachines {
                     .build())
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLeng = Ints.max(SHAPE_GLASSES.size(), ALL_COIL_BLOCKS.size());
+                int maxLeng = Ints.max(ALL_GLASSES.size(), ALL_COIL_BLOCKS.size());
                 shapeInfos.addAll(StructureUtil.getMatchingShapes(
                         (MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
@@ -1088,7 +1088,7 @@ public class AdvancedMachines {
                     .where(' ', any())
                     .build())
             .shapeInfos(definition -> {
-                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
+                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), ALL_GLASSES.size());
                 return new ArrayList<>(StructureUtil.getMatchingShapes(
                         (MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })

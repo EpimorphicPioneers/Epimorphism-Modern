@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GTBlocks.class, remap = false)
 @Debug(export = true)
-public class GTBlocksMixin {
+public abstract class GTBlocksMixin {
     @Inject(
             method = "init",
             at =

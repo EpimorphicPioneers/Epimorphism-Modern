@@ -12,13 +12,12 @@
         "accessors.BlockLootSubProviderAccessor",
         "accessors.BlockModelGeneratorsAccessor",
         "accessors.GTRecipeTypeAccessor",
+        "gtm.CraftingComponentMixin",
         "gtm.GTBlocksMixin",
         "gtm.GTFluidsMixin",
         "gtm.GTItemsMixin",
         "gtm.GTRecipeBuilderMixin",
-        "gtm.MetaTileEntityLoaderMixin",
-        "gtm.RendererGlassBlockMixin",
-        "mc.BlockGlassMixin"
+        "gtm.MetaTileEntityLoaderMixin"
     ],
     "injectors": {
         "defaultRequire": 1

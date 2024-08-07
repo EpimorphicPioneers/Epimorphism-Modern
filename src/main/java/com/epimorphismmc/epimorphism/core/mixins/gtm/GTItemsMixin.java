@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GTItems.class, remap = false)
-public class GTItemsMixin {
+public abstract class GTItemsMixin {
 
     @Inject(
             method = "generateMaterialItems",
