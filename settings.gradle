@@ -45,7 +45,7 @@ dependencyResolutionManagement {
         def ldLibVersion = "1.0.26"
         def mixinextrasVersion = "0.2.0"
         def shimmerVersion = "0.2.4"
-        def monoLibVersion = "1.1.1-build.30"
+        def monoLibVersion = "1.1.1-build.31"
         def spotlessVersion = "7.0.0.BETA1"
 
         forge {
