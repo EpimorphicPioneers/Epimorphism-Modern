@@ -23,7 +23,7 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.Brass;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Cupronickel;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
 
-public class SteamMachineHandler {
+public class SteamMachineRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         steelSteamMultiblocks(provider);
