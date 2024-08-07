@@ -2,6 +2,7 @@ package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -14,14 +15,13 @@ import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 import com.gregtechceu.gtceu.api.recipe.ingredient.FluidIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.IntCircuitIngredient;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
-
 import com.gregtechceu.gtceu.core.mixins.IngredientAccessor;
 import com.gregtechceu.gtceu.core.mixins.TagValueAccessor;
 import com.gregtechceu.gtceu.data.recipe.CraftingComponent;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+
 import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
-import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
-import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -31,14 +31,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.CONVEYOR;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.EMITTER;
 import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.FIELD_GENERATOR;
@@ -51,14 +54,15 @@ import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.SENSOR;
 public class ComponentAssemblyLineRecipeHandler {
     // 需要制作的部件
     public static CraftingComponent.Component[] craftComponents;
-    private static final Object2IntLinkedOpenHashMap<Item> componentItems = new Object2IntLinkedOpenHashMap<>();
+    private static final Object2IntLinkedOpenHashMap<Item> componentItems =
+            new Object2IntLinkedOpenHashMap<>();
 
     private static final List<GTRecipeBuilder> recipeBuilders = new ArrayList<>();
 
     static {
         CraftingComponent.initializeComponents();
-        craftComponents = new CraftingComponent.Component[]{
-                MOTOR, PUMP, PISTON, CONVEYOR, ROBOT_ARM, FIELD_GENERATOR, EMITTER, SENSOR
+        craftComponents = new CraftingComponent.Component[] {
+            MOTOR, PUMP, PISTON, CONVEYOR, ROBOT_ARM, FIELD_GENERATOR, EMITTER, SENSOR
         };
         initComponentList();
     }
@@ -79,10 +83,12 @@ public class ComponentAssemblyLineRecipeHandler {
 
     private static void handlerComponent(Item outputItem, GTRecipeBuilder builder, int tier) {
         List<Ingredient> inputItems = RecipeHelper.getInputContents(builder, ItemRecipeCapability.CAP);
-        List<FluidIngredient> inputFluids = RecipeHelper.getInputContents(builder, FluidRecipeCapability.CAP);
+        List<FluidIngredient> inputFluids =
+                RecipeHelper.getInputContents(builder, FluidRecipeCapability.CAP);
         Object2LongOpenHashMap<Fluid> inputFluidMap = new Object2LongOpenHashMap<>();
 
-        GTRecipeBuilder newBuilder = COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder(Epimorphism.id(builder.id.getPath()));
+        GTRecipeBuilder newBuilder =
+                COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder(Epimorphism.id(builder.id.getPath()));
 
         for (var input : inputItems) {
             //noinspection StatementWithEmptyBody
@@ -103,7 +109,8 @@ public class ComponentAssemblyLineRecipeHandler {
                     } else if (value instanceof Ingredient.TagValue tagValue) {
                         TagKey<Item> tag = ((TagValueAccessor) tagValue).getTag();
                         ResourceLocation location = tag.location();
-                        if (location.getNamespace().equals(GTCEu.MOD_ID) && location.getPath().contains("circuits")) {
+                        if (location.getNamespace().equals(GTCEu.MOD_ID)
+                                && location.getPath().contains("circuits")) {
                             // 是 GT 电路板
                             ItemLike warpItem = EPWrapItem.WRAP_CIRCUIT_MAP.get(tag);
                             if (warpItem != null) {
@@ -118,7 +125,9 @@ public class ComponentAssemblyLineRecipeHandler {
                             }
                         }
                     } else {
-                        value.getItems().forEach(stack -> newBuilder.inputItems(stack.copyWithCount(count * 48)));
+                        value
+                                .getItems()
+                                .forEach(stack -> newBuilder.inputItems(stack.copyWithCount(count * 48)));
                     }
                 }
             } else {
@@ -133,7 +142,8 @@ public class ComponentAssemblyLineRecipeHandler {
             copy.setAmount(copy.getAmount() * 48);
             newBuilder.inputFluids(copy);
         });
-        inputFluidMap.forEach((fluid, amount) -> newBuilder.inputFluids(FluidStack.create(fluid, amount)));
+        inputFluidMap.forEach(
+                (fluid, amount) -> newBuilder.inputFluids(FluidStack.create(fluid, amount)));
 
         newBuilder.outputItems(outputItem, 64);
         newBuilder.EUt(GTValues.VA[tier]);
@@ -171,7 +181,12 @@ public class ComponentAssemblyLineRecipeHandler {
         }
     }
 
-    private static void handlerUnificationEntry(GTRecipeBuilder builder, GTRecipeBuilder newBuilder, Object2LongOpenHashMap<Fluid> fluidMap, UnificationEntry entry, int count) {
+    private static void handlerUnificationEntry(
+            GTRecipeBuilder builder,
+            GTRecipeBuilder newBuilder,
+            Object2LongOpenHashMap<Fluid> fluidMap,
+            UnificationEntry entry,
+            int count) {
         // 是有 mat 物品
         Material material = entry.material;
         if (material == null) {
@@ -224,7 +239,13 @@ public class ComponentAssemblyLineRecipeHandler {
         }
     }
 
-    private static void conventPrefix(GTRecipeBuilder builder, TagPrefix originalPrefix, TagPrefix newPrefix, Material material, int count, int multiple) {
+    private static void conventPrefix(
+            GTRecipeBuilder builder,
+            TagPrefix originalPrefix,
+            TagPrefix newPrefix,
+            Material material,
+            int count,
+            int multiple) {
         ItemStack stack = ChemicalHelper.get(newPrefix, material);
         if (stack.isEmpty()) {
             builder.inputItems(originalPrefix, material, count * 48);
@@ -233,7 +254,12 @@ public class ComponentAssemblyLineRecipeHandler {
         }
     }
 
-    private static void conventPrefixToFluid(Object2LongOpenHashMap<Fluid> fluidMap, GTRecipeBuilder builder, TagPrefix prefix, Material material, int count) {
+    private static void conventPrefixToFluid(
+            Object2LongOpenHashMap<Fluid> fluidMap,
+            GTRecipeBuilder builder,
+            TagPrefix prefix,
+            Material material,
+            int count) {
         if (material.hasFluid() && prefix.materialAmount() != -1) {
             long fluidCount = prefix.materialAmount() / 25200;
             FluidStack fluid = material.getFluid(fluidCount * count * 48);
