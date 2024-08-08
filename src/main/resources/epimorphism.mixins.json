@@ -16,7 +16,6 @@
         "gtm.GTFluidsMixin",
         "gtm.GTItemsMixin",
         "gtm.GTRecipeBuilderMixin",
-        "gtm.MetaTileEntityLoaderMixin",
         "gtm.RendererGlassBlockMixin",
         "mc.BlockGlassMixin"
     ],

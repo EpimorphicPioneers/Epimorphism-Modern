@@ -17,7 +17,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class ConcreteBackfillerMachineHandler {
+public class ConcreteBackfillerMachineRecipe {
     public static void init(Consumer<FinishedRecipe> provider) {
         VanillaRecipeHelper.addShapedRecipe(
                 provider,
