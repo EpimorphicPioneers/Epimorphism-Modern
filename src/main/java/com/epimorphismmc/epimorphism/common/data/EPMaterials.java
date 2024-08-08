@@ -666,6 +666,7 @@ public class EPMaterials {
     public static Material ImpureNaquadahMixtureSolution;
     public static Material PureNaquadriaMixtureSolution;
     public static Material CombustionPromoter;
+    public static Material Indalloy140;
 
     //  Machine Casing Materials
     public static Material Inconel625;

@@ -4,11 +4,12 @@ import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.data.recipe.chains.circuits.OpticalCircuitRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.chains.oreprocessing.NaquadahProcessing;
 import com.epimorphismmc.epimorphism.data.recipe.handler.BouleRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAsslineRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAssemblyLineRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.PartsRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.WrapItemRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineHandler;
-import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineHandler;
+import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ComponentAssemblyLineMachineRecipe;
+import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineRecipe;
+import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.misc.BorosilicateGlassRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipes;
@@ -23,8 +24,9 @@ public class EPRecipes {
         /////////////////////////////////////////
         // *****     Machine Recipes     ***** //
         /////////////////////////////////////////
-        SteamMachineHandler.init(provider);
-        ConcreteBackfillerMachineHandler.init(provider);
+        SteamMachineRecipe.init(provider);
+        ConcreteBackfillerMachineRecipe.init(provider);
+        ComponentAssemblyLineMachineRecipe.init(provider);
 
         /////////////////////////////////////////
         // *****      Chain Recipes      ***** //
@@ -36,7 +38,7 @@ public class EPRecipes {
         // *****     Handler Recipes     ***** //
         /////////////////////////////////////////
         BouleRecipeHandler.init(provider);
-        ComponentAsslineRecipeHandler.finish(provider);
+        ComponentAssemblyLineRecipeHandler.finish(provider);
         PartsRecipeHandler.init(provider);
         WrapItemRecipeHandler.init(provider);
 
