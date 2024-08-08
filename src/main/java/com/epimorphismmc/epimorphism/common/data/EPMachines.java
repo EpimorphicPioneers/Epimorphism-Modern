@@ -116,6 +116,7 @@ import java.util.stream.Collectors;
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.api.pattern.EPPredicates.direction;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.*;
@@ -2220,7 +2221,7 @@ public class EPMachines {
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1,
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(DUMMY_RECIPES)
+                    .recipeType(CONCRETE_BACKFILLER_RECIPES)
                     .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")
@@ -2307,19 +2308,18 @@ public class EPMachines {
                                 Collectors.toMap(entry -> entry.getKey().tier(), Map.Entry::getValue, (a, b) -> a));
                 TreeMap<Integer, Supplier<Block>> glasses = new TreeMap<>(glass);
                 for (int i = 0; i < fluidCells.size(); i++) {
-                    var info = builder
-                            .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                            .where('C', glasses.ceilingEntry(i + 3).getValue())
-                            .where('E', fluidCells.get(i))
-                            .shallowCopy()
+                    var info = builder.aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC");
+                    var entry = glasses.ceilingEntry(i + 3);
+                    if (entry != null) {
+                        info.where('C', entry.getValue()).where('E', fluidCells.get(i));
+                    }
+                    shapeInfo.add(info.shallowCopy()
                             .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
                             .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD")
-                            .build();
-                    shapeInfo.add(info);
+                            .build());
                 }
                 return shapeInfo;
             })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .sidedWorkableCasingRenderer(
                     "block/casings/yotta_fluid_tank_casing",
                     Epimorphism.id("block/multiblock/yotta_fluid_tank"),
@@ -2359,7 +2359,6 @@ public class EPMachines {
                     .build())
             .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes(
                     (MOBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size())))
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(
                     Epimorphism.id("block/casings/solid/tfft_casing"),
                     Epimorphism.id("block/multiblock/tfft"),

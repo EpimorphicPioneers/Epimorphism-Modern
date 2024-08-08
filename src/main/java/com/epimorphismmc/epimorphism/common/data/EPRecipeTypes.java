@@ -237,6 +237,12 @@ public class EPRecipeTypes {
             })
             .setSound(GTSoundEntries.FURNACE);
 
+    public static final GTRecipeType CONCRETE_BACKFILLER_RECIPES = register(
+                    "concrete_backfiller", MULTIBLOCK)
+            .setMaxIOSize(0, 1, 1, 0)
+            .setEUIO(IO.IN)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT);
+
     //  Universal Processing Plant Recipemaps (Fake Recipemap)
     public static final GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType(
                     "general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2])
