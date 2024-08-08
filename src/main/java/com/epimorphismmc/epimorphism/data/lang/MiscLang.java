@@ -57,6 +57,7 @@ public class MiscLang {
                 "§c方块朝向必须一致");
 
         provider.add("epimorphism.universal.desc.duration", "§bDuration: §f%s", "§b耗时：§f%s");
+        provider.add("epimorphism.universal.desc.energ_usage", "§aEnergy Usage: §f%s", "§a耗能：§f%s");
         provider.add("epimorphism.universal.desc.parallel", "§dMax Parallel: §f%s", "§d最大并行: §f%s");
 
         // GUI

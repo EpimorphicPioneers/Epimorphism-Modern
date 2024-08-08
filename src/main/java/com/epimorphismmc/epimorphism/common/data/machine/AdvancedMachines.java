@@ -584,7 +584,8 @@ public class AdvancedMachines {
                     Component.translatable("block.epimorphism.precise_assembler.desc.1"),
                     Component.translatable("block.epimorphism.precise_assembler.desc.2"),
                     Component.translatable("block.epimorphism.precise_assembler.desc.3"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.4"))
+                    Component.translatable("block.epimorphism.precise_assembler.desc.4"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.5"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ASSEMBLER_RECIPES, EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES)
             .recipeModifiers(
@@ -640,9 +641,11 @@ public class AdvancedMachines {
                     components.add(
                             Component.translatable("block.epimorphism.general_processing_plant.desc.1"));
                     components.add(
-                            Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
+                            Component.translatable("epimorphism.universal.desc.duration", "0.4×"));
                     components.add(
-                            Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
+                            Component.translatable("epimorphism.universal.desc.energ_usage", "0.8×"));
+                    components.add(
+                            Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(Component.translatable("monomorphism.shift_info"));
                 }
             })

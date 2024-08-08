@@ -114,23 +114,24 @@ public class MachineLang {
                 "通用加工厂",
                 List.of(
                         "§7Highly Integrated Machining",
-                        "§e2.5§6 Times Faster Than A Single Block Machine Of The Same Voltage",
-                        "§5Only §E 80%% §5 Of The Required Power Of The Recipe Needs To Be Used",
-                        "§bFor Each Voltage Level Raised, §e8§b Is Added To The Maximum Number Of Parallels"),
+                        "Available Recipe Types：§9Mode A§r,§9Mode B§r,§9Mode C",
+                        "§5Parallel：§5Voltage Tiers x 8"),
                 List.of(
-                        "§7高度集成加工", "§6比相同电压的单方块机器快§e2.5§6倍", "§5只需要使用配方要求功率的§e80%%", "§b每提升一个电压等级，最大并行数加§e8"));
+                        "§7高度集成加工",
+                        "可用配方类型：§9模式A§r, §9模式B§r, §9模式C" ,
+                        "§5最大并行：§f电压等级x8"));
         provider.addShiftTooltip(
                 AdvancedMachines.GENERAL_PROCESSING_PLANT::getBlock,
                 List.of(
                         "§7Use A Programming Circuit To Control The Recipe In The Current Mode",
-                        "§4Mode A§r: §e20§r - Compressor §e21§r - Lathe §e22§r - Two Pole Magnetizer",
-                        "§3Mode B§r: §e20§r - Fermentation Tank §e21§r - Extractor §e22§r - Canning Machine",
-                        "§2Mode C§r: §e20§r - Precision Laser Etching Machine §e21§r - Autoclave §e22§r - Fluid Curing Machine"),
+                        "§9Mode A§r: §e20§r - Compressor §e21§r - Lathe §e22§r - Two Pole Magnetizer",
+                        "§9Mode B§r: §e20§r - Fermentation Tank §e21§r - Extractor §e22§r - Canning Machine",
+                        "§9Mode C§r: §e20§r - Precision Laser Etching Machine §e21§r - Autoclave §e22§r - Fluid Curing Machine"),
                 List.of(
                         "§7使用编程电路控制当前模式下的配方",
-                        "§4模式A§r：§e20§r-压缩机 §e21§r-车床 §e22§r-两极磁化机",
-                        "§3模式B§r：§e20§r-发酵槽 §e21§r-提取机 §e22§r-装罐机",
-                        "§2模式C§r：§e20§r-精密激光蚀刻机 §e21§r-高压釜 §e22§r-流体固化机"));
+                        "§9模式A§r：§e20§r-压缩机 §e21§r-车床 §e22§r-两极磁化机",
+                        "§9模式B§r：§e20§r-发酵槽 §e21§r-提取机 §e22§r-装罐机",
+                        "§9模式C§r：§e20§r-精密激光蚀刻机 §e21§r-高压釜 §e22§r-流体固化机"));
 
         provider.addBlockWithTooltip(
                 BiologyMachines.INDUSTRIAL_FISHING_POND::getBlock,
@@ -248,14 +249,16 @@ public class MachineLang {
                         "§7The error does not exceed 7 nm",
                         "Available Recipe Types：§9Assembler§r,§9Precision Assemble",
                         "Different Machine Housings Are Used To Determine The Machine Class",
-                        "§6When running §9Assembler§6 recipes, §bDuration §6reduction §f50%§e6.",
-                        "§6When running §9Assembler§6 recipes, §5Parallel §6add §e2^(machine enclosure level +4) §6.)"),
+                        "§6When running §9Assembler§6 recipes：",
+                        "§6· §bDuration：§6*§f50%",
+                        "§6· §5Max Parallel：§e2^(Machine tier +4)"),
                 List.of(
                         "§7误差不超过7nm",
-                        "可用配方类型：§9组装机§r，§9组装精密",
+                        "可用配方类型：§9组装机§r，§9精密组装",
                         "使用不同的机器外壳判定机器等级",
-                        "§6运行§9组装机§6配方时，§b耗时§6减少§e50%§6。",
-                        "§6运行§9组装机§6配方时，§5并行§6增加§e2^(机器外壳等级+4)§6。"));
+                        "运行§9组装机§f配方时:",
+                        "· §b耗时：§f0.5x",
+                        "· §5最大并行：§f2^(机器等级+4)"));
 
         provider.addBlockWithTooltip(DIGESTER::getBlock, "煮解池", List.of(), List.of());
 
