@@ -18,7 +18,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class SteamMachineHandler {
+public class SteamMachineRecipe {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         steelSteamMultiblocks(provider);

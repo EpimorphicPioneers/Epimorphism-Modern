@@ -398,5 +398,14 @@ public class EPUnknownCompositionMaterials {
                 .color(0x27B7B5)
                 .iconSet(MaterialIconSet.DULL)
                 .buildAndRegister();
+
+        Indalloy140 = Builder("indalloy_140")
+                .liquid()
+                .ingot()
+                .color(0x736D8A)
+                .iconSet(MaterialIconSet.DULL)
+                .components(Bismuth, 47, Lead, 25, Tin, 13, Cadmium, 10, Indium, 5)
+                .flags(DISABLE_DECOMPOSITION)
+                .buildAndRegister();
     }
 }

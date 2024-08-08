@@ -706,6 +706,7 @@ public class MaterialLang {
         addCNMaterial(provider, SuperheavyHAlloy, "超重元素-重合金");
         addCNMaterial(provider, SuperheavyLAlloy, "超重元素-轻合金");
         addCNMaterial(provider, PlatinumGroupAlloy, "稀有金属合金");
+        addCNMaterial(provider, Indalloy140, "铋铅合金140");
 
         initGeneratedNames(provider);
     }
