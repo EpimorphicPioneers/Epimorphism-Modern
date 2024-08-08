@@ -55,7 +55,7 @@ public abstract class BlockGlassMixin extends AbstractGlassBlock implements ITie
                 tooltip.add(glassType.getOpticalTierName());
             }
         } else {
-            tooltip.add(Component.translatable("monomorphism.shift_desc_extended_info"));
+            tooltip.add(Component.translatable("monomorphism.shift_info"));
         }
     }
 }

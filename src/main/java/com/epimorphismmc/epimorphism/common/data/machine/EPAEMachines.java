@@ -20,7 +20,7 @@ public class EPAEMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.TANK_ACCESS)
             .overlayTieredHullRenderer("tank_access_hatch")
-            .tooltips(Component.translatable("block.epimorphism.tank_hatch.desc.0"))
+            .tooltips(Component.translatable("block.epimorphism.tank_access_hatch.desc.0"))
             .register();
 
     public static void init() {}

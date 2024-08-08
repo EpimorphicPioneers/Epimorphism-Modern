@@ -6,6 +6,7 @@ import com.epimorphismmc.epimorphism.api.block.tier.IStorageFieldBlock;
 import com.epimorphismmc.epimorphism.api.block.tier.ITierGlassType;
 import com.epimorphismmc.epimorphism.api.data.chemical.material.properties.EPPropertyKeys;
 import com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix;
+import com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock;
 import com.epimorphismmc.epimorphism.common.block.CrucibleBlock;
 import com.epimorphismmc.epimorphism.common.block.EPFusionCasingBlock;
 import com.epimorphismmc.epimorphism.common.block.FluidTankCellBlock;
@@ -83,6 +84,7 @@ import javax.annotation.Nonnull;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.*;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.*;
@@ -321,38 +323,32 @@ public class EPBlocks {
             Epimorphism.id("block/casings/unique/y_zr_ceramic_electrolyte_unit"));
 
     // Transparent Casing Blocks
-    public static final BlockEntry<TierGlassBlock> SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.SILICATE_GLASS, SoundType.GLASS, () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> TI_BORON_SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.TI_BORON_SILICATE_GLASS,
-            SoundType.GLASS,
-            () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> W_BORON_SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.W_BORON_SILICATE_GLASS,
-            SoundType.GLASS,
-            () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> OSMIR_BORON_SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.OSMIR_BORON_SILICATE_GLASS,
-            SoundType.GLASS,
-            () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> NAQ_BORON_SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.NAQ_BORON_SILICATE_GLASS,
-            SoundType.GLASS,
-            () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> THY_BORON_SILICATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.THY_BORON_SILICATE_GLASS,
-            SoundType.GLASS,
-            () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> INFINITY_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.INFINITY_GLASS, SoundType.GLASS, () -> RenderType::cutoutMipped);
+    public static final BlockEntry<BorosilicateGlassBlock> BOROSILICATE_GLASS =
+            createBorosilicateGlass(BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TITANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TITANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TUNGSTEN_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TUNGSTEN_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> IRIDIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(IRIDIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> OSMIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(OSMIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> DURANIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(DURANIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> COSMIC_NEUTRONIUM_BOROSILICATE_GLASS =
+            createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
+            createBorosilicateGlass(INFINITY_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS =
+            createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
+
     public static final BlockEntry<TierGlassBlock> PMMA_GLASS = createGlassBlock(
             TierGlassBlock.GlassType.PMMA_GLASS, SoundType.STONE, () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> NEU_PMMA_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.NEU_PMMA_GLASS, SoundType.STONE, () -> RenderType::translucent);
-    public static final BlockEntry<TierGlassBlock> BPA_POLYCARBONATE_GLASS = createGlassBlock(
-            TierGlassBlock.GlassType.BPA_POLYCARBONATE_GLASS,
-            SoundType.STONE,
-            () -> RenderType::translucent);
+
     public static final BlockEntry<TierGlassBlock> CBDO_POLYCARBONATE_GLASS = createGlassBlock(
             TierGlassBlock.GlassType.CBDO_POLYCARBONATE_GLASS,
             SoundType.STONE,
@@ -610,6 +606,23 @@ public class EPBlocks {
                 .register();
     }
 
+    private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(
+            BorosilicateGlassBlock.Type glassType) {
+        BlockEntry<BorosilicateGlassBlock> glassBlock = registrate()
+                .block(glassType.typeName(), p -> new BorosilicateGlassBlock(p, glassType))
+                .initialProperties(() -> Blocks.GLASS)
+                .addLayer(() -> RenderType::translucent)
+                .blockstate(NonNullBiConsumer.noop())
+                .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
+                .item(RendererBlockItem::new)
+                .model(NonNullBiConsumer.noop())
+                .build()
+                .register();
+        ALL_GLASSES.put(glassType, glassBlock::get);
+        SHAPE_GLASSES.put(glassType, glassBlock::get);
+        return glassBlock;
+    }
+
     private static BlockEntry<TierGlassBlock> createGlassBlock(
             ITierGlassType glassType, SoundType soundType, Supplier<Supplier<RenderType>> type) {
         BlockEntry<TierGlassBlock> glassBlock = registrate()
@@ -623,7 +636,7 @@ public class EPBlocks {
                                                 Map.of(
                                                         "all",
                                                         Epimorphism.id(
-                                                                "block/casings/glass/%s".formatted(glassType.typeName()))))
+                                                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
                                         : null,
                                 glassType))
                 .initialProperties(() -> Blocks.GLASS)

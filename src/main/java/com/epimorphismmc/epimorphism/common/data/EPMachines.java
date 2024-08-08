@@ -293,7 +293,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.CATALYST)
             .overlayTieredHullRenderer("catalyst_hatch")
-            .tooltips()
+            .tooltips(Component.translatable("block.epimorphism.catalyst_hatch.desc.0"))
             .register();
 
     public static final MachineDefinition NEUTRON_SENSOR = registrate()
@@ -303,7 +303,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.NEUTRON_SENSOR)
             .overlayTieredHullRenderer("neutron_sensor")
-            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc"))
+            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc.0"))
             .register();
 
     public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredEPMachines(
@@ -350,8 +350,8 @@ public class EPMachines {
                     .abilities(EPPartAbility.REINFORCED_ROTOR_HOLDER)
                     .renderer(() -> new RotorHolderMachineRenderer(tier))
                     .tooltips(
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 0),
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 1),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 0),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
             tiersBetween(IV, UEV));
@@ -1684,7 +1684,7 @@ public class EPMachines {
                             blocks(CASING_STAINLESS_CLEAN.get())
                                     .or(autoAbilities(definition.getRecipeTypes()))
                                     .or(autoAbilities(true, false, false)))
-                    .where('G', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.IRIDIUM_BOROSILICATE_GLASS.get()))
                     .where('N', blocks(CASING_INVAR_HEATPROOF.get()))
                     .where('#', air())
                     .where(' ', any())
@@ -1787,7 +1787,7 @@ public class EPMachines {
                     .where('S', controller(blocks(definition.getBlock())))
                     .where(
                             'X', blocks(CASING_NONCONDUCTING.get()).setMinGlobalLimited(35).or(autoAbilities()))
-                    .where('G', blocks(EPBlocks.SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.BOROSILICATE_GLASS.get()))
                     .where('C', Predicates.blocks(EPBlocks.SUBSTRATE_CASING.get()))
                     .build())
             .workableCasingRenderer(
@@ -2307,19 +2307,18 @@ public class EPMachines {
                                 Collectors.toMap(entry -> entry.getKey().tier(), Map.Entry::getValue, (a, b) -> a));
                 TreeMap<Integer, Supplier<Block>> glasses = new TreeMap<>(glass);
                 for (int i = 0; i < fluidCells.size(); i++) {
-                    var info = builder
-                            .aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC")
-                            .where('C', glasses.ceilingEntry(i + 3).getValue())
-                            .where('E', fluidCells.get(i))
-                            .shallowCopy()
+                    var info = builder.aisle("CCCCC", "CEEEC", "CEEEC", "CEEEC", "CCCCC");
+                    var entry = glasses.ceilingEntry(i + 3);
+                    if (entry != null) {
+                        info.where('C', entry.getValue()).where('E', fluidCells.get(i));
+                    }
+                    shapeInfo.add(info.shallowCopy()
                             .aisle("AAAAA", "AGGGA", "AGGGA", "AGGGA", "AAAAA")
                             .aisle("DDDDD", "D   D", "D   D", "D   D", "DDDDD")
-                            .build();
-                    shapeInfo.add(info);
+                            .build());
                 }
                 return shapeInfo;
             })
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .sidedWorkableCasingRenderer(
                     "block/casings/yotta_fluid_tank_casing",
                     Epimorphism.id("block/multiblock/yotta_fluid_tank"),
@@ -2359,7 +2358,6 @@ public class EPMachines {
                     .build())
             .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes(
                     (MOBlockPattern) definition.getPatternFactory().get(), ALL_FIELD_BLOCKS.size())))
-            .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .workableCasingRenderer(
                     Epimorphism.id("block/casings/solid/tfft_casing"),
                     Epimorphism.id("block/multiblock/tfft"),
