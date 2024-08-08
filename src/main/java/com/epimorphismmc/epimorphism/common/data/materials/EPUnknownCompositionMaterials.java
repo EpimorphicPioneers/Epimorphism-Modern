@@ -402,7 +402,6 @@ public class EPUnknownCompositionMaterials {
         Indalloy140 = Builder("indalloy_140")
                 .liquid()
                 .ingot()
-                .dust()
                 .color(0x736D8A)
                 .iconSet(MaterialIconSet.DULL)
                 .components(Bismuth, 47, Lead, 25, Tin, 13, Cadmium, 10, Indium, 5)

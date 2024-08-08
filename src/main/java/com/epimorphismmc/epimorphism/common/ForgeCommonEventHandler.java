@@ -31,9 +31,7 @@ import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
 public class ForgeCommonEventHandler {
 
     @SubscribeEvent
-    public static void onItemTooltipEvent(ItemTooltipEvent event) {
-
-    }
+    public static void onItemTooltipEvent(ItemTooltipEvent event) {}
 
     @SubscribeEvent
     public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {

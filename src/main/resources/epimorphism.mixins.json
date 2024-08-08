@@ -16,9 +16,7 @@
         "gtm.GTBlocksMixin",
         "gtm.GTFluidsMixin",
         "gtm.GTItemsMixin",
-        "gtm.GTRecipeBuilderMixin",
-        "gtm.RendererGlassBlockMixin",
-        "mc.BlockGlassMixin"
+        "gtm.GTRecipeBuilderMixin"
     ],
     "injectors": {
         "defaultRequire": 1
