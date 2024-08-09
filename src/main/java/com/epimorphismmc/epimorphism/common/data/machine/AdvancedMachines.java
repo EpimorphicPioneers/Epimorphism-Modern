@@ -66,46 +66,19 @@ import java.util.List;
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_CASINGS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_PA_CASINGS;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.MV;
-import static com.gregtechceu.gtceu.api.GTValues.VNF;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
-import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.MAINTENANCE;
-import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.MUFFLER;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.air;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.any;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.autoAbilities;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.frames;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.HEAT_VENT;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_ASSEMBLY_LINE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_LAMINATED_GLASS;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_PTFE_INERT;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STAINLESS_CLEAN;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_GEARBOX;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_PIPE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_TUNGSTENSTEEL_PIPE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CLEANROOM_GLASS;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HSLASteel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Neutronium;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.TungstenSteel;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.BLAST_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CRACKING_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.LARGE_CHEMICAL_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.PYROLYSE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.VACUUM_RECIPES;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class AdvancedMachines {
     public static final MultiblockMachineDefinition[] PROCESSING_ARRAY =
@@ -530,7 +503,7 @@ public class AdvancedMachines {
                             "   III   ",
                             "         ")
                     .where('~', controller(blocks(definition.getBlock())))
-                    .where('A', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('A', blocks(EPBlocks.OSMIUM_BOROSILICATE_GLASS.get()))
                     .where('H', Predicates.blocks(EPBlocks.IRIDIUM_CASING.get()))
                     .where('C', blocks(CASING_ASSEMBLY_LINE.get()))
                     .where('D', Predicates.frames(EPMaterials.MARM200Steel))
@@ -643,7 +616,7 @@ public class AdvancedMachines {
                             Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
                     components.add(
                             Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
-                    components.add(Component.translatable("monomorphism.shift_desc_extended_info"));
+                    components.add(Component.translatable("monomorphism.shift_info"));
                 }
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -845,7 +818,7 @@ public class AdvancedMachines {
                     .build())
             .shapeInfos(definition -> {
                 ArrayList<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
-                int maxLeng = Ints.max(SHAPE_GLASSES.size(), ALL_COIL_BLOCKS.size());
+                int maxLeng = Ints.max(ALL_GLASSES.size(), ALL_COIL_BLOCKS.size());
                 shapeInfos.addAll(StructureUtil.getMatchingShapes(
                         (MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
                 return shapeInfos;
@@ -1115,7 +1088,7 @@ public class AdvancedMachines {
                     .where(' ', any())
                     .build())
             .shapeInfos(definition -> {
-                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), SHAPE_GLASSES.size());
+                int maxLeng = Ints.max(ALL_COIL_BLOCKS.size(), ALL_GLASSES.size());
                 return new ArrayList<>(StructureUtil.getMatchingShapes(
                         (MOBlockPattern) definition.getPatternFactory().get(), maxLeng));
             })

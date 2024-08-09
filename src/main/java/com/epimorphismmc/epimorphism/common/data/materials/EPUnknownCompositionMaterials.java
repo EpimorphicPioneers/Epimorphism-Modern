@@ -2,14 +2,16 @@ package com.epimorphismmc.epimorphism.common.data.materials;
 
 import com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialIconSet;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
 import net.minecraft.ChatFormatting;
 
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_NANITES;
+import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -345,7 +347,7 @@ public class EPUnknownCompositionMaterials {
                 .buildAndRegister()
                 .setFormula(ChatFormatting.OBFUSCATED + "aaa", false);
         //  Transcendent Mental
-        TranscendentMental = Builder("transcendent_mental")
+        TranscendentMetal = Builder("transcendent_metal")
                 .fluid()
                 .ingot()
                 .color(0x000000)
@@ -397,6 +399,16 @@ public class EPUnknownCompositionMaterials {
                 .liquid()
                 .color(0x27B7B5)
                 .iconSet(MaterialIconSet.DULL)
+                .buildAndRegister();
+
+        Indalloy140 = Builder("indalloy_140")
+                .ingot()
+                .fluid()
+                .color(0x736D8A)
+                .iconSet(MaterialIconSet.DULL)
+                .blastTemp(4700, BlastProperty.GasTier.HIGH, GTValues.VA[GTValues.IV], 24)
+                .components(Bismuth, 47, Lead, 25, Tin, 13, Cadmium, 10, Indium, 5)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
     }
 }

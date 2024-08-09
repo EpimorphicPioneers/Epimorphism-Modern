@@ -5,12 +5,13 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPBiologicalMaterials
 import com.epimorphismmc.epimorphism.common.data.materials.EPElementMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPFirstDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPMachineCasingMaterials;
-import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialFlagAddition;
-import com.epimorphismmc.epimorphism.common.data.materials.EPMaterialPropertyAddition;
 import com.epimorphismmc.epimorphism.common.data.materials.EPModCompatibilityMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPOrganicChemistryMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPSecondDegreeMaterials;
 import com.epimorphismmc.epimorphism.common.data.materials.EPUnknownCompositionMaterials;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialFlagAddition;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialIgnoreAddition;
+import com.epimorphismmc.epimorphism.common.data.materials.MaterialPropertyAddition;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
@@ -684,13 +685,14 @@ public class EPMaterials {
     public static Material ActiniumRadiumNitrateSolution;
     public static Material HeavyFluorinatedDraconiumSolution;
     public static Material QuasifissioningPlasma;
-    public static Material TranscendentMental;
+    public static Material TranscendentMetal;
     public static Material LowPurityNaquadahSolution;
     public static Material NaquadahHydroxidesSolution;
     public static Material ConcentrateEnrichedNaquadahMixture;
     public static Material ImpureNaquadahMixtureSolution;
     public static Material PureNaquadriaMixtureSolution;
     public static Material CombustionPromoter;
+    public static Material Indalloy140;
 
     //  Machine Casing Materials
     public static Material Inconel625;
@@ -769,8 +771,9 @@ public class EPMaterials {
         EPMachineCasingMaterials.register();
         EPModCompatibilityMaterials.register();
 
-        EPMaterialPropertyAddition.init();
-        EPMaterialFlagAddition.init();
+        MaterialPropertyAddition.init();
+        MaterialFlagAddition.init();
+        MaterialIgnoreAddition.init();
 
         CONCRETES = new Material[] {
             ConcreteWhite,

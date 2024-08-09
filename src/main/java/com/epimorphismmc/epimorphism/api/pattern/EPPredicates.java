@@ -24,7 +24,6 @@ public class EPPredicates {
     public static TraceabilityPredicate glass() {
         return TierPredicateFactory.create("Glass")
                 .map(BlockMaps.ALL_GLASSES)
-                .candidatesMap(BlockMaps.SHAPE_GLASSES)
                 .errorKey(Component.translatable("epimorphism.multiblock.pattern.error.glasses"))
                 .strict(true)
                 .build();

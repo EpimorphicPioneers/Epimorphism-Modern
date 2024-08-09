@@ -5,11 +5,7 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
 import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class EPSecondDegreeMaterials {
     public static void register() {

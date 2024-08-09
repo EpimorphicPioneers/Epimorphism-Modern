@@ -40,16 +40,8 @@ import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines
 import static com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines.INTEGRATED_ORE_FACTORY;
 import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.TANK_ACCESS_HATCH;
 import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.MV;
-import static com.gregtechceu.gtceu.api.GTValues.UHV;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.VLVT;
-import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
-import static com.gregtechceu.gtceu.common.data.GTMachines.ELECTRIC_TIERS;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 
 public class MachineLang {
     public static void init(MOLangProvider provider) {

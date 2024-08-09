@@ -2,7 +2,7 @@ package com.epimorphismmc.epimorphism;
 
 import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.common.block.BlockMaps;
-import com.epimorphismmc.epimorphism.common.block.BlockTypeAdditions;
+import com.epimorphismmc.epimorphism.common.block.BlockTypeAddition;
 import com.epimorphismmc.epimorphism.common.data.EPBlocks;
 import com.epimorphismmc.epimorphism.common.data.EPCovers;
 import com.epimorphismmc.epimorphism.common.data.EPCreativeModeTabs;
@@ -131,7 +131,7 @@ public class EpimorphismCommon implements Epimorphism {
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
         BlockMaps.init();
-        BlockTypeAdditions.init();
+        BlockTypeAddition.init();
         GTRecipeManager.onCommonSetup();
     }
 

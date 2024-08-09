@@ -36,8 +36,7 @@ import java.util.Set;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.RNG;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

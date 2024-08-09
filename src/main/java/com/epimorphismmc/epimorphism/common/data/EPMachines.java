@@ -61,7 +61,12 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
-import com.gregtechceu.gtceu.api.machine.*;
+import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
+import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
@@ -76,7 +81,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
 import com.gregtechceu.gtceu.client.renderer.block.TextureOverrideRenderer;
-import com.gregtechceu.gtceu.client.renderer.machine.*;
+import com.gregtechceu.gtceu.client.renderer.machine.LargeBoilerRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.RotorHolderMachineRenderer;
+import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRenderer;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
@@ -121,8 +130,7 @@ import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.block;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.frameGt;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
@@ -1685,7 +1693,7 @@ public class EPMachines {
                             blocks(CASING_STAINLESS_CLEAN.get())
                                     .or(autoAbilities(definition.getRecipeTypes()))
                                     .or(autoAbilities(true, false, false)))
-                    .where('G', blocks(EPBlocks.OSMIR_BORON_SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.IRIDIUM_BOROSILICATE_GLASS.get()))
                     .where('N', blocks(CASING_INVAR_HEATPROOF.get()))
                     .where('#', air())
                     .where(' ', any())
@@ -1788,7 +1796,7 @@ public class EPMachines {
                     .where('S', controller(blocks(definition.getBlock())))
                     .where(
                             'X', blocks(CASING_NONCONDUCTING.get()).setMinGlobalLimited(35).or(autoAbilities()))
-                    .where('G', blocks(EPBlocks.SILICATE_GLASS.get()))
+                    .where('G', blocks(EPBlocks.BOROSILICATE_GLASS.get()))
                     .where('C', Predicates.blocks(EPBlocks.SUBSTRATE_CASING.get()))
                     .build())
             .workableCasingRenderer(

@@ -8,42 +8,14 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPItems.NON_LINEAR_OPTICAL_LENS;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.OPTICAL_CAPACITOR;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.OPTICAL_DIODE;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.OPTICAL_FIBER;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.OPTICAL_RESISTOR;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.OPTICAL_TRANSISTOR;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.PERIODICALLY_POLED_LITHIUM_NIOBATE_BOULE;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.ROTATING_TRANSPARENT_SURFACE;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.CadmiumSulfide;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.ErbiumDopedZBLANGlass;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.KaptonE;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.LithiumCarbonate;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.LithiumNiobate;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.NiobiumPentoxide;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.CRYSTALLIZATION_RECIPES;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.LASER_CVD_RECIPES;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.ELECTRON_SOURCE;
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.L;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.foil;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.plate;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.wireFine;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.BorosilicateGlass;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.CarbonDioxide;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Germanium;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Iridium;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Naquadah;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Terbium;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Xenon;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.BLAST_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.LATHE_RECIPES;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class OpticalCircuitRecipeHandler {
     public static void init(Consumer<FinishedRecipe> provider) {
