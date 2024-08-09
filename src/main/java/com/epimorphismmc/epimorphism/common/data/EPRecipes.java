@@ -6,21 +6,15 @@ import com.epimorphismmc.epimorphism.data.recipe.chains.oreprocessing.NaquadahPr
 import com.epimorphismmc.epimorphism.data.recipe.handler.BouleRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAssemblyLineRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.PartsRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.handler.WrapItemRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ComponentAssemblyLineMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.misc.BorosilicateGlassRecipes;
+import com.epimorphismmc.epimorphism.data.recipe.misc.ConcreteBackfillerRecipes;
+import com.epimorphismmc.epimorphism.data.recipe.misc.ConcreteRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipes;
 import com.epimorphismmc.epimorphism.data.recipe.misc.RadiationHatchRecipes;
-import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineHandler;
-import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.ConcreteBackfillerRecipes;
-import com.epimorphismmc.epimorphism.data.recipe.misc.ConcreteRecipes;
-import com.epimorphismmc.epimorphism.data.recipe.misc.FuelRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.LargeNaquadahReactorRecipeHandler;
-import com.epimorphismmc.epimorphism.data.recipe.misc.RadiationHatchRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.misc.WrapItemRecipes;
 
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -52,9 +46,9 @@ public class EPRecipes {
         /////////////////////////////////////////
         // *****       Misc Recipes      ***** //
         /////////////////////////////////////////
-        FuelRecipeHandler.init(provider);
-        LargeNaquadahReactorRecipeHandler.init(provider);
-        RadiationHatchRecipeHandler.init(provider);
+        FuelRecipes.init(provider);
+        LargeNaquadahReactorRecipes.init(provider);
+        RadiationHatchRecipes.init(provider);
         ConcreteBackfillerRecipes.init(provider);
         ConcreteRecipes.init(provider);
         WrapItemRecipes.init(provider);

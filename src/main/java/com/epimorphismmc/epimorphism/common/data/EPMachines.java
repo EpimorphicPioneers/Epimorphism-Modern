@@ -124,11 +124,15 @@ import java.util.stream.Collectors;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.api.pattern.EPPredicates.direction;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CP_CASINGS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CP_TUBES;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIELD_BLOCKS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
-import static com.epimorphismmc.monomorphism.pattern.MOPredicates.*;
+import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
+import static com.epimorphismmc.monomorphism.pattern.MOPredicates.machineCasingBlock;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
