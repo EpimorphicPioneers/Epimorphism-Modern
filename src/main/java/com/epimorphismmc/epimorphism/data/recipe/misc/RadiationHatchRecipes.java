@@ -13,7 +13,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.Locale;
 import java.util.function.Consumer;
 
-public class RadiationHatchRecipeHandler {
+public class RadiationHatchRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         registerRadioactiveMaterial(GTMaterials.Bismuth, 198 * 20, 83, provider);
         registerRadioactiveMaterial(GTMaterials.Uranium235, 80 * 20, 92, provider);

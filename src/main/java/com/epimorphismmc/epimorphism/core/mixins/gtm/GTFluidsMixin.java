@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GTFluids.class, remap = false)
-public class GTFluidsMixin {
+public abstract class GTFluidsMixin {
 
     @Inject(
             method = "init",

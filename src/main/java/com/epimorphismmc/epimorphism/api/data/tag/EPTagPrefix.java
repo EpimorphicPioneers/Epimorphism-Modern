@@ -21,18 +21,11 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.DISABLE_CRYSTALLIZATION;
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_BOULE;
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_LASER_EMITTER;
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_MILLED;
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.GENERATE_NANITES;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.Conditions.hasGas;
-import static com.gregtechceu.gtceu.api.GTValues.M;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.CRYSTALLIZABLE;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.NO_SMASHING;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.hasDustProperty;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.hasGemProperty;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.hasOreProperty;
+import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
+import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.Conditions.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.Conditions.*;
 
 public class EPTagPrefix {
     public static final TagPrefix singularity = new MOTagPrefix(

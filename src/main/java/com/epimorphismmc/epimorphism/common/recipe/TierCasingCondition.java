@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.api.GTValues.VN;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 @NoArgsConstructor
 @ParametersAreNonnullByDefault

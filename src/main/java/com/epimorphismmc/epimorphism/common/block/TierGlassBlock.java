@@ -40,15 +40,7 @@ public class TierGlassBlock extends RendererGlassBlock implements ITierBlock {
     }
 
     public enum GlassType implements ITierGlassType {
-        BLOCK_GLASS("glass", GTValues.LV, false),
-        TINTED_GLASS("tinted_glass", GTValues.LV, false),
-        CLEANROOM_GLASS("cleanroom_glass", GTValues.HV, false),
-        FUSION_GLASS("fusion_glass", GTValues.UV, false),
-        CASING_LAMINATED_GLASS("laminated_glass", GTValues.IV, false),
-        CASING_TEMPERED_GLASS("tempered_glass", GTValues.HV, false),
         PMMA_GLASS("pmma_glass", GTValues.UHV, false),
-        NEU_PMMA_GLASS("neu_pmma_glass", GTValues.UIV, true),
-        BPA_POLYCARBONATE_GLASS("bpa_polycarbonate_glass", GTValues.ZPM, false),
         CBDO_POLYCARBONATE_GLASS("cbdo_polycarbonate_glass", GTValues.UIV, false);
 
         private final String name;

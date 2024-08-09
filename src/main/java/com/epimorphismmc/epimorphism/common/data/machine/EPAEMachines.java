@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import net.minecraft.network.chat.Component;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
-import static com.gregtechceu.gtceu.api.GTValues.UHV;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class EPAEMachines {
 

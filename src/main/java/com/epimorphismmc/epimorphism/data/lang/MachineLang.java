@@ -495,27 +495,7 @@ public class MachineLang {
                 List.of(
                         "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。"));
 
-        provider.addBlockWithTooltip(
-                GRIND_BALL_HATCH::getBlock,
-                "研磨球仓",
-                List.of(
-                        "§7Watch Your Fingers!",
-                        "Grind Balls Are Provided To Use For Multiblocks。",
-                        "§eAllows The Input Of Grinding Balls From The Input Bus。"),
-                List.of("§7小心你的手指！",
-                        "为多方块结构提供研磨球来使用",
-                        "§e允许从输入总线输入研磨球"));
-
-        provider.addBlockWithTooltip(
-                CATALYST_HATCH::getBlock,
-                "催化剂仓",
-                List.of(
-                        "Catalyst Input for Multiblocks"
-                ),
-                List.of(
-                        "为多方块结构输入催化剂"
-                ));
-
+        provider.addTieredMachineName("intake_hatch", "进气仓", tiersBetween(IV, UHV));
         provider.addBlockWithTooltip(
                 TANK_ACCESS_HATCH::getBlock,
                 "储罐访问仓",

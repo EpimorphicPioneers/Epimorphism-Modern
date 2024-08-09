@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 
 public class BlockLang {
@@ -14,78 +16,72 @@ public class BlockLang {
         //  Glass
         provider.addBlockWithTooltip(
                 BOROSILICATE_GLASS,
-                "Boron Silicate Glass",
-                "硼硅酸盐玻璃",
+                "Borosilicate Glass",
+                "硼硅玻璃",
                 "§7Better than Reinforced Glass",
                 "§7比钢化玻璃更好");
         provider.addBlockWithTooltip(
                 TITANIUM_BOROSILICATE_GLASS,
-                "Titanium-reinforced Boron Silicate Glass",
-                "钛强化硼硅酸盐玻璃",
-                "§7Pink Crystal",
-                "§7粉红水晶");
+                "Titanium-reinforced Borosilicate Glass",
+                "钛强化硼硅玻璃",
+                "§7Advanced Industrial Glass",
+                "§7先进工业玻璃");
         provider.addBlockWithTooltip(
                 TUNGSTEN_BOROSILICATE_GLASS,
-                "Tungsten-reinforced Boron Silicate Glass",
-                "钨强化硼硅酸盐玻璃",
-                "§7High-strength Glass",
-                "§7高强玻璃");
+                "Tungsten-reinforced Borosilicate Glass",
+                "钨强化硼硅玻璃",
+                "§7High Durability Glass",
+                "§7高强度玻璃");
         provider.addBlockWithTooltip(
                 IRIDIUM_BOROSILICATE_GLASS,
-                "Iridium-reinforced Boron Silicate Glass",
-                "铱强化硼硅酸盐玻璃",
-                "§7Industrial Star",
-                "§7工业之星");
+                "Iridium-reinforced Borosilicate Glass",
+                "铱强化硼硅玻璃",
+                "§7Precious Metal Glass",
+                "§7贵金属玻璃");
         provider.addBlockWithTooltip(
                 OSMIUM_BOROSILICATE_GLASS,
-                "Osmium-reinforced Boron Silicate Glass",
-                "锇强化硼硅酸盐玻璃",
-                "§7Impact Resistance",
-                "§7无惧冲击");
+                "Osmium-reinforced Borosilicate Glass",
+                "锇强化硼硅玻璃",
+                "§7Star of Industry",
+                "§7工业之星");
         provider.addBlockWithTooltip(
                 DURANIUM_BOROSILICATE_GLASS,
-                "Duranium-reinforced Boron Silicate Glass",
-                "铿铀化的硼硅酸盐玻璃",
-                "§7Glossy and Green",
-                "§7绿油油");
+                "Duranium-reinforced Borosilicate Glass",
+                "铿铀强化硼硅玻璃",
+                "§7Exotic Crystal",
+                "§7奇异晶体");
         provider.addBlockWithTooltip(
                 NEUTRONIUM_BOROSILICATE_GLASS,
-                "Neutrouium-reinforced Boron Silicate Glass",
-                "中子素强化硼硅酸盐玻璃",
-                "",
-                "");
+                "Neutrouium-reinforced Borosilicate Glass",
+                "中子素强化硼硅玻璃",
+                "§7Million Density",
+                "§7百万密度");
         provider.addBlockWithTooltip(
                 COSMIC_NEUTRONIUM_BOROSILICATE_GLASS,
-                "Cosmic Neutrouium-reinforced Boron Silicate Glass",
-                "宇宙中子素强化硼硅酸盐玻璃",
-                "",
-                "");
+                "Cosmic-Neutrouium-reinforced Borosilicate Glass",
+                "宇宙中子素强化硼硅玻璃",
+                "§7Singularity Protective Glass",
+                "§7奇点防护玻璃");
         provider.addBlockWithTooltip(
                 INFINITY_BOROSILICATE_GLASS,
-                "Infinity-reinforced Boron Silicate Glass",
-                "无尽强化硼硅酸盐玻璃",
-                "§7Force field Constrained Glass",
-                "§7力场约束玻璃");
+                "Infinity-reinforced Borosilicate Glass",
+                "无尽强化硼硅玻璃",
+                "§7Infinite resistance",
+                "§7无穷大抗性");
         provider.addBlockWithTooltip(
-                TRANSCENDENT_MENTAL_BOROSILICATE_GLASS,
-                "Transcendent Mental-reinforced Boron Silicate Glass",
-                "超时空金属强化硼硅酸盐玻璃",
-                "",
-                "");
+                TRANSCENDENT_METAL_BOROSILICATE_GLASS,
+                "Transcendent-Metal-reinforced Borosilicate Glass",
+                "超时空金属强化硼硅玻璃",
+                "§7Spacetime fragments",
+                "§7时空断片");
         provider.addBlockWithTooltip(
                 WHITE_DWARF_MATTER_BOROSILICATE_GLASS,
-                "White Dwarf Matter-reinforced Boron Silicate Glass",
-                "白矮星物质强化硼硅酸盐玻璃",
-                "",
-                "");
+                "White-Dwarf-Matter-reinforced Borosilicate Glass",
+                "白矮星物质强化硼硅玻璃",
+                "§7White Dwarf Power",
+                "§7白矮星之力");
 
-        provider.addBlockWithTooltip(
-                PMMA_GLASS,
-                "PMMA Glass",
-                "PMMA玻璃",
-                "§7Acrylic Glassr",
-                "§7亚克力玻璃");
-
+        provider.addBlockWithTooltip(PMMA_GLASS, "PMMA Glass", "PMMA玻璃", "§7Acrylic Glassr", "§7亚克力玻璃");
         provider.addBlockWithTooltip(
                 CBDO_POLYCARBONATE_GLASS,
                 "CBDO Polycarbonate Glass",

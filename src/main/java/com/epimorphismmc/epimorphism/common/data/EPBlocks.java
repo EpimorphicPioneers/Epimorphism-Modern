@@ -57,7 +57,12 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.FoliageColor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -83,11 +88,26 @@ import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_CASINGS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIELD_BLOCKS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FLUID_CELLS;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.COSMIC_NEUTRONIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.DURANIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.INFINITY_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.IRIDIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.NEUTRONIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.OSMIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TITANIUM_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TRANSCENDENT_METAL_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TUNGSTEN_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.WHITE_DWARF_MATTER_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTModels.*;
-import static com.gregtechceu.gtceu.common.registry.GTRegistration.*;
+import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
+import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
 
 @SuppressWarnings("all")
 public class EPBlocks {
@@ -341,8 +361,8 @@ public class EPBlocks {
             createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
             createBorosilicateGlass(INFINITY_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS =
-            createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_METAL_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TRANSCENDENT_METAL_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS =
             createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
 
@@ -619,7 +639,6 @@ public class EPBlocks {
                 .build()
                 .register();
         ALL_GLASSES.put(glassType, glassBlock::get);
-        SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 
@@ -648,8 +667,6 @@ public class EPBlocks {
                 .model(NonNullBiConsumer.noop())
                 .build()
                 .register();
-        ALL_GLASSES.put(glassType, glassBlock::get);
-        SHAPE_GLASSES.put(glassType, glassBlock::get);
         return glassBlock;
     }
 

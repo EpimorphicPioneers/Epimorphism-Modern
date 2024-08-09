@@ -31,18 +31,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
-import static com.epimorphismmc.epimorphism.common.block.BlockMaps.SHAPE_GLASSES;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.machineCasingBlock;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.abilities;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.air;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.any;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.blocks;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.controller;
-import static com.gregtechceu.gtceu.api.pattern.Predicates.frames;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_POLYTETRAFLUOROETHYLENE_PIPE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STAINLESS_CLEAN;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.DUMMY_RECIPES;
+import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 public class BiologyMachines {
 
@@ -159,7 +153,7 @@ public class BiologyMachines {
                     .where('C', EPPredicates.glass())
                     .build())
             .shapeInfos(definition -> new ArrayList<>(StructureUtil.getMatchingShapes(
-                    (MOBlockPattern) definition.getPatternFactory().get(), SHAPE_GLASSES.size())))
+                    (MOBlockPattern) definition.getPatternFactory().get(), ALL_GLASSES.size())))
             .partSorter(Comparator.comparingInt(a -> a.self().getPos().getY()))
             .renderer(() -> new TankMachineRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),

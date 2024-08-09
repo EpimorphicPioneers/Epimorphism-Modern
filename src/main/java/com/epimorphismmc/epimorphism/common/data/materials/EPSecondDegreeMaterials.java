@@ -5,11 +5,7 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.Builder;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.ConcentrateDragonBreath;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DragonBlood;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DragonBreath;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DragonTear;
+import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
 
 public class EPSecondDegreeMaterials {
     public static void register() {

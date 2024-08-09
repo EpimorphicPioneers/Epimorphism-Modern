@@ -23,19 +23,14 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
-import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.DISABLE_CRYSTALLIZATION;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.boule;
-import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.seedCrystal;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.CRYSTALLIZATION_RECIPES;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.HV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.CRYSTALLIZABLE;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gem;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gemExquisite;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.DistilledWater;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.AUTOCLAVE_RECIPES;
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.CUTTER_RECIPES;
+import static com.epimorphismmc.epimorphism.api.data.chemical.material.info.EPMaterialFlags.*;
+import static com.epimorphismmc.epimorphism.api.data.tag.EPTagPrefix.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
 /**
  * 人造宝石相关配方

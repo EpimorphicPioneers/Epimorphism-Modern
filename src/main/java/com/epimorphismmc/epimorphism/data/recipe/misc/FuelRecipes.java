@@ -7,46 +7,12 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.DenseHydrazineMixtureFuel;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.MethylhydrazineNitrateRocketFuel;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.RP1RocketFuel;
-import static com.epimorphismmc.epimorphism.common.data.EPMaterials.UDMHRocketFuel;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ACIDIC_FUEL_CELL_FUELS;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.NAQUADAH_REACTOR_FUELS;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.ROCKET_ENGINE_FUELS;
-import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.SEMILIQUID_GENERATOR_FUELS;
-import static com.gregtechceu.gtceu.api.GTValues.EV;
-import static com.gregtechceu.gtceu.api.GTValues.IV;
-import static com.gregtechceu.gtceu.api.GTValues.LV;
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.V;
-import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.AceticAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Biomass;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.CoalTar;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Creosote;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.DilutedHydrochloricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.DilutedSulfuricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.FishOil;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Glycerol;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HeavyFuel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HydrochloricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HydrofluoricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Hydrogen;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.HypochlorousAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.NitricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Oil;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.OilHeavy;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Oxygen;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.PhosphoricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.SeedOil;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.SulfuricAcid;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.SulfuricHeavyFuel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Water;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.WoodTar;
+import static com.epimorphismmc.epimorphism.common.data.EPMaterials.*;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class FuelRecipeHandler {
+public class FuelRecipes {
     public static void init(Consumer<FinishedRecipe> provider) {
         semiLiquidFuels(provider);
         rocketFuels(provider);

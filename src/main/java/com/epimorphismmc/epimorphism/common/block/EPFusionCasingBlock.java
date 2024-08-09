@@ -13,13 +13,8 @@ import net.minecraft.world.level.block.Block;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
-import static com.gregtechceu.gtceu.api.GTValues.LuV;
-import static com.gregtechceu.gtceu.api.GTValues.UHV;
-import static com.gregtechceu.gtceu.api.GTValues.UV;
-import static com.gregtechceu.gtceu.api.GTValues.ZPM;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FUSION_CASING;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FUSION_CASING_MK2;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FUSION_CASING_MK3;
+import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 
 public class EPFusionCasingBlock extends FusionCasingBlock {
     public EPFusionCasingBlock(Properties properties, IFusionCasingType casingType) {
