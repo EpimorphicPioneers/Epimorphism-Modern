@@ -21,4 +21,8 @@ public class EPMaterialFlags {
                     "generate_laser_emitter")
             .requireProps(PropertyKey.FLUID)
             .build();
+    public static final MaterialFlag DISABLE_SMALL_DUST = new MaterialFlag.Builder(
+                    "disable_small_dust")
+            .requireProps(PropertyKey.DUST)
+            .build();
 }

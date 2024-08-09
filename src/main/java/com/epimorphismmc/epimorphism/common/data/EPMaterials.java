@@ -14,8 +14,18 @@ import com.epimorphismmc.epimorphism.common.data.materials.EPUnknownCompositionM
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.ItemLike;
+
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+
 public class EPMaterials {
-    public EPMaterials() {}
+
+    public static Material[] CONCRETES;
+
+    private EPMaterials() {}
 
     //  Element Materials
     public static Material Draconium;
@@ -415,6 +425,22 @@ public class EPMaterials {
     public static Material ConcentrateDragonBreath;
     public static Material DragonBlood;
     public static Material DragonTear;
+    public static Material ConcreteBlack;
+    public static Material ConcreteRed;
+    public static Material ConcreteGreen;
+    public static Material ConcreteBrown;
+    public static Material ConcreteBlue;
+    public static Material ConcretePurple;
+    public static Material ConcreteCyan;
+    public static Material ConcreteLightGray;
+    public static Material ConcreteGray;
+    public static Material ConcretePink;
+    public static Material ConcreteLime;
+    public static Material ConcreteYellow;
+    public static Material ConcreteLightBlue;
+    public static Material ConcreteMagenta;
+    public static Material ConcreteOrange;
+    public static Material ConcreteWhite;
 
     //  Organic Chemistry Materials
     public static Material KaptonK;
@@ -745,6 +771,40 @@ public class EPMaterials {
 
         EPMaterialPropertyAddition.init();
         EPMaterialFlagAddition.init();
+
+        CONCRETES = new Material[] {
+            ConcreteWhite,
+            ConcreteOrange,
+            ConcreteMagenta,
+            ConcreteLightBlue,
+            ConcreteYellow,
+            ConcreteLime,
+            ConcretePink,
+            ConcreteGray,
+            ConcreteLightGray,
+            ConcreteCyan,
+            ConcretePurple,
+            ConcreteBlue,
+            ConcreteBrown,
+            ConcreteGreen,
+            ConcreteRed,
+            ConcreteBlack
+        };
+
+        for (int i = 0; i < DyeColor.values().length; i++) {
+            var color = DyeColor.values()[i];
+            String dyeName = color.getName();
+            concrete(
+                    CONCRETES[i],
+                    BuiltInRegistries.BLOCK.get(new ResourceLocation(dyeName + "_concrete")),
+                    BuiltInRegistries.ITEM.get(new ResourceLocation(dyeName + "_concrete_powder")));
+        }
+    }
+
+    private static void concrete(Material material, ItemLike concreteBlock, ItemLike concreteDust) {
+        dust.setIgnored(material, concreteDust);
+        block.setIgnored(material, concreteBlock);
+        block.modifyMaterialAmount(material, 1);
     }
 
     public static Material.Builder Builder(String name) {

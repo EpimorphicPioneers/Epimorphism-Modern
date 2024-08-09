@@ -131,6 +131,6 @@ public class EPTagPrefix {
     }
 
     public static void init() {
-        /**/
+        TagPrefixAddition.init();
     }
 }

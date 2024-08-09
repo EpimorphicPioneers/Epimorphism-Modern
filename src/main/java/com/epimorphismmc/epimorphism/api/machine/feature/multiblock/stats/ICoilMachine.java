@@ -1,6 +1,7 @@
 package com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats;
 
 import com.epimorphismmc.monomorphism.machine.trait.MultiblockTrait;
+
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineFeature;
 import com.gregtechceu.gtceu.api.pattern.MultiblockState;
