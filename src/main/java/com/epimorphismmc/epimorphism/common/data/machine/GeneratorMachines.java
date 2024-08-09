@@ -175,8 +175,8 @@ public class GeneratorMachines {
                     SolidOxideFuelCellMachine::new,
                     (tier, builder) -> builder
                             .rotationState(RotationState.NON_Y_AXIS)
-                            .langValue("Solid Oxide Fuel Cell MK %s"
-                                    .formatted(toRomanNumeral(SolidOxideFuelCellMachine.getTier(tier))))
+                            .langValue(
+                                    "Solid Oxide Fuel Cell MK %s".formatted(toRomanNumeral(tier == HV ? 1 : 2)))
                             .recipeType(GAS_TURBINE_FUELS)
                             .tooltips()
                             .appearanceBlock(() -> SolidOxideFuelCellMachine.getCasingState(tier))
@@ -198,7 +198,9 @@ public class GeneratorMachines {
                                     .where('D', abilities(OUTPUT_ENERGY))
                                     .build())
                             .workableCasingRenderer(
-                                    SolidOxideFuelCellMachine.getTexture(tier),
+                                    tier == HV
+                                            ? GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel")
+                                            : GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
                                     Epimorphism.id("block/multiblock/generator/solid_oxide_fuel_cell"),
                                     false)
                             .register(),
