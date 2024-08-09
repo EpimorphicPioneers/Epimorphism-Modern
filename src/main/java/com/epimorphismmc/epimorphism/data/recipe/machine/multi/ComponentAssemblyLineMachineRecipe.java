@@ -4,6 +4,7 @@ import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.EPBlocks;
 import com.epimorphismmc.epimorphism.common.data.machine.AdvancedMachines;
 
+import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
@@ -35,7 +36,7 @@ public class ComponentAssemblyLineMachineRecipe {
                 .inputItems(CustomTags.UV_CIRCUITS, 16)
                 .inputItems(CustomTags.ZPM_CIRCUITS, 20)
                 .inputItems(CustomTags.LuV_CIRCUITS, 24)
-                .inputFluids(Indalloy140.getFluid(1728))
+                .inputFluids(Indalloy140.getFluid(FluidStorageKeys.MOLTEN, 1728))
                 .inputFluids(NaquadahEnriched.getFluid(2304))
                 .inputFluids(Lubricant.getFluid(5000))
                 .outputItems(AdvancedMachines.COMPONENT_ASSEMBLY_LINE)

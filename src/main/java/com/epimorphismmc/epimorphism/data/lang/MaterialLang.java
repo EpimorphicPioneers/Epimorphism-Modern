@@ -641,7 +641,7 @@ public class MaterialLang {
         addCNMaterial(provider, ActiniumRadiumNitrateSolution, "硝酸锕镭溶液");
         addCNMaterial(provider, HeavyFluorinatedDraconiumSolution, "重氟龙素溶液");
         addCNMaterial(provider, QuasifissioningPlasma, "拟裂变");
-        addCNMaterial(provider, TranscendentMental, "超时空金属");
+        addCNMaterial(provider, TranscendentMetal, "超时空金属");
         addCNMaterial(provider, LowPurityNaquadahSolution, "低纯度硅岩乳液");
         addCNMaterial(provider, NaquadahHydroxidesSolution, "硅岩氯化物溶液");
         addCNMaterial(provider, ConcentrateEnrichedNaquadahMixture, "浓缩富集硅岩混合物");

@@ -25,7 +25,7 @@ public class BorosilicateGlassRecipes {
         addGlassRecipe(provider, NEUTRONIUM_BOROSILICATE_GLASS, Neutronium);
         addGlassRecipe(provider, COSMIC_NEUTRONIUM_BOROSILICATE_GLASS, CosmicNeutronium);
         addGlassRecipe(provider, INFINITY_BOROSILICATE_GLASS, Infinity);
-        addGlassRecipe(provider, TRANSCENDENT_MENTAL_BOROSILICATE_GLASS, TranscendentMental);
+        addGlassRecipe(provider, TRANSCENDENT_METAL_BOROSILICATE_GLASS, TranscendentMetal);
         addGlassRecipe(provider, WHITE_DWARF_MATTER_BOROSILICATE_GLASS, WhiteDwarfMatter);
     }
 

@@ -62,7 +62,7 @@ public class BorosilicateGlassBlock extends RendererGlassBlock implements ITierB
         NEUTRONIUM_BOROSILICATE(UHV),
         COSMIC_NEUTRONIUM_BOROSILICATE(UEV),
         INFINITY_BOROSILICATE(UIV),
-        TRANSCENDENT_MENTAL_BOROSILICATE(UXV),
+        TRANSCENDENT_METAL_BOROSILICATE(UXV),
         WHITE_DWARF_MATTER_BOROSILICATE(OpV);
 
         private final int tier;

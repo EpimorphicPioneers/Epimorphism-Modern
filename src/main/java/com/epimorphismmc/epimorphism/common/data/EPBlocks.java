@@ -100,7 +100,7 @@ import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.NEUTRONIUM_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.OSMIUM_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TITANIUM_BOROSILICATE;
-import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TRANSCENDENT_MENTAL_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TRANSCENDENT_METAL_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TUNGSTEN_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.WHITE_DWARF_MATTER_BOROSILICATE;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
@@ -359,8 +359,8 @@ public class EPBlocks {
             createBorosilicateGlass(COSMIC_NEUTRONIUM_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> INFINITY_BOROSILICATE_GLASS =
             createBorosilicateGlass(INFINITY_BOROSILICATE);
-    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_MENTAL_BOROSILICATE_GLASS =
-            createBorosilicateGlass(TRANSCENDENT_MENTAL_BOROSILICATE);
+    public static final BlockEntry<BorosilicateGlassBlock> TRANSCENDENT_METAL_BOROSILICATE_GLASS =
+            createBorosilicateGlass(TRANSCENDENT_METAL_BOROSILICATE);
     public static final BlockEntry<BorosilicateGlassBlock> WHITE_DWARF_MATTER_BOROSILICATE_GLASS =
             createBorosilicateGlass(WHITE_DWARF_MATTER_BOROSILICATE);
 

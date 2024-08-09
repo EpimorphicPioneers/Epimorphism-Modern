@@ -659,7 +659,7 @@ public class EPMaterials {
     public static Material ActiniumRadiumNitrateSolution;
     public static Material HeavyFluorinatedDraconiumSolution;
     public static Material QuasifissioningPlasma;
-    public static Material TranscendentMental;
+    public static Material TranscendentMetal;
     public static Material LowPurityNaquadahSolution;
     public static Material NaquadahHydroxidesSolution;
     public static Material ConcentrateEnrichedNaquadahMixture;

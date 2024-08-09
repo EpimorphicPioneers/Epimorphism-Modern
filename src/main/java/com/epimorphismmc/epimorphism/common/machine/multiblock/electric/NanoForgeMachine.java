@@ -1618,7 +1618,7 @@ public class NanoForgeMachine extends WorkableElectricMultiblockMachine
             return 1;
         } else if (material == Neutronium) {
             return 2;
-        } else if (material == EPMaterials.TranscendentMental) {
+        } else if (material == EPMaterials.TranscendentMetal) {
             return 3;
         } else {
             return 0;
