@@ -2,6 +2,7 @@ package com.epimorphismmc.epimorphism.data.recipe.handler;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
+import com.epimorphismmc.epimorphism.common.recipe.TierCasingCondition;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -73,7 +74,7 @@ public class ComponentAssemblyLineRecipeHandler {
 
         var item = outputItems.get(0).getItem();
         if (componentItems.containsKey(item)) {
-            handlerComponent(item, recipeBuilder, componentItems.getInt(item));
+            handleComponent(item, recipeBuilder, componentItems.getInt(item));
         }
     }
 
@@ -81,7 +82,7 @@ public class ComponentAssemblyLineRecipeHandler {
         recipeBuilders.forEach(builder -> builder.save(provider));
     }
 
-    private static void handlerComponent(Item outputItem, GTRecipeBuilder builder, int tier) {
+    private static void handleComponent(Item outputItem, GTRecipeBuilder builder, int tier) {
         List<Ingredient> inputItems = RecipeHelper.getInputContents(builder, ItemRecipeCapability.CAP);
         List<FluidIngredient> inputFluids =
                 RecipeHelper.getInputContents(builder, FluidRecipeCapability.CAP);
@@ -101,7 +102,7 @@ public class ComponentAssemblyLineRecipeHandler {
                         for (ItemStack stack : itemValue.getItems()) {
                             UnificationEntry entry = ChemicalHelper.getUnificationEntry(stack.getItem());
                             if (entry != null && entry != UnificationEntry.EmptyMapMarkerEntry) {
-                                handlerUnificationEntry(builder, newBuilder, inputFluidMap, entry, count);
+                                handleUnificationEntry(builder, newBuilder, inputFluidMap, entry, count);
                             } else {
                                 newBuilder.inputItems(stack.copyWithCount(count * 48));
                             }
@@ -119,7 +120,7 @@ public class ComponentAssemblyLineRecipeHandler {
                         } else {
                             UnificationEntry entry = ChemicalHelper.getUnificationEntry(tag);
                             if (entry != null && entry != UnificationEntry.EmptyMapMarkerEntry) {
-                                handlerUnificationEntry(builder, newBuilder, inputFluidMap, entry, count);
+                                handleUnificationEntry(builder, newBuilder, inputFluidMap, entry, count);
                             } else {
                                 newBuilder.inputItems(tag, count * 48);
                             }
@@ -148,24 +149,24 @@ public class ComponentAssemblyLineRecipeHandler {
         newBuilder.outputItems(outputItem, 64);
         newBuilder.EUt(GTValues.VA[tier]);
         newBuilder.duration(builder.duration * 48);
-        if (builder.recipeType == ASSEMBLY_LINE_RECIPES) {
-            if (builder.id.getPath().contains("electric_motor")) {
-                newBuilder.circuitMeta(1);
-            } else if (builder.id.getPath().contains("electric_pump")) {
-                newBuilder.circuitMeta(2);
-            } else if (builder.id.getPath().contains("conveyor_module")) {
-                newBuilder.circuitMeta(3);
-            } else if (builder.id.getPath().contains("electric_piston")) {
-                newBuilder.circuitMeta(4);
-            } else if (builder.id.getPath().contains("robot_arm")) {
-                newBuilder.circuitMeta(5);
-            } else if (builder.id.getPath().contains("field_generator")) {
-                newBuilder.circuitMeta(6);
-            } else if (builder.id.getPath().contains("emitter")) {
-                newBuilder.circuitMeta(7);
-            } else if (builder.id.getPath().contains("sensor")) {
-                newBuilder.circuitMeta(8);
-            }
+        newBuilder.addCondition(new TierCasingCondition(tier));
+
+        if (builder.id.getPath().contains("electric_motor")) {
+            newBuilder.circuitMeta(1);
+        } else if (builder.id.getPath().contains("electric_pump")) {
+            newBuilder.circuitMeta(2);
+        } else if (builder.id.getPath().contains("conveyor_module")) {
+            newBuilder.circuitMeta(3);
+        } else if (builder.id.getPath().contains("electric_piston")) {
+            newBuilder.circuitMeta(4);
+        } else if (builder.id.getPath().contains("robot_arm")) {
+            newBuilder.circuitMeta(5);
+        } else if (builder.id.getPath().contains("field_generator")) {
+            newBuilder.circuitMeta(6);
+        } else if (builder.id.getPath().contains("emitter")) {
+            newBuilder.circuitMeta(7);
+        } else if (builder.id.getPath().contains("sensor")) {
+            newBuilder.circuitMeta(8);
         }
 
         recipeBuilders.add(newBuilder);
@@ -181,7 +182,7 @@ public class ComponentAssemblyLineRecipeHandler {
         }
     }
 
-    private static void handlerUnificationEntry(
+    private static void handleUnificationEntry(
             GTRecipeBuilder builder,
             GTRecipeBuilder newBuilder,
             Object2LongOpenHashMap<Fluid> fluidMap,
