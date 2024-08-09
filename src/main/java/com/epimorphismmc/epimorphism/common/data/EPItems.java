@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
-import static com.gregtechceu.gtceu.common.data.GTItems.attach;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
 
 public class EPItems {
 

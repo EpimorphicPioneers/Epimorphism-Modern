@@ -33,8 +33,7 @@ import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.CASING_LASER_SAFE_ENGRAVING;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.CASING_NONCONDUCTING;
+import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault

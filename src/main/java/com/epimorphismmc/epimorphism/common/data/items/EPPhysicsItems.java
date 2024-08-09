@@ -24,9 +24,8 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItem;
-import static com.epimorphismmc.epimorphism.common.data.EPItems.registerItemWithTooltip;
-import static com.gregtechceu.gtceu.common.data.GTItems.attach;
+import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
+import static com.gregtechceu.gtceu.common.data.GTItems.*;
 
 public class EPPhysicsItems {
 

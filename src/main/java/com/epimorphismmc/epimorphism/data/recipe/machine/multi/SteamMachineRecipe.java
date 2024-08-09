@@ -14,14 +14,9 @@ import java.util.function.Consumer;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_FOUNDRY;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PISTON_HAMMER;
 import static com.epimorphismmc.epimorphism.common.data.EPMachines.STEAM_PRESS;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.gear;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_BRONZE_BRICKS;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.CASING_STEEL_SOLID;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_BRONZE;
-import static com.gregtechceu.gtceu.common.data.GTBlocks.FIREBOX_STEEL;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Brass;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Cupronickel;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.Steel;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 public class SteamMachineRecipe {
 
