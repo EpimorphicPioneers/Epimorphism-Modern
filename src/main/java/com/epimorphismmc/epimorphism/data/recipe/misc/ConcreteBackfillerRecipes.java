@@ -10,7 +10,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import java.util.function.Consumer;
 
 import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
-import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.epimorphismmc.epimorphism.data.recipe.EPRecipeUtil.second;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
@@ -29,8 +29,8 @@ public class ConcreteBackfillerRecipes {
                 .recipeBuilder(Epimorphism.id(material.getName()))
                 .inputFluids(material.getFluid(144))
                 .outputItems(block, material)
-                .EUt(EV)
-                .duration(20)
+                .EUt(96)
+                .duration(second(3))
                 .save(provider);
     }
 }

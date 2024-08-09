@@ -2221,7 +2221,7 @@ public class EPMachines {
     public static final MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis(
             "concrete_backfiller",
             (holder, tier) ->
-                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, (int) Math.pow(2, tier - 1)),
+                    new ConcreteBackfillerMachine(holder, tier, (int) Math.pow(2, tier - 1)),
             (tier, builder) -> builder
                     .langValue("Concrete Backfiller")
                     .tooltips(

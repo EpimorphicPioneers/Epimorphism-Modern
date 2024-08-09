@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
         bus = Mod.EventBusSubscriber.Bus.FORGE,
         value = Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
-public class ForgeClientEventHandler {
+public class ForgeClientEventListener {
 
     @SubscribeEvent
     public static void onRenderWorldLast(RenderLevelStageEvent event) {

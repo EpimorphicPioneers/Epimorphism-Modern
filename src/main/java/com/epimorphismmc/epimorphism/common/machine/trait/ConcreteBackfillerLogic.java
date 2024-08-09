@@ -7,8 +7,8 @@ import com.epimorphismmc.epimorphism.utils.EPUtil;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
-import com.gregtechceu.gtceu.api.recipe.modifier.ParallelLogic;
 import com.gregtechceu.gtceu.common.block.SurfaceRockBlock;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
@@ -22,12 +22,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -45,18 +45,7 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     private final ConcreteBackfillerMachine filler;
 
     @Getter
-    private final int speed;
-
-    @Getter
     private final int maximumRadius;
-
-    @Setter
-    @Getter
-    private int voltageTier;
-
-    @Getter
-    @Setter
-    private int overclockAmount = 0;
 
     private final LinkedList<BlockPos> posesToFill = new LinkedList<>();
 
@@ -111,11 +100,13 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Persisted
     private boolean isDone;
 
-    public ConcreteBackfillerLogic(ConcreteBackfillerMachine machine, int speed, int maximumRadius) {
+    @Persisted
+    @Nullable
+    private BlockState lastBlock;
+
+    public ConcreteBackfillerLogic(ConcreteBackfillerMachine machine, int maximumRadius) {
         super(machine);
         this.filler = machine;
-        this.speed = speed;
-        this.duration = speed;
         this.maximumRadius = maximumRadius;
         this.currentRadius = maximumRadius;
     }
@@ -128,102 +119,30 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
     @Override
     public void resetRecipeLogic() {
         super.resetRecipeLogic();
-        duration = speed;
+        this.lastBlock = null;
         resetArea();
     }
 
     @Override
     public void serverTick() {
-        // main logic
-        if (!isSuspend() && filler.getLevel() instanceof ServerLevel level && checkCanFill()) {
-
-            var matches = searchRecipe();
-            while (matches != null && matches.hasNext()) {
-                GTRecipe match = matches.next();
-                if (match == null) continue;
-
-                int parallel = ParallelLogic.getMaxRecipeMultiplier(match, filler, getOverclockAmount());
-            }
-
-            // checkCanFill already check energy, needn't simulate
-            filler.drainEnergy(false);
-            setStatus(Status.WORKING);
-
-            checkPosToFill();
-
-            if (progress >= duration && !posesToFill.isEmpty()) {
-                for (int i = 0; i < getOverclockAmount(); i++) {
-                    if (posesToFill.isEmpty()) {
-                        break;
-                    }
-                    BlockPos pos = posesToFill.getFirst();
-                    BlockState blockState = level.getBlockState(pos);
-                    // check make sure here still can fill
-                    while (!checkStateCanFill(blockState)) {
-                        posesToFill.removeFirst();
-                        if (posesToFill.isEmpty()) {
-                            break;
-                        }
-                        pos = posesToFill.getFirst();
-                        blockState = level.getBlockState(pos);
-                    }
-
-                    // has place to fill
-                    if (checkStateCanFill(blockState)) {
-                        fillAndDrainFluid(pos, level);
-                        posesToFill.removeFirst();
-                    }
-                }
-                progress = 0;
-            }
-            progress++;
-            totalContinuousRunningTime++;
-
-            if (posesToFill.isEmpty()) {
-                x = fillX;
-                y = fillY;
-                z = fillZ;
-
-                // blocks may change during machine working, so let's check again
-                posesToFill.addAll(getPosesToFill());
-                if (posesToFill.isEmpty()) {
-                    isDone = true;
-                    setStatus(Status.IDLE);
-                }
-            }
-        } else {
-            // machine isn't working enabled
-            this.setStatus(Status.IDLE);
-            if (subscription != null) {
-                subscription.unsubscribe();
-                subscription = null;
-            }
+        if (!isSuspend() && checkCoordinatesInvalid()) {
+            initPos();
         }
-    }
-
-    private void fillAndDrainFluid(BlockPos pos, ServerLevel level) {
-        var matches = searchRecipe();
-        while (matches != null && matches.hasNext()) {
-            GTRecipe match = matches.next();
-            if (match == null) continue;
-
-            if (match.matchRecipeContents(IO.IN, machine, match.inputs).isSuccess()) {
-                if (handleRecipeIO(match, IO.IN)) {
-                    var item = RecipeHelper.getOutputItems(match).get(0).getItem();
-                    if (item instanceof BlockItem blockItem) {
-                        level.setBlockAndUpdate(pos, blockItem.getBlock().defaultBlockState());
-                        fillX = pos.getX();
-                        fillY = pos.getY();
-                        fillZ = pos.getZ();
-                        return;
-                    }
-                }
-            }
-        }
+       super.serverTick();
     }
 
     @Override
+    public boolean isSuspend() {
+        return super.isSuspend() || isDone;
+    }
+
+    //////////////////////////////////////
+    // ********* Recipe Handle ******** //
+    //////////////////////////////////////
+
+    @Override
     protected @Nullable Iterator<GTRecipe> searchRecipe() {
+        // the same as the super method, but only matches the recipe inputs
         if (!machine.hasProxies()) return null;
         var iterator = machine
                 .getRecipeType()
@@ -241,11 +160,91 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
             any = true;
             break;
         }
+
         if (any) {
             iterator.reset();
             return iterator;
         }
+
+        for (GTRecipeType.ICustomRecipeLogic logic : machine.getRecipeType().getCustomRecipeLogicRunners()) {
+            GTRecipe recipe = logic.createCustomRecipe(machine);
+            if (recipe != null) return Collections.singleton(recipe).iterator();
+        }
         return Collections.emptyIterator();
+    }
+
+    public GTRecipe modifyRecipe(GTRecipe recipe) {
+        if (!recipe.outputs.isEmpty()) {
+            // must copy because this is the origin recipe
+            recipe = recipe.copy();
+            var item = RecipeHelper.getOutputItems(recipe).get(0).getItem();
+            if (item instanceof BlockItem blockItem) {
+                this.lastBlock = blockItem.getBlock().defaultBlockState();
+            }
+            recipe.outputs.clear();
+        }
+        return recipe;
+    }
+
+    @Override
+    public void setupRecipe(GTRecipe recipe) {
+        checkPosToFill();
+        if (!posesToFill.isEmpty()) {
+            super.setupRecipe(recipe);
+        }
+    }
+
+    @Override
+    protected boolean handleRecipeIO(GTRecipe recipe, IO io) {
+        if (io == IO.OUT) {
+            if (!posesToFill.isEmpty()) {
+                this.fillState();
+            }
+
+            if (posesToFill.isEmpty()) {
+                x = fillX;
+                y = fillY;
+                z = fillZ;
+
+                // blocks may change during machine working, so let's check again
+                posesToFill.addAll(getPosesToFill());
+                if (posesToFill.isEmpty()) {
+                    this.isDone = true;
+                    // do not try the last recipe again
+                    this.recipeDirty = true;
+                }
+            }
+            return true;
+        }
+        return super.handleRecipeIO(recipe, io);
+    }
+
+    //////////////////////////////////////
+    // *********** Backfill *********** //
+    //////////////////////////////////////
+
+    private void fillState() {
+        if (filler.getLevel() instanceof ServerLevel level) {
+            BlockPos pos = posesToFill.getFirst();
+            BlockState blockState = level.getBlockState(pos);
+            // check make sure here still can fill
+            while (!checkStateCanFill(blockState)) {
+                posesToFill.removeFirst();
+                if (posesToFill.isEmpty()) {
+                    return;
+                }
+                pos = posesToFill.getFirst();
+                blockState = level.getBlockState(pos);
+            }
+
+            if (lastBlock != null) {
+                level.setBlockAndUpdate(pos, lastBlock);
+                fillX = pos.getX();
+                fillY = pos.getY();
+                fillZ = pos.getZ();
+            }
+            posesToFill.removeFirst();
+        }
     }
 
     public void initPos() {
@@ -325,13 +324,6 @@ public class ConcreteBackfillerLogic extends RecipeLogic {
 
     private boolean checkCoordinatesInvalid() {
         return x == Integer.MAX_VALUE && y == Integer.MAX_VALUE && z == Integer.MAX_VALUE;
-    }
-
-    private boolean checkCanFill() {
-        if (!isDone() && checkCoordinatesInvalid()) {
-            initPos();
-        }
-        return !isDone;
     }
 
     public void resetArea() {

@@ -9,10 +9,10 @@ import com.gregtechceu.gtceu.api.machine.feature.IDataInfoProvider;
 import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockDisplayText;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
+import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.item.PortableScannerBehavior;
-import com.gregtechceu.gtceu.utils.GTUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.BlockHitResult;
 
 import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +44,8 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
     private final int tier;
 
     public ConcreteBackfillerMachine(
-            IMachineBlockEntity holder, int tier, int speed, int maximumChunkDiameter) {
-        super(holder, speed, maximumChunkDiameter);
+            IMachineBlockEntity holder, int tier, int maximumChunkDiameter) {
+        super(holder, maximumChunkDiameter);
         this.tier = tier;
     }
 
@@ -55,10 +56,6 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
     @Override
     public void onStructureFormed() {
         super.onStructureFormed();
-        getRecipeLogic().setVoltageTier(GTUtil.getTierByVoltage(energyContainer.getInputVoltage()));
-        getRecipeLogic()
-                .setOverclockAmount(Math.max(
-                        1, GTUtil.getTierByVoltage(this.energyContainer.getInputVoltage()) - this.tier));
         getRecipeLogic().initPos();
     }
 
@@ -92,11 +89,10 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
 
     @Override
     protected RecipeLogic createRecipeLogic(Object... args) {
-        if (args[args.length - 2] instanceof Integer speed
-                && args[args.length - 1] instanceof Integer maxRadius) {
-            return new ConcreteBackfillerLogic(this, speed, maxRadius * CHUNK_LENGTH / 2);
+        if (args[args.length - 1] instanceof Integer maxRadius) {
+            return new ConcreteBackfillerLogic(this, maxRadius * CHUNK_LENGTH / 2);
         } else {
-            throw new IllegalArgumentException("ConcreteBackfiller need args [speed, maxRadius]");
+            throw new IllegalArgumentException("ConcreteBackfiller need args [maxRadius]");
         }
     }
 
@@ -107,31 +103,17 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
 
     @Override
     public long getMaxVoltage() {
-        return GTValues.V[getEnergyTier()];
+        return Math.max(GTValues.V[tier], super.getMaxVoltage());
     }
 
-    public int getEnergyTier() {
-        if (energyContainer == null) return this.tier;
-        return Math.min(
-                this.tier + 1,
-                Math.max(this.tier, GTUtil.getFloorTierByVoltage(energyContainer.getInputVoltage())));
+    @Override
+    public long getOverclockVoltage() {
+        return Math.max(GTValues.V[tier], super.getOverclockVoltage());
     }
 
-    public boolean drainEnergy(boolean simulate) {
-        if (energyContainer != null && energyContainer.getEnergyStored() > 0) {
-            long energyToDrain = GTValues.VA[getEnergyTier()];
-            long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
-            if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
-                if (!simulate) {
-                    energyContainer.changeEnergy(-energyToDrain);
-                }
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+    @Override
+    public @Nullable GTRecipe fullModifyRecipe(GTRecipe recipe) {
+        return doModifyRecipe(getRecipeLogic().modifyRecipe(recipe));
     }
 
     @Override
@@ -150,7 +132,6 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
         MultiblockDisplayText.builder(textList, isFormed())
                 .setWorkingStatus(getRecipeLogic().isWorkingEnabled(), getRecipeLogic().isActive())
                 .addEnergyUsageLine(energyContainer)
-                .addParallelsLine(getRecipeLogic().getOverclockAmount())
                 .addWorkingStatusLine()
                 .addProgressLine(getRecipeLogic().getProgressPercent());
         getDefinition().getAdditionalDisplay().accept(this, textList);
@@ -196,7 +177,9 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
     @Override
     protected InteractionResult onScrewdriverClick(
             Player playerIn, InteractionHand hand, Direction gridSide, BlockHitResult hitResult) {
-        if (isRemote() || !this.isFormed()) return InteractionResult.SUCCESS;
+        if (!isFormed()) return InteractionResult.PASS;
+
+        if (isRemote()) return InteractionResult.sidedSuccess(true);
 
         if (!isActive()) {
             int currentRadius = getRecipeLogic().getCurrentRadius();
@@ -215,7 +198,6 @@ public class ConcreteBackfillerMachine extends WorkableElectricMultiblockMachine
             playerIn.sendSystemMessage(Component.translatable("gtceu.multiblock.large_miner.errorradius")
                     .withStyle(ChatFormatting.RED));
         }
-
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(false);
     }
 }
