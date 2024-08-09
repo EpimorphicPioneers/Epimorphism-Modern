@@ -618,8 +618,6 @@ public class AdvancedMachines {
                             Component.translatable("epimorphism.universal.desc.energ_usage", "0.8×"));
                     components.add(
                             Component.translatable("block.epimorphism.general_processing_plant.desc.2"));
-                    components.add(
-                            Component.translatable("block.epimorphism.general_processing_plant.desc.3"));
                     components.add(Component.translatable("monomorphism.shift_info"));
                 }
             })
