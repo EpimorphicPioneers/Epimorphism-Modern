@@ -72,7 +72,7 @@ public class EPChemistryItem {
 
     private static ItemBuilder<ComponentItem, Registrate> registerCatalyst(String name, int color) {
         return registrate()
-                .item("catalyst." + name, ComponentItem::create)
+                .item(name + "_catalyst", ComponentItem::create)
                 .color(() -> CatalystBehavior.getItemStackColor(color))
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
@@ -84,7 +84,7 @@ public class EPChemistryItem {
     private static ItemBuilder<ComponentItem, Registrate> registerCatalyst(
             String name, int color, int maxDurability) {
         return registrate()
-                .item("catalyst." + name, ComponentItem::create)
+                .item(name + "_catalyst", ComponentItem::create)
                 .lang(FormattingUtil.toEnglishName(name) + "Catalyst")
                 .color(() -> CatalystBehavior.getItemStackColor(color))
                 .model(EPModels.simpleCustomModel(

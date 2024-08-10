@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/europium_cubic_zirconia_wafer"
+  }
+}

@@ -51,19 +51,19 @@ public class ItemLang {
                 "§7第三代自旋电子技术");
 
         provider.addItemWithTooltip(
-                GOOWARE_CIRCUIT_BOARD,
+                GOOWARE_PRINTED_CIRCUIT_BOARD,
                 "Super Circuit Board",
                 "终极印刷电路基板",
                 "§7Revitalization on circuit boards",
                 "§7电路板上焕发生机");
         provider.addItemWithTooltip(
-                OPTICAL_CIRCUIT_BOARD,
+                OPTICAL_PRINTED_CIRCUIT_BOARD,
                 "Ultimate Circuit Board",
                 "究极印刷电路基板",
                 "§7The Technology Star of the Semiconductor Industry",
                 "§7半导体工业的技术之星");
         provider.addItemWithTooltip(
-                SPINTRONIC_CIRCUIT_BOARD,
+                SPINTRONIC_PRINTED_CIRCUIT_BOARD,
                 "Infinite Circuit Board",
                 "无尽印刷电路基板",
                 "§7The Best Implementation of Spin Transfer Torque",
@@ -360,13 +360,13 @@ public class ItemLang {
         provider.addItemWithTooltip(
                 DUBNIUM_WAFER, "Dubnium-doped Wafer", "𬭊掺杂的晶圆", "§7Raw Circuit", "§7电路原料");
         provider.addItemWithTooltip(
-                CUBIC_ZIRCONIA_EUROPIUM_BOULE,
+                EUROPIUM_CUBIC_ZIRCONIA_BOULE,
                 "Europium-doped Monocrystalline Cubic Zirconia Boule",
                 "铕掺杂的单晶立方氧化锆",
                 "§7Raw Crystal",
                 "§7晶体原料");
         provider.addItemWithTooltip(
-                CUBIC_ZIRCONIA_EUROPIUM_WAFER,
+                EUROPIUM_CUBIC_ZIRCONIA_WAFER,
                 "Europium-doped Cubic Zirconia Wafer",
                 "铕掺杂的立方氧化锆晶圆",
                 "§7Raw Crystal",
@@ -374,19 +374,19 @@ public class ItemLang {
         provider.addItemWithTooltip(
                 CRYSTAL_INTERFACE_WAFER, "Crystal Interface Wafer", "晶体接口晶圆", "§7Raw Crystal", "§7晶体原料");
         provider.addItemWithTooltip(
-                STRONTIUM_CARBONATE_BOHRIUM_BOULE,
+                BOHRIUM_STRONTIUM_CARBONATE_BOULE,
                 "Bohrium-doped Monocrystalline Strontium Carbonate Boule",
                 "𬭛掺杂的单晶碳酸锶",
                 "§7Raw Optical Crystal",
                 "§7光学晶体原料");
         provider.addItemWithTooltip(
-                STRONTIUM_CARBONATE_BOHRIUM_WAFER,
+                BOHRIUM_STRONTIUM_CARBONATE_WAFER,
                 "Bohrium-doped Strontium Carbonate Wafer",
                 "𬭛掺杂的碳酸锶晶圆",
                 "§7Raw Optical Crystal",
                 "§7光学晶体原料");
         provider.addItemWithTooltip(
-                STRONTIUM_CARBONATE_OPTICAL_WAFER,
+                STRONTIUM_CARBONATE_WAFER,
                 "Coated Strontium Carbonate Wafer",
                 "光聚合液涂覆的碳酸锶晶圆",
                 "§7Pre-treatment Of Dielectric Reflective Wafer",

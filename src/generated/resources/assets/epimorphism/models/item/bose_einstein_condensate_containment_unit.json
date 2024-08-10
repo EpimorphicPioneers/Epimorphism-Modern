@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/bose_einstein_condensate_containment_unit"
+  }
+}
