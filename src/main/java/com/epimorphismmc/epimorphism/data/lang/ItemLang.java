@@ -7,20 +7,8 @@ import com.gregtechceu.gtceu.api.GTValues;
 import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.BROWN_ALGA;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.CHRYSOPHYCEAE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ELECTROCHEMICAL_GRADIENT_RECORDER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.GREEN_ALGA;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.HYPERRIBOSOME;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.NEUTRON_ABSORBING_PROTEIN;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ORDINARY_ALGAE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.PINECONE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.QUANTUM_TUNNELING_MICROTUBULE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.RED_ALGA;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.STERILIZED_PETRI_DISH;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.SUPEREXCITED_CONDUCTIVE_POLYMER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.ULTRA_MICRO_PHASE_SEPARATOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.CATALYST_CARRIER;
+import static com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems.*;
+import static com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem.*;
 import static com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems.*;
 
 public class ItemLang {
@@ -404,8 +392,12 @@ public class ItemLang {
                 "§7It's really not a Poké Ball!",
                 "§7这真的不是精灵球！");
         provider.add(
-                "item.epimorphism.organism_capture_tool.desc.info", "§7Creatures: §r%s", "§7生物：§r%s");
-        provider.addItemWithTooltip(VAJRA, "Vajra", "金刚杵", "", "");
+                "item.epimorphism.organism_capture_tool.desc.info", "§7Creatures：§r%s", "§7生物：§r%s");
+        provider.addItemWithTooltip(
+                VAJRA, "Vajra",
+                 "金刚杵", 
+                 "", 
+                 "");
 
         // Grind Ball
         provider.addItemWithTooltip(
@@ -431,11 +423,11 @@ public class ItemLang {
         provider.add(
                 "item.epimorphism.debug.structure_writer.structural_scale",
                 "Structure size: X:%s Y:%s Z:%s",
-                "结构规模： X:%s  Y:%s  Z:%s");
+                "结构规模： X：%s  Y:%s  Z:%s");
         provider.add(
                 "item.epimorphism.debug.structure_writer.export_order",
                 "Export order: C:%s S:%s A:%s",
-                "导出顺序： C:%s  S:%s  A:%s");
+                "导出顺序： C：%s  S:%s  A:%s");
         provider.add(
                 "item.epimorphism.debug.structure_writer.export_to_log", "Export as a log", "导出为日志");
         provider.add(
@@ -773,7 +765,7 @@ public class ItemLang {
         provider.add(
                 "item.epimorphism.reactor_component.desc.heat",
                 "§fHeat: §a%d / %d",
-                "§f热量: §a%d / %d");
+                "§f热量：§a%d / %d");
 
         //////////////////////////////////////
         // *****    Agriculture Items   *****//

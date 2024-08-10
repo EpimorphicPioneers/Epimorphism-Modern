@@ -17,8 +17,6 @@ import static com.epimorphismmc.epimorphism.common.data.machine.EPAEMachines.*;
 import static com.epimorphismmc.epimorphism.common.data.machine.GeneratorMachines.*;
 import static com.epimorphismmc.monomorphism.MOValues.CVLVH;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.GTValues.VLVT;
-import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 import static com.gregtechceu.gtceu.common.data.GTMachines.ELECTRIC_TIERS;
 
 public class MachineLang {
@@ -44,7 +42,9 @@ public class MachineLang {
         provider.addTieredMachineName(
                 "solid_oxide_fuel_cell", tier -> "固体氧化物燃料电池 MK%s".formatted(tier == HV ? 1 : 2), HV, IV);
         provider.add(
-                "block.epimorphism.solid_oxide_fuel_cell.efficiency", "Efficiency: %s %%", "效率：%s %%");
+                "block.epimorphism.solid_oxide_fuel_cell.efficiency", 
+                "Efficiency: %s %%", 
+                "效率：%s %%");
 
         provider.addBlockWithTooltip(
                 YOTTA_FLUID_TANK::getBlock,
@@ -52,7 +52,9 @@ public class MachineLang {
                 List.of(
                         "The maximum level of the fluid Cell Is Limited By The Glass Level",
                         "Fluid Tank Cell Can Be Stacked Up To 15 Blocks"),
-                List.of("流体单元等级上限由玻璃等级限制", "流体单元的堆叠高度上限为15格"));
+                List.of(
+                        "流体单元等级上限由玻璃等级限制", 
+                        "流体单元的堆叠高度上限为15格"));
         provider.add("block.epimorphism.yotta_fluid_tank.fluid", "Fluid: %s", "液体：%s");
         provider.add("block.epimorphism.yotta_fluid_tank.stored", "Stored: %s mB", "存储：%s mB");
         provider.add("block.epimorphism.yotta_fluid_tank.capacity", "Capacity: %s mB", "容量：%s mB");
@@ -76,10 +78,10 @@ public class MachineLang {
                         "§6输入石墨/铍粉可以立即吸收§e10MeV§6中子动能",
                         "§6当中子动能超过§41200MeV§6后将会爆炸！"));
         provider.add(
-                "block.epimorphism.neutron_activator.ev", "Current Neutron Energy: %deV", "当前中子动能: %seV");
-        provider.add("block.epimorphism.neutron_activator.height", "Height: %s", "高度: %s");
+                "block.epimorphism.neutron_activator.ev", "Current Neutron Energy: %deV", "当前中子动能：%seV");
+        provider.add("block.epimorphism.neutron_activator.height", "Height: %s", "高度：%s");
         provider.add(
-                "block.epimorphism.neutron_activator.efficiency", "Time-consuming: %s%%", "耗时: %s%%");
+                "block.epimorphism.neutron_activator.efficiency", "Time-consuming: %s%%", "耗时：%s%%");
 
         provider.addBlockWithTooltip(
                 BiologyMachines.BACTERIAL_CULTURE_TANK::getBlock, "细菌培养缸", List.of(), List.of());
@@ -90,14 +92,37 @@ public class MachineLang {
 
         provider.addBlockWithTooltip(BURNER_REACTOR::getBlock, "燃烧反应室", List.of(), List.of());
 
-        provider.addBlockWithTooltip(CHEMICAL_PLANT::getBlock, "化工厂", List.of(), List.of());
+        provider.addBlockWithTooltip(CHEMICAL_PLANT::getBlock,
+                "化工厂",
+                List.of(
+                        "§7Heavy Industry, now right at your doorstep!",
+                        "§aMax Recipe Tier: §fSolid Casings Tier",
+                        "§6Max Hatch Tier: §fMachine Casings Tier",
+                        "§bDuration: §f0.5 x Coils Tier x",
+                        "§dMax Parallel: §f2 x Pipe Casings Tier",
+                        "§eCatalyst Depletion Chance: §f1 - 0.2 x Pipe Casings Tier"
+                ),
+                List.of(
+                        "§7重工业，现在就在你家门口！",
+                        "§a配方等级上限：§f固体机械方块等级",
+                        "§6仓室等级上限：§f机械方块等级",
+                        "§b耗时：§f0.5x线圈等级x",
+                        "§d最大并行：§f2x管道方块等级",
+                        "§e催化剂消耗几率：§f1-0.2x管道方块等级"
+                ));
 
-        provider.add("block.epimorphism.chemical_plant.voltage", "Recipe Voltage: %s", "配方电压: %s");
-        provider.add("block.epimorphism.chemical_plant.speed", "Speed: %s%%", "速度: %s%%");
+        provider.add(
+                "block.epimorphism.chemical_plant.voltage", 
+                "Recipe Voltage: %s", 
+                "配方电压：%s");
+        provider.add(
+                "block.epimorphism.chemical_plant.speed", 
+                "Speed: %s%%", 
+                "速度：%s%%");
         provider.add(
                 "block.epimorphism.chemical_plant.chance",
-                "Catalyst consumption probability: %s%%",
-                "催化剂消耗概率: %s%%");
+                "Catalyst Depletion Chance: %s%%",
+                "催化剂消耗概率：%s%%");
 
         provider.addBlockWithTooltip(
                 AdvancedMachines.COMPONENT_ASSEMBLY_LINE::getBlock,
@@ -107,7 +132,10 @@ public class MachineLang {
                         "Efficiency Crushes The Same Level Of Assembly Machine/Assembly Line!",
                         "Requires §6 Component Assembly Line Casing§7 Of Different Grades",
                         "Component Assembly Line Enclosures Limit §rRecipe Level§7 That The Machine Can Execute"),
-                List.of("批量装配各式各样的零部件", "效率碾压同等级组装机/装配线！", "需要不同等级的§6装配线外壳§7", "部件装配线外壳限制了机器可执行的§r配方等级§7"));
+                List.of("批量装配各式各样的零部件",
+                        "效率碾压同等级组装机/装配线！",
+                        "需要不同等级的§6装配线外壳§7",
+                        "部件装配线外壳限制了机器可执行的§r配方等级§7"));
 
         provider.addBlockWithTooltip(
                 AdvancedMachines.GENERAL_PROCESSING_PLANT::getBlock,
@@ -152,36 +180,28 @@ public class MachineLang {
                         "§7输入仓中的水会自动填入结构"));
 
         provider.add(
-                "block.epimorphism.industrial_fishing_pond.fishing_mode.0", "Fishing for Fish", "捕捞鱼类");
+                "block.epimorphism.industrial_fishing_pond.fishing_mode.0", 
+                "Fishing for Fish", 
+                "捕捞鱼类");
         provider.add(
-                "block.epimorphism.industrial_fishing_pond.fishing_mode.1", "Fishing for Junk", "捕捞垃圾");
+                "block.epimorphism.industrial_fishing_pond.fishing_mode.1", 
+                "Fishing for Junk", 
+                "捕捞垃圾");
         provider.add(
-                "block.epimorphism.industrial_fishing_pond.fishing_mode.2", "Fishing for Treasure", "捕捞宝藏");
+                "block.epimorphism.industrial_fishing_pond.fishing_mode.2", 
+                "Fishing for Treasure", 
+                "捕捞宝藏");
         provider.add(
                 "block.epimorphism.industrial_fishing_pond.warning.fill_water",
                 "WARNING: Water Sources Are Insufficient.",
                 "警告：水源不足");
 
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.0",
-                "Controller Block for the Concrete Backfiller",
-                "混凝土回填机的控制器方块");
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.1",
-                "Will fill in areas below it with light concrete. This goes through walls",
-                "将在其下方填充浅色混凝土，可穿墙");
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.2",
-                "Can place (Tier - Base Tier + 1) light concrete one times",
-                "并行 = 电压等级 - 基础电压等级 + 1");
 
         provider.addBlockWithTooltip(BiologyMachines.FERMENTATION_TANK::getBlock, "发酵罐", "", "");
 
-        provider.addBlockWithTooltip(
-                AdvancedMachines.MEGA_CRACKING_UNIT::getBlock, "巨型裂化装置", List.of(), List.of());
+        provider.addBlockWithTooltip(AdvancedMachines.MEGA_CRACKING_UNIT::getBlock, "巨型裂化装置", List.of(), List.of());
 
-        provider.addBlockWithTooltip(
-                AdvancedMachines.MEGA_ALLOY_BLAST_SMELTER::getBlock, "巨型合金冶炼厂", List.of(), List.of());
+        provider.addBlockWithTooltip(AdvancedMachines.MEGA_ALLOY_BLAST_SMELTER::getBlock, "巨型合金冶炼厂", List.of(), List.of());
 
         provider.addBlockWithTooltip(VACUUM_DRYING_FURNACE::getBlock, "真空干燥炉", List.of(), List.of());
 
@@ -197,23 +217,23 @@ public class MachineLang {
         provider.addMultilineLang(
                 "block.epimorphism.integrated_ore_factory.ore_processing_mode.0.desc",
                 "Grinding-washing-grinding-centrifugation\nTime: 15s",
-                "研磨-洗矿-研磨-离心\n用时: 15s");
+                "研磨-洗矿-研磨-离心\n用时：15s");
         provider.addMultilineLang(
                 "block.epimorphism.integrated_ore_factory.ore_processing_mode.1.desc",
                 "Grinding-grinding-centrifugation\nTime: 10s",
-                "研磨-研磨-离心\n用时: 10s");
+                "研磨-研磨-离心\n用时：10s");
         provider.addMultilineLang(
                 "block.epimorphism.integrated_ore_factory.ore_processing_mode.2.desc",
                 "Grinding-washing-screening\nTime: 20s",
-                "研磨-洗矿-筛选\n用时: 20s");
+                "研磨-洗矿-筛选\n用时：20s");
         provider.addMultilineLang(
                 "block.epimorphism.integrated_ore_factory.ore_processing_mode.3.desc",
                 "Grinding-chemical dipping-grinding-centrifugation\nTime: 17s",
-                "研磨-化学浸洗-研磨-离心\n用时: 17s");
+                "研磨-化学浸洗-研磨-离心\n用时：17s");
         provider.addMultilineLang(
                 "block.epimorphism.integrated_ore_factory.ore_processing_mode.4.desc",
                 "Grinding-washing-thermocentrifugation-grinding\nTime: 30s",
-                "研磨-洗矿-热力离心-研磨\n用时: 30s");
+                "研磨-洗矿-热力离心-研磨\n用时：30s");
 
         provider.addBlockWithTooltip(
                 AdvancedMachines.ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock, "炽炎高炉", List.of(), List.of());
@@ -251,7 +271,7 @@ public class MachineLang {
                         "Different Machine Housings Are Used To Determine The Machine Class",
                         "§6When running §9Assembler§6 recipes：",
                         "§6· §bDuration：§6*§f50%",
-                        "§6· §5Max Parallel：§e2^(Machine tier +4)"),
+                        "§6· §5Max Parallel：§e2^(Machine Tier +4)"),
                 List.of(
                         "§7误差不超过7nm",
                         "可用配方类型：§9组装机§r，§9精密组装",
@@ -271,13 +291,27 @@ public class MachineLang {
 
         provider.addTieredMachineName("concrete_backfiller", "混凝土回填机", MV, EV);
 
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.0",
+                "Controller Block for the Concrete Backfiller",
+                "混凝土回填机的控制器方块");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.1",
+                "Will fill in areas below it with light concrete. This goes through walls",
+                "将在其下方填充浅色混凝土，可穿墙");
+        provider.add(
+                "block.epimorphism.concrete_backfiller.desc.2",
+                "Can place (Tier - Base Tier + 1) light concrete one times",
+                "并行 = 电压等级 - 基础电压等级 + 1");
+
         provider.addBlockWithTooltip(
                 ROASTER::getBlock,
                 "焙烧炉",
                 List.of(
                         "§7Cook slowly over low heat.",
-                        "For every 1 level above the recipe firebox  level, §bDuration §rmultiplied by §e50%§r."),
-                List.of("§7小火慢烹。", "每超过配方所需燃烧室等级1级，§b耗时§r乘以§e50%§r。"));
+                        "§bDuration: §f0.5^(Recipe Firebox Tier - Firebox Tier)x"),
+                List.of("§7小火慢烹。",
+                        "§b耗时：§f0.5^(配方燃烧室等级-燃烧室等级)x"));
 
         provider.addBlockWithTooltip(CVD_UNIT::getBlock, "化学气相沉积单元", List.of(), List.of());
 
@@ -491,7 +525,7 @@ public class MachineLang {
                 NEUTRON_SENSOR::getBlock,
                 "中子传感器",
                 List.of(
-                        "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§R, And Right Clicks To Open The Gui To Set It."),
+                        "§7Can Be Installed On §B Neutron Activator§R, Which Outputs A Redstone Signal Based On §6 Neutron Kinetic Energy§r, And Right Clicks To Open The Gui To Set It."),
                 List.of(
                         "§7可安装在§b中子活化器§7上，基于§6中子动能§7输出红石信号，右键以打开GUI进行设置。"));
 
@@ -500,8 +534,8 @@ public class MachineLang {
                 "研磨球仓",
                 List.of(
                         "§7Watch Your Fingers!",
-                        "Grind Balls Are Provided To Use For Multiblocks。",
-                        "§eAllows The Input Of Grinding Balls From The Input Bus。"),
+                        "Grind Balls Are Provided To Use For Multiblocks.",
+                        "§eAllows The Input Of Grinding Balls From The Input Bus."),
                 List.of("§7小心你的手指！",
                         "为多方块结构提供研磨球来使用",
                         "§e允许从输入总线输入研磨球"));

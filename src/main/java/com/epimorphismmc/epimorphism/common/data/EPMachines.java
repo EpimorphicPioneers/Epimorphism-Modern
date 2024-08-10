@@ -1521,7 +1521,13 @@ public class EPMachines {
     public static final MultiblockMachineDefinition CHEMICAL_PLANT = registrate()
             .multiblock("chemical_plant", ChemicalPlantMachine::new)
             .langValue("Chemical Plant")
-            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.chemical_plant.desc.0"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.1"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.2"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.3"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.4"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.5"))
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CHEMICAL_PLANT_RECIPES)
             .recipeModifiers(

@@ -557,7 +557,8 @@ public class AdvancedMachines {
                     Component.translatable("block.epimorphism.precise_assembler.desc.1"),
                     Component.translatable("block.epimorphism.precise_assembler.desc.2"),
                     Component.translatable("block.epimorphism.precise_assembler.desc.3"),
-                    Component.translatable("block.epimorphism.precise_assembler.desc.4"))
+                    Component.translatable("block.epimorphism.precise_assembler.desc.4"),
+                    Component.translatable("block.epimorphism.precise_assembler.desc.5"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeTypes(ASSEMBLER_RECIPES, EPRecipeTypes.PRECISE_ASSEMBLER_RECIPES)
             .recipeModifiers(

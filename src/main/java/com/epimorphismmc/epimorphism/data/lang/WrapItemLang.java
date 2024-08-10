@@ -13,43 +13,24 @@ import net.minecraftforge.common.data.LanguageProvider;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_COATED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_EPOXY;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_FIBER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_MULTILAYER_FIBER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PHENOLIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PLASTIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_WETWARE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_BASIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ELITE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_EXTREME;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_GOOD;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_PLASTIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_WETWARE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.*;
 
 public class WrapItemLang {
     public static void init(MOLangProvider provider) {
-        provider.addItemName(WRAP_BOARD_COATED, "Wrap Resin Circuit Board", "封装覆膜电路基板");
-        provider.addItemName(WRAP_BOARD_PHENOLIC, "Wrap Phenolic Circuit Board", "封装酚醛树脂电路基板");
-        provider.addItemName(WRAP_BOARD_PLASTIC, "Wrap Plastic Circuit Board", "封装塑料电路基板");
-        provider.addItemName(WRAP_BOARD_EPOXY, "Wrap Epoxy Circuit Board", "封装环氧树脂基板");
-        provider.addItemName(WRAP_BOARD_FIBER, "Wrap Fiber-Reinforced Circuit Board", "封装纤维强化电路基板");
         provider.addItemName(
-                WRAP_BOARD_MULTILAYER_FIBER,
-                "Wrap Multi-layer Fiber-Reinforced Circuit Board",
-                "封装多层纤维强化电路基板");
-        provider.addItemName(WRAP_BOARD_WETWARE, "Wrap Wetware Circuit Board", "封装湿件电路基板");
+            WRAP_BOARD_COATED, "Wrap Resin Circuit Board", "封装覆膜电路基板");
+        provider.addItemName(
+            WRAP_BOARD_PHENOLIC, "Wrap Phenolic Circuit Board", "封装酚醛树脂电路基板");
+        provider.addItemName(
+            WRAP_BOARD_PLASTIC, "Wrap Plastic Circuit Board", "封装塑料电路基板");
+        provider.addItemName(
+            WRAP_BOARD_EPOXY, "Wrap Epoxy Circuit Board", "封装环氧树脂基板");
+        provider.addItemName(
+            WRAP_BOARD_FIBER, "Wrap Fiber-Reinforced Circuit Board", "封装纤维强化电路基板");
+        provider.addItemName(
+            WRAP_BOARD_MULTILAYER_FIBER,"Wrap Multi-layer Fiber-Reinforced Circuit Board","封装多层纤维强化电路基板");
+        provider.addItemName(
+            WRAP_BOARD_WETWARE, "Wrap Wetware Circuit Board", "封装湿件电路基板");
 
         provider.addItemName(
                 WRAP_CIRCUIT_BOARD_BASIC, "Wrap Resin Printed Circuit Board", "封装覆膜印刷电路基板");
@@ -62,9 +43,7 @@ public class WrapItemLang {
         provider.addItemName(
                 WRAP_CIRCUIT_BOARD_EXTREME, "Wrap Fiber-Reinforced Printed Circuit Board", "封装纤维强化印刷电路基板");
         provider.addItemName(
-                WRAP_CIRCUIT_BOARD_ELITE,
-                "Wrap Multi-layer Fiber-Reinforced Printed Circuit Board",
-                "封装多层纤维强化印刷电路基板");
+                WRAP_CIRCUIT_BOARD_ELITE,"Wrap Multi-layer Fiber-Reinforced Printed Circuit Board","封装多层纤维强化印刷电路基板");
         provider.addItemName(
                 WRAP_CIRCUIT_BOARD_WETWARE, "Wrap Wetware Printed Circuit Board", "封装湿件印刷电路基板");
 

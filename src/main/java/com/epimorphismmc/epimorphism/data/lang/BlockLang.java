@@ -7,8 +7,6 @@ import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
-import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 
 public class BlockLang {
@@ -89,7 +87,10 @@ public class BlockLang {
                 "§7It is not the Windshield",
                 "§7并不是挡风玻璃");
 
-        provider.add("epimorphism.glass_tier.desc", "§7Glass Tier: %s", "§7玻璃等级：%s");
+        provider.add(
+                "epimorphism.glass_tier.desc", 
+                "§7Glass Tier: %s", 
+                "§7玻璃等级：%s");
 
         provider.addMultiLang(
                 "epimorphism.optical_glass_tier.desc",
