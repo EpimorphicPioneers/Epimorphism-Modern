@@ -65,9 +65,7 @@ public class EPItems {
 
     //  Circuits
     public static final ItemEntry<ComponentItem> GOOWARE_PROCESSOR = registerItemWithTooltip(
-                    "gooware_processor",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.zpm.desc"))
+                    "gooware_processor", 1, Component.translatable("item.epimorphism.circuit.zpm.desc"))
             .tag(CustomTags.ZPM_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> GOOWARE_ASSEMBLY = registerItemWithTooltip(
@@ -75,69 +73,47 @@ public class EPItems {
             .tag(CustomTags.UV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> GOOWARE_COMPUTER = registerItemWithTooltip(
-                    "gooware_computer",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uhv.desc"))
+                    "gooware_computer", 1, Component.translatable("item.epimorphism.circuit.uhv.desc"))
             .tag(CustomTags.UHV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> GOOWARE_MAINFRAME = registerItemWithTooltip(
-                    "gooware_mainframe",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uev.desc"))
+                    "gooware_mainframe", 1, Component.translatable("item.epimorphism.circuit.uev.desc"))
             .tag(CustomTags.UEV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> OPTICAL_PROCESSOR = registerItemWithTooltip(
-                    "optical_processor",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uv.desc"))
+                    "optical_processor", 1, Component.translatable("item.epimorphism.circuit.uv.desc"))
             .tag(CustomTags.UV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> OPTICAL_ASSEMBLY = registerItemWithTooltip(
-                    "optical_assembly",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uhv.desc"))
+                    "optical_assembly", 1, Component.translatable("item.epimorphism.circuit.uhv.desc"))
             .tag(CustomTags.UHV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> OPTICAL_COMPUTER = registerItemWithTooltip(
-                    "optical_computer",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uev.desc"))
+                    "optical_computer", 1, Component.translatable("item.epimorphism.circuit.uev.desc"))
             .tag(CustomTags.UEV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> OPTICAL_MAINFRAME = registerItemWithTooltip(
-                    "optical_mainframe",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uiv.desc"))
+                    "optical_mainframe", 1, Component.translatable("item.epimorphism.circuit.uiv.desc"))
             .tag(CustomTags.UIV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SPINTRONIC_PROCESSOR = registerItemWithTooltip(
-                    "spintronic_processor",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uhv.desc"))
+                    "spintronic_processor", 1, Component.translatable("item.epimorphism.circuit.uhv.desc"))
             .tag(CustomTags.UHV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SPINTRONIC_ASSEMBLY = registerItemWithTooltip(
-                    "spintronic_assembly",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uev.desc"))
+                    "spintronic_assembly", 1, Component.translatable("item.epimorphism.circuit.uev.desc"))
             .tag(CustomTags.UEV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SPINTRONIC_COMPUTER = registerItemWithTooltip(
-                    "spintronic_computer",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uiv.desc"))
+                    "spintronic_computer", 1, Component.translatable("item.epimorphism.circuit.uiv.desc"))
             .tag(CustomTags.UIV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SPINTRONIC_MAINFRAME = registerItemWithTooltip(
-                    "spintronic_mainframe",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uxv.desc"))
+                    "spintronic_mainframe", 1, Component.translatable("item.epimorphism.circuit.uxv.desc"))
             .tag(CustomTags.UXV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> COSMIC_PROCESSOR = registerItemWithTooltip(
-                    "cosmic_processor",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uev.desc"))
+                    "cosmic_processor", 1, Component.translatable("item.epimorphism.circuit.uev.desc"))
             .tag(CustomTags.UEV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> COSMIC_ASSEMBLY = registerItemWithTooltip(
@@ -149,33 +125,23 @@ public class EPItems {
             .tag(CustomTags.UXV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> COSMIC_MAINFRAME = registerItemWithTooltip(
-                    "cosmic_mainframe",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.opv.desc"))
+                    "cosmic_mainframe", 1, Component.translatable("item.epimorphism.circuit.opv.desc"))
             .tag(CustomTags.OpV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SUPRACAUSAL_PROCESSOR = registerItemWithTooltip(
-                    "supracausal_processor",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uiv.desc"))
+                    "supracausal_processor", 1, Component.translatable("item.epimorphism.circuit.uiv.desc"))
             .tag(CustomTags.UIV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SUPRACAUSAL_ASSEMBLY = registerItemWithTooltip(
-                    "supracausal_assembly",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.uxv.desc"))
+                    "supracausal_assembly", 1, Component.translatable("item.epimorphism.circuit.uxv.desc"))
             .tag(CustomTags.UXV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SUPRACAUSAL_COMPUTER = registerItemWithTooltip(
-                    "supracausal_computer",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.opv.desc"))
+                    "supracausal_computer", 1, Component.translatable("item.epimorphism.circuit.opv.desc"))
             .tag(CustomTags.OpV_CIRCUITS)
             .register();
     public static final ItemEntry<ComponentItem> SUPRACAUSAL_MAINFRAME = registerItemWithTooltip(
-                    "supracausal_mainframe",
-                    1,
-                    Component.translatable("item.epimorphism.circuit.max.desc"))
+                    "supracausal_mainframe", 1, Component.translatable("item.epimorphism.circuit.max.desc"))
             .tag(CustomTags.MAX_CIRCUITS)
             .register();
 

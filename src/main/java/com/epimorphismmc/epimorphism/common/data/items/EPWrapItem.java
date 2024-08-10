@@ -49,22 +49,22 @@ public class EPWrapItem {
             registerWrapCircuit("iv_wrap_circuit", GTCEu.id("item/crystal_processor"), IV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_LuV =
             registerWrapCircuit("luv_wrap_circuit", GTCEu.id("item/wetware_processor"), LuV);
-    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_ZPM = registerWrapCircuit(
-            "zpm_wrap_circuit", Epimorphism.id("item/gooware_processor"), ZPM);
+    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_ZPM =
+            registerWrapCircuit("zpm_wrap_circuit", Epimorphism.id("item/gooware_processor"), ZPM);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UV =
             registerWrapCircuit("uv_wrap_circuit", Epimorphism.id("item/optical_processor"), UV);
-    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UHV = registerWrapCircuit(
-            "uhv_wrap_circuit", Epimorphism.id("item/spintronic_processor"), UHV);
+    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UHV =
+            registerWrapCircuit("uhv_wrap_circuit", Epimorphism.id("item/spintronic_processor"), UHV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UEV =
             registerWrapCircuit("uev_wrap_circuit", Epimorphism.id("item/cosmic_processor"), UEV);
-    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UIV = registerWrapCircuit(
-            "uiv_wrap_circuit", Epimorphism.id("item/supracausal_processor"), UIV);
-    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UXV = registerWrapCircuit(
-            "uxv_wrap_circuit", Epimorphism.id("item/supracausal_assembly"), UXV);
-    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_OpV = registerWrapCircuit(
-            "opv_wrap_circuit", Epimorphism.id("item/supracausal_computer"), OpV);
-    public static final ItemEntry<ComponentItem> CIRCUIT_MAX = registerWrapCircuit(
-            "max_wrap_circuit", Epimorphism.id("item/supracausal_mainframe"), MAX);
+    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UIV =
+            registerWrapCircuit("uiv_wrap_circuit", Epimorphism.id("item/supracausal_processor"), UIV);
+    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UXV =
+            registerWrapCircuit("uxv_wrap_circuit", Epimorphism.id("item/supracausal_assembly"), UXV);
+    public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_OpV =
+            registerWrapCircuit("opv_wrap_circuit", Epimorphism.id("item/supracausal_computer"), OpV);
+    public static final ItemEntry<ComponentItem> CIRCUIT_MAX =
+            registerWrapCircuit("max_wrap_circuit", Epimorphism.id("item/supracausal_mainframe"), MAX);
 
     public static ItemEntry<ComponentItem> WRAP_BOARD_COATED =
             registerWrapItem("resin_wrap_circuit_board", COATED_BOARD, 1);
@@ -97,16 +97,16 @@ public class EPWrapItem {
             registerWrapItem("epoxy_wrap_printed_circuit_board", ADVANCED_CIRCUIT_BOARD, 4);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_EXTREME =
             registerWrapItem("fiber_reinforced_wrap_printed_circuit_board", EXTREME_CIRCUIT_BOARD, 5);
-    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ELITE =
-            registerWrapItem("multilayer_fiber_reinforced_wrap_printed_circuit_board", ELITE_CIRCUIT_BOARD, 6);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ELITE = registerWrapItem(
+            "multilayer_fiber_reinforced_wrap_printed_circuit_board", ELITE_CIRCUIT_BOARD, 6);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_WETWARE =
             registerWrapItem("wetware_wrap_printed_circuit_board", WETWARE_CIRCUIT_BOARD, 7);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_GOOWARE =
             registerWrapItem("gooware_wrap_printed_circuit_board", GOOWARE_PRINTED_CIRCUIT_BOARD, 8);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_OPTICAL =
             registerWrapItem("optical_wrap_printed_circuit_board", OPTICAL_PRINTED_CIRCUIT_BOARD, 9);
-    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_SPINTRONIC =
-            registerWrapItem("spintronic_wrap_printed_circuit_board", SPINTRONIC_PRINTED_CIRCUIT_BOARD, 10);
+    public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_SPINTRONIC = registerWrapItem(
+            "spintronic_wrap_printed_circuit_board", SPINTRONIC_PRINTED_CIRCUIT_BOARD, 10);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR =
             registerWrapItem("wrap_smd_transistor", SMD_TRANSISTOR, 1);
