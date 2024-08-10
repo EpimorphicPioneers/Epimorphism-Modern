@@ -1,7 +1,0 @@
-{
-  "parent": "epimorphism:item/wrap_item",
-  "textures": {
-    "layer0": "epimorphism:item/circuit.optical_processor",
-    "layer4": "epimorphism:item/wrap_overlay"
-  }
-}

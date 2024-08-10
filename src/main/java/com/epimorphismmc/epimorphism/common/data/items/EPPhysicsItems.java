@@ -50,7 +50,7 @@ public class EPPhysicsItems {
 
     //  Particle Capsule
     public static final ItemEntry<ComponentItem> EMPTY_PARTICLE_CAPSULE = registerItemWithTooltip(
-                    "particle_capsule.empty", 1)
+                    "empty_particle_capsule", 1)
             .model(EPModels.simpleCustomModel(
                     new ResourceLocation("item/generated"),
                     Epimorphism.id("item/particle_capsule/capsule_base")))
@@ -560,7 +560,7 @@ public class EPPhysicsItems {
     private static ItemBuilder<ComponentItem, Registrate> registerParticleCapsule(
             String name, ParticleType particleType) {
         return registrate()
-                .item("particle_capsule." + name, ComponentItem::create)
+                .item(name + "_particle_capsule", ComponentItem::create)
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
                         Epimorphism.id("item/particle_capsule/capsule_base"),
@@ -571,7 +571,7 @@ public class EPPhysicsItems {
 
     private static ItemBuilder<ComponentItem, Registrate> registerParticleCapsule(String name) {
         return registrate()
-                .item("particle_capsule." + name, ComponentItem::create)
+                .item(name + "_particle_capsule", ComponentItem::create)
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
                         Epimorphism.id("item/particle_capsule/capsule_base"),

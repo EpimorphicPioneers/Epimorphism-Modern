@@ -1,6 +1,0 @@
-{
-  "parent": "epimorphism:item/tool_vajra",
-  "textures": {
-    "layer0": "epimorphism:item/tool.vajra"
-  }
-}
