@@ -1,8 +1,8 @@
 {
   "values": [
-    "epimorphism:circuit.gooware_mainframe",
-    "epimorphism:circuit.optical_computer",
-    "epimorphism:circuit.spintronic_assembly",
-    "epimorphism:circuit.cosmic_processor"
+    "epimorphism:gooware_mainframe",
+    "epimorphism:optical_computer",
+    "epimorphism:spintronic_assembly",
+    "epimorphism:cosmic_processor"
   ]
 }

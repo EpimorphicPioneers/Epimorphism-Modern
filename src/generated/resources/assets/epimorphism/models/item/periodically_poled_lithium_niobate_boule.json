@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "epimorphism:item/periodically_poled_lithium_niobate_boule"
+  }
+}

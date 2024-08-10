@@ -36,132 +36,132 @@ public class EPWrapItem {
 
     //  Wrap Circuits
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_ULV =
-            registerWrapCircuit("wrap.circuit.ulv", GTCEu.id("item/nand_chip"), ULV);
+            registerWrapCircuit("ulv_wrap_circuit", GTCEu.id("item/nand_chip"), ULV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_LV =
-            registerWrapCircuit("wrap.circuit.lv", GTCEu.id("item/microchip_processor"), LV);
+            registerWrapCircuit("lv_wrap_circuit", GTCEu.id("item/microchip_processor"), LV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_MV =
-            registerWrapCircuit("wrap.circuit.mv", GTCEu.id("item/micro_processor"), MV);
+            registerWrapCircuit("mv_wrap_circuit", GTCEu.id("item/micro_processor"), MV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_HV =
-            registerWrapCircuit("wrap.circuit.hv", GTCEu.id("item/nano_processor"), HV);
+            registerWrapCircuit("hv_wrap_circuit", GTCEu.id("item/nano_processor"), HV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_EV =
-            registerWrapCircuit("wrap.circuit.ev", GTCEu.id("item/quantum_processor"), EV);
+            registerWrapCircuit("ev_wrap_circuit", GTCEu.id("item/quantum_processor"), EV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_IV =
-            registerWrapCircuit("wrap.circuit.iv", GTCEu.id("item/crystal_processor"), IV);
+            registerWrapCircuit("iv_wrap_circuit", GTCEu.id("item/crystal_processor"), IV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_LuV =
-            registerWrapCircuit("wrap.circuit.luv", GTCEu.id("item/wetware_processor"), LuV);
+            registerWrapCircuit("luv_wrap_circuit", GTCEu.id("item/wetware_processor"), LuV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_ZPM = registerWrapCircuit(
-            "wrap.circuit.zpm", Epimorphism.id("item/circuit.gooware_processor"), ZPM);
+            "zpm_wrap_circuit", Epimorphism.id("item/gooware_processor"), ZPM);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UV =
-            registerWrapCircuit("wrap.circuit.uv", Epimorphism.id("item/circuit.optical_processor"), UV);
+            registerWrapCircuit("uv_wrap_circuit", Epimorphism.id("item/optical_processor"), UV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UHV = registerWrapCircuit(
-            "wrap.circuit.uhv", Epimorphism.id("item/circuit.spintronic_processor"), UHV);
+            "uhv_wrap_circuit", Epimorphism.id("item/spintronic_processor"), UHV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UEV =
-            registerWrapCircuit("wrap.circuit.uev", Epimorphism.id("item/circuit.cosmic_processor"), UEV);
+            registerWrapCircuit("uev_wrap_circuit", Epimorphism.id("item/cosmic_processor"), UEV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UIV = registerWrapCircuit(
-            "wrap.circuit.uiv", Epimorphism.id("item/circuit.supracausal_processor"), UIV);
+            "uiv_wrap_circuit", Epimorphism.id("item/supracausal_processor"), UIV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_UXV = registerWrapCircuit(
-            "wrap.circuit.uxv", Epimorphism.id("item/circuit.supracausal_assembly"), UXV);
+            "uxv_wrap_circuit", Epimorphism.id("item/supracausal_assembly"), UXV);
     public static final ItemEntry<ComponentItem> WRAP_CIRCUIT_OpV = registerWrapCircuit(
-            "wrap.circuit.opv", Epimorphism.id("item/circuit.supracausal_computer"), OpV);
+            "opv_wrap_circuit", Epimorphism.id("item/supracausal_computer"), OpV);
     public static final ItemEntry<ComponentItem> CIRCUIT_MAX = registerWrapCircuit(
-            "wrap.circuit.max", Epimorphism.id("item/circuit.supracausal_mainframe"), MAX);
+            "max_wrap_circuit", Epimorphism.id("item/supracausal_mainframe"), MAX);
 
     public static ItemEntry<ComponentItem> WRAP_BOARD_COATED =
-            registerWrapItem("wrap.board.resin", COATED_BOARD, 1);
+            registerWrapItem("resin_wrap_circuit_board", COATED_BOARD, 1);
     public static ItemEntry<ComponentItem> WRAP_BOARD_PHENOLIC =
-            registerWrapItem("wrap.board.phenolic", PHENOLIC_BOARD, 2);
+            registerWrapItem("phenolic_wrap_circuit_board", PHENOLIC_BOARD, 2);
     public static ItemEntry<ComponentItem> WRAP_BOARD_PLASTIC =
-            registerWrapItem("wrap.board.plastic", PLASTIC_BOARD, 3);
+            registerWrapItem("plastic_wrap_circuit_board", PLASTIC_BOARD, 3);
     public static ItemEntry<ComponentItem> WRAP_BOARD_EPOXY =
-            registerWrapItem("wrap.board.epoxy", EPOXY_BOARD, 4);
+            registerWrapItem("epoxy_wrap_circuit_board", EPOXY_BOARD, 4);
     public static ItemEntry<ComponentItem> WRAP_BOARD_FIBER =
-            registerWrapItem("wrap.board.fiber_reinforced", FIBER_BOARD, 5);
+            registerWrapItem("fiber_reinforced_wrap_circuit_board", FIBER_BOARD, 5);
     public static ItemEntry<ComponentItem> WRAP_BOARD_MULTILAYER_FIBER =
-            registerWrapItem("wrap.board.multilayer_fiber_reinforced", MULTILAYER_FIBER_BOARD, 6);
+            registerWrapItem("multilayer_fiber_reinforced_wrap_circuit_board", MULTILAYER_FIBER_BOARD, 6);
     public static ItemEntry<ComponentItem> WRAP_BOARD_WETWARE =
-            registerWrapItem("wrap.board.wetware", WETWARE_BOARD, 7);
+            registerWrapItem("wetware_wrap_circuit_board", WETWARE_BOARD, 7);
     public static ItemEntry<ComponentItem> WRAP_BOARD_GOOWARE =
-            registerWrapItem("wrap.board.gooware", GOOWARE_BOARD, 8);
+            registerWrapItem("gooware_wrap_circuit_board", GOOWARE_BOARD, 8);
     public static ItemEntry<ComponentItem> WRAP_BOARD_OPTICAL =
-            registerWrapItem("wrap.board.optical", OPTICAL_BOARD, 9);
+            registerWrapItem("optical_wrap_circuit_board", OPTICAL_BOARD, 9);
     public static ItemEntry<ComponentItem> WRAP_BOARD_SPINTRONIC =
-            registerWrapItem("wrap.board.spintronic", SPINTRONIC_BOARD, 10);
+            registerWrapItem("spintronic_wrap_circuit_board", SPINTRONIC_BOARD, 10);
 
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_BASIC =
-            registerWrapItem("wrap.circuit_board.resin", BASIC_CIRCUIT_BOARD, 1);
+            registerWrapItem("resin_wrap_printed_circuit_board", BASIC_CIRCUIT_BOARD, 1);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_GOOD =
-            registerWrapItem("wrap.circuit_board.phenolic", GOOD_CIRCUIT_BOARD, 2);
+            registerWrapItem("phenolic_wrap_printed_circuit_board", GOOD_CIRCUIT_BOARD, 2);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_PLASTIC =
-            registerWrapItem("wrap.circuit_board.plastic", PLASTIC_CIRCUIT_BOARD, 3);
+            registerWrapItem("plastic_wrap_printed_circuit_board", PLASTIC_CIRCUIT_BOARD, 3);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ADVANCED =
-            registerWrapItem("wrap.circuit_board.epoxy", ADVANCED_CIRCUIT_BOARD, 4);
+            registerWrapItem("epoxy_wrap_printed_circuit_board", ADVANCED_CIRCUIT_BOARD, 4);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_EXTREME =
-            registerWrapItem("wrap.circuit_board.fiber_reinforced", EXTREME_CIRCUIT_BOARD, 5);
+            registerWrapItem("fiber_reinforced_wrap_printed_circuit_board", EXTREME_CIRCUIT_BOARD, 5);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_ELITE =
-            registerWrapItem("wrap.circuit_board.multilayer_fiber_reinforced", ELITE_CIRCUIT_BOARD, 6);
+            registerWrapItem("multilayer_fiber_reinforced_wrap_printed_circuit_board", ELITE_CIRCUIT_BOARD, 6);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_WETWARE =
-            registerWrapItem("wrap.circuit_board.wetware", WETWARE_CIRCUIT_BOARD, 7);
+            registerWrapItem("wetware_wrap_printed_circuit_board", WETWARE_CIRCUIT_BOARD, 7);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_GOOWARE =
-            registerWrapItem("wrap.circuit_board.gooware", GOOWARE_CIRCUIT_BOARD, 8);
+            registerWrapItem("gooware_wrap_printed_circuit_board", GOOWARE_PRINTED_CIRCUIT_BOARD, 8);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_OPTICAL =
-            registerWrapItem("wrap.circuit_board.optical", OPTICAL_CIRCUIT_BOARD, 9);
+            registerWrapItem("optical_wrap_printed_circuit_board", OPTICAL_PRINTED_CIRCUIT_BOARD, 9);
     public static ItemEntry<ComponentItem> WRAP_CIRCUIT_BOARD_SPINTRONIC =
-            registerWrapItem("wrap.circuit_board.spintronic", SPINTRONIC_CIRCUIT_BOARD, 10);
+            registerWrapItem("spintronic_wrap_printed_circuit_board", SPINTRONIC_PRINTED_CIRCUIT_BOARD, 10);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR =
-            registerWrapItem("wrap.component.smd_transistor", SMD_TRANSISTOR, 1);
+            registerWrapItem("wrap_smd_transistor", SMD_TRANSISTOR, 1);
     public static ItemEntry<ComponentItem> WRAP_SMD_RESISTOR =
-            registerWrapItem("wrap.component.smd_resistor", SMD_RESISTOR, 1);
+            registerWrapItem("wrap_smd_resistor", SMD_RESISTOR, 1);
     public static ItemEntry<ComponentItem> WRAP_SMD_CAPACITOR =
-            registerWrapItem("wrap.component.smd_capacitor", SMD_CAPACITOR, 1);
+            registerWrapItem("wrap_smd_capacitor", SMD_CAPACITOR, 1);
     public static ItemEntry<ComponentItem> WRAP_SMD_DIODE =
-            registerWrapItem("wrap.component.smd_diode", SMD_DIODE, 1);
+            registerWrapItem("wrap_smd_diode", SMD_DIODE, 1);
     public static ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR =
-            registerWrapItem("wrap.component.smd_inductor", SMD_INDUCTOR, 1);
+            registerWrapItem("wrap_smd_inductor", SMD_INDUCTOR, 1);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR_ADVANCED =
-            registerWrapItem("wrap.component.advanced_smd_transistor", ADVANCED_SMD_TRANSISTOR, 2);
+            registerWrapItem("wrap_advanced_smd_transistor", ADVANCED_SMD_TRANSISTOR, 2);
     public static ItemEntry<ComponentItem> WRAP_SMD_RESISTOR_ADVANCED =
-            registerWrapItem("wrap.component.advanced_smd_resistor", ADVANCED_SMD_RESISTOR, 2);
+            registerWrapItem("wrap_advanced_smd_resistor", ADVANCED_SMD_RESISTOR, 2);
     public static ItemEntry<ComponentItem> WRAP_SMD_CAPACITOR_ADVANCED =
-            registerWrapItem("wrap.component.advanced_smd_capacitor", ADVANCED_SMD_CAPACITOR, 2);
+            registerWrapItem("wrap_advanced_smd_capacitor", ADVANCED_SMD_CAPACITOR, 2);
     public static ItemEntry<ComponentItem> WRAP_SMD_DIODE_ADVANCED =
-            registerWrapItem("wrap.component.advanced_smd_diode", ADVANCED_SMD_DIODE, 2);
+            registerWrapItem("wrap_advanced_smd_diode", ADVANCED_SMD_DIODE, 2);
     public static ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR_ADVANCED =
-            registerWrapItem("wrap.component.advanced_smd_inductor", ADVANCED_SMD_INDUCTOR, 2);
+            registerWrapItem("wrap_advanced_smd_inductor", ADVANCED_SMD_INDUCTOR, 2);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR_OPTICAL =
-            registerWrapItem("wrap.component.optical_smd.transistor", OPTICAL_TRANSISTOR, 3);
+            registerWrapItem("wrap_optical_smd_transistor", OPTICAL_TRANSISTOR, 3);
     public static ItemEntry<ComponentItem> WRAP_SMD_RESISTOR_OPTICAL =
-            registerWrapItem("wrap.component.optical_smd.resistor", OPTICAL_RESISTOR, 3);
+            registerWrapItem("wrap_optical_smd_resistor", OPTICAL_RESISTOR, 3);
     public static ItemEntry<ComponentItem> WRAP_SMD_CAPACITOR_OPTICAL =
-            registerWrapItem("wrap.component.optical_smd.capacitor", OPTICAL_CAPACITOR, 3);
+            registerWrapItem("wrap_optical_smd_capacitor", OPTICAL_CAPACITOR, 3);
     public static ItemEntry<ComponentItem> WRAP_SMD_DIODE_OPTICAL =
-            registerWrapItem("wrap.component.optical_smd.diode", OPTICAL_DIODE, 3);
+            registerWrapItem("wrap_optical_smd_diode", OPTICAL_DIODE, 3);
     public static ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR_OPTICAL =
-            registerWrapItem("wrap.component.optical_smd.inductor", OPTICAL_INDUCTOR, 3);
+            registerWrapItem("wrap_optical_smd_inductor", OPTICAL_INDUCTOR, 3);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR_SPINTRONIC =
-            registerWrapItem("wrap.component.spintronic_smd.transistor", SPINTRONIC_TRANSISTOR, 4);
+            registerWrapItem("wrap_spintronic_smd_transistor", SPINTRONIC_TRANSISTOR, 4);
     public static ItemEntry<ComponentItem> WRAP_SMD_RESISTOR_SPINTRONIC =
-            registerWrapItem("wrap.component.spintronic_smd.resistor", SPINTRONIC_RESISTOR, 4);
+            registerWrapItem("wrap_spintronic_smd_resistor", SPINTRONIC_RESISTOR, 4);
     public static ItemEntry<ComponentItem> WRAP_SMD_CAPACITOR_SPINTRONIC =
-            registerWrapItem("wrap.component.spintronic_smd.capacitor", SPINTRONIC_CAPACITOR, 4);
+            registerWrapItem("wrap_spintronic_smd_capacitor", SPINTRONIC_CAPACITOR, 4);
     public static ItemEntry<ComponentItem> WRAP_SMD_DIODE_SPINTRONIC =
-            registerWrapItem("wrap.component.spintronic_smd.diode", SPINTRONIC_DIODE, 4);
+            registerWrapItem("wrap_spintronic_smd_diode", SPINTRONIC_DIODE, 4);
     public static ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR_SPINTRONIC =
-            registerWrapItem("wrap.component.spintronic_smd.inductor", SPINTRONIC_INDUCTOR, 4);
+            registerWrapItem("wrap_spintronic_smd_inductor", SPINTRONIC_INDUCTOR, 4);
 
     public static ItemEntry<ComponentItem> WRAP_SMD_TRANSISTOR_COSMIC =
-            registerWrapItem("wrap.component.cosmic_smd.transistor", COSMIC_TRANSISTOR, 5);
+            registerWrapItem("wrap_cosmic_smd_transistor", COSMIC_TRANSISTOR, 5);
     public static ItemEntry<ComponentItem> WRAP_SMD_RESISTOR_COSMIC =
-            registerWrapItem("wrap.component.cosmic_smd.resistor", COSMIC_RESISTOR, 5);
+            registerWrapItem("wrap_cosmic_smd_resistor", COSMIC_RESISTOR, 5);
     public static ItemEntry<ComponentItem> WRAP_SMD_CAPACITOR_COSMIC =
-            registerWrapItem("wrap.component.cosmic_smd.capacitor", COSMIC_CAPACITOR, 5);
+            registerWrapItem("wrap_cosmic_smd_capacitor", COSMIC_CAPACITOR, 5);
     public static ItemEntry<ComponentItem> WRAP_SMD_DIODE_COSMIC =
-            registerWrapItem("wrap.component.cosmic_smd.diode", COSMIC_DIODE, 5);
+            registerWrapItem("wrap_cosmic_smd_diode", COSMIC_DIODE, 5);
     public static ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR_COSMIC =
-            registerWrapItem("wrap.component.cosmic_smd.inductor", COSMIC_INDUCTOR, 5);
+            registerWrapItem("wrap_cosmic_smd_inductor", COSMIC_INDUCTOR, 5);
 
     public static void init() {
         /**/
