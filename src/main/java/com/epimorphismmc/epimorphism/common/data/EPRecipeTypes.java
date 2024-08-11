@@ -18,6 +18,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 
+import com.gregtechceu.gtceu.utils.ResearchManager;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
@@ -43,16 +44,25 @@ public class EPRecipeTypes {
     // *******     Multiblock     *******//
     //////////////////////////////////////
     public static final GTRecipeType NEUTRON_ACTIVATOR_RECIPES = register(
-                    "neutron_activator", MULTIBLOCK)
+            "neutron_activator", MULTIBLOCK)
             .setMaxIOSize(6, 6, 1, 1)
             .setSound(GTSoundEntries.FURNACE);
 
     public static final GTRecipeType COMPONENT_ASSEMBLY_LINE_RECIPES = register(
-                    "component_assembly_line", MULTIBLOCK)
+            "component_assembly_line", MULTIBLOCK)
             .setMaxIOSize(12, 1, 12, 0)
             .setEUIO(IO.IN)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.ASSEMBLER);
+
+    public static final GTRecipeType CIRCUIT_ASSEMBLY_LINE_RECIPES = register(
+            "circuit_assembly_line", MULTIBLOCK)
+            .setMaxIOSize(6, 1, 1, 0)
+            .setEUIO(IO.IN)
+            .setMaxTooltips(4)
+            .setHasResearchSlot(true)
+            .setSound(GTSoundEntries.ASSEMBLER)
+            .onRecipeBuild(ResearchManager::createDefaultResearchRecipe);
 
     public static final GTRecipeType CVD_RECIPES = register("cvd", MULTIBLOCK)
             .setMaxIOSize(2, 2, 3, 3)
@@ -146,14 +156,14 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType CATALYTIC_REFORMER_RECIPES = register(
-                    "catalytic_reformer", MULTIBLOCK)
+            "catalytic_reformer", MULTIBLOCK)
             .setMaxIOSize(1, 0, 1, 4)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_CRACKING, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.FURNACE);
 
     public static final GTRecipeType CRYOGENIC_REACTOR_RECIPES = register(
-                    "cryogenic_reactor", MULTIBLOCK)
+            "cryogenic_reactor", MULTIBLOCK)
             .setMaxIOSize(3, 2, 2, 2)
             .setEUIO(IO.IN)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
@@ -166,13 +176,13 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.ARC);
 
     public static final GTRecipeType FERMENTATION_TANK_RECIPES = register(
-                    "fermentation_tank", MULTIBLOCK)
+            "fermentation_tank", MULTIBLOCK)
             .setMaxIOSize(3, 2, 3, 2)
             .setEUIO(IO.IN)
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType PRECISE_ASSEMBLER_RECIPES = register(
-                    "precise_assembler", MULTIBLOCK)
+            "precise_assembler", MULTIBLOCK)
             .setMaxIOSize(4, 1, 4, 0)
             .setEUIO(IO.IN)
             .setMaxTooltips(4)
@@ -203,7 +213,7 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType VACUUM_DRYING_FURNACE_RECIPES = register(
-                    "vacuum_drying_furnace", MULTIBLOCK)
+            "vacuum_drying_furnace", MULTIBLOCK)
             .setMaxIOSize(1, 9, 2, 3)
             .setEUIO(IO.IN)
             .addDataInfo(data -> {
@@ -239,15 +249,15 @@ public class EPRecipeTypes {
 
     //  Universal Processing Plant Recipemaps (Fake Recipemap)
     public static final GTRecipeType GENERAL_RECIPES_A = registerGeneralRecipeType(
-                    "general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2])
+            "general_recipes_a", MULTIBLOCK, RECIPE_MAP[0], RECIPE_MAP[1], RECIPE_MAP[2])
             .setMaxIOSize(1, 2, 1, 1)
             .setEUIO(IO.IN);
     public static final GTRecipeType GENERAL_RECIPES_B = registerGeneralRecipeType(
-                    "general_recipes_b", MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5])
+            "general_recipes_b", MULTIBLOCK, RECIPE_MAP[3], RECIPE_MAP[4], RECIPE_MAP[5])
             .setMaxIOSize(2, 2, 1, 1)
             .setEUIO(IO.IN);
     public static final GTRecipeType GENERAL_RECIPES_C = registerGeneralRecipeType(
-                    "general_recipes_c", MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8])
+            "general_recipes_c", MULTIBLOCK, RECIPE_MAP[6], RECIPE_MAP[7], RECIPE_MAP[8])
             .setMaxIOSize(2, 2, 1, 1)
             .setEUIO(IO.IN);
 
@@ -267,7 +277,7 @@ public class EPRecipeTypes {
     //////////////////////////////////////
 
     public static final GTRecipeType HIGH_PRESSURE_STEAM_TURBINE_FUELS = register(
-                    "high_pressure_steam_turbine", GENERATOR)
+            "high_pressure_steam_turbine", GENERATOR)
             .setMaxIOSize(0, 0, 1, 1)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
@@ -275,7 +285,7 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.TURBINE);
 
     public static final GTRecipeType SUPERCRITICAL_STEAM_TURBINE_FUELS = register(
-                    "supercritical_steam_turbine", GENERATOR)
+            "supercritical_steam_turbine", GENERATOR)
             .setMaxIOSize(0, 0, 1, 1)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
@@ -295,20 +305,20 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType LARGE_NAQUADAH_REACTOR_FUELS = register(
-                    "large_naquadah_reactor", GENERATOR)
+            "large_naquadah_reactor", GENERATOR)
             .setMaxIOSize(0, 0, 1, 1)
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType UNIVERSAL_CHEMICAL_FUELS = register(
-                    "universal_chemical_fuel_engine", GENERATOR)
+            "universal_chemical_fuel_engine", GENERATOR)
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.OUT)
             .setSound(GTSoundEntries.CENTRIFUGE);
 
     public static final GTRecipeType SEMILIQUID_GENERATOR_FUELS = register(
-                    "semiliquid_generator", GENERATOR)
+            "semiliquid_generator", GENERATOR)
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.OUT)
             .setSlotOverlay(false, true, true, GuiTextures.FURNACE_OVERLAY_2)
@@ -316,7 +326,7 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.COMBUSTION);
 
     public static final GTRecipeType GEOTHERMAL_ENGINE_FUELS = register(
-                    "geothermal_engine", GENERATOR)
+            "geothermal_engine", GENERATOR)
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
@@ -329,7 +339,7 @@ public class EPRecipeTypes {
             .setSound(GTSoundEntries.CHEMICAL);
 
     public static final GTRecipeType RADIOISOTOPE_THERMOELECTRIC_GENERATOR_FUELS = register(
-                    "radioisotope_thermoelectric_generator", GENERATOR)
+            "radioisotope_thermoelectric_generator", GENERATOR)
             .setMaxIOSize(1, 1, 0, 0)
             .setEUIO(IO.OUT)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
@@ -340,7 +350,7 @@ public class EPRecipeTypes {
     //////////////////////////////////////
 
     public static final GTRecipeType LARGE_NAQUADAH_COOLANT_LIST = register(
-                    "large_naquadah_coolant", LIST)
+            "large_naquadah_coolant", LIST)
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.NONE)
             .addDataInfo(compoundTag -> {
@@ -354,7 +364,7 @@ public class EPRecipeTypes {
             });
 
     public static final GTRecipeType LARGE_NAQUADAH_EXCITED_FLUID_LIST = register(
-                    "large_naquadah_excited_fluid", LIST)
+            "large_naquadah_excited_fluid", LIST)
             .setMaxIOSize(0, 0, 1, 0)
             .setEUIO(IO.NONE)
             .addDataInfo(compoundTag -> {

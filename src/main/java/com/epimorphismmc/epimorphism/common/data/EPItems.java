@@ -3,6 +3,7 @@ package com.epimorphismmc.epimorphism.common.data;
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems;
 import com.epimorphismmc.epimorphism.common.data.items.EPChemistryItem;
+import com.epimorphismmc.epimorphism.common.data.items.EPCircuitItems;
 import com.epimorphismmc.epimorphism.common.data.items.EPPhysicsItems;
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
 import com.epimorphismmc.epimorphism.common.item.GrindBallItem;
@@ -621,6 +622,7 @@ public class EPItems {
         EPPhysicsItems.init();
         EPBiologyItems.init();
         EPChemistryItem.init();
+        EPCircuitItems.init();
     }
 
     public static ItemBuilder<ComponentItem, Registrate> registerComponentItem(String name) {

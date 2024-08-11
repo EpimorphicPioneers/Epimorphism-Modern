@@ -13,6 +13,10 @@ public class GTRecipeHandlerManager {
                 (builder, provider) -> ComponentAssemblyLineRecipeHandler.init(builder));
         event.register(
                 ASSEMBLER_RECIPES, (builder, provider) -> ComponentAssemblyLineRecipeHandler.init(builder));
+        event.register(
+                CIRCUIT_ASSEMBLER_RECIPES,
+                (builder, provider) -> CircuitAssemblyLineMachineRecipeHandler.init(builder)
+        );
         event.register(COMBUSTION_GENERATOR_FUELS, UniversalChemicalFuelHandler::init);
         event.register(GAS_TURBINE_FUELS, UniversalChemicalFuelHandler::init);
         event.register(ROCKET_ENGINE_FUELS, UniversalChemicalFuelHandler::init);

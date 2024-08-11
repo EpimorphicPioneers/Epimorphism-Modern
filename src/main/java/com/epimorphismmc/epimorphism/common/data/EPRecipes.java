@@ -4,9 +4,11 @@ import com.epimorphismmc.epimorphism.api.event.GTRecipeEvent;
 import com.epimorphismmc.epimorphism.data.recipe.chains.circuits.OpticalCircuitRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.chains.oreprocessing.NaquadahProcessing;
 import com.epimorphismmc.epimorphism.data.recipe.handler.BouleRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.handler.CircuitAssemblyLineMachineRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.ComponentAssemblyLineRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.PartsRecipeHandler;
 import com.epimorphismmc.epimorphism.data.recipe.handler.WrapItemRecipeHandler;
+import com.epimorphismmc.epimorphism.data.recipe.machine.multi.CircuitAssemblyLineMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ComponentAssemblyLineMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.ConcreteBackfillerMachineRecipe;
 import com.epimorphismmc.epimorphism.data.recipe.machine.multi.SteamMachineRecipe;
@@ -27,6 +29,7 @@ public class EPRecipes {
         SteamMachineRecipe.init(provider);
         ConcreteBackfillerMachineRecipe.init(provider);
         ComponentAssemblyLineMachineRecipe.init(provider);
+        CircuitAssemblyLineMachineRecipe.init(provider);
 
         /////////////////////////////////////////
         // *****      Chain Recipes      ***** //
@@ -39,6 +42,7 @@ public class EPRecipes {
         /////////////////////////////////////////
         BouleRecipeHandler.init(provider);
         ComponentAssemblyLineRecipeHandler.finish(provider);
+        CircuitAssemblyLineMachineRecipeHandler.finish(provider);
         PartsRecipeHandler.init(provider);
         WrapItemRecipeHandler.init(provider);
 

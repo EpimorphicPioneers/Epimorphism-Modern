@@ -12,6 +12,7 @@ public class RecipeLang {
         provider.addRecipeType(NEUTRON_ACTIVATOR_RECIPES, "Neutron Activation", "中子活化");
         provider.addRecipeType(
                 COMPONENT_ASSEMBLY_LINE_RECIPES, "Large-scale Component Assembly", "大规模部件装配");
+        provider.addRecipeType(CIRCUIT_ASSEMBLY_LINE_RECIPES, "Circuit Assembly Line", "电路装配线");
         provider.addRecipeType(GENERAL_RECIPES_A, "Machining Mode A", "加工模式A");
         provider.addRecipeType(GENERAL_RECIPES_B, "Machining Mode B", "加工模式B");
         provider.addRecipeType(GENERAL_RECIPES_C, "Machining Mode C", "加工模式C");

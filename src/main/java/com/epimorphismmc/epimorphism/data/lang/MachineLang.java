@@ -132,6 +132,26 @@ public class MachineLang {
                 List.of("批量装配各式各样的零部件", "效率碾压同等级组装机/装配线！", "需要不同等级的§6装配线外壳§7", "部件装配线外壳限制了机器可执行的§r配方等级§7"));
 
         provider.addBlockWithTooltip(
+                AdvancedMachines.CIRCUIT_ASSEMBLY_LINE::getBlock,
+                "电路装配线",
+                List.of(
+
+                ),
+                List.of(
+
+                )
+        );
+        provider.addMultiLang("gui.epimorphism.circuit_assembly_line.template.desc",
+                List.of(
+                        "Template Inventory",
+                        "Used to identify the current circuit assembly line recipe."
+                ),
+                List.of(
+                        "样板仓库",
+                        "用来识别当前的电路装配线配方"
+                ));
+
+        provider.addBlockWithTooltip(
                 AdvancedMachines.GENERAL_PROCESSING_PLANT::getBlock,
                 "通用加工厂",
                 List.of(

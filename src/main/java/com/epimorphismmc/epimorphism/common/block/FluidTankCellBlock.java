@@ -46,7 +46,7 @@ public class FluidTankCellBlock extends RendererBlock {
             tooltip.add(Component.translatable("epimorphism.universal.desc.tier", tier));
             tooltip.add(Component.translatable("epimorphism.universal.desc.fluid_capacity", capacity));
         } else {
-            tooltip.add(Component.translatable("epimorphism.desc_extended_info"));
+            tooltip.add(Component.translatable("monomorphism.shift_info"));
         }
     }
 
