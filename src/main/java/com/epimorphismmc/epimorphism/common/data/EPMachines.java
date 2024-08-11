@@ -128,6 +128,7 @@ import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CP_CASING
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CP_TUBES;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIELD_BLOCKS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
+import static com.epimorphismmc.epimorphism.common.data.EPRecipeTypes.*;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
 import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
@@ -2220,7 +2221,7 @@ public class EPMachines {
     public static final MultiblockMachineDefinition[] CONCRETE_BACKFILLER = registerTieredEPMultis(
             "concrete_backfiller",
             (holder, tier) ->
-                    new ConcreteBackfillerMachine(holder, tier, 64 / tier, (int) Math.pow(2, tier - 1)),
+                    new ConcreteBackfillerMachine(holder, tier, (int) Math.pow(2, tier - 1)),
             (tier, builder) -> builder
                     .langValue("Concrete Backfiller")
                     .tooltips(
@@ -2232,7 +2233,7 @@ public class EPMachines {
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1,
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(DUMMY_RECIPES)
+                    .recipeType(CONCRETE_BACKFILLER_RECIPES)
                     .appearanceBlock(() -> ConcreteBackfillerMachine.getCasingState(tier))
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("XXX", "#F#", "#F#", "#F#", "###", "###", "###")

@@ -27,7 +27,7 @@ import com.google.common.collect.ImmutableMap;
 import static com.epimorphismmc.epimorphism.common.data.EPItems.*;
 
 @Mod.EventBusSubscriber(modid = Epimorphism.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class ForgeCommonEventHandler {
+public class ForgeCommonEventListener {
 
     @SubscribeEvent
     public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {

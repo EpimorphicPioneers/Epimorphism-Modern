@@ -391,6 +391,22 @@ public class MaterialLang {
         //        addCNMaterial(provider, HydrogenCyanide, "氰化氢");
         //        addCNMaterial(provider, SodiumCyanide, "氰化钠");
         //        addCNMaterial(provider, SodiumPerchlorate, "高氯酸钠");
+        addCNMaterial(provider, ConcreteWhite, "白色混凝土");
+        addCNMaterial(provider, ConcreteOrange, "橙色混凝土");
+        addCNMaterial(provider, ConcreteMagenta, "品红色混凝土");
+        addCNMaterial(provider, ConcreteLightBlue, "淡蓝色混凝土");
+        addCNMaterial(provider, ConcreteYellow, "黄色混凝土");
+        addCNMaterial(provider, ConcreteLime, "黄绿色混凝土");
+        addCNMaterial(provider, ConcretePink, "粉色混凝土");
+        addCNMaterial(provider, ConcreteGray, "灰色混凝土");
+        addCNMaterial(provider, ConcreteLightGray, "淡灰色混凝土");
+        addCNMaterial(provider, ConcreteCyan, "青色混凝土");
+        addCNMaterial(provider, ConcretePurple, "紫色混凝土");
+        addCNMaterial(provider, ConcreteBlue, "蓝色混凝土");
+        addCNMaterial(provider, ConcreteBrown, "棕色混凝土");
+        addCNMaterial(provider, ConcreteGreen, "绿色混凝土");
+        addCNMaterial(provider, ConcreteRed, "红色混凝土");
+        addCNMaterial(provider, ConcreteBlack, "黑色混凝土");
 
         // Second Degree Materials
         addCNMaterial(provider, DragonBreath, "龙息");
