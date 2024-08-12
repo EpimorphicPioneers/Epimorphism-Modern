@@ -61,7 +61,7 @@ public class CircuitAssemblyLineMachineRecipeHandler {
             var etchedCircuit = EPCircuitItems.ETCHED_CIRCUIT_MAP.get(entry);
             var etchedCircuitBoard = EPCircuitItems.ETCHED_CIRCUIT_BOARD_MAP.get(entry);
             var etchedCircuitBase = EPCircuitItems.ETCHED_CIRCUIT_BASE_MAP.get(entry);
-            if (entry.getId().getPath().contains("mirco")) {
+            if (entry.getId().getPath().contains("micro")) {
                 LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Yellow)

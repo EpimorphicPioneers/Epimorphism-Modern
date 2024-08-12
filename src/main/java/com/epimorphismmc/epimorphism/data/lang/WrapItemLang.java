@@ -13,30 +13,7 @@ import net.minecraftforge.common.data.LanguageProvider;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_COATED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_EPOXY;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_FIBER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_MULTILAYER_FIBER;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PHENOLIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_PLASTIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_BOARD_WETWARE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_BASIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_ELITE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_EXTREME;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_GOOD;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_PLASTIC;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_CIRCUIT_BOARD_WETWARE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_CAPACITOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_DIODE_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_INDUCTOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_RESISTOR_ADVANCED;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR;
-import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.WRAP_SMD_TRANSISTOR_ADVANCED;
+import static com.epimorphismmc.epimorphism.common.data.items.EPWrapItem.*;
 
 public class WrapItemLang {
     public static void init(MOLangProvider provider) {
@@ -78,6 +55,18 @@ public class WrapItemLang {
         provider.addItemName(WRAP_SMD_CAPACITOR_ADVANCED, "Wrap SMD Capacitor", "封装高级贴片电容");
         provider.addItemName(WRAP_SMD_DIODE_ADVANCED, "Wrap SMD Diode", "封装高级贴片二极管");
         provider.addItemName(WRAP_SMD_INDUCTOR_ADVANCED, "Wrap SMD Inductor", "封装高级贴片电感");
+
+        provider.addItemName(WRAP_CPU_CHIP, "Warp CPU Chip", "封装CPU芯片");
+        provider.addItemName(WRAP_RAM_CHIP, "Warp RAM Chip", "封装RAM芯片");
+        provider.addItemName(WRAP_ILC_CHIP, "Warp IC Chip", "封装IC芯片");
+        provider.addItemName(WARP_NANO_CPU_CHIP, "Warp Nano CPU Chip", "封装纳米CPU芯片");
+        provider.addItemName(WARP_QBIT_CPU_CHIP, "Warp Qubit CPU Chip", "封装量子位CPU芯片");
+        provider.addItemName(WARP_SIMPLE_SOC, "Warp Simple SoC", "封装简易SoC");
+        provider.addItemName(WARP_SOC, "Warp SoC", "封装SoC");
+        provider.addItemName(WARP_ADVANCED_SOC, "Warp ASoC", "封装ASoC");
+        provider.addItemName(WARP_HIGHLY_ADVANCED_SOC, "Warp HASoC", "封装HASoC");
+        provider.addItemName(WARP_NAND_MEMORY_CHIP, "Warp NAND Chip", "封装NAND存储器芯片");
+        provider.addItemName(WARP_NOR_MEMORY_CHIP, "Warp NOR Memory Chip", "封装NOR存储器芯片");
 
         EPWrapItem.WRAP_ITEM_MAP
                 .object2ObjectEntrySet()
