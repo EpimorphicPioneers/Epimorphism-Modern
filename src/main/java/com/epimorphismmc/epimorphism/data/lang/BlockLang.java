@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.common.data.EPBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
+import static com.gregtechceu.gtceu.api.GTValues.tiersBetween;
 
 public class BlockLang {
     public static void init(MOLangProvider provider) {
@@ -86,7 +87,10 @@ public class BlockLang {
                 "§7It is not the Windshield",
                 "§7并不是挡风玻璃");
 
-        provider.add("epimorphism.glass_tier.desc", "§7Glass Tier: %s", "§7玻璃等级：%s");
+        provider.add(
+                "epimorphism.glass_tier.desc", 
+                "§7Glass Tier: %s", 
+                "§7玻璃等级：%s");
 
         provider.addMultiLang(
                 "epimorphism.optical_glass_tier.desc",
@@ -128,18 +132,14 @@ public class BlockLang {
         provider.addBlockName(GENERAL_PROCESSING_CASING, "General Processing Casing", "通用加工机械方块");
         provider.addBlockName(MARAGING_STEEL_CASING, "Maraging Steel Casing", "马氏体时效钢-250机械方块");
         provider.addBlockName(NEUTRONIUM_MINING_CASING, "Neutronium Mining Casing", "中子素采矿机械方块");
-        provider.addBlockName(
-                PRECISE_ASSEMBLER_CASING_MK1, "Precise Assembler Casing Mk 1", "精密装配机械方块 Mk-I");
-        provider.addBlockName(
-                PRECISE_ASSEMBLER_CASING_MK2, "Precise Assembler Casing Mk 2", "精密装配机械方块 Mk-II");
-        provider.addBlockName(
-                PRECISE_ASSEMBLER_CASING_MK3, "Precise Assembler Casing Mk 3", "精密装配机械方块 Mk-III");
+        provider.addBlockName(PRECISE_ASSEMBLER_CASING_MK1, "Precise Assembler Casing Mk 1", "精密装配机械方块 Mk-I");
+        provider.addBlockName(PRECISE_ASSEMBLER_CASING_MK2, "Precise Assembler Casing Mk 2", "精密装配机械方块 Mk-II");
+        provider.addBlockName(PRECISE_ASSEMBLER_CASING_MK3, "Precise Assembler Casing Mk 3", "精密装配机械方块 Mk-III");
         provider.addBlockName(ADVANCED_FILTER_CASING, "Advanced Filter Casing", "高级过滤器机械方块");
         provider.addBlockName(TFFT_CASING, "TFFT Casing", "TFFT机械方块");
         provider.addBlockName(PROCESS_MACHINE_CASING, "Process Machine Casing", "处理器机械方块");
         provider.addBlockName(YOTTA_FLUID_TANK_CASING, "Yotta Fluid Tank Casing", "YOT流体储罐机械方块");
-        provider.addBlockName(
-                CASING_POLYBENZIMIDAZOLE_PIPE, "Casing Polybenzimidazole Pipe", "聚苯并咪唑管道方块");
+        provider.addBlockName(CASING_POLYBENZIMIDAZOLE_PIPE, "Casing Polybenzimidazole Pipe", "聚苯并咪唑管道方块");
         provider.addBlockName(SPEEDING_PIPE, "Speeding Pipe", "高速管道");
         provider.addBlockName(SUBSTRATE_CASING, "Substrate Casing", "基材机械方块");
         provider.addBlockName(ADVANCED_SUBSTRATE_CASING, "Advanced Substrate Casing", "高级基材机械方块");
@@ -152,6 +152,34 @@ public class BlockLang {
         provider.addBlockName(FLOTATION_CELL, "Flotation Cell", "浮选槽");
         provider.addBlockName(VACUUM_CASING, "Vacuum Casing", "真空机械方块");
         provider.addBlockName(DRILL_HEAD, "Drill Head", "钻头");
+        provider.addBlockName(NAQUADAH_ALLOY_CASING, "Naquadah Alloy Casing", "硅岩合金机械方块");
+        provider.addBlockName(NAQUADRIA_CASING, "Naquadria Casing", "超能硅岩机械方块");
+        provider.addBlockName(FARM_CASING, "Farm Casing", "农场机械方块");
+        provider.addBlockName(TRITANIUM_CASING, "Tritanium Casing", "三钛机械方块");
+        provider.addBlockName(QUANTUM_CASING, "Quantum Casing", "量子机械方块");
+        provider.addBlockName(AEROSPACE_CASING, "Aerospace Casing", "航空机械方块");
+        provider.addBlockName(COIL_CASING, "Coil Casing", "线圈机械方块");
+        provider.addBlockName(DISH_CASING, "Dish Casing", "Dish机械方块");
+        provider.addBlockName(CONSTRAINT_CASING, "Constraint Casing", "立场约束机械方块");
+        provider.addBlockName(RADIATION_PROOF_MACHINE_CASING, "Radiation Proof Machine Casing", "防辐射机械方块");
+        provider.addBlockName(BABBITT_ALLOY_CASING, "Babbitt Alloy Casing", "巴氏合金机械方块");
+        provider.addBlockName(ZIRCONIUM_CARBIDE_CASING, "Zirconium Carbide Casing", "碳化锆机械方块");
+        provider.addBlockName(CASING_SUPERCRITICAL_FLUID_TURBINE, "Supercritical Fluid Turbine Casing", "超临界流体涡轮机械方块");
+        provider.addBlockName(TURBO_ENGINE_CASING, "Turbo Engine Casing", "涡轮引擎机械方块");
+        provider.addBlockName(CORROSION_CASING, "Corrosion Casing", "抗腐蚀机械方块");
+        provider.addBlockName(HASTELLOYK243_CASING, "Hastelloy-k243 Casing", "哈斯特洛依合金-K243机械方块");
+        provider.addBlockName(BASIC_PHOTOLITHOGRAPHIC_CASING, "Basic Photolithographic Casing", "基础光刻机械方块");
+        provider.addBlockName(MOLD_PRINTING_ASSEMBLY_CASING, "Mold Printing Assembly Casing", "模具印刷组装机械方块");
+        provider.addBlockName(RADIATION_PROOF_PHOTOLITHOGRAPHIC_CASING, "Radiation Proof Photolithographic Casing", "防辐射光刻机械方块");
+        provider.addBlockName(HIGH_STRENGTH_FLOOR, "High Strength Floor", "高强度混凝土地板");
+        provider.addBlockName(CASING_TURBO_ENGINE_GEARBOX, "Turbo Engine Gearbox Casing", "涡轮引擎齿轮箱");
+        provider.addBlockName(CASING_SUPERCRITICAL_FLUID_GEARBOX, "Supercritical Fluid Gearbox Casing", "超临界流体涡轮齿轮箱");
+        provider.addBlockName(RAW_CYLINDER, "Raw Cylinder", "粗制气缸");
+        provider.addBlockName(TITANIUM_PLATED_CYLINDER, "Titanium Plated Cylinder", "镀钛气缸");
+        provider.addBlockName(GD_CE_CERAMIC_ELECTROLYTE_UNIT, "Gd-Ce Ceramic Electrolyte Unit", "钆-铈陶瓷电解质装置");
+        provider.addBlockName(Y_ZR_CERAMIC_ELECTROLYTE_UNIT, "Y-Zr Ceramic Electrolyte Unit", "钇-锆陶瓷电解质装置");
+        provider.addBlockName(FUSION_CASING_MK4, "Fusion Casing Mk-4", "聚变机械方块 MK-IV");
+        provider.addBlockName(FUSION_CASING_MK5, "Fusion Casing Mk-5", "聚变机械方块 MK-V");
 
         provider.addBlockWithTooltip(
                 ADVANCED_HIGH_ENERGY_CASING,

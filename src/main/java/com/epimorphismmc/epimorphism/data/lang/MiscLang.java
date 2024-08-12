@@ -57,7 +57,8 @@ public class MiscLang {
                 "§c方块朝向必须一致");
 
         provider.add("epimorphism.universal.desc.duration", "§bDuration: §f%s", "§b耗时：§f%s");
-        provider.add("epimorphism.universal.desc.parallel", "§dMax Parallel: §f%s", "§d最大并行: §f%s");
+        provider.add("epimorphism.universal.desc.energ_usage", "§aEnergy Usage: §f%s", "§a耗能：§f%s");
+        provider.add("epimorphism.universal.desc.parallel", "§dMax Parallel: §f%s", "§d最大并行：§f%s");
 
         // GUI
         provider.add("epimorphism.universal.desc.mass", "Mass: %s", "质量：%s");
@@ -111,11 +112,11 @@ public class MiscLang {
         provider.add(
                 "gui.epimorphism.backfiller.start",
                 "Start Position: X: %d, Y: %d, Z: %d",
-                "开始位置: X: %d, Y: %d, Z: %d");
+                "开始位置：X：%d, Y：%d, Z：%d");
         provider.add(
                 "gui.epimorphism.backfiller.filling",
                 "Filling Position: X: %d, Y: %d, Z: %d",
-                "正在填充: X: %d, Y: %d, Z: %d");
+                "正在填充：X：%d, Y：%d, Z：%d");
         provider.add("gui.epimorphism.backfiller.done", "Done!", "完成！");
 
         provider.addMultilineLang(

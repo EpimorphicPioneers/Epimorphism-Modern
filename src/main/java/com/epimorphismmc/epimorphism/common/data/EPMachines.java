@@ -305,7 +305,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.CATALYST)
             .overlayTieredHullRenderer("catalyst_hatch")
-            .tooltips()
+            .tooltips(Component.translatable("block.epimorphism.catalyst_hatch.desc.0"))
             .register();
 
     public static final MachineDefinition NEUTRON_SENSOR = registrate()
@@ -315,7 +315,7 @@ public class EPMachines {
             .rotationState(RotationState.ALL)
             .abilities(EPPartAbility.NEUTRON_SENSOR)
             .overlayTieredHullRenderer("neutron_sensor")
-            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc"))
+            .tooltips(Component.translatable("block.epimorphism.neutron_sensor.desc.0"))
             .register();
 
     public static final MachineDefinition[] NEUTRON_ACCELERATOR = registerTieredEPMachines(
@@ -362,8 +362,8 @@ public class EPMachines {
                     .abilities(EPPartAbility.REINFORCED_ROTOR_HOLDER)
                     .renderer(() -> new RotorHolderMachineRenderer(tier))
                     .tooltips(
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 0),
-                            LangHandler.getFromMultiLang("gtceu.machine.muffler_hatch.tooltip", 1),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 0),
+                            LangHandler.getFromMultiLang("gtceu.machine.rotor_holder.tooltip", 1),
                             Component.translatable("gtceu.universal.disabled"))
                     .register(),
             tiersBetween(IV, UEV));
@@ -1521,7 +1521,13 @@ public class EPMachines {
     public static final MultiblockMachineDefinition CHEMICAL_PLANT = registrate()
             .multiblock("chemical_plant", ChemicalPlantMachine::new)
             .langValue("Chemical Plant")
-            .tooltips(Component.translatable("block.epimorphism.chemical_plant.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.chemical_plant.desc.0"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.1"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.2"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.3"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.4"),
+                    Component.translatable("block.epimorphism.chemical_plant.desc.5"))
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CHEMICAL_PLANT_RECIPES)
             .recipeModifiers(
@@ -2226,7 +2232,6 @@ public class EPMachines {
                     .tooltips(
                             Component.translatable("block.epimorphism.concrete_backfiller.desc.0"),
                             Component.translatable("block.epimorphism.concrete_backfiller.desc.1"),
-                            Component.translatable("block.epimorphism.concrete_backfiller.desc.2"),
                             Component.translatable(
                                     "gtceu.universal.tooltip.working_area_max",
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1,
@@ -2265,7 +2270,8 @@ public class EPMachines {
             .langValue("Yotta Fluid Tank")
             .tooltips(
                     Component.translatable("block.epimorphism.yotta_fluid_tank.desc.0"),
-                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1"))
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1"),
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.2"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.YOTTA_FLUID_TANK_CASING)

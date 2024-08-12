@@ -10,13 +10,11 @@ public class RecipeLang {
     public static void init(MOLangProvider provider) {
         provider.addRecipeType(UNIVERSAL_CHEMICAL_FUELS, "Chemical Engine", "化学引擎");
         provider.addRecipeType(NEUTRON_ACTIVATOR_RECIPES, "Neutron Activation", "中子活化");
-        provider.addRecipeType(
-                COMPONENT_ASSEMBLY_LINE_RECIPES, "Large-scale Component Assembly", "大规模部件装配");
+        provider.addRecipeType(COMPONENT_ASSEMBLY_LINE_RECIPES, "Large-scale Component Assembly", "大规模部件装配");
         provider.addRecipeType(GENERAL_RECIPES_A, "Machining Mode A", "加工模式A");
         provider.addRecipeType(GENERAL_RECIPES_B, "Machining Mode B", "加工模式B");
         provider.addRecipeType(GENERAL_RECIPES_C, "Machining Mode C", "加工模式C");
-        provider.addRecipeType(
-                RADIATION_HATCH_LIST, "List of materials in the radiation chamber", "放射仓材料列表");
+        provider.addRecipeType(RADIATION_HATCH_LIST, "List of materials in the radiation chamber", "放射仓材料列表");
         provider.addRecipeType(LARGE_NAQUADAH_COOLANT_LIST, "List of coolants", "冷却剂列表");
         provider.addRecipeType(LARGE_NAQUADAH_EXCITED_FLUID_LIST, "List of active fluids", "激发流体列表");
         provider.addRecipeType(ROASTER_RECIPES, "Roasting", "焙烧");
@@ -40,7 +38,7 @@ public class RecipeLang {
         provider.add(
                 "recipe.condition.neutron_kinetic_energy.desc",
                 "Minimum neutron kinetic energy: %seV\nMaximum neutron kinetic energy: %seV",
-                "最小中子动能: %seV\n最大中子动能: %seV");
+                "最小中子动能：%seV\n最大中子动能：%seV");
         provider.addMultiLang(
                 "recipe.condition.chemical_plant_casing.desc.%s"::formatted,
                 tier -> "Casing Tier: %s - %s".formatted(tier, getCPCasingTier(tier, true)),

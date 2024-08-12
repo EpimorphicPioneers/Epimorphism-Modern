@@ -103,6 +103,8 @@ import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TRANSCENDENT_METAL_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.TUNGSTEN_BOROSILICATE;
 import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.WHITE_DWARF_MATTER_BOROSILICATE;
+import static com.epimorphismmc.epimorphism.common.block.BlockMaps.*;
+import static com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock.Type.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTModels.createModelBlockState;
 import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
