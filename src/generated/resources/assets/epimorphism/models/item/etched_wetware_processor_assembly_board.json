@@ -2,6 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "epimorphism:item/etched_board/wetware",
-    "layer1": "epimorphism:item/voltage_overlay/zpm"
+    "layer1": "epimorphism:item/voltage_overlay/zpm",
+    "layer2": "epimorphism:item/circuit_type_overlay/processor_assembly"
   }
 }

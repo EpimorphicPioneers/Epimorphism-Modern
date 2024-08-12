@@ -2,6 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "epimorphism:item/etched_board/nano",
-    "layer1": "epimorphism:item/voltage_overlay/luv"
+    "layer1": "epimorphism:item/voltage_overlay/luv",
+    "layer2": "epimorphism:item/circuit_type_overlay/mainframe"
   }
 }

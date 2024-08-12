@@ -249,7 +249,8 @@ public class EPCircuitItems {
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
                         baseTexture,
-                        Epimorphism.id("item/voltage_overlay/" + voltage)))
+                        Epimorphism.id("item/voltage_overlay/" + voltage),
+                        Epimorphism.id("item/circuit_type_overlay/" + circuitType)))
                 .register();
         ETCHED_CIRCUIT_MAP.put(circuit, entry);
         return entry;
@@ -264,7 +265,8 @@ public class EPCircuitItems {
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
                         baseTexture,
-                        Epimorphism.id("item/voltage_overlay/" + voltage)))
+                        Epimorphism.id("item/voltage_overlay/" + voltage),
+                        Epimorphism.id("item/circuit_type_overlay/" + circuitType)))
                 .register();
         ETCHED_CIRCUIT_BOARD_MAP.put(circuit, entry);
         return entry;
@@ -279,7 +281,8 @@ public class EPCircuitItems {
                 .model(EPModels.simpleCustomModel(
                         new ResourceLocation("item/generated"),
                         baseTexture,
-                        Epimorphism.id("item/voltage_overlay/" + voltage)))
+                        Epimorphism.id("item/voltage_overlay/" + voltage),
+                        Epimorphism.id("item/circuit_type_overlay/" + circuitType)))
                 .register();
         ETCHED_CIRCUIT_BASE_MAP.put(circuit, entry);
         return entry;
