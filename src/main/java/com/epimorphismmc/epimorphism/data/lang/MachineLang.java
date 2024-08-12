@@ -50,17 +50,24 @@ public class MachineLang {
                 YOTTA_FLUID_TANK::getBlock,
                 "YOT流体储罐",
                 List.of(
-                        "The maximum level of the fluid Cell Is Limited By The Glass Level",
-                        "Fluid Tank Cell Can Be Stacked Up To 15 Blocks"),
+                        "§7Super Fluid Tank!",
+                        "§aMax Fluid Tank Cells Tier: §fGlass Tier",
+                        "§6Max Fluid Tank Cells Height: §f15"),
                 List.of(
-                        "流体单元等级上限由玻璃等级限制", 
-                        "流体单元的堆叠高度上限为15格"));
+                        "§7超级流体储罐！",
+                        "§a流体单元等级上限：§f玻璃等级", 
+                        "§6流体单元高度上限：§f15"));
         provider.add("block.epimorphism.yotta_fluid_tank.fluid", "Fluid: %s", "液体：%s");
         provider.add("block.epimorphism.yotta_fluid_tank.stored", "Stored: %s mB", "存储：%s mB");
         provider.add("block.epimorphism.yotta_fluid_tank.capacity", "Capacity: %s mB", "容量：%s mB");
 
         provider.addBlockWithTooltip(
-                TFFT::getBlock, "T.F.F.T", List.of("Technology Field Fluid Tank"), List.of("科技立场流体储罐"));
+                TFFT::getBlock, 
+                "T.F.F.T", 
+                List.of(
+                        "§7Technology Field Fluid Tank"), 
+                List.of(
+                        "§7科技立场流体储罐"));
 
         provider.addBlockWithTooltip(
                 NEUTRON_ACTIVATOR::getBlock,
@@ -107,7 +114,7 @@ public class MachineLang {
                         "§a配方等级上限：§f固体机械方块等级",
                         "§6仓室等级上限：§f机械方块等级",
                         "§b耗时：§f0.5x线圈等级x",
-                        "§d最大并行：§f2x管道方块等级",
+                        "§d最大并行：§f2+管道方块等级",
                         "§e催化剂消耗几率：§f1-0.2x管道方块等级"
                 ));
 
@@ -236,24 +243,52 @@ public class MachineLang {
                 "研磨-洗矿-热力离心-研磨\n用时：30s");
 
         provider.addBlockWithTooltip(
-                AdvancedMachines.ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock, "炽炎高炉", List.of(), List.of());
+                AdvancedMachines.ADVANCED_ELECTRIC_BLAST_FURNACE::getBlock, 
+                "炽焱高炉", 
+                List.of(
+                        "§7Blazing power!",
+                        "Available Recipe Types：§9Electric Blast Furnace",
+                        "§dMax Parallel: §f2^(Coil tier - 1)",
+                        "Need to provide §cBlazing Pyrotheum§f for work.",
+                        "When no §cBlazing Pyrotheum§f are provided, Volcanus will shut down."
+                ), 
+                List.of(
+                        "§7烈焰之力！",
+                        "可用配方类型：§9电力高炉",
+                        "§d最大并行：§f2^(线圈等级-1)",
+                        "需要提供§c烈焰之炽焱§f以工作。",
+                        "未提供§c烈焰之炽焱§f时，炽焱高炉将会停机。"
+                ));
 
         provider.add(
                 "block.epimorphism.advanced_electric_blast_furnace.warning.blazing_pyrotheum",
-                "§4WARNING: Insufficient Blazing Pyrotheum",
-                "§4警告：烈焰之炽焱不足");
+                "§4WARNING: Insufficient §cBlazing Pyrotheum",
+                "§4警告：§c烈焰之炽焱§4不足");
         provider.add(
                 "block.epimorphism.advanced_electric_blast_furnace.blazing_pyrotheum",
                 "§cBlazing Pyrotheum are converting into heat!",
                 "§c烈焰之炽焱正在转换为热量！");
 
         provider.addBlockWithTooltip(
-                AdvancedMachines.INDUSTRIAL_VACUUM_FREEZER::getBlock, "凛冰冷冻机", List.of(), List.of());
+                AdvancedMachines.INDUSTRIAL_VACUUM_FREEZER::getBlock,
+                 "凛冰冷冻机", 
+                 List.of(
+                        "§7Gelid power!",
+                        "Available Recipe Types：§9Vacuum Freezer",
+                        "Need to provide §bGelid Cryotheum§f for work.",
+                        "When no §bGelid Cryotheum§f are provided, Cryogenic Freezer will shut down."
+                 ), 
+                 List.of(
+                        "§7极寒之力！",
+                        "可用配方类型：§9真空冷冻机",
+                        "需要提供§b极寒之凛冰§f以工作。",
+                        "未提供§b极寒之凛冰§f时，凛冰冷冻机将会停机。"
+                 ));
 
         provider.add(
                 "block.epimorphism.industrial_vacuum_freezer.warning.gelid_cryotheum",
-                "§4WARNING: Insufficient Gelid Cryotheum",
-                "§4警告：极寒之凛冰不足");
+                "§4WARNING: Insufficient §bGelid Cryotheum",
+                "§4警告：§b极寒之凛冰§4不足");
         provider.add(
                 "block.epimorphism.industrial_vacuum_freezer.gelid_cryotheum",
                 "§bGelid Cryotheum are absorbing surrounding heat!",
@@ -287,22 +322,31 @@ public class MachineLang {
         provider.addBlockWithTooltip(FRACKER::getBlock, "压裂机", List.of(), List.of());
 
         provider.addBlockWithTooltip(
-                INFINITE_FLUID_DRILLING_RIG::getBlock, "无尽流体钻机", List.of(), List.of());
+                INFINITE_FLUID_DRILLING_RIG::getBlock,
+                "无尽流体钻机",
+                List.of(
+                        "§7Inexhaustible!",
+                        "§aAllowed Voltage Tiers: §4UHV§f+",
+                        "§eProduction Multiplier: §f256x"
+                ),
+                List.of(
+                        "§7取之不尽，用之不竭。",
+                        "§a适配电压等级：§4UHV§f+",
+                        "§e常量乘数：§f256x"
+                ));
 
         provider.addTieredMachineName("concrete_backfiller", "混凝土回填机", MV, EV);
 
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.0",
-                "Controller Block for the Concrete Backfiller",
-                "混凝土回填机的控制器方块");
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.1",
-                "Will fill in areas below it with light concrete. This goes through walls",
-                "将在其下方填充浅色混凝土，可穿墙");
-        provider.add(
-                "block.epimorphism.concrete_backfiller.desc.2",
-                "Can place (Tier - Base Tier + 1) light concrete one times",
-                "并行 = 电压等级 - 基础电压等级 + 1");
+        provider.addMultiLang(
+                "block.epimorphism.concrete_backfiller.desc",
+                List.of(
+                        "§7Tons of concrete, enough to fill this gully.",
+                        "Fill the lower gap."
+                ),
+                List.of(
+                        "§7万吨混凝土，可填此地沟壑。",
+                        "填充下方空隙。"
+                ));
 
         provider.addBlockWithTooltip(
                 ROASTER::getBlock,

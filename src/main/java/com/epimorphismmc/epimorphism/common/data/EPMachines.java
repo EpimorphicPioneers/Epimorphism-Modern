@@ -2232,7 +2232,6 @@ public class EPMachines {
                     .tooltips(
                             Component.translatable("block.epimorphism.concrete_backfiller.desc.0"),
                             Component.translatable("block.epimorphism.concrete_backfiller.desc.1"),
-                            Component.translatable("block.epimorphism.concrete_backfiller.desc.2"),
                             Component.translatable(
                                     "gtceu.universal.tooltip.working_area_max",
                                     ((int) Math.pow(2, tier - 1)) * 16 + 1,
@@ -2271,7 +2270,8 @@ public class EPMachines {
             .langValue("Yotta Fluid Tank")
             .tooltips(
                     Component.translatable("block.epimorphism.yotta_fluid_tank.desc.0"),
-                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1"))
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.1"),
+                    Component.translatable("block.epimorphism.yotta_fluid_tank.desc.2"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.YOTTA_FLUID_TANK_CASING)

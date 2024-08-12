@@ -1105,8 +1105,14 @@ public class AdvancedMachines {
             .multiblock("advanced_electric_blast_furnace", AdvancedEBFMachine::new)
             .langValue("Advanced Electric Blast Furnace")
             .tooltips(
+                    Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"),
+                    Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.1"),
+                    Component.translatable("epimorphism.universal.desc.duration","0.5x"),
+                    Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.2"),
+                    Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.3"),
+                    Component.translatable("block.epimorphism.advanced_electric_blast_furnace.desc.4"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(BLAST_RECIPES)
             .recipeModifiers(EPRecipeModifiers.EP_PARALLEL, AdvancedEBFMachine::advEBFOverclock)
@@ -1155,7 +1161,13 @@ public class AdvancedMachines {
     public static final MultiblockMachineDefinition INDUSTRIAL_VACUUM_FREEZER = registrate()
             .multiblock("industrial_vacuum_freezer", IndustrialFreezerMachine::new)
             .langValue("Industrial Vacuum Freezer")
-            .tooltips(Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.0"),
+                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.1"),
+                    Component.translatable("epimorphism.universal.desc.duration","0.5x"),
+                    Component.translatable("epimorphism.universal.desc.parallel","4"),
+                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.2"),
+                    Component.translatable("block.epimorphism.industrial_vacuum_freezer.desc.3"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(VACUUM_RECIPES)
             .recipeModifiers(
@@ -1186,7 +1198,13 @@ public class AdvancedMachines {
                     blockEntity -> new ParallelCoilCasingMultiblockMachine(
                             blockEntity, "Firebox", machine -> machine.getCoilTier() * 4))
             .langValue("Coking Tower")
-            .tooltips(Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.industrial_coke_oven.desc.0"),
+                    Component.translatable("block.epimorphism.industrial_coke_oven.desc.1"),
+                    Component.translatable("epimorphism.universal.desc.duration","0.5x"),
+                    Component.translatable("epimorphism.universal.desc.parallel","4"),
+                    Component.translatable("block.epimorphism.industrial_coke_oven.desc.2"),
+                    Component.translatable("block.epimorphism.industrial_coke_oven.desc.3"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(PYROLYSE_RECIPES)
             .appearanceBlock(CASING_STEEL_SOLID)
@@ -1608,7 +1626,12 @@ public class AdvancedMachines {
     public static final MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = registrate()
             .multiblock("infinite_fluid_drilling_rig", InfiniteFluidDrillingRigMachine::new)
             .langValue("Infinite Fluid Drilling Rig")
-            .tooltips(Component.translatable("block.epimorphism.industrial_drill.desc.0"))
+            .tooltips(
+                    Component.translatable("block.epimorphism.infinite_fluid_drilling_rig.desc.0"),
+                    Component.translatable("gtceu.machine.fluid_drilling_rig.description"),
+                    Component.translatable("gtceu.machine.fluid_drilling_rig.depletion","0"),
+                    Component.translatable("block.epimorphism.infinite_fluid_drilling_rig.desc.1"),
+                    Component.translatable("block.epimorphism.infinite_fluid_drilling_rig.desc.2"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(DUMMY_RECIPES)
             .appearanceBlock(EPBlocks.NEUTRONIUM_MINING_CASING)
