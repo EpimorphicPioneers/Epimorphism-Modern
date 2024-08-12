@@ -584,9 +584,10 @@ public class AdvancedMachines {
                     .where('E', Predicates.abilities(INPUT_ENERGY))
                     .where('D', blocks(CASING_GRATE.get()))
                     .build())
-            .workableCasingRenderer(
+            .renderer(() -> new CustomPartRenderer(
                     GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
-                    GTCEu.id("block/multiblock/assembly_line"))
+                    GTCEu.id("block/multiblock/assembly_line"),
+                    CircuitAssemblyLineMachine::getBaseTexture))
             .register();
     public static final MultiblockMachineDefinition PRECISE_ASSEMBLER = registrate()
             .multiblock("precise_assembler", PreciseAssemblerMachine::new)

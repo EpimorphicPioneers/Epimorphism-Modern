@@ -2,16 +2,19 @@ package com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advance
 
 import com.epimorphismmc.monomorphism.machine.fancyconfigurator.InventoryFancyConfigurator;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeHandler;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.gui.fancy.ConfiguratorPanel;
 import com.gregtechceu.gtceu.api.gui.fancy.TabsWidget;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
+import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler;
 import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.EnergyHatchPartMachine;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import com.gregtechceu.gtceu.utils.ResearchManager;
 
@@ -20,6 +23,7 @@ import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -130,5 +134,17 @@ public class CircuitAssemblyLineMachine extends WorkableElectricMultiblockMachin
     @Override
     public void attachSideTabs(TabsWidget sideTabs) {
         super.attachSideTabs(sideTabs);
+    }
+
+    //////////////////////////////////////
+    // ***      Multiblock Render     ***//
+    //////////////////////////////////////
+
+    public static ResourceLocation getBaseTexture(IMultiPart iMultiPart) {
+        if (iMultiPart instanceof EnergyHatchPartMachine hatch
+                && hatch.energyContainer.getHandlerIO() == IO.IN) {
+            return GTCEu.id("block/casings/pipe/machine_casing_grate");
+        }
+        return GTCEu.id("block/casings/solid/machine_casing_solid_steel");
     }
 }
