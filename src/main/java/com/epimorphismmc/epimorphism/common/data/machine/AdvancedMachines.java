@@ -557,20 +557,27 @@ public class AdvancedMachines {
     public static final MultiblockMachineDefinition CIRCUIT_ASSEMBLY_LINE = registrate()
             .multiblock("circuit_assembly_line", CircuitAssemblyLineMachine::new)
             .langValue("Circuit Assembly Line")
-            .tooltips(
-                    Component.translatable("block.epimorphism.circuit_assembly_line.desc.0")
-            )
+            .tooltips(Component.translatable("block.epimorphism.circuit_assembly_line.desc.0"))
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CIRCUIT_ASSEMBLY_LINE_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.SUBTICK_PARALLEL, GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .recipeModifiers(
+                    GTRecipeModifiers.SUBTICK_PARALLEL,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
                     .aisle("FIF", "RTR", "SED")
-                    .aisle("FIF", "RTR", "DDD").setRepeatable(2, 5)
+                    .aisle("FIF", "RTR", "DDD")
+                    .setRepeatable(2, 5)
                     .aisle("FOF", "RTR", "DDD")
                     .where('S', Predicates.controller(blocks(definition.get())))
-                    .where('F', blocks(CASING_STEEL_SOLID.get()).or(Predicates.abilities(IMPORT_FLUIDS).setMaxGlobalLimited(1)))
-                    .where('O', Predicates.abilities(EXPORT_ITEMS).addTooltips(Component.translatable("gtceu.multiblock.pattern.location_end")))
+                    .where(
+                            'F',
+                            blocks(CASING_STEEL_SOLID.get())
+                                    .or(Predicates.abilities(IMPORT_FLUIDS).setMaxGlobalLimited(1)))
+                    .where(
+                            'O',
+                            Predicates.abilities(EXPORT_ITEMS)
+                                    .addTooltips(Component.translatable("gtceu.multiblock.pattern.location_end")))
                     .where('I', blocks(ITEM_IMPORT_BUS[0].get()))
                     .where('R', blocks(EPBlocks.OSMIUM_BOROSILICATE_GLASS.get()))
                     .where('T', blocks(CASING_ASSEMBLY_LINE.get()))

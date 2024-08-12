@@ -3,6 +3,7 @@ package com.epimorphismmc.epimorphism.data.recipe.handler;
 import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.common.data.items.EPCircuitItems;
 import com.epimorphismmc.epimorphism.common.data.items.EPWrapItem;
+
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -20,13 +21,15 @@ import com.gregtechceu.gtceu.core.mixins.IngredientAccessor;
 import com.gregtechceu.gtceu.core.mixins.TagValueAccessor;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-import com.tterrag.registrate.util.entry.ItemEntry;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,14 +65,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
             var etchedCircuitBoard = EPCircuitItems.ETCHED_CIRCUIT_BOARD_MAP.get(entry);
             var etchedCircuitBase = EPCircuitItems.ETCHED_CIRCUIT_BASE_MAP.get(entry);
             if (entry.getId().getPath().contains("micro")) {
-                LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
+                LASER_ENGRAVER_RECIPES
+                        .recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Yellow)
                         .outputItems(etchedCircuit)
                         .EUt(VA[MV])
                         .duration(30 * 20)
                         .save(provider);
-                FORMING_PRESS_RECIPES.recipeBuilder(() -> etchedCircuitBase)
+                FORMING_PRESS_RECIPES
+                        .recipeBuilder(() -> etchedCircuitBase)
                         .inputItems(etchedCircuitBoard)
                         .inputItems(foil, WroughtIron, 4)
                         .outputItems(etchedCircuitBase)
@@ -77,14 +82,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                         .duration(15 * 20)
                         .save(provider);
             } else if (entry.getId().getPath().contains("nano")) {
-                LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
+                LASER_ENGRAVER_RECIPES
+                        .recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Cyan)
                         .outputItems(etchedCircuit)
                         .EUt(VA[HV])
                         .duration(30 * 20)
                         .save(provider);
-                FORMING_PRESS_RECIPES.recipeBuilder(() -> etchedCircuitBase)
+                FORMING_PRESS_RECIPES
+                        .recipeBuilder(() -> etchedCircuitBase)
                         .inputItems(etchedCircuitBoard)
                         .inputItems(foil, Silver, 4)
                         .outputItems(etchedCircuitBase)
@@ -92,14 +99,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                         .duration(15 * 20)
                         .save(provider);
             } else if (entry.getId().getPath().contains("quantum")) {
-                LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
+                LASER_ENGRAVER_RECIPES
+                        .recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Lime)
                         .outputItems(etchedCircuit)
                         .EUt(VA[EV])
                         .duration(30 * 20)
                         .save(provider);
-                FORMING_PRESS_RECIPES.recipeBuilder(() -> etchedCircuitBase)
+                FORMING_PRESS_RECIPES
+                        .recipeBuilder(() -> etchedCircuitBase)
                         .inputItems(etchedCircuitBoard)
                         .inputItems(foil, Electrum, 4)
                         .outputItems(etchedCircuitBase)
@@ -107,14 +116,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                         .duration(15 * 20)
                         .save(provider);
             } else if (entry.getId().getPath().contains("crystal")) {
-                LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
+                LASER_ENGRAVER_RECIPES
+                        .recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Blue)
                         .outputItems(etchedCircuit)
                         .EUt(VA[IV])
                         .duration(30 * 20)
                         .save(provider);
-                FORMING_PRESS_RECIPES.recipeBuilder(() -> etchedCircuitBase)
+                FORMING_PRESS_RECIPES
+                        .recipeBuilder(() -> etchedCircuitBase)
                         .inputItems(etchedCircuitBoard)
                         .inputItems(foil, Osmium, 4)
                         .outputItems(etchedCircuitBase)
@@ -122,14 +133,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                         .duration(15 * 20)
                         .save(provider);
             } else if (entry.getId().getPath().contains("wetware")) {
-                LASER_ENGRAVER_RECIPES.recipeBuilder(() -> etchedCircuit)
+                LASER_ENGRAVER_RECIPES
+                        .recipeBuilder(() -> etchedCircuit)
                         .inputItems(entry)
                         .notConsumable(lens, MarkerMaterials.Color.Red)
                         .outputItems(etchedCircuit)
                         .EUt(VA[LuV])
                         .duration(30 * 20)
                         .save(provider);
-                FORMING_PRESS_RECIPES.recipeBuilder(() -> etchedCircuitBase)
+                FORMING_PRESS_RECIPES
+                        .recipeBuilder(() -> etchedCircuitBase)
                         .inputItems(etchedCircuitBoard)
                         .inputItems(foil, HSSG, 4)
                         .outputItems(etchedCircuitBase)
@@ -138,7 +151,8 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                         .save(provider);
             }
 
-            ASSEMBLER_RECIPES.recipeBuilder(() -> etchedCircuitBoard)
+            ASSEMBLER_RECIPES
+                    .recipeBuilder(() -> etchedCircuitBoard)
                     .inputItems(etchedCircuit)
                     .inputItems(GTItems.PLASTIC_BOARD)
                     .inputFluids(GTMaterials.Glue.getFluid(100))
@@ -149,15 +163,17 @@ public class CircuitAssemblyLineMachineRecipeHandler {
         }
     }
 
-    private static void handleComponent(GTRecipeBuilder builder, ItemEntry<? extends Item> outputItem, int outputCount) {
+    private static void handleComponent(
+            GTRecipeBuilder builder, ItemEntry<? extends Item> outputItem, int outputCount) {
         List<Ingredient> inputItems = RecipeHelper.getInputContents(builder, ItemRecipeCapability.CAP);
-        List<FluidIngredient> inputFluids = RecipeHelper.getInputContents(builder, FluidRecipeCapability.CAP);
+        List<FluidIngredient> inputFluids =
+                RecipeHelper.getInputContents(builder, FluidRecipeCapability.CAP);
 
         if (!builder.id.getPath().contains("soldering_alloy")) {
             return;
         }
-        GTRecipeBuilder newBuilder = CIRCUIT_ASSEMBLY_LINE_RECIPES
-                .recipeBuilder(Epimorphism.id(builder.id.getPath()));
+        GTRecipeBuilder newBuilder =
+                CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder(Epimorphism.id(builder.id.getPath()));
 
         for (var input : inputItems) {
             //noinspection StatementWithEmptyBody
@@ -206,8 +222,10 @@ public class CircuitAssemblyLineMachineRecipeHandler {
                             }
                         }
                     } else {
-                        value.getItems().forEach(stack -> newBuilder.inputItems(
-                                stack.copyWithCount(Math.min(64, count * 16))));
+                        value
+                                .getItems()
+                                .forEach(
+                                        stack -> newBuilder.inputItems(stack.copyWithCount(Math.min(64, count * 16))));
                     }
                 }
             } else {
@@ -222,15 +240,16 @@ public class CircuitAssemblyLineMachineRecipeHandler {
         newBuilder.outputItems(outputItem, outputCount * 16);
         newBuilder.EUt(builder.EUt());
         newBuilder.duration(builder.duration * 3);
-        newBuilder.scannerResearch(b -> b
-                .researchStack(EPCircuitItems.ETCHED_CIRCUIT_BASE_MAP.get(outputItem).asStack())
+        newBuilder.scannerResearch(b -> b.researchStack(
+                        EPCircuitItems.ETCHED_CIRCUIT_BASE_MAP.get(outputItem).asStack())
                 .EUt(VA[IV])
                 .duration(30 * 20));
 
         recipeBuilders.add(newBuilder);
     }
 
-    private static void handleUnificationEntry(GTRecipeBuilder newBuilder, UnificationEntry entry, int count) {
+    private static void handleUnificationEntry(
+            GTRecipeBuilder newBuilder, UnificationEntry entry, int count) {
         // 是有 mat 物品
         Material material = entry.material;
         if (material == null) {

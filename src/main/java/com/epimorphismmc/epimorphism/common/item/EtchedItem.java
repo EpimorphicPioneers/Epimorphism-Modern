@@ -4,6 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -20,7 +21,8 @@ public class EtchedItem extends Item {
 
     @Override
     public @NotNull Component getDescription() {
-        return Component.translatable("epimorphism.item." + type, itemSupplier.get().asItem().getDescription());
+        return Component.translatable(
+                "epimorphism.item." + type, itemSupplier.get().asItem().getDescription());
     }
 
     @Override

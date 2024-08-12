@@ -163,17 +163,27 @@ public class EPWrapItem {
     public static final ItemEntry<ComponentItem> WRAP_SMD_INDUCTOR_COSMIC =
             registerWrapItem("wrap_cosmic_smd_inductor", COSMIC_INDUCTOR, 5);
 
-    public static final ItemEntry<Item> WRAP_CPU_CHIP = registerWrapItem("warp_cpu_chip", CENTRAL_PROCESSING_UNIT);
-    public static final ItemEntry<Item> WRAP_RAM_CHIP = registerWrapItem("warp_ram_chip", RANDOM_ACCESS_MEMORY);
-    public static final ItemEntry<Item> WRAP_ILC_CHIP = registerWrapItem("wrap_ilc_chip", INTEGRATED_LOGIC_CIRCUIT);
-    public static final ItemEntry<Item> WARP_NANO_CPU_CHIP = registerWrapItem("warp_nano_cpu_chip", NANO_CENTRAL_PROCESSING_UNIT);
-    public static final ItemEntry<Item> WARP_QBIT_CPU_CHIP = registerWrapItem("warp_qbit_cpu_chip", QUBIT_CENTRAL_PROCESSING_UNIT);
-    public static final ItemEntry<Item> WARP_SIMPLE_SOC = registerWrapItem("warp_simple_soc", SIMPLE_SYSTEM_ON_CHIP);
+    public static final ItemEntry<Item> WRAP_CPU_CHIP =
+            registerWrapItem("warp_cpu_chip", CENTRAL_PROCESSING_UNIT);
+    public static final ItemEntry<Item> WRAP_RAM_CHIP =
+            registerWrapItem("warp_ram_chip", RANDOM_ACCESS_MEMORY);
+    public static final ItemEntry<Item> WRAP_ILC_CHIP =
+            registerWrapItem("wrap_ilc_chip", INTEGRATED_LOGIC_CIRCUIT);
+    public static final ItemEntry<Item> WARP_NANO_CPU_CHIP =
+            registerWrapItem("warp_nano_cpu_chip", NANO_CENTRAL_PROCESSING_UNIT);
+    public static final ItemEntry<Item> WARP_QBIT_CPU_CHIP =
+            registerWrapItem("warp_qbit_cpu_chip", QUBIT_CENTRAL_PROCESSING_UNIT);
+    public static final ItemEntry<Item> WARP_SIMPLE_SOC =
+            registerWrapItem("warp_simple_soc", SIMPLE_SYSTEM_ON_CHIP);
     public static final ItemEntry<Item> WARP_SOC = registerWrapItem("warp_soc", SYSTEM_ON_CHIP);
-    public static final ItemEntry<Item> WARP_ADVANCED_SOC = registerWrapItem("warp_advanced_soc", ADVANCED_SYSTEM_ON_CHIP);
-    public static final ItemEntry<Item> WARP_HIGHLY_ADVANCED_SOC = registerWrapItem("warp_highly_advanced_soc", HIGHLY_ADVANCED_SOC);
-    public static final ItemEntry<Item> WARP_NAND_MEMORY_CHIP = registerWrapItem("warp_nand_memory_chip", NAND_MEMORY_CHIP);
-    public static final ItemEntry<Item> WARP_NOR_MEMORY_CHIP = registerWrapItem("warp_nor_memory_chip", NOR_MEMORY_CHIP);
+    public static final ItemEntry<Item> WARP_ADVANCED_SOC =
+            registerWrapItem("warp_advanced_soc", ADVANCED_SYSTEM_ON_CHIP);
+    public static final ItemEntry<Item> WARP_HIGHLY_ADVANCED_SOC =
+            registerWrapItem("warp_highly_advanced_soc", HIGHLY_ADVANCED_SOC);
+    public static final ItemEntry<Item> WARP_NAND_MEMORY_CHIP =
+            registerWrapItem("warp_nand_memory_chip", NAND_MEMORY_CHIP);
+    public static final ItemEntry<Item> WARP_NOR_MEMORY_CHIP =
+            registerWrapItem("warp_nor_memory_chip", NOR_MEMORY_CHIP);
 
     public static void init() {
         /**/
