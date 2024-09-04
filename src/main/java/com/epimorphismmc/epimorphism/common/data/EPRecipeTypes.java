@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
+import com.gregtechceu.gtceu.utils.ResearchManager;
 
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
@@ -53,6 +54,15 @@ public class EPRecipeTypes {
             .setEUIO(IO.IN)
             .setMaxTooltips(4)
             .setSound(GTSoundEntries.ASSEMBLER);
+
+    public static final GTRecipeType CIRCUIT_ASSEMBLY_LINE_RECIPES = register(
+                    "circuit_assembly_line", MULTIBLOCK)
+            .setMaxIOSize(6, 1, 1, 0)
+            .setEUIO(IO.IN)
+            .setMaxTooltips(4)
+            .setHasResearchSlot(true)
+            .setSound(GTSoundEntries.ASSEMBLER)
+            .onRecipeBuild(ResearchManager::createDefaultResearchRecipe);
 
     public static final GTRecipeType CVD_RECIPES = register("cvd", MULTIBLOCK)
             .setMaxIOSize(2, 2, 3, 3)

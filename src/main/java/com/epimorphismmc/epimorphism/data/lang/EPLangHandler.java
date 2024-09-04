@@ -14,5 +14,6 @@ public class EPLangHandler {
         RecipeLang.init(provider);
         MachineLang.init(provider);
         MiscLang.init(provider);
+        CircuitItemLang.init(provider);
     }
 }

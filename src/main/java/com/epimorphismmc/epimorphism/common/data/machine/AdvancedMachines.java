@@ -12,6 +12,7 @@ import com.epimorphismmc.epimorphism.common.data.EPMaterials;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeModifiers;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.AdvancedEBFMachine;
+import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.CircuitAssemblyLineMachine;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.GeneralProcessingPlantMachine;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.IndustrialFreezerMachine;
 import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.InfiniteFluidDrillingRigMachine;
@@ -75,8 +76,12 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
+import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.BACK;
+import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.RIGHT;
+import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.UP;
 import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 
@@ -549,6 +554,41 @@ public class AdvancedMachines {
                     Epimorphism.id("block/multiblock/component_assembly_line"),
                     false)
             .register();
+    public static final MultiblockMachineDefinition CIRCUIT_ASSEMBLY_LINE = registrate()
+            .multiblock("circuit_assembly_line", CircuitAssemblyLineMachine::new)
+            .langValue("Circuit Assembly Line")
+            .tooltips(Component.translatable("block.epimorphism.circuit_assembly_line.desc.0"))
+            .rotationState(RotationState.ALL)
+            .recipeTypes(EPRecipeTypes.CIRCUIT_ASSEMBLY_LINE_RECIPES)
+            .recipeModifiers(
+                    GTRecipeModifiers.SUBTICK_PARALLEL,
+                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
+                    .aisle("FIF", "RTR", "SED")
+                    .aisle("FIF", "RTR", "DDD")
+                    .setRepeatable(2, 5)
+                    .aisle("FOF", "RTR", "DDD")
+                    .where('S', Predicates.controller(blocks(definition.get())))
+                    .where(
+                            'F',
+                            blocks(CASING_STEEL_SOLID.get())
+                                    .or(Predicates.abilities(IMPORT_FLUIDS).setMaxGlobalLimited(1)))
+                    .where(
+                            'O',
+                            Predicates.abilities(EXPORT_ITEMS)
+                                    .addTooltips(Component.translatable("gtceu.multiblock.pattern.location_end")))
+                    .where('I', blocks(ITEM_IMPORT_BUS[0].get()))
+                    .where('R', blocks(EPBlocks.OSMIUM_BOROSILICATE_GLASS.get()))
+                    .where('T', blocks(CASING_ASSEMBLY_LINE.get()))
+                    .where('E', Predicates.abilities(INPUT_ENERGY))
+                    .where('D', blocks(CASING_GRATE.get()))
+                    .build())
+            .renderer(() -> new CustomPartRenderer(
+                    GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    GTCEu.id("block/multiblock/assembly_line"),
+                    CircuitAssemblyLineMachine::getBaseTexture))
+            .register();
     public static final MultiblockMachineDefinition PRECISE_ASSEMBLER = registrate()
             .multiblock("precise_assembler", PreciseAssemblerMachine::new)
             .langValue("Precise Assembler")
@@ -664,7 +704,7 @@ public class AdvancedMachines {
                     .aisle("GGGGGGG", " PTTTP ", " PTTTP ", " PTTTP ", " PTTTP ", "GGGGGGG")
                     .aisle("GGGGGGG", "F     F", "F     F", "F     F", "F     F", "GGGGGGG")
                     .where('S', definition, Direction.NORTH)
-                    .where('A', GTMachines.ITEM_IMPORT_BUS[4], Direction.NORTH)
+                    .where('A', ITEM_IMPORT_BUS[4], Direction.NORTH)
                     .where('H', GTMachines.ITEM_EXPORT_BUS[4], Direction.NORTH)
                     .where('C', GTMachines.FLUID_IMPORT_HATCH[4], Direction.NORTH)
                     .where('D', GTMachines.FLUID_EXPORT_HATCH[4], Direction.NORTH)

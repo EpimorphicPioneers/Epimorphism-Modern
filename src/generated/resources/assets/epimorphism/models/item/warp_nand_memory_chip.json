@@ -1,0 +1,7 @@
+{
+  "parent": "epimorphism:item/wrap_item",
+  "textures": {
+    "layer0": "gtceu:item/nand_memory_chip",
+    "layer4": "epimorphism:item/wrap_overlay"
+  }
+}
