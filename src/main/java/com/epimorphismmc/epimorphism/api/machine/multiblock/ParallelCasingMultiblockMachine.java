@@ -3,9 +3,9 @@ package com.epimorphismmc.epimorphism.api.machine.multiblock;
 import com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats.ICasingMachine;
 
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
-import com.epimorphismmc.monomorphism.machine.feature.multiblock.stats.IParallelMachine;
-import com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine;
 
+import com.epimorphismmc.monomorphism.integration.gtm.machine.feature.multiblock.stats.IParallelMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;

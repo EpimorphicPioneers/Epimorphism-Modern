@@ -52,4 +52,5 @@ repositories {
         name 'IzzelAliz Maven'
         url 'https://maven.izzel.io/releases/'
     }
+    maven { url = "https://maven.gtceu.com/" }
 }

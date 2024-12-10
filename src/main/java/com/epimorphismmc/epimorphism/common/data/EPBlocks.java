@@ -17,17 +17,15 @@ import com.epimorphismmc.epimorphism.common.data.items.EPBiologyItems;
 import com.epimorphismmc.epimorphism.core.mixins.accessors.BlockLootSubProviderAccessor;
 import com.epimorphismmc.epimorphism.data.lang.EPLangHelper;
 
-import com.epimorphismmc.monomorphism.block.CasingBlock;
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
 import com.epimorphismmc.monomorphism.block.tier.SimpleTierBlock;
-import com.epimorphismmc.monomorphism.item.MOMaterialBlockItem;
 
+import com.epimorphismmc.monomorphism.integration.gtm.block.CasingBlock;
+import com.epimorphismmc.monomorphism.integration.gtm.item.MOMaterialBlockItem;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.IFusionCasingType;
-import com.gregtechceu.gtceu.api.block.RendererBlock;
-import com.gregtechceu.gtceu.api.block.RendererGlassBlock;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
@@ -46,6 +44,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.lowdragmc.lowdraglib.Platform;
 import com.lowdragmc.lowdraglib.client.renderer.IRenderer;
 
+import com.lowdragmc.lowdraglib.client.renderer.block.RendererBlock;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
@@ -55,6 +54,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
@@ -627,13 +627,12 @@ public class EPBlocks {
     private static BlockEntry<BorosilicateGlassBlock> createBorosilicateGlass(
             BorosilicateGlassBlock.Type glassType) {
         BlockEntry<BorosilicateGlassBlock> glassBlock = registrate()
-                .block(glassType.typeName(), p -> new BorosilicateGlassBlock(p, glassType))
+                .block(glassType.typeName(), p -> new BorosilicateGlassBlock(p))
                 .initialProperties(() -> Blocks.GLASS)
                 .addLayer(() -> RenderType::translucent)
-                .blockstate(NonNullBiConsumer.noop())
+                .blockstate(EPModels.cubeBorosilicateGlassBlock(glassType.typeName(), Epimorphism.id("block/casings/transparent/%s".formatted(glassType.typeName()))))
                 .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(RendererBlockItem::new)
-                .model(NonNullBiConsumer.noop())
+                .item(BlockItem::new)
                 .build()
                 .register();
         ALL_GLASSES.put(glassType, glassBlock::get);
@@ -645,24 +644,14 @@ public class EPBlocks {
         BlockEntry<TierGlassBlock> glassBlock = registrate()
                 .block(
                         "%s_block".formatted(glassType.typeName()),
-                        p -> new TierGlassBlock(
-                                p,
-                                Platform.isClient()
-                                        ? new TextureOverrideRenderer(
-                                                new ResourceLocation("block/cube_all"),
-                                                Map.of(
-                                                        "all",
-                                                        Epimorphism.id(
-                                                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
-                                        : null,
-                                glassType))
+                        p -> new TierGlassBlock(p, glassType))
                 .initialProperties(() -> Blocks.GLASS)
                 .properties(p -> p.sound(soundType))
                 .addLayer(type)
-                .blockstate(NonNullBiConsumer.noop())
+                .blockstate(EPModels.cubeTierGlassBlock(glassType.typeName(), Epimorphism.id(
+                                "block/casings/transparent/%s".formatted(glassType.typeName()))))
                 .tag(GTToolType.WRENCH.harvestTags.get(0), BlockTags.MINEABLE_WITH_PICKAXE)
-                .item(RendererBlockItem::new)
-                .model(NonNullBiConsumer.noop())
+                .item(BlockItem::new)
                 .build()
                 .register();
         return glassBlock;

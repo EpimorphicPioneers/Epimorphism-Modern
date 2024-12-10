@@ -5,11 +5,9 @@ import com.epimorphismmc.epimorphism.common.machine.multiblock.part.NeutronAccel
 import com.epimorphismmc.epimorphism.common.machine.multiblock.part.NeutronSensorPartMachine;
 import com.epimorphismmc.epimorphism.common.recipe.NeutronEnergyCondition;
 
-import com.epimorphismmc.monomorphism.machine.multiblock.NoEnergyMultiblockMachine;
-import com.epimorphismmc.monomorphism.pattern.utils.containers.IValueContainer;
-import com.epimorphismmc.monomorphism.recipe.MORecipeHelper;
-import com.epimorphismmc.monomorphism.utility.MOFormattingUtils;
-
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.NoEnergyMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.utils.containers.IValueContainer;
+import com.epimorphismmc.monomorphism.integration.gtm.recipe.MORecipeHelper;
 import com.gregtechceu.gtceu.api.capability.IEnergyContainer;
 import com.gregtechceu.gtceu.api.capability.recipe.EURecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;

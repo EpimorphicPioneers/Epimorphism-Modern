@@ -4,8 +4,7 @@ import com.epimorphismmc.epimorphism.Epimorphism;
 import com.epimorphismmc.epimorphism.client.renderer.handler.item.StereoscopicItemRenderer;
 import com.epimorphismmc.epimorphism.common.item.behaviors.renderer.HaloItemBehavior;
 
-import com.epimorphismmc.monomorphism.data.chemical.material.info.MOMaterialIconSet;
-
+import com.epimorphismmc.monomorphism.integration.gtm.data.chemical.material.info.MOMaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 
 import net.minecraft.resources.ResourceLocation;

@@ -44,16 +44,15 @@ import com.epimorphismmc.epimorphism.common.machine.multiblock.storage.YottaFlui
 import com.epimorphismmc.epimorphism.common.machine.storage.InfinityCrateMachine;
 import com.epimorphismmc.epimorphism.integration.EPIntegration;
 
-import com.epimorphismmc.monomorphism.client.renderer.machine.CustomPartRenderer;
-import com.epimorphismmc.monomorphism.client.renderer.machine.TierCasingMachineRenderer;
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
-import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
-import com.epimorphismmc.monomorphism.pattern.LayerShapeInfo;
-import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
-import com.epimorphismmc.monomorphism.pattern.MOPredicates;
-import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
-
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.machine.CustomPartRenderer;
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.machine.TierCasingMachineRenderer;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelCoilMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.LayerShapeInfo;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.MOPredicates;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.utils.StructureUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
@@ -98,6 +97,7 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import com.lowdragmc.lowdraglib.Platform;
 
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -130,13 +130,13 @@ import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIELD_BLO
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
-import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
-import static com.epimorphismmc.monomorphism.pattern.MOPredicates.machineCasingBlock;
+import static com.epimorphismmc.monomorphism.integration.gtm.pattern.MOPredicates.coilBlock;
+import static com.epimorphismmc.monomorphism.integration.gtm.pattern.MOPredicates.machineCasingBlock;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -2395,7 +2395,7 @@ public class EPMachines {
     }
 
     public static MachineDefinition[] registerSimpleMachines(
-            String name, GTRecipeType recipeType, Int2LongFunction tankScalingFunction, int... tiers) {
+            String name, GTRecipeType recipeType, Int2IntFunction tankScalingFunction, int... tiers) {
         return registerTieredEPMachines(
                 name,
                 (holder, tier) -> new SimpleTieredMachine(holder, tier, tankScalingFunction),
@@ -2420,7 +2420,7 @@ public class EPMachines {
     }
 
     public static MachineDefinition[] registerTieredEPGenerators(
-            String name, GTRecipeType recipeType, Int2LongFunction tankScalingFunction, int... tiers) {
+            String name, GTRecipeType recipeType, Int2IntFunction tankScalingFunction, int... tiers) {
         return registerTieredEPMachines(
                 name,
                 (holder, tier) -> new SimpleGeneratorMachine(holder, tier, tankScalingFunction),
@@ -2450,7 +2450,7 @@ public class EPMachines {
             String name,
             GTRecipeType recipeType,
             RecipeModifier recipeModifier,
-            Int2LongFunction tankScalingFunction,
+            Int2IntFunction tankScalingFunction,
             int... tiers) {
         return registerTieredEPMachines(
                 name,

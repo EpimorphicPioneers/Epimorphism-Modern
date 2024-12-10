@@ -2,9 +2,13 @@ package com.epimorphismmc.epimorphism.common.data;
 
 import com.epimorphismmc.epimorphism.Epimorphism;
 
+import com.epimorphismmc.epimorphism.common.block.BorosilicateGlassBlock;
+import com.epimorphismmc.epimorphism.common.block.TierGlassBlock;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ModelFile;
 
 import com.tterrag.registrate.providers.DataGenContext;
@@ -37,6 +41,20 @@ public class EPModels {
     public static void simpleCustomBlockItemModel(
             DataGenContext<Item, BlockItem> context, RegistrateItemModelProvider provider) {
         provider.generated(context, provider.modLoc("block/" + provider.name(context)));
+    }
+
+    public static NonNullBiConsumer<DataGenContext<Block, TierGlassBlock>, RegistrateBlockstateProvider> cubeTierGlassBlock(String name,
+                                                                                                                      ResourceLocation texture) {
+        return (ctx, prov) -> {
+            prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+        };
+    }
+
+    public static NonNullBiConsumer<DataGenContext<Block, BorosilicateGlassBlock>, RegistrateBlockstateProvider> cubeBorosilicateGlassBlock(String name,
+                                                                                                                              ResourceLocation texture) {
+        return (ctx, prov) -> {
+            prov.simpleBlock(ctx.getEntry(), prov.models().cubeAll(name, texture));
+        };
     }
 
     public static void captureToolModel(

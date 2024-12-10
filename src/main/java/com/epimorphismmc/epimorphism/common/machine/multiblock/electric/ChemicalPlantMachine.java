@@ -4,7 +4,7 @@ import com.epimorphismmc.epimorphism.api.block.tier.IChemicalPlantCasing;
 import com.epimorphismmc.epimorphism.common.block.BlockMaps;
 
 import com.epimorphismmc.monomorphism.block.tier.ITierType;
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -15,6 +15,8 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.lowdragmc.lowdraglib.syncdata.annotation.DescSynced;
 import com.lowdragmc.lowdraglib.syncdata.annotation.RequireRerender;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -116,11 +118,11 @@ public class ChemicalPlantMachine extends ParallelElectricMultiblockMachine {
     //////////////////////////////////////
 
     @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
+    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
         if (voltageTier < GTValues.UHV && RecipeHelper.getRecipeEUtTier(recipe) > voltageTier) {
             return null;
         }
-        var modified = super.getRealRecipe(recipe);
+        var modified = super.getRealRecipe(recipe, params, result);
         if (getCasingTier() > 0) {
             var copied = recipe == modified ? modified.copy() : modified;
             if (copied != null) {

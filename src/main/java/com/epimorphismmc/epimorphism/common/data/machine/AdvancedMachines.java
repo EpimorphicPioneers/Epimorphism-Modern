@@ -6,29 +6,22 @@ import com.epimorphismmc.epimorphism.api.machine.multiblock.ParallelGlassCoilMul
 import com.epimorphismmc.epimorphism.api.machine.multiblock.TierCasingElectricMultiblockMachine;
 import com.epimorphismmc.epimorphism.api.pattern.EPPredicates;
 import com.epimorphismmc.epimorphism.client.renderer.handler.machine.ProcessingArrayRenderer;
+import com.epimorphismmc.epimorphism.common.block.EPFusionCasingBlock;
 import com.epimorphismmc.epimorphism.common.data.EPBlocks;
 import com.epimorphismmc.epimorphism.common.data.EPMachines;
 import com.epimorphismmc.epimorphism.common.data.EPMaterials;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeModifiers;
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.AdvancedEBFMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.CircuitAssemblyLineMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.GeneralProcessingPlantMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.IndustrialFreezerMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.InfiniteFluidDrillingRigMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.IntegratedOreFactoryMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.PreciseAssemblerMachine;
-import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.ProcessingArrayMachine;
+import com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advanced.*;
 import com.epimorphismmc.epimorphism.config.EPConfigHolder;
 
-import com.epimorphismmc.monomorphism.client.renderer.machine.CustomPartRenderer;
-import com.epimorphismmc.monomorphism.client.renderer.machine.TierCasingMachineRenderer;
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
-import com.epimorphismmc.monomorphism.pattern.FactoryMOPattern;
-import com.epimorphismmc.monomorphism.pattern.MOBlockPattern;
-import com.epimorphismmc.monomorphism.pattern.MOPredicates;
-import com.epimorphismmc.monomorphism.pattern.utils.StructureUtil;
-
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.machine.CustomPartRenderer;
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.machine.TierCasingMachineRenderer;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelCoilMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.FactoryMOPattern;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.MOBlockPattern;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.MOPredicates;
+import com.epimorphismmc.monomorphism.integration.gtm.pattern.utils.StructureUtil;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
@@ -41,12 +34,13 @@ import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.client.renderer.machine.LargeMinerRenderer;
-import com.gregtechceu.gtceu.common.data.GCyMBlocks;
-import com.gregtechceu.gtceu.common.data.GCyMRecipeTypes;
+import com.gregtechceu.gtceu.common.data.GCYMBlocks;
+import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -55,6 +49,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.Shapes;
 
 import com.google.common.primitives.Ints;
@@ -63,15 +58,18 @@ import org.joml.Math;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import static com.epimorphismmc.epimorphism.EpimorphismCommon.registrate;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_CA_TIRED_CASINGS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_FIREBOXS;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_GLASSES;
 import static com.epimorphismmc.epimorphism.common.block.BlockMaps.ALL_PA_CASINGS;
+import static com.epimorphismmc.epimorphism.common.data.EPMachines.registerTieredEPMultis;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_COIL_BLOCKS;
 import static com.epimorphismmc.monomorphism.block.MOBlockMaps.ALL_MACHINE_CASINGS;
-import static com.epimorphismmc.monomorphism.pattern.MOPredicates.coilBlock;
+import static com.epimorphismmc.monomorphism.integration.gtm.pattern.MOPredicates.coilBlock;
+import static com.epimorphismmc.monomorphism.utility.FormattingUtils.toRomanNumeral;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
@@ -79,7 +77,7 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.BACK;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.RIGHT;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.UP;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -88,7 +86,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 public class AdvancedMachines {
     public static final MultiblockMachineDefinition[] PROCESSING_ARRAY =
             EPConfigHolder.INSTANCE.machines.doProcessingArray
-                    ? EPMachines.registerTieredEPMultis(
+                    ? registerTieredEPMultis(
                             "ep_processing_array",
                             ProcessingArrayMachine::new,
                             (tier, builder) -> builder
@@ -561,7 +559,7 @@ public class AdvancedMachines {
             .rotationState(RotationState.ALL)
             .recipeTypes(EPRecipeTypes.CIRCUIT_ASSEMBLY_LINE_RECIPES)
             .recipeModifiers(
-                    GTRecipeModifiers.SUBTICK_PARALLEL,
+                    GTRecipeModifiers.PARALLEL_HATCH,
                     GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.PERFECT_OVERCLOCK))
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start(BACK, UP, RIGHT)
@@ -877,8 +875,8 @@ public class AdvancedMachines {
             .langValue("Mega Alloy Blast Smelter")
             .tooltips(Component.translatable("block.epimorphism.mega_alloy_blast_smelter.desc.0"))
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(GCyMRecipeTypes.ALLOY_BLAST_RECIPES)
-            .appearanceBlock(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .recipeType(GCYMRecipeTypes.ALLOY_BLAST_RECIPES)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern(definition -> FactoryMOPattern.start()
                     .aisle(
                             "   BBBBB   ",
@@ -1112,15 +1110,15 @@ public class AdvancedMachines {
                             "           ",
                             "           ")
                     .where('S', controller(blocks(definition.getBlock())))
-                    .where('B', blocks(GCyMBlocks.HEAT_VENT.get()))
-                    .where('D', blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
+                    .where('B', blocks(GCYMBlocks.HEAT_VENT.get()))
+                    .where('D', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
                     .where('G', EPPredicates.glass())
-                    .where('H', blocks(GCyMBlocks.HEAT_VENT.get()))
+                    .where('H', blocks(GCYMBlocks.HEAT_VENT.get()))
                     .where('V', blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                     .where('W', coilBlock())
                     .where(
                             'C',
-                            blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
+                            blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get())
                                     .setMinGlobalLimited(15)
                                     .or(autoAbilities(definition.getRecipeTypes()))
                                     .or(autoAbilities(true, false, false)))
@@ -1380,266 +1378,85 @@ public class AdvancedMachines {
                     IntegratedOreFactoryMachine::getBaseTexture))
             .register();
 
-    //    public final static MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR =
-    // registerTieredEPMultis("compressed_fusion_reactor", CompressedFusionReactorMachine::new, (tier,
-    // builder) -> builder
-    //            .rotationState(RotationState.NON_Y_AXIS)
-    //            .langValue("Compressed Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier
-    // - 5)))
-    //            .recipeType(FUSION_RECIPES)
-    //            .recipeModifier(FusionReactorMachine::recipeModifier)
-    //            .tooltips(
-    //                    Component.translatable("gtceu.machine.fusion_reactor.capacity",
-    // FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
-    //                    Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-    //
-    // Component.translatable("gtceu.multiblock.fusion_reactor.%s.description".formatted(VN[tier].toLowerCase(Locale.ROOT))))
-    //            .appearanceBlock(() -> EPFusionCasingBlock.getCasingState(tier))
-    //            .pattern(definition -> FactoryBlockPattern.start()
-    //                    .aisle("                                               ", "
-    //                              ", "                    FCCCCCF                    ", "
-    //         FCIBICF                    ", "                    FCCCCCF                    ", "
-    //                                          ", "                                               ")
-    //                    .aisle("                                               ", "
-    //   FCBBBCF                    ", "                   CC#####CC                   ", "
-    //        CC#####CC                   ", "                   CC#####CC                   ", "
-    //               FCBBBCF                    ", "                                               ")
-    //                    .aisle("                    FCBBBCF                    ", "
-    //  CC#####CC                   ", "                CCCCC#####CCCCC                ", "
-    //     CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "
-    //              CC#####CC                   ", "                    FCBBBCF                    ")
-    //                    .aisle("                    FCIBICF                    ", "
-    // CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "
-    //     CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "
-    //             CCCCC#####CCCCC                ", "                    FCIBICF
-    // ")
-    //                    .aisle("                    FCBBBCF                    ", "
-    // CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "
-    //     CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "
-    //             CCCCCCC#####CCCCCCC              ", "                    FCBBBCF
-    // ")
-    //                    .aisle("                                               ", "
-    // CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "
-    //      CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ",
-    // "            CCCCCCC FCBBBCF CCCCCCC            ", "
-    //    ")
-    //                    .aisle("                                               ", "           CCCCC
-    //              CCCCC           ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "
-    // CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "
-    //        CCCCC               CCCCC           ", "
-    // ")
-    //                    .aisle("                                               ", "          CCCC
-    //                CCCC          ", "         CCHCCCC               CCCCHCC         ", "
-    // CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "
-    //        CCCC                   CCCC          ", "
-    // ")
-    //                    .aisle("                                               ", "         CCC
-    //                  CCC         ", "        CCHCCC                   CCCHCC        ", "
-    // CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "
-    //        CCC                       CCC         ", "
-    // ")
-    //                    .aisle("                                               ", "        CCC
-    //                   CCC        ", "       CCHCE                       ECHCC       ", "
-    // CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "
-    //        CCC                         CCC        ", "
-    //  ")
-    //                    .aisle("                                               ", "       CCC
-    //                    CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC
-    //                         CHHHC      ", "      ECHCC                         CCHCE      ", "
-    //  CCC                           CCC       ", "                                               ")
-    //                    .aisle("                                               ", "      CCC
-    //                     CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC
-    //                          CHHHC     ", "     CCHCE                           ECHCC     ", "
-    // CCC                             CCC      ", "                                               ")
-    //                    .aisle("                                               ", "     CCC
-    //                      CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC
-    //                           CHHHC    ", "    CCHCC                             CCHCC    ", "
-    // CCC                               CCC     ", "                                               ")
-    //                    .aisle("                                               ", "     CCC
-    //                      CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC
-    //                           CHHHC    ", "    CCHCC                             CCHCC    ", "
-    // CCC                               CCC     ", "                                               ")
-    //                    .aisle("                                               ", "    CCC
-    //                       CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC
-    //                            CHHHC   ", "   CCHCC                               CCHCC   ", "
-    // CCC                                 CCC    ", "
-    // ")
-    //                    .aisle("                                               ", "    CCC
-    //                       CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC
-    //                            CHHHC   ", "   CCHCC                               CCHCC   ", "
-    // CCC                                 CCC    ", "
-    // ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "  CCC
-    //                         CCC  ", " CCHCC                                   CCHCC ", " CHHHC
-    //                              CHHHC ", " CCHCC                                   CCHCC ", "  CCC
-    //                                     CCC  ", "                                               ")
-    //                    .aisle("  FFF                                     FFF  ", " FCCCF
-    //                        FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF
-    //                             FCHHHCF", "FCCHCCF                                 FCCHCCF", "
-    // FCCCF                                   FCCCF ", "  FFF                                     FFF
-    //  ")
-    //                    .aisle("  CCC                                     CCC  ", " C###C
-    //                        C###C ", "C##H##C                                 C##H##C", "C#HHH#C
-    //                             C#HHH#C", "C##H##C                                 C##H##C", "
-    // C###C                                   C###C ", "  CCC                                     CCC
-    //  ")
-    //                    .aisle("  CIC                                     CIC  ", " B###B
-    //                        B###B ", "C##H##C                                 C##H##C", "I#HHH#I
-    //                             I#HHH#I", "C##H##C                                 C##H##C", "
-    // B###B                                   B###B ", "  CIC                                     CIC
-    //  ")
-    //                    .aisle("  CBC                                     CBC  ", " B###B
-    //                        B###B ", "C##H##C                                 C##H##C", "B#HHH#B
-    //                             B#HHH#B", "C##H##C                                 C##H##C", "
-    // B###B                                   B###B ", "  CBC                                     CBC
-    //  ")
-    //                    .aisle("  CIC                                     CIC  ", " B###B
-    //                        B###B ", "C##H##C                                 C##H##C", "I#HHH#I
-    //                             I#HHH#I", "C##H##C                                 C##H##C", "
-    // B###B                                   B###B ", "  CIC                                     CIC
-    //  ")
-    //                    .aisle("  CCC                                     CCC  ", " C###C
-    //                        C###C ", "C##H##C                                 C##H##C", "C#HHH#C
-    //                             C#HHH#C", "C##H##C                                 C##H##C", "
-    // C###C                                   C###C ", "  CCC                                     CCC
-    //  ")
-    //                    .aisle("  FFF                                     FFF  ", " FCCCF
-    //                        FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF
-    //                             FCHHHCF", "FCCHCCF                                 FCCHCCF", "
-    // FCCCF                                   FCCCF ", "  FFF                                     FFF
-    //  ")
-    //                    .aisle("                                               ", "  CCC
-    //                         CCC  ", " CCHCC                                   CCHCC ", " CHHHC
-    //                              CHHHC ", " CCHCC                                   CCHCC ", "  CCC
-    //                                     CCC  ", "                                               ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "   CCC
-    //                        CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC
-    //                             CHHHC  ", "  CCHCC                                 CCHCC  ", "
-    // CCC                                   CCC   ", "
-    // ")
-    //                    .aisle("                                               ", "    CCC
-    //                       CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC
-    //                            CHHHC   ", "   CCHCC                               CCHCC   ", "
-    // CCC                                 CCC    ", "
-    // ")
-    //                    .aisle("                                               ", "    CCC
-    //                       CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC
-    //                            CHHHC   ", "   CCHCC                               CCHCC   ", "
-    // CCC                                 CCC    ", "
-    // ")
-    //                    .aisle("                                               ", "     CCC
-    //                      CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC
-    //                           CHHHC    ", "    CCHCC                             CCHCC    ", "
-    // CCC                               CCC     ", "                                               ")
-    //                    .aisle("                                               ", "     CCC
-    //                      CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC
-    //                           CHHHC    ", "    CCHCC                             CCHCC    ", "
-    // CCC                               CCC     ", "                                               ")
-    //                    .aisle("                                               ", "      CCC
-    //                     CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC
-    //                          CHHHC     ", "     CCHCE                           ECHCC     ", "
-    // CCC                             CCC      ", "                                               ")
-    //                    .aisle("                                               ", "       CCC
-    //                    CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC
-    //                         CHHHC      ", "      ECHCC                         CCHCE      ", "
-    //  CCC                           CCC       ", "                                               ")
-    //                    .aisle("                                               ", "        CCC
-    //                   CCC        ", "       CCHCE                       ECHCC       ", "
-    // CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "
-    //        CCC                         CCC        ", "
-    //  ")
-    //                    .aisle("                                               ", "         CCC
-    //                  CCC         ", "        CCHCCC                   CCCHCC        ", "
-    // CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "
-    //        CCC                       CCC         ", "
-    // ")
-    //                    .aisle("                                               ", "          CCCC
-    //                CCCC          ", "         CCHCCCC               CCCCHCC         ", "
-    // CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "
-    //        CCCC                   CCCC          ", "
-    // ")
-    //                    .aisle("                                               ", "           CCCCC
-    //              CCCCC           ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "
-    // CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "
-    //        CCCCC               CCCCC           ", "
-    // ")
-    //                    .aisle("                                               ", "
-    // CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "
-    //      CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ",
-    // "            CCCCCCC FCBBBCF CCCCCCC            ", "
-    //    ")
-    //                    .aisle("                    FCBBBCF                    ", "
-    // CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "
-    //     CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "
-    //             CCCCCCC#####CCCCCCC              ", "                    FCBBBCF
-    // ")
-    //                    .aisle("                    FCIBICF                    ", "
-    // CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "
-    //     CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "
-    //             CCCCC#####CCCCC                ", "                    FCIBICF
-    // ")
-    //                    .aisle("                    FCBBBCF                    ", "
-    //  CC#####CC                   ", "                CCCCC#####CCCCC                ", "
-    //     CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "
-    //              CC#####CC                   ", "                    FCBBBCF                    ")
-    //                    .aisle("                                               ", "
-    //   FCBBBCF                    ", "                   CC#####CC                   ", "
-    //        CC#####CC                   ", "                   CC#####CC                   ", "
-    //               FCBBBCF                    ", "                                               ")
-    //                    .aisle("                                               ", "
-    //                              ", "                    FCCCCCF                    ", "
-    //         FCISICF                    ", "                    FCCCCCF                    ", "
-    //                                          ", "                                               ")
-    //                    .where('S', controller(blocks(definition.get())))
-    //                    .where('B', blocks(FUSION_GLASS.get()))
-    //                    .where('C', blocks(EPFusionCasingBlock.getCasingState(tier)))
-    //                    .where('I', blocks(EPFusionCasingBlock.getCasingState(tier))
-    //                            .or(abilities(PartAbility.IMPORT_FLUIDS)
-    //                                    .setMinGlobalLimited(2)
-    //                                    .setPreviewCount(16))
-    //                            .or(abilities(PartAbility.EXPORT_FLUIDS)
-    //                                    .setMinGlobalLimited(2)
-    //                                    .setPreviewCount(16)))
-    //                    .where('F', frames(CompressedFusionReactorMachine.getFrameMaterial(tier)))
-    //                    .where('H', blocks(CompressedFusionReactorMachine.getCoilBlock(tier)))
-    //                    .where('E', blocks(EPFusionCasingBlock.getCasingState(tier))
-    //                            .or(blocks(PartAbility.INPUT_ENERGY.getBlockRange(tier,
-    // UEV).toArray(Block[]::new))
-    //                                    .setMinGlobalLimited(1)
-    //                                    .setPreviewCount(32)))
-    //                    .where('#', air())
-    //                    .where(' ', any())
-    //                    .build())
-    //
-    // .workableCasingRenderer(EPFusionCasingBlock.getCasingType(tier).getTexture(),
-    //                            GTCEu.id("block/multiblock/fusion_reactor"), false)
-    //                    .register(),
-    //            LuV, ZPM, UV, UHV, UEV);
+    public final static MultiblockMachineDefinition[] COMPRESSED_FUSION_REACTOR = registerTieredEPMultis("compressed_fusion_reactor", CompressedFusionReactorMachine::new, (tier, builder) -> builder
+            .rotationState(RotationState.NON_Y_AXIS)
+            .langValue("Compressed Fusion Reactor Computer MK %s".formatted(toRomanNumeral(tier - 5)))
+            .recipeType(FUSION_RECIPES)
+            .recipeModifier(FusionReactorMachine::recipeModifier)
+            .tooltips(
+                    Component.translatable("gtceu.machine.fusion_reactor.capacity", FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
+                    Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
+                    Component.translatable("gtceu.multiblock.fusion_reactor.%s.description".formatted(VN[tier].toLowerCase(Locale.ROOT)))
+            )
+            .appearanceBlock(() -> EPFusionCasingBlock.getCasingState(tier))
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("                                               ", "                                               ", "                    FCCCCCF                    ", "                    FCIBICF                    ", "                    FCCCCCF                    ", "                                               ", "                                               ")
+                    .aisle("                                               ", "                    FCBBBCF                    ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                    FCBBBCF                    ", "                                               ")
+                    .aisle("                    FCBBBCF                    ", "                   CC#####CC                   ", "                CCCCC#####CCCCC                ", "                CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "                   CC#####CC                   ", "                    FCBBBCF                    ")
+                    .aisle("                    FCIBICF                    ", "                CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "              CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "                CCCCC#####CCCCC                ", "                    FCIBICF                    ")
+                    .aisle("                    FCBBBCF                    ", "              CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "            CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "              CCCCCCC#####CCCCCCC              ", "                    FCBBBCF                    ")
+                    .aisle("                                               ", "            CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "           CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "            CCCCCCC FCBBBCF CCCCCCC            ", "                                               ")
+                    .aisle("                                               ", "           CCCCC               CCCCC           ","           ECHHCCCCC FCCCCCF CCCCCHHCE          ", "          CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "           CCCCC               CCCCC           ", "                                               ")
+                    .aisle("                                               ", "          CCCC                   CCCC          ", "         CCHCCCC               CCCCHCC         ", "         CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "          CCCC                   CCCC          ", "                                               ")
+                    .aisle("                                               ", "         CCC                       CCC         ", "        CCHCCC                   CCCHCC        ", "        CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "         CCC                       CCC         ", "                                               ")
+                    .aisle("                                               ", "        CCC                         CCC        ", "       CCHCE                       ECHCC       ", "       CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "        CCC                         CCC        ", "                                               ")
+                    .aisle("                                               ", "       CCC                           CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC                         CHHHC      ", "      ECHCC                         CCHCE      ", "       CCC                           CCC       ", "                                               ")
+                    .aisle("                                               ", "      CCC                             CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC                           CHHHC     ", "     CCHCE                           ECHCC     ", "      CCC                             CCC      ", "                                               ")
+                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
+                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
+                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
+                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "  CCC                                     CCC  ", " CCHCC                                   CCHCC ", " CHHHC                                   CHHHC ", " CCHCC                                   CCHCC ", "  CCC                                     CCC  ", "                                               ")
+                    .aisle("  FFF                                     FFF  ", " FCCCF                                   FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF                                 FCHHHCF", "FCCHCCF                                 FCCHCCF", " FCCCF                                   FCCCF ", "  FFF                                     FFF  ")
+                    .aisle("  CCC                                     CCC  ", " C###C                                   C###C ", "C##H##C                                 C##H##C", "C#HHH#C                                 C#HHH#C", "C##H##C                                 C##H##C", " C###C                                   C###C ", "  CCC                                     CCC  ")
+                    .aisle("  CIC                                     CIC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "I#HHH#I                                 I#HHH#I", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CIC                                     CIC  ")
+                    .aisle("  CBC                                     CBC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "B#HHH#B                                 B#HHH#B", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CBC                                     CBC  ")
+                    .aisle("  CIC                                     CIC  ", " B###B                                   B###B ", "C##H##C                                 C##H##C", "I#HHH#I                                 I#HHH#I", "C##H##C                                 C##H##C", " B###B                                   B###B ", "  CIC                                     CIC  ")
+                    .aisle("  CCC                                     CCC  ", " C###C                                   C###C ", "C##H##C                                 C##H##C", "C#HHH#C                                 C#HHH#C", "C##H##C                                 C##H##C", " C###C                                   C###C ", "  CCC                                     CCC  ")
+                    .aisle("  FFF                                     FFF  ", " FCCCF                                   FCCCF ", "FCCHCCF                                 FCCHCCF", "FCHHHCF                                 FCHHHCF", "FCCHCCF                                 FCCHCCF", " FCCCF                                   FCCCF ", "  FFF                                     FFF  ")
+                    .aisle("                                               ", "  CCC                                     CCC  ", " CCHCC                                   CCHCC ", " CHHHC                                   CHHHC ", " CCHCC                                   CCHCC ", "  CCC                                     CCC  ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "   CCC                                   CCC   ", "  CCHCC                                 CCHCC  ", "  CHHHC                                 CHHHC  ", "  CCHCC                                 CCHCC  ", "   CCC                                   CCC   ", "                                               ")
+                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
+                    .aisle("                                               ", "    CCC                                 CCC    ", "   CCHCC                               CCHCC   ", "   CHHHC                               CHHHC   ", "   CCHCC                               CCHCC   ", "    CCC                                 CCC    ", "                                               ")
+                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
+                    .aisle("                                               ", "     CCC                               CCC     ", "    CCHCC                             CCHCC    ", "    CHHHC                             CHHHC    ", "    CCHCC                             CCHCC    ", "     CCC                               CCC     ", "                                               ")
+                    .aisle("                                               ", "      CCC                             CCC      ", "     CCHCE                           ECHCC     ", "     CHHHC                           CHHHC     ", "     CCHCE                           ECHCC     ", "      CCC                             CCC      ", "                                               ")
+                    .aisle("                                               ", "       CCC                           CCC       ", "      ECHCC                         CCHCE      ", "      CHHHC                         CHHHC      ", "      ECHCC                         CCHCE      ", "       CCC                           CCC       ", "                                               ")
+                    .aisle("                                               ", "        CCC                         CCC        ", "       CCHCE                       ECHCC       ", "       CHHHC                       CHHHC       ", "       CCHCE                       ECHCC       ", "        CCC                         CCC        ", "                                               ")
+                    .aisle("                                               ", "         CCC                       CCC         ", "        CCHCCC                   CCCHCC        ", "        CHHHCC                   CCHHHC        ", "        CCHCCC                   CCCHCC        ", "         CCC                       CCC         ", "                                               ")
+                    .aisle("                                               ", "          CCCC                   CCCC          ", "         CCHCCCC               CCCCHCC         ", "         CHHHHCC               CCHHHHC         ", "         CCHCCCC               CCCCHCC         ", "          CCCC                   CCCC          ", "                                               ")
+                    .aisle("                                               ", "           CCCCC               CCCCC           ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "          CHHHHHCCC FCIBICF CCCHHHHHC          ", "          ECHHCCCCC FCCCCCF CCCCCHHCE          ", "           CCCCC               CCCCC           ", "                                               ")
+                    .aisle("                                               ", "            CCCCCCC FCBBBCF CCCCCCC            ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "           CHHHHHHHCC#####CCHHHHHHHC           ", "           CCCHHCCCCC#####CCCCCHHCCC           ", "            CCCCCCC FCBBBCF CCCCCCC            ", "                                               ")
+                    .aisle("                    FCBBBCF                    ", "             CCCCCCC#####CCCCCCC              ", "            CCCCHHHCC#####CCHHHCCCC            ", "            CCHHHHHHHHHHHHHHHHHHHCC            ", "            CCCCHHHCC#####CCHHHCCCC            ", "               CCCCCCC#####CCCCCCC              ", "                    FCBBBCF                    ")
+                    .aisle("                    FCIBICF                    ", "                CCCCC#####CCCCC                ", "              CCCCCHHHHHHHHHCCCCC              ", "              CCHHHHHHHHHHHHHHHCC              ", "              CCCCCHHHHHHHHHCCCCC              ", "                CCCCC#####CCCCC                ", "                    FCIBICF                    ")
+                    .aisle("                    FCBBBCF                    ", "                   CC#####CC                   ", "                CCCCC#####CCCCC                ", "                CCCHHHHHHHHHCCC                ", "                CCCCC#####CCCCC                ", "                   CC#####CC                   ", "                    FCBBBCF                    ")
+                    .aisle("                                               ", "                    FCBBBCF                    ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                   CC#####CC                   ", "                    FCBBBCF                    ", "                                               ")
+                    .aisle("                                               ", "                                               ", "                    FCCCCCF                    ", "                    FCISICF                    ", "                    FCCCCCF                    ", "                                               ", "                                               ")
+                    .where('S', controller(blocks(definition.get())))
+                    .where('B', blocks(FUSION_GLASS.get()))
+                    .where('C', blocks(EPFusionCasingBlock.getCasingState(tier)))
+                    .where('I', blocks(EPFusionCasingBlock.getCasingState(tier))
+                            .or(abilities(PartAbility.IMPORT_FLUIDS)
+                                    .setMinGlobalLimited(2)
+                                    .setPreviewCount(16))
+                            .or(abilities(PartAbility.EXPORT_FLUIDS)
+                                    .setMinGlobalLimited(2)
+                                    .setPreviewCount(16)))
+                    .where('F', frames(CompressedFusionReactorMachine.getFrameMaterial(tier)))
+                    .where('H', blocks(CompressedFusionReactorMachine.getCoilBlock(tier)))
+                    .where('E', blocks(EPFusionCasingBlock.getCasingState(tier))
+                            .or(blocks(PartAbility.INPUT_ENERGY.getBlockRange(tier, UEV).toArray(Block[]::new))
+                                    .setMinGlobalLimited(1)
+                                    .setPreviewCount(32)))
+                    .where('#', air()).where(' ', any())
+                    .build())
+            .workableCasingRenderer(EPFusionCasingBlock.getCasingType(tier).getTexture(), GTCEu.id("block/multiblock/fusion_reactor"), false)
+            .register(), LuV, ZPM, UV, UHV, UEV);
 
     // Bedrock
     public static final MultiblockMachineDefinition INFINITE_FLUID_DRILLING_RIG = registrate()

@@ -1,8 +1,7 @@
 package com.epimorphismmc.epimorphism.common.item.behaviors.renderer;
 
-import com.epimorphismmc.monomorphism.client.renderer.item.MOItemRenderers;
-import com.epimorphismmc.monomorphism.item.component.IHaloEffect;
-
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.item.MOItemRenderers;
+import com.epimorphismmc.monomorphism.integration.gtm.item.component.IHaloEffect;
 import com.lowdragmc.lowdraglib.Platform;
 
 import net.minecraft.resources.ResourceLocation;

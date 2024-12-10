@@ -2,8 +2,7 @@ package com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advance
 
 import com.epimorphismmc.epimorphism.common.data.EPRecipeTypes;
 
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
-
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;

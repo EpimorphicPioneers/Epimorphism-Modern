@@ -19,8 +19,7 @@ import com.epimorphismmc.epimorphism.data.recipe.GTRecipeManager;
 import com.epimorphismmc.epimorphism.data.recipe.handler.GTRecipeHandlerManager;
 import com.epimorphismmc.epimorphism.network.s2c.PacketVajraDestroy;
 
-import com.epimorphismmc.monomorphism.registry.registrate.MORegistrate;
-
+import com.epimorphismmc.monomorphism.integration.registrate.MORegistrate;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.cover.CoverDefinition;
 import com.gregtechceu.gtceu.api.data.chemical.Element;

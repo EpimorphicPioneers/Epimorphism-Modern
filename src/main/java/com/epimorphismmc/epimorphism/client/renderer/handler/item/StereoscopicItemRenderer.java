@@ -1,7 +1,6 @@
 package com.epimorphismmc.epimorphism.client.renderer.handler.item;
 
-import com.epimorphismmc.monomorphism.client.renderer.item.WrappedItemRenderer;
-
+import com.epimorphismmc.monomorphism.integration.gtm.client.renderer.item.WrappedItemRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.item.ItemDisplayContext;

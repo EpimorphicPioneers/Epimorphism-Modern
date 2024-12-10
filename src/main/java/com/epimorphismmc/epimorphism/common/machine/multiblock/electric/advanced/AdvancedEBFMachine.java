@@ -2,18 +2,16 @@ package com.epimorphismmc.epimorphism.common.machine.multiblock.electric.advance
 
 import com.epimorphismmc.epimorphism.common.data.EPMaterials;
 
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelCoilMultiblockMachine;
-
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelCoilMultiblockMachine;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
-
-import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
-import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -21,6 +19,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 import lombok.val;
+import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -31,8 +31,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class AdvancedEBFMachine extends ParallelCoilMultiblockMachine {
-    private final FluidStack PYROTHEUM_STACK =
-            EPMaterials.BlazingPyrotheum.getFluid(FluidHelper.getBucket() / 1000);
+    private final FluidStack PYROTHEUM_STACK = EPMaterials.BlazingPyrotheum.getFluid(1000);
 
     private boolean insufficient;
 
@@ -64,7 +63,7 @@ public class AdvancedEBFMachine extends ParallelCoilMultiblockMachine {
         return super.onWorking();
     }
 
-    public static @Nullable GTRecipe advEBFOverclock(MetaMachine machine, @Nonnull GTRecipe recipe) {
+    public static @Nullable GTRecipe advEBFOverclock(MetaMachine machine, @Nonnull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
         if (machine instanceof ParallelCoilMultiblockMachine coilMachine) {
             val blastFurnaceTemperature = coilMachine.getCoilType().getCoilTemperature();
             if (!recipe.data.contains("ebf_temp")
@@ -76,8 +75,8 @@ public class AdvancedEBFMachine extends ParallelCoilMultiblockMachine {
             }
             return RecipeHelper.applyOverclock(
                     new OverclockingLogic((recipe1, recipeEUt, maxVoltage, duration, amountOC) -> {
-                        var pair = OverclockingLogic.heatingCoilOverclockingLogic(
-                                Math.abs(recipeEUt),
+                        var pair = OverclockingLogic.heatingCoilOC(
+                                Math.abs(recipeEUt.getEut()),
                                 maxVoltage,
                                 duration,
                                 amountOC,

@@ -6,8 +6,11 @@ import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper;
 
-import it.unimi.dsi.fastutil.ints.Int2LongFunction;
+import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
+import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
+import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -20,7 +23,7 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
             IMachineBlockEntity holder,
             int tier,
             String name,
-            Int2LongFunction tankScalingFunction,
+            Int2IntFunction tankScalingFunction,
             Object... args) {
         super(holder, tier, tankScalingFunction, args);
         this.efficiency = getEfficiency(tier, name);
@@ -34,7 +37,7 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         };
     }
 
-    @Nullable public static GTRecipe nonParallel(MetaMachine machine, @Nonnull GTRecipe recipe) {
+    @Nullable public static GTRecipe nonParallel(MetaMachine machine, @Nonnull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
         if (machine instanceof EfficiencyGeneratorMachine generator) {
             var EUt = RecipeHelper.getOutputEUt(recipe);
             var recipeModifier = recipe.copy();
@@ -45,9 +48,9 @@ public class EfficiencyGeneratorMachine extends SimpleGeneratorMachine {
         return null;
     }
 
-    @Nullable public static GTRecipe parallel(MetaMachine machine, @Nonnull GTRecipe recipe) {
-        GTRecipe recipeModifier = nonParallel(machine, recipe);
+    @Nullable public static GTRecipe parallel(MetaMachine machine, @Nonnull GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
+        GTRecipe recipeModifier = nonParallel(machine, recipe, params, result);
         assert recipeModifier != null;
-        return SimpleGeneratorMachine.recipeModifier(machine, recipeModifier);
+        return SimpleGeneratorMachine.recipeModifier(machine, recipeModifier, params, result);
     }
 }

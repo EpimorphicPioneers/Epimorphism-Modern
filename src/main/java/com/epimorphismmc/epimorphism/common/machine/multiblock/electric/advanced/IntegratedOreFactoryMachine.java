@@ -5,9 +5,8 @@ import com.epimorphismmc.epimorphism.api.gui.EPGuiTextures;
 import com.epimorphismmc.epimorphism.common.data.EPBlocks;
 import com.epimorphismmc.epimorphism.common.machine.trait.OreProcessingRecipeLogic;
 
-import com.epimorphismmc.monomorphism.machine.fancyconfigurator.CustomModeFancyConfigurator;
-import com.epimorphismmc.monomorphism.machine.multiblock.ParallelElectricMultiblockMachine;
-
+import com.epimorphismmc.monomorphism.integration.gtm.machine.fancyconfigurator.CustomModeFancyConfigurator;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.ParallelElectricMultiblockMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;

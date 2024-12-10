@@ -18,7 +18,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.accurateParall
 public class EPRecipeModifiers {
 
     public static final RecipeModifier EP_PARALLEL =
-            (machine, recipe) -> EPParallel(machine, recipe, false).getFirst();
+            (machine, recipe, params, result) -> EPParallel(machine, recipe, false).getFirst();
 
     public static Pair<GTRecipe, Integer> EPParallel(
             MetaMachine machine, @Nonnull GTRecipe recipe, boolean modifyDuration) {

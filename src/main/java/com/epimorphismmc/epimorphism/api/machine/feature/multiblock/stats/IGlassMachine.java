@@ -2,7 +2,8 @@ package com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats;
 
 import com.epimorphismmc.epimorphism.api.block.tier.ITierGlassType;
 
-import com.epimorphismmc.monomorphism.machine.trait.MultiblockTrait;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.MultiStatsElectricMultiblockMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.trait.MultiblockTrait;
 import com.epimorphismmc.monomorphism.utility.MOUtils;
 
 import com.gregtechceu.gtceu.api.GTValues;
@@ -33,9 +34,7 @@ public interface IGlassMachine extends IMachineFeature {
         @Getter
         private int glassTier;
 
-        public GlassTierStats(
-                com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine
-                        machine) {
+        public GlassTierStats(MultiStatsElectricMultiblockMachine machine) {
             super(machine);
             machine.addStats(this);
         }

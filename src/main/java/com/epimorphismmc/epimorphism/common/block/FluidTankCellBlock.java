@@ -3,7 +3,7 @@ package com.epimorphismmc.epimorphism.common.block;
 import com.epimorphismmc.epimorphism.api.block.tier.IFluidTankCell;
 
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.api.block.RendererBlock;
+import com.gregtechceu.gtceu.api.block.AppearanceBlock;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.gregtechceu.gtceu.utils.GTUtil;
 
@@ -21,13 +21,12 @@ import org.jetbrains.annotations.Nullable;
 import java.math.BigInteger;
 import java.util.List;
 
-public class FluidTankCellBlock extends RendererBlock {
-
-    @Getter
+@Getter
+public class FluidTankCellBlock extends AppearanceBlock {
     private final IFluidTankCell data;
 
-    public FluidTankCellBlock(Properties properties, IFluidTankCell data, IRenderer renderer) {
-        super(properties, renderer);
+    public FluidTankCellBlock(Properties properties, IFluidTankCell data) {
+        super(properties);
         this.data = data;
     }
 

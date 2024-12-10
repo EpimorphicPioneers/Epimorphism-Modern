@@ -3,9 +3,8 @@ package com.epimorphismmc.epimorphism.api.machine.multiblock;
 import com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats.ICoilMachine;
 import com.epimorphismmc.epimorphism.api.machine.feature.multiblock.stats.IGlassMachine;
 
-import com.epimorphismmc.monomorphism.machine.feature.multiblock.stats.IParallelMachine;
-import com.epimorphismmc.monomorphism.machine.multiblock.MultiStatsElectricMultiblockMachine;
-
+import com.epimorphismmc.monomorphism.integration.gtm.machine.feature.multiblock.stats.IParallelMachine;
+import com.epimorphismmc.monomorphism.integration.gtm.machine.multiblock.MultiStatsElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 
